@@ -8,10 +8,10 @@ Steps on how to create an nft
 7. If you want to mint an image to the block chain, you first must add the image to ipfs first
 8. get the image
 9. Get the pathlibrary to get the path of the image
-10. Run your ipfs node/If you want to do the alternative, you can use pinata (in this case you can just use the pinata api key to make a request.post to send it over)
+10. Run your ipfs node/If you want to do the alternative, you can use pinata (in this case you can just use the pinata api key to make a request.post using pinata api to send it over)
 11. Get the ipfs_url which be that of your node
 12. Use the api/v0/add end point of the your ipfs
-13. Then run a request response with your image binary file
+13. Then run a request response using the ipfs api with your image binary file to upload
 14. To get the uri of the image, you just get the hash of the request reponse and then follow up with the ?filename={FILENAME}
 15. You then start filling out the information from the metadata template of what you want and then run the same upload function to ipfs
 16. From their you get the ipfs uri, then run setTokenURI --> set the uri correctly with the tokenId

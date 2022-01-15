@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'PlusJakartaSans';
+    src: url('./PlusJakartaSans-Regular.woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PlusJakartaSans-SemiBold';
+    src: url('./PlusJakartaSans-SemiBold.woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'PlusJakartaSans-Bold';
+    src: url('./PlusJakartaSans-Bold.woff');
+    font-weight: 400;
+    font-style: normal;
+}

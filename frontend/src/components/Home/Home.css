@@ -1,0 +1,168 @@
+.title {
+    font-family: 'PlusJakartaSans-Bold';
+    font-size: 37.5px;
+
+}
+
+
+.title2 {
+    font-family: 'PlusJakartaSans-SemiBold';
+    font-size: 25px;
+}
+
+.font3{
+  font-family: 'Arial';
+}
+
+
+.loginKey{
+
+
+
+}
+
+.menuItemFont{
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 14px;
+}
+
+.loginFont{
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 14px;
+  color:white;
+}
+
+
+.loginBtn .loginTxt{
+  color:'white'
+}
+
+
+.loginBtn {
+    width: 130px;
+    height: 30px;
+    background-color: #2f54eb;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.logoFont{
+  font-family: 'PlusJakartaSans-Bold';
+  font-size: 18px;
+  margin-left: 25px;
+}
+
+.bigContainer{
+  display: flex;
+  height:93vh;
+  flex-direction: column;
+  /* background: red; */
+}
+
+
+.splitScreenContainer{
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+  /* background-color: #ffc53d; */
+
+}
+
+.getStartedBtn {
+  margin-top: 25px;
+    width: 150px;
+    height: 40px;
+    background-color: #1890ff;
+    border-radius: 25px;
+    align-items: "center";
+    justify-content: "center";
+    display: flex;
+  }
+
+  .containerText{
+    color:white;
+    transform: translateY(50%);
+    transform: translateX(-50%);
+    left:50%;
+    top:15%;
+    position: relative;
+    /* background: red; */
+    font-size: 16px;
+    font-family: 'PlusJakartaSans-SemiBold';
+
+  }
+
+.splitLeft{
+  flex:1;
+  height:'100%';
+  /* position: 'relative'; */
+  /* transform: translateX(-50%);
+  left:50%; */
+  /* background: orange; */
+}
+.test{
+  display: flex;
+  justify-content: flex-end;
+}
+.splitLeft1{
+  position: relative;
+  transform: translateX(50%);
+  transform: translateY(-50%);
+  left:25%;
+  top:55%;
+  align-items: center;
+}
+
+.splitRight{
+  flex:1;
+
+    /* background: green; */
+}
+
+.splitRightCenter{
+  display: flex;
+  align-items: center;
+  top:25%;
+  left:7.5%;
+  position: relative;
+
+}
+.custom-shape-divider-top-1639728936 {
+    position: absolute;
+    top: '10%';
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1639728936 svg {
+    position: relative;
+    display: block;
+    width: calc(108% + 1.3px);
+    height: 96px;
+}
+
+.custom-shape-divider-top-1639728936 .shape-fill {
+    fill: #1890ff;
+}
+
+.small1{
+  flex:1;
+  height: 200px;
+
+  /* left: 50%;
+    transform: translateX(-50%); */
+}
+
+.small2{
+  flex:1;
+  /* background: red; */
+  padding:100px;
+}
+
+.ant-divider{
+  background-color: #d9d9d9;
+}

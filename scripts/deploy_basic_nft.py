@@ -1,6 +1,7 @@
 from scripts.helpful_scripts import get_account
 from brownie import BasicNFT
 
+
 """
     Function will be used to deploy the BasicNFT
     smart contract
@@ -9,7 +10,6 @@ from brownie import BasicNFT
     -name --> string name
     -symbol --> string symbol
 """
-
 def deploy_basic_nft(name, symbol):
     account = get_account()
     print("Deploying Contract...")

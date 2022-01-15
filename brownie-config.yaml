@@ -9,3 +9,12 @@ compiler:
 
 
 dotenv: .env
+
+wallets:
+  from_key: ${PRIVATE_KEY}
+
+networks:
+  development:
+    verify: False
+  rinkeby:
+    verify: True

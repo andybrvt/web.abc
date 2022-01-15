@@ -13,6 +13,8 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract BasicNFT is ERC721 {
 
+
+  uint256 public tokenCounter;
   /*
 
   This will be a collection, instead of an nft on its own. It will
@@ -24,16 +26,14 @@ contract BasicNFT is ERC721 {
 
    */
 
-  uint256 public tokenCounter; // id for each nft in the collection
-  uint256 public fee;
 
 
 
-  constructor(string memory name_, string memory symbol_, uint256 _fee) public
+
+  constructor(string memory name_, string memory symbol_) public
   ERC721(name_, symbol_)
   {
-    tokenCounter = 0;
-    fee = _fee;
+
   }
 
   /*

@@ -9,8 +9,6 @@ import { injected } from "../wallet/Connectors"
 import { useNavigate, } from 'react-router-dom';
 import { useEthers, useEtherBalance, useContractCall, useContractFunction} from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
-import SimpleContractAbi from "../../abi/SimpleContract.json";
-import { simpleContractAddress } from "../../contracts"
 import './Account.css';
 import web from '../Home/web.png';
 import { Button, ButtonGroup, Divider, Flex, Text } from '@chakra-ui/react';
@@ -149,7 +147,7 @@ class Account extends React.Component{
                 </div>
 
 
-                
+
               </span>
             </div>
           </div>

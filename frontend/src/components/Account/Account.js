@@ -27,7 +27,7 @@ import {
   MenuDivider,
 } from '@chakra-ui/react'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
-
+import { authAxios } from '../../components/util';
 
 
 {/*
@@ -82,7 +82,7 @@ class Account extends React.Component{
       searched: [],
       showSearch: false,
       searchValue: "",
-
+      selectedFile: "",
     };
   }
   state = {
@@ -92,6 +92,30 @@ class Account extends React.Component{
 
   };
 
+  onChangeHandler = event => {
+   console.log(event.target.files[0])
+   console.log(URL.createObjectURL(event.target.files[0]))
+   this.setState({
+       selectedFile: event.target.files[0],
+       submitFile:URL.createObjectURL(event.target.files[0]),
+       loaded: 0,
+   })
+ }
+
+ submitVid=(values)=>{
+    console.log('start of submitted vid')
+    console.log(values)
+    const formData = new FormData();
+    formData.append('email',  values.email)
+    formData.append('vid', this.state.selectedFile)
+    console.log(formData)
+    authAxios.post(`${global.API_ENDPOINT}/portal/UploadBusinessVid`,
+      formData,
+      {headers: {"content-type": "multipart/form-data"}}
+    ).then(res => {
+      console.log(res.data)
+    })
+  }
 
   renderSearchList = (searches) =>{
     // this function will display the list of users that are found by the search
@@ -216,27 +240,71 @@ class Account extends React.Component{
             hello how are you
           </div>
           <div>
-          <Flex direction="column" align="center" mt="4">
-            <Text color="black" fontSize="8xl">
-              {this.state.count ? this.state.count: 0}
-            </Text>
-            <Button colorScheme="teal" size="lg" >
-              Increment
-            </Button>
-          </Flex>
-            <text color="white" fontSize="md" fontWeight="medium" mr="2">
-              {account &&
-                `${account.slice(0, 6)}...${account.slice(
-                  account.length - 4,
-                  account.length
-                )}`}
-            </text>
-            <br/>
-            <text color="white" fontSize="md">
-              {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
-            </text>
+            <Flex direction="column" align="center" mt="4">
+              <Text color="black" fontSize="8xl">
+                {this.state.count ? this.state.count: 0}
+              </Text>
+              <Button colorScheme="teal" size="lg" >
+                Increment
+              </Button>
+            </Flex>
+              <text color="white" fontSize="md" fontWeight="medium" mr="2">
+                {account &&
+                  `${account.slice(0, 6)}...${account.slice(
+                    account.length - 4,
+                    account.length
+                  )}`}
+              </text>
+              <br/>
+              <text color="white" fontSize="md">
+                {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
+              </text>
           </div>
+
+
+
+
+            <div class="row">
+
+
+              <div class="col">
+                <input onChange={this.onChangeHandler} type="file" name="file" ></input>
+
+                  <div>
+                    {
+                      (this.state.selectedFile) ?
+
+                // uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+
+                      // <img class="imageUploaded" src={imageUrl} alt="avatar" />
+                      <video width="300" height="300" controls>
+                          <source src={this.state.submitFile}/>
+                      </video>
+
+                      :
+                      ''
+                  }
+                  </div>
+
+              </div>
+            </div>
+            <div style={{paddingTop:'25px'}}>
+                <Button
+                  // onClick={this.submitVid}
+                htmlType="submit"
+                type = "primary"
+                // disabled = {this.handleSubmitButton()}
+                // disabled = {pristine || invalid}
+                > Submit </Button>
+            </div>
+
+
+
+
+
+
         </div>
+
       </div>
     )
   }

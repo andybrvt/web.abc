@@ -3,7 +3,8 @@ from scripts.helpful_scripts import get_account, OPENSEA_URL
 
 
 # TOKEN_URI = "https://ipfs.io/ipfs/Qma9DTGjJ313e8UMRzNSEWHeFo35ZmxJ4quxfxTzYnyQVD?filename=0-test1.json"
-TOKEN_URI = "https://ipfs.io/ipfs/Qmd9MCGtdVz2miNumBHDbvj8bigSgTwnr4SbyH6DNnpWdt?filename=0-PUG.json"
+# TOKEN_URI = "https://ipfs.io/ipfs/Qmd9MCGtdVz2miNumBHDbvj8bigSgTwnr4SbyH6DNnpWdt?filename=0-PUG.json"
+TOKEN_URI = "https://gateway.pinata.cloud/ipfs/QmY8YAUdfk91RJBdUFqADYpH85tf8tACdLgPJxLLAwdaxy?filename=test2.json"
 
 def main():
     advanced_collectible = BasicNFT[-1]

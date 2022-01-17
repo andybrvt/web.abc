@@ -74,5 +74,13 @@ contract BasicNFT is  ERC721URIStorage {
       _setTokenURI(tokenId, _tokenURI);
   }
 
+  function simpleCreateCollectible(string memory tokenURI) public returns(uint256){
+    uint256 newTokenId = tokenCounter;
+    _safeMint(msg.sender, newTokenId); // inherited from OpenZeppelin, param: to, tokenid
+    _setTokenURI(newTokenId, tokenURI); // allow our nft to have a token associated with it
+    tokenCounter += 1;
+    return newTokenId;
+  }
+
 
 }

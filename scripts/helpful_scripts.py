@@ -6,6 +6,8 @@ LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
     "binance-fork",
     "matic-fork",
 ]
+OPENSEA_URL = "https://testnets.opensea.io/assets/{}/{}"
+
 
 # index will be used for ganache accounts
 # id willbe used for loading accounts from the system

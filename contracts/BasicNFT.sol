@@ -9,12 +9,22 @@
 pragma solidity 0.8.11;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 
-contract BasicNFT is ERC721 {
+contract BasicNFT is  ERC721URIStorage {
 
 
   uint256 public tokenCounter;
+
+
+  using Strings for uint256;
+
+  // Optional mapping for token URIs
+  mapping (uint256 => string) private _tokenURIs;
+
+  // Base URI
+  string private _baseURIextended;
   /*
 
   This will be a collection, instead of an nft on its own. It will
@@ -25,8 +35,6 @@ contract BasicNFT is ERC721 {
   "website" parts on here
 
    */
-
-
 
 
 
@@ -46,10 +54,14 @@ contract BasicNFT is ERC721 {
     // this function will create the nft of part of the website
     uint256 newTokenId = tokenCounter;
     _safeMint(msg.sender, newTokenId);
-    newTokenId += 1;
+    tokenCounter += 1;
 
   }
 
+  /* function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
+      require(_exists(tokenId), "ERC721Metadata: URI set of nonexistent token");
+      _tokenURIs[tokenId] = _tokenURI;
+  } */
 
   /*
     This fuction will set the uri of the tokenId
@@ -59,7 +71,7 @@ contract BasicNFT is ERC721 {
   // in the memory that you can use
   function setTokenURI(uint256 tokenId, string memory _tokenURI) public {
       require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not owner no approved");
-      setTokenURI(tokenId, _tokenURI);
+      _setTokenURI(tokenId, _tokenURI);
   }
 
 

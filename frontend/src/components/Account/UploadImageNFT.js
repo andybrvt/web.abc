@@ -4,6 +4,7 @@ import {useContractFunction, useEthers, useTokenBalance, useNotifications} from 
 import BasicNFT from '../../chain-info/contracts/BasicNFT';
 import networkMapping from '../../chain-info/deployments/map.json';
 import {constants, utils } from 'ethers'
+import {Contract} from '@ethersproject/contracts'
 
 
 export const UploadImageNFT = () => {
@@ -14,6 +15,13 @@ export const UploadImageNFT = () => {
   const basicNFTAddress = chainId ? networkMapping[String(chainId)]["BasicNFT"][0] : constants.AddressZero
   const basicNFTInterface = new utils.Interface(abi)
   const basicNFTContract = new Contract(basicNFTAddress, basicNFTInterface)
+
+  const {send: createCollectible, state: createCollectibleState} = useContractFunction(
+    basicNFTContract,
+    "createCollectible",
+    {transactionName: "Create Collectible"}
+  )
+
 
 
   const [file, setFile] = useState(null);
@@ -28,6 +36,7 @@ export const UploadImageNFT = () => {
     // abi,
     // address
     console.log(account)
+
   }
 
   return (

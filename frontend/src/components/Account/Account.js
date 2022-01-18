@@ -26,35 +26,9 @@ import {
 } from '@chakra-ui/react'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import { authAxios } from '../../components/util';
+import { UploadImageNFT } from './UploadImageNFT'
 
 
-{/*
-const contract = new Contract(0x53a19F44548182602b3B665AB9B9717735Ed53be, simpleContractInterface);
-const count = useCount();
-  const { state, send: incrementCount } = useIncrement();
-
-  function handleIncrement() {
-    incrementCount();
-  }
-
-
-  export function useIncrement() {
-  const { state, send } = useContractFunction(contract, "incrementCount", {});
-  return { state, send };
-}
-
-const simpleContractInterface = new ethers.utils.Interface(SimpleContractAbi);
-  function useCount() {
-  const [count]: any = useContractCall({
-    abi: simpleContractInterface,
-    address: simpleContractAddress,
-    method: "count",
-    args: [],
-  })
-  return count;
-}
-
-*/}
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -89,31 +63,6 @@ class Account extends React.Component{
     login: false,
 
   };
-
-  onChangeHandler = event => {
-   console.log(event.target.files[0])
-   console.log(URL.createObjectURL(event.target.files[0]))
-   this.setState({
-       selectedFile: event.target.files[0],
-       submitFile:URL.createObjectURL(event.target.files[0]),
-       loaded: 0,
-   })
- }
-
- submitVid=(values)=>{
-    console.log('start of submitted vid')
-    console.log(values)
-    const formData = new FormData();
-    formData.append('email',  values.email)
-    formData.append('vid', this.state.selectedFile)
-    console.log(formData)
-    authAxios.post(`${global.API_ENDPOINT}/portal/UploadBusinessVid`,
-      formData,
-      {headers: {"content-type": "multipart/form-data"}}
-    ).then(res => {
-      console.log(res.data)
-    })
-  }
 
   renderSearchList = (searches) =>{
     // this function will display the list of users that are found by the search
@@ -237,18 +186,9 @@ class Account extends React.Component{
 
 
         <div class="loginFormInnerContent">
-          <div class="title2">
-            hello how are you
-          </div>
+
           <div>
-            <Flex direction="column" align="center" mt="4">
-              <Text color="black" fontSize="8xl">
-                {this.state.count ? this.state.count: 0}
-              </Text>
-              <Button colorScheme="teal" size="lg" >
-                Increment
-              </Button>
-            </Flex>
+
               <text color="white" fontSize="md" fontWeight="medium" mr="2">
                 {account &&
                   `${account.slice(0, 6)}...${account.slice(
@@ -262,44 +202,9 @@ class Account extends React.Component{
               </text>
           </div>
 
+          <UploadImageNFT />
 
-
-
-            <div class="row">
-
-
-              <div class="col">
-                <input onChange={this.onChangeHandler} type="file" name="file" ></input>
-
-                  <div>
-                    {
-                      (this.state.selectedFile) ?
-
-                // uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
-
-                      // <img class="imageUploaded" src={imageUrl} alt="avatar" />
-                      <video width="300" height="300" controls>
-                          <source src={this.state.submitFile}/>
-                      </video>
-
-                      :
-                      ''
-                  }
-                  </div>
-
-              </div>
-            </div>
-            <div style={{paddingTop:'25px'}}>
-                <Button
-                  // onClick={this.submitVid}
-                htmlType="submit"
-                type = "primary"
-                // disabled = {this.handleSubmitButton()}
-                // disabled = {pristine || invalid}
-                > Submit </Button>
-            </div>
-
-
+        
 
 
 

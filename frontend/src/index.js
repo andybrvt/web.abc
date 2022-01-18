@@ -10,7 +10,9 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 ReactDOM.render(
   <React.StrictMode>
-    <DAppProvider config={{}}>
+    <DAppProvider config={{
+        
+      }}>
     <ChakraProvider>
       <App />
       </ChakraProvider>

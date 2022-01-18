@@ -17,11 +17,11 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
-function withMyHook(Component) {
+function withMyHook(Home) {
   return function WrappedComponent(props) {
     const {activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
-    return <Component {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
+    return <Home {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
   }
 }
 
@@ -79,7 +79,7 @@ class Home extends React.Component{
              Team
            </span>
          </Menu.Item>
-         <div onClick={this.test} >hi</div>
+
          <div style={{position:'absolute', left:'90%', top:'1%'}}>
          <div class="loginKey">
            <div class="loginBtn">

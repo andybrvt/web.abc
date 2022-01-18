@@ -35,8 +35,8 @@ export const UploadImageNFT = () => {
     // get contract now
     // abi,
     // address
-    console.log(account)
 
+    createCollectible()
   }
 
   return (

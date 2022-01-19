@@ -28,9 +28,18 @@ contract CreateCollectionContract {
     collectionDict[msg.sender].push(address(single_collection));
   }
 
-  function getAllCollectionAddresses() view public returns(address[] memory) {
-    return collectionDict[msg.sender];
+  function getAllCollectionAddresses(address _senderAddress) view public returns(address[] memory) {
+    return collectionDict[_senderAddress];
   }
+
+  function getSender() view public returns(address){
+    return msg.sender;
+  }
+
+  function getAllCollectionAddressesNew() view public returns(uint256){
+    return 2;
+  }
+
 
 
 }

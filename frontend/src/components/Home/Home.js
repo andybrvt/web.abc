@@ -1,171 +1,219 @@
 import React from 'react';
-import './Home.css'
-import { Layout, Menu, Divider, Breadcrumb, Avatar, Image} from 'antd';
-
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-import first from './first.png'
-import second from './second.png'
-import third from './third.png'
-import fourth from './fourth.png'
-import web from './web.png'
+// import { Form } from '@ant-design/compatible';
+import { Input, Form, List, Avatar } from 'antd';
+import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
+import { NavLink, Redirect, } from "react-router-dom";
+// import './Account.css';
+import { useWeb3React } from "@web3-react/core"
+import { injected } from "../wallet/Connectors"
 import { useNavigate, } from 'react-router-dom';
-import { useEthers, useEtherBalance } from "@usedapp/core";
+import { useEthers, useEtherBalance, useContractCall, useContractFunction} from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
-
-
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+import './Home.css';
+import web from '../Landing/web.png';
+import { Button, ButtonGroup, Divider, Flex, Text } from '@chakra-ui/react';
+import { Contract } from "@ethersproject/contracts";
+import { ethers } from "ethers";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from '@chakra-ui/react'
+import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
+import { authAxios } from '../../components/util';
+import { UploadImageNFT } from './UploadImageNFT';
+import { CollectionList } from './CollectionList/CollectionList';
 
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
-function withMyHook(Home) {
+function withMyHook(Component) {
   return function WrappedComponent(props) {
     const {activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
-    return <Home {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
+
+    {/*
+    const contract = new Contract(simpleContractAddress, simpleContractInterface);
+    */}
+
+
+
+    return <Component {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
   }
 }
-
-
 
 
 class Home extends React.Component{
   constructor(props) {
     super(props);
-
+    this.state = {
+      count:0,
+      searched: [],
+      showSearch: false,
+      searchValue: "",
+      selectedFile: "",
+    };
   }
   state = {
-    trigger: false,
+    username: "",
+    password: "",
+    login: false,
 
   };
-  subComponent() {
-    return (<div>Hello World</div>);
-  }
-  navLogin = () => {
-    console.log("hi")
-    // let navigate = useNavigate();
-    this.props.history.push("/login")
+
+  renderSearchList = (searches) =>{
+    // this function will display the list of users that are found by the search
+
+    let searchList = []
+
+    for(let i = 0; i< searches.length; i++){
+      const user = searches[i]
+      searchList.push(
+          <div
+            onClick = {() => this.onProfileSelect(user.username)}
+            className = "searchObj"
+            style={{padding:'15px'}}>
+            <div class="searchObjLeft">
+            <Avatar
+              style={{marginRight:'10px'}}
+              size="medium"
+              src={`${global.IMAGE_ENDPOINT}`+user.profile_picture}/>
+            </div>
+            <br/>
+            <div class="searchObjRight">
+              <span style={{marginLeft:'25px'}}>
+                {this.capitalize(user.first_name)} {this.capitalize(user.last_name)}
+                <br/>
+
+                <div
+                  class="headerPostText"
+                  style={{marginLeft:'25px'}}
+                >
+                  {"@"+user.username}
+                </div>
+
+
+
+              </span>
+            </div>
+          </div>
+
+
+      )
 
     }
 
-  triggerWallet=() =>{
-    console.log("trigger true")
-    this.setState({
-      trigger:true,
-    })
-    this.props.activateBrowserWallet();
-    // this.props.history.push("/login")
+    return searchList;
   }
 
-
-
-
-
+  navLogin = (eventId) => {
+      console.log(eventId)
+      this.props.history.push("/login")
+    }
   render(){
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
+
     return(
-     <div>
+      <div>
+
+          <div className="menu">
+            <div class="test">
+                <div class="menuHeader1">
+                  <div class="logoFont">web.abc</div>
+                </div>
+                <div class="menuHeader2">
+                  <div className = "searchBarContainer">
+                  <div className = "autoCompleteHeader">
+                    <div>
+                      <Form onChange = {this.onChangeNewSearch}>
+                        <Input value = {this.state.searchValue}
+                          prefix={<SearchOutlined/>}
+                          placeholder = {'Search'} />
+                      </Form>
+                      <List className ={`searchDropDown ${this.state.showSearch ? "showSearch": ""}`} >
+                        {
+                          this.state.searched.length === 0 ?
+                          <li className ="searchListObj">
+                              <span className = "noResultText">No results</span>
+                          </li>
+                          :
+                          <div>
+                            {this.renderSearchList(this.state.searched)}
+                          </div>
+                        }
+                      </List>
+                    </div>
+                   </div>
+                  </div>
+                </div>
+                <div class="menuHeader3">
+                  <Menu colorScheme='teal' size='md'>
+
+                    <MenuButton as={Button} rightIcon={<Avatar icon={<UserOutlined />} />}>
+                    <text color="white" fontSize="md" fontWeight="medium" mr="2">
+                      {account &&
+                        `${account.slice(0, 6)}...${account.slice(
+                          account.length - 4,
+                          account.length
+                        )}`}
+                    </text>
+                    </MenuButton>
+                    <MenuList>
+                      <MenuGroup title='Profile'>
+                        <MenuItem icon={<UserOutlined size={30} />}>My Account</MenuItem>
+                        <MenuItem>My Collection </MenuItem>
+                      </MenuGroup>
+                      <MenuDivider />
+                      <MenuGroup title='Help'>
+                        <MenuItem>Docs</MenuItem>
+                        <MenuItem>FAQ</MenuItem>
+                      </MenuGroup>
+                      <MenuDivider />
+
+                        <MenuItem icon={<AddIcon />} >Log Out</MenuItem>
 
 
-       <Menu style={{left:'500px'}} theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
-         <Menu.Item style={{left:'0%'}} key="1"><div class="logoFont">web.abc</div></Menu.Item>
-         <Menu.Item style={{left:'66%'}} key="1">
-           <span className="menuItemFont">
-             About
-           </span>
-         </Menu.Item>
-         <Menu.Item style={{left:'67%'}} key="2">
-           <span className="menuItemFont">
-             Team
-           </span>
-         </Menu.Item>
-
-         <div style={{position:'absolute', left:'90%', top:'1%'}}>
-         <div class="loginKey">
-           <div class="loginBtn">
-             <div
-              onClick={this.triggerWallet} className="loginFont">
-              Connect wallet
-
-             </div>
-           </div>
-         </div>
-         </div>
-       </Menu>
-
-
-       {/*
-         <div>
-           <text color="white" fontSize="md">
-             // etherBalance will be an object, so we stringify it
-             {etherBalance && JSON.stringify(etherBalance)} ETH
-           </text>
-         </div>
-         */}
-
-
-  <div class="bigContainer">
-
-
-    <div class="small1">
-      <div class="splitScreenContainer">
-        <div class="custom-shape-divider-top-1639728936">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
-        </div>
-
-
-        <div class="splitLeft">
-          <div class="splitLeft1">
-            <div className="title">
-              {
-                account ?
-                this.props.history.push("/account")
-
-                 :
-                ''
-
-              }
-              Turn your website into NFTs
-            </div>
-            <div class="title2">
-              Mint It. Own It.
-            </div>
-            <div style={{marginTop:20}}>
-              <Avatar src={<Image src={first} style={{ width: 32, marginRight:'10px' }} />} />
-              <Avatar src={<Image src={second} style={{ width: 32 }} />} />
-              <Avatar src={<Image src={second} style={{ width: 32 }} />} />
-              <Avatar src={<Image src={second} style={{ width: 32 }} />} />
-            </div>
-            <div class="getStartedBtn">
-              <span class="containerText">
-                Get started
-                </span>
+                    </MenuList>
+                  </Menu>
+                </div>
             </div>
           </div>
-        </div>
-        <div class="splitRight">
-          <div class="splitRightCenter">
-          <Avatar size={600}
+          <Divider/>
 
-             shape="square" src={<Image style={{borderRadius:20}} src={web}  />} />
+
+        <div class="loginFormInnerContent">
+
+          <div>
+
+              <text color="white" fontSize="md" fontWeight="medium" mr="2">
+                {account &&
+                  `${account.slice(0, 6)}...${account.slice(
+                    account.length - 4,
+                    account.length
+                  )}`}
+              </text>
+              <br/>
+              <text color="white" fontSize="md">
+                {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
+              </text>
           </div>
+
+          <UploadImageNFT />
+
+        <CollectionList/>
+
+
+
+
+
+
         </div>
 
       </div>
-      <div style={{paddingLeft:'50px',paddingRight:'50px', paddingTop:'0px'}}>
-      <Divider style={{color:'red'}}></Divider>
-      </div>
-    </div>
-    <div class="small2">
-
-
-    </div>
-  </div>
-
-  </div>
-
     )
   }
 }

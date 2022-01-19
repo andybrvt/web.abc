@@ -1,9 +1,9 @@
-import './App.css';
+
 import React, { Component } from 'react';
 import { withRouter, Routes, Route, Router, BrowserRouter } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from 'antd';
-import Home from './components/Home/Home';
-import Account from './components/Account/Account';
+import Landing from './components/Landing/Landing';
+import Account from './components/Home/Home';
 import Login from './components/Login/Login';
 import SideMenu from './SideMenu';
 import { createBrowserHistory } from "history";
@@ -49,7 +49,7 @@ class App extends Component{
       <CustomRouter history={history}>
 
         <Routes>
-          <Route exact path="/"  element={<Home history={history}/>} />
+          <Route exact path="/"  element={<Landing history={history}/>} />
           <Route exact path="/login"  element={<Login history={history} />} />
           <Route exact path="/account"  element={<Account history={history} />} />
         </Routes>

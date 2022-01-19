@@ -57,84 +57,83 @@ export const UploadImageNFT = () => {
   }
 
   const submitUpload = (e) => {
-    console.log(list[0])
 
-  //   const url = PINATA_BASE_URL+endpoint
-  //   console.log(process.env.REACT_APP_KEY)
-  //   console.log(process.env)
-  //
-  //   const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY
-  //   const pinataSecretApiKey = process.env.REACT_APP_PINATA_API_SECRET
-  //   let data = new FormData()
-  //   data.append("file", file)
-  //
-  //   const metadata = JSON.stringify({
-  //       name: 'newImage',
-  //       keyvalues: {
-  //           exampleKey: 'exampleValue'
-  //       }
-  //   })
-  //
-  //   data.append("pinataMetadata", metadata)
-  //
-  //
-  // // New function for uploading an nft
-  // axios.post(url, data, {
-  //     maxBodyLength: 'Infinity', //this is needed to prevent axios from erroring out with large files
-  //        headers: {
-  //            'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-  //            pinata_api_key: pinataApiKey,
-  //            pinata_secret_api_key: pinataSecretApiKey
-  //        }
-  //   })
-  //   .then(res => {
-  //
-  //
-  //     const url2 = PINATA_BASE_URL+endpointJson
-  //     console.log(res)
-  //     console.log(url2)
-  //     // After you upload imae to pinata, now you get the item url, construct the
-  //     // new metadata information and then run the pinata to upload the metadata for the nft
-  //     const imageHash = res.data.IpfsHash
-  //     const fileName = file.name.replace(/\s/g, "_") // just to remove all the spaces
-  //     const imageUri = `https://gateway.pinata.cloud/ipfs/${imageHash}?filename=${fileName}`
-  //
-  //     const jsonBody = {
-  //       pinataMetadata: {
-  //         name: name,
-  //       },
-  //       pinataContent: {
-  //         name: name,
-  //         description: description,
-  //         image: imageUri
-  //       }
-  //     }
-  //
-  //     console.log(jsonBody)
-  //
-  //     axios.post(url2, jsonBody, {
-  //          headers: {
-  //              pinata_api_key: pinataApiKey,
-  //              pinata_secret_api_key: pinataSecretApiKey
-  //          }
-  //     })
-  //     .then( res=> {
-  //
-  //       // now that you have the uri you can just pass the simple function
-  //       const newTokenURIHash = res.data.IpfsHash
-  //       const newTokenURI = `https://gateway.pinata.cloud/ipfs/${newTokenURIHash}?filename=${fileName}`
-  //       simpleCreateCollectible(newTokenURI)
-  //
-  //     })
-  //     .catch(err => [
-  //       console.log(err)
-  //     ])
-  //
-  //
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
+    const url = PINATA_BASE_URL+endpoint
+    console.log(process.env.REACT_APP_KEY)
+    console.log(process.env)
+
+    const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY
+    const pinataSecretApiKey = process.env.REACT_APP_PINATA_API_SECRET
+    let data = new FormData()
+    data.append("file", file)
+
+    const metadata = JSON.stringify({
+        name: 'newImage',
+        keyvalues: {
+            exampleKey: 'exampleValue'
+        }
+    })
+
+    data.append("pinataMetadata", metadata)
+
+
+  // New function for uploading an nft
+  axios.post(url, data, {
+      maxBodyLength: 'Infinity', //this is needed to prevent axios from erroring out with large files
+         headers: {
+             'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+             pinata_api_key: pinataApiKey,
+             pinata_secret_api_key: pinataSecretApiKey
+         }
+    })
+    .then(res => {
+
+
+      const url2 = PINATA_BASE_URL+endpointJson
+      console.log(res)
+      console.log(url2)
+      // After you upload imae to pinata, now you get the item url, construct the
+      // new metadata information and then run the pinata to upload the metadata for the nft
+      const imageHash = res.data.IpfsHash
+      const fileName = file.name.replace(/\s/g, "_") // just to remove all the spaces
+      const imageUri = `https://gateway.pinata.cloud/ipfs/${imageHash}?filename=${fileName}`
+
+      const jsonBody = {
+        pinataMetadata: {
+          name: name,
+        },
+        pinataContent: {
+          name: name,
+          description: description,
+          image: imageUri
+        }
+      }
+
+      console.log(jsonBody)
+
+      axios.post(url2, jsonBody, {
+           headers: {
+               pinata_api_key: pinataApiKey,
+               pinata_secret_api_key: pinataSecretApiKey
+           }
+      })
+      .then( res=> {
+
+        // now that you have the uri you can just pass the simple function
+        const newTokenURIHash = res.data.IpfsHash
+        const newTokenURI = `https://gateway.pinata.cloud/ipfs/${newTokenURIHash}?filename=${fileName}`
+        simpleCreateCollectible(newTokenURI)
+
+      })
+      .catch(err => [
+        console.log(err)
+      ])
+
+
+    })
+    .catch(err => {
+      console.log(err)
+    })
 
 
 }

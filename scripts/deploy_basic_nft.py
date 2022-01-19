@@ -32,3 +32,4 @@ def create_basic_nft():
 def main():
     deploy_basic_nft("website", "WEB")
     create_basic_nft()
+        "Dogs", "DOG"

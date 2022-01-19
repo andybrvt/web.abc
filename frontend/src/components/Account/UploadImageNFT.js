@@ -40,7 +40,7 @@ export const UploadImageNFT = () => {
   const list = useContractCall({
     abi: basicNFTInterface,
     address:basicNFTAddress,
-    method: "viewTokenId",
+    method: "viewSender",
     args:[]
   })
 
@@ -57,7 +57,7 @@ export const UploadImageNFT = () => {
   }
 
   const submitUpload = (e) => {
-    console.log(list[0].toString())
+    console.log(list[0])
 
   //   const url = PINATA_BASE_URL+endpoint
   //   console.log(process.env.REACT_APP_KEY)

@@ -7,7 +7,6 @@
 
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.11;
-import "./ParentContract.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
@@ -49,7 +48,7 @@ contract BasicNFT is ERC721URIStorage {
   }
 
   function viewSender() public view returns(address){
-    return msg.sender
+    return msg.sender;
   }
 
   /*

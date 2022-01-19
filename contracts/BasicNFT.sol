@@ -44,18 +44,26 @@ contract BasicNFT is  ERC721URIStorage {
 
   }
 
+  function viewTokenId() public view returns(uint256){
+    return tokenCounter;
+  }
+
+  function viewSender() public view returns(address){
+    return msg.sender
+  }
+
   /*
     Minting a token, all you have to do is craete a tokenId and then
     safe mint it with the sender of the createCollectible function
     --> the mapping will be inhertied from the ERC721 file. It will map
     tokenId to sender
    */
-  function createCollectible() public {
+  function createCollectible() public returns(uint256){
     // this function will create the nft of part of the website
     uint256 newTokenId = tokenCounter;
     _safeMint(msg.sender, newTokenId);
     tokenCounter += 1;
-
+    return newTokenId;
   }
 
   /* function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
@@ -77,6 +85,7 @@ contract BasicNFT is  ERC721URIStorage {
   function simpleCreateCollectible(string memory tokenURI) public returns(uint256){
     uint256 newTokenId = tokenCounter;
     _safeMint(msg.sender, newTokenId); // inherited from OpenZeppelin, param: to, tokenid
+    require(_isApprovedOrOwner(_msgSender(), newTokenId), "ERC721: caller is not owner no approved");
     _setTokenURI(newTokenId, tokenURI); // allow our nft to have a token associated with it
     tokenCounter += 1;
     return newTokenId;

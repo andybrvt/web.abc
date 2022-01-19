@@ -7,11 +7,9 @@ import './fonts.css';
 import { DAppProvider } from "@usedapp/core";
 import { ChakraProvider } from '@chakra-ui/react'
 
-
 ReactDOM.render(
   <React.StrictMode>
     <DAppProvider config={{
-        
       }}>
     <ChakraProvider>
       <App />

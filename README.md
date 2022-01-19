@@ -1,4 +1,4 @@
-ALERT: You do not need python to make a dapp. You just need javascript and solidty 
+ALERT: You do not need python to make a dapp. You just need javascript and solidty
 
 
 
@@ -38,3 +38,22 @@ You are gonna need address, abi, contract interfaces
 2. Copy brownie-config.yaml over, this holds all the network address
 3. Build some scripts so that you can copy it over
 4. --> run this function if you want to copy it over: brownie run scripts/upload_to_frontend.py
+
+
+Task road map:
+1. Upload an image as an nft to a collection, with an exist contract (DONE)
+  1. Create a collectible
+  2. Upload image
+  3. add image to pinata
+  4. add the image to json then add to pinata
+  5. mint image as nft
+2. Collection of NFTs , one contract each (making a new contract)
+  1.
+3. Website verification check owner
+4. Compile and render
+5. Be able to select and mint different parts
+6. ** turn domain from web2 to web3 **
+
+
+TASK
+Get image to be uploaded as a jpeg

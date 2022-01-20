@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, ButtonGroup, Divider, Flex, Text, Input } from '@chakra-ui/react';
 import {useContractFunction, useContractCall, useEthers, useTokenBalance, useNotifications} from "@usedapp/core";
 import BasicNFT from '../../chain-info/contracts/BasicNFT';
@@ -15,14 +15,18 @@ const endpoint = "/pinning/pinFileToIPFS"
 const endpointJson = "/pinning/pinJSONToIPFS"
 
 
-export const UploadImageNFT = () => {
+export const UploadImageNFT = (props) => {
+
+  console.log(props.history.location)
   // Now we need to get contract of the collection (ie basicNFT)
   // we are gonna need address and abi(to create the interface)
+  var currentCollectionAddress = constants.AddressZero
+
   const { account, chainId } = useEthers()
   const { abi } = BasicNFT
   const basicNFTAddress = chainId ? networkMapping[String(chainId)]["BasicNFT"][0] : constants.AddressZero
   const basicNFTInterface = new utils.Interface(abi)
-  const basicNFTContract = new Contract(basicNFTAddress, basicNFTInterface)
+  let basicNFTContract = new Contract(currentCollectionAddress, basicNFTInterface)
 
   const {send: createCollectible, state: createCollectibleState} = useContractFunction(
     basicNFTContract,
@@ -45,6 +49,20 @@ export const UploadImageNFT = () => {
   })
 
 
+  useEffect(() => {
+    if(props.currentCollectionAddress !== undefined){
+      currentCollectionAddress = props.currentCollectionAddress
+      basicNFTContract = new Contract(currentCollectionAddress,basicNFTInterface)
+
+
+
+
+    } else {
+      currentCollectionAddress = constants.AddressZero
+    }
+
+  },[props.currentCollectionAddress])
+
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("")
@@ -56,12 +74,13 @@ export const UploadImageNFT = () => {
 
   }
 
+
+
   const submitUpload = (e) => {
 
-    const url = PINATA_BASE_URL+endpoint
-    console.log(process.env.REACT_APP_KEY)
-    console.log(process.env)
+    console.log(basicNFTContract)
 
+    const url = PINATA_BASE_URL+endpoint
     const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY
     const pinataSecretApiKey = process.env.REACT_APP_PINATA_API_SECRET
     let data = new FormData()
@@ -90,10 +109,6 @@ export const UploadImageNFT = () => {
 
 
       const url2 = PINATA_BASE_URL+endpointJson
-      console.log(res)
-      console.log(url2)
-      // After you upload imae to pinata, now you get the item url, construct the
-      // new metadata information and then run the pinata to upload the metadata for the nft
       const imageHash = res.data.IpfsHash
       const fileName = file.name.replace(/\s/g, "_") // just to remove all the spaces
       const imageUri = `https://gateway.pinata.cloud/ipfs/${imageHash}?filename=${fileName}`
@@ -109,7 +124,6 @@ export const UploadImageNFT = () => {
         }
       }
 
-      console.log(jsonBody)
 
       axios.post(url2, jsonBody, {
            headers: {

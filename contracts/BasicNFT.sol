@@ -17,11 +17,6 @@ contract BasicNFT is ERC721URIStorage {
   uint256 public tokenCounter;
 
 
-  using Strings for uint256;
-
-  // Optional mapping for token URIs
-  mapping (uint256 => string) private _tokenURIs;
-
   // Base URI
   string private _baseURIextended;
   /*

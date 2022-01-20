@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { Form } from '@ant-design/compatible';
 import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { useNavigate, } from 'react-router-dom';
@@ -6,10 +6,15 @@ import { useEthers, useEtherBalance, useContractCall, useContractFunction} from 
 import {Contract} from '@ethersproject/contracts'
 import CreateCollectionContract from '../../../chain-info/contracts/CreateCollectionContract';
 import networkMapping from '../../../chain-info/deployments/map.json';
-import {constants, utils } from 'ethers'
-import { Button, ButtonGroup, Divider, Flex, Text, Input } from '@chakra-ui/react';
+import {constants, utils } from 'ethers';
+import { Button, ButtonGroup, Divider, Flex, Text, Input, Select, List, ListItem } from '@chakra-ui/react';
+import  {UploadImageNFT} from '../UploadImageNFT';
 
-export const CollectionList = () => {
+export const CollectionList = (props) => {
+
+  console.log(props, 'here is the props')
+  const [collections, setCollections] = useState([])
+  const [currentCollection, setCurrentCollection] = useState()
   const { account, chainId } = useEthers()
   const { abi } = CreateCollectionContract
   const createCollectionContractAddress = chainId ? networkMapping[String(chainId)]["CreateCollectionContract"][0] : constants.AddressZero
@@ -30,21 +35,35 @@ export const CollectionList = () => {
     args:[account,]
   })
 
-  const getMsgSender = useContractCall({
-    abi: createCollectionContractInterface,
-    address:createCollectionContractAddress,
-    method: "getAllCollectionAddressesNew",
-    args:[]
-  })
+
+
+  useEffect(() => {
+    if(grabCollectionAddresses !== undefined){
+        setCollections(grabCollectionAddresses[0])
+    }
+
+  }, [grabCollectionAddresses])
 
  const createCollectionPress = (e) => {
-   console.log(e)
    createCollection("First Collection", "FRST")
  }
 
  const testFunction =(e) => {
    console.log(grabCollectionAddresses[0])
-   console.log(getMsgSender[0].toString())
+ }
+
+ const onChangeSelection = (e) => {
+   console.log(e.target.value)
+   setCurrentCollection(e.target.value)
+ }
+
+ const onCollectionDirect = (address) => {
+   console.log(address)
+   console.log(props)
+
+   props.history.push(`/collection/${address}`,{
+     address: address
+   })
  }
 
     return(
@@ -58,7 +77,39 @@ export const CollectionList = () => {
         onClick={testFunction}
         htmlType="submit"
         type = "primary"
-        > Create Collection </Button>
+        > Test </Button>
+
+      <List>
+        {
+          collections ?
+
+          collections.map((address, index) => {
+            return (
+              <ListItem >
+                <Button
+                  onClick = {() => onCollectionDirect(address)}
+                  colorScheme='blue'>{address}</Button>
+              </ListItem>
+
+            )
+          })
+
+          :
+
+          <ListItem>Nothing</ListItem>
+
+
+        }
+
+
+      </List>
+
+
+
+
+      {/*
+        <UploadImageNFT currentCollectionAddress={currentCollection} />
+        */}
 
       </div>
     )

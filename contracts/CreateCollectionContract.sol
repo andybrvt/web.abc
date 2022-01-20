@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // structure: {
-// 'user address': [ address of smart contract, address of smartcontract ...]
-// 'user address': [ address of smart contract, address of smartcontract ...]
+// 'user address': [ address of smart contract (which contains NFTS in it), address of smartcontract ...]
+// 'user address': [ address of smart contract (which contains NFTS in it),, address of smartcontract ...]
 // }
 
 pragma solidity 0.8.11;
@@ -32,13 +32,15 @@ contract CreateCollectionContract {
     return collectionDict[_senderAddress];
   }
 
-  function getSender() view public returns(address){
+
+
+  /* function getSender() view public returns(address){
     return msg.sender;
   }
 
   function getAllCollectionAddressesNew() view public returns(uint256){
     return 2;
-  }
+  } */
 
 
 

@@ -114,6 +114,8 @@ class Home extends React.Component{
       this.props.history.push("/login")
     }
   render(){
+
+    console.log(this.props)
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
 
@@ -202,9 +204,8 @@ class Home extends React.Component{
               </text>
           </div>
 
-          <UploadImageNFT />
 
-        <CollectionList/>
+        <CollectionList  {...this.props}/>
 
 
 

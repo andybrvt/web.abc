@@ -1,0 +1,2 @@
+https://www.googletagmanager.com/gtag/js?id=UA-732601-15
+https://platform-api.sharethis.com/js/sharethis.js#property=5bd821e07a0efc00111a3c49&product=inline-share-buttons

@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 import { withRouter, Routes, Route, Router, BrowserRouter } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from 'antd';
 import Landing from './components/Landing/Landing';
+import TestHTMLScraper from './components/Landing/TestHTMLScraper';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import SideMenu from './SideMenu';
+import {CompilerTest} from './components/Home/CompilerTest'
 import { UploadImageNFT } from './components/Home/UploadImageNFT';
 import { createBrowserHistory } from "history";
 import { Web3ReactProvider } from '@web3-react/core'
@@ -54,6 +56,8 @@ class App extends Component{
           <Route exact path="/login"  element={<Login history={history} />} />
           <Route exact path="/account"  element={<Home history={history} />} />
           <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
+          <Route exact path="/test" element={<TestHTMLScraper history={history}/>} />
+          <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
 
         </Routes>
 

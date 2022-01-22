@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="https://schema.org/Article" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="https://www.tooplate.com/" rel="canonical"/>
+  <title>
+   Free HTML CSS Templates by Tooplate
+  </title>
+  <meta content="Download free HTML CSS website templates from Tooplate and use them for any purpose. Our templates are easy to modify and use for any website." name="description"/>
+  <meta content="Free HTML CSS Templates" itemprop="name"/>
+  <meta content="Download free HTML CSS website templates from Tooplate and use them for any purpose. Our templates are easy to modify and use for any website." itemprop="description"/>
+  <meta content="https://www.tooplate.com/images/logo_large_1_square.jpg" itemprop="image"/>
+  <meta content="article" property="og:type"/>
+  <meta content="https://www.tooplate.com" property="og:url"/>
+  <meta content="Free HTML CSS Templates" property="og:title"/>
+  <meta content="Free HTML CSS Templates" property="og:headline"/>
+  <meta content="https://www.tooplate.com/images/logo_large_1_square.jpg" property="og:image"/>
+  <meta content="tooplate" property="og:site_name"/>
+  <meta content="Download free HTML CSS website templates from Tooplate and use them for any purpose. Our templates are easy to modify and use for any website." property="og:description"/>
+  <meta content="tooplate" name="author"/>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+  <link href="/css/tooplate-all-20210722.css" rel="stylesheet"/>
+  <link href="/tooplate-style-20210907.css" rel="stylesheet"/>
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  <!--<script data-ad-client="ca-pub-4847506191651249" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-732601-15">
+  </script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-732601-15');
+  </script>
+  <script async="async" src="https://platform-api.sharethis.com/js/sharethis.js#property=5bd821e07a0efc00111a3c49&amp;product=inline-share-buttons" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <div class="container" id="container">
+   <div class="row" id="header">
+    <div class="col-md-4 logo">
+     <a href="https://www.tooplate.com">
+      <img alt="tooplate" class="img-responsive" height="80" src="/images/tooplate_logo.png" title="free templates" width="260"/>
+     </a>
+     <div class="slogan">
+      free HTML templates for your websites
+     </div>
+    </div>
+    <div class="col-md-8">
+     <ul class="nav tooplate_nav">
+      <li>
+       <a href="/free-templates">
+        Free HTML Templates
+       </a>
+      </li>
+      <li>
+       <a href="https://templatemo.com/page/1" rel="sponsored">
+        560+ CSS Templates
+       </a>
+      </li>
+      <li>
+       <a href="/contact">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div id="header_line">
+   </div>
+   <div class="row">
+    <!-- row 1 begins -->
+    <div class="col-md-8 col-sm-12 too_et">
+     <h1>
+      Free HTML Templates for everyone!
+     </h1>
+     <p>
+      Tooplate provides you mobile-friendly HTML CSS templates which are based on responsive Boostrap framework. All of our HTML templates are easy to edit or customize for your websites. You can use any kind of HTML editor to modify our templates. You can start downloading them now.
+     </p>
+    </div>
+    <div class="col-md-4 col-sm-12">
+    </div>
+   </div>
+   <!-- /row 1 -->
+   <div class="row">
+    <!-- row 2.1 -->
+    <div class="col-md-12 col-sm-12 too_et">
+     <h2>
+      Latest HTML Templates
+     </h2>
+    </div>
+   </div>
+   <div class="row space20">
+    <!-- row 2.2 -->
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2127-little-fashion">
+      <img alt="Little Fashion template" class="img-responsive" height="260" src="/thumbnails/tooplate-2127-little-fashion.jpg" title="Little Fashion Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2127-little-fashion">
+        Little Fashion
+       </a>
+      </h2>
+      <p>
+       Tooplate's Little Fashion HTML template is clean and professional Bootstrap 5 layout. This template has 8...
+      </p>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2126-antique-cafe">
+      <img alt="Antique Cafe template" class="img-responsive" height="260" src="/thumbnails/tooplate-2126-antique-cafe.jpg" title="Antique Cafe Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2126-antique-cafe">
+        Antique Cafe
+       </a>
+      </h2>
+      <p>
+       This is one-page HTML template for your coffee shop or cafe. It has a parallax image background. There is a...
+      </p>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2125-artxibition">
+      <img alt="ArtXibition template" class="img-responsive" height="260" src="/thumbnails/tooplate-2125-artxibition.jpg" title="ArtXibition Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2125-artxibition">
+        ArtXibition
+       </a>
+      </h2>
+      <p>
+       ArtXibition is an event template that includes a countdown timer, tickets, event listing, and venue...
+      </p>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2124-vertex">
+      <img alt="Vertex template" class="img-responsive" height="260" src="/thumbnails/tooplate-2124-vertex.jpg" title="Vertex Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2124-vertex">
+        Vertex
+       </a>
+      </h2>
+      <p>
+       Vertex is a full-width darkgrey color HTML template based on a custom CSS layout. There are 5 different...
+      </p>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2123-simply-amazed">
+      <img alt="Simply Amazed template" class="img-responsive" height="260" src="/thumbnails/tooplate-2123-simply-amazed.jpg" title="Simply Amazed Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2123-simply-amazed">
+        Simply Amazed
+       </a>
+      </h2>
+      <p>
+       This is free HTML one-page template named Simply Amazed with Bootstrap 5. It is a clean and nice layout with...
+      </p>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2122-nano-folio">
+      <img alt="Nano Folio template" class="img-responsive" height="260" src="/thumbnails/tooplate-2122-nano-folio.jpg" title="Nano Folio Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2122-nano-folio">
+        Nano Folio
+       </a>
+      </h2>
+      <p>
+       Nano Folio is simple HTML website template with a very light-weight custom CSS file. This is a minimal layout...
+      </p>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2121-wave-cafe">
+      <img alt="Wave Cafe template" class="img-responsive" height="260" src="/thumbnails/tooplate-2121-wave-cafe.jpg" title="Wave Cafe Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2121-wave-cafe">
+        Wave Cafe
+       </a>
+      </h2>
+      <p>
+       Wave Cafe is one-page HTML template with a video background. Contents are separated into four sections....
+      </p>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 tooplate_box">
+     <a href="/view/2120-ben-resume">
+      <img alt="Ben Resume template" class="img-responsive" height="260" src="/thumbnails/tooplate-2120-ben-resume.jpg" title="Ben Resume Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2120-ben-resume">
+        Ben Resume
+       </a>
+      </h2>
+      <p>
+       Ben's resume template can be served as one-page HTML profile for anyone. You can quickly edit and put your...
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <!-- row 3.1 -->
+    <div class="col-md-12 col-sm-12 too_et">
+     <h2>
+      Best Featured HTML Templates
+     </h2>
+    </div>
+   </div>
+   <div class="row space20">
+    <!-- row 3.2 -->
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2114-pixie">
+      <img alt="Pixie Ecommerce template" class="img-responsive" height="260" src="/thumbnails/tooplate-2114-pixie.jpg" title="Pixie Ecommerce Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2114-pixie">
+        Pixie Ecommerce
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2113-earth">
+      <img alt="The Earth template" class="img-responsive" height="260" src="/thumbnails/tooplate-2113-earth.jpg" title="The Earth Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2113-earth">
+        The Earth
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2109-the-card">
+      <img alt="The Card Portfolio template" class="img-responsive" height="260" src="/thumbnails/tooplate-2109-the-card.jpg" title="The Card Portfolio Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2109-the-card">
+        The Card Portfolio
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2108-dashboard">
+      <img alt="Admin Dashboard template" class="img-responsive" height="260" src="/thumbnails/tooplate-2108-dashboard.jpg" title="Admin Dashboard Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2108-dashboard">
+        Admin Dashboard
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2106-soft-landing">
+      <img alt="Soft Landing Page template" class="img-responsive" height="260" src="/thumbnails/tooplate-2106-soft-landing.jpg" title="Soft Landing Page Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2106-soft-landing">
+        Soft Landing Page
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2105-input">
+      <img alt="Input Form Pack template" class="img-responsive" height="260" src="/thumbnails/tooplate-2105-input.jpg" title="Input Form Pack Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2105-input">
+        Input Form Pack
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2102-constructive">
+      <img alt="Constructive template" class="img-responsive" height="260" src="/thumbnails/tooplate-2102-constructive.jpg" title="Constructive Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2102-constructive">
+        Constructive
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2101-insertion">
+      <img alt="Insertion Listing template" class="img-responsive" height="260" src="/thumbnails/tooplate-2101-insertion.jpg" title="Insertion Listing Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2101-insertion">
+        Insertion Listing
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2100-artist">
+      <img alt="Artist Minimal Page template" class="img-responsive" height="260" src="/thumbnails/tooplate-2100-artist.jpg" title="Artist Minimal Page Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2100-artist">
+        Artist Minimal Page
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2092-shelf">
+      <img alt="Shelf template" class="img-responsive" height="260" src="/thumbnails/tooplate-2092-shelf.jpg" title="Shelf Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2092-shelf">
+        Shelf
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2085-neuron">
+      <img alt="Neuron Blog template" class="img-responsive" height="260" src="/thumbnails/tooplate-2085-neuron.jpg" title="Neuron Blog Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2085-neuron">
+        Neuron Blog
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-sm-3 tooplate_box">
+     <a href="/view/2075-digital-team">
+      <img alt="Digital Team HTML5 template" class="img-responsive" height="260" src="/thumbnails/tooplate-2075-digital-team.jpg" title="Digital Team HTML5 Template" width="260"/>
+     </a>
+     <div class="box_title">
+      <h2>
+       <a href="/view/2075-digital-team">
+        Digital Team HTML5
+       </a>
+      </h2>
+     </div>
+    </div>
+   </div>
+   <div class="row space20">
+    <!-- row 6 -->
+    <div class="col-md-8 col-sm-12 too_et">
+     <h2>
+      About Tooplate Website
+     </h2>
+     <p>
+      Tooplate brings you a variety of
+      <a href="/free-templates">
+       free HTML templates
+      </a>
+      for your business websites, digital marketing pages, and personal portfolios. Tooplate used open-source Bootstrap UI kit for latest HTML CSS layouts. You can download any template instantly for free. No need to login or register to use our templates.
+     </p>
+    </div>
+    <div class="col-md-4 col-sm-12">
+     <div class="clear float_right space10">
+      <a class="btn btn-info btn-lg btn-margin" href="/free-templates" role="button">
+       View All Templates
+      </a>
+     </div>
+    </div>
+   </div>
+   <!-- /row 6 -->
+   <div class="row space10">
+    <!-- social row -->
+    <div class="col-md-12">
+     <div class="sharethis-inline-share-buttons">
+     </div>
+    </div>
+   </div>
+   <!-- Site footer -->
+   <div class="footer">
+    <p>
+     Copyright © 2021 Free HTML Templates by
+     <a href="/">
+      Tooplate
+     </a>
+     -
+     <a href="/about">
+      About
+     </a>
+     -
+     <a href="/privacy-policy">
+      Privacy Policy
+     </a>
+     -
+     <a href="/sitemap.html">
+      Sitemap
+     </a>
+    </p>
+   </div>
+  </div>
+  <!-- /container -->
+ </body>
+</html>

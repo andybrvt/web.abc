@@ -53,13 +53,11 @@ export const CollectionList = (props) => {
  }
 
  const onChangeSelection = (e) => {
-   console.log(e.target.value)
    setCurrentCollection(e.target.value)
  }
 
  const onCollectionDirect = (address) => {
-   console.log(address)
-   console.log(props)
+
 
    props.history.push(`/collection/${address}`,{
      address: address
@@ -107,9 +105,7 @@ export const CollectionList = (props) => {
 
 
 
-      {/*
-        <UploadImageNFT currentCollectionAddress={currentCollection} />
-        */}
+      
 
       </div>
     )

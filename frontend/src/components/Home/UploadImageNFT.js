@@ -17,7 +17,7 @@ const endpointJson = "/pinning/pinJSONToIPFS"
 
 export const UploadImageNFT = (props) => {
 
-  console.log(props.history.location)
+  const collectionAddress = props.history.location.state.address
   // Now we need to get contract of the collection (ie basicNFT)
   // we are gonna need address and abi(to create the interface)
   var currentCollectionAddress = constants.AddressZero
@@ -26,7 +26,7 @@ export const UploadImageNFT = (props) => {
   const { abi } = BasicNFT
   const basicNFTAddress = chainId ? networkMapping[String(chainId)]["BasicNFT"][0] : constants.AddressZero
   const basicNFTInterface = new utils.Interface(abi)
-  let basicNFTContract = new Contract(currentCollectionAddress, basicNFTInterface)
+  const basicNFTContract = new Contract(collectionAddress, basicNFTInterface)
 
   const {send: createCollectible, state: createCollectibleState} = useContractFunction(
     basicNFTContract,
@@ -48,21 +48,6 @@ export const UploadImageNFT = (props) => {
     args:[]
   })
 
-
-  useEffect(() => {
-    if(props.currentCollectionAddress !== undefined){
-      currentCollectionAddress = props.currentCollectionAddress
-      basicNFTContract = new Contract(currentCollectionAddress,basicNFTInterface)
-
-
-
-
-    } else {
-      currentCollectionAddress = constants.AddressZero
-    }
-
-  },[props.currentCollectionAddress])
-
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("")
@@ -77,8 +62,6 @@ export const UploadImageNFT = (props) => {
 
 
   const submitUpload = (e) => {
-
-    console.log(basicNFTContract)
 
     const url = PINATA_BASE_URL+endpoint
     const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY
@@ -178,21 +161,6 @@ export const UploadImageNFT = (props) => {
       // disabled = {pristine || invalid}
       > Submit </Button>
 
-      {/*
-        <div class="col">
-            <div>
-              {
-                (this.state.selectedFile) ?
-                <img width="300" height="300" src={this.state.submitFile}>
-                </img>
-
-                :
-                ''
-            }
-            </div>
-        </div>
-
-        */}
 
 
     </div>

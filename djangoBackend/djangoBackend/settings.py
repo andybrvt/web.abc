@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p(s&x2e7t$ut_l^708r3cn5!(j8^7gg%xy3s(n2tnd)7i=sg!k
 DEBUG = True
 
 ALLOWED_HOSTS = [
-
+    "127.0.0.1",
 ]
 
 
@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "web3Back"
+    "web3Back",
+    "corsheaders"
 ]
 
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,8 +125,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = True

@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import './fonts.css';
 import { DAppProvider } from "@usedapp/core";
 import { ChakraProvider } from '@chakra-ui/react'
+import './global.js'
 
 ReactDOM.render(
   <React.StrictMode>

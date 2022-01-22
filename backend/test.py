@@ -52,6 +52,7 @@ html = session.get(url).content
 
 # parse HTML using beautiful soup
 soup = bs(html, "html.parser")
+print(soup)
 
 # get the JavaScript files
 script_files = []

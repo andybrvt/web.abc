@@ -7,7 +7,8 @@ import TestHTMLScraper from './components/Landing/TestHTMLScraper';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import SideMenu from './SideMenu';
-import {CompilerTest} from './components/Home/CompilerTest'
+import {CompilerTest} from './components/Home/CompilerTest';
+import {WebsiteInput} from './components/Home/WebsiteInput';
 import { UploadImageNFT } from './components/Home/UploadImageNFT';
 import { createBrowserHistory } from "history";
 import { Web3ReactProvider } from '@web3-react/core'
@@ -58,9 +59,10 @@ class App extends Component{
           <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
           <Route exact path="/test" element={<TestHTMLScraper history={history}/>} />
           <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
+          // <Route exact path="/WebsiteInput" element={<WebsiteInput history={history}/>} />
 
         </Routes>
-
+CompilerTest
         </CustomRouter>
 
     )

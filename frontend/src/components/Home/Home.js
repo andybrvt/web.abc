@@ -28,7 +28,7 @@ import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import { authAxios } from '../../components/util';
 import { UploadImageNFT } from './UploadImageNFT';
 import { CollectionList } from './CollectionList/CollectionList';
-
+import { WebsiteInput } from './WebsiteInput';
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -207,7 +207,7 @@ class Home extends React.Component{
 
         <CollectionList  {...this.props}/>
 
-
+        <WebsiteInput/>
 
 
 

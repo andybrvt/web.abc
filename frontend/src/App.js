@@ -62,7 +62,6 @@ class App extends Component{
           // <Route exact path="/WebsiteInput" element={<WebsiteInput history={history}/>} />
 
         </Routes>
-CompilerTest
         </CustomRouter>
 
     )

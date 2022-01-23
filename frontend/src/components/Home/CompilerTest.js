@@ -14,7 +14,12 @@ export const CompilerTest = (props) => {
       setSrcDoc(
         `
           <html>
-            <body>${html1}</body>
+
+            <body>
+              <div>
+                <a onclick="window.parent.test();" href="#" >Call Me </a>
+              </div>
+            ${html1}</body>
             <style>${css1}</style>
             <script>${js}</script>
           <html>
@@ -27,11 +32,18 @@ export const CompilerTest = (props) => {
 
   console.log(props.history.location.state.htmlInfo[0])
 
-  const html1 = props.history.location.state.htmlInfo
+  const html1 =props.history.location.state.htmlInfo
   const css1 = props.history.location.state.cssInfo
+
+  const test = () => {
+    console.log('stuff here')
+  }
   return(
     <div>
 
+      {/*
+
+        */}
       <div className = "pane top-pane">
         <Editor
           language = "xml"
@@ -56,12 +68,13 @@ export const CompilerTest = (props) => {
 
           <iframe
             srcDoc = {srcDoc}
-            sandbox= "allow-scripts" // just so that you cant access other codes out side
+            // sandbox= "allow-scripts" // just so that you cant access other codes out side
             title = "output"
             frameBorder = "0"
             width = "100%"
             height = "100%"
              />
+
       </div>
 
 

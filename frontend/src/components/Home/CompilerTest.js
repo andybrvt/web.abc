@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Editor from './Editor';
 import './Compiler.css'
-export const CompilerTest = () => {
+export const CompilerTest = (props) => {
 
   const [html, setHtml] = useState("")
   const [css, setCss] = useState("")
@@ -33,7 +33,7 @@ export const CompilerTest = () => {
         <Editor
           language = "xml"
           displayName="HTML"
-          value = {html}
+          value = {this.props.html}
           onChange = {setHtml} />
         <Editor
           language = "css"

@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Editor from './Editor';
 import { Input, Button} from '@chakra-ui/react'
-import './Compiler.css'
+import './Compiler.css';
+import  { CompilerTest } from './CompilerTest.js';
 import axios from 'axios';
 
 export const WebsiteInput = () => {
+
+  const [site, setSite] = useState("")
+  const [html, setHtml] = useState("")
+
+
+
   const triggerSubmit = (e) => {
     console.log(site)
     let formData = new FormData()
     formData.append('url',site)
+
     axios.post(`${global.API_ENDPOINT}/web3Back/grabUrlInfo`, formData)
     .then(res => {
-
+      setHtml(res.data)
     })
   }
 
-  const [site, setSite] = useState("")
 
 
 
@@ -31,6 +38,10 @@ export const WebsiteInput = () => {
           htmlType="submit"
           type = "primary"
           > Create Collection </Button>
+        {html}
+        {/*
+        <CompilerTest html={html}/>
+        */}
       </div>
     </div>
   )

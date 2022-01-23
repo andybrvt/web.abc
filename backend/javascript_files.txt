@@ -1,2 +1,6 @@
-https://www.googletagmanager.com/gtag/js?id=UA-732601-15
-https://platform-api.sharethis.com/js/sharethis.js#property=5bd821e07a0efc00111a3c49&product=inline-share-buttons
+https://www.adobe.com/etc.titan.dexterlibs/dexter/clientlibs/base/headIE.fp-74044ff365178b2d11893787f8a565a8.js
+https://www.adobe.com/etc.clientlibs/globalnav/clientlibs/base/feds.js
+https://www.adobe.com/marketingtech/main.no-promise.min.js
+https://www.adobe.com/etc.titan.dexterlibs/homepage/clientlibs/head.combined.fp-7a268f3c9d856d91e075021b1b0d74a0.js
+https://auth.services.adobe.com/imslib/imslib.min.js
+https://www.adobe.com/etc.titan.dexterlibs/homepage/clientlibs/publish.combined.fp-0e73bfd5f1e51db63a0d75d5d5dcfa9c.js

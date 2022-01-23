@@ -14,8 +14,8 @@ export const CompilerTest = (props) => {
       setSrcDoc(
         `
           <html>
-            <body>${html}</body>
-            <style>${css}</style>
+            <body>${html1}</body>
+            <style>${css1}</style>
             <script>${js}</script>
           <html>
         `
@@ -25,7 +25,10 @@ export const CompilerTest = (props) => {
     return () => clearTimeout(timeout)
   }, [html, css, js])
 
+  console.log(props.history.location.state.htmlInfo[0])
 
+  const html1 = props.history.location.state.htmlInfo
+  const css1 = props.history.location.state.cssInfo
   return(
     <div>
 
@@ -33,18 +36,18 @@ export const CompilerTest = (props) => {
         <Editor
           language = "xml"
           displayName="HTML"
-          value = {this.props.html}
+          value = {html1}
           onChange = {setHtml} />
         <Editor
           language = "css"
           displayName="CSS"
-          value = {css}
+          value = {css1}
           onChange = {setCss}
            />
         <Editor
           language = "javascript"
           displayName="JS"
-          value = {js}
+          // value = {js}
           onChange = {setJs}
            />
       </div>

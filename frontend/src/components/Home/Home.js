@@ -207,7 +207,7 @@ class Home extends React.Component{
 
         <CollectionList  {...this.props}/>
 
-        <WebsiteInput/>
+        <WebsiteInput {...this.props}/>
 
 
 

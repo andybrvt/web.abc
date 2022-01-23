@@ -9,6 +9,25 @@ from urllib.parse import urljoin
 import requests
 
 
+
+def findCss(list):
+
+    finalCss = ""
+    for url in list:
+        if(url.endswith(".css", len(url)-4, len(url))):
+            print(url)
+            res = requests.get(url)
+            src = res.content
+            soup = bs(src, "lxml")
+            cssText = soup.find_all(
+                text= True
+            )
+            print(cssText)
+            finalCss = finalCss + cssText[0]
+
+    return finalCss
+
+
 @authentication_classes([])
 @permission_classes([])
 class GrabURLInfo(APIView):
@@ -62,8 +81,9 @@ class GrabURLInfo(APIView):
         # with open("html_files.txt", "w") as f:
         #     print(whole, file = f)
 
+        cssText = findCss(css_files)
 
 
 
-        return JsonResponse([whole], safe=False)
+        return JsonResponse([whole,cssText], safe=False)
         # return JsonResponse([css_files], safe=False)

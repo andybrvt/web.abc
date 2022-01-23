@@ -5,7 +5,7 @@ import './Compiler.css';
 import  { CompilerTest } from './CompilerTest.js';
 import axios from 'axios';
 
-export const WebsiteInput = () => {
+export const WebsiteInput = (props) => {
 
   const [site, setSite] = useState("")
   const [html, setHtml] = useState("")
@@ -19,7 +19,13 @@ export const WebsiteInput = () => {
 
     axios.post(`${global.API_ENDPOINT}/web3Back/grabUrlInfo`, formData)
     .then(res => {
-      setHtml(res.data)
+
+      console.log(res.data)
+      // setHtml(res.data)
+      props.history.push(`/compilerTest`,{
+        htmlInfo: res.data[0],
+        cssInfo: res.data[1]
+      })
     })
   }
 

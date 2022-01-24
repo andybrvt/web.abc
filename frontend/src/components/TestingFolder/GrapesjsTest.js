@@ -24,11 +24,19 @@ export const GrapesjsTest = (props) => {
   	return doc.body;
   };
 
+  const myPlugin = (editor) =>{
+
+    editor.BlockManager.add("my-first-block", {
+      label: "Simple block",
+      content: '<div class="my-block">This is a simple block</div>',
+    })
+  }
 
 
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
+      plugins: [myPlugin],
       fromElement: true,
       canvas: {
         styles: css1,
@@ -161,9 +169,23 @@ export const GrapesjsTest = (props) => {
       editor.on('component:selected', (model) => {
           console.log('New content selected');
           // do your stuff...
-          console.log(model)
-          testFunction()
+          const component = model.components()
+
+          component.forEach(comp => console.log(comp.toHTML()))
+
+          // testFunction()
+
+          // the get selected function will get the recently selected
+          // editor.getSelected().append(`<div>Hi there</div>`);
       });
+
+      editor.addComponents(`<div>
+        <img src="https://path/image" />
+        <span title="foo">Hello world!!!</span>
+      </div>`);
+
+
+
 
       // Define commands
       editor.Commands.add('show-layers', {
@@ -237,6 +259,8 @@ export const GrapesjsTest = (props) => {
   return(
       <div>
 
+        <div id = 'blocks'></div>
+
         <div class="panel__top">
           <div class="panel__basic-actions"></div>
           <div class="panel__switcher"></div>
@@ -261,7 +285,6 @@ export const GrapesjsTest = (props) => {
         </div>
         </div>
 
-        <div id = 'blocks'></div>
       </div>
   )
 

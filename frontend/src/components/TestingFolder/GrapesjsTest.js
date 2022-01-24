@@ -24,11 +24,30 @@ export const GrapesjsTest = (props) => {
   	return doc.body;
   };
 
+  const myPlugin = (editor) =>{
 
+    editor.BlockManager.add("my-first-block", {
+      label: "Simple block",
+      content: '<div class="my-block">This is a simple block</div>',
+    })
+  }
+
+
+  const unEditHighLightChildren = (model) => {
+
+    const component = model.components()
+
+    component.forEach(comp => {
+      comp.set({"highlightable": false, "editable":false, })
+      unEditHighLightChildren(comp)
+    })
+
+  }
 
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
+      plugins: [myPlugin],
       fromElement: true,
       canvas: {
         styles: css1,
@@ -166,9 +185,31 @@ export const GrapesjsTest = (props) => {
       editor.on('component:selected', (model) => {
           console.log('New content selected');
           // do your stuff...
-          console.log(model)
-          testFunction()
+          const component = model.components()
+
+          // component.forEach(comp => {
+          //   comp.set({"highlightable": false, "editable":false, })
+          //
+          // })
+
+
+
+
+
       });
+
+      editor.addComponents(`<div>
+        <img src="https://path/image" />
+        <span title="foo">Hello world!!!</span>
+      </div>`);
+      editor.getComponents().forEach(comp => {
+        unEditHighLightChildren(comp)
+      })
+
+
+
+
+
 
       // Define commands
       editor.Commands.add('show-layers', {
@@ -242,6 +283,8 @@ export const GrapesjsTest = (props) => {
   return(
       <div>
 
+        <div id = 'blocks'></div>
+
         <div class="panel__top">
           <div class="panel__basic-actions"></div>
           <div class="panel__switcher"></div>
@@ -252,7 +295,7 @@ export const GrapesjsTest = (props) => {
           <div class = "editor-canvas">
             <div id='gjs'>
 
-                <h1>Hello world</h1>
+                <h1 data-gjs-selectable="false">Hello world</h1>
                   { ReactHtmlParser (html1) }
 
             </div>

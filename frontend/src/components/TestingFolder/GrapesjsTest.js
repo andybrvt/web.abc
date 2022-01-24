@@ -10,7 +10,7 @@ export const GrapesjsTest = (props) => {
 
   const html1 =props.history.location.state.htmlInfo
   const css1 = props.history.location.state.cssInfo
-
+  console.log(css1)
 
   const [editor, setEditor] = useState(null);
 
@@ -29,10 +29,7 @@ export const GrapesjsTest = (props) => {
       container: "#gjs",
       fromElement: true,
       canvas: {
-        styles: [
-          'https://www.tooplate.com/tooplate-style-20210907.css',
-          'https://www.tooplate.com/css/tooplate-all-20210722.css',
-        ]
+        styles: css1,
       },
       height: '300px',
       width: 'auto',

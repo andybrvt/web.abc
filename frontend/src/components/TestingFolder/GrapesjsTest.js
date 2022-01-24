@@ -24,6 +24,8 @@ export const GrapesjsTest = (props) => {
   	return doc.body;
   };
 
+
+
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
@@ -151,6 +153,13 @@ export const GrapesjsTest = (props) => {
               ]
             }]
         },
+      });
+
+      editor.on('component:selected', (model) => {
+          console.log('New content selected');
+          // do your stuff...
+          console.log(model)
+          testFunction()
       });
 
       // Define commands

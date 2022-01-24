@@ -10,7 +10,7 @@ export const GrapesjsTest = (props) => {
 
   const html1 =props.history.location.state.htmlInfo
   const css1 = props.history.location.state.cssInfo
-
+  console.log(css1)
 
   const [editor, setEditor] = useState(null);
 
@@ -30,6 +30,9 @@ export const GrapesjsTest = (props) => {
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: true,
+      canvas: {
+        styles: css1,
+      },
       height: '300px',
       width: 'auto',
       storageManager: false,

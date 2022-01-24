@@ -11,19 +11,19 @@ import requests
 
 
 def findCss(list):
-
-    finalCss = ""
+    finalCss=[]
     for url in list:
         if(url.endswith(".css", len(url)-4, len(url))):
-            print(url)
-            res = requests.get(url)
-            src = res.content
-            soup = bs(src, "lxml")
-            cssText = soup.find_all(
-                text= True
-            )
-            print(cssText)
-            finalCss = finalCss + cssText[0]
+            # print(url)
+            # res = requests.get(url)
+            # src = res.content
+            # soup = bs(src, "lxml")
+            # cssText = soup.find_all(
+            #     text= True
+            # )
+
+            finalCss.append(url)
+
 
     return finalCss
 

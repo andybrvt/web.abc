@@ -28,6 +28,12 @@ export const GrapesjsTest = (props) => {
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: true,
+      canvas: {
+        styles: [
+          'https://www.tooplate.com/tooplate-style-20210907.css',
+          'https://www.tooplate.com/css/tooplate-all-20210722.css',
+        ]
+      },
       height: '300px',
       width: 'auto',
       storageManager: false,

@@ -33,6 +33,17 @@ export const GrapesjsTest = (props) => {
   }
 
 
+  const unEditHighLightChildren = (model) => {
+
+    const component = model.components()
+
+    component.forEach(comp => {
+      comp.set({"highlightable": false, "editable":false, })
+      unEditHighLightChildren(comp)
+    })
+
+  }
+
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
@@ -171,18 +182,26 @@ export const GrapesjsTest = (props) => {
           // do your stuff...
           const component = model.components()
 
-          component.forEach(comp => console.log(comp.toHTML()))
+          // component.forEach(comp => {
+          //   comp.set({"highlightable": false, "editable":false, })
+          //
+          // })
 
-          // testFunction()
 
-          // the get selected function will get the recently selected
-          // editor.getSelected().append(`<div>Hi there</div>`);
+
+
+
       });
 
       editor.addComponents(`<div>
         <img src="https://path/image" />
         <span title="foo">Hello world!!!</span>
       </div>`);
+      editor.getComponents().forEach(comp => {
+        unEditHighLightChildren(comp)
+      })
+
+
 
 
 
@@ -271,7 +290,7 @@ export const GrapesjsTest = (props) => {
           <div class = "editor-canvas">
             <div id='gjs'>
 
-                <h1>Hello world</h1>
+                <h1 data-gjs-selectable="false">Hello world</h1>
                   { ReactHtmlParser (html1) }
 
             </div>

@@ -46,7 +46,7 @@ def findCss(list):
     return finalCss
 
 def main():
-    res = requests.get('https://www.adobe.com/')
+    res = requests.get('https://www.tooplate.com/')
 
 
     src = res.content
@@ -59,7 +59,7 @@ def main():
     )
 
     # URL of the web page you want to extract
-    url = "https://www.adobe.com/"
+    url = "https://www.tooplate.com/"
 
     # initialize a session
     session = requests.Session()

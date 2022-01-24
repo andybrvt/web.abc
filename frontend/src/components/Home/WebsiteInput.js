@@ -22,7 +22,11 @@ export const WebsiteInput = (props) => {
 
       console.log(res.data)
       // setHtml(res.data)
-      props.history.push(`/compilerTest`,{
+      // props.history.push(`/compilerTest`,{
+      //   htmlInfo: res.data[0],
+      //   cssInfo: res.data[1]
+      // })
+      props.history.push(`/grapesTest`,{
         htmlInfo: res.data[0],
         cssInfo: res.data[1]
       })

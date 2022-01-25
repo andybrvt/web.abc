@@ -38,7 +38,7 @@ export const GrapesjsTest = (props) => {
     const component = model.components()
 
     component.forEach(comp => {
-      comp.set({"highlightable": false, "editable":false, })
+      comp.set({"highlightable": false, "editable":false, 'badgable': false})
       unEditHighLightChildren(comp)
     })
 
@@ -193,10 +193,7 @@ export const GrapesjsTest = (props) => {
 
       });
 
-      editor.addComponents(`<div>
-        <img src="https://path/image" />
-        <span title="foo">Hello world!!!</span>
-      </div>`);
+    
       editor.getComponents().forEach(comp => {
         unEditHighLightChildren(comp)
       })

@@ -2,7 +2,7 @@ import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
 import './Grapes.css'
 import ReactHtmlParser from 'react-html-parser';
-
+import { Card } from 'antd';
 
 import React, {useState, useEffect} from 'react';
 
@@ -13,7 +13,9 @@ export const GrapesjsTest = (props) => {
   console.log(css1)
 
   const [editor, setEditor] = useState(null);
+  const [card, setCard] = useState(null);
 
+  const [theArray, setTheArray] = useState([]);
   const testFunction = (e) => {
     console.log('test is here')
   }
@@ -43,7 +45,9 @@ export const GrapesjsTest = (props) => {
     })
 
   }
-
+  useEffect(() => {
+  console.log(theArray)
+  }, [theArray]);
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
@@ -185,6 +189,9 @@ export const GrapesjsTest = (props) => {
       editor.on('component:selected', (model) => {
           console.log('New content selected');
           // do your stuff...
+
+
+          setTheArray(theArray => [...theArray, 'hi']);
           const component = model.components()
 
           // component.forEach(comp => {
@@ -198,7 +205,7 @@ export const GrapesjsTest = (props) => {
 
       });
 
-    
+
       editor.getComponents().forEach(comp => {
         unEditHighLightChildren(comp)
       })
@@ -299,11 +306,25 @@ export const GrapesjsTest = (props) => {
           </div>
 
 
-          <div style={{position:'absolute', top:'30%', right:100}}>
-            Select which components you want to mint to a NFT
+          <div style={{position:'absolute', top:'20%', right:100}}>
+            Shopping cart
           </div>
 
+          <div style={{position:'absolute', top:'30%', right:100}}>
+            {[...theArray.keys()].map(k => (
 
+              <div >
+                <Card
+                  hoverable
+                  style={{ width: 240 }}
+                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                >
+                  <Card title="Europe Street beat" description="www.instagram.com" />
+                </Card>
+
+                <br/></div>
+            ))}
+          </div>
       </div>
   )
 

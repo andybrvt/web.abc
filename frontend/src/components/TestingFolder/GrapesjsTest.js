@@ -186,6 +186,18 @@ export const GrapesjsTest = (props) => {
         // },
       });
 
+
+
+
+
+      editor.on('component:remove', (model) => {
+          console.log('CONTENT REMOVED');
+
+
+
+      });
+
+
       editor.on('component:selected', (model) => {
           console.log('New content selected');
           // do your stuff...

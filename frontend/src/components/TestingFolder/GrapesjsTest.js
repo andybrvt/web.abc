@@ -61,7 +61,7 @@ export const GrapesjsTest = (props) => {
       // width:'auto',
       storageManager: false,
       panels: {defaults: []},
-    
+
       blockManager: {
        appendTo: '#blocks',
        blocks: [
@@ -180,7 +180,7 @@ export const GrapesjsTest = (props) => {
         // },
       });
 
-<<<<<<< HEAD
+
 
 
 
@@ -193,14 +193,12 @@ export const GrapesjsTest = (props) => {
       });
 
 
-=======
       // editor.Commands.add("command", (editor, sender, options ={}) =>{
       //   console.log(options.component.toHTML())
       // })
 
 
 
->>>>>>> 180c40b61a6d83fcbf7f6e504a831ac5a96622c0
       editor.on('component:selected', (model) => {
 
 

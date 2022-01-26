@@ -57,6 +57,7 @@ export const GrapesjsTest = (props) => {
       // width:'auto',
       storageManager: false,
       panels: {defaults: []},
+
       blockManager: {
        appendTo: '#blocks',
        blocks: [
@@ -87,13 +88,6 @@ export const GrapesjsTest = (props) => {
        ]
      },
 
-     // remove layers on right hand side
-     // layerManager: {
-     //   appendTo: '.layers-container'
-     // },
-
-
-     // We define a default panel as a sidebar to contain layers
      panels: {
        defaults: [
          {
@@ -182,24 +176,53 @@ export const GrapesjsTest = (props) => {
         // },
       });
 
+      // editor.Commands.add("command", (editor, sender, options ={}) =>{
+      //   console.log(options.component.toHTML())
+      // })
+
+
+
       editor.on('component:selected', (model) => {
-          console.log('New content selected');
+
+
+          console.log(editor.getSelectedAll())
           // do your stuff...
-          const component = model.components()
+          // const component = model.components()
 
           // component.forEach(comp => {
           //   comp.set({"highlightable": false, "editable":false, })
           //
           // })
 
+          // editor.Commands.run('command', {component: model})
 
 
 
 
       });
 
-    
+      editor.DomComponents.addType("default", {
+
+        model: {},
+        view: {
+          events:{
+            click: 'handleClick'
+          },
+          handleClick: function(e){
+            if(this.model.get('status') === "selected" || this.model.get('status') === "hover"){
+              console.log('this is it')
+
+              this.model.set("status", "")
+            }
+
+
+          }
+        }
+      })
+
+
       editor.getComponents().forEach(comp => {
+        comp.set("editable", false)
         unEditHighLightChildren(comp)
       })
 

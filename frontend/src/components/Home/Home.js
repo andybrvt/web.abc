@@ -14,6 +14,7 @@ import web from '../Landing/web.png';
 import { Button, ButtonGroup, Divider, Flex, Text } from '@chakra-ui/react';
 import { Contract } from "@ethersproject/contracts";
 import { ethers } from "ethers";
+import { Header } from '../Header'
 import {
   Menu,
   MenuButton,
@@ -29,6 +30,7 @@ import { authAxios } from '../../components/util';
 import { UploadImageNFT } from './UploadImageNFT';
 import { CollectionList } from './CollectionList/CollectionList';
 import { WebsiteInput } from './WebsiteInput';
+import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -121,70 +123,25 @@ class Home extends React.Component{
 
     return(
       <div>
+        <Header/>
 
-          <div className="menu">
-            <div class="test">
-                <div class="menuHeader1">
-                  <div class="logoFont">web.abc</div>
-                </div>
-                <div class="menuHeader2">
-                  <div className = "searchBarContainer">
-                  <div className = "autoCompleteHeader">
-                    <div>
-                      <Form onChange = {this.onChangeNewSearch}>
-                        <Input value = {this.state.searchValue}
-                          prefix={<SearchOutlined/>}
-                          placeholder = {'Search'} />
-                      </Form>
-                      <List className ={`searchDropDown ${this.state.showSearch ? "showSearch": ""}`} >
-                        {
-                          this.state.searched.length === 0 ?
-                          <li className ="searchListObj">
-                              <span className = "noResultText">No results</span>
-                          </li>
-                          :
-                          <div>
-                            {this.renderSearchList(this.state.searched)}
-                          </div>
-                        }
-                      </List>
-                    </div>
-                   </div>
-                  </div>
-                </div>
-                <div class="menuHeader3">
-                  <Menu colorScheme='teal' size='md'>
+        <Divider/>
 
-                    <MenuButton as={Button} rightIcon={<Avatar icon={<UserOutlined />} />}>
-                    <text color="white" fontSize="md" fontWeight="medium" mr="2">
-                      {account &&
-                        `${account.slice(0, 6)}...${account.slice(
-                          account.length - 4,
-                          account.length
-                        )}`}
-                    </text>
-                    </MenuButton>
-                    <MenuList>
-                      <MenuGroup title='Profile'>
-                        <MenuItem icon={<UserOutlined size={30} />}>My Account</MenuItem>
-                        <MenuItem>My Collection </MenuItem>
-                      </MenuGroup>
-                      <MenuDivider />
-                      <MenuGroup title='Help'>
-                        <MenuItem>Docs</MenuItem>
-                        <MenuItem>FAQ</MenuItem>
-                      </MenuGroup>
-                      <MenuDivider />
-
-                        <MenuItem icon={<AddIcon />} >Log Out</MenuItem>
-
-
-                    </MenuList>
-                  </Menu>
-                </div>
+        <div class="collectionList">
+          <div class="collectionTitle">
+            My Collection
+          </div>
+          <div style={{marginTop:'10%',width:900}}>
+            <div style={{display:'flex',}}>
+              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1643120500723-dc36f2d92718?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
+              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1642629026109-3109c5c9f969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'/>
+              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1643051861827-4c04aba8c6b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
             </div>
           </div>
-          <Divider/>
+        </div>
+
+
+
 
 
         <div class="loginFormInnerContent">

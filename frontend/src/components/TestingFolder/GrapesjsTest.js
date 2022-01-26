@@ -61,6 +61,7 @@ export const GrapesjsTest = (props) => {
       // width:'auto',
       storageManager: false,
       panels: {defaults: []},
+    
       blockManager: {
        appendTo: '#blocks',
        blocks: [
@@ -91,13 +92,6 @@ export const GrapesjsTest = (props) => {
        ]
      },
 
-     // remove layers on right hand side
-     // layerManager: {
-     //   appendTo: '.layers-container'
-     // },
-
-
-     // We define a default panel as a sidebar to contain layers
      panels: {
        defaults: [
          {
@@ -186,6 +180,7 @@ export const GrapesjsTest = (props) => {
         // },
       });
 
+<<<<<<< HEAD
 
 
 
@@ -198,12 +193,23 @@ export const GrapesjsTest = (props) => {
       });
 
 
+=======
+      // editor.Commands.add("command", (editor, sender, options ={}) =>{
+      //   console.log(options.component.toHTML())
+      // })
+
+
+
+>>>>>>> 180c40b61a6d83fcbf7f6e504a831ac5a96622c0
       editor.on('component:selected', (model) => {
-          console.log('New content selected');
+
+
+          console.log(editor.getSelectedAll())
           // do your stuff...
 
 
           setTheArray(theArray => [...theArray, 'hi']);
+          console.log(model.get("toolbar"))
           const component = model.components()
 
           // component.forEach(comp => {
@@ -211,14 +217,45 @@ export const GrapesjsTest = (props) => {
           //
           // })
 
+          // editor.Commands.run('command', {component: model})
 
 
 
 
       });
 
+      editor.DomComponents.addType("default", {
+
+        model: {
+          defaults: {
+            toolbar: [{
+              attributes: {class: 'fa fa-arrows'},
+              command: 'tlb-move',
+            },{
+              attributes: {class: 'fa fa-clone'},
+              command: 'tlb-clone',
+            },]
+          }
+        },
+        view: {
+          events:{
+            click: 'handleClick'
+          },
+          handleClick: function(e){
+            if(this.model.get('status') === "selected" || this.model.get('status') === "hover"){
+              console.log('this is it')
+
+              this.model.set("status", "")
+            }
+
+
+          }
+        }
+      })
+
 
       editor.getComponents().forEach(comp => {
+        comp.set("editable", false)
         unEditHighLightChildren(comp)
       })
 

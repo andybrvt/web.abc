@@ -61,7 +61,7 @@ export const GrapesjsTest = (props) => {
       // width:'auto',
       storageManager: false,
       panels: {defaults: []},
-
+    
       blockManager: {
        appendTo: '#blocks',
        blocks: [
@@ -194,6 +194,7 @@ export const GrapesjsTest = (props) => {
 
 
           setTheArray(theArray => [...theArray, 'hi']);
+          console.log(model.get("toolbar"))
           const component = model.components()
 
           // component.forEach(comp => {
@@ -210,7 +211,17 @@ export const GrapesjsTest = (props) => {
 
       editor.DomComponents.addType("default", {
 
-        model: {},
+        model: {
+          defaults: {
+            toolbar: [{
+              attributes: {class: 'fa fa-arrows'},
+              command: 'tlb-move',
+            },{
+              attributes: {class: 'fa fa-clone'},
+              command: 'tlb-clone',
+            },]
+          }
+        },
         view: {
           events:{
             click: 'handleClick'

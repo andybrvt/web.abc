@@ -1,10 +1,24 @@
 
 .menu {
-  width:100%;
+  width:100vw;
   height:7vh;
-  /* background-color: red; */
-  /* border-bottom: 1px solid red; */
 
+
+}
+
+.collectionList{
+
+    position:absolute;
+    top:12.5%;
+    width:25%;
+    left:17.5%;
+
+
+}
+
+.collectionTitle{
+  font-family: 'PlusJakartaSans';
+  font-size: 20px;
 }
 
 
@@ -23,8 +37,7 @@
     flex:2;
 }
 
-.test{
-
+.headerBar{
   position: relative;
     top: 50%;
     width:100%;
@@ -33,6 +46,7 @@
     display: flex;
       /* display: 'flex'; */
 }
+
 
 
 

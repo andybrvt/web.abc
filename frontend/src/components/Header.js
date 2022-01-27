@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Form, List, Avatar } from 'antd';
 import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { NavLink, Redirect, } from "react-router-dom";
+
 // import './Account.css';
 import { useWeb3React } from "@web3-react/core"
 import { injected } from "./wallet/Connectors"
@@ -24,6 +25,9 @@ import {
   MenuDivider,
 } from '@chakra-ui/react';
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt,  } from '@fortawesome/free-solid-svg-icons'
+
 
 export const Header = (props) => {
   const {activateBrowserWallet, account } = useEthers();
@@ -72,10 +76,7 @@ export const Header = (props) => {
                   <MenuItem>FAQ</MenuItem>
                 </MenuGroup>
                 <MenuDivider />
-
-                  <MenuItem icon={<AddIcon />} >Log Out</MenuItem>
-
-
+                  <MenuItem > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
               </MenuList>
             </Menu>
           </div>

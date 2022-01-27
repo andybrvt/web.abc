@@ -9,6 +9,7 @@ import { injected } from "../wallet/Connectors"
 import { useNavigate, } from 'react-router-dom';
 import { useEthers, useEtherBalance, useContractCall, useContractFunction} from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
+import { SignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import './Home.css';
 import web from '../Landing/web.png';
 import { Button, ButtonGroup, Divider, Flex, Text } from '@chakra-ui/react';
@@ -24,13 +25,17 @@ import {
   MenuGroup,
   MenuOptionGroup,
   MenuDivider,
-} from '@chakra-ui/react'
+  Stack
+} from '@chakra-ui/react';
+import { EmailIcon } from '@chakra-ui/icons'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import { authAxios } from '../../components/util';
 import { UploadImageNFT } from './UploadImageNFT';
 import { CollectionList } from './CollectionList/CollectionList';
 import { WebsiteInput } from './WebsiteInput';
 import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -111,9 +116,9 @@ class Home extends React.Component{
     return searchList;
   }
 
-  navLogin = (eventId) => {
+  navBuild = (eventId) => {
       console.log(eventId)
-      this.props.history.push("/login")
+      this.props.history.push("/build")
     }
   render(){
 
@@ -128,8 +133,18 @@ class Home extends React.Component{
         <Divider/>
 
         <div class="collectionList">
-          <div class="collectionTitle">
-            My Collection
+          <div style={{display:'flex', flexDirection:'row', width:'500px'}}>
+            <div class="collectionTitle">
+              My Collection
+            </div>
+            <Stack style={{marginLeft:'25px'}} direction='row' spacing={4}>
+              <Button onClick={this.navBuild}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
+                Create Site
+              </Button>
+              <Button leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faUserFriends} />} colorScheme='teal' variant='outline'>
+                Join group
+              </Button>
+            </Stack>
           </div>
           <div style={{marginTop:'10%',width:900}}>
             <div style={{display:'flex',}}>

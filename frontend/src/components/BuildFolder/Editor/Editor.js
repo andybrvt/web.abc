@@ -20,12 +20,9 @@ export const Editor = (props) => {
       height: '300px',
       width: 'auto',
       storageManager: false,
-      panels: {defaults:[]},
-      layerManager:{
-        appendTo: '.layers-container'
-      },
       panels: {
-        defaults: [{
+        defaults: [
+          {
           id: 'layers',
           el: '.panel__right',
           // Make the panel resizable
@@ -40,9 +37,88 @@ export const Editor = (props) => {
             // instead of the `width` (default)
             keyWidth: 'flex-basis',
           },
-        }]
+        },
+        {
+          id:'panel-switcher', // id of the element, honestly be any becuase you are adding shit in
+          el: '.panel__switcher', // this is the element you want to put it in
+          buttons:[
+            {
+              id: 'show-layers',
+              active: true, // gotta set this one too to active only (like the button is clicked on)
+              label: 'Layers',
+              command: "show-layers", // you can make custom commands and put them here
+              togglable: false,
+            },
+            {
+              id: 'show-style',
+              active: true, // means when the button is active then the thing runs
+              label: 'Styles',
+              command: 'show-styles',
+              togglable: false
+            },
+          ]
+        }
+
+      ]
+      },
+      selectorManager: {
+        // if it is a class you would do .NAMEH
+        appendTo: '.styles-container'
+      },
+      styleManager: {
+        appendTo: '.styles-container',
+        sectors: [
+          {
+            name: 'Dimension',
+            open: false,
+            // build props is any css property
+            buildProps: ['width', 'min-height', 'padding', 'color'],
+            // this to modify and adjust
+            properties: [
+              {
+                // You can have different types of inputsto change the
+                // dimention
+                type: 'integer',
+                name: 'The width',
+                property: 'width', // will extend build props if in it
+                units: ['px', '%'],
+                defaults: 'auto',
+                min: 0,
+              },
+
+            ]
+          },
+
+          // you gotta put it seperately
+          {
+            name: 'Extra',
+            open: false,
+            buildProps: ['background-color', 'box-shadow','custom-prop'],
+            // custom-prop --> you can show it here in properties
+            properties:[
+              {
+                id: 'custom-prop',
+                name: 'Custom Label',
+                property: 'font-size',
+                type: 'select',
+                defaults: '32px',
+                // List of options available only for select and radio types
+                option: [
+                  {value: '12px', name: 'Tiny'},
+                  {value: '18px', name: 'Medium'},
+                  {value: '32px', name: 'Big'}
+                ]
+              }
+            ]
+          }
+
+        ]
+      },
+      layerManager:{
+        appendTo: '.layers-container'
       },
       blockManager: {
+        // if it is id then you would use #NAME
         appendTo: '#blocks',
         blocks: [
           {
@@ -72,6 +148,45 @@ export const Editor = (props) => {
         ]
       }
 
+    })
+
+    editor.Commands.add("show-layers", {
+      // editor.getContainer gets the container you listed in init
+      // closest will get the closes div element going upward the tree
+      getRowEl(editor){return editor.getContainer().closest('.editor-row');},
+      // querySelector gets a element inside the row given the name
+      getLayersEl(row){return row.querySelector(".layers-container")},
+
+      // get the style container and then show it because you put display as ''
+      run(editor, sender){
+        const lmEl = this.getLayersEl(this.getRowEl(editor));
+        lmEl.style.display = "";
+      },
+      stop(editor, sender){
+        const lmEl = this.getLayersEl(this.getRowEl(editor));
+        lmEl.style.display = "none";
+      }
+
+    })
+
+    console.log(editor.StyleManager.getBuiltInAll())
+
+    editor.Commands.add('show-styles', {
+      // editor.getContainer gets the container you listed in init
+      // closest will get the closes div element going upward the tree
+      getRowEl(editor){return editor.getContainer().closest('.editor-row');},
+      // querySelector gets a element inside the row given the name
+      getStyleEl(row){return row.querySelector(".styles-container")},
+
+      // get the style container and then show it because you put display as ''
+      run(editor, sender){
+        const lmEl = this.getStyleEl(this.getRowEl(editor));
+        lmEl.style.display = "";
+      },
+      stop(editor, sender){
+        const lmEl = this.getStyleEl(this.getRowEl(editor));
+        lmEl.style.display = "none";
+      }
     })
 
     editor.Panels.addPanel({
@@ -127,13 +242,16 @@ export const Editor = (props) => {
 
       <div class="panel__top">
           <div class="panel__basic-actions"></div>
+          <div class="panel__switcher"></div>
       </div>
+
       <div class="editor-row">
         <div class="editor-canvas">
           <div id = "gjs"></div>
         </div>
         <div class="panel__right">
           <div class="layers-container"></div>
+          <div class="styles-container"></div>
         </div>
       </div>
 

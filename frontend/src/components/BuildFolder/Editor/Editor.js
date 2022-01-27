@@ -3,6 +3,7 @@
 
 */
 
+
 import React, { useState, useEffect } from 'react';
 import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
@@ -19,7 +20,28 @@ export const Editor = (props) => {
       fromElement: true,
       height: '300px',
       width: 'auto',
-      storageManager: false,
+
+      // this is the local storage
+      storageManager: {
+        id: 'gjs-', // just the identifier that you will be using
+        type: 'local', // type of storage
+        autosave: true,
+        autoload: true,
+        stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
+        storeComponents: true, // enable/disable storing of componets in JSON format
+        storeStyles: true,
+        storeHtml: true,
+        storeCss: true
+      },
+      // // this is the remote storage (probally gonna use this one here)
+      // storageManager: {
+      //   type: 'remote',
+      //   stepsBeforeSave: 10,
+      //   urlStore: 'http://store/endpoint',
+      //   urlLoad: 'http://load/endpoint' // django endpoint would go here
+      //   params: {},
+      //   headers: {}
+      // },
       panels: {
         defaults: [
           {
@@ -38,6 +60,7 @@ export const Editor = (props) => {
             keyWidth: 'flex-basis',
           },
         },
+
         {
           id:'panel-switcher', // id of the element, honestly be any becuase you are adding shit in
           el: '.panel__switcher', // this is the element you want to put it in
@@ -56,10 +79,39 @@ export const Editor = (props) => {
               command: 'show-styles',
               togglable: false
             },
+            {
+              id: "show-traits",
+              active: true,
+              label: 'Traits',
+              command: 'show-traits',
+              togglable: false
+            }
           ]
-        }
+        },
+        {
+          id: 'panel-devices', // the id you want to give
+          el: '.panel__devices', // name of the div element you trying to put it into
+          buttons: [
+            {
+              id: 'device-desktop',
+              label: "D",
+              command: 'set-device-desktop', // again this can be called any, its just a function call
+              active: true,
+              togglable: false
+            },
+            {
+              id: 'device-mobile',
+              label: 'M',
+              command: 'set-device-mobile',
+              togglable: false
+            }
+          ]
+        },
 
       ]
+      },
+      traitManager: {
+        appendTo: '.traits-container'
       },
       selectorManager: {
         // if it is a class you would do .NAMEH
@@ -117,6 +169,20 @@ export const Editor = (props) => {
       layerManager:{
         appendTo: '.layers-container'
       },
+      deviceManager:{ // the width and see what it looks like on different devices
+
+        devices:[
+          {
+            name: 'Desktop',
+            width: '', //default size
+          }, {
+            name: 'Mobile',
+            width: '320px', // value used on canvas width
+            widthMedia: '480px', // this value will be used in css@media
+          }
+        ]
+
+      },
       blockManager: {
         // if it is id then you would use #NAME
         appendTo: '#blocks',
@@ -150,6 +216,13 @@ export const Editor = (props) => {
 
     })
 
+
+    editor.Commands.add('set-device-desktop', {
+      run: editor => editor.setDevice("Desktop")
+    });
+    editor.Commands.add('set-device-mobile', {
+      run: editor => editor.setDevice("Mobile")
+    })
     editor.Commands.add("show-layers", {
       // editor.getContainer gets the container you listed in init
       // closest will get the closes div element going upward the tree
@@ -187,6 +260,22 @@ export const Editor = (props) => {
         const lmEl = this.getStyleEl(this.getRowEl(editor));
         lmEl.style.display = "none";
       }
+    })
+
+    editor.Commands.add("show-traits", {
+      getTraitsEl(editor){
+        const row = editor.getContainer().closest('.editor-row');
+        return row.querySelector(".traits-container");
+      },
+      run(editor, sender){
+        this.getTraitsEl(editor).style.display = "";
+      },
+      stop(editor, sender){
+        this.getTraitsEl(editor).style.display = "none";
+
+      }
+
+
     })
 
     editor.Panels.addPanel({
@@ -242,6 +331,7 @@ export const Editor = (props) => {
 
       <div class="panel__top">
           <div class="panel__basic-actions"></div>
+          <div class="panel__devices"></div>
           <div class="panel__switcher"></div>
       </div>
 
@@ -252,6 +342,8 @@ export const Editor = (props) => {
         <div class="panel__right">
           <div class="layers-container"></div>
           <div class="styles-container"></div>
+          <div class="traits-container"></div>
+
         </div>
       </div>
 

@@ -20,7 +20,7 @@ export const Editor = (props) => {
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: true,
-      height: '300px',
+
       width: 'auto',
       dragMode: "absolute",
 
@@ -178,6 +178,7 @@ export const Editor = (props) => {
           {
             name: 'Desktop',
             width: '', //default size
+
           }, {
             name: 'Mobile',
             width: '320px', // value used on canvas width
@@ -282,7 +283,7 @@ export const Editor = (props) => {
 
 
     })
-
+    {/*
     editor.Panels.addPanel({
       id: 'panel-top',
       el: '.panel__top',
@@ -318,7 +319,7 @@ export const Editor = (props) => {
         }
       ],
     });
-
+    */}
     editor.on('run:export-template:before', opts => {
       console.log('Before the command run');
       if (0 /* some condition */) {
@@ -338,13 +339,22 @@ export const Editor = (props) => {
 
       <div class="panel__top">
           <div class="panel__basic-actions"></div>
+          {/*
           <div class="panel__devices"></div>
-          <div class="panel__switcher"></div>
+
+            <div class="panel__switcher"></div
+          */}
+      </div>
+      <div style={{height:'50px'}}>
+      <div class="headerBar">
+        <div class="logoFont">web.abc</div>
+      </div>
       </div>
       <div class="row">
-        <div id="layers" class="firstColumn" >
+        <div id="layers-container" class="firstColumn" >
           Layers herefff
-
+          Need avatar profile_picture
+          Share button
         </div>
         <div class="column">
         <div class="editor-row">

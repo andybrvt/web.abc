@@ -12,12 +12,13 @@ body{
   justify-content: flex-start;
   align-items: stretch;
   flex-wrap: nowrap;
+  height:75vh;
 }
 
 .firstColumn {
   min-height: 75px;
   flex-grow: 1;
-  flex-basis: 400px;
+  flex-basis: 300px;
   overflow: auto;
 }
 
@@ -86,6 +87,7 @@ body{
 
 .editor-canvas {
   flex-grow: 1;
+
 }
 
 .panel__right {

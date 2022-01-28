@@ -18,9 +18,8 @@ export const Editor = (props) => {
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: true,
-      height: '300px',
       width: 'auto',
-
+      dragMode: "absolute",
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using

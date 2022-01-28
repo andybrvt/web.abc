@@ -9,6 +9,8 @@ import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
 import './Editor.css'
 import {BlocksContainer} from '../Blocks/BlocksContainer';
+import {LayersContainer} from '../Layers/LayersContainer';
+
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);
@@ -345,7 +347,7 @@ export const Editor = (props) => {
           <div id = "gjs"></div>
         </div>
         <div class="panel__right">
-          <div class="layers-container"></div>
+          <LayersContainer />
           <div class="styles-container"></div>
           <div class="traits-container"></div>
 

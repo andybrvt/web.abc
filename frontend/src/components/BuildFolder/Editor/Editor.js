@@ -341,19 +341,25 @@ export const Editor = (props) => {
           <div class="panel__devices"></div>
           <div class="panel__switcher"></div>
       </div>
+      <div class="row">
+        <div id="layers" class="firstColumn" >
+          Layers herefff
 
-      <div class="editor-row">
-        <div class="editor-canvas">
-          <div id = "gjs"></div>
         </div>
-        <div class="panel__right">
-          <LayersContainer />
-          <div class="styles-container"></div>
-          <div class="traits-container"></div>
+        <div class="column">
+        <div class="editor-row">
+          <div class="editor-canvas">
+            <div id = "gjs"></div>
+          </div>
+          <div class="panel__right">
+            <div class="layers-container"></div>
+            <div class="styles-container"></div>
+            <div class="traits-container"></div>
 
+          </div>
+        </div>
         </div>
       </div>
-
       <BlocksContainer editor = {editorMain}/>
 
     </div>

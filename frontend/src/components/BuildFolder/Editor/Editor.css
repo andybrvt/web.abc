@@ -7,6 +7,28 @@ body{
 
 }
 
+.row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
+.firstColumn {
+  min-height: 75px;
+  flex-grow: 1;
+  flex-basis: 400px;
+  overflow: auto;
+}
+
+.column {
+  min-height: 75px;
+  flex-grow: 1;
+  flex-basis: 100%;
+  overflow: auto;
+}
+
+
 /* to change the css you have to put palets after the intial css declaration */
 /* Theming */
 

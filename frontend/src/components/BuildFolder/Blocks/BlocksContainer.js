@@ -7,7 +7,7 @@ export const BlocksContainer = (props) => {
 
   useEffect(() => {
     if(props.editor !== null){
-      setEditor(editor);
+      setEditor(props.editor);
       props.editor.BlockManager.add('your-block', {
         label: 'Label',
         category: 'Some category',

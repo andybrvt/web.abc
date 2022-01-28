@@ -41,25 +41,6 @@ body{
 
 }
 
-/* CSS for the block */
-/* this is the block container */
-.gjs-blocks-c{
-}
-/* This is css for the buttons */
-.gjs-block{
-  width: auto;
-  height: auto;
-  min-height: auto;
-}
-
-.gjs-block-category{
-  background: red;
-}
-
-
-
-
-
 
 .panel__top {
   padding: 0;

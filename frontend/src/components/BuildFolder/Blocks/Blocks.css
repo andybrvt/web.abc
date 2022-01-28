@@ -1,0 +1,19 @@
+/*
+
+  Remember the main name of the project is gjs
+
+*/
+/* CSS for the block */
+/* this is the block container */
+.gjs-blocks-c{
+}
+/* This is css for the buttons */
+.gjs-block{
+  width: auto;
+  height: auto;
+  min-height: auto;
+}
+/* change the colors of the different categories */
+.gjs-block-category{
+
+}

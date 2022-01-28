@@ -8,10 +8,10 @@ import React, { useState, useEffect } from 'react';
 import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
 import './Editor.css'
-
+import {BlocksContainer} from '../Blocks/BlocksContainer';
 export const Editor = (props) => {
 
-  const [editor, setEditor] = useState(null);
+  const [editorMain, setEditor] = useState(null);
 
 
   useEffect(() => {
@@ -187,6 +187,7 @@ export const Editor = (props) => {
       blockManager: {
         // if it is id then you would use #NAME
         appendTo: '#blocks',
+
         blocks: [
           {
             id: 'section', // id is mandatory
@@ -216,6 +217,7 @@ export const Editor = (props) => {
       }
 
     })
+
 
 
     editor.Commands.add('set-device-desktop', {
@@ -324,6 +326,8 @@ export const Editor = (props) => {
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
+
+    setEditor(editor)
   },[])
 
 
@@ -348,8 +352,7 @@ export const Editor = (props) => {
         </div>
       </div>
 
-      <div id="blocks"></div>
-
+      <BlocksContainer editor = {editorMain}/>
 
     </div>
 

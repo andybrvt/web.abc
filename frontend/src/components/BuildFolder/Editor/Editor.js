@@ -10,6 +10,8 @@ import 'grapesjs/dist/css/grapes.min.css';
 import './Editor.css'
 import {BlocksContainer} from '../Blocks/BlocksContainer';
 import {LayersContainer} from '../Layers/LayersContainer';
+import {StylesContainer} from '../Styles/StylesContainer';
+import {PagesContainer} from '../Pages/PagesContainer';
 
 export const Editor = (props) => {
 
@@ -88,7 +90,8 @@ export const Editor = (props) => {
               label: 'Traits',
               command: 'show-traits',
               togglable: false
-            }
+            },
+
           ]
         },
         {
@@ -112,6 +115,26 @@ export const Editor = (props) => {
         },
 
       ]
+      },
+      pageManager: {
+        pages: [
+          {
+            id: 'page-1',
+            name: 'Page 1',
+            component: '<div id="comp1">Page 1</div>',
+
+          },
+          {
+            id: 'page-2',
+            name: 'Page 2',
+            component: '<div id="comp1">Page 2</div>',
+          },
+           {
+             id: 'page-3',
+             name: 'Page 3',
+             component: '<div id="comp1">Page 3</div>',
+            }
+        ]
       },
       traitManager: {
         appendTo: '.traits-container'
@@ -221,7 +244,7 @@ export const Editor = (props) => {
 
     })
 
-
+    console.log(editor.Pages)
 
     editor.Commands.add('set-device-desktop', {
       run: editor => editor.setDevice("Desktop")
@@ -283,6 +306,7 @@ export const Editor = (props) => {
 
 
     })
+
     {/*
     editor.Panels.addPanel({
       id: 'panel-top',
@@ -362,9 +386,9 @@ export const Editor = (props) => {
             <div id = "gjs"></div>
           </div>
           <div class="panel__right">
-            <div class="layers-container"></div>
-            <div class="styles-container"></div>
-            <div class="traits-container"></div>
+            <LayersContainer editor = {editorMain}/>
+            <StylesContainer editor = {editorMain} />
+          <div class="traits-container"></div>
 
           </div>
         </div>
@@ -372,6 +396,7 @@ export const Editor = (props) => {
       </div>
       <BlocksContainer editor = {editorMain}/>
 
+      <PagesContainer editor = {editorMain} />
     </div>
 
 

@@ -9,6 +9,8 @@ import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
 import './Editor.css'
 import {BlocksContainer} from '../Blocks/BlocksContainer';
+import {LayersContainer} from '../Layers/LayersContainer';
+
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);

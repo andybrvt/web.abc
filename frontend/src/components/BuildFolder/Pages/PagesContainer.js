@@ -51,11 +51,14 @@ export const PagesContainer = (props) => {
 
   const addPage = () => {
     if(pageManager !== null){
-      const len = pageManager.getAll().length;
+      const len = pageManager.getAll().length+1;
       pageManager.add({
-        name: `Page ${len+1}`,
+        id: `page ${len}`,
+        name: `Page ${len}`,
         component:"<div>New Page</div>"
       })
+      setPages(oldArray => [...oldArray, pageManager.get(`page ${len}`)])
+
 
     }
   }
@@ -63,7 +66,9 @@ export const PagesContainer = (props) => {
   return(
     <div>
       <div class= "pages-wrap">
-        <div class = "add-page">
+        <div
+          onClick= {() => addPage()}
+          class = "add-page">
           Add new page
         </div>
 

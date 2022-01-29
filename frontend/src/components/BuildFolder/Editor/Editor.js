@@ -74,21 +74,21 @@ export const Editor = (props) => {
               id: 'show-layers',
               active: true, // gotta set this one too to active only (like the button is clicked on)
               label: 'Layers',
-              command: "show-layers", // you can make custom commands and put them here
+              // command: "show-layers", //PUT BACK LATER
               togglable: false,
             },
             {
               id: 'show-style',
               active: true, // means when the button is active then the thing runs
               label: 'Styles',
-              command: 'show-styles',
+              // command: 'show-styles', // PUT BACK LATER
               togglable: false
             },
             {
               id: "show-traits",
               active: true,
               label: 'Traits',
-              command: 'show-traits',
+              // command: 'show-traits', // PUT BACK LATER
               togglable: false
             },
 
@@ -252,6 +252,8 @@ export const Editor = (props) => {
     editor.Commands.add('set-device-mobile', {
       run: editor => editor.setDevice("Mobile")
     })
+
+    // CHANGE THIS LATER
     editor.Commands.add("show-layers", {
       // editor.getContainer gets the container you listed in init
       // closest will get the closes div element going upward the tree
@@ -271,8 +273,8 @@ export const Editor = (props) => {
 
     })
 
-    console.log(editor.StyleManager.getBuiltInAll())
 
+    // CHANGE THIS LATER
     editor.Commands.add('show-styles', {
       // editor.getContainer gets the container you listed in init
       // closest will get the closes div element going upward the tree
@@ -291,6 +293,7 @@ export const Editor = (props) => {
       }
     })
 
+    // CHANGE THIS LATER
     editor.Commands.add("show-traits", {
       getTraitsEl(editor){
         const row = editor.getContainer().closest('.editor-row');
@@ -361,40 +364,61 @@ export const Editor = (props) => {
   return(
     <div>
 
-      <div class="panel__top">
-          <div class="panel__basic-actions"></div>
+
+      <div
+        style={{height:'50px'}}>
+          <div class="headerBar">
+            <div class="logoFont">web.abc</div>
+          </div>
+      </div>
+
+
           {/*
-          <div class="panel__devices"></div>
+            <div class="panel__top">
+
+
+            <div id="panel__basic-actions"></div>
+
+            <div class="panel__devices"></div>
 
             <div class="panel__switcher"></div
+
+            </div>
+
           */}
-      </div>
-      <div style={{height:'50px'}}>
-      <div class="headerBar">
-        <div class="logoFont">web.abc</div>
-      </div>
-      </div>
+
+
+
+
+
       <div class="row">
-        <div id="layers-container" class="firstColumn" >
-          Layers herefff
-          Need avatar profile_picture
-          Share button
+
+        <div class="firstColumn" >
+          <BlocksContainer editor = {editorMain}/>
+
         </div>
+
+
         <div class="column">
         <div class="editor-row">
           <div class="editor-canvas">
             <div id = "gjs"></div>
           </div>
-          <div class="panel__right">
-            <LayersContainer editor = {editorMain}/>
-            <StylesContainer editor = {editorMain} />
-          <div class="traits-container"></div>
 
-          </div>
+
         </div>
         </div>
+
+        <div class="panel__right">
+          <LayersContainer editor = {editorMain}/>
+          <StylesContainer editor = {editorMain} />
+          <div class="traits-container"></div>
+        </div>
+
+
       </div>
-      <BlocksContainer editor = {editorMain}/>
+
+
 
       <PagesContainer editor = {editorMain} />
     </div>

@@ -7,7 +7,6 @@ export const PagesContainer = (props) => {
   const [pageManager, setPageManager] = useState(null);
 
   const [pages, setPages] = useState([]);
-  const [currentSelected, setCurrentSelected] = useState(null);
 
   useEffect(() => {
     if(props.editor !== null){
@@ -17,7 +16,9 @@ export const PagesContainer = (props) => {
 
       setPagesMethod(pm.getAll())
 
-      setCurrentSelected(pm.getSelected().id)
+      props.editor.on('page', () => {
+        setPages([...pm.getAll()])
+      })
     }
   }, [props.editor])
 
@@ -29,7 +30,6 @@ export const PagesContainer = (props) => {
   // this function is to show which page is selected right now
   const isSelected = (page) => {
     if(pageManager !== null){
-      console.log(pageManager.getSelected(), 'selected here')
       return pageManager.getSelected().id === page.id;
     }
 
@@ -38,7 +38,6 @@ export const PagesContainer = (props) => {
 
   const selectPage = (page) => {
     if(pageManager !== null){
-      setCurrentSelected(page.id)
       return pageManager.select(page)
     }
   }
@@ -57,8 +56,6 @@ export const PagesContainer = (props) => {
         name: `Page ${len}`,
         component:"<div>New Page</div>"
       })
-      setPages(oldArray => [...oldArray, pageManager.get(`page ${len}`)])
-
 
     }
   }
@@ -77,7 +74,7 @@ export const PagesContainer = (props) => {
             pages.map((pg, index) =>{
               return(
                 <div
-                  class={"page "+ (currentSelected === pg.id ? "selected" : "")}
+                  class={"page "+ (isSelected(pg) ? "selected" : "")}
                   key = {pg.id}
                   onClick = {() => selectPage(pg)}>
                   {pg.get('name')}

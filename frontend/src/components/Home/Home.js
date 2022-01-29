@@ -141,9 +141,7 @@ class Home extends React.Component{
               <Button onClick={this.navBuild}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                 Create Site
               </Button>
-              <Button leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faUserFriends} />} colorScheme='teal' variant='outline'>
-                Join group
-              </Button>
+          
             </Stack>
           </div>
           <div style={{marginTop:'10%',width:900}}>

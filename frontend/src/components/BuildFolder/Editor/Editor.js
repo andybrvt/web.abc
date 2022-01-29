@@ -395,6 +395,7 @@ export const Editor = (props) => {
 
         <div class="firstColumn" >
           <BlocksContainer editor = {editorMain}/>
+          <PagesContainer editor = {editorMain} />
 
         </div>
 
@@ -421,7 +422,6 @@ export const Editor = (props) => {
 
 
 
-      <PagesContainer editor = {editorMain} />
     </div>
 
 

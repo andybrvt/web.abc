@@ -73,13 +73,12 @@ export const PagesContainer = (props) => {
           {
             pages.map((pg, index) =>{
               return(
-                <div>
-                  <div
-                    class={"page "+ (isSelected(pg) ? "selected" : "")}
-                    key = {pg.id}
-                    onClick = {() => selectPage(pg)}>
+                <div
+                  class={"page "+ (isSelected(pg) ? "selected" : "")}
+                  key = {pg.id}
+                  onClick = {() => selectPage(pg)}
+                  >
                     {pg.get('name')}
-                  </div>
                   <span onClick = {() => removePage(pg)}>X</span>
                 </div>
 

@@ -70,6 +70,7 @@ body{
 .panel__top {
   background-color: red;
   padding: 0;
+  height: 100px;
   width: 100%;
   display: flex;
   position: initial;
@@ -94,7 +95,7 @@ body{
 }
 
 .panel__right {
-  flex-basis: 230px;
+  flex-basis: 300px;
   position: relative;
   overflow-y: auto;
 }

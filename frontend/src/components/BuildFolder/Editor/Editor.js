@@ -74,21 +74,21 @@ export const Editor = (props) => {
               id: 'show-layers',
               active: true, // gotta set this one too to active only (like the button is clicked on)
               label: 'Layers',
-              // command: "show-layers", //PUT BACK LATER
+              command: "show-layers", //PUT BACK LATER
               togglable: false,
             },
             {
               id: 'show-style',
               active: true, // means when the button is active then the thing runs
               label: 'Styles',
-              // command: 'show-styles', // PUT BACK LATER
+              command: 'show-styles', // PUT BACK LATER
               togglable: false
             },
             {
               id: "show-traits",
               active: true,
               label: 'Traits',
-              // command: 'show-traits', // PUT BACK LATER
+              command: 'show-traits', // PUT BACK LATER
               togglable: false
             },
 
@@ -257,7 +257,7 @@ export const Editor = (props) => {
     editor.Commands.add("show-layers", {
       // editor.getContainer gets the container you listed in init
       // closest will get the closes div element going upward the tree
-      getRowEl(editor){return editor.getContainer().closest('.editor-row');},
+      getRowEl(editor){return editor.getContainer().closest('.row');},
       // querySelector gets a element inside the row given the name
       getLayersEl(row){return row.querySelector(".layers-container")},
 
@@ -278,7 +278,7 @@ export const Editor = (props) => {
     editor.Commands.add('show-styles', {
       // editor.getContainer gets the container you listed in init
       // closest will get the closes div element going upward the tree
-      getRowEl(editor){return editor.getContainer().closest('.editor-row');},
+      getRowEl(editor){return editor.getContainer().closest('.row');},
       // querySelector gets a element inside the row given the name
       getStyleEl(row){return row.querySelector(".styles-container")},
 
@@ -296,7 +296,7 @@ export const Editor = (props) => {
     // CHANGE THIS LATER
     editor.Commands.add("show-traits", {
       getTraitsEl(editor){
-        const row = editor.getContainer().closest('.editor-row');
+        const row = editor.getContainer().closest('.row');
         return row.querySelector(".traits-container");
       },
       run(editor, sender){
@@ -310,43 +310,43 @@ export const Editor = (props) => {
 
     })
 
-    {/*
+
     editor.Panels.addPanel({
       id: 'panel-top',
       el: '.panel__top',
     });
-    editor.Panels.addPanel({
-      id: 'basic-actions',
-      el: '.panel__basic-actions',
-      buttons: [
-        {
-          id: 'visibility',
-          active: true, // active by default
-          className: 'btn-toggle-borders',
-          label: '<u>B</u>',
-          command: 'sw-visibility', // Built-in command
-        }, {
-          id: 'export',
-          className: 'btn-open-export',
-          label: 'Exp',
-          command: 'export-template',
-          context: 'export-template', // For grouping context of buttons from the same panel
-        }, {
-          id: 'show-json',
-          className: 'btn-show-json',
-          label: 'JSON',
-          context: 'show-json',
-          command(editor) {
-            editor.Modal.setTitle('Components JSON')
-              .setContent(`<textarea style="width:100%; height: 250px;">
-                ${JSON.stringify(editor.getComponents())}
-              </textarea>`)
-              .open();
-          },
-        }
-      ],
-    });
-    */}
+    // editor.Panels.addPanel({
+    //   id: 'basic-actions',
+    //   el: '.panel__basic-actions',
+    //   buttons: [
+    //     {
+    //       id: 'visibility',
+    //       active: true, // active by default
+    //       className: 'btn-toggle-borders',
+    //       label: '<u>B</u>',
+    //       command: 'sw-visibility', // Built-in command
+    //     }, {
+    //       id: 'export',
+    //       className: 'btn-open-export',
+    //       label: 'Exp',
+    //       command: 'export-template',
+    //       context: 'export-template', // For grouping context of buttons from the same panel
+    //     }, {
+    //       id: 'show-json',
+    //       className: 'btn-show-json',
+    //       label: 'JSON',
+    //       context: 'show-json',
+    //       command(editor) {
+    //         editor.Modal.setTitle('Components JSON')
+    //           .setContent(`<textarea style="width:100%; height: 250px;">
+    //             ${JSON.stringify(editor.getComponents())}
+    //           </textarea>`)
+    //           .open();
+    //       },
+    //     }
+    //   ],
+    // });
+
     editor.on('run:export-template:before', opts => {
       console.log('Before the command run');
       if (0 /* some condition */) {
@@ -377,11 +377,11 @@ export const Editor = (props) => {
             <div class="panel__top">
 
 
-            <div id="panel__basic-actions"></div>
 
             <div class="panel__devices"></div>
 
-            <div class="panel__switcher"></div
+            <div id="panel__basic-actions"></div>
+
 
             </div>
 
@@ -400,16 +400,17 @@ export const Editor = (props) => {
 
 
         <div class="column">
-        <div class="editor-row">
-          <div class="editor-canvas">
-            <div id = "gjs"></div>
+          <div class="editor-row">
+            <div class="editor-canvas">
+              <div id = "gjs"></div>
+            </div>
           </div>
-
-
-        </div>
         </div>
 
         <div class="panel__right">
+          <div class= "panel__top">
+            <div class="panel__switcher"></div>
+          </div>
           <LayersContainer editor = {editorMain}/>
           <StylesContainer editor = {editorMain} />
           <div class="traits-container"></div>

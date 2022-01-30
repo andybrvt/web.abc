@@ -69,7 +69,8 @@ export const PagesContainer = (props) => {
         name: `Page ${len}`,
         component:"<div>New Page</div>"
       })
-
+      const newPage = pageManager.get(`page ${len}`)
+      pageManager.select(newPage);
     }
   }
 

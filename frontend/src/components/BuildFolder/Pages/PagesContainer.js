@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "./Pages.css";
+import { ChevronDownIcon,AddIcon } from '@chakra-ui/icons'
+import { Menu, Dropdown, Button, Space } from 'antd';
+
 
 export const PagesContainer = (props) => {
 
@@ -17,6 +20,7 @@ export const PagesContainer = (props) => {
       setPagesMethod(pm.getAll())
 
       props.editor.on('page', () => {
+        console.log('update pages')
         setPages([...pm.getAll()])
       })
     }
@@ -36,6 +40,13 @@ export const PagesContainer = (props) => {
     return false;
   }
 
+  const getCurrentPage = () => {
+    if(pageManager !== null){
+      return pageManager.getSelected().get("name");
+    }
+    return "Undefined"
+  }
+
   const selectPage = (page) => {
     if(pageManager !== null){
       return pageManager.select(page)
@@ -49,7 +60,9 @@ export const PagesContainer = (props) => {
   }
 
   const addPage = () => {
+    console.log('add pages')
     if(pageManager !== null){
+      console.log('add pages here too')
       const len = pageManager.getAll().length+1;
       pageManager.add({
         id: `page ${len}`,
@@ -60,37 +73,50 @@ export const PagesContainer = (props) => {
     }
   }
 
-  return(
-    <div>
-      <div class= "pages-wrap">
-        <div
-          onClick= {() => addPage()}
-          class = "add-page">
-          Add new page
-        </div>
-
-        <div class= "pages">
+  const menu = (
+        <Menu className = "menuContianer">
           {
             pages.map((pg, index) =>{
               return(
-                <div
-                  class={"page "+ (isSelected(pg) ? "selected" : "")}
+                <Menu.Item
+                  // class={"menuContianerText"+ (isSelected(pg) ? "selected" : "")}
                   key = {pg.id}
                   onClick = {() => selectPage(pg)}
                   >
+                  <div className = "menuContianerText">
                     {pg.get('name')}
-                  <span onClick = {() => removePage(pg)}>X</span>
-                </div>
+
+
+                  </div>
+
+                </Menu.Item>
 
               )
 
             })
           }
 
-        </div>
+          <Menu.Item
+            // class={"menuContianerText"+ (isSelected(pg) ? "selected" : "")}
+            onClick= {() => addPage()}
+            >
+            <div className = "menuContianerText">
 
+              <AddIcon /> Add Page
 
-      </div>
+            </div>
+
+          </Menu.Item>
+        </Menu>
+      );
+
+  return(
+    <div>
+
+      <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
+        <div>{getCurrentPage()} <ChevronDownIcon /></div>
+      </Dropdown>
+
     </div>
   )
 }

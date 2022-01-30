@@ -13,6 +13,10 @@ import {LayersContainer} from '../Layers/LayersContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
 
+import { ChevronDownIcon } from '@chakra-ui/icons'
+import { Menu, Dropdown, Button, Space } from 'antd';
+
+
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);
@@ -244,7 +248,6 @@ export const Editor = (props) => {
 
     })
 
-    console.log(editor.Pages)
 
     editor.Commands.add('set-device-desktop', {
       run: editor => editor.setDevice("Desktop")
@@ -360,16 +363,43 @@ export const Editor = (props) => {
     setEditor(editor)
   },[])
 
+  const menu = (
+        <Menu className = "menuContianer">
+          <Menu.Item >
+            <div className = "menuContianerText">
+                1st menu item
+            </div>
+          </Menu.Item>
+          <Menu.Item>
+            <div className = "menuContianerText">
+                2st menu item
+            </div>
+          </Menu.Item>
+          <Menu.Item>
+            <div className = "menuContianerText">
+                3st menu item
+            </div>
+          </Menu.Item>
+        </Menu>
+      );
+
 
   return(
     <div>
 
 
       <div
-        style={{height:'50px'}}>
-          <div class="headerBar">
+        className = "editorHeaderContianer">
+          <div class="editorHeader">
             <div class="logoFont">web.abc</div>
           </div>
+
+          <div className = "pageDropContainer">
+            <PagesContainer editor = {editorMain} />
+          </div>
+
+
+
       </div>
 
 
@@ -395,7 +425,6 @@ export const Editor = (props) => {
 
         <div class="firstColumn" >
           <BlocksContainer editor = {editorMain}/>
-          <PagesContainer editor = {editorMain} />
 
         </div>
 

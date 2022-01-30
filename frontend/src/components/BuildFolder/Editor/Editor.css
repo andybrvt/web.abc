@@ -3,18 +3,17 @@ body{
 }
 
 #gjs{
-  border: 1px solid blue;
+  border: 1px solid black;
 
 }
 
 .row {
-
-  background-color: pink;
+  background: red;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
   flex-wrap: nowrap;
-  height:75vh;
+  height:95vh;
 }
 
 .firstColumn {
@@ -31,7 +30,34 @@ body{
   overflow: auto;
 }
 
+.editorHeaderContianer{
+  height: 5vh;
+  position: relative;
+}
+.editorHeader{
+  position: relative;
+  top: 50%;
+  width:100%;
+  transform:  translateY(-50%);
+  display: flex;
+}
+.pageDropContainer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index:999;
+  transform: translateX(-50%) translateY(-50%);
+  cursor: pointer;
+  font-family: 'PlusJakartaSans';
+  font-size: 10px;
+}
+.menuContianer{
+  font-family: 'PlusJakartaSans';
+}
+.menuContianerText{
+  font-size: 10px;
 
+}
 /* to change the css you have to put palets after the intial css declaration */
 /* Theming */
 
@@ -68,7 +94,6 @@ body{
 
 
 .panel__top {
-  background-color: red;
   padding: 0;
   height: 100px;
   width: 100%;

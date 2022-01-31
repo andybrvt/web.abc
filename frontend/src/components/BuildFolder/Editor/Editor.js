@@ -388,10 +388,22 @@ export const Editor = (props) => {
     <div>
 
 
-      <div className = "editorHeaderContianer">
-          <div class="editorHeader">
-            <div class="logoFont">web.abc</div>
-          </div>
+      <div className = "editorHeaderContainer">
+
+            <div class="editorHeader">
+              <div class="headerRow">
+                <div class="logoHeader">
+                  <div class="logoFont">web.abc</div>
+
+                </div>
+                <div class="profileHeader">
+                  <div class="logoFont">ffff.abc</div>
+
+                </div>
+              </div>
+            </div>
+
+
       </div>
 
 

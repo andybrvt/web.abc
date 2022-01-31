@@ -29,16 +29,36 @@ body{
   overflow: auto;
 }
 
-.editorHeaderContianer{
+.editorHeaderContainer{
   height: 5vh;
   position: relative;
+
+}
+
+.logoHeader{
+
+  flex:2;
+  background: pink;
+}
+
+.profileHeader{
+
+  flex:1;
+  background: blue;
+}
+
+
+
+.headerRow {
+  flex-direction: row;
+  display: flex;
 }
 .editorHeader{
   position: relative;
   top: 50%;
   width:100%;
   transform:  translateY(-50%);
-  display: flex;
+
 }
 .pageDropContainer{
   position: absolute;

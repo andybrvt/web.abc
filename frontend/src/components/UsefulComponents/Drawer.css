@@ -1,7 +1,7 @@
 #slidingDrawer{
   width: 20vw;
-  height: 95vh;
-  background-color: #FFE600;
+  height: 90vh;
+  /* background-color: #FFE600; */
   position: absolute;
   left: 0;
   transition: transform .3s cubic-bezier(0, .52, 0, 1);

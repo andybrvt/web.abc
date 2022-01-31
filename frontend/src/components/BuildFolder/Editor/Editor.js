@@ -27,6 +27,7 @@ export const Editor = (props) => {
       container: "#gjs",
       fromElement: true,
       dragMode: "absolute",
+      width: 'auto',
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using
@@ -415,9 +416,12 @@ export const Editor = (props) => {
 
       <div class="row">
 
-        <Drawer visibility = {visibility}>
-          Hi
-        </Drawer>
+        {/*
+          <Drawer visibility = {visibility}>
+            Hi
+          </Drawer>
+          */}
+
         <div class="firstColumn" >
           <BlocksContainer editor = {editorMain}/>
         </div>

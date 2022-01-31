@@ -12,7 +12,7 @@ import {BlocksContainer} from '../Blocks/BlocksContainer';
 import {LayersContainer} from '../Layers/LayersContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
-
+import {Drawer} from '../../UsefulComponents/Drawer';
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
 
@@ -20,7 +20,7 @@ import { Menu, Dropdown, Button, Space } from 'antd';
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);
-
+  const [visibility, setVisibility] = useState(false);
 
   useEffect(() => {
     const editor = grapesjs.init({
@@ -388,23 +388,14 @@ export const Editor = (props) => {
     <div>
 
 
-      <div
-        className = "editorHeaderContianer">
+      <div className = "editorHeaderContianer">
           <div class="editorHeader">
             <div class="logoFont">web.abc</div>
           </div>
-
-          <div className = "pageDropContainer">
-            <PagesContainer editor = {editorMain} />
-          </div>
-
-
-
       </div>
 
 
           {/*
-            <div class="panel__top">
 
 
 
@@ -413,16 +404,50 @@ export const Editor = (props) => {
             <div id="panel__basic-actions"></div>
 
 
-            </div>
 
           */}
 
+      <div className = "editorHeaderContianer">
 
+          <Menu
+            style = {{
+              background: 'red'
+            }}
+            mode="horizontal">
+              <Menu.Item key="mail" >
+                <div style = {{
+                    background: 'green'
+                  }}>
+                  HI
+                </div>
+              </Menu.Item>
+              <Menu.Item key="app">
+                <div>
+                  HI
+                </div>
+              </Menu.Item>
+
+              <Menu.Item key="alipay">
+                <div>
+                  HI
+                </div>
+              </Menu.Item>
+          </Menu>
+
+
+          <div className = "pageDropContainer">
+            <PagesContainer editor = {editorMain} />
+          </div>
+
+      </div>
 
 
 
       <div class="row">
 
+        <Drawer visibility = {visibility}>
+          Hi
+        </Drawer>
         <div class="firstColumn" >
           <BlocksContainer editor = {editorMain}/>
 

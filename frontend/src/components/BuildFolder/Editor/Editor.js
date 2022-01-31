@@ -424,10 +424,7 @@ export const Editor = (props) => {
 
 
         <div class="column">
-              {/*
-                <div id = "gjs"></div>
-                */}
-
+          <div id = "gjs"></div>
         </div>
 
         <div class="panel__right">

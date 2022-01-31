@@ -26,10 +26,7 @@ export const Editor = (props) => {
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: true,
-
-      width: 'auto',
       dragMode: "absolute",
-
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using
@@ -249,12 +246,13 @@ export const Editor = (props) => {
     })
 
 
-    editor.Commands.add('set-device-desktop', {
-      run: editor => editor.setDevice("Desktop")
-    });
-    editor.Commands.add('set-device-mobile', {
-      run: editor => editor.setDevice("Mobile")
-    })
+
+    // editor.Commands.add('set-device-desktop', {
+    //   run: editor => editor.setDevice("Desktop")
+    // });
+    // editor.Commands.add('set-device-mobile', {
+    //   run: editor => editor.setDevice("Mobile")
+    // })
 
     // CHANGE THIS LATER
     editor.Commands.add("show-layers", {
@@ -388,21 +386,13 @@ export const Editor = (props) => {
     <div>
 
 
-      <div className = "editorHeaderContainer">
-
-            <div class="editorHeader">
-              <div class="headerRow">
-                <div class="logoHeader">
-                  <div class="logoFont">web.abc</div>
-
-                </div>
-                <div class="profileHeader">
-                  <div class="logoFont">ffff.abc</div>
-
-                </div>
-              </div>
-            </div>
-
+      <div className = "editorHeaderContianer">
+          <div class="editorHeader">
+            <div class="logoFont">web.abc</div>
+          </div>
+          <div className = "pageDropContainer">
+            <PagesContainer editor = {editorMain} />
+          </div>
 
       </div>
 
@@ -419,39 +409,7 @@ export const Editor = (props) => {
 
           */}
 
-      <div className = "editorHeaderContianer">
 
-          <Menu
-            style = {{
-              background: 'red'
-            }}
-            mode="horizontal">
-              <Menu.Item key="mail" >
-                <div style = {{
-                    background: 'green'
-                  }}>
-                  HI
-                </div>
-              </Menu.Item>
-              <Menu.Item key="app">
-                <div>
-                  HI
-                </div>
-              </Menu.Item>
-
-              <Menu.Item key="alipay">
-                <div>
-                  HI
-                </div>
-              </Menu.Item>
-          </Menu>
-
-
-          <div className = "pageDropContainer">
-            <PagesContainer editor = {editorMain} />
-          </div>
-
-      </div>
 
 
 
@@ -462,16 +420,11 @@ export const Editor = (props) => {
         </Drawer>
         <div class="firstColumn" >
           <BlocksContainer editor = {editorMain}/>
-
         </div>
 
 
         <div class="column">
-          <div class="editor-row">
-            <div class="editor-canvas">
-              <div id = "gjs"></div>
-            </div>
-          </div>
+          <div id = "gjs"></div>
         </div>
 
         <div class="panel__right">

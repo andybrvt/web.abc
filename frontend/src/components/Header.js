@@ -67,7 +67,7 @@ export const Header = (props) => {
               </MenuButton>
               <MenuList>
                 <MenuGroup title='Profile'>
-                  <MenuItem icon={<UserOutlined size={30} />}>My Account</MenuItem>
+                  <MenuItem icon={<UserOutlined size={30} />}>My Profile</MenuItem>
                   <MenuItem>My Collection </MenuItem>
                 </MenuGroup>
                 <MenuDivider />

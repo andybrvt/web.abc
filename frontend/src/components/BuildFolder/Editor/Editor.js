@@ -386,7 +386,7 @@ export const Editor = (props) => {
     <div>
 
 
-      <div className = "editorHeaderContianer">
+      <div className = "editorHeaderContainer">
           <div class="editorHeader">
             <div class="logoFont">web.abc</div>
           </div>

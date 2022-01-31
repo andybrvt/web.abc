@@ -96,25 +96,7 @@ export const Editor = (props) => {
 
           ]
         },
-        {
-          id: 'panel-devices', // the id you want to give
-          el: '.panel__devices', // name of the div element you trying to put it into
-          buttons: [
-            {
-              id: 'device-desktop',
-              label: "D",
-              command: 'set-device-desktop', // again this can be called any, its just a function call
-              active: true,
-              togglable: false
-            },
-            {
-              id: 'device-mobile',
-              label: 'M',
-              command: 'set-device-mobile',
-              togglable: false
-            }
-          ]
-        },
+
 
       ]
       },
@@ -246,7 +228,8 @@ export const Editor = (props) => {
 
     })
 
-
+    editor.setDevice("Desktop")
+    console.log(editor.getDevice())
 
     // editor.Commands.add('set-device-desktop', {
     //   run: editor => editor.setDevice("Desktop")

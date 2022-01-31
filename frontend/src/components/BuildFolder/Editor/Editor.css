@@ -20,6 +20,7 @@ body{
   flex-grow: 1;
   flex-basis: 300px;
   overflow: auto;
+  z-index: 1000;
 }
 
 .column {
@@ -30,7 +31,8 @@ body{
 .editorHeaderContainer{
   height: 5vh;
   position: relative;
-
+  box-shadow: 2px 4px 4px gainsboro;
+  z-index: 1000;
 }
 
 .logoHeader{
@@ -95,8 +97,12 @@ body{
 
 .gjs-cv-canvas{
   top: 0;
-  background-color: pink;
+  left: 50%;
+  transform: translateX(-50%);
+  width:100%;
+  height: 100%;
 }
+
 
 .panel__top {
   padding: 0;
@@ -119,6 +125,7 @@ body{
   flex-basis: 300px;
   position: relative;
   overflow-y: auto;
+  z-index: 1000;
 }
 
 .panel__switcher {

@@ -9,6 +9,16 @@
   box-shadow: 2px 4px 4px grey;
 
 }
+
+#slidingDrawer.hide{
+  transform: translate3d(-20vw, 0, 0);
+}
+
+#slidingDrawer.show{
+  transform: translate3d(0vw, 0, 0);
+}
+
+
 .drawer{
 
 }

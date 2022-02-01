@@ -7,25 +7,29 @@ body{
 }
 
 .row {
-  background: red;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
   flex-wrap: nowrap;
   height:95vh;
+
 }
 
 .firstColumn {
   min-height: 75px;
   flex-grow: 1;
-  flex-basis: 300px;
+  flex-basis: 100px;
   overflow: auto;
-  z-index: 1000;
+  z-index: 2000;
+  background: white;
+  padding-top: 25px;
+  box-shadow: 4px 4px 4px gainsboro;
 }
 
 .column {
   flex-grow: 1;
   flex-basis: 100%;
+
 }
 
 .editorHeaderContainer{
@@ -117,10 +121,6 @@ body{
   position: initial;
 }
 
-
-
-
-
 .panel__right {
   flex-basis: 300px;
   position: relative;
@@ -134,4 +134,18 @@ body{
 
 .panel__devices {
   position: initial;
+}
+
+
+.mainButtons{
+  display: flex;
+  flex-direction: column;
+}
+.mainButtonHolder{
+  text-align: center;
+}
+.buttonHolder{
+  margin-top: 20px;
+  font-size: 25px;
+  text-align: center;
 }

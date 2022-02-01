@@ -209,37 +209,99 @@ export const Editor = (props) => {
         ]
 
       },
-      // blockManager: {
-      //   // if it is id then you would use #NAME
-      //   appendTo: '#blocks',
-      //
-      //   blocks: [
-      //     {
-      //       id: 'section', // id is mandatory
-      //       label: '<b>Section</b>', // You can use HTML/SVG inside labels
-      //       attributes: { class:'gjs-block-section' },
-      //       content: `<section>
-      //         <h1>This is a simple title</h1>
-      //         <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
-      //       </section>`,
-      //     }, {
-      //       id: 'text',
-      //       label: 'Text',
-      //       content: '<div data-gjs-type="text">Insert your text here</div>',
-      //     }, {
-      //       id: 'image',
-      //       label: 'Image',
-      //       // Select the component once it's dropped
-      //       select: true,
-      //       // You can pass components as a JSON instead of a simple HTML string,
-      //       // in this case we also use a defined component type `image`
-      //       content: { type: 'image' },
-      //       // This triggers `active` event on dropped components and the `image`
-      //       // reacts by opening the AssetManager
-      //       activate: true,
-      //     }
-      //   ]
-      // }
+      blockManager: {
+        // if it is id then you would use #NAME
+        appendTo: '#blocks',
+
+        blocks: [
+          {
+            id: 'section', // id is mandatory
+            label: '<div>Sections</div>', // You can use HTML/SVG inside labels
+            attributes: { class:'gjs-block-section' },
+            content: `<section>
+              <h1>This is a simple title</h1>
+              <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
+            </section>`,
+          }, {
+            id: 'text',
+            label: 'Text',
+            content: '<div data-gjs-type="text">Insert your text here</div>',
+          }, {
+            id: 'image',
+            label: 'Image',
+            // Select the component once it's dropped
+            select: true,
+            // You can pass components as a JSON instead of a simple HTML string,
+            // in this case we also use a defined component type `image`
+            content: { type: 'image' },
+            // This triggers `active` event on dropped components and the `image`
+            // reacts by opening the AssetManager
+            activate: true,
+          },
+          {
+            id: 'h4Block',
+            label: 'h4',
+            // Select the component once it's dropped
+            select: true,
+            content: `
+              <h4>This is a simple title</h4>
+
+            `,
+            activate: true,
+          },
+          {
+            id: 'clearCanvas',
+            label: 'Clear Canvas',
+            // Select the component once it's dropped
+            select: false,
+            // You can pass components as a JSON instead of a simple HTML string,
+              // in this case we also use a defined component type `image`
+            content: ` `,
+            // This triggers `active` event on dropped components and the `image`
+            // reacts by opening the AssetManager
+            activate: true,
+          },
+          {
+            id: 'circle',
+            label: '<span  style="background:white; border-radius:50%;width:50px; height:50px;  "> tt</span> ',
+            // Select the component once it's dropped
+            select: true,
+            // You can pass components as a JSON instead of a simple HTML string,
+              // in this case we also use a defined component type `image`
+            content: `<span  style="background:white; border:2px solid black;  border-radius:50%;  width:50px; height:50px;  "> </span> `,
+            // This triggers `active` event on dropped components and the `image`
+            // reacts by opening the AssetManager
+          },
+            {
+              id: 'triangle',
+              label: 'Triangle ',
+              // Select the component once it's dropped
+              select: true,
+              // You can pass components as a JSON instead of a simple HTML string,
+                // in this case we also use a defined component type `image`
+              content: `<span  style="border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 80px solid lightblue; "> </span> `,
+              // This triggers `active` event on dropped components and the `image`
+              // reacts by opening the AssetManager
+              activate: true,
+            },
+
+          {
+            id: 'circle',
+            label: '<span  style="background-color:powderblue; border-radius:50%; width:100px; height:50px;  "> tt</span> ',
+            // Select the component once it's dropped
+            select: true,
+            // You can pass components as a JSON instead of a simple HTML string,
+              // in this case we also use a defined component type `image`
+            content: `<span  style="background-color:powderblue; border-radius:50%; width:50px; height:50px;  "> tt</span> `,
+            // This triggers `active` event on dropped components and the `image`
+            // reacts by opening the AssetManager
+            activate: true,
+          },
+
+        ]
+      }
 
     })
 

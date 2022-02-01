@@ -15,7 +15,7 @@ import {PagesContainer} from '../Pages/PagesContainer';
 import {Drawer} from '../../UsefulComponents/Drawer';
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
-import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
+import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 export const Editor = (props) => {
 
@@ -89,13 +89,7 @@ export const Editor = (props) => {
               command: 'show-styles', // PUT BACK LATER
               togglable: false
             },
-            {
-              id: "show-traits",
-              active: true,
-              label: 'Traits',
-              command: 'show-traits', // PUT BACK LATER
-              togglable: false
-            },
+
 
               {
                 id: 'alert-button',
@@ -142,9 +136,7 @@ export const Editor = (props) => {
             }
         ]
       },
-      traitManager: {
-        appendTo: '.traits-container'
-      },
+
       selectorManager: {
         // if it is a class you would do .NAMEH
         appendTo: '.styles-container'
@@ -324,25 +316,6 @@ export const Editor = (props) => {
       }
     })
 
-    // CHANGE THIS LATER
-    editor.Commands.add("show-traits", {
-      getTraitsEl(editor){
-        const row = editor.getContainer().closest('.row');
-        return row.querySelector(".traits-container");
-      },
-      run(editor, sender){
-        this.getTraitsEl(editor).style.display = "";
-      },
-      stop(editor, sender){
-        this.getTraitsEl(editor).style.display = "none";
-
-      }
-
-
-    });
-
-
-
 
     editor.Panels.addPanel({
       id: 'panel-top',
@@ -421,6 +394,15 @@ export const Editor = (props) => {
         </Menu>
       );
 
+  const changeDrawerVisibility = () => {
+    console.log('change visiblity')
+    if(visibility){
+      setVisibility(false)
+    } else {
+      setVisibility(true)
+    }
+  }
+
 
   return(
     <div>
@@ -460,15 +442,37 @@ export const Editor = (props) => {
 
       <div class="row">
 
+
+
+
+        <div class = "firstColumn">
+          <div className = "mainButtons">
+            <div className = "mainButtonHolder">
+             <Button
+               onClick = {() => changeDrawerVisibility()}
+               type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+            </div>
+
+            <div className = "buttonHolder">
+              <RadarChartOutlined />
+            </div>
+
+          </div>
+
+        </div>
+
+        <Drawer visibility = {visibility}>
+          <BlocksContainer editor = {editorMain}/>
+        </Drawer>
+
         {/*
-          <Drawer visibility = {visibility}>
-            Hi
-          </Drawer>
+          <div class="firstColumn" >
+          </div>
+
           */}
 
-        <div class="firstColumn" >
-          <BlocksContainer editor = {editorMain}/>
-        </div>
+
+
 
 
         <div class="column">
@@ -481,7 +485,6 @@ export const Editor = (props) => {
           </div>
           <LayersContainer editor = {editorMain}/>
           <StylesContainer editor = {editorMain} />
-          <div class="traits-container"></div>
         </div>
 
 

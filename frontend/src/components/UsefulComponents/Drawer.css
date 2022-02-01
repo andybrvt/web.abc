@@ -1,14 +1,25 @@
 #slidingDrawer{
-  width: 20vw;
-  height: 90vh;
-  /* background-color: #FFE600; */
+  width: 25vw;
+  height: 95vh;
+  background-color: white;
   position: absolute;
   left: 0;
-  transition: transform .3s cubic-bezier(0, .52, 0, 1);
-  z-index: 1000;
+  transition: transform .5s cubic-bezier(0, .52, 0, 1);
+  z-index: 999;
   box-shadow: 2px 4px 4px grey;
-
+  padding-left: 100px;
+  padding-top: 20px;
 }
+
+#slidingDrawer.hide{
+  transform: translate3d(-30vw, 0, 0);
+}
+
+#slidingDrawer.show{
+  transform: translate3d(0vw, 0, 0);
+}
+
+
 .drawer{
 
 }

@@ -14,14 +14,9 @@ import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
 import {Drawer} from '../../UsefulComponents/Drawer';
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Menu, Dropdown, Button, Space, Tooltip } from 'antd';
-import {
-  PlusCircleOutlined,
-  RadarChartOutlined,
-  PlusOutlined,
-  SearchOutlined
-} from '@ant-design/icons';
-
+import { Menu, Dropdown, Button, Space } from 'antd';
+import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
+import { Input, Form, List, Avatar } from 'antd';
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);
@@ -366,7 +361,12 @@ export const Editor = (props) => {
           <div className = "pageDropContainer">
             <PagesContainer editor = {editorMain} />
           </div>
+          <div className = "test2">
+            <Avatar icon={<UserOutlined />}>
+              0x086a842...
+            </Avatar>
 
+          </div>
       </div>
 
 

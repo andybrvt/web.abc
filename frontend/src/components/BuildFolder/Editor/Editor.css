@@ -88,6 +88,17 @@ body{
   font-family: 'PlusJakartaSans';
   font-size: 10px;
 }
+
+.test2{
+  position: absolute;
+  top: 50%;
+  left: 95%;
+  z-index:999;
+  transform: translateX(-50%) translateY(-50%);
+  cursor: pointer;
+  font-family: 'PlusJakartaSans';
+  font-size: 10px;
+}
 .menuContianer{
   font-family: 'PlusJakartaSans';
 }

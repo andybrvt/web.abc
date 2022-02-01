@@ -1,12 +1,3 @@
-import React, { useState, useEffect } from 'react';
-
-
-export const BlockButton = () => {
-
-
-  return(
-    <div>
-      Here is my button
-    </div>
-  )
-}
+export const basicBlocks = [
+  {label: 'Label text 3', content: '<div>Content</div>'},
+]

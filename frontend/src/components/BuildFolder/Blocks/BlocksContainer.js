@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Blocks.css';
-import {basicBlocks} from './BasicBlocks/BlockButton'
+import {basicBlocks} from './basicBlocks'
 
 export const BlocksContainer = (props) => {
 

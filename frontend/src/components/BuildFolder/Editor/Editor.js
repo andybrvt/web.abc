@@ -364,7 +364,6 @@ export const Editor = (props) => {
 
   // mechanics for opening and closing the drawer
   const changeDrawerVisibility = (category) => {
-    console.log('change visiblity')
 
     if(category !== toolsCategory){
       setToolsCategory(category)
@@ -457,7 +456,7 @@ export const Editor = (props) => {
         </div>
 
         <Drawer visibility = {visibility}>
-          <BlocksContainer editor = {editorMain}/>
+          <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
         </Drawer>
 
         {/*

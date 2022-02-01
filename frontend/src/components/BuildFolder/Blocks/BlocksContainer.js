@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Blocks.css';
+import {BlockButton} from './BasicBlocks/BlockButton'
 
 export const BlocksContainer = (props) => {
 
@@ -19,22 +20,69 @@ export const BlocksContainer = (props) => {
       //   content: '<div>Content</div>',
       // });
       const blockManager = props.editor.BlockManager
-      console.log(blockManager.getAll())
-      const newBlocks = props.editor.BlockManager.render([
-       {label: 'Label text', content: '<div>Content</div>'}
-     ], {external:true})
 
-     const newBlocks2 = props.editor.BlockManager.render([
-       {label: 'Label text new', content: '<div>Content</div>'}
-
-     ], {external: true})
-
-     document.getElementById('blocks').appendChild(newBlocks);
-     document.getElementById('blocks').removeChild(newBlocks);
-     document.getElementById('blocks').appendChild(newBlocks2);
 
     }
   }, [props.editor])
+
+  const removeFirstChild = () => {
+    const current = document.getElementById("blocks")
+    const firstChild = current.firstChild
+    if(firstChild){
+      firstChild.remove()
+    }
+  }
+
+  useEffect(() => {
+
+    console.log(props.category)
+    const category = props.category
+
+    if(category === "basic"){
+      removeFirstChild()
+      const newBlocks = editor.BlockManager.render([
+         {label: 'Label text 2', content:'<div> Hi </div>'}
+       ], {external:true})
+
+      document.getElementById('blocks').appendChild(newBlocks);
+
+
+    }
+
+    if(category === "shapes"){
+
+      removeFirstChild()
+      const newBlocks = editor.BlockManager.render([
+         {label: 'Label text 3', content: '<div>Content</div>'}
+       ], {external:true})
+
+      document.getElementById('blocks').appendChild(newBlocks);
+
+
+    }
+
+    if(category === "pens"){
+      removeFirstChild()
+      const newBlocks = editor.BlockManager.render([
+         {label: 'Label text 4', content: '<div>Content</div>'}
+       ], {external:true})
+
+      document.getElementById('blocks').appendChild(newBlocks);
+
+
+    }
+
+    if(category === "colors"){
+      removeFirstChild()
+      const newBlocks = editor.BlockManager.render([
+         {label: 'Label text 5', content: '<div>Content</div>'}
+       ], {external:true})
+
+      document.getElementById('blocks').appendChild(newBlocks);
+
+    }
+
+  }, [props.category])
 
 
   return(

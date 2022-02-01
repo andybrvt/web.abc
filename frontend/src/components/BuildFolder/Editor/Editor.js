@@ -23,6 +23,9 @@ export const Editor = (props) => {
   const [visibility, setVisibility] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
 
+
+
+
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
@@ -85,6 +88,25 @@ export const Editor = (props) => {
               active: true, // means when the button is active then the thing runs
               label: 'Styles',
               command: 'show-styles', // PUT BACK LATER
+              togglable: false
+            },
+
+
+              {
+                id: 'alert-button',
+                className: 'btn-alert-button',
+                label: 'Clear canavas',
+                command(editor) {
+                  // editor.BlockManager.getAll().reset();
+                  editor.runCommand('core:canvas-clear');
+                }
+              },
+
+            {
+              id: "clearCanvas",
+              active: true,
+              label: 'Clear',
+              command: 'show-traits', // PUT BACK LATER
               togglable: false
             },
 
@@ -266,6 +288,14 @@ export const Editor = (props) => {
     editor.Panels.addPanel({
       id: 'panel-top',
       el: '.panel__top',
+      buttons: [
+   {
+     id: 'alert-button',
+     className: 'btn-alert-button',
+     label: 'Click my butt(on)',
+     command(editor) { alert('Hello World'); }
+   }
+ ]
     });
     // editor.Panels.addPanel({
     //   id: 'basic-actions',

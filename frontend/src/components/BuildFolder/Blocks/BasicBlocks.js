@@ -4,37 +4,223 @@
 export const basicBlocks = [
   {
     label: 'Button',
-    attributes: {
-        class: "gjs-fonts gjs-f-button"
-    },
-    content: "<button class='btn btn-success'>Button</button>",
-    id: "myButtonId"
-  },
-  {
     media:
     `
-      <div class="header">Content</div>
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
 
       <style>
-        .header{
-          color: red
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
         }
       </style>
 
     `,
     content:
     `
-      <div class = "">
-        <div class="header">Content</div>
+      <div class = "button">
+        <div class="text">Button</div>
       </div>
 
       <style>
-        .header{
-          color: red
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
         }
       </style>
 
     `
 
   },
+  {
+    label: 'Button',
+    media:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `,
+    content:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `
+
+  },
+  {
+    label: 'Button',
+    media:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `,
+    content:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `
+
+  },
+  {
+    label: 'Button',
+    media:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `,
+    content:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `
+
+  },
+  {
+    label: 'Button',
+    media:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `,
+    content:
+    `
+      <div class = "button">
+        <div class="text">Button</div>
+      </div>
+
+      <style>
+        .button{
+
+          padding:20px 55px 20px 55px;
+          background: black;
+          text-align: center;
+        }
+        .text{
+
+          color: white;
+        }
+      </style>
+
+    `
+
+  },
+  
 ]

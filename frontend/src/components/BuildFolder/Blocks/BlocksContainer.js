@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Blocks.css';
-import {basicBlocks} from './basicBlocks'
+import {basicBlocks} from './BasicBlocks'
 
 export const BlocksContainer = (props) => {
 

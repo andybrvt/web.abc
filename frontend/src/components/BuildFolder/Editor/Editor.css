@@ -47,22 +47,6 @@ body{
   background: blue;
 }
 
-/* <div className = "editorHeaderContainer">
-
-      <div class="editorHeader">
-        <div class="headerRow">
-          <div class="logoHeader">
-            <div class="logoFont">web.abc</div>
-
-          </div>
-          <div class="profileHeader">
-            <div class="logoFont">ffff.abc</div>
-
-          </div>
-        </div>
-      </div> */
-
-
 .headerRow {
   flex-direction: row;
   display: flex;

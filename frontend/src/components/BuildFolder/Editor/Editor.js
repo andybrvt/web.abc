@@ -22,6 +22,9 @@ export const Editor = (props) => {
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
 
+
+
+
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
@@ -93,6 +96,25 @@ export const Editor = (props) => {
               command: 'show-traits', // PUT BACK LATER
               togglable: false
             },
+
+              {
+                id: 'alert-button',
+                className: 'btn-alert-button',
+                label: 'Clear canavas',
+                command(editor) {
+                  // editor.BlockManager.getAll().reset();
+                  editor.runCommand('core:canvas-clear');
+                }
+              },
+
+            {
+              id: "clearCanvas",
+              active: true,
+              label: 'Clear',
+              command: 'show-traits', // PUT BACK LATER
+              togglable: false
+            },
+
 
           ]
         },
@@ -201,7 +223,7 @@ export const Editor = (props) => {
         blocks: [
           {
             id: 'section', // id is mandatory
-            label: '<b>Section</b>', // You can use HTML/SVG inside labels
+            label: '<div>Sections</div>', // You can use HTML/SVG inside labels
             attributes: { class:'gjs-block-section' },
             content: `<section>
               <h1>This is a simple title</h1>
@@ -222,7 +244,31 @@ export const Editor = (props) => {
             // This triggers `active` event on dropped components and the `image`
             // reacts by opening the AssetManager
             activate: true,
-          }
+          },
+          {
+            id: 'h4Block',
+            label: 'h4',
+            // Select the component once it's dropped
+            select: true,
+            content: `
+              <h4>This is a simple title</h4>
+
+            `,
+            activate: true,
+          },
+          {
+            id: 'clearCanvas',
+            label: 'Clear Canvas',
+            // Select the component once it's dropped
+            select: false,
+            // You can pass components as a JSON instead of a simple HTML string,
+              // in this case we also use a defined component type `image`
+            content: ` `,
+            // This triggers `active` event on dropped components and the `image`
+            // reacts by opening the AssetManager
+            activate: true,
+          },
+
         ]
       }
 
@@ -293,12 +339,22 @@ export const Editor = (props) => {
       }
 
 
-    })
+    });
+
+
 
 
     editor.Panels.addPanel({
       id: 'panel-top',
       el: '.panel__top',
+      buttons: [
+   {
+     id: 'alert-button',
+     className: 'btn-alert-button',
+     label: 'Click my butt(on)',
+     command(editor) { alert('Hello World'); }
+   }
+ ]
     });
     // editor.Panels.addPanel({
     //   id: 'basic-actions',

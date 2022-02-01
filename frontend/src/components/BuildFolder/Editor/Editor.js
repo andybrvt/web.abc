@@ -21,6 +21,7 @@ export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
+  const [toolsCategory, setToolsCategory] = useState("");
 
 
 
@@ -304,15 +305,6 @@ export const Editor = (props) => {
 
     })
 
-    editor.setDevice("Desktop")
-    console.log(editor.getDevice())
-
-    // editor.Commands.add('set-device-desktop', {
-    //   run: editor => editor.setDevice("Desktop")
-    // });
-    // editor.Commands.add('set-device-mobile', {
-    //   run: editor => editor.setDevice("Mobile")
-    // })
 
     // CHANGE THIS LATER
     editor.Commands.add("show-layers", {
@@ -432,13 +424,23 @@ export const Editor = (props) => {
         </Menu>
       );
 
-  const changeDrawerVisibility = () => {
-    console.log('change visiblity')
-    if(visibility){
-      setVisibility(false)
+  // mechanics for opening and closing the drawer
+  const changeDrawerVisibility = (category) => {
+
+    if(category !== toolsCategory){
+      setToolsCategory(category)
+      if(!visibility){
+        setVisibility(true)
+      }
     } else {
-      setVisibility(true)
+      setToolsCategory('')
+      setVisibility(false)
     }
+    // if(visibility){
+    //   setVisibility(false)
+    // } else {
+    //   setVisibility(true)
+    // }
   }
 
 
@@ -487,20 +489,36 @@ export const Editor = (props) => {
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
              <Button
-               onClick = {() => changeDrawerVisibility()}
+               onClick = {() => changeDrawerVisibility("basic")}
                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
 
             <div className = "buttonHolder">
-              <RadarChartOutlined />
+
+              <Button
+                onClick = {() => changeDrawerVisibility("shapes")}
+                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
+
+            <div className = "buttonHolder">
+              <Button
+                onClick = {() => changeDrawerVisibility("pens")}
+                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+            </div>
+
+            <div className = "buttonHolder">
+              <Button
+                onClick = {() => changeDrawerVisibility("colors")}
+                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+            </div>
+
 
           </div>
 
         </div>
 
         <Drawer visibility = {visibility}>
-          <BlocksContainer editor = {editorMain}/>
+          <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
         </Drawer>
 
         {/*

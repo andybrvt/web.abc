@@ -21,6 +21,7 @@ export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
+  const [toolsCategory, setToolsCategory] = useState("");
 
   useEffect(() => {
     const editor = grapesjs.init({
@@ -186,49 +187,40 @@ export const Editor = (props) => {
         ]
 
       },
-      blockManager: {
-        // if it is id then you would use #NAME
-        appendTo: '#blocks',
-
-        blocks: [
-          {
-            id: 'section', // id is mandatory
-            label: '<b>Section</b>', // You can use HTML/SVG inside labels
-            attributes: { class:'gjs-block-section' },
-            content: `<section>
-              <h1>This is a simple title</h1>
-              <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
-            </section>`,
-          }, {
-            id: 'text',
-            label: 'Text',
-            content: '<div data-gjs-type="text">Insert your text here</div>',
-          }, {
-            id: 'image',
-            label: 'Image',
-            // Select the component once it's dropped
-            select: true,
-            // You can pass components as a JSON instead of a simple HTML string,
-            // in this case we also use a defined component type `image`
-            content: { type: 'image' },
-            // This triggers `active` event on dropped components and the `image`
-            // reacts by opening the AssetManager
-            activate: true,
-          }
-        ]
-      }
+      // blockManager: {
+      //   // if it is id then you would use #NAME
+      //   appendTo: '#blocks',
+      //
+      //   blocks: [
+      //     {
+      //       id: 'section', // id is mandatory
+      //       label: '<b>Section</b>', // You can use HTML/SVG inside labels
+      //       attributes: { class:'gjs-block-section' },
+      //       content: `<section>
+      //         <h1>This is a simple title</h1>
+      //         <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
+      //       </section>`,
+      //     }, {
+      //       id: 'text',
+      //       label: 'Text',
+      //       content: '<div data-gjs-type="text">Insert your text here</div>',
+      //     }, {
+      //       id: 'image',
+      //       label: 'Image',
+      //       // Select the component once it's dropped
+      //       select: true,
+      //       // You can pass components as a JSON instead of a simple HTML string,
+      //       // in this case we also use a defined component type `image`
+      //       content: { type: 'image' },
+      //       // This triggers `active` event on dropped components and the `image`
+      //       // reacts by opening the AssetManager
+      //       activate: true,
+      //     }
+      //   ]
+      // }
 
     })
 
-    editor.setDevice("Desktop")
-    console.log(editor.getDevice())
-
-    // editor.Commands.add('set-device-desktop', {
-    //   run: editor => editor.setDevice("Desktop")
-    // });
-    // editor.Commands.add('set-device-mobile', {
-    //   run: editor => editor.setDevice("Mobile")
-    // })
 
     // CHANGE THIS LATER
     editor.Commands.add("show-layers", {
@@ -340,13 +332,24 @@ export const Editor = (props) => {
         </Menu>
       );
 
-  const changeDrawerVisibility = () => {
+  // mechanics for opening and closing the drawer
+  const changeDrawerVisibility = (category) => {
     console.log('change visiblity')
-    if(visibility){
-      setVisibility(false)
+
+    if(category !== toolsCategory){
+      setToolsCategory(category)
+      if(!visibility){
+        setVisibility(true)
+      }
     } else {
-      setVisibility(true)
+      setToolsCategory('')
+      setVisibility(false)
     }
+    // if(visibility){
+    //   setVisibility(false)
+    // } else {
+    //   setVisibility(true)
+    // }
   }
 
 
@@ -395,13 +398,29 @@ export const Editor = (props) => {
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
              <Button
-               onClick = {() => changeDrawerVisibility()}
+               onClick = {() => changeDrawerVisibility("basic")}
                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
 
             <div className = "buttonHolder">
-              <RadarChartOutlined />
+
+              <Button
+                onClick = {() => changeDrawerVisibility("shapes")}
+                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
+
+            <div className = "buttonHolder">
+              <Button
+                onClick = {() => changeDrawerVisibility("pens")}
+                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+            </div>
+
+            <div className = "buttonHolder">
+              <Button
+                onClick = {() => changeDrawerVisibility("colors")}
+                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+            </div>
+
 
           </div>
 

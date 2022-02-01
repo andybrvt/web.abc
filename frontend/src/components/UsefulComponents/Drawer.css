@@ -7,7 +7,8 @@
   transition: transform .5s cubic-bezier(0, .52, 0, 1);
   z-index: 999;
   box-shadow: 2px 4px 4px grey;
-
+  padding-left: 100px;
+  padding-top: 20px;
 }
 
 #slidingDrawer.hide{

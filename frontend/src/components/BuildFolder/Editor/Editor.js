@@ -408,12 +408,11 @@ export const Editor = (props) => {
         </div>
 
         <Drawer visibility = {visibility}>
-
+          <BlocksContainer editor = {editorMain}/>
         </Drawer>
 
         {/*
           <div class="firstColumn" >
-            <BlocksContainer editor = {editorMain}/>
           </div>
 
           */}

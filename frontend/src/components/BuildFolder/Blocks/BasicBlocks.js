@@ -8,7 +8,7 @@ export const basicBlocks = [
     `
     <div>Test</div>
     `,
-    content:{type:'button'}
+    content:{type:'button1'}
 
   },
   {

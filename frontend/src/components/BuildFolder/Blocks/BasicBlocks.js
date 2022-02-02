@@ -6,9 +6,13 @@ export const basicBlocks = [
     label: 'Button',
     media:
     `
-      <div class = "button">
-        <div class="text">Button</div>
-      </div>
+      <button>
+        <div class = "button">
+          <div class="text">Button</div>
+        </div>
+
+      </button>
+
 
       <style>
         .button{
@@ -26,9 +30,12 @@ export const basicBlocks = [
     `,
     content:
     `
-      <div class = "button">
-        <div class="text">Button</div>
-      </div>
+      <button>
+        <div class = "button">
+          <div class="text">Button</div>
+        </div>
+
+      </button>
 
       <style>
         .button{
@@ -222,5 +229,5 @@ export const basicBlocks = [
     `
 
   },
-  
+
 ]

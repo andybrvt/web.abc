@@ -26,9 +26,8 @@ body{
 
 .firstColumn {
   min-height: 75px;
-  flex-grow: 1;
-  flex-basis: 100px;
   overflow: auto;
+  width: 5vw;
   z-index: 2000;
   background: white;
   padding-top: 25px;

@@ -23,7 +23,15 @@ export const Editor = (props) => {
   const [visibility, setVisibility] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
 
-
+  // creating type for
+  // const customButtonType = editor => {
+  //
+  //   editor.DomComponents.addType("button", {
+  //
+  //     // know when to bind the type to the component
+  //     isComponent: el=> el.classList?.contains('el-button')
+  //   })
+  // }
 
 
   useEffect(() => {

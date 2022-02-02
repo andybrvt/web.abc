@@ -73,8 +73,7 @@ export const basicBlocks = [
     label: 'Button 4',
     media:
     `<div class = "button4">
-        <ChevronDownIcon />
-        <div class="text4">Button</div>
+        <i class="fas fa-arrow-right"></i>
       </div>
       <style>
       .button4{
@@ -82,9 +81,13 @@ export const basicBlocks = [
         padding:20px 55px 20px 55px;
         background: #6CB4EE;
         text-align: center;
+        display: flex;
+        flex-direction: row;
+        color: white;
+        font-size: 25px;
       }
       .text4{
-
+        margin-right: 10px;
         color: white;
       }
       </style>

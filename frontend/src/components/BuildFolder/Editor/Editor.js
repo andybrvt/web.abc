@@ -24,7 +24,7 @@ import {
   buttonType4,
   coreButtonType } from './CustomTypes/CustomButtonTypes';
 
-const PLUGINS = [buttonType1, buttonType2, buttonType3,buttonType4]
+const PLUGINS = [coreButtonType,buttonType1, buttonType2, buttonType3,buttonType4]
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);

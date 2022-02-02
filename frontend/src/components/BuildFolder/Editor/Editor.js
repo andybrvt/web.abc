@@ -1,8 +1,6 @@
 /*
   This will be the real editor to edit stuff directly
-
 */
-
 
 import React, { useState, useEffect } from 'react';
 import grapesjs from 'grapesjs';
@@ -17,7 +15,11 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShapes  } from '@fortawesome/free-solid-svg-icons'
 import { buttonType1, coreButtonType } from './CustomTypes/CustomButtonTypes';
+
+
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);
@@ -580,7 +582,7 @@ export const Editor = (props) => {
 
               <Button
                 onClick = {() => changeDrawerVisibility("shapes")}
-                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+                type="primary" shape="circle" icon={<FontAwesomeIcon style={{marginRight:5}} icon={faShapes} />} size="large" />
             </div>
 
             <div className = "buttonHolder">

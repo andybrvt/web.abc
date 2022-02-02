@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Blocks.css';
-import {basicBlocks} from './BasicBlocks'
+import {basicBlocks} from './BasicBlocks';
+import {Shapes} from './Shapes/Shapes'
 
 export const BlocksContainer = (props) => {
 
@@ -51,9 +52,8 @@ export const BlocksContainer = (props) => {
     if(category === "shapes"){
 
       removeFirstChild()
-      const newBlocks = editor.BlockManager.render([
-         {label: 'Label text 3', content: '<div>Content</div>'}
-       ], {external:true})
+      const newBlocks = editor.BlockManager.render(
+         Shapes, {external:true})
 
       document.getElementById('blocks').appendChild(newBlocks);
 

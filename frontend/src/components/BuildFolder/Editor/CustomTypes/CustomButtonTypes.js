@@ -1,5 +1,8 @@
 // THIS FILE WILL HOUSE ALL THE CUSTOM BUTTON TYPES HERE
 // FOR USES IN EDITOR PLUGINS
+import { ChevronDownIcon } from '@chakra-ui/icons'
+
+
 
 // this will be the core of every button
 export const coreButtonType = editor => {
@@ -8,6 +11,7 @@ export const coreButtonType = editor => {
 
     model: {
       defaults:{
+        icon: '<i class="fas fa-arrow-right"></i>',
         name: "button",
         // stylable: [],
         // stylable-require: [],
@@ -39,6 +43,85 @@ export const buttonType1 = editor => {
         content:
         `<div class = "button">
             <div class="text">Button</div>
+          </div>`,
+      }
+    }
+  })
+}
+
+export const buttonType2 = editor => {
+  editor.DomComponents.addType("button2", {
+    extend: 'button',
+    model: {
+      defaults:{
+        styles: `
+            .button2{
+
+              padding:20px 55px 20px 55px;
+              background: white;
+              border: 1px solid black;
+              text-align: center;
+            }
+            .text2{
+
+              color: black;
+            }
+        `,
+        content:
+        `<div class = "button2">
+            <div class="text2">Button</div>
+          </div>`,
+      }
+    }
+  })
+}
+
+export const buttonType3 = editor => {
+  editor.DomComponents.addType("button3", {
+    extend: 'button',
+    model: {
+      defaults:{
+        styles: `
+            .button3{
+              border-radius: 30px;
+              padding:20px 55px 20px 55px;
+              background: #6CB4EE;
+              text-align: center;
+            }
+            .text3{
+
+              color: white;
+            }
+        `,
+        content:
+        `<div class = "button3">
+            <div class="text3">Button</div>
+          </div>`,
+      }
+    }
+  })
+}
+export const buttonType4 = editor => {
+  editor.DomComponents.addType("button4", {
+    extend: 'button',
+    model: {
+      defaults:{
+        styles: `
+            .button4{
+              border-radius: 10px;
+              padding:20px 55px 20px 55px;
+              background: #6CB4EE;
+              text-align: center;
+            }
+            .text4{
+
+              color: white;
+            }
+        `,
+        content:
+        `<div class = "button4">
+            <i class="fas fa-arrow-right"></i>
+            <div class="text4">Button</div>
           </div>`,
       }
     }

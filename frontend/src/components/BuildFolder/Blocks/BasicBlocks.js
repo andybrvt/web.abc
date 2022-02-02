@@ -3,6 +3,24 @@
 
 export const basicBlocks = [
   {
+    label: 'Button123',
+    media:
+    `
+    <div>Test</div>
+    `,
+    content:{type:'button'}
+
+  },
+  {
+    label: 'Button123',
+    media:
+    `
+    <div>Test2</div>
+    `,
+    content:{type:'button2'}
+
+  },
+  {
     label: 'Button',
     media:
     `

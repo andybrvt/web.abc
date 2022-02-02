@@ -24,14 +24,87 @@ export const Editor = (props) => {
   const [toolsCategory, setToolsCategory] = useState("");
 
   // creating type for
-  // const customButtonType = editor => {
-  //
-  //   editor.DomComponents.addType("button", {
-  //
-  //     // know when to bind the type to the component
-  //     isComponent: el=> el.classList?.contains('el-button')
-  //   })
-  // }
+  const customButtonType = editor => {
+
+    editor.DomComponents.addType("button", {
+
+      // know when to bind the type to the component
+      // isComponent: el=> el.classList?.contains('el-button'),
+      model: {
+        defaults:{
+          name: 'button',
+          // stylable: ['color', 'width'], able to set specific styles to change
+          // stylable-require: [], require these styles
+          // unstylable = [], array that should be unstylable
+          resizable:true, //able to resize the object
+          // layerable = false, if you want to see the inside components,
+          // style ={}  default styles of the component, the main container
+          styles: `
+              .button{
+
+                padding:20px 55px 20px 55px;
+                background: black;
+                text-align: center;
+              }
+              .text{
+
+                color: white;
+              }
+          `,
+          content:
+          `<div class = "button">
+              <div class="text">Button</div>
+            </div>`,
+          // scripts = '' components javascript
+          // scripts-export =''
+          // propagate =[] all the properties that will be passed down
+
+        }
+      }
+
+    })
+  }
+  const customButtonType2 = editor => {
+
+    editor.DomComponents.addType("button2", {
+
+      // know when to bind the type to the component
+      // isComponent: el=> el.classList?.contains('el-button'),
+      extend:'button',
+      model: {
+        defaults:{
+          name: 'button',
+          // stylable: ['color', 'width'], able to set specific styles to change
+          // stylable-require: [], require these styles
+          // unstylable = [], array that should be unstylable
+          // reesizable = false, able to resize the object
+          // layerable = false, if you want to see the inside components,
+          // style ={}  default styles of the component, the main container
+          styles: `
+              .button2{
+
+                padding:20px 55px 20px 55px;
+                background: black;
+                text-align: center;
+              }
+              .text2{
+
+                color: blue;
+              }
+          `,
+          content:
+          `<div class = "button2">
+              <div class="text2">Button1234</div>
+            </div>`,
+          // scripts = '' components javascript
+          // scripts-export =''
+          // propagate =[] all the properties that will be passed down
+
+        }
+      }
+
+    })
+  }
 
 
   useEffect(() => {
@@ -40,6 +113,7 @@ export const Editor = (props) => {
       fromElement: true,
       dragMode: "absolute",
       width: 'auto',
+      plugins:[customButtonType, customButtonType2],
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using

@@ -26,21 +26,16 @@ export const Shapes = [
     `,
     content:
     `
-      <div class = "button">
-        <div class="text">Button</div>
+      <div class = "circle">
+
       </div>
 
       <style>
-        .button{
+        .circle{
 
-          padding:20px 55px 20px 55px;
-          background: black;
-          text-align: center;
+          background-color:powderblue; border-radius:50%; width:50px; height:50px
         }
-        .text{
 
-          color: white;
-        }
       </style>
 
     `

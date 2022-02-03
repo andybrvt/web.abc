@@ -16,7 +16,7 @@ import { Menu, Dropdown, Button, Space } from 'antd';
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShapes  } from '@fortawesome/free-solid-svg-icons'
+import { faShapes, faCircle, faFont  } from '@fortawesome/free-solid-svg-icons'
 import {
   ButtonType1,
   ButtonType2,
@@ -285,20 +285,7 @@ export const Editor = (props) => {
             // This triggers `active` event on dropped components and the `image`
             // reacts by opening the AssetManager
           },
-            {
-              id: 'triangle',
-              label: 'Triangle ',
-              // Select the component once it's dropped
-              select: true,
-              // You can pass components as a JSON instead of a simple HTML string,
-                // in this case we also use a defined component type `image`
-              content: `<span  style="border-left: 40px solid transparent;
-    border-right: 40px solid transparent;
-    border-bottom: 80px solid lightblue; "> </span> `,
-              // This triggers `active` event on dropped components and the `image`
-              // reacts by opening the AssetManager
-              activate: true,
-            },
+
 
           {
             id: 'circle',
@@ -524,6 +511,27 @@ export const Editor = (props) => {
               <Button
                 onClick = {() => changeDrawerVisibility("colors")}
                 type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+            </div>
+
+            <div className = "buttonHolder">
+              <Button
+                onClick = {() => changeDrawerVisibility("colors")}
+                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+            </div>
+
+
+            <div className = "buttonHolder">
+              <Button
+                // onClick = {() => changeDrawerVisibility("colors")}
+                shape="circle" icon={<FontAwesomeIcon icon={faFont} />} size="large" />
+            </div>
+
+
+            <div className = "buttonHolder">
+              <Button
+                // onClick = {() => changeDrawerVisibility("colors")}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
             </div>
 
 

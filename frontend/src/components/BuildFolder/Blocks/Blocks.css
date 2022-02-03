@@ -22,7 +22,7 @@
 
 }
 .gjs-block:hover{
-  background: transparent;
+  background-color: transparent;
   box-shadow: 0 0 0 0 gray;
 }
 

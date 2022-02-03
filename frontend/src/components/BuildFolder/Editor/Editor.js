@@ -25,10 +25,23 @@ import {
   CoreButtonType } from './CustomTypes/CustomButtonTypes';
 import {
   Header1TextType,
+  Header2TextType,
+  Header3TextType,
+  Header4TextType,
 } from './CustomTypes/CustomTextTypes';
 
 
-const PLUGINS = [CoreButtonType,ButtonType1, ButtonType2, ButtonType3,ButtonType4]
+const PLUGINS = [
+  CoreButtonType,
+  ButtonType1,
+  ButtonType2,
+  ButtonType3,
+  ButtonType4,
+  Header1TextType,
+  Header2TextType,
+  Header3TextType,
+  Header4TextType
+]
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);

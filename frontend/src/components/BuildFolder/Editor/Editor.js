@@ -24,6 +24,7 @@ import {
   ButtonType4,
   CoreButtonType } from './CustomTypes/CustomButtonTypes';
 import {
+  UpdateTextType,
   Header1TextType,
   Header2TextType,
   Header3TextType,
@@ -37,6 +38,7 @@ const PLUGINS = [
   ButtonType2,
   ButtonType3,
   ButtonType4,
+  UpdateTextType,
   Header1TextType,
   Header2TextType,
   Header3TextType,

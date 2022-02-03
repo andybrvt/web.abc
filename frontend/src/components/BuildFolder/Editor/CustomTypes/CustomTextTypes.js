@@ -1,6 +1,16 @@
 // THIS FILE WILL HOUSE ALL THE CUSTOM TEXT TYPE
 // FOR USES IN EDITOR PLUGINS
 
+export const UpdateTextType = editor => {
+  editor.DomComponents.addType("text", {
+    model: {
+      defaults: {
+        resizable: true,
+      }
+    }
+  })
+}
+
 export const Header1TextType = editor => {
   editor.DomComponents.addType("header1", {
     extend: 'text',

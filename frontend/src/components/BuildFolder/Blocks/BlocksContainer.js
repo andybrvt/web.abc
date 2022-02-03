@@ -27,11 +27,14 @@ export const BlocksContainer = (props) => {
     }
   }, [props.editor])
 
-  const removeFirstChild = () => {
+  const removeAllChild = () => {
     const current = document.getElementById("blocks")
-    const firstChild = current.firstChild
-    if(firstChild){
-      firstChild.remove()
+    // const firstChild = current.firstChild
+    // if(firstChild){
+    //   firstChild.remove()
+    // }
+    while(current.firstChild){
+      current.removeChild(current.firstChild)
     }
   }
 
@@ -41,7 +44,7 @@ export const BlocksContainer = (props) => {
     const category = props.category
 
     if(category === "basic"){
-      removeFirstChild()
+      removeAllChild()
     const buttonBlocks = editor.BlockManager.render(
        ButtonBlocks, {external:true})
     const textBlocks = editor.BlockManager.render(
@@ -55,7 +58,7 @@ export const BlocksContainer = (props) => {
 
     if(category === "shapes"){
 
-      removeFirstChild()
+      removeAllChild()
       const newBlocks = editor.BlockManager.render(
          Shapes, {external:true})
 
@@ -65,7 +68,7 @@ export const BlocksContainer = (props) => {
     }
 
     if(category === "pens"){
-      removeFirstChild()
+      removeAllChild()
       const newBlocks = editor.BlockManager.render([
          {label: 'Label text 4', content: '<div>Content</div>'}
        ], {external:true})
@@ -76,7 +79,7 @@ export const BlocksContainer = (props) => {
     }
 
     if(category === "colors"){
-      removeFirstChild()
+      removeAllChild()
       const newBlocks = editor.BlockManager.render([
          {label: 'Label text 5', content: '<div>Content</div>'}
        ], {external:true})

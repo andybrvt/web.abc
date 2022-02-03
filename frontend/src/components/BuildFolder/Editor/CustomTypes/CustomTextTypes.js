@@ -59,3 +59,47 @@ export const Header4TextType = editor => {
   })
 
 }
+export const Header5TextType = editor => {
+  editor.DomComponents.addType("header5", {
+    extend: 'text',
+    model: {
+      defaults: {
+        name: 'Header 5',
+        content: `<h5>Add Header 5</h5>`
+      }
+    }
+  })
+
+}
+export const Header6TextType = editor => {
+  editor.DomComponents.addType("header6", {
+    extend: 'text',
+    model: {
+      defaults: {
+        name: 'Header 6',
+        content: `<h6>Add Header 6</h6>`
+      }
+    }
+  })
+
+}
+export const ParagraphTextType = editor => {
+  editor.DomComponents.addType("paragraph", {
+    extend: 'text',
+    model: {
+      defaults: {
+        name: 'Paragraph',
+        styles: `
+          .paragraph{
+          }
+        `,
+        content: `
+          <div class = "paragraph">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+          </div>
+        `
+      }
+    }
+  })
+
+}

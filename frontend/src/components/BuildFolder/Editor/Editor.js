@@ -29,6 +29,9 @@ import {
   Header2TextType,
   Header3TextType,
   Header4TextType,
+  Header5TextType,
+  Header6TextType,
+  ParagraphTextType
 } from './CustomTypes/CustomTextTypes';
 
 
@@ -42,7 +45,10 @@ const PLUGINS = [
   Header1TextType,
   Header2TextType,
   Header3TextType,
-  Header4TextType
+  Header4TextType,
+  Header5TextType,
+  Header6TextType,
+  ParagraphTextType
 ]
 export const Editor = (props) => {
 

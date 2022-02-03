@@ -1,6 +1,5 @@
 // THIS FILE WILL HOUSE ALL THE CUSTOM BUTTON TYPES HERE
 // FOR USES IN EDITOR PLUGINS
-import { ChevronDownIcon } from '@chakra-ui/icons'
 
 
 
@@ -11,7 +10,6 @@ export const coreButtonType = editor => {
 
     model: {
       defaults:{
-        icon: '<i class="fas fa-arrow-right"></i>',
         name: "button",
         // stylable: [],
         // stylable-require: [],
@@ -30,7 +28,6 @@ export const buttonType1 = editor => {
       defaults:{
         styles: `
             .button{
-
               padding:20px 55px 20px 55px;
               background: black;
               text-align: center;
@@ -112,16 +109,20 @@ export const buttonType4 = editor => {
               padding:20px 55px 20px 55px;
               background: #6CB4EE;
               text-align: center;
+              display: flex;
+              flex-direction: row;
+              color: white;
+              font-size: 25px;
             }
             .text4{
-
+              margin-right: 10px;
               color: white;
             }
         `,
         content:
         `<div class = "button4">
             <i class="fas fa-arrow-right"></i>
-            <div class="text4">Button</div>
+
           </div>`,
       }
     }

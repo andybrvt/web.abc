@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Blocks.css';
-import {basicBlocks} from './BasicBlocks/BasicBlocks';
+import {ButtonBlocks} from './BasicBlocks/ButtonBlocks';
+import {TextBlocks} from './BasicBlocks/TextBlocks';
 import {Shapes} from './Shapes/Shapes'
 
 export const BlocksContainer = (props) => {
@@ -41,10 +42,13 @@ export const BlocksContainer = (props) => {
 
     if(category === "basic"){
       removeFirstChild()
-      const newBlocks = editor.BlockManager.render(
-         basicBlocks, {external:true})
+    const buttonBlocks = editor.BlockManager.render(
+       ButtonBlocks, {external:true})
+    const textBlocks = editor.BlockManager.render(
+       TextBlocks, {external:true})
 
-      document.getElementById('blocks').appendChild(newBlocks);
+      document.getElementById('blocks').appendChild(buttonBlocks);
+      document.getElementById('blocks').appendChild(textBlocks);
 
 
     }

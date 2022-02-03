@@ -15,7 +15,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
-import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont  } from '@fortawesome/free-solid-svg-icons'
 import {
   buttonType1,

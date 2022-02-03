@@ -19,7 +19,13 @@
   border: none;
   justify-content: center;
   color: black;
+
 }
+.gjs-block:hover{
+  background: transparent;
+  box-shadow: 0 0 0 0 gray;
+}
+
 /* change the colors of the different categories */
 .gjs-block-category{
 }

@@ -1,6 +1,5 @@
 // THIS FILE WILL HOUSE ALL THE CUSTOM BUTTON TYPES HERE
 // FOR USES IN EDITOR PLUGINS
-import { ChevronDownIcon } from '@chakra-ui/icons'
 
 
 
@@ -29,7 +28,6 @@ export const buttonType1 = editor => {
       defaults:{
         styles: `
             .button{
-
               padding:20px 55px 20px 55px;
               background: black;
               text-align: center;

@@ -1,9 +1,10 @@
 // NOTES FOR FUTURE: if you want to add your own functions
 // to a new block, you have to create your own type
 
-export const basicBlocks = [
+export const ButtonBlocks = [
   {
     label: 'Button 1',
+    category: 'Buttons',
     media:
     `<div class = "button">
         <div class="text">Button</div>
@@ -26,6 +27,7 @@ export const basicBlocks = [
   },
   {
     label: 'Button 2',
+    category: 'Buttons',
     media:
     `<div class = "button2">
         <div class="text2">Button</div>
@@ -49,6 +51,7 @@ export const basicBlocks = [
   },
   {
     label: 'Button 3',
+    category: 'Buttons',
     media:
     `<div class = "button3">
         <div class="text3">Button</div>
@@ -71,6 +74,7 @@ export const basicBlocks = [
   },
   {
     label: 'Button 4',
+    category: 'Buttons',
     media:
     `<div class = "button4">
         <i class="fas fa-arrow-right"></i>

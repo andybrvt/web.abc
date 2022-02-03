@@ -18,17 +18,17 @@ import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes  } from '@fortawesome/free-solid-svg-icons'
 import {
-  buttonType1,
-  buttonType2,
-  buttonType3,
-  buttonType4,
-  coreButtonType } from './CustomTypes/CustomButtonTypes';
+  ButtonType1,
+  ButtonType2,
+  ButtonType3,
+  ButtonType4,
+  CoreButtonType } from './CustomTypes/CustomButtonTypes';
 import {
   Header1TextType,
 } from './CustomTypes/CustomTextTypes';
 
 
-const PLUGINS = [coreButtonType,buttonType1, buttonType2, buttonType3,buttonType4]
+const PLUGINS = [CoreButtonType,ButtonType1, ButtonType2, ButtonType3,ButtonType4]
 export const Editor = (props) => {
 
   const [editorMain, setEditor] = useState(null);

@@ -4,7 +4,7 @@
 
 
 // this will be the core of every button
-export const coreButtonType = editor => {
+export const CoreButtonType = editor => {
 
   editor.DomComponents.addType("button", {
 
@@ -21,7 +21,7 @@ export const coreButtonType = editor => {
   })
 }
 
-export const buttonType1 = editor => {
+export const ButtonType1 = editor => {
   editor.DomComponents.addType("button1", {
     extend: 'button',
     model: {
@@ -46,7 +46,7 @@ export const buttonType1 = editor => {
   })
 }
 
-export const buttonType2 = editor => {
+export const ButtonType2 = editor => {
   editor.DomComponents.addType("button2", {
     extend: 'button',
     model: {
@@ -73,7 +73,7 @@ export const buttonType2 = editor => {
   })
 }
 
-export const buttonType3 = editor => {
+export const ButtonType3 = editor => {
   editor.DomComponents.addType("button3", {
     extend: 'button',
     model: {
@@ -98,7 +98,7 @@ export const buttonType3 = editor => {
     }
   })
 }
-export const buttonType4 = editor => {
+export const ButtonType4 = editor => {
   editor.DomComponents.addType("button4", {
     extend: 'button',
     model: {

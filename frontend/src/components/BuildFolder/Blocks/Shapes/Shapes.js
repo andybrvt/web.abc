@@ -3,42 +3,27 @@
 
 export const Shapes = [
   {
-    label: 'Button',
+    label: '',
     media:
-    `
-      <div class = "button">
-        <div class="text">Button</div>
-      </div>
-
-      <style>
-        .button{
-
-          padding:20px 55px 20px 55px;
-          background: black;
-          text-align: center;
-        }
-        .text{
-
-          color: white;
-        }
-      </style>
-
-    `,
-    content:
     `
       <div class = "circle">
 
       </div>
 
       <style>
-        .circle{
-
-          background-color:powderblue; border-radius:50%; width:50px; height:50px
-        }
-
+      .circle{
+        padding:20px;
+        height: 25px;
+        width: 25px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+      }
       </style>
 
-    `
+    `,
+
+    content:{type:'shape1'}
 
   },
   {
@@ -55,18 +40,7 @@ export const Shapes = [
     </style>
 
     `,
-    content:
-    `
-      <span class="triangle"> </span>
-      <style>
-        .triangle{
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid lightblue;
-        }
-      </style>
-
-    `
+    content:{type:'shape2'}
 
   },
 

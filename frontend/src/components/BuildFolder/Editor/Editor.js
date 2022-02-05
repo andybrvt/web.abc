@@ -33,7 +33,16 @@ import {
   Header6TextType,
   ParagraphTextType
 } from './CustomTypes/CustomTextTypes';
-
+import {
+  ShapeType,
+  Circle1,
+  Triangle2
+} from './CustomTypes/CustomShapeTypes';
+import {
+  LineTypes,
+  Line1,
+  Line2,
+} from './CustomTypes/CustomLineTypes';
 
 const PLUGINS = [
   CoreButtonType,
@@ -41,6 +50,8 @@ const PLUGINS = [
   ButtonType2,
   ButtonType3,
   ButtonType4,
+
+
   UpdateTextType,
   Header1TextType,
   Header2TextType,
@@ -48,7 +59,15 @@ const PLUGINS = [
   Header4TextType,
   Header5TextType,
   Header6TextType,
-  ParagraphTextType
+  ParagraphTextType,
+
+  ShapeType,
+  Circle1,
+  Triangle2,
+
+  LineTypes,
+  Line1,
+  Line2,
 ]
 export const Editor = (props) => {
 
@@ -295,31 +314,9 @@ export const Editor = (props) => {
             // reacts by opening the AssetManager
             activate: true,
           },
-          {
-            id: 'circle',
-            label: '<span  style="background:white; border-radius:50%;width:50px; height:50px;  "> tt</span> ',
-            // Select the component once it's dropped
-            select: true,
-            // You can pass components as a JSON instead of a simple HTML string,
-              // in this case we also use a defined component type `image`
-            content: `<span  style="background:white; border:2px solid black;  border-radius:50%;  width:50px; height:50px;  "> </span> `,
-            // This triggers `active` event on dropped components and the `image`
-            // reacts by opening the AssetManager
-          },
 
 
-          {
-            id: 'circle',
-            label: '<span  style="background-color:powderblue; border-radius:50%; width:100px; height:50px;  "> tt</span> ',
-            // Select the component once it's dropped
-            select: true,
-            // You can pass components as a JSON instead of a simple HTML string,
-              // in this case we also use a defined component type `image`
-            content: `<span  style="background-color:powderblue; border-radius:50%; width:50px; height:50px;  "> tt</span> `,
-            // This triggers `active` event on dropped components and the `image`
-            // reacts by opening the AssetManager
-            activate: true,
-          },
+
 
         ]
       }

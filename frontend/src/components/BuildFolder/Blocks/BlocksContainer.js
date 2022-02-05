@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Blocks.css';
 import {ButtonBlocks} from './BasicBlocks/ButtonBlocks';
 import {TextBlocks} from './BasicBlocks/TextBlocks';
+import {LineBlocks} from './BasicBlocks/LineBlocks';
 import {Shapes} from './Shapes/Shapes'
 
 export const BlocksContainer = (props) => {
@@ -49,9 +50,12 @@ export const BlocksContainer = (props) => {
        ButtonBlocks, {external:true})
     const textBlocks = editor.BlockManager.render(
        TextBlocks, {external:true})
+     const lineBlocks = editor.BlockManager.render(
+        LineBlocks, {external:true})
 
       document.getElementById('blocks').appendChild(buttonBlocks);
       document.getElementById('blocks').appendChild(textBlocks);
+      document.getElementById('blocks').appendChild(lineBlocks);
 
 
     }
@@ -59,10 +63,10 @@ export const BlocksContainer = (props) => {
     if(category === "shapes"){
 
       removeAllChild()
-      const newBlocks = editor.BlockManager.render(
+      const shapeBlock = editor.BlockManager.render(
          Shapes, {external:true})
 
-      document.getElementById('blocks').appendChild(newBlocks);
+      document.getElementById('blocks').appendChild(shapeBlock);
 
 
     }

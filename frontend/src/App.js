@@ -15,6 +15,7 @@ import { UploadImageNFT } from './components/Home/UploadImageNFT';
 import { createBrowserHistory } from "history";
 import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
+import {Canvas} from './components/TestingFolder/ReactDesignerTest';
 
 function getLibrary(provider) {
   return new Web3(provider)
@@ -63,6 +64,7 @@ class App extends Component{
           <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
           <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
           <Route exact path="/build" element={<MainBuildContainer history={history}/>} />
+          <Route exact path="/designerTest" element={<Canvas history={history}/>} />
         </Routes>
         </CustomRouter>
 

@@ -11,21 +11,24 @@ export const CoreButtonType = editor => {
     model: {
       defaults:{
         name: "button",
-        // stylable: [],
-        // stylable-require: [],
-        resizable:true,
+
+        // editable:true,
 
 
       }
     },
     view: buttonType.view.extend({
       events: {
-        'click': function(){
-          console.log("hi")
+        'click': function(e){
+          // e.target.set({attributes:{'editable':true}})
+          // e.target.setAttributes({'editable':true}, null),
+          console.log(e.target)
+          // e.target.isContentEditable:true,
+
         }
       },
     }),
-    // view here?
+
 
   })
 }
@@ -41,8 +44,7 @@ export const ButtonType1 = editor => {
       defaults:{
         styles: `
             .button{
-              padding:20px 55px 20px 55px;
-              background: black;
+              padding:20px 55px 20px 55px;             background: black;
               text-align: center;
             }
             .text{

@@ -6,15 +6,14 @@ export const LineBlocks = [
     label: 'test1',
     category: 'Lines',
     media:
-    `<div class = "button">
-        <div class="text">Button</div>
+    `<div class = "dashedRectBlueLine">
       </div>
       <style>
-        .button{
+        .dashedRectBlueLine{
 
-          padding:20px 55px 20px 55px;
-          background: black;
-          text-align: center;
+          width: 100px;
+
+           border: 3px dashed #1A85FD;
         }
         .text{
 
@@ -30,7 +29,7 @@ export const LineBlocks = [
     category: 'Lines',
     media:
     `
-      <div class="dashedLine">Dashed </div>
+      <div class="dashedLine"> </div>
       <style>
         .dashedLine{
           order: none;
@@ -43,6 +42,27 @@ export const LineBlocks = [
       </style>
       `,
     content:{type:'line2'}
+
+  },
+
+  {
+    label: 'test3',
+    category: 'Lines',
+    media:
+    `
+      <div class="dashedLine"> </div>
+      <style>
+        .dashedLine{
+          order: none;
+          border-top: 5px dotted #f00;
+          color: black;
+
+          height: 1px;
+          width: 200px;
+        }
+      </style>
+      `,
+    content:`<div> <input type="text" id="fname" name="fname"></div>`
 
   },
 

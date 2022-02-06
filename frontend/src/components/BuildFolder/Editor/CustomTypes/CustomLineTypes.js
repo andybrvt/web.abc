@@ -27,16 +27,15 @@ export const Line1 = editor => {
     model: {
       defaults:{
         styles: `
-            .circle{
-              height: 25px;
-              width: 25px;
-              background-color: red;
-              border-radius: 50%;
-              display: inline-block;
-            }
+        .dashedRectBlueLine{
+
+          width: 100px;
+
+           border: 3px dashed #1A85FD;
+        }
         `,
         content:
-        `<div> hi</div>`,
+        `<div class="dashedRectBlueLine"> </div>`,
       }
     }
   })
@@ -52,7 +51,7 @@ export const Line2 = editor => {
             order: none;
             border-top: 5px dotted #f00;
             color: black;
-    
+
             height: 1px;
             width: 200px;
           }

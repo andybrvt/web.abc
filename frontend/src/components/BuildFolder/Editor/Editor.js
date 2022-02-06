@@ -16,7 +16,7 @@ import { Menu, Dropdown, Button, Space } from 'antd';
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShapes, faCircle, faFont  } from '@fortawesome/free-solid-svg-icons'
+import { faShapes, faCircle, faFont, faKeyboard  } from '@fortawesome/free-solid-svg-icons'
 import {
   ButtonType1,
   ButtonType2,
@@ -44,13 +44,20 @@ import {
   Line2,
 } from './CustomTypes/CustomLineTypes';
 
+
+import {
+  InputTypes,
+  Input1,
+  Input2,
+} from './CustomTypes/CustomInputTypes';
+
 const PLUGINS = [
   CoreButtonType,
   ButtonType1,
   ButtonType2,
   ButtonType3,
   ButtonType4,
-
+  
 
   UpdateTextType,
   Header1TextType,
@@ -68,6 +75,10 @@ const PLUGINS = [
   LineTypes,
   Line1,
   Line2,
+
+  InputTypes,
+  Input1,
+  Input2,
 ]
 export const Editor = (props) => {
 
@@ -79,7 +90,7 @@ export const Editor = (props) => {
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#gjs",
-      fromElement: true,
+      fromElement: 1,
       dragMode: "absolute",
       allowScripts: 1,
       height: '95vh',
@@ -533,8 +544,8 @@ export const Editor = (props) => {
 
             <div className = "buttonHolder">
               <Button
-                onClick = {() => changeDrawerVisibility("colors")}
-                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+                onClick = {() => changeDrawerVisibility("input")}
+                type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
             </div>
 
 

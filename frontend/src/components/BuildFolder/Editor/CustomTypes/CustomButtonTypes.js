@@ -5,7 +5,7 @@
 
 // this will be the core of every button
 export const CoreButtonType = editor => {
-
+  var buttonType = editor.DomComponents.getType('text');
   editor.DomComponents.addType("button", {
 
     model: {
@@ -15,8 +15,17 @@ export const CoreButtonType = editor => {
         // stylable-require: [],
         resizable:true,
 
+
       }
-    }
+    },
+    view: buttonType.view.extend({
+      events: {
+        'click': function(){
+          console.log("hi")
+        }
+      },
+    }),
+    // view here?
 
   })
 }
@@ -24,6 +33,10 @@ export const CoreButtonType = editor => {
 export const ButtonType1 = editor => {
   editor.DomComponents.addType("button1", {
     extend: 'button',
+    events: {
+
+
+    },
     model: {
       defaults:{
         styles: `

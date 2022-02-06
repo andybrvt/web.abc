@@ -22,7 +22,9 @@ export const ButtonBlocks = [
         }
       </style>
       `,
-    content:{type:'button1'}
+    content:{type:'button1'},
+    select:true,
+  
 
   },
   {
@@ -99,4 +101,36 @@ export const ButtonBlocks = [
     content:{type:'button4'}
 
   },
+  {
+    label: '',
+    category: 'Buttons',
+    media:
+    `<div class="button5">
+  Subscribe
+</a>
+      <style>
+      .button5 {
+      display: inline-flex;
+      align-items: center;
+      background: #C06C84;
+
+      border-radius: 5px;
+      height: 45px;
+      padding: 0 30px;
+      color: #fff;
+
+      text-transform: uppercase;
+      text-decoration: none;
+
+
+    }
+
+
+      </style>
+      `,
+    content:{type:'button4'}
+
+  },
+
+
 ]

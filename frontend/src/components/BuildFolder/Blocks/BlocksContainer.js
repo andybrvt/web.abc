@@ -3,6 +3,7 @@ import './Blocks.css';
 import {ButtonBlocks} from './BasicBlocks/ButtonBlocks';
 import {TextBlocks} from './BasicBlocks/TextBlocks';
 import {LineBlocks} from './BasicBlocks/LineBlocks';
+import {InputBlocks} from './BasicBlocks/Input/InputBlocks';
 import {Shapes} from './Shapes/Shapes'
 
 export const BlocksContainer = (props) => {
@@ -52,10 +53,13 @@ export const BlocksContainer = (props) => {
        TextBlocks, {external:true})
      const lineBlocks = editor.BlockManager.render(
         LineBlocks, {external:true})
+      const inputBlocks = editor.BlockManager.render(
+         InputBlocks, {external:true})
 
       document.getElementById('blocks').appendChild(buttonBlocks);
       document.getElementById('blocks').appendChild(textBlocks);
       document.getElementById('blocks').appendChild(lineBlocks);
+      document.getElementById('blocks').appendChild(inputBlocks);
 
 
     }
@@ -76,11 +80,23 @@ export const BlocksContainer = (props) => {
       const newBlocks = editor.BlockManager.render([
          {label: 'Label text 4', content: '<div>Content</div>'}
        ], {external:true})
-
       document.getElementById('blocks').appendChild(newBlocks);
-
-
     }
+
+
+
+    if(category === "input"){
+      removeAllChild()
+      const newBlocks = editor.BlockManager.render([
+         {label: 'Label text 4', content: '<div>Content</div>'}
+       ], {external:true})
+
+       const inputBlocks = editor.BlockManager.render(
+          InputBlocks, {external:true})
+
+      document.getElementById('blocks').appendChild(inputBlocks);
+    }
+
 
     if(category === "colors"){
       removeAllChild()

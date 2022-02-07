@@ -11,7 +11,15 @@ const DrawTest = () => {
 
   // Paper.settings.handleSize = 10;
   var tool = new Paper.Tool();
+  var myPath = new Paper.Path();
+  myPath.add(new Paper.Point(10, 10))
+  myPath.add(new Paper.Point(50,50))
+  myPath.strokeColor = "black"
+  myPath.strokeWidth = 5
 
+  var path;
+  var drag;
+  var tempPoint;
 
   const createNewPath = () => {
     var newPath = new Paper.Path();
@@ -22,22 +30,34 @@ const DrawTest = () => {
 
   }
 
-  var path;
+  const setNewTempPoint = (newPoint) => {
+    path.add(newPoint)
+    tempPoint = path.lastSegment;
+  }
+
+
   // var segment, path;
   // var movePath = false
-  Paper.view.onMouseDown = (event) => {
-    if(path){
 
-    }
+
+
+
+  Paper.view.onMouseDown = (event) => {
+
 
     if(!path){
       var newPath = createNewPath();
       path = newPath;
       path.add(event.point)
-
+      drag = true;
     } else {
       console.log(path)
-      path.add(event.point)
+      if(tempPoint){
+        tempPoint.remove()
+        path.add(event.point)
+        setNewTempPoint(event.point)
+      }
+
       path.fullySelected= true;
 
     }
@@ -76,6 +96,7 @@ const DrawTest = () => {
   };
 
   Paper.view.onMouseDrag = (event) =>{
+
     // if(segment){
     //   console.log(segment.point)
     //   console.log(event.delta)
@@ -95,6 +116,23 @@ const DrawTest = () => {
   }
 
   Paper.view.onMouseMove = (event) => {
+    // myPath.lastSegment.point.set(event.point)
+
+    if(path && drag){
+      if(!tempPoint){
+        path.add(event.point)
+        tempPoint = path.lastSegment
+      }
+      else {
+        tempPoint.point.set(event.point)
+
+      }
+
+
+
+    }
+
+
     // console.log('move mouse')
     // var hit = Paper.project.hitTest(event.point)
     //

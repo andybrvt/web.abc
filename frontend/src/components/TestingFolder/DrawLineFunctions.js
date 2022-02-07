@@ -14,7 +14,7 @@ export const DrawLineFunctions = () => {
   var move; // to see if you are trying to place a line
   var tempPoint; // to hold the temp point
   var segment; // to see if you have a segment of the line
-
+  var previousPath; // keep track of the previous one
 
   const createNewPath = () => {
     var newPath = new Paper.Path();
@@ -30,6 +30,7 @@ export const DrawLineFunctions = () => {
 
   Paper.view.onMouseDown = (event) => {
 
+
     var hit = Paper.project.hitTest(event.point, hitOptions)
 
     segment = null
@@ -43,6 +44,9 @@ export const DrawLineFunctions = () => {
     } else{
 
       if(!path){
+        if(previousPath){
+          previousPath.fullySelected = false;
+        }
         var newPath = createNewPath();
         path = newPath;
         path.add(event.point)
@@ -93,6 +97,7 @@ export const DrawLineFunctions = () => {
     if(event.key === "escape"){
       if(path && move){
         path.lastSegment.remove()
+        previousPath = path;
         path = null;
         move = null;
         tempPoint = null;

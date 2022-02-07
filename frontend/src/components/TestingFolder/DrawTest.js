@@ -35,13 +35,6 @@ const DrawTest = () => {
     tempPoint = path.lastSegment;
   }
 
-
-  // var segment, path;
-  // var movePath = false
-
-
-
-
   Paper.view.onMouseDown = (event) => {
 
 
@@ -51,7 +44,7 @@ const DrawTest = () => {
       path.add(event.point)
       drag = true;
     } else {
-      console.log(path)
+
       if(tempPoint){
         tempPoint.remove()
         path.add(event.point)
@@ -160,6 +153,19 @@ const DrawTest = () => {
 
 
     // return false;
+  }
+
+  Paper.view.onKeyDown = (event) => {
+    console.log(event.key)
+    if(event.key === "escape"){
+      if(path && drag){
+        path.lastSegment.remove()
+        path = null;
+        drag = null;
+        tempPoint = null;
+      }
+    }
+
   }
 
 

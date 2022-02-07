@@ -7,26 +7,27 @@
 export const CoreButtonType = editor => {
   var buttonType = editor.DomComponents.getType('text');
   editor.DomComponents.addType("button", {
-
     model: {
       defaults:{
         name: "button",
-
-        // editable:true,
-
-
+        resizable:"true",
+        // editable:true, ony works on text components
       }
+    },
+    extend: 'text', // NEED THIS LINE to extend text on button
+    isComponent: function (el) {
+    if (el.tagName === 'BUTTON')
+      return {type: 'button'};
     },
     view: buttonType.view.extend({
       events: {
-        'click': function(e){
-          // e.target.set({attributes:{'editable':true}})
-          // e.target.setAttributes({'editable':true}, null),
-          console.log(e.target)
-          // e.target.isContentEditable:true,
-
-        }
-      },
+      dblclick: 'onActive',
+      input: 'onInput',
+      dragstart: 'handleDragStart',
+      click: function() {
+         /*Click function */
+      }
+    },
     }),
 
 

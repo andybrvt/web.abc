@@ -6,22 +6,67 @@ const { Search } = Input;
 
 export const InputBlocks = [
   {
-    label: 'Input',
+    label: '',
     category: 'input',
     media:
     `<div ">
-        <div class="text">Button</div>
+      <div class="wrap">
+        <div class="search">
+          <input type="text" class="searchTerm">
+          <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+         </button>
+        </div>
       </div>
+    </div>
       <style>
-        .button{
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-          padding:20px 55px 20px 55px;
-          background: black;
-          text-align: center;
+        body{
+        background: #f2f2f2;
+        font-family: 'Open Sans', sans-serif;
         }
-        .textx{
 
-          color: white;
+        .search {
+        width: 100%;
+        position: relative;
+        display: flex;
+        }
+
+        .searchTerm {
+        width: 100%;
+        border: 3px solid #00B4CC;
+        border-right: none;
+        padding: 5px;
+        height: 32px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #9DBFAF;
+        }
+
+        .searchTerm:focus{
+        color: #00B4CC;
+        }
+
+        .searchButton {
+        width: 36px;
+        height: 32px;
+        border: 1px solid #00B4CC;
+        background: #00B4CC;
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 13px;
+        }
+
+        /*Resize the wrap to see the search bar change!*/
+        .wrap{
+        width: 45%;
+        position: absolute;
+
+        left:25%;
+        transform: translate(-50%, -50%);
         }
       </style>
       `,
@@ -29,7 +74,7 @@ export const InputBlocks = [
 
   },
   {
-    label: 'Search',
+    label: 'test',
     category: 'input',
     media:
     `

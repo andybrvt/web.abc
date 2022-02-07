@@ -4,7 +4,7 @@ var hitOptions = {
   segments: true,
   stroke: true,
   fill: true,
-  point: true,
+  handles: true,
   tolerance: 10
 }
 
@@ -17,7 +17,10 @@ export const DrawLineFunctions = () => {
   var segment; // to see if you have a segment of the line
   var previousPath; // keep track of the previous one
 
-  var showHandles = true;
+
+  var showHandles = true; // just in case you pick the handles
+  var tempHandleIn;
+  var tempHandleOut;
 
   const createNewPath = () => {
     var newPath = new Paper.Path();
@@ -69,13 +72,20 @@ export const DrawLineFunctions = () => {
     // check if this hits a segment or not
     var hit = Paper.project.hitTest(event.point, hitOptions)
     segment = null
+    tempHandleIn = null
+    tempHandleOut = null
     if(hit && !path){
-
       if(hit.type === "segment"){
         // if it is a segment, declare it so you can drag it
         segment = hit.segment
         console.log(segment.hasHandles(), 'has the handles here')
 
+      }
+      if(hit.type === "handle-out"){
+        tempHandleOut = hit.segment
+      }
+      if(hit.type === "handle-in"){
+        tempHandleIn = hit.segment
       }
 
     } else{
@@ -110,8 +120,21 @@ export const DrawLineFunctions = () => {
 
   Paper.view.onMouseDrag = (event) => {
     // to move the segment that you clicked on
+
     if(segment){
       segment.point.set(event.point)
+    }
+    if(tempHandleIn){
+
+      // You use subtract becuase the handles move from the
+      // segment point and not the who global
+      tempHandleIn.handleIn.set(event.point.subtract(tempHandleIn.point))
+
+    }
+    if(tempHandleOut){
+      // You use subtract becuase the handles move from the
+      // segment point and not the who global
+      tempHandleOut.handleOut.set(event.point.subtract(tempHandleOut.point))
     }
   }
 

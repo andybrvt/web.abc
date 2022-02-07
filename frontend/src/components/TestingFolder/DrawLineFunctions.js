@@ -10,15 +10,19 @@ var hitOptions = {
 
 export const DrawLineFunctions = () => {
   Paper.settings.handleSize = 10
-  var myPath = new Paper.Path();
+
+  // START HERE TOMORROW
+  var makePath = true; // sub for button
+
+
   var path; // to see if you are currently in a path
   var move; // to see if you are trying to place a line
   var tempPoint; // to hold the temp point
   var segment; // to see if you have a segment of the line
   var previousPath; // keep track of the previous one
+  var tempStroke;
 
-
-  var showHandles = true; // just in case you pick the handles
+  var showHandles = true; // sub for button
   var tempHandleIn;
   var tempHandleOut;
 
@@ -67,6 +71,24 @@ export const DrawLineFunctions = () => {
 
   }
 
+
+  Paper.view.onDoubleClick = (event) => {
+    var hit = Paper.project.hitTest(event.point, hitOptions)
+
+    if(hit && !path){
+      if(hit.type === "stroke"){
+        previousPath = hit.item
+        previousPath.fullySelected = true
+        tempStroke = hit.item
+        if(showHandles){
+          setupHandles(hit.item)
+        }
+      }
+    }
+
+
+  }
+
   Paper.view.onMouseDown = (event) => {
 
     // check if this hits a segment or not
@@ -74,22 +96,10 @@ export const DrawLineFunctions = () => {
     segment = null
     tempHandleIn = null
     tempHandleOut = null
-    if(hit && !path){
-      if(hit.type === "segment"){
-        // if it is a segment, declare it so you can drag it
-        segment = hit.segment
-        console.log(segment.hasHandles(), 'has the handles here')
+    tempStroke = null
 
-      }
-      if(hit.type === "handle-out"){
-        tempHandleOut = hit.segment
-      }
-      if(hit.type === "handle-in"){
-        tempHandleIn = hit.segment
-      }
-
-    } else{
-
+    // if you are trying to make a path
+    if(makePath){
       // if not make a new path
       if(!path){
         if(previousPath){
@@ -113,14 +123,44 @@ export const DrawLineFunctions = () => {
       }
 
 
+    } else {
+    // if you are not trying to make a path
+      if(hit && !path){
+
+        if(hit.type === "stroke"){
+          previousPath = hit.item
+          previousPath.fullySelected = true
+          tempStroke = hit.item
+        
+        }
+        else if(hit.type === "segment"){
+          // if it is a segment, declare it so you can drag it
+          segment = hit.segment
+        }
+        else if(hit.type === "handle-out"){
+          tempHandleOut = hit.segment
+        }
+        else if(hit.type === "handle-in"){
+          tempHandleIn = hit.segment
+        }
+
+      } else {
+        previousPath.fullySelected = false
+      }
+
+
     }
+
+
 
 
   }
 
   Paper.view.onMouseDrag = (event) => {
     // to move the segment that you clicked on
-
+    if(tempStroke){
+      tempStroke.position = event.point
+    }
     if(segment){
       segment.point.set(event.point)
     }
@@ -163,11 +203,11 @@ export const DrawLineFunctions = () => {
         path.lastSegment.remove()
         // Now set up all the handles for the path
         // because it is done now
-        setupHandles(path)
         previousPath = path;
         path = null;
         move = null;
         tempPoint = null;
+        makePath = false;
       }
     }
 

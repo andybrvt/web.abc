@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import Paper from 'paper';
 import DrawTest from './DrawTest';
-
+import {DrawLineFunctions} from './DrawLineFunctions'
 
 export const Canvas = props => {
 
@@ -10,7 +10,9 @@ export const Canvas = props => {
   useEffect(() => {
     const canvas = canvasRef.current;
     Paper.setup(canvas);
-    DrawTest();
+    DrawLineFunctions()
+    // DrawTest();
+
 
   }, [])
 

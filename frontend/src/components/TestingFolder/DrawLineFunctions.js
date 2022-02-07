@@ -4,6 +4,7 @@ var hitOptions = {
   segments: true,
   stroke: true,
   fill: true,
+  point: true,
   tolerance: 10
 }
 
@@ -15,6 +16,8 @@ export const DrawLineFunctions = () => {
   var tempPoint; // to hold the temp point
   var segment; // to see if you have a segment of the line
   var previousPath; // keep track of the previous one
+
+  var showHandles = true;
 
   const createNewPath = () => {
     var newPath = new Paper.Path();
@@ -28,21 +31,56 @@ export const DrawLineFunctions = () => {
     tempPoint = path.lastSegment;
   }
 
+  // this will set up the handles for the path
+  const setupHandles = (path) => {
+
+    // first get the segments
+    let segs = path.segments; // array
+    let nSegs = segs.length;
+    if(nSegs < 2){
+      return path;
+    }
+
+    // check if the segment has handles already
+    const setHandles = (segment, which, vec) => {
+      if(segment[which].length === 0){
+        segment[which] = vec;
+      }
+    }
+
+    // this is the last one
+    let sPrev = segs[nSegs-1];
+    for(let i = 0; i < nSegs; i++){
+      let s = segs[i];
+      // like a reflection on that point
+      let vec = s.point.subtract(sPrev.point);
+      vec = vec.normalize(vec.length/3);
+      setHandles(s, "handleIn", vec.negate())
+      setHandles(sPrev, 'handleOut', vec)
+      sPrev = s;
+    }
+
+
+
+  }
+
   Paper.view.onMouseDown = (event) => {
 
-
+    // check if this hits a segment or not
     var hit = Paper.project.hitTest(event.point, hitOptions)
-
     segment = null
     if(hit && !path){
-      console.log('it is hit')
 
       if(hit.type === "segment"){
+        // if it is a segment, declare it so you can drag it
         segment = hit.segment
+        console.log(segment.hasHandles(), 'has the handles here')
+
       }
 
     } else{
 
+      // if not make a new path
       if(!path){
         if(previousPath){
           previousPath.fullySelected = false;
@@ -52,7 +90,8 @@ export const DrawLineFunctions = () => {
         path.add(event.point)
         move = true;
       } else {
-
+        // if path is already there try setting another one to
+        // finish off the path
         if(tempPoint){
           tempPoint.remove()
           path.add(event.point)
@@ -70,6 +109,7 @@ export const DrawLineFunctions = () => {
   }
 
   Paper.view.onMouseDrag = (event) => {
+    // to move the segment that you clicked on
     if(segment){
       segment.point.set(event.point)
     }
@@ -93,10 +133,14 @@ export const DrawLineFunctions = () => {
   }
 
   Paper.view.onKeyDown = (event) => {
-    console.log(event.key)
+
+    // escape to finish up the line
     if(event.key === "escape"){
       if(path && move){
         path.lastSegment.remove()
+        // Now set up all the handles for the path
+        // because it is done now
+        setupHandles(path)
         previousPath = path;
         path = null;
         move = null;

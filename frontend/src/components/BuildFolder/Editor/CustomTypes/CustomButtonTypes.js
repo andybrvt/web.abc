@@ -144,3 +144,33 @@ export const ButtonType4 = editor => {
     }
   })
 }
+
+export const ButtonType5 = editor => {
+  editor.DomComponents.addType("button5", {
+    extend: 'button',
+    model: {
+      defaults:{
+        styles: `
+        .container {
+        }
+
+        .my-button {
+          width: 100px;
+          height: 100px;
+          border-radius: 100px;
+          outline: none;
+          background: #b71540;
+          color: white;
+          cursor: pointer;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        `,
+        content:
+        `<div clas<div class="container">
+          <button class="my-button">Button</button>
+        </div>`,
+      }
+    }
+  })
+}

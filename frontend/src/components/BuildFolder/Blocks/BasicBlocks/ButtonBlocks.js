@@ -79,7 +79,7 @@ export const ButtonBlocks = [
       `,
     content:{type:'button1'},
     select:true,
-  
+
 
   },
   {
@@ -162,7 +162,7 @@ export const ButtonBlocks = [
     media:
     `<div class="button5">
   Subscribe
-</a>
+</div>
       <style>
       .button5 {
       display: inline-flex;
@@ -184,6 +184,39 @@ export const ButtonBlocks = [
       </style>
       `,
     content:{type:'button4'}
+
+  },
+
+  {
+    label: '',
+    category: 'Buttons',
+    media:
+    `<div clas<div class="container">
+      <button class="my-button">Button</button>
+    </div>
+      <style>
+      .container {
+      }
+
+      .my-button {
+        width: 100px;
+        height: 100px;
+        border: none;
+        border-radius: 100px;
+        outline: none;
+        background: #b71540;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      }
+
+
+    }
+
+
+      </style>
+      `,
+    content:{type:'button5'}
 
   },
 

@@ -28,8 +28,9 @@ export const Circle1 = editor => {
       defaults:{
         styles: `
             .circle{
-              height: 25px;
-              width: 25px;
+              height: 50px;
+              width: 50px;
+              padding:50px;
               background-color: red;
               border-radius: 50%;
               display: inline-block;

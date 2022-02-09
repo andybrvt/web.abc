@@ -5,30 +5,36 @@ var hitOptions = {
   stroke: true,
   fill: true,
   handles: true,
-  bounds: true,
-  tolerance: 10
+  // bounds: true,
+  tolerance: 5
 }
 
 export const DrawLineFunctions = () => {
-  Paper.settings.handleSize = 10
+  Paper.settings.handleSize = 5
 
+  var tool = new Paper.Tool();
   // START HERE TOMORROW
   var makePath = true; // sub for button
 
 
-  var path; // to see if you are currently in a path
+  var path; // to see if you are currently in a path when making new line
   var move; // to see if you are trying to place a line
   var tempPoint; // to hold the temp point
   var segment; // to see if you have a segment of the line
   var previousPath; // keep track of the previous one
   var tempStroke;
-  var tempBound;
+
 
   var showHandles = true; // sub for button
   var tempHandleIn;
   var tempHandleOut;
 
   var selectionRectangle = null;
+  var selectionRectangleScale = null;
+  var selectionRectangleScaleNormalized =null;
+  var selectionRectangleRotation = null;
+
+  var selectedPath = null; // whne you select a path
 
   const createNewPath = () => {
     var newPath = new Paper.Path();
@@ -93,7 +99,7 @@ export const DrawLineFunctions = () => {
       bounds = inPath.pInitialBounds
     }
 
-    var b = bounds.clone().expand(10,10)
+    var b = bounds.clone().expand(20,20)
     selectionRectangle = new Paper.Path.Rectangle(b);
     selectionRectangle.pivot = selectionRectangle.position;
     selectionRectangle.insert(2, new Paper.Point(b.center.x, b.top)); // top middle segment
@@ -121,12 +127,16 @@ export const DrawLineFunctions = () => {
 
     if(hit && !path){
       if(hit.type === "stroke"){
-        previousPath = hit.item
-        previousPath.fullySelected = true
-        tempStroke = hit.item
-        if(showHandles){
-          setupHandles(hit.item)
+
+        if(hit.item.name !== 'selection rectangle'){
+          previousPath = hit.item
+          previousPath.fullySelected = true
+          tempStroke = hit.item
+          if(showHandles){
+            setupHandles(hit.item)
+          }
         }
+
       }
     }
 
@@ -134,14 +144,12 @@ export const DrawLineFunctions = () => {
   }
 
   Paper.view.onMouseDown = (event) => {
-
     // check if this hits a segment or not
     var hit = Paper.project.hitTest(event.point, hitOptions)
     segment = null
     tempHandleIn = null
     tempHandleOut = null
     tempStroke = null
-    tempBound = null
     // if you are trying to make a path
     if(makePath){
       // if not make a new path
@@ -170,25 +178,38 @@ export const DrawLineFunctions = () => {
     } else {
     // if you are not trying to make a path
       if(hit && !path){
-        console.log(hit)
-        if(hit.type === "bounds"){
-          console.log('in here')
-          console.log(hit)
-          tempBound = hit.item
-        }
-        if(hit.type === "stroke"){
-          previousPath = hit.item
-          // previousPath.fullySelected = true
 
-          tempStroke = hit.item
-          // tempStroke.bounds.selected = true;
-          initSelectionRectangle(hit.item)
+        var item = hit.item;
+
+        if(hit.type === "stroke"){
+
+
+          if(item.name!=="selection rectangle"){
+            previousPath = hit.item
+            tempStroke = hit.item
+            initSelectionRectangle(hit.item)
+
+          }
 
 
         }
         else if(hit.type === "segment"){
           // if it is a segment, declare it so you can drag it
-          segment = hit.segment
+
+          if(selectionRectangle !== null && item.name === "selection rectangle"){
+            if(hit.segment.index >=2 && hit.segment.index <=4){
+              // check to see if it is the rotator segment
+              selectionRectangleRotation = 0;
+
+            } else {
+              // this is to scale
+              selectionRectangleScale = event.point.subtract(selectionRectangle.bounds.center).length/item.scaling.x;
+
+
+            }
+          } else {
+            segment = hit.segment
+          }
         }
         else if(hit.type === "handle-out"){
           tempHandleOut = hit.segment
@@ -209,18 +230,36 @@ export const DrawLineFunctions = () => {
 
   }
 
-  Paper.view.onMouseDrag = (event) => {
-    console.log('does it drag')
-    console.log(tempBound)
-    if(tempBound){
-      console.log('boudn here')
-      tempBound.point.set(event.point)
+  tool.onMouseDrag = (event) => {
+
+    if(selectionRectangleScale !== null){
+      var ratio = event.point.subtract(selectionRectangle.bounds.center).length/selectionRectangleScale;
+      var scaling = new Paper.Point(ratio, ratio)
+      selectionRectangle.scaling = scaling;
+      selectionRectangle.ppath.scaling = scaling;
+      return
+
     }
+    else if(selectionRectangleRotation !== null){
+
+      var center = selectionRectangle.pivot;
+
+      var baseVec = center.subtract(event.lastPoint);
+      var nowVec = center.subtract(event.point);
+      var angle = nowVec.angle - baseVec.angle;
+      selectionRectangle.ppath.rotate(angle);
+      selectionRectangle.rotate(angle);
+      return;
+
+    }
+
     if(tempStroke){
       tempStroke.position = event.point
     }
     if(segment){
       segment.point.set(event.point)
+      previousPath.smooth()
+      initSelectionRectangle(previousPath)
     }
     if(tempHandleIn){
 
@@ -237,7 +276,8 @@ export const DrawLineFunctions = () => {
   }
 
   Paper.view.onMouseUp = (event) => {
-
+    selectionRectangleScale = null;
+    selectionRectangleRotation = null;
   }
 
   Paper.view.onMouseMove = (event) => {

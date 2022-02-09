@@ -12,6 +12,7 @@ var hitOptions = {
 export const DrawLineFunctions = () => {
   Paper.settings.handleSize = 5
 
+  var tool = new Paper.Tool();
   // START HERE TOMORROW
   var makePath = true; // sub for button
 
@@ -143,7 +144,6 @@ export const DrawLineFunctions = () => {
   }
 
   Paper.view.onMouseDown = (event) => {
-
     // check if this hits a segment or not
     var hit = Paper.project.hitTest(event.point, hitOptions)
     segment = null
@@ -181,10 +181,8 @@ export const DrawLineFunctions = () => {
 
         var item = hit.item;
 
-        console.log(item)
         if(hit.type === "stroke"){
 
-          // gotta set it up so that this doesn't work on the rectangle
 
           if(item.name!=="selection rectangle"){
             previousPath = hit.item
@@ -232,12 +230,26 @@ export const DrawLineFunctions = () => {
 
   }
 
-  Paper.view.onMouseDrag = (event) => {
+  tool.onMouseDrag = (event) => {
 
     if(selectionRectangleScale !== null){
+      var ratio = event.point.subtract(selectionRectangle.bounds.center).length/selectionRectangleScale;
+      var scaling = new Paper.Point(ratio, ratio)
+      selectionRectangle.scaling = scaling;
+      selectionRectangle.ppath.scaling = scaling;
+      return
 
     }
-    if(selectionRectangleRotation !== null){
+    else if(selectionRectangleRotation !== null){
+
+      var center = selectionRectangle.pivot;
+
+      var baseVec = center.subtract(event.lastPoint);
+      var nowVec = center.subtract(event.point);
+      var angle = nowVec.angle - baseVec.angle;
+      selectionRectangle.ppath.rotate(angle);
+      selectionRectangle.rotate(angle);
+      return;
 
     }
 
@@ -264,7 +276,8 @@ export const DrawLineFunctions = () => {
   }
 
   Paper.view.onMouseUp = (event) => {
-
+    selectionRectangleScale = null;
+    selectionRectangleRotation = null;
   }
 
   Paper.view.onMouseMove = (event) => {

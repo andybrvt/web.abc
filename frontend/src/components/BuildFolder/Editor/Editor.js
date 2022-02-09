@@ -57,7 +57,7 @@ const PLUGINS = [
   ButtonType2,
   ButtonType3,
   ButtonType4,
-  
+
 
   UpdateTextType,
   Header1TextType,
@@ -96,6 +96,7 @@ export const Editor = (props) => {
       height: '95vh',
       width: 'auto',
       plugins:PLUGINS,
+      autosave: true, 
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using

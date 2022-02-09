@@ -3,7 +3,7 @@
 
 export const Shapes = [
   {
-    label: '',
+    label: 'Circle',
     media:
     `
       <div class = "circle">
@@ -12,12 +12,13 @@ export const Shapes = [
 
       <style>
       .circle{
-        padding:20px;
-        height: 25px;
-        width: 25px;
+
+        height: 50px;
+        width: 50px;
+        padding:35px;
         background-color: red;
         border-radius: 50%;
-        display: inline-block;
+
       }
       </style>
 
@@ -27,7 +28,7 @@ export const Shapes = [
 
   },
   {
-    label: '',
+    label: 'Triangle',
     media:
     `
     <span class="triangle"> </span>

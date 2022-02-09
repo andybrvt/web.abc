@@ -77,7 +77,7 @@ export const Input1 = editor => {
         color: #fff;
         border-radius: 0 5px 5px 0;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 15px;
         }
 
         /*Resize the wrap to see the search bar change!*/
@@ -109,22 +109,64 @@ export const Input2 = editor => {
     model: {
       defaults:{
         styles: `
-            .button2{
+        html { box-sizing: border-box; font-size: 10px; }
+        *, *:before, *:after { box-sizing: inherit; }
+        body, ul, li  { margin: 0; padding: 0; }
+        li { list-style: none; }
+        p, h1, h2, h3, h4, h5, h6 { margin-top: 0; }
+        a { text-decoration: none; }
+        input { border-style: none; background: transparent; outline: none; }
+        button { padding: 0; background: none; border: none; outline: none; }
 
-              padding:20px 55px 20px 55px;
-              background: white;
-              border: 1px solid black;
-              text-align: center;
-            }
-            .text2{
+        // some basic page styles
+        body {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+          background-image: radial-gradient(circle at 0% 0%, #373b52, #252736 51%, #1d1e26);
+        }
 
-              color: black;
-            }
+        // for demo
+        h1.demo {
+          text-align: center;
+          font-size: 2.4rem;
+          font-weight: normal;
+          margin-bottom: 1rem;
+          color: #f5f6ff;
+        }
+        a.demo {
+          text-align: center;
+          font-size: 1.6rem;
+          font-weight: normal;
+          color: rgba(202, 205, 239, 0.8);
+          margin-bottom: 3rem;
+        }
+        .demo-flex-spacer {
+          flex-grow: 1;
+        }
+        .container {
+          // background:red;
+          border: 1px solid #00B4CC;
+        }
+
+
+      }
+
+
+
         `,
         content:
-        `<div class = "button2">
-            <div class="text2">Button</div>
-          </div>`,
+        `<div class="container">
+
+  <div class="demo-flex-spacer"></div>
+
+  <div class="webflow-style-input">
+    <input class="" type="email" placeholder="What's your email?"></input>
+    <button type="submit"><i class="icon ion-android-arrow-forward"></i></button>
+  </div>
+
+
+</div>`,
       }
     }
   })

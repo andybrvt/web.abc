@@ -4,13 +4,16 @@ import { ChevronDownIcon,AddIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
 
 
+
 export const PagesContainer = (props) => {
 
   const [editor, setEditor] = useState(null);
   const [pageManager, setPageManager] = useState(null);
 
   const [pages, setPages] = useState([]);
-
+  const [curPageID, setcurPageID]=useState("")
+  const [pageName, SetPageName] = useState(null);
+  const [pageCondition, changePageCondition] = useState(false);
   useEffect(() => {
     if(props.editor !== null){
       const pm = props.editor.Pages;
@@ -22,6 +25,7 @@ export const PagesContainer = (props) => {
       props.editor.on('page', () => {
         console.log('update pages')
         setPages([...pm.getAll()])
+
       })
     }
   }, [props.editor])
@@ -47,7 +51,13 @@ export const PagesContainer = (props) => {
     return "Undefined"
   }
 
+
   const selectPage = (page) => {
+
+    console.log("id"+ page.id)
+    setcurPageID(page.id)
+    console.log("name"+pageManager.get(page.id).attributes.name)
+      SetPageName(pageManager.get(page.id).attributes.name)
     if(pageManager !== null){
       return pageManager.select(page)
     }
@@ -57,6 +67,12 @@ export const PagesContainer = (props) => {
     if(pageManager !== null){
       return pageManager.remove(pageId)
     }
+  }
+
+  const triggerPage=(name)=> {
+    changePageCondition(true)
+
+
   }
 
   const addPage = () => {
@@ -114,9 +130,36 @@ export const PagesContainer = (props) => {
   return(
     <div>
 
-      <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
-        <div>{getCurrentPage()} <ChevronDownIcon /></div>
-      </Dropdown>
+
+        <div
+          onClick = {() => triggerPage(getCurrentPage())}>
+          { pageCondition?
+            <div><input type="text" defaultValue={pageName} onKeyPress={(event) => {
+            const key = event.which || event.keyCode;
+            if (key === 13) { //enter key
+              console.log("hi")
+              console.log(event.target.value)
+              console.log("hellooo" + curPageID)
+              // console.log(pageManager.get("page-1"))
+              console.log(pageManager.get(""))
+              // console.log(pageManager.getMain())
+                // pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
+                pageManager.get("").set({ id: curPageID, name: event.target.value })
+            }
+          }} autoFocus={true}/>
+            <Dropdown overlay={menu} placement="bottomCenter" trigger={['hover']}>
+          <ChevronDownIcon />
+          </Dropdown>
+      </div>
+
+          :
+          <div>
+            {getCurrentPage()} <ChevronDownIcon />
+        </div>
+          }
+
+        </div>
+
 
     </div>
   )

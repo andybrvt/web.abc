@@ -230,14 +230,32 @@ export const DrawLineFunctions = () => {
 
   }
 
+  var clone = 1;
   tool.onMouseDrag = (event) => {
 
     if(selectionRectangleScale !== null){
-      var ratio = event.point.subtract(selectionRectangle.bounds.center).length/selectionRectangleScale;
-      var scaling = new Paper.Point(ratio, ratio)
-      selectionRectangle.scaling = scaling;
-      selectionRectangle.ppath.scaling = scaling;
-      return
+
+      // STUCK COME BACK LATER
+
+      // var bounds = selectionRectangle.bounds;
+      // var scale = event.point.subtract(selectionRectangle.bounds.center).length/selectionRectangleScale;
+      //
+      //
+      // var tlVec = bounds.topLeft.subtract(bounds.center).multiply(scale);
+      // var brVec = bounds.bottomRight.subtract(bounds.center).multiply(scale);
+      // var newBounds = new Paper.Rectangle(tlVec.add(bounds.center), brVec.add(bounds.center));
+      //
+      //
+      //
+      //
+      // // var ratio = event.point.subtract(selectionRectangle.bounds.center).length/selectionRectangleScale;
+      // // var scaling = new Paper.Point(ratio, ratio)
+      //
+      // // it stacks up too much
+      // // selectionRectangle.scale(scale);
+      // selectionRectangle.ppath.bounds = newBounds;
+      // selectionRectangle.remove()
+      // // return
 
     }
     else if(selectionRectangleRotation !== null){

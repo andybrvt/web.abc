@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Editor from './Editor';
 import { Input, Button} from '@chakra-ui/react'
 import './Compiler.css';
 import  { CompilerTest } from './CompilerTest.js';

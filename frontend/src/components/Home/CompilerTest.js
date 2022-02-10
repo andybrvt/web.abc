@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Editor from './Editor';
 import './Compiler.css'
 export const CompilerTest = (props) => {
 
@@ -45,24 +44,7 @@ export const CompilerTest = (props) => {
 
         */}
       <div className = "pane top-pane">
-        <Editor
-          language = "xml"
-          displayName="HTML"
-          value = {html1}
-          onChange = {setHtml} />
-        <Editor
-          language = "css"
-          displayName="CSS"
-          value = {css1}
-          onChange = {setCss}
-           />
-        <Editor
-          language = "javascript"
-          displayName="JS"
-          // value = {js}
-          onChange = {setJs}
-           />
-      </div>
+              </div>
 
       <div className = "pane">
 

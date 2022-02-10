@@ -11,7 +11,12 @@ export const StylesContainer = (props) => {
   }, [props.editor])
 
   return(
-    <div class = "styles-container"></div>
+    <div class = "styles-container">
+
+
+      <div>heifhishdf
+      </div>
+    </div>
 
   )
 }

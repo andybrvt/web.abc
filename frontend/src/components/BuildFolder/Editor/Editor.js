@@ -2,7 +2,7 @@
   This will be the real editor to edit stuff directly
 */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
 import './Editor.css'
@@ -99,6 +99,31 @@ export const Editor = (props) => {
   const [visibility, setVisibility] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
 
+
+
+  const useOutSideAlerter = (ref) => {
+    useEffect(() => {
+      function handleClickOutside(event){
+        const className = event.srcElement.className
+        if (ref.current && !ref.current.contains(event.target) && typeof className ==="string") {
+
+
+            if(className.includes("gjs-frame")){
+              setVisibility(false)
+            }
+
+        }
+      }
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.addEventListener("mousedown", handleClickOutside)
+      }
+    }, [ref]);
+  }
+
+  const wrapperRef  = useRef(null);
+  useOutSideAlerter(wrapperRef)
 
   useEffect(() => {
     const editor = grapesjs.init({
@@ -594,9 +619,12 @@ export const Editor = (props) => {
 
         </div>
 
-        <Drawer visibility = {visibility}>
-          <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
-        </Drawer>
+        <div ref = {wrapperRef}>
+          <Drawer  visibility = {visibility}>
+            <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
+          </Drawer>
+
+        </div>
 
         <div class="column">
           {/*

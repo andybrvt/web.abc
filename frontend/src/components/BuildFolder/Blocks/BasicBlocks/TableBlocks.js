@@ -1,16 +1,42 @@
 const rowStyle  = `
   .rowStyle{
     position: relative;
-    width: 300px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: nowrap;
   }
 `
-
+const rowStyleMedia = `
+  .rowStyle{
+    position: relative;
+    width: 400px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+`
 const colStyle = `
+.colStyle{
+  position: relative;
+  min-height: 100px;
+  max-height: 80vh;
+  flex-grow: 1;
+  flex-basis: 100%;
+  overflow:hidden;
+}
+`
 
+const colStyleMedia = `
+.colStyle{
+  position: relative;
+  height: 150px;
+  flex-grow: 1;
+  flex-basis: 100%;
+  overflow:hidden;
+}
 `
 
 export const TableBlocks = [
@@ -19,21 +45,8 @@ export const TableBlocks = [
     id: 'template1',
     category: 'Templates',
     media: `  <style>
-        .rowStyle{
-          position: relative;
-          width: 400px;
-          display: flex;
-          justify-content: flex-start;
-          align-items: stretch;
-          flex-wrap: nowrap;
-        }
-        .testColumn{
-          position: relative;
-          height: 150px;
-          flex-grow: 1;
-          flex-basis: 100%;
-          overflow:hidden;
-        }
+      ${rowStyleMedia}
+      ${colStyleMedia}
         .testImage{
           height: 100%:
         }
@@ -61,7 +74,7 @@ export const TableBlocks = [
       </style>
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
-        <div class="testColumn">
+        <div class="colStyle">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
         <h1 class = "testText">
@@ -73,22 +86,8 @@ export const TableBlocks = [
       </div>`,
     content: `
       <style>
-        .rowStyle{
-          position: relative;
-          width: 100%;
-          display: flex;
-          justify-content: flex-start;
-          align-items: stretch;
-          flex-wrap: nowrap;
-        }
-        .testColumn{
-          position: relative;
-          min-height: 100px;
-          max-height: 80vh;
-          flex-grow: 1;
-          flex-basis: 100%;
-          overflow:hidden;
-        }
+        ${rowStyle}
+        ${colStyle}
         .testImage{
           width:100%;
           height: 100%:
@@ -117,7 +116,7 @@ export const TableBlocks = [
       </style>
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
-        <div class="testColumn">
+        <div class="colStyle">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
         <h1 class = "testText">
@@ -134,21 +133,8 @@ export const TableBlocks = [
     id: 'template2',
     category: 'Templates',
     media: `  <style>
-        .rowStyle{
-          position: relative;
-          width: 400px;
-          display: flex;
-          justify-content: flex-start;
-          align-items: stretch;
-          flex-wrap: nowrap;
-        }
-        .testColumn{
-          position: relative;
-          height: 125px;
-          flex-grow: 1;
-          flex-basis: 100%;
-          overflow:hidden;
-        }
+        ${rowStyleMedia}
+        ${colStyleMedia}
         .testImage{
           width:100%;
           height: 100%:
@@ -178,10 +164,10 @@ export const TableBlocks = [
       </style>
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
-        <div class="testColumn">
+        <div class="colStyle">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
-        <div class="testColumn">
+        <div class="colStyle">
           <h1 class = "testText2">
           Put your brands message here and show the world who you are
           </h1>
@@ -192,22 +178,8 @@ export const TableBlocks = [
       </div>`,
     content: `
       <style>
-        .rowStyle{
-          position: relative;
-          width: 100%;
-          display: flex;
-          justify-content: flex-start;
-          align-items: stretch;
-          flex-wrap: nowrap;
-        }
-        .testColumn{
-          position: relative;
-          min-height: 100px;
-          max-height: 80vh;
-          flex-grow: 1;
-          flex-basis: 100%;
-          overflow:hidden;
-        }
+        ${rowStyle}
+        ${colStyle}
         .testImage{
           width:100%;
           height: 100%:
@@ -236,10 +208,10 @@ export const TableBlocks = [
       </style>
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
-        <div class="testColumn">
+        <div class="colStyle">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
-        <div class="testColumn">
+        <div class="colStyle">
           <h1 class = "testText2">
           Put your brands message here and show the world who you are
           </h1>
@@ -256,21 +228,8 @@ export const TableBlocks = [
     id: 'template3',
     category: 'Templates',
     media: `  <style>
-        .rowStyle{
-          position: relative;
-          width: 400px;
-          display: flex;
-          justify-content: flex-start;
-          align-items: stretch;
-          flex-wrap: nowrap;
-        }
-        .testColumn{
-          position: relative;
-          height: 125px;
-          flex-grow: 1;
-          flex-basis: 100%;
-          overflow:hidden;
-        }
+        ${rowStyleMedia}
+        ${colStyleMedia}
         .testImage{
           width:100%;
           height: 100%:
@@ -300,7 +259,7 @@ export const TableBlocks = [
       </style>
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
-        <div class="testColumn">
+        <div class="colStyle">
           <h1 class = "testText2">
           Put your brands message here and show the world who you are
           </h1>
@@ -308,29 +267,15 @@ export const TableBlocks = [
             <div class="textTemp2">Check it out</div>
           </div>
         </div>
-        <div class="testColumn">
+        <div class="colStyle">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
 
       </div>`,
     content: `
       <style>
-        .rowStyle{
-          position: relative;
-          width: 100%;
-          display: flex;
-          justify-content: flex-start;
-          align-items: stretch;
-          flex-wrap: nowrap;
-        }
-        .testColumn{
-          position: relative;
-          min-height: 100px;
-          max-height: 80vh;
-          flex-grow: 1;
-          flex-basis: 100%;
-          overflow:hidden;
-        }
+        ${rowStyle}
+        ${colStyle}
         .testImage{
           width:100%;
           height: 100%:
@@ -357,9 +302,8 @@ export const TableBlocks = [
         }
 
       </style>
-
       <div data-gjs-dmode = "absolute" class="rowStyle">
-        <div class="testColumn">
+        <div class="colStyle">
           <h1 class = "testText2">
           Put your brands message here and show the world who you are
           </h1>
@@ -367,15 +311,14 @@ export const TableBlocks = [
             <div class="textTemp2">Check it out</div>
           </div>
         </div>
-        <div class="testColumn">
+        <div class="colStyle">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
-
-
       </div>
       `,
-
   },
+
+
 
 
 

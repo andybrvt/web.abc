@@ -29,10 +29,11 @@ export const TableBlocks = [
         }
         .testColumn{
           position: relative;
-          min-height: 70px;
+          height: 150px;
           flex-grow: 1;
           flex-basis: 100%;
           overflow:hidden;
+          background: pink;
         }
         .testImage{
           width:100%;
@@ -45,6 +46,20 @@ export const TableBlocks = [
           top: 20%;
           font-size: 10px;
         }
+        .buttonTemp1{
+          position:absolute;
+          display: inline-flex;
+          align-items: center;
+          background: black;
+          padding: 0 20px;
+          height: 15px;
+          left: 5%;
+          top: 50%;
+        }
+        .textTemp1{
+          color: white;
+          font-size: 5px;
+        }
       </style>
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
@@ -54,6 +69,9 @@ export const TableBlocks = [
         <h1 class = "testText">
           Put your brands message here and show the world who you are
         </h1>
+        <div data-gjs-type ="button" class="buttonTemp1">
+          <div class="textTemp1">Check it out</div>
+        </div>
       </div>`,
     content: `
       <style>

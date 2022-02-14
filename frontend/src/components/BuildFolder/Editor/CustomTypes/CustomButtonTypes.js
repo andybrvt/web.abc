@@ -37,6 +37,7 @@ export const CoreButtonType = editor => {
 export const ButtonType1 = editor => {
   editor.DomComponents.addType("button1", {
     extend: 'button',
+    isComponent: el => el.id === "button1",
     events: {
 
 

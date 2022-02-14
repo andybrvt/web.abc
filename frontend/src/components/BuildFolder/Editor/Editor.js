@@ -462,6 +462,9 @@ export const Editor = (props) => {
         opts.abort = 1;
       }
     });
+    editor.on('component:selected', model =>{
+      console.log(model)
+    })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 

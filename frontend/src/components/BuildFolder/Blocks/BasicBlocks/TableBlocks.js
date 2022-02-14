@@ -1,4 +1,17 @@
+const rowStyle  = `
+  .rowStyle{
+    position: relative;
+    width: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+`
 
+const colStyle = `
+
+`
 
 export const TableBlocks = [
 
@@ -6,7 +19,7 @@ export const TableBlocks = [
     id: 'template1',
     category: 'Templates',
     media: `  <style>
-        .testRow{
+        .rowStyle{
           position: relative;
           width: 300px;
           display: flex;
@@ -34,7 +47,7 @@ export const TableBlocks = [
         }
       </style>
 
-      <div data-gjs-dmode = "absolute" class="testRow">
+      <div data-gjs-dmode = "absolute" class="rowStyle">
         <div class="testColumn">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
@@ -44,7 +57,7 @@ export const TableBlocks = [
       </div>`,
     content: `
       <style>
-        .testRow{
+        .rowStyle{
           position: relative;
           width: 100%;
           display: flex;
@@ -71,15 +84,32 @@ export const TableBlocks = [
           top: 20%;
           font-size: 70px;
         }
+        .buttonTemp1{
+          position:absolute;
+          display: inline-flex;
+          align-items: center;
+          background: black;
+          padding: 0 50px;
+          height: 45px;
+          left: 10%;
+          top: 75%;
+        }
+        .textTemp1{
+          color: white;
+        }
+
       </style>
 
-      <div data-gjs-dmode = "absolute" class="testRow">
+      <div data-gjs-dmode = "absolute" class="rowStyle">
         <div class="testColumn">
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
         <h1 class = "testText">
         Put your brands message here and show the world who you are
         </h1>
+        <div data-gjs-type ="button" class="buttonTemp1">
+          <div class="textTemp1">Check it out</div>
+        </div>
       </div>
       `,
 

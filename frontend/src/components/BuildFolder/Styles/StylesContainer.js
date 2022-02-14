@@ -14,7 +14,7 @@ export const StylesContainer = (props) => {
     <div class = "styles-container">
 
 
-      <div>heifhishdf
+      <div>
       </div>
     </div>
 

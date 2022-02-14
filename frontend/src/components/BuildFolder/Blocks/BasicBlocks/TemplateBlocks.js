@@ -39,7 +39,7 @@ const colStyleMedia = `
 }
 `
 
-export const TableBlocks = [
+export const TemplateBlocks = [
 
   {
     id: 'template1',

@@ -53,12 +53,12 @@ import {
 import {
   RowCore,
   ColumnCore,
-  TestRow,
-  TestColumn,
-} from './CustomTypes/CustomColumnTypes';
+} from './CustomTypes/CustomTemplateTypes';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
+import grapesjsStyleGradient from 'grapesjs-style-gradient';
 
 const PLUGINS = [
+  grapesjsStyleGradient,
   grapesjsBlocksBasic,
   CoreButtonType,
   ButtonType1,
@@ -90,8 +90,6 @@ const PLUGINS = [
 
   RowCore,
   ColumnCore,
-  TestRow,
-  TestColumn
 ]
 export const Editor = (props) => {
 
@@ -135,6 +133,7 @@ export const Editor = (props) => {
       width: 'auto',
       plugins:PLUGINS,
       autosave: true,
+
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using
@@ -247,52 +246,52 @@ export const Editor = (props) => {
       },
       styleManager: {
         appendTo: '.styles-container',
-        sectors: [
-          {
-            name: 'Dimension',
-            open: false,
-            // build props is any css property
-            buildProps: ['width', 'min-height', 'padding', 'color'],
-            // this to modify and adjust
-            properties: [
-              {
-                // You can have different types of inputsto change the
-                // dimention
-                type: 'integer',
-                name: 'The width',
-                property: 'width', // will extend build props if in it
-                units: ['px', '%'],
-                defaults: 'auto',
-                min: 0,
-              },
-
-            ]
-          },
-
-          // you gotta put it seperately
-          {
-            name: 'Extra',
-            open: false,
-            buildProps: ['background-color', 'box-shadow','custom-prop'],
-            // custom-prop --> you can show it here in properties
-            properties:[
-              {
-                id: 'custom-prop',
-                name: 'Custom Label',
-                property: 'font-size',
-                type: 'select',
-                defaults: '32px',
-                // List of options available only for select and radio types
-                option: [
-                  {value: '12px', name: 'Tiny'},
-                  {value: '18px', name: 'Medium'},
-                  {value: '32px', name: 'Big'}
-                ]
-              }
-            ]
-          }
-
-        ]
+        // sectors: [
+        //   {
+        //     name: 'Dimension',
+        //     open: false,
+        //     // build props is any css property
+        //     buildProps: ['width', 'min-height', 'padding', 'color'],
+        //     // this to modify and adjust
+        //     properties: [
+        //       {
+        //         // You can have different types of inputsto change the
+        //         // dimention
+        //         type: 'integer',
+        //         name: 'The width',
+        //         property: 'width', // will extend build props if in it
+        //         units: ['px', '%'],
+        //         defaults: 'auto',
+        //         min: 0,
+        //       },
+        //
+        //     ]
+        //   },
+        //
+        //   // you gotta put it seperately
+        //   {
+        //     name: 'Extra',
+        //     open: false,
+        //     buildProps: ['background-color', 'box-shadow','custom-prop'],
+        //     // custom-prop --> you can show it here in properties
+        //     properties:[
+        //       {
+        //         id: 'custom-prop',
+        //         name: 'Custom Label',
+        //         property: 'font-size',
+        //         type: 'select',
+        //         defaults: '32px',
+        //         // List of options available only for select and radio types
+        //         option: [
+        //           {value: '12px', name: 'Tiny'},
+        //           {value: '18px', name: 'Medium'},
+        //           {value: '32px', name: 'Big'}
+        //         ]
+        //       }
+        //     ]
+        //   }
+        //
+        // ]
       },
       layerManager:{
         appendTo: '.layers-container'
@@ -386,6 +385,8 @@ export const Editor = (props) => {
       }
 
     })
+
+
 
     editor.on("block:drag:start", (block, obj) => {
 

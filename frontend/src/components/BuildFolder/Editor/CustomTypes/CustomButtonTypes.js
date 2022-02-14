@@ -17,8 +17,7 @@ export const CoreButtonType = editor => {
     },
     extend: 'text', // NEED THIS LINE to extend text on button
     isComponent: function (el) {
-    if (el.tagName === 'BUTTON')
-      return {type: 'button'};
+      return el.id === 'button'
     },
     view: buttonType.view.extend({
       events: {

@@ -1,22 +1,51 @@
 
 
 export const TableBlocks = [
+
   {
-    label: "Button 1",
-    category: "Columns",
-    media: '<div>Stuff here</div>',
-    content: {type: 'testRow'}
+    id: 'template1',
+    category: 'Templates',
+    media: `  <style>
+        .testRow{
+          position: relative;
+          width: 300px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: stretch;
+          flex-wrap: nowrap;
+        }
+        .testColumn{
+          position: relative;
+          min-height: 70px;
+          flex-grow: 1;
+          flex-basis: 100%;
+          overflow:hidden;
+        }
+        .testImage{
+          width:100%;
+          height: 100%:
+        }
+        .testText{
+          position: absolute;
+          width: 40%;
+          left:5%;
+          top: 20%;
+          font-size: 10px;
+        }
+      </style>
 
-
-  },
-  {
-    id: 'table',
-    label: 'Table',
-    category: 'Columns',
-
-    content: [`
+      <div data-gjs-dmode = "absolute" class="testRow">
+        <div class="testColumn">
+          <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+        </div>
+        <h1 class = "testText">
+          Put your brands message here and show the world who you are
+        </h1>
+      </div>`,
+    content: `
       <style>
         .testRow{
+          position: relative;
           width: 100%;
           display: flex;
           justify-content: flex-start;
@@ -37,6 +66,10 @@ export const TableBlocks = [
         }
         .testText{
           position: absolute;
+          width: 40%;
+          left: 10%;
+          top: 20%;
+          font-size: 70px;
         }
       </style>
 
@@ -45,10 +78,10 @@ export const TableBlocks = [
           <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </div>
         <h1 class = "testText">
-          Put your brands message here
+        Put your brands message here and show the world who you are
         </h1>
       </div>
-      `, {type: 'button1'}],
+      `,
 
   }
 

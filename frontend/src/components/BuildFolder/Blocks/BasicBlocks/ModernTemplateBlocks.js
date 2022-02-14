@@ -58,13 +58,15 @@ export const ModernTemplateBlocks = [
           color: white;
           min-height: 500px;
           font: caption;
-          background-image: linear-gradient(90deg, rgb(0, 255, 205) 1%, rgb(227, 162, 220) 99%)
+          background-image: linear-gradient(90deg, #00FFFF 1%, #F5F5DC 99%)
         }
       </style>
       <div class="rowStyleM">
         <div class="colStyleM">
 
-        <div class = "gradientBackground"></div>
+        <div
+          class ='gradientBackground'
+        ></div>
         </div>
       </div>
     `

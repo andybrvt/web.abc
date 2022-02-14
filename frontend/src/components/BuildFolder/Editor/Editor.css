@@ -1,5 +1,6 @@
 body{
   margin:0;
+  height: 100%;
 }
 
 #gjs{
@@ -30,7 +31,7 @@ body{
   z-index: 2000;
   background: white;
   padding-top: 25px;
-  box-shadow: 4px 4px 4px gainsboro;
+  /* box-shadow: 4px 4px 4px gainsboro; */
 }
 
 .column {
@@ -42,7 +43,7 @@ body{
 .editorHeaderContainer{
   height: 5vh;
   position: relative;
-  box-shadow: 2px 4px 4px gainsboro;
+  /* box-shadow: 2px 4px 4px gainsboro; */
   z-index: 1000;
 }
 
@@ -127,7 +128,7 @@ body{
   flex-basis: 300px;
   position: relative;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .panel__switcher {

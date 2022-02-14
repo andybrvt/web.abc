@@ -17,11 +17,13 @@ import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutl
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard  } from '@fortawesome/free-solid-svg-icons'
+import {Canvas} from '../../TestingFolder/ReactDesignerTest';
 import {
   ButtonType1,
   ButtonType2,
   ButtonType3,
   ButtonType4,
+  ButtonType5,
   CoreButtonType } from './CustomTypes/CustomButtonTypes';
 import {
   UpdateTextType,
@@ -43,21 +45,27 @@ import {
   Line1,
   Line2,
 } from './CustomTypes/CustomLineTypes';
-
-
 import {
   InputTypes,
   Input1,
   Input2,
 } from './CustomTypes/CustomInputTypes';
+import {
+  RowCore,
+  ColumnCore,
+  TestRow,
+  TestColumn,
+} from './CustomTypes/CustomColumnTypes';
+import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 
 const PLUGINS = [
+  grapesjsBlocksBasic,
   CoreButtonType,
   ButtonType1,
   ButtonType2,
   ButtonType3,
   ButtonType4,
-
+  ButtonType5,
 
   UpdateTextType,
   Header1TextType,
@@ -79,6 +87,11 @@ const PLUGINS = [
   InputTypes,
   Input1,
   Input2,
+
+  RowCore,
+  ColumnCore,
+  TestRow,
+  TestColumn
 ]
 export const Editor = (props) => {
 
@@ -91,12 +104,13 @@ export const Editor = (props) => {
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: 1,
-      dragMode: "absolute",
       allowScripts: 1,
+      dragMode: 'translate',
       height: '95vh',
       width: 'auto',
       plugins:PLUGINS,
-      autosave: true, 
+      autosave: true,
+      storageManager: false,
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using
@@ -280,6 +294,20 @@ export const Editor = (props) => {
 
         blocks: [
           {
+            id: 'table',
+            label: 'Table',
+            category: 'Basic',
+            attributes: { class: 'fa fa-table' },
+            content: `
+                <table class="table table-striped table-bordered table-resizable">
+                    <tr><td>stuff here</td><td></td><td></td></tr>
+                    <tr><td>stuff here</td><td></td><td></td></tr>
+                    <tr><td>stuff here</td><td></td><td></td></tr>
+                </table>
+              `,
+          },
+
+          {
             id: 'section', // id is mandatory
             label: '<div>Sections</div>', // You can use HTML/SVG inside labels
             attributes: { class:'gjs-block-section' },
@@ -335,6 +363,13 @@ export const Editor = (props) => {
 
     })
 
+    editor.on("block:drag:start", (block, obj) => {
+
+      setVisibility(false)
+
+    })
+
+    editor.runCommand('sw-visibility');
     editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
 
     // CHANGE THIS LATER
@@ -458,15 +493,21 @@ export const Editor = (props) => {
   // mechanics for opening and closing the drawer
   const changeDrawerVisibility = (category) => {
 
-    if(category !== toolsCategory){
+    if(visibility === false){
       setToolsCategory(category)
-      if(!visibility){
-        setVisibility(true)
+      setVisibility(true)
+    } else{
+      if(category !== toolsCategory){
+        setToolsCategory(category)
+        if(!visibility){
+          setVisibility(true)
+        }
+      } else {
+        setToolsCategory('')
+        setVisibility(false)
       }
-    } else {
-      setToolsCategory('')
-      setVisibility(false)
     }
+
     // if(visibility){
     //   setVisibility(false)
     // } else {
@@ -493,29 +534,7 @@ export const Editor = (props) => {
 
           </div>
       </div>
-
-
-          {/*
-
-
-
-            <div class="panel__devices"></div>
-
-            <div id="panel__basic-actions"></div>
-
-
-
-          */}
-
-
-
-
-
       <div class="row">
-
-
-
-
         <div class = "firstColumn">
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
@@ -573,17 +592,10 @@ export const Editor = (props) => {
           <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
         </Drawer>
 
-        {/*
-          <div class="firstColumn" >
-          </div>
-
-          */}
-
-
-
-
-
         <div class="column">
+          {/*
+            <Canvas />
+            */}
           <div id = "gjs"></div>
         </div>
 

@@ -11,6 +11,7 @@ export const CoreButtonType = editor => {
       defaults:{
         name: "button",
         resizable:"true",
+        dmode: 'absolute'
         // editable:true, ony works on text components
       }
     },
@@ -21,12 +22,12 @@ export const CoreButtonType = editor => {
     },
     view: buttonType.view.extend({
       events: {
-      dblclick: 'onActive',
-      input: 'onInput',
-      dragstart: 'handleDragStart',
-      click: function() {
-         /*Click function */
-      }
+        dblclick: 'onActive',
+        input: 'onInput',
+        dragstart: 'handleDragStart',
+        click: function() {
+           /*Click function */
+        }
     },
     }),
 
@@ -45,11 +46,14 @@ export const ButtonType1 = editor => {
       defaults:{
         styles: `
             .button{
-              padding:20px 55px 20px 55px;             background: black;
-              text-align: center;
+              display: inline-flex;
+              align-items: center;
+              background: black;
+              padding: 0 50px;
+
+              height: 45px;
             }
             .text{
-
               color: white;
             }
         `,
@@ -151,25 +155,26 @@ export const ButtonType5 = editor => {
     model: {
       defaults:{
         styles: `
-        .container {
-        }
+        .button5 {
+        display: inline-flex;
+        align-items: center;
+        background: #C06C84;
 
-        .my-button {
-          width: 100px;
-          height: 100px;
-          border-radius: 100px;
-          outline: none;
-          background: #b71540;
-          color: white;
-          cursor: pointer;
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-        }
+        border-radius: 5px;
+        height: 45px;
+        padding: 0 30px;
+        color: #fff;
 
+        text-transform: uppercase;
+        text-decoration: none;
+
+
+      }
         `,
         content:
-        `<div clas<div class="container">
-          <button class="my-button">Button</button>
-        </div>`,
+        `<div class="button5">
+            Subscribe
+          </div>`,
       }
     }
   })

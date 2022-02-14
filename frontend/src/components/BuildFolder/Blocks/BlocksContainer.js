@@ -5,7 +5,7 @@ import {TextBlocks} from './BasicBlocks/TextBlocks';
 import {LineBlocks} from './BasicBlocks/LineBlocks';
 import {InputBlocks} from './BasicBlocks/Input/InputBlocks';
 import {Shapes} from './Shapes/Shapes'
-
+import {TableBlocks} from './BasicBlocks/TableBlocks';
 export const BlocksContainer = (props) => {
 
   const [editor, setEditor] = useState(null)
@@ -55,13 +55,14 @@ export const BlocksContainer = (props) => {
         LineBlocks, {external:true})
       const inputBlocks = editor.BlockManager.render(
          InputBlocks, {external:true})
+      const tableBlocks = editor.BlockManager.render(
+        TableBlocks, {external: false})
 
       document.getElementById('blocks').appendChild(buttonBlocks);
       document.getElementById('blocks').appendChild(textBlocks);
       document.getElementById('blocks').appendChild(lineBlocks);
       document.getElementById('blocks').appendChild(inputBlocks);
-
-
+      document.getElementById("blocks").appendChild(tableBlocks);
     }
 
     if(category === "shapes"){

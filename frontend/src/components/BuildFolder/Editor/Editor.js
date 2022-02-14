@@ -110,7 +110,6 @@ export const Editor = (props) => {
       width: 'auto',
       plugins:PLUGINS,
       autosave: true,
-      storageManager: false,
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using
@@ -466,7 +465,11 @@ export const Editor = (props) => {
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
-
+    editor.on('load', () => {
+      const fontProperty = editor.StyleManager.getProperty('typography', 'font-family')
+      const typographySector = editor.StyleManager.getSector('Typography');
+      console.log({fontProperty, typographySector}); // both are returned undefined
+    })
     setEditor(editor)
   },[])
 

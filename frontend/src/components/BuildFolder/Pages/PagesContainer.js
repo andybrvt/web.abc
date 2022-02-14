@@ -11,7 +11,7 @@ export const PagesContainer = (props) => {
   const [pageManager, setPageManager] = useState(null);
 
   const [pages, setPages] = useState([]);
-  const [curPageID, setcurPageID]=useState("")
+  const [curPageID, setcurPageID]=useState("page-1")
   const [pageName, SetPageName] = useState(null);
   const [pageCondition, changePageCondition] = useState(false);
   useEffect(() => {
@@ -140,11 +140,16 @@ export const PagesContainer = (props) => {
               console.log("hi")
               console.log(event.target.value)
               console.log("hellooo" + curPageID)
+              console.log(pageManager.getAll())
               // console.log(pageManager.get("page-1"))
-              console.log(pageManager.get(""))
+              console.log(pageManager.get(curPageID))
+              // https://github.com/artf/grapesjs/issues/3878
               // console.log(pageManager.getMain())
                 // pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
-                pageManager.get("").set({ id: curPageID, name: event.target.value })
+                pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
+                editor.on('storage:store', function(e) {
+                    console.log('Stored ', e);
+              })
             }
           }} autoFocus={true}/>
             <Dropdown overlay={menu} placement="bottomCenter" trigger={['hover']}>

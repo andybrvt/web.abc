@@ -253,7 +253,7 @@ export const TableBlocks = [
 
   },
   {
-    id: 'template2',
+    id: 'template3',
     category: 'Templates',
     media: `  <style>
         .rowStyle{
@@ -301,9 +301,6 @@ export const TableBlocks = [
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
         <div class="testColumn">
-          <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
-        </div>
-        <div class="testColumn">
           <h1 class = "testText2">
           Put your brands message here and show the world who you are
           </h1>
@@ -311,6 +308,10 @@ export const TableBlocks = [
             <div class="textTemp2">Check it out</div>
           </div>
         </div>
+        <div class="testColumn">
+          <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+        </div>
+
       </div>`,
     content: `
       <style>
@@ -359,9 +360,6 @@ export const TableBlocks = [
 
       <div data-gjs-dmode = "absolute" class="rowStyle">
         <div class="testColumn">
-          <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
-        </div>
-        <div class="testColumn">
           <h1 class = "testText2">
           Put your brands message here and show the world who you are
           </h1>
@@ -369,6 +367,10 @@ export const TableBlocks = [
             <div class="textTemp2">Check it out</div>
           </div>
         </div>
+        <div class="testColumn">
+          <img class ='testImage' src = "https://images.unsplash.com/photo-1640622842008-1897f26aafe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+        </div>
+
 
       </div>
       `,

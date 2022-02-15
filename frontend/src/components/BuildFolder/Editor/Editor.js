@@ -452,7 +452,9 @@ export const Editor = (props) => {
       }
     });
     editor.on('component:selected', model =>{
-      console.log(model)
+      // editor.addComponents('<div class="popoverDiv">New component</div>')
+      // editor.setStyle('.popoverDiv{ top:200}');
+      // console.log("model selected")
     })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
@@ -460,7 +462,7 @@ export const Editor = (props) => {
     editor.on('load', () => {
       const fontProperty = editor.StyleManager.getProperty('typography', 'font-family')
       const typographySector = editor.StyleManager.getSector('Typography');
-      console.log({fontProperty, typographySector}); // both are returned undefined
+
     })
     setEditor(editor)
   },[])

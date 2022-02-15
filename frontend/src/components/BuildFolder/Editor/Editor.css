@@ -6,6 +6,13 @@ body{
 #gjs{
 
 }
+.popoverDiv{
+  position: absolute;
+  margin-bottom: 100px;
+   right:25px;
+  color:red;
+  font-size: 80px;
+}
 
 .gjs-sm-sector .gjs-sm-gradient {
    width: 100%;

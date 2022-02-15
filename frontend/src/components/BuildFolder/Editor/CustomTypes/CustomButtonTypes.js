@@ -1,11 +1,27 @@
 // THIS FILE WILL HOUSE ALL THE CUSTOM BUTTON TYPES HERE
 // FOR USES IN EDITOR PLUGINS
-
-
+import './CustomButtonTypes.css'
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+  Button
+} from '@chakra-ui/react'
+import React, { Component }  from 'react';
 
 // this will be the core of every button
 export const CoreButtonType = editor => {
-  var buttonType = editor.DomComponents.getType('text');
+
+  // console.log(editor.DomComponents.getComponent('function* () {
+
+  var buttonText = editor.DomComponents.getType('text');
+
   editor.DomComponents.addType("button", {
     model: {
       defaults:{
@@ -15,25 +31,28 @@ export const CoreButtonType = editor => {
         // editable:true, ony works on text components
       }
     },
-    extend: 'text', // NEED THIS LINE to extend text on button
-    isComponent: function(el){
-      if(el.id ==="button"){
-        return {type: 'button'}
-      }
+
+    isComponent: function (el) {
+      return el.id === 'button'
     },
-    view: buttonType.view.extend({
+
+    extend: 'text', // NEED THIS LINE to extend text on button
+
+
+    view: buttonText.view.extend({
       events: {
         dblclick: 'onActive',
         input: 'onInput',
         dragstart: 'handleDragStart',
-        click: function() {
-           /*Click function */
-        }
+        click:  function(e) {
+
+      }
     },
     }),
 
 
   })
+
 }
 
 export const ButtonType1 = editor => {

@@ -43,8 +43,7 @@ export const BlocksContainer = (props) => {
   }
 
   useEffect(() => {
-
-    console.log(props.category)
+  
     const category = props.category
 
     if(category === "basic"){

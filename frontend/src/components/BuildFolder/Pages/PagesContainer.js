@@ -57,7 +57,7 @@ export const PagesContainer = (props) => {
     console.log("id"+ page.id)
     setcurPageID(page.id)
     console.log("name"+pageManager.get(page.id).attributes.name)
-      SetPageName(pageManager.get(page.id).attributes.name)
+    SetPageName(pageManager.get(page.id).attributes.name)
     if(pageManager !== null){
       return pageManager.select(page)
     }

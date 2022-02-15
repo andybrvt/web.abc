@@ -54,8 +54,12 @@ import {
   RowCore,
   ColumnCore,
 } from './CustomTypes/CustomTemplateTypes';
+import {
+  CustomLinkText1
+} from './CustomTypes/CustomHeaderNavTypes';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
+import image1 from '../../../images/image3.png';
 
 const PLUGINS = [
 
@@ -91,6 +95,16 @@ const PLUGINS = [
   RowCore,
   ColumnCore,
   grapesjsStyleBg,
+
+  CustomLinkText1
+]
+
+const translatedItems = [
+  'mTemplate1',
+  'template1',
+  'template2',
+  'template3'
+
 ]
 export const Editor = (props) => {
 
@@ -158,6 +172,27 @@ export const Editor = (props) => {
       //   params: {},
       //   headers: {}
       // },
+      assetManager:{
+        assets:[
+          'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
+           // Pass an object with your properties
+           {
+             type: 'image',
+             src: image1,
+             height: 350,
+             width: 250,
+             name: 'displayName1'
+           },
+           {
+             // As the 'image' is the base type of assets, omitting it will
+             // be set as `image` by default
+             src: 'http://placehold.it/350x250/79c267/fff/image3.jpg',
+             height: 350,
+             width: 250,
+             name: 'displayName2'
+           },
+        ]
+      },
       panels: {
         defaults: [
           {
@@ -272,73 +307,6 @@ export const Editor = (props) => {
       blockManager: {
         // if it is id then you would use #NAME
         appendTo: '#blocks',
-
-        blocks: [
-          {
-            id: 'table',
-            label: 'Table',
-            category: 'Basic',
-            attributes: { class: 'fa fa-table' },
-            content: `
-                <table class="table table-striped table-bordered table-resizable">
-                    <tr><td>stuff here</td><td></td><td></td></tr>
-                    <tr><td>stuff here</td><td></td><td></td></tr>
-                    <tr><td>stuff here</td><td></td><td></td></tr>
-                </table>
-              `,
-          },
-
-          {
-            id: 'section', // id is mandatory
-            label: '<div>Sections</div>', // You can use HTML/SVG inside labels
-            attributes: { class:'gjs-block-section' },
-            content: `<section>
-              <h1>This is a simple title</h1>
-              <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
-            </section>`,
-          }, {
-            id: 'text',
-            label: 'Text',
-            content: '<div data-gjs-type="text">Insert your text here</div>',
-          }, {
-            id: 'image',
-            label: 'Image',
-            // Select the component once it's dropped
-            select: true,
-            // You can pass components as a JSON instead of a simple HTML string,
-            // in this case we also use a defined component type `image`
-            content: { type: 'image' },
-            // This triggers `active` event on dropped components and the `image`
-            // reacts by opening the AssetManager
-            activate: true,
-          },
-          {
-            id: 'h4Block',
-            label: 'h4',
-            // Select the component once it's dropped
-            select: true,
-            content: `
-              <h4>This is a simple title</h4>
-            `,
-            activate: true,
-          },
-          {
-            id: 'clearCanvas',
-            label: 'Clear Canvas',
-            // Select the component once it's dropped
-            select: false,
-            // You can pass components as a JSON instead of a simple HTML string,
-              // in this case we also use a defined component type `image`
-            content: ` `,
-            // This triggers `active` event on dropped components and the `image`
-            // reacts by opening the AssetManager
-            activate: true,
-          },
-
-
-
-
-        ]
       }
 
     })
@@ -351,10 +319,19 @@ export const Editor = (props) => {
       defaults: 'none'
     });
 
-    editor.on("block:drag:start", (block, obj) => {
 
+
+
+    editor.on("block:drag:start", (block, obj) => {
+      console.log(block, obj)
       setVisibility(false)
 
+      if(translatedItems.includes(block.id)){
+        console.log('template here')
+        editor.setDragMode("translate")
+      } else {
+        editor.setDragMode("absolute")
+      }
     })
 
     editor.runCommand('sw-visibility');

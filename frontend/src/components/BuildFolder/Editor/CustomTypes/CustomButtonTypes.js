@@ -35,18 +35,7 @@ export const CoreButtonType = editor => {
     isComponent: function (el) {
       return el.id === 'button'
     },
-    // view: defaultType.view.extend({
-	  //   events: {
-    //     dblclick: 'onActive',
-    //     input: 'onInput',
-    //     dragstart: 'handleDragStart',
-	  //     click:  function(e) {
-    //     }
-    //     //   return e.target.append(<div class="popoverDiv">eeee</div>)
-    //     //   },
-		//   // dblclick: function() {return <div class="popoverDiv"></div>}
-	  //   },
-    // }),
+
     extend: 'text', // NEED THIS LINE to extend text on button
 
 
@@ -56,7 +45,7 @@ export const CoreButtonType = editor => {
         input: 'onInput',
         dragstart: 'handleDragStart',
         click:  function(e) {
-  
+
       }
     },
     }),
@@ -69,7 +58,11 @@ export const CoreButtonType = editor => {
 export const ButtonType1 = editor => {
   editor.DomComponents.addType("button1", {
     extend: 'button',
-    isComponent: el => el.id === "button1",
+    isComponent: function(el){
+      if(el.id ==="button1"){
+        return {type: 'button1'}
+      }
+    },
     events: {
 
 
@@ -82,7 +75,6 @@ export const ButtonType1 = editor => {
               align-items: center;
               background: black;
               padding: 0 50px;
-
               height: 45px;
             }
             .text{

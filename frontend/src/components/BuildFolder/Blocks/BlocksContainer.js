@@ -7,6 +7,7 @@ import {InputBlocks} from './BasicBlocks/Input/InputBlocks';
 import {Shapes} from './Shapes/Shapes'
 import {TemplateBlocks} from './BasicBlocks/TemplateBlocks';
 import {ModernTemplateBlocks} from './BasicBlocks/ModernTemplateBlocks';
+import {LinkBlocks} from './BasicBlocks/LinkBlocks';
 export const BlocksContainer = (props) => {
 
   const [editor, setEditor] = useState(null)
@@ -60,6 +61,9 @@ export const BlocksContainer = (props) => {
     const mTemplateBlocks = editor.BlockManager.render(
         ModernTemplateBlocks, {external: true}
     )
+    const linkBlocks = editor.BlockManager.render(
+        LinkBlocks, {external: true}
+    )
 
 
 
@@ -69,6 +73,17 @@ export const BlocksContainer = (props) => {
     document.getElementById('blocks').appendChild(inputBlocks);
     document.getElementById("blocks").appendChild(templateBlocks);
     document.getElementById("blocks").appendChild(mTemplateBlocks);
+    document.getElementById("blocks").appendChild(linkBlocks);
+
+    const categories = editor.BlockManager.getCategories();
+    categories.each(category => {
+    	category.set('open', false).on('change:open', opened => {
+    		opened.get('open') && categories.each(category => {
+                category !== opened && category.set('open', false)
+            })
+    	})
+    })
+
   }
 
     if(category === "shapes"){

@@ -55,7 +55,7 @@ export const ModernTemplateBlocks = [
           text-align: center;
           color: white;
           height: 100%;
-          background-image: linear-gradient(90deg, #8a2be2 1%, #ba55d3 99%)
+          background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
         }
         .mHeaderText{
           position: absolute;
@@ -77,11 +77,14 @@ export const ModernTemplateBlocks = [
             position: absolute;
             display: inline-flex;
             align-items: center;
-            background: black;
+            background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
             padding: 0 50px;
             height: 45px;
             left: 12%;
             top: 70%;
+            border-radius: 15px;
+            font-family: Monospace;
+
         }
         .mButton2{
             position: absolute;
@@ -92,6 +95,16 @@ export const ModernTemplateBlocks = [
             height: 45px;
             left: 25%;
             top: 70%;
+            border-radius: 15px;
+            font-family: Monospace;
+
+        }
+        .mImage{
+          position: absolute;
+          right: 5%;
+          top: 15%;
+          width: 50%;
+
         }
       </style>
       <div class="rowStyleM">
@@ -110,10 +123,16 @@ export const ModernTemplateBlocks = [
         <div data-gjs-type="button" class='mButton2'>
           Buy Now
         </div>
-
+        <img class ="mImage" src = "https://o.remove.bg/downloads/a0b58791-69f0-4ccf-879f-72bc0729362e/jeremy-bezanger-7qO_5sKOgWg-unsplash-removebg-preview.png"/>
       </div>
     `
   }
 
 
 ]
+
+// <img src="https://o.remove.bg/downloads/3a752349-25eb-4aaf-905e-0e22a8c4af17/jeremy-bezanger-Ld0ktDeje8I-unsplash-removebg-preview.png" />
+// <img src="https://o.remove.bg/downloads/4a9facba-afb5-40c9-82f5-28d26a6d343e/ferhat-deniz-fors-YOCDD-D4oOM-unsplash__1_-removebg-preview.png" />
+// <img src ="https://o.remove.bg/downloads/e51400c6-4705-433e-b8e5-5e98176083b3/shubham-dhage-26PeYRqpBh8-unsplash-removebg-preview.png"/>
+// <img src="https://o.remove.bg/downloads/5553185c-2c22-45b7-8444-9ce8ac1f9cd2/arthur-mazi-PIwz4C6wr9A-unsplash-removebg-preview.png" />
+// <img src="https://o.remove.bg/downloads/424c7b85-b592-4a40-b6ca-6c7c5af942a7/jeremy-bezanger-cD5qFAlSk_E-unsplash-removebg-preview.png" />

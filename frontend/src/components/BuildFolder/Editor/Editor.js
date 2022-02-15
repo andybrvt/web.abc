@@ -109,6 +109,11 @@ export const Editor = (props) => {
         storeHtml: true,
         storeCss: true
       },
+
+      // https://github.com/artf/grapesjs/issues/857
+      canvas: {
+                styles: ['https://fonts.googleapis.com/css?family=Archivo+Narrow:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext'],
+            },
       // // this is the remote storage (probally gonna use this one here)
       // storageManager: {
       //   type: 'remote',
@@ -143,7 +148,7 @@ export const Editor = (props) => {
           buttons:[
             {
               id: 'show-layers',
-              active: true, // gotta set this one too to active only (like the button is clicked on)
+              // active: true, // gotta set this one too to active only (like the button is clicked on)
               label: 'Layers',
               command: "show-layers", //PUT BACK LATER
               togglable: false,
@@ -167,13 +172,7 @@ export const Editor = (props) => {
                 }
               },
 
-            {
-              id: "clearCanvas",
-              active: true,
-              label: 'Clear',
-              command: 'show-traits', // PUT BACK LATER
-              togglable: false
-            },
+
 
 
           ]
@@ -214,9 +213,10 @@ export const Editor = (props) => {
             name: 'Dimension',
             open: false,
             // build props is any css property
-            buildProps: ['width', 'min-height', 'padding', 'color'],
+            buildProps: ['width', 'min-height', 'padding', 'color', 'font-family'],
             // this to modify and adjust
             properties: [
+
               {
                 // You can have different types of inputsto change the
                 // dimention
@@ -224,10 +224,40 @@ export const Editor = (props) => {
                 name: 'The width',
                 property: 'width', // will extend build props if in it
                 units: ['px', '%'],
+                property: 'font-family',
+	              name: 'Fonttttt',
                 defaults: 'auto',
+                list: [
+          			{ name: 'Arial', value: 'Arial, Helvetica, sans-serif' }
+
+              ],
                 min: 0,
               },
+            ]
+          },
+          {
+            name: 'Dimension2',
+            open: false,
+            // build props is any css property
+            buildProps: ['font-family'],
+            // this to modify and adjust
+            properties: [
 
+              {
+
+                property: 'font-family, Typography',
+	              name: 'Fonttttt',
+                defaults: 'auto',
+                list: [{
+                value: '',
+                name: ''
+              },
+              {
+                value: 'Bank Gothic',
+                name: 'Bank Gothic'
+              }],
+                min: 0,
+              },
             ]
           },
 
@@ -428,14 +458,70 @@ export const Editor = (props) => {
         opts.abort = 1;
       }
     });
-    editor.on('run:export-template', () => console.log('After the command run'));
-    editor.on('abort:export-template', () => console.log('Command aborted'));
 
     editor.on('load', () => {
-      const fontProperty = editor.StyleManager.getProperty('typography', 'font-family')
-      const typographySector = editor.StyleManager.getSector('Typography');
-      console.log({fontProperty, typographySector}); // both are returned undefined
+      let styleManager = editor.StyleManager;
+      styleManager.addProperty('dimension2', {
+              name: 'Fonts',
+              property: 'Typography',
+              type: 'select',
+              defaults: '',
+              list: [
+              {
+                value: 'Helvetica',
+                name: 'Helvetica'
+              },
+              {
+                value: 'Futura',
+                name: 'Futura'
+              },
+              {
+                value: 'Trajan',
+                name: 'Trajan'
+              },
+              {
+                value: 'Garmond',
+                name: 'Garmond'
+              },
+              {
+                value: 'Proxima Nova',
+                name: 'Proxima Nova'
+              },
+              {
+                value: 'test',
+                name: 'test'
+              },
+
+              {
+                value: 'Bank Gothic',
+                name: 'Bank Gothic'
+              }]
+            })
+        console.log(styleManager.getProperties('dimension2'))
+        let typographySector = styleManager.getSector('dimension2');
+        let fontProperty = styleManager.getProperty('dimension2', 'Typography');
+        console.log(fontProperty)
+        let list = fontProperty.get('list');
+        list.push({ value: 'Roboto, Arial, sans-serif', name: 'Roboto' });
+        fontProperty.set('list', list);
+        styleManager.render();
+    });
+    editor.on('component:update:content', model => {
+      console.log('New content', model.get('content'));
+      // do your stuff...
     })
+    editor.on('update', e => {
+      console.log(e)
+    // get the event
+    // get the specific, recent updates (HTML and CSS)
+    })
+
+
+    editor.on('run:export-template', () => console.log('After the command run'));
+    editor.on('abort:export-template', () => console.log('Command aborted'));
+    // console.log(editor.getSelected())
+    // editor.getSelected().components({ color: 'red' })
+
     setEditor(editor)
   },[])
 

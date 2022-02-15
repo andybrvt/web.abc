@@ -7,6 +7,17 @@ const rowStyle  = `
     align-items: stretch;
     flex-wrap: nowrap;
     color: white;
+    font-family: Monospace;
+
+  }
+`
+
+const headerStyle = `
+  .header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display:flex;
   }
 `
 const rowStyleMedia = `
@@ -39,6 +50,30 @@ const colStyleMedia = `
 }
 `
 
+const menu = `
+  .menu{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: 5%;
+  }
+`
+
+const logo = `
+  .logo{
+    margin-left: 7%;
+    font-weight: bold;
+  }
+`
+
+const headerItem = `
+  .headerItem{
+    text-align:center;
+    justify-content: center;
+    padding: 25px;
+    font-size: 20px;
+  }
+`
 // this will be used more for modernized templates like that of the
 // web3 space
 export const ModernTemplateBlocks = [
@@ -48,9 +83,12 @@ export const ModernTemplateBlocks = [
     media: `<div>Stuff here</div>`,
     content: `
       <style>
-
+        ${headerStyle}
         ${rowStyle}
         ${colStyle}
+        ${menu}
+        ${logo}
+        ${headerItem}
         .gradientBackground1{
           text-align: center;
           color: white;
@@ -70,7 +108,7 @@ export const ModernTemplateBlocks = [
           position: absolute;
           width: 25%;
           left: 12%;
-          top: 47%;
+          top: 48%;
           font-family: Monospace;
         }
         .mButton1{
@@ -107,10 +145,29 @@ export const ModernTemplateBlocks = [
 
         }
       </style>
-      <div class="rowStyleM">
+      <div data-gjs-dmode="absolute" class="rowStyleM">
         <div class="colStyleM">
           <div class ='gradientBackground1'/>
         </div>
+
+        <div class="header">
+          <a class="logo headerItem">Web.abc</a>
+          <div class="menu">
+            <a class="headerItem">
+              Home
+            </a>
+            <a class="headerItem">
+              About
+            </a>
+            <a class="headerItem">
+              Our Team
+            </a>
+            <a class="headerItem">
+              Funding
+            </a>
+          </div>
+        </div>
+
         <h1 class ="mHeaderText">
           Brand New Protocol
         </h1>
@@ -120,10 +177,10 @@ export const ModernTemplateBlocks = [
         <div data-gjs-type="button" class='mButton1'>
           Go to Page
         </div>
-        <div data-gjs-type="button" class='mButton2'>
+        <div data-gjs-type="button1" class='mButton2'>
           Buy Now
         </div>
-        <img class ="mImage" src = "https://o.remove.bg/downloads/a0b58791-69f0-4ccf-879f-72bc0729362e/jeremy-bezanger-7qO_5sKOgWg-unsplash-removebg-preview.png"/>
+        <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
       </div>
     `
   }

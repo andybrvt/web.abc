@@ -16,8 +16,10 @@ export const CoreButtonType = editor => {
       }
     },
     extend: 'text', // NEED THIS LINE to extend text on button
-    isComponent: function (el) {
-      return el.id === 'button'
+    isComponent: function(el){
+      if(el.id ==="button"){
+        return {type: 'button'}
+      }
     },
     view: buttonType.view.extend({
       events: {
@@ -37,7 +39,11 @@ export const CoreButtonType = editor => {
 export const ButtonType1 = editor => {
   editor.DomComponents.addType("button1", {
     extend: 'button',
-    isComponent: el => el.id === "button1",
+    isComponent: function(el){
+      if(el.id ==="button1"){
+        return {type: 'button1'}
+      }
+    },
     events: {
 
 
@@ -50,7 +56,6 @@ export const ButtonType1 = editor => {
               align-items: center;
               background: black;
               padding: 0 50px;
-
               height: 45px;
             }
             .text{

@@ -42,7 +42,7 @@ export const BlocksContainer = (props) => {
   }
 
   useEffect(() => {
-
+    
     console.log(props.category)
     const category = props.category
 
@@ -117,6 +117,7 @@ export const BlocksContainer = (props) => {
     }
 
   }, [props.category])
+
 
 
   return(

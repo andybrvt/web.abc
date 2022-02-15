@@ -319,7 +319,6 @@ export const Editor = (props) => {
             select: true,
             content: `
               <h4>This is a simple title</h4>
-
             `,
             activate: true,
           },

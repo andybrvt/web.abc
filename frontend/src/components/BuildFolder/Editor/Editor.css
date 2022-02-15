@@ -103,7 +103,7 @@ body{
   overflow: auto;
   width: 5vw;
   z-index: 2000;
-  background: white;
+    background: white;
   padding-top: 25px;
   /* box-shadow: 4px 4px 4px gainsboro; */
 }
@@ -177,6 +177,7 @@ body{
 
 
 .gjs-cv-canvas{
+
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -186,6 +187,7 @@ body{
 
 
 .panel__top {
+  background: green;
   padding: 0;
   height: 50px;
   width: 100%;

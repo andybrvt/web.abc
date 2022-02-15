@@ -17,13 +17,21 @@ export const Canvas = props => {
   }, [])
 
   return (
-    <div style = {{
-        backgroundColor: 'red'
-      }}>
+    <div
+      style = {{
+        zIndex: 9998,
+        position: 'absolute',
+        backgroundColor: 'transparent',
+        width: '100%',
+        height: '95vh'
+
+      }}
+      >
       <canvas style ={{
-          backgroundColor: 'pink',
-          width: '100vw',
-          height: '100vh'
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'transparent',
+
         }} ref={canvasRef} {...props} id="canvas" resize="true"/>
     </div>
   )

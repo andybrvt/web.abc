@@ -5,7 +5,8 @@ import {TextBlocks} from './BasicBlocks/TextBlocks';
 import {LineBlocks} from './BasicBlocks/LineBlocks';
 import {InputBlocks} from './BasicBlocks/Input/InputBlocks';
 import {Shapes} from './Shapes/Shapes'
-
+import {TemplateBlocks} from './BasicBlocks/TemplateBlocks';
+import {ModernTemplateBlocks} from './BasicBlocks/ModernTemplateBlocks';
 export const BlocksContainer = (props) => {
 
   const [editor, setEditor] = useState(null)
@@ -48,21 +49,28 @@ export const BlocksContainer = (props) => {
     if(category === "basic"){
       removeAllChild()
     const buttonBlocks = editor.BlockManager.render(
-       ButtonBlocks, {external:true})
+        ButtonBlocks, {external:true})
     const textBlocks = editor.BlockManager.render(
-       TextBlocks, {external:true})
-     const lineBlocks = editor.BlockManager.render(
+        TextBlocks, {external:true})
+    const lineBlocks = editor.BlockManager.render(
         LineBlocks, {external:true})
-      const inputBlocks = editor.BlockManager.render(
-         InputBlocks, {external:true})
+    const inputBlocks = editor.BlockManager.render(
+        InputBlocks, {external:true})
+    const templateBlocks = editor.BlockManager.render(
+        TemplateBlocks, {external: true})
+    const mTemplateBlocks = editor.BlockManager.render(
+        ModernTemplateBlocks, {external: true}
+    )
 
-      document.getElementById('blocks').appendChild(buttonBlocks);
-      document.getElementById('blocks').appendChild(textBlocks);
-      document.getElementById('blocks').appendChild(lineBlocks);
-      document.getElementById('blocks').appendChild(inputBlocks);
 
 
-    }
+    document.getElementById('blocks').appendChild(buttonBlocks);
+    document.getElementById('blocks').appendChild(textBlocks);
+    document.getElementById('blocks').appendChild(lineBlocks);
+    document.getElementById('blocks').appendChild(inputBlocks);
+    document.getElementById("blocks").appendChild(templateBlocks);
+    document.getElementById("blocks").appendChild(mTemplateBlocks);
+  }
 
     if(category === "shapes"){
 

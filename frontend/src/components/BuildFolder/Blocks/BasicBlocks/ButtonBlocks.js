@@ -2,61 +2,7 @@
 // to a new block, you have to create your own type
 
 export const ButtonBlocks = [
-  {
-    label: 'test 1',
-    category: 'Buttons',
-    media:
-    `
-      <div>
-      <svg height="400" width="450">
-        <path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />
-          <path id="lineBC" d="M 250 50 l 150 300" stroke="red" stroke-width="3" fill="none" />
-          <path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
-          <path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
-          <!-- Mark relevant points -->
-          <g stroke="black" stroke-width="3" fill="black">
-            <circle id="pointA" cx="100" cy="350" r="3" />
-            <circle id="pointB" cx="250" cy="50" r="3" />
-            <circle id="pointC" cx="400" cy="350" r="3" />
-          </g>
-          <!-- Label the points -->
-          <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
-            <text x="100" y="350" dx="-30">A</text>
-            <text x="250" y="50" dy="-10">B</text>
-            <text x="400" y="350" dx="30">C</text>
-          </g>
-          Sorry, your browser does not support inline SVG.
-        </svg>
 
-      </div>
-
-      <style>
-      </style>
-      `,
-    content:`
-    <svg height="400" width="450">
-      <path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />
-        <path id="lineBC" d="M 250 50 l 150 300" stroke="red" stroke-width="3" fill="none" />
-        <path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
-        <path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
-        <!-- Mark relevant points -->
-        <g stroke="black" stroke-width="3" fill="black">
-          <circle id="pointA" cx="100" cy="350" r="3" />
-          <circle id="pointB" cx="250" cy="50" r="3" />
-          <circle id="pointC" cx="400" cy="350" r="3" />
-        </g>
-        <!-- Label the points -->
-        <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
-          <text x="100" y="350" dx="-30">A</text>
-          <text x="250" y="50" dy="-10">B</text>
-          <text x="400" y="350" dx="30">C</text>
-        </g>
-        Sorry, your browser does not support inline SVG.
-      </svg>
-
-    `
-
-  },
   {
     label: 'Button 1',
     category: 'Buttons',
@@ -66,7 +12,6 @@ export const ButtonBlocks = [
       </div>
       <style>
         .button{
-
           padding:20px 55px 20px 55px;
           background: black;
           text-align: center;
@@ -161,8 +106,8 @@ export const ButtonBlocks = [
     category: 'Buttons',
     media:
     `<div class="button5">
-  Subscribe
-</div>
+        Subscribe
+      </div>
       <style>
       .button5 {
       display: inline-flex;
@@ -176,14 +121,10 @@ export const ButtonBlocks = [
 
       text-transform: uppercase;
       text-decoration: none;
-
-
     }
-
-
       </style>
       `,
-    content:{type:'button4'}
+    content:{type:'button5'}
 
   },
 

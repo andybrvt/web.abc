@@ -43,7 +43,7 @@ export const TemplateBlocks = [
 
   {
     id: 'template1',
-    category: 'Templates',
+    category: 'Feature',
     media: `  <style>
       ${rowStyleMedia}
       ${colStyleMedia}
@@ -131,7 +131,7 @@ export const TemplateBlocks = [
   },
   {
     id: 'template2',
-    category: 'Templates',
+    category: 'Feature',
     media: `  <style>
         ${rowStyleMedia}
         ${colStyleMedia}
@@ -226,7 +226,7 @@ export const TemplateBlocks = [
   },
   {
     id: 'template3',
-    category: 'Templates',
+    category: 'Feature',
     media: `  <style>
         ${rowStyleMedia}
         ${colStyleMedia}

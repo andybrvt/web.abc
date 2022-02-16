@@ -1,3 +1,5 @@
+
+// FOR ROWS
 const rowStyle  = `
   .rowStyleM{
     position: relative;
@@ -9,17 +11,7 @@ const rowStyle  = `
     color: white;
     font-family: Monospace;
 
-  }
-`
-
-const headerStyle = `
-  .header{
-    position: absolute;
-    top: 0;
-    width: 100%;
-    display:flex;
-  }
-`
+  }`
 const rowStyleMedia = `
   .rowStyleM{
     position: relative;
@@ -28,8 +20,10 @@ const rowStyleMedia = `
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: nowrap;
-  }
-`
+  }`
+
+
+// FOR COL
 const colStyle = `
 .colStyleM{
   position: relative;
@@ -37,9 +31,7 @@ const colStyle = `
   height: 90vh;
   flex-grow: 1;
   flex-basis: 100%;
-}
-`
-
+}`
 const colStyleMedia = `
 .colStyleM{
   position: relative;
@@ -47,18 +39,16 @@ const colStyleMedia = `
   flex-grow: 1;
   flex-basis: 100%;
   overflow:hidden;
-}
-`
+}`
 
+// FOR MENU
 const menu = `
   .menuM{
     display: flex;
     flex-direction: row;
     margin-left: auto;
     margin-right: 5%;
-  }
-`
-
+  }`
 const logo = `
   .logo{
     top: 100px;
@@ -66,18 +56,21 @@ const logo = `
     margin-left: 7%;
     font-weight: bold;
     text-align:center;
-  }
-`
-
+  }`
+const headerStyle = `
+  .header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display:flex;
+  }`
 const headerItem = `
   .headerItem{
     text-align:center;
     justify-content: center;
     padding: 25px;
     font-size: 20px;
-  }
-`
-
+  }`
 const headerItemMedia = `
   .headerItem{
     color:white;
@@ -85,14 +78,48 @@ const headerItemMedia = `
     justify-content:center;
     padding: 7px;
     font-size: 7px;
-  }
-`
+  }`
+
+// FOR BUTTONS
+const normalButton = `
+  .mButton{
+    position:absolute;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 50px;
+    height: 45px;
+    border-radius: 15px;
+    font-family: Monospace;
+  }`
+const mediaButton = `
+  .mButton{
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 20px;
+    font-size: 5px;
+    border-radius: 7px;
+    font-family: Monospace;
+    color:white;
+  }`
+
+
+// FOR BACKGROUND
+const background = `
+.gradientBackground{
+  text-align: center;
+  color: white;
+  height: 100%;
+}`
+
+
 // this will be used more for modernized templates like that of the
 // web3 space
 export const ModernTemplateBlocks = [
   {
     id: 'mTemplate1',
-    category: 'Modern Template',
+    category: 'Modern Feature',
     media: `
     <style>
       ${headerStyle}
@@ -101,12 +128,10 @@ export const ModernTemplateBlocks = [
       ${menu}
       ${logo}
       ${headerItemMedia}
+      ${mediaButton}
+      ${background}
       .gradientBackground1{
-        text-align: center;
-        color: white;
-        height: 100%;
-        background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
-      }
+        background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)}
       .mHeaderText{
         color: white;
         position: absolute;
@@ -116,8 +141,7 @@ export const ModernTemplateBlocks = [
         top: 20%;
         font-size: 15px;
         font-family: Monospace;
-        text-align:left;
-      }
+        text-align:left;}
       .mBodyText{
         text-align: left;
         color:white;
@@ -126,47 +150,25 @@ export const ModernTemplateBlocks = [
         left: 12%;
         top: 40%;
         font-size: 5px;
-        font-family: Monospace;
-      }
+        font-family: Monospace;}
       .mButton1{
-          position: absolute;
-          display: inline-flex;
-          align-items: center;
           background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
-          padding: 0 10px;
-          height: 20px;
           left: 12%;
-          top: 75%;
-          font-size: 5px;
-          border-radius: 7px;
-          font-family: Monospace;
-          color:white;
-      }
+          top: 75%;}
       .mButton2{
-          position: absolute;
-          display: inline-flex;
-          align-items: center;
           background: black;
-          padding: 0 10px;
-          height: 20px;
           left: 27%;
-          top: 75%;
-          border-radius: 7px;
-          font-size: 5px;
-          font-family: Monospace;
-          color:white;
-      }
+          top: 75%;}
       .mImage{
         position: absolute;
         right: 5%;
         top: 20%;
-        width: 50%;
-
-      }
+        width: 50%;}
     </style>
+
       <div data-gjs-dmode="absolute" class="rowStyleM">
         <div class="colStyleM">
-          <div class ='gradientBackground1'/>
+          <div class ='gradientBackground gradientBackground1'/>
         </div>
 
         <div class="header">
@@ -206,10 +208,10 @@ export const ModernTemplateBlocks = [
         <div class = "mBodyText">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
         </div>
-        <div data-gjs-type="button" class='mButton1'>
+        <div data-gjs-type="button" class='mButton mButton1'>
           Go to Page
         </div>
-        <div data-gjs-type="button1" class='mButton2'>
+        <div data-gjs-type="button1" class='mButton mButton2'>
           Buy Now
         </div>
         <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
@@ -217,71 +219,47 @@ export const ModernTemplateBlocks = [
     `,
     content: `
       <style>
-        ${headerStyle}
         ${rowStyle}
         ${colStyle}
+        ${background}
+        ${headerStyle}
         ${menu}
         ${logo}
         ${headerItem}
+        ${normalButton}
         .gradientBackground1{
-          text-align: center;
-          color: white;
-          height: 100%;
-          background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
-        }
+          background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)}
         .mHeaderText{
           position: absolute;
           font-size: 70px;
           width: 30%;
           left: 12%;
           top: 20%;
-          font-family: Monospace;
-
-        }
+          font-family: Monospace;}
         .mBodyText{
           position: absolute;
           width: 25%;
           left: 12%;
           top: 48%;
-          font-family: Monospace;
-        }
+          font-family: Monospace;}
         .mButton1{
-            position: absolute;
-            display: inline-flex;
-            align-items: center;
             background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
-            padding: 0 50px;
-            height: 45px;
             left: 12%;
-            top: 70%;
-            border-radius: 15px;
-            font-family: Monospace;
-
-        }
+            top: 70%;}
         .mButton2{
-            position: absolute;
-            display: inline-flex;
-            align-items: center;
             background: black;
-            padding: 0 50px;
-            height: 45px;
             left: 25%;
-            top: 70%;
-            border-radius: 15px;
-            font-family: Monospace;
-
-        }
+            top: 70%;}
         .mImage{
           position: absolute;
           right: 5%;
           top: 15%;
-          width: 50%;
-
-        }
+          width: 50%;}
       </style>
+
       <div data-gjs-dmode="absolute" class="rowStyleM">
         <div class="colStyleM">
-          <div class ='gradientBackground1'/>
+          <div class ='gradientBackground gradientBackground1'/>
         </div>
 
         <div class="header">
@@ -321,15 +299,124 @@ export const ModernTemplateBlocks = [
         <div class = "mBodyText">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
         </div>
-        <div data-gjs-type="button" class='mButton1'>
+        <div data-gjs-type="button" class='mButton mButton1'>
           Go to Page
         </div>
-        <div data-gjs-type="button1" class='mButton2'>
+        <div data-gjs-type="button1" class='mButton mButton2'>
           Buy Now
         </div>
         <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
       </div>
     `
+  },
+
+  {
+    id: 'mTemplate2',
+    category: 'Modern Feature',
+    media: `<div>New template 2</div>`,
+    content: `
+    <style>
+    ${rowStyle}
+    ${colStyle}
+    ${background}
+    ${headerStyle}
+    ${menu}
+    ${logo}
+    ${headerItem}
+    ${normalButton}
+    .gradientBackground2{
+      background-image: radial-gradient(ellipse at left, #e66465, #9198e5);
+    }
+    .posMenu{
+      margin-right: 20%;
+    }
+    .posProfile{
+
+      padding: 20px;
+      margin-right: 7%;
+      font-size: 35px;
+    }
+    .posHeaderText2{
+      position: absolute;
+      font-size: 70px;
+      width: 30%;
+      left: 60%;
+      top: 20%;
+      font-family: Monospace;}
+    .posBodyText2{
+      position: absolute;
+      width: 25%;
+      left: 60%;
+      top: 48%;
+      font-family: Monospace;}
+    .posButton3{
+        background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
+        left: 60%;
+        top: 70%;}
+    .posButton4{
+        background: black;
+        left: 73%;
+        top: 70%;}
+    .mImage2{
+      position: absolute;
+      left: 15%;
+      top: 17%;
+      height: 70%;}
+    </style>
+    <div data-gjs-dmode="absolute" class="rowStyleM">
+      <div class="colStyleM">
+        <div class = "gradientBackground gradientBackground2"/>
+      </div>
+      <div class="header">
+        <a class="logo ">
+          <svg width="75" height="75" viewBox="0 0 296 255" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="24" width="48" height="231" fill="#1890FF"/>
+          <path d="M48.5 136C87.4361 136 119 110.928 119 80C119 49.0721 87.4361 24 48.5 24C29.7102 24 12.6373 29.8389 0 39.357V120.643C12.6373 130.161 29.7102 136 48.5 136Z" fill="#1890FF"/>
+          <path d="M156 182.5C156 136.384 111.452 99 56.5 99C35.5157 99 16.0487 104.451 0 113.759V251.241C2.10907 252.465 4.27717 253.621 6.5 254.707H106.5C136.103 240.24 156 213.32 156 182.5Z" fill="#1890FF"/>
+          <rect x="212" y="24" width="57" height="231" fill="#C4C4C4"/>
+          <path d="M119 110.129L261.497 153.866L231.699 24.2159L211.355 24.2159L119 110.129Z" fill="#C4C4C4"/>
+          <path d="M216 110H119C203 169 148 247 116 255H216V110Z" fill="#C4C4C4"/>
+          </svg>
+
+        </a>
+        <div class="menuM posMenu">
+          <a class="headerItem">
+            Home
+          </a>
+          <a class="headerItem">
+            About
+          </a>
+          <a class="headerItem">
+            Our Team
+          </a>
+          <a class="headerItem">
+            Funding
+          </a>
+        </div>
+
+        <a class="posProfile">
+          <i class="fas fa-circle"></i>
+        </a>
+      </div>
+
+
+      <img class ="mImage2" src = "https://images.unsplash.com/photo-1644007497105-8d0ae9ec9754?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80"/>
+
+      <h1 class ="posHeaderText2">
+        Brand New Protocol
+      </h1>
+      <div class = "posBodyText2">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+      </div>
+      <div data-gjs-type="button" class='mButton posButton3'>
+        Go to Page
+      </div>
+      <div data-gjs-type="button1" class='mButton posButton4'>
+        Buy Now
+      </div>
+
+    </div>`
+
   }
 
 

@@ -101,6 +101,7 @@ const PLUGINS = [
 
 const translatedItems = [
   'mTemplate1',
+  'mTemplate2',
   'template1',
   'template2',
   'template3'

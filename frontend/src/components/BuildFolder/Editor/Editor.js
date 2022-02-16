@@ -60,7 +60,17 @@ import {
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
-
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+} from '@chakra-ui/react'
 const PLUGINS = [
 
   grapesjsBlocksBasic,
@@ -99,6 +109,8 @@ const PLUGINS = [
   CustomLinkText1
 ]
 
+
+
 const translatedItems = [
   'mTemplate1',
   'mTemplate2',
@@ -114,7 +126,10 @@ export const Editor = (props) => {
   const [visibility, setVisibility] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
 
-
+  const [currentX, setCurrentX] = useState(0);
+  const [currentY, setCurrentY] = useState(0);
+  const [popOver, setPopOver]= useState(true);
+  const [TextCssVariable, setTestCssVariable]= useState(null);
 
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
@@ -136,7 +151,18 @@ export const Editor = (props) => {
       }
     }, [ref]);
   }
+  function testCoord (xVal, yVal){
+    setCurrentX(xVal)
+    setCurrentY(yVal)
+    console.log(xVal, yVal)
+    setTestCssVariable({
+            position: "absolute",
+            left: 100,
+            top: 100,
 
+            color: "red",
+          })
+  }
   const wrapperRef  = useRef(null);
   useOutSideAlerter(wrapperRef)
 
@@ -430,9 +456,15 @@ export const Editor = (props) => {
         opts.abort = 1;
       }
     });
-    editor.on('component:selected', model =>{
+    editor.on('component:selected', (block, obj) =>{
       // editor.addComponents('<div class="popoverDiv">New component</div>')
-      // editor.setStyle('.popoverDiv{ top:200}');
+      console.log(editor.getSelected())
+      console.log(obj)
+        console.log(obj.event.clientX)
+        console.log(obj.event.clientY)
+        testCoord(obj.event.clientX, obj.event.clientY)
+
+      // editor.getSelected().append('\n<div>Edit Text</div>')
       // console.log("model selected")
     })
     editor.on('run:export-template', () => console.log('After the command run'));
@@ -464,8 +496,7 @@ export const Editor = (props) => {
             </div>
           </Menu.Item>
         </Menu>
-      );
-
+      )
   // mechanics for opening and closing the drawer
   const changeDrawerVisibility = (category) => {
 
@@ -494,7 +525,24 @@ export const Editor = (props) => {
 
   return(
     <div>
+      {currentX==0 || currentY==0?
+        ''
+      :
 
+      <Popover placement='top-start' trigger="hover" defaultIsOpen="true">
+  <PopoverTrigger>
+
+    <div style={{position:'absolute', background:'red',  left:currentX, zIndex:'10000', width:'200px', height:'200px',top:currentY}}> testing this works</div>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverArrow />
+    <PopoverCloseButton />
+    <PopoverHeader>Confirmation!</PopoverHeader>
+    <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+  </PopoverContent>
+</Popover>
+
+      }
 
       <div className = "editorHeaderContainer">
           <div class="editorHeader">

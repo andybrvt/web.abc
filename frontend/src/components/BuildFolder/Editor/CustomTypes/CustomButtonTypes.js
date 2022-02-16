@@ -27,7 +27,14 @@ export const CoreButtonType = editor => {
       defaults:{
         name: "button",
         resizable:"true",
-        dmode: 'absolute'
+        dmode: 'absolute',
+        toolbar: [{
+                    attributes: {class: 'fa fa-arrows'},
+                    command: 'tlb-move',
+                  },{
+                    attributes: {class: 'fa fa-clone'},
+                    command: 'tlb-clone',
+                  },]
         // editable:true, ony works on text components
       }
     },

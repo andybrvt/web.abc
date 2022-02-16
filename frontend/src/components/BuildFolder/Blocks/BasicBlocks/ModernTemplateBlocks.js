@@ -313,7 +313,113 @@ export const ModernTemplateBlocks = [
   {
     id: 'mTemplate2',
     category: 'Modern Feature',
-    media: `<div>New template 2</div>`,
+    media: `
+      <style>
+        ${headerStyle}
+        ${rowStyleMedia}
+        ${colStyleMedia}
+        ${menu}
+        ${logo}
+        ${headerItemMedia}
+        ${mediaButton}
+        ${background}
+        .gradientBackground2{
+          background-image:radial-gradient(ellipse at left, #e66465, #9198e5)}
+        .posMenu{
+          margin-right: 20%;
+        }
+        .posProfile{
+
+          padding: 5px;
+          margin-right: 7%;
+          font-size: 10px;
+        }
+        .posHeaderText2{
+          color: white;
+          position: absolute;
+          width: 30%;
+          left: 62%;
+          top: 20%;
+          font-size: 15px;
+          font-family: Monospace;
+          text-align:left;}
+        .posBodyText2{
+          text-align: left;
+          color:white;
+          position: absolute;
+          width: 30%;
+          left: 62%;
+          top: 40%;
+          font-size: 5px;
+          font-family: Monospace;}
+        .posButton3{
+            background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
+            left: 62%;
+            top: 75%;}
+        .posButton4{
+            background: black;
+            left: 75%;
+            top: 75%;}
+        .mImage2{
+          position: absolute;
+          left: 15%;
+          top: 17%;
+          height: 70%;}
+      </style>
+      <div data-gjs-dmode="absolute" class="rowStyleM">
+        <div class="colStyleM">
+          <div class ='gradientBackground gradientBackground2'/>
+        </div>
+
+        <div class="header">
+          <a class="logo ">
+            <svg width="25" height="25" viewBox="0 0 296 255" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="24" width="48" height="231" fill="#1890FF"/>
+            <path d="M48.5 136C87.4361 136 119 110.928 119 80C119 49.0721 87.4361 24 48.5 24C29.7102 24 12.6373 29.8389 0 39.357V120.643C12.6373 130.161 29.7102 136 48.5 136Z" fill="#1890FF"/>
+            <path d="M156 182.5C156 136.384 111.452 99 56.5 99C35.5157 99 16.0487 104.451 0 113.759V251.241C2.10907 252.465 4.27717 253.621 6.5 254.707H106.5C136.103 240.24 156 213.32 156 182.5Z" fill="#1890FF"/>
+            <rect x="212" y="24" width="57" height="231" fill="#C4C4C4"/>
+            <path d="M119 110.129L261.497 153.866L231.699 24.2159L211.355 24.2159L119 110.129Z" fill="#C4C4C4"/>
+            <path d="M216 110H119C203 169 148 247 116 255H216V110Z" fill="#C4C4C4"/>
+            </svg>
+
+          </a>
+          <div class="menuM posMenu">
+            <a class="headerItem">
+              Home
+            </a>
+            <a class="headerItem">
+              About
+            </a>
+            <a class="headerItem">
+              Team
+            </a>
+            <a class="headerItem">
+              Funding
+            </a>
+          </div>
+
+          <a class="posProfile">
+            <i class="fas fa-circle"></i>
+          </a>
+        </div>
+
+
+        <img class ="mImage2" src = "https://images.unsplash.com/photo-1644007497105-8d0ae9ec9754?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80"/>
+
+        <h1 class ="posHeaderText2">
+          Brand New Protocol
+        </h1>
+        <div class = "posBodyText2">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </div>
+        <div data-gjs-type="button" class='mButton posButton3'>
+          Go to Page
+        </div>
+        <div data-gjs-type="button1" class='mButton posButton4'>
+          Buy Now
+        </div>
+      </div>
+    `,
     content: `
     <style>
     ${rowStyle}

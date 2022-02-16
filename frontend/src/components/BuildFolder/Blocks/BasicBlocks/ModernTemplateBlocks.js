@@ -523,10 +523,250 @@ export const ModernTemplateBlocks = [
 
     </div>`
 
+  },
+
+  {
+    id: 'mTemplate3',
+    category: 'Modern Feature',
+    media: `
+
+        <style>
+        ${headerStyle}
+        ${rowStyleMedia}
+        ${colStyleMedia}
+        ${background}
+        ${menu}
+        ${logo}
+        ${headerItemMedia}
+        ${mediaButton}
+        .gradientBackground3{
+          background-image:linear-gradient(180deg, #00008B, rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, #8A2BE2, rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, #8B008B, rgba(0,0,255,0) 70.71%);
+          }
+        .posMenu3{
+          margin-right: 20%;
+        }
+        .newLogo{
+          padding: 5px;
+          text-align: center;
+          margin-left: 7%;
+          font-size: 10px;
+          color: white;
+        }
+        .posHeaderText3{
+            color:white;
+            position: absolute;
+            font-size: 15px;
+            width: 60%;
+            left: 50%;
+            top: 10%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-family: Monospace;}
+          .posBodyText3{
+            color:white;
+            position: absolute;
+            width: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 20%;
+            text-align:center;
+            font-size: 5px;
+            font-family: Monospace;}
+          .posButton5{
+              background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
+              left: 40%;
+              transform: translateX(-50%);
+              top: 38%;}
+          .posButton6{
+              background: black;
+              left: 60%;
+              transform: translateX(-50%);
+              top: 38%;}
+          .mImage3{
+            position: absolute;
+            left: 0px;
+            top: 30%;
+            height: 70%;
+            width: 100%;
+          }
+
+        </style>
+
+        <div data-gjs-dmode="absolute" class="rowStyleM">
+          <div class="colStyleM">
+            <div class ='gradientBackground gradientBackground3'/>
+          </div>
+
+          <div class="header">
+            <a class="newLogo">
+              Web.abc
+            </a>
+            <div class="menuM posMenu3">
+              <a class="headerItem">
+                Home
+              </a>
+              <a class="headerItem">
+                About
+              </a>
+              <a class="headerItem">
+                Team
+              </a>
+              <a class="headerItem">
+                Funding
+              </a>
+            </div>
+
+            <a class="posProfile">
+              <i class="fas fa-circle"></i>
+            </a>
+          </div>
+
+
+
+          <h1 class ="posHeaderText3">
+            Brand New Protocol
+          </h1>
+          <div class = "posBodyText3">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+          </div>
+          <div data-gjs-type="button" class='mButton posButton5'>
+            Go to Page
+          </div>
+          <div data-gjs-type="button1" class='mButton posButton6'>
+            Buy Now
+          </div>
+
+          <img class ="mImage3" src = "https://scontent.fphx1-2.fna.fbcdn.net/v/t1.15752-9/273507140_254136436903148_3145629171275539631_n.png?_nc_cat=100&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Zku0EcA0WH0AX_5xMwP&_nc_ht=scontent.fphx1-2.fna&oh=03_AVIG_fLpTYd-e52JBJTo1_MnUqa_rfLuqEzXVWZIVAUgbA&oe=623455E6"/>
+
+
+        </div>
+
+    `,
+    content: `
+      <style>
+        ${rowStyle}
+        ${colStyle}
+        ${background}
+        ${headerStyle}
+        ${menu}
+
+        ${headerItem}
+        ${normalButton}
+        .colExtraHeight{
+          height: 95vh;
+        }
+        .newLogo{
+          padding: 20px;
+          text-align: center;
+          margin-left: 7%;
+          font-size: 25px;
+        }
+        .gradientBackground3{
+          background-image:linear-gradient(180deg, #00008B, rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, #8A2BE2, rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, #8B008B, rgba(0,0,255,0) 70.71%);
+        }
+        .posMenu{
+          margin-right: 22%;
+        }
+        .posProfile{
+
+          padding: 20px;
+          margin-right: 7%;
+          font-size: 35px;
+        }
+        .posHeaderText3{
+          position: absolute;
+          font-size: 70px;
+          width: 60%;
+          left: 50%;
+          top: 10%;
+          transform: translateX(-50%);
+          text-align: center;
+          font-family: Monospace;}
+        .posBodyText3{
+          position: absolute;
+          width: 60%;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 27%;
+          text-align:center;
+          font-family: Monospace;}
+        .posButton5{
+            background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
+            left: 40%;
+            transform: translateX(-50%);
+            top: 38%;}
+        .posButton6{
+            background: black;
+            left: 60%;
+            transform: translateX(-50%);
+            top: 38%;}
+        .mImage3{
+          position: absolute;
+          left: 0px;
+          top: 30%;
+          height: 70%;
+          width: 100%;
+        }
+      </style>
+      <div data-gjs-dmode="absolute" class="rowStyleM">
+        <div class="colStyleM colExtraHeight">
+          <div class="gradientBackground gradientBackground3"/>
+        </div>
+        <div class="header">
+          <a class="newLogo">
+            Web.abc
+          </a>
+          <div class="menuM posMenu">
+            <a class="headerItem">
+              Home
+            </a>
+            <a class="headerItem">
+              About
+            </a>
+            <a class="headerItem">
+              Our Team
+            </a>
+            <a class="headerItem">
+              Funding
+            </a>
+          </div>
+
+          <a class="posProfile">
+            <i class="fas fa-circle"></i>
+          </a>
+        </div>
+
+        <h1 class ="posHeaderText3">
+          Brand New Protocol
+        </h1>
+        <div class = "posBodyText3">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </div>
+        <div data-gjs-type="button" class='mButton posButton5'>
+          Go to Page
+        </div>
+        <div data-gjs-type="button1" class='mButton posButton6'>
+          Buy Now
+        </div>
+
+        <img class ="mImage3" src = "https://scontent.fphx1-2.fna.fbcdn.net/v/t1.15752-9/273507140_254136436903148_3145629171275539631_n.png?_nc_cat=100&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Zku0EcA0WH0AX_5xMwP&_nc_ht=scontent.fphx1-2.fna&oh=03_AVIG_fLpTYd-e52JBJTo1_MnUqa_rfLuqEzXVWZIVAUgbA&oe=623455E6"/>
+
+
+
+      </div>
+    `
+
   }
 
 
 ]
+
+// <img class ="mImage3" src = "https://images.unsplash.com/photo-1636471339182-8584b963a73a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"/>
+
 
 // <img src="https://o.remove.bg/downloads/3a752349-25eb-4aaf-905e-0e22a8c4af17/jeremy-bezanger-Ld0ktDeje8I-unsplash-removebg-preview.png" />
 // <img src="https://o.remove.bg/downloads/4a9facba-afb5-40c9-82f5-28d26a6d343e/ferhat-deniz-fors-YOCDD-D4oOM-unsplash__1_-removebg-preview.png" />

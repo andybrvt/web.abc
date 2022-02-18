@@ -4,6 +4,7 @@
 
 
 import {rowStyle, colStyle, rowStyleMedia, colStyleMedia} from './GeneralBlockCss';
+import imageMedia1 from '../../../../images/imageMedia1.png';
 
 export const InformationalBlocks = [
   {
@@ -75,7 +76,16 @@ export const InformationalBlocks = [
     label: "Info 2",
     id: 'info2',
     category: 'Information',
-    media: `<div>New stuff here</div>`,
+    media: `
+    <style>
+      .img{
+        width: 400px;
+        height: 175;
+      }
+    </style>
+    <div>
+      <img class="img" src =${imageMedia1} />
+    </div>`,
     content: `
       <style>
         ${rowStyle}

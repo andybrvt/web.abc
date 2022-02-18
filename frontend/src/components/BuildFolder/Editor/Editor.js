@@ -117,10 +117,13 @@ const translatedItems = [
   'mTemplate3',
   'template1',
   'template2',
-  'template3'
-
+  'template3',
+  'info1',
+  'info2'
 ]
 export const Editor = (props) => {
+
+  const [preview, setPreview] =useState(false);
 
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
@@ -167,6 +170,8 @@ export const Editor = (props) => {
   useOutSideAlerter(wrapperRef)
 
   useEffect(() => {
+
+
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: 1,
@@ -228,7 +233,7 @@ export const Editor = (props) => {
           el: '.panel__right',
           // Make the panel resizable
           resizable: {
-            maxDim: 350,
+            maxDim: 500,
             minDim: 200,
             tc: 0, // Top handler
             cl: 1, // Left handler
@@ -258,25 +263,29 @@ export const Editor = (props) => {
               command: 'show-styles', // PUT BACK LATER
               togglable: false
             },
+            {
+              id: 'alert-button',
+              className: 'btn-alert-button',
+              label: 'Clear',
+              command(editor) {
+                // editor.BlockManager.getAll().reset();
+                editor.runCommand('core:canvas-clear');
+              }
 
-
-              {
-                id: 'alert-button',
-                className: 'btn-alert-button',
-                label: 'Clear canavas',
-                command(editor) {
-                  // editor.BlockManager.getAll().reset();
-                  editor.runCommand('core:canvas-clear');
-                }
-              },
+            },
 
             {
-              id: "clearCanvas",
-              active: true,
-              label: 'Clear',
-              command: 'show-traits', // PUT BACK LATER
-              togglable: false
+              id: 'preview',
+              className: 'btn-alert-button',
+              label: 'Preview',
+              command(editor) {
+                console.log('is this the preview')
+                // editor.BlockManager.getAll().reset();
+                editor.runCommand('preview');
+              }
             },
+
+
 
 
           ]
@@ -339,7 +348,7 @@ export const Editor = (props) => {
 
     })
 
-
+    editor.runCommand('sw-visibility');
     editor.StyleManager.addProperty('decorations', {
       name: 'Gradient',
       property: 'background-image',
@@ -347,7 +356,19 @@ export const Editor = (props) => {
       defaults: 'none'
     });
 
+    editor.on("run:preview", () => {
+      // editor.stopCommand("sw-visibility")
+      const canvas = editor.Canvas.getElement();
+      const canvasS = canvas.style;
+      canvasS.left = '770px';
 
+      // setPreview(true)
+    })
+
+    editor.on("stop:preview", () => {
+      // editor.runCommand("sw-visibility")
+      // setPreview(false)
+    })
 
 
     editor.on("block:drag:start", (block, obj) => {
@@ -362,7 +383,6 @@ export const Editor = (props) => {
       }
     })
 
-    editor.runCommand('sw-visibility');
     editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
 
     // CHANGE THIS LATER
@@ -406,18 +426,6 @@ export const Editor = (props) => {
     })
 
 
-    editor.Panels.addPanel({
-      id: 'panel-top',
-      el: '.panel__top',
-      buttons: [
-   {
-     id: 'alert-button',
-     className: 'btn-alert-button',
-     label: 'Click my butt(on)',
-     command(editor) { alert('Hello World'); }
-   }
- ]
-    });
     // editor.Panels.addPanel({
     //   id: 'basic-actions',
     //   el: '.panel__basic-actions',
@@ -619,14 +627,14 @@ export const Editor = (props) => {
 
         </div>
 
+
+
         <div class="column">
-          {/*
-            <Canvas />
-            */}
+
           <div id = "gjs"></div>
         </div>
 
-        <div class="panel__right">
+        <div id = "panelRight" class= {`panel__right`}>
           <div class= "panel__top">
             <div class="panel__switcher"></div>
           </div>

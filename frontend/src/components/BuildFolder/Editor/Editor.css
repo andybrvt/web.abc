@@ -22,6 +22,7 @@ body{
 
  .grp-preview {
    position: absolute;
+   background: red;
    top: 0;
    left: 0;
    width: 100%;
@@ -91,6 +92,7 @@ body{
  }
 
 .row {
+  width: 100vw;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
@@ -120,7 +122,7 @@ body{
 .column {
   flex-grow: 1;
   flex-basis: 100%;
-
+  background: red;
 }
 
 .editorHeaderContainer{
@@ -194,10 +196,12 @@ body{
   height: 100%;
 }
 
-
+.noShow{
+  display: none;
+}
 .panel__top {
-  background: green;
   padding: 0;
+  font-size: 25px;
   height: 50px;
   width: 100%;
   display: flex;
@@ -210,7 +214,7 @@ body{
 }
 
 .panel__right {
-  flex-basis: 300px;
+  flex-basis: 400px;
   position: relative;
   overflow-y: auto;
   z-index: 9999;
@@ -218,6 +222,7 @@ body{
 
 .panel__switcher {
   position: initial;
+  font-size: 25px;
 }
 
 .panel__devices {

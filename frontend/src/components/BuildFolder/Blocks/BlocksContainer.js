@@ -8,6 +8,8 @@ import {Shapes} from './Shapes/Shapes'
 import {TemplateBlocks} from './BasicBlocks/TemplateBlocks';
 import {ModernTemplateBlocks} from './BasicBlocks/ModernTemplateBlocks';
 import {LinkBlocks} from './BasicBlocks/LinkBlocks';
+import {ImageBlocks} from './BasicBlocks/ImageBlocks';
+import {InformationalBlocks} from './BasicBlocks/InformationalBlocks';
 export const BlocksContainer = (props) => {
 
   const [editor, setEditor] = useState(null)
@@ -43,7 +45,7 @@ export const BlocksContainer = (props) => {
   }
 
   useEffect(() => {
-  
+
     const category = props.category
 
     if(category === "basic"){
@@ -64,6 +66,12 @@ export const BlocksContainer = (props) => {
     const linkBlocks = editor.BlockManager.render(
         LinkBlocks, {external: true}
     )
+    const imageBlocks = editor.BlockManager.render(
+      ImageBlocks, {external: true}
+    )
+    const infoBlocks = editor.BlockManager.render(
+      InformationalBlocks, {external:true}
+    )
 
 
 
@@ -74,6 +82,8 @@ export const BlocksContainer = (props) => {
     document.getElementById("blocks").appendChild(templateBlocks);
     document.getElementById("blocks").appendChild(mTemplateBlocks);
     document.getElementById("blocks").appendChild(linkBlocks);
+    document.getElementById("blocks").appendChild(imageBlocks);
+    document.getElementById("blocks").appendChild(infoBlocks);
 
     const categories = editor.BlockManager.getCategories();
     categories.each(category => {

@@ -1,45 +1,13 @@
 
 // FOR ROWS
-const rowStyle  = `
-  .rowStyleM{
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-wrap: nowrap;
-    color: white;
-    font-family: Monospace;
+import {
+  rowStyle,
+  colStyle,
+  normalButton,
+  rowStyleMedia,
+  colStyleMedia
+} from './GeneralBlockCss';
 
-  }`
-const rowStyleMedia = `
-  .rowStyleM{
-    position: relative;
-    width: 400px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-wrap: nowrap;
-  }`
-
-
-// FOR COL
-const colStyle = `
-.colStyleM{
-  position: relative;
-  min-height: 100px;
-  height: 90vh;
-  flex-grow: 1;
-  flex-basis: 100%;
-}`
-const colStyleMedia = `
-.colStyleM{
-  position: relative;
-  height: 225px;
-  flex-grow: 1;
-  flex-basis: 100%;
-  overflow:hidden;
-}`
 
 // FOR MENU
 const menu = `
@@ -80,17 +48,7 @@ const headerItemMedia = `
     font-size: 7px;
   }`
 
-// FOR BUTTONS
-const normalButton = `
-  .mButton{
-    position:absolute;
-    display: inline-flex;
-    align-items: center;
-    padding: 0 50px;
-    height: 45px;
-    border-radius: 15px;
-    font-family: Monospace;
-  }`
+
 const mediaButton = `
   .mButton{
     position: absolute;
@@ -257,8 +215,8 @@ export const ModernTemplateBlocks = [
           width: 50%;}
       </style>
 
-      <div data-gjs-dmode="absolute" class="rowStyleM">
-        <div class="colStyleM">
+      <div data-gjs-dmode="absolute" class="row">
+        <div class="col">
           <div class ='gradientBackground gradientBackground1'/>
         </div>
 
@@ -469,8 +427,8 @@ export const ModernTemplateBlocks = [
       top: 17%;
       height: 70%;}
     </style>
-    <div data-gjs-dmode="absolute" class="rowStyleM">
-      <div class="colStyleM">
+    <div data-gjs-dmode="absolute" class="row">
+      <div class="col">
         <div class = "gradientBackground gradientBackground2"/>
       </div>
       <div class="header">
@@ -712,8 +670,8 @@ export const ModernTemplateBlocks = [
           width: 100%;
         }
       </style>
-      <div data-gjs-dmode="absolute" class="rowStyleM">
-        <div class="colStyleM colExtraHeight">
+      <div data-gjs-dmode="absolute" class="row">
+        <div class="col colExtraHeight">
           <div class="gradientBackground gradientBackground3"/>
         </div>
         <div class="header">

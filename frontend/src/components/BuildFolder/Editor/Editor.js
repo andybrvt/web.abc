@@ -119,7 +119,8 @@ const translatedItems = [
   'template2',
   'template3',
   'info1',
-  'info2'
+  'info2',
+  "info3"
 ]
 export const Editor = (props) => {
 
@@ -348,7 +349,7 @@ export const Editor = (props) => {
 
     })
 
-    // editor.runCommand('sw-visibility');
+    editor.runCommand('sw-visibility');
     editor.StyleManager.addProperty('decorations', {
       name: 'Gradient',
       property: 'background-image',

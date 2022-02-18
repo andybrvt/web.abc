@@ -1,18 +1,6 @@
 // THIS FILE WILL HOUSE ALL THE CUSTOM BUTTON TYPES HERE
 // FOR USES IN EDITOR PLUGINS
 import './CustomButtonTypes.css'
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-  Button
-} from '@chakra-ui/react'
 import React, { Component }  from 'react';
 
 // this will be the core of every button

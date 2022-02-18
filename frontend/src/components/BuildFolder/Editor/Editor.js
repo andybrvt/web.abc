@@ -12,12 +12,13 @@ import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
 import {Drawer} from '../../UsefulComponents/Drawer';
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Menu, Dropdown, Button, Space } from 'antd';
+import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover } from 'antd';
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard  } from '@fortawesome/free-solid-svg-icons'
 import {Canvas} from '../../TestingFolder/ReactDesignerTest';
+import { Button as Button, ButtonGroup, Box } from '@chakra-ui/react'
 import {
   ButtonType1,
   ButtonType2,
@@ -60,6 +61,13 @@ import {
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
+} from '@chakra-ui/react'
 import {
   Popover,
   PopoverTrigger,
@@ -127,9 +135,11 @@ export const Editor = (props) => {
 
   const [currentX, setCurrentX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
+  const [currentWidth, setCurrentWidth] = useState(0);
+  const [currentHeight, setCurrentHeight] = useState(0);
   const [popOver, setPopOver]= useState(true);
   const [TextCssVariable, setTestCssVariable]= useState(null);
-
+  const [sliderValue, setSliderValue] = useState(50)
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
       function handleClickOutside(event){
@@ -150,14 +160,16 @@ export const Editor = (props) => {
       }
     }, [ref]);
   }
-  function testCoord (xVal, yVal){
+  function testCoord (xVal, yVal, widthVal, heightVal){
     setCurrentX(xVal)
     setCurrentY(yVal)
+    setCurrentWidth(widthVal)
+    setCurrentHeight(heightVal)
     console.log(xVal, yVal)
     setTestCssVariable({
             position: "absolute",
-            left: 100,
-            top: 100,
+            left: xVal,
+            top: yVal,
 
             color: "red",
           })
@@ -457,11 +469,27 @@ export const Editor = (props) => {
     });
     editor.on('component:selected', (block, obj) =>{
       // editor.addComponents('<div class="popoverDiv">New component</div>')
-      console.log(editor.getSelected())
-      console.log(obj)
-        console.log(obj.event.clientX)
-        console.log(obj.event.clientY)
-        testCoord(obj.event.clientX, obj.event.clientY)
+      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
+      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
+      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
+      // console.log(obj.event.srcElement.id)
+      // console.log("Width: "+obj.event.srcElement.clientWidth)
+      // console.log("Height: "+obj.event.srcElement.clientHeight)
+      if(obj.event) {
+        if(obj.event.clientX!=null || obj.event.clientY!=null ) {
+          // console.log(obj.event.clientX)
+
+          // console.log(obj.event.clientY)
+          testCoord(
+           editor.Canvas.getElementPos(editor.getSelected().getEl()).left,
+           editor.Canvas.getElementPos(editor.getSelected().getEl()).top,
+           obj.event.srcElement.clientWidth, obj.event.srcElement.clientHeight
+          )
+        }
+      }
+
+
+
 
       // editor.getSelected().append('\n<div>Edit Text</div>')
       // console.log("model selected")
@@ -528,18 +556,62 @@ export const Editor = (props) => {
         ''
       :
 
-      <Popover placement='top-start' trigger="hover" defaultIsOpen="true">
-  <PopoverTrigger>
+      <div>
 
-    <div style={{position:'absolute', background:'red',  left:currentX, zIndex:'10000', width:'200px', height:'200px',top:currentY}}> testing this works</div>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverHeader>Confirmation!</PopoverHeader>
-    <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
-  </PopoverContent>
-</Popover>
+      <AntdPopover placement="topLeft" title="Title" content={<>
+      <p>Content</p>
+      <p>Content</p>
+      </>}>
+
+      </AntdPopover>
+      <AntdPopover placement="left" title="Edit Text" content={<>
+        <ButtonGroup variant='outline' spacing='6'>
+
+
+            <AntdPopover>
+              <div style={{width:225, height:300}}>
+                <Button colorScheme='teal'>Edit Text</Button>
+                <div> Fonts</div>
+
+                <div style={{flexDirection:'row', display:'flex '}}> FontSize
+                <Slider aria-label='slider-ex-6' onChange={(val) => setSliderValue(val)}>
+                      <SliderMark
+                        value={sliderValue}
+                        textAlign='center'
+                        bg='blue.500'
+                        color='white'
+                        mt='-10'
+                        ml='-5'
+                        w='12'>
+                        {sliderValue}
+                      </SliderMark>
+                      <SliderTrack bg='red.100'>
+                    <Box position='relative' right={10} />
+                    <SliderFilledTrack bg='tomato' />
+                  </SliderTrack>
+                    <SliderThumb boxSize={6} />
+                  </Slider>
+                  <div style={{fontSize:25, marginLeft:20}}>
+                  {sliderValue}
+                  </div>
+                </div>
+                <div> Color</div>
+                <div> B I U</div>
+              </div>
+            </AntdPopover>
+
+
+          <Button>Cancel</Button>
+        </ButtonGroup>
+      </>} arrowPointAtCenter>
+      <div style={{position:'absolute', background:'red',  left:currentX, zIndex:'10000', width:currentWidth, height:currentHeight,top:currentY}}>
+      testing this works {currentX} {currentY }
+      </div>
+      </AntdPopover>
+
+      </div>
+
+
 
       }
 
@@ -561,46 +633,46 @@ export const Editor = (props) => {
         <div class = "firstColumn">
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
-             <Button
+             <AntButton
                onClick = {() => changeDrawerVisibility("basic")}
                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
 
             <div className = "buttonHolder">
 
-              <Button
+              <AntButton
                 onClick = {() => changeDrawerVisibility("shapes")}
                 type="primary" shape="circle" icon={<FontAwesomeIcon style={{marginRight:5}} icon={faShapes} />} size="large" />
             </div>
 
             <div className = "buttonHolder">
-              <Button
+              <AntButton
                 onClick = {() => changeDrawerVisibility("pens")}
                 type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
 
             <div className = "buttonHolder">
-              <Button
+              <AntButton
                 onClick = {() => changeDrawerVisibility("colors")}
                 type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
 
             <div className = "buttonHolder">
-              <Button
+              <AntButton
                 onClick = {() => changeDrawerVisibility("input")}
                 type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
             </div>
 
 
             <div className = "buttonHolder">
-              <Button
+              <AntButton
                 // onClick = {() => changeDrawerVisibility("colors")}
                 shape="circle" icon={<FontAwesomeIcon icon={faFont} />} size="large" />
             </div>
 
 
             <div className = "buttonHolder">
-              <Button
+              <AntButton
                 // onClick = {() => changeDrawerVisibility("colors")}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faCircle} />} size="large" />

@@ -25,7 +25,13 @@ import {
   MenuGroup,
   MenuOptionGroup,
   MenuDivider,
-  Stack
+  Stack,
+  Slider,
+  Box,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
 } from '@chakra-ui/react';
 import { EmailIcon } from '@chakra-ui/icons'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
@@ -37,6 +43,11 @@ import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
+
+
+
+
+
 function withMyHook(Component) {
   return function WrappedComponent(props) {
     const {activateBrowserWallet, account } = useEthers();
@@ -62,6 +73,7 @@ class Home extends React.Component{
       showSearch: false,
       searchValue: "",
       selectedFile: "",
+      sliderValue:0,
     };
   }
   state = {
@@ -131,7 +143,7 @@ class Home extends React.Component{
         <Header/>
 
         <Divider/>
-
+        {/*
         <div class="collectionList">
           <div style={{display:'flex', flexDirection:'row', width:'500px'}}>
             <div class="collectionTitle">
@@ -141,7 +153,7 @@ class Home extends React.Component{
               <Button onClick={this.navBuild}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                 Create Site
               </Button>
-          
+
             </Stack>
           </div>
           <div style={{marginTop:'10%',width:900}}>
@@ -152,8 +164,36 @@ class Home extends React.Component{
             </div>
           </div>
         </div>
+        */}
+        <div style={{marginLeft:200,width:500, height:300, padding:30, background:'red'}}>
+          <Button colorScheme='teal'>Edit Text</Button>
+          <div> Fonts</div>
 
-
+          <div style={{flexDirection:'row', display:'flex '}}> FontSize
+          <Slider aria-label='slider-ex-6' >
+                <SliderMark
+                  value={50}
+                  textAlign='center'
+                  bg='blue.500'
+                  color='white'
+                  mt='-10'
+                  ml='-5'
+                  w='12'>
+                  {50}
+                </SliderMark>
+                <SliderTrack bg='red.100'>
+              <Box position='relative' right={10} />
+              <SliderFilledTrack bg='tomato' />
+            </SliderTrack>
+              <SliderThumb boxSize={6} />
+            </Slider>
+            <div style={{fontSize:25, marginLeft:20}}>
+            {50}
+            </div>
+          </div>
+          <div> Color</div>
+          <div> B I U</div>
+        </div>
 
 
 
@@ -173,10 +213,10 @@ class Home extends React.Component{
                 {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
               </text>
           </div>
-
+          {/*
 
         <CollectionList  {...this.props}/>
-
+        */}
         <WebsiteInput {...this.props}/>
 
 

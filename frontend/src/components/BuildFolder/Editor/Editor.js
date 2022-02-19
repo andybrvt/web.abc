@@ -350,7 +350,7 @@ export const Editor = (props) => {
 
     })
 
-    editor.runCommand('sw-visibility');
+    // editor.runCommand('sw-visibility');
     editor.StyleManager.addProperty('decorations', {
       name: 'Gradient',
       property: 'background-image',

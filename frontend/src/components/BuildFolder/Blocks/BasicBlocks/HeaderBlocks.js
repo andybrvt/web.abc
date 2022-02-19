@@ -1,12 +1,19 @@
 import {rowStyle, colStyle} from './GeneralBlockCss';
 
-
+import image4 from '../../../../images/image4.png';
 // This will be for the header and be used for navigation
 export const HeaderBlocks = [
   {
     id: "header1",
     category: "Header",
-    media: `<div>Here is the header</div>`,
+    media: `
+    <style>
+
+    </style>
+    <div>
+      <img src="${image4}" />
+
+    </div>`,
     content: `
       <style>
         ${rowStyle}
@@ -29,15 +36,55 @@ export const HeaderBlocks = [
           top: 50%;
           transform: translateX(-50%) translateY(-50%);
         }
+        .menuContainerSingle{
+        }
         .menuSingle{
           position: relative;
-          height: 80px;
-          background: red;
+          top: 50%;
+          transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
 
         }
         .headerItemSingle{
           color: black;
-          background: yellow;
+          font-size: 25px;
+          margin-right: 10px;
+        }
+        .iconHolder{
+          position: relative;
+          left: 50%;
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          display: flex;
+          flex-direction: row;
+          width: 30%;
+        }
+        .iconHolderHolder{
+          position: absolute;
+          background: red;
+          right: 0;
+          width: 10%;
+          margin-right: 5%;
+          height:100%;
+
+        }
+        .iconSingle{
+          position: absolute;
+          color: black;
+          font-size: 35px;
+          top: 50%;
+          transform: translateY(-50%);
+
+        }
+        .iconSingle1{
+
+          right: 10%;
+
+        }
+        .iconSingle2{
+
+          right: 5%;
+
         }
       </style>
       <div class = "row">
@@ -60,20 +107,35 @@ export const HeaderBlocks = [
 
           </div>
 
-          <div class="menuSingle">
-            <a class="headerItemSingle">
-              Home
-            </a>
-            <a class="headerItemSingle">
-              About
-            </a>
-            <a class="headerItemSingle">
-              Our Team
-            </a>
-            <a class="headerItemSingle">
-              Funding
-            </a>
+          <div class='menuContainerSingle'>
+            <div class="menuSingle">
+              <a class="headerItemSingle">
+                Home
+              </a>
+              <a class="headerItemSingle">
+                About
+              </a>
+              <a class="headerItemSingle">
+                Our Team
+              </a>
+              <a class="headerItemSingle">
+                Funding
+              </a>
+            </div>
+
           </div>
+
+
+
+          <div class="iconSingle iconSingle1">
+            <i class="fa-light fa-magnifying-glass"></i>
+          </div>
+
+          <div class="iconSingle iconSingle2">
+            <i class="fas fa-user"></i>
+          </div>
+
+
 
         </div>
       </div>

@@ -120,7 +120,8 @@ const translatedItems = [
   'template3',
   'info1',
   'info2',
-  "info3"
+  "info3",
+  "header1"
 ]
 export const Editor = (props) => {
 
@@ -467,11 +468,8 @@ export const Editor = (props) => {
     });
     editor.on('component:selected', (block, obj) =>{
       // editor.addComponents('<div class="popoverDiv">New component</div>')
-      console.log(editor.getSelected())
-      console.log(obj)
-        console.log(obj.event.clientX)
-        console.log(obj.event.clientY)
-        testCoord(obj.event.clientX, obj.event.clientY)
+
+        // testCoord(obj.event.clientX, obj.event.clientY)
 
       // editor.getSelected().append('\n<div>Edit Text</div>')
       // console.log("model selected")

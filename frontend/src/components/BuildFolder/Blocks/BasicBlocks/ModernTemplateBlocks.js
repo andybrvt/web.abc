@@ -130,7 +130,7 @@ export const ModernTemplateBlocks = [
         </div>
 
         <div class="header">
-          <a class="logo ">
+          <a class="logo">
             <svg width="25" height="25" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_1_196)">
             <rect width="1024" height="1024" fill="#531DAB"/>

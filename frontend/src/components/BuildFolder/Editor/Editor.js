@@ -131,7 +131,8 @@ const translatedItems = [
   "info3",
   "header1",
   "header2",
-  "header3"
+  "header3",
+  "footer1"
 ]
 export const Editor = (props) => {
 

@@ -2,6 +2,7 @@ import {rowStyle, colStyle} from './GeneralBlockCss';
 
 import image4 from '../../../../images/image4.png';
 import image5 from '../../../../images/image5.png';
+import image6 from '../../../../images/image6.png';
 
 // This will be for the header and be used for navigation
 export const HeaderBlocks = [
@@ -267,7 +268,7 @@ export const HeaderBlocks = [
 
     </style>
     <div>
-      <img src="${image5}" />
+      <img src="${image6}" />
 
     </div>`,
     content: `
@@ -293,13 +294,14 @@ export const HeaderBlocks = [
           transform: translateX(-50%) translateY(-50%);
         }
         .menuContainerSingle{
-          position:absolute;
+          position: absolute;
+          left: 50%;
           top: 50%;
-          transform: translateY(-50%);
-          right: 5%;
+          transform: translateY(-50%) translateX(-50%);
+          -ms-transform: translateY(-50%) translateX(-50%);
+
         }
         .menuSingle{
-          position: relative;
 
         }
         .headerItemSingle{
@@ -318,10 +320,29 @@ export const HeaderBlocks = [
         }
         .iconHolderHolder{
           position: absolute;
+          background: red;
           right: 0;
           width: 10%;
           margin-right: 5%;
           height:100%;
+
+        }
+        .iconSingle{
+          position: absolute;
+          color: black;
+          font-size: 35px;
+          top: 50%;
+          transform: translateY(-50%);
+
+        }
+        .iconSingle1{
+
+          right: 10%;
+
+        }
+        .iconSingle2{
+
+          right: 5%;
 
         }
 
@@ -363,6 +384,17 @@ export const HeaderBlocks = [
             </div>
 
           </div>
+
+
+
+          <div class="iconSingle iconSingle1">
+            <i class="fa-light fa-magnifying-glass"></i>
+          </div>
+
+          <div class="iconSingle iconSingle2">
+            <i class="fas fa-user"></i>
+          </div>
+
 
 
 

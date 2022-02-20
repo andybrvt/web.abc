@@ -1,12 +1,14 @@
 import {rowStyle, colStyle} from './GeneralBlockCss';
-
+import image7 from '../../../../images/image7.png';
 
 export const FooterBlocks = [
   {
     id: 'footer1',
     category: "Footer",
     media: `
-      <div>Here is footer</div>
+      <div>
+        <img class="img" src="${image7}" />
+      </div>
     `,
     content: `
       <style>

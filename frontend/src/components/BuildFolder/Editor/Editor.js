@@ -58,6 +58,9 @@ import {
 import {
   CustomLinkText1
 } from './CustomTypes/CustomHeaderNavTypes';
+import {
+  CustomBoxType
+} from './CustomTypes/CustomBoxType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -114,7 +117,9 @@ const PLUGINS = [
   ColumnCore,
   grapesjsStyleBg,
 
-  CustomLinkText1
+  CustomLinkText1,
+
+  CustomBoxType
 ]
 
 
@@ -129,6 +134,9 @@ const translatedItems = [
   'info1',
   'info2',
   "info3",
+  "info4",
+  "info5",
+  "info6",
   "header1",
   "header2",
   "header3",

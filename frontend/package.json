@@ -23,6 +23,7 @@
     "grapesjs-blocks-basic": "^0.1.8",
     "grapesjs-style-bg": "^1.0.5",
     "grapesjs-style-gradient": "^2.0.14",
+    "html-react-parser": "^1.4.8",
     "paper": "^0.12.15",
     "react": "^17.0.2",
     "react-codemirror2": "^7.2.1",

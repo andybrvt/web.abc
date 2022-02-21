@@ -83,6 +83,7 @@ import {
   PopoverAnchor,
 } from '@chakra-ui/react'
 import { BlockPopOver } from '../../BlockPopOver/BlockPopOver';
+import axios from 'axios';
 
 
 
@@ -444,7 +445,28 @@ export const Editor = (props) => {
 
     editor.Commands.add('open-live-preview', {
       run(editor, sender){
-        window.open("http://localhost:3000")
+
+        const html = editor.getHtml();
+        const css = editor.getCss();
+
+        let formData = new FormData()
+        formData.append("css", css)
+
+        axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
+        .then(res=> {
+
+          props.history.push('/previewPage', {
+            html: html,
+            css: css
+          })
+          
+        })
+
+
+
+
+
+
       }
 
     })

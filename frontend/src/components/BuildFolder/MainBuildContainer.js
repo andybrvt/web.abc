@@ -31,7 +31,7 @@ export const MainBuildContainer = (props) => {
 
   return(
     <div>
-      <Editor />
+      <Editor {...props}/>
 
     </div>
   )

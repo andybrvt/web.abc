@@ -5,11 +5,11 @@ import React, { Component }  from 'react';
 
 const script = (props) => {
 
-  const myLibOpts = {
-    prop1: props.myprop1,
-    prop2: props.myprop2,
-  };
-  alert('My lib options: ' + JSON.stringify(myLibOpts));
+  // const myLibOpts = {
+  //   prop1: props.myprop1,
+  //   prop2: props.myprop2,
+  // };
+  // alert('My lib options: ' + JSON.stringify(myLibOpts));
 }
 // this will be the core of every button
 export const CoreButtonType = editor => {

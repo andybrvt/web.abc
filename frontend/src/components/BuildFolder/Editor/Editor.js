@@ -82,6 +82,10 @@ import {
   PopoverCloseButton,
   PopoverAnchor,
 } from '@chakra-ui/react'
+import { BlockPopOver } from '../../BlockPopOver/BlockPopOver';
+
+
+
 const PLUGINS = [
 
   grapesjsBlocksBasic,
@@ -588,68 +592,7 @@ export const Editor = (props) => {
 
   return(
     <div>
-      {currentX==0 || currentY==0?
-        ''
-      :
 
-      <div>
-
-      <AntdPopover placement="topLeft" title="Title" content={<>
-      <p>Content</p>
-      <p>Content</p>
-      </>}>
-
-      </AntdPopover>
-      <AntdPopover placement="left" title="Edit Text" content={<>
-        <ButtonGroup variant='outline' spacing='6'>
-
-
-            <AntdPopover>
-              <div style={{width:225, height:300}}>
-                <Button colorScheme='teal'>Edit Text</Button>
-                <div> Fonts</div>
-
-                <div style={{flexDirection:'row', display:'flex '}}> FontSize
-                <Slider aria-label='slider-ex-6' onChange={(val) => setSliderValue(val)}>
-                      <SliderMark
-                        value={sliderValue}
-                        textAlign='center'
-                        bg='blue.500'
-                        color='white'
-                        mt='-10'
-                        ml='-5'
-                        w='12'>
-                        {sliderValue}
-                      </SliderMark>
-                      <SliderTrack bg='red.100'>
-                    <Box position='relative' right={10} />
-                    <SliderFilledTrack bg='tomato' />
-                  </SliderTrack>
-                    <SliderThumb boxSize={6} />
-                  </Slider>
-                  <div style={{fontSize:25, marginLeft:20}}>
-                  {sliderValue}
-                  </div>
-                </div>
-                <div> Color</div>
-                <div> B I U</div>
-              </div>
-            </AntdPopover>
-
-
-          <Button>Cancel</Button>
-        </ButtonGroup>
-      </>} arrowPointAtCenter>
-      <div style={{position:'absolute', background:'red',  left:currentX, zIndex:'10000', width:currentWidth, height:currentHeight,top:currentY}}>
-      testing this works {currentX} {currentY }
-      </div>
-      </AntdPopover>
-
-      </div>
-
-
-
-      }
 
       <div className = "editorHeaderContainer">
           <div class="editorHeader">
@@ -729,7 +672,29 @@ export const Editor = (props) => {
 
 
         <div class="column">
+          {currentX==0 || currentY==0?
+            ''
+          :
 
+          <div>
+
+          <AntdPopover placement="left" content={<>
+            <ButtonGroup variant='outline' spacing='6'>
+                <AntdPopover>
+                  <BlockPopOver/>
+                </AntdPopover>
+            </ButtonGroup>
+          </>} arrowPointAtCenter>
+          <div style={{position:'absolute', background:'red',  left:currentX, zIndex:'10000', width:currentWidth, height:currentHeight,top:currentY}}>
+          testing this works {currentX} {currentY }
+          </div>
+          </AntdPopover>
+
+          </div>
+
+
+
+          }
           <div id = "gjs"></div>
         </div>
 

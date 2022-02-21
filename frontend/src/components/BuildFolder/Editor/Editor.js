@@ -306,7 +306,7 @@ export const Editor = (props) => {
               command(editor) {
                 console.log('is this the preview')
                 // editor.BlockManager.getAll().reset();
-                editor.runCommand('preview');
+                editor.runCommand('open-live-preview');
               }
             },
             {
@@ -438,6 +438,12 @@ export const Editor = (props) => {
 
     })
 
+    editor.Commands.add('open-live-preview', {
+      run(editor, sender){
+        window.open("http://localhost:3000")
+      }
+
+    })
 
     // CHANGE THIS LATER
     editor.Commands.add('show-styles', {

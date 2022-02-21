@@ -25,8 +25,10 @@ import { Button as AntdButton } from 'antd';
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined } from '@ant-design/icons';
 import { BlockColorPicker } from './BlockColorPicker';
 export const BlockPopOver = (props) => {
-
-
+  const onChange = (val) => {
+    setSliderValue(val);
+  };
+  const [sliderValue, setSliderValue] = useState(22)
   return(
     <div class="popoverContainer">
       <div class="TextPopOverHeader">
@@ -61,6 +63,11 @@ export const BlockPopOver = (props) => {
         <div class="rowPopover">
           <div style={{width:350, marginTop:0}}>
             <Slider
+             onChange={onChange}
+             onChangeEnd={(val) => console.log(val)}
+             defaultValue={22}
+             min={0}
+             max={100}
              size="md"
              aria-label='slider-ex-6' >
                 {/*<SliderMark
@@ -84,7 +91,7 @@ export const BlockPopOver = (props) => {
             </Slider>
             </div>
             <div style={{fontSize:25, marginLeft:20}}>
-            {50}
+            {sliderValue}
           </div>
         </div>
         <Divider style={{marginTop:0}}/>

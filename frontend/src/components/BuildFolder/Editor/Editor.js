@@ -161,7 +161,7 @@ export const Editor = (props) => {
   const [currentHeight, setCurrentHeight] = useState(0);
   const [popOver, setPopOver]= useState(true);
   const [TextCssVariable, setTestCssVariable]= useState(null);
-  const [sliderValue, setSliderValue] = useState(50)
+
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
       function handleClickOutside(event){
@@ -459,7 +459,7 @@ export const Editor = (props) => {
             html: html,
             css: css
           })
-          
+
         })
 
 

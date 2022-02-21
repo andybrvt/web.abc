@@ -43,7 +43,7 @@ import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
-
+import { BlockPopOver } from '../BlockPopOver/BlockPopOver';
 
 
 
@@ -165,37 +165,9 @@ class Home extends React.Component{
           </div>
         </div>
         */}
-        <div style={{marginLeft:200,width:500, height:300, padding:30, background:'red'}}>
-          <Button colorScheme='teal'>Edit Text</Button>
-          <div> Fonts</div>
-
-          <div style={{flexDirection:'row', display:'flex '}}> FontSize
-          <Slider aria-label='slider-ex-6' >
-                <SliderMark
-                  value={50}
-                  textAlign='center'
-                  bg='blue.500'
-                  color='white'
-                  mt='-10'
-                  ml='-5'
-                  w='12'>
-                  {50}
-                </SliderMark>
-                <SliderTrack bg='red.100'>
-              <Box position='relative' right={10} />
-              <SliderFilledTrack bg='tomato' />
-            </SliderTrack>
-              <SliderThumb boxSize={6} />
-            </Slider>
-            <div style={{fontSize:25, marginLeft:20}}>
-            {50}
-            </div>
-          </div>
-          <div> Color</div>
-          <div> B I U</div>
-        </div>
 
 
+        <BlockPopOver  {...this.props}/>
 
         <div class="loginFormInnerContent">
 

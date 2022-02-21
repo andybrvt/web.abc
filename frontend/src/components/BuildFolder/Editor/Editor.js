@@ -58,6 +58,9 @@ import {
 import {
   CustomLinkText1
 } from './CustomTypes/CustomHeaderNavTypes';
+import {
+  CustomBoxType
+} from './CustomTypes/CustomBoxType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -118,7 +121,9 @@ const PLUGINS = [
   ColumnCore,
   grapesjsStyleBg,
 
-  CustomLinkText1
+  CustomLinkText1,
+
+  CustomBoxType
 ]
 
 
@@ -132,7 +137,14 @@ const translatedItems = [
   'template3',
   'info1',
   'info2',
-  "info3"
+  "info3",
+  "info4",
+  "info5",
+  "info6",
+  "header1",
+  "header2",
+  "header3",
+  "footer1"
 ]
 export const Editor = (props) => {
 
@@ -301,6 +313,14 @@ export const Editor = (props) => {
                 editor.runCommand('preview');
               }
             },
+            {
+              id: 'export',
+              className: 'btn-alert-button',
+              label: "Export",
+              command(editor){
+                editor.runCommand("export-template")
+              }
+            }
 
 
 

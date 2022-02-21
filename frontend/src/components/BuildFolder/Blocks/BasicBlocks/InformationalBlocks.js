@@ -6,7 +6,9 @@
 import {rowStyle, colStyle, rowStyleMedia, colStyleMedia} from './GeneralBlockCss';
 import imageMedia1 from '../../../../images/imageMedia1.png';
 import imageMedia2 from '../../../../images/imageMedia2.png';
-
+import image8 from '../../../../images/image8.png';
+import image9 from '../../../../images/image9.png';
+import image11 from '../../../../images/image11.png';
 export const InformationalBlocks = [
   {
     id: 'info1',
@@ -159,11 +161,11 @@ export const InformationalBlocks = [
       <style>
         ${rowStyle}
         ${colStyle}
-        .infoRow2{
+        .infoRow3{
           padding: 20px;
           background: #F0F8FF;
         }
-        .infoColH2{
+        .infoColH3{
           height: 60vh;
         }
         .image3{
@@ -203,27 +205,252 @@ export const InformationalBlocks = [
 
       </style>
 
-      <div class="row infoRow2">
+      <div class="row infoRow3">
 
 
-        <div class = "col infoColH2">
+        <div class = "col infoColH3">
           <img class ="image3" src = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
           <div class = "miniText3">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
           </div>
         </div>
-        <div class = "col infoColH2">
+        <div class = "col infoColH3">
           <img class ="image3" src = "https://images.unsplash.com/photo-1634320714682-ae8b9c9cee60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"/>
           <div class = "miniText3">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
           </div>
         </div>
-        <div class = "col infoColH2">
+        <div class = "col infoColH3">
           <img class ="image3" src = "https://images.unsplash.com/photo-1637666505754-7416ebd70cbf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"/>
           <div class = "miniText3">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
           </div>
         </div>
+      </div>
+
+    `
+  },
+  {
+    id: 'info4',
+    category: 'Information',
+    media: `
+    <style>
+      .img{
+        width: 400px;
+        height: 175;
+      }
+    </style>
+    <div>
+      <img class="img" src =${image8} />
+    </div>`,
+    content: `
+      <style>
+        ${rowStyle}
+        ${colStyle}
+        .infoRow4{
+          padding: 20px;
+          background: black;
+        }
+        .infoColH4{
+          height: 60vh;
+        }
+        .image4{
+          position: relative;
+          height: 70%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .infoHeader4{
+          position:relative;
+          color:white;
+          width: 70%;
+          font-size: 50px;
+          left: 50%;
+          transform:translateX(-50%);
+          text-align: center;
+          top: 15%;
+        }
+        .infoBody4{
+          position: relative;
+          color: white;
+          width: 70%;
+          left: 50%;
+          transform:translateX(-50%);
+          text-align: center;
+          top:15%;
+        }
+        .miniText4{
+          position: relative;
+          width: 40%;
+          top: 5%;
+          left: 50%;
+          transform:translateX(-50%);
+          text-align: center;
+          color:white;
+        }
+
+      </style>
+
+      <div class="row infoRow4">
+
+
+        <div class = "col infoColH4">
+          <img class ="image4" src = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
+          <div class = "miniText4">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+          </div>
+        </div>
+
+      </div>
+
+    `
+  },
+  {
+    id: 'info5',
+    category: 'Information',
+    media: `
+    <style>
+      .img{
+        width: 400px;
+        height: 175;
+      }
+    </style>
+    <div>
+      <img class="img" src =${image9} />
+    </div>`,
+    content: `
+      <style>
+        ${rowStyle}
+        ${colStyle}
+        .infoRow5{
+          padding: 20px;
+          background: black;
+        }
+        .infoColH5{
+          height: 60vh;
+        }
+        .image5{
+          position: relative;
+          height: 70%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .infoHeader5{
+          position:relative;
+          color:white;
+          width: 70%;
+          font-size: 50px;
+          left: 50%;
+          transform:translateX(-50%);
+          text-align: center;
+          top: 15%;
+        }
+        .infoBody5{
+          position: relative;
+          color: white;
+          width: 70%;
+          left: 50%;
+          transform:translateX(-50%);
+          text-align: center;
+          top:15%;
+        }
+        .miniText5{
+          position: relative;
+          width: 70%;
+          top: 30%;
+          left: 50%;
+          font-size: 40px;
+          transform:translateX(-50%);
+          text-align: center;
+          color:white;
+        }
+
+      </style>
+
+      <div class="row infoRow5">
+
+
+        <div class = "col infoColH5">
+          <div class = "miniText5">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+          </div>
+        </div>
+
+      </div>
+
+    `
+  },
+  {
+    id: 'info6',
+    category: 'Information',
+    media: `
+    <style>
+      .img{
+        width: 400px;
+        height: 175;
+      }
+    </style>
+    <div>
+      <img class="img" src =${image11} />
+    </div>`,
+    content: `
+      <style>
+        ${rowStyle}
+        ${colStyle}
+        .infoRow6{
+          padding: 20px;
+          background: white;
+        }
+        .infoColH6{
+          height: 60vh;
+        }
+        .image6{
+          position: relative;
+          height: 70%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .infoHeader6{
+          position:relative;
+          color:white;
+          width: 70%;
+          font-size: 50px;
+          left: 50%;
+          transform:translateX(-50%);
+          text-align: center;
+          top: 15%;
+        }
+        .infoBody6{
+          position: relative;
+          color: black;
+          width: 70%;
+          left: 50%;
+          transform:translateX(-50%);
+          text-align: center;
+          top:15%;
+        }
+        .miniText6{
+          position: relative;
+          width: 70%;
+          top: 30%;
+          left: 50%;
+          font-size: 40px;
+          transform:translateX(-50%);
+          text-align: center;
+          color:black;
+        }
+
+      </style>
+
+      <div class="row infoRow6">
+
+
+        <div class = "col infoColH6">
+          <div class = "miniText6">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+          </div>
+        </div>
+
       </div>
 
     `

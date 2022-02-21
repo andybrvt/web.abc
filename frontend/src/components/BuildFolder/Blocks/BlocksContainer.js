@@ -10,6 +10,8 @@ import {ModernTemplateBlocks} from './BasicBlocks/ModernTemplateBlocks';
 import {LinkBlocks} from './BasicBlocks/LinkBlocks';
 import {ImageBlocks} from './BasicBlocks/ImageBlocks';
 import {InformationalBlocks} from './BasicBlocks/InformationalBlocks';
+import {HeaderBlocks} from './BasicBlocks/HeaderBlocks';
+import {FooterBlocks} from './BasicBlocks/FooterBlocks';
 export const BlocksContainer = (props) => {
 
   const [editor, setEditor] = useState(null)
@@ -72,6 +74,12 @@ export const BlocksContainer = (props) => {
     const infoBlocks = editor.BlockManager.render(
       InformationalBlocks, {external:true}
     )
+    const headerBlocks = editor.BlockManager.render(
+      HeaderBlocks, {external: true}
+    )
+    const footerBlocks = editor.BlockManager.render(
+      FooterBlocks, {external: true}
+    )
 
 
 
@@ -84,6 +92,8 @@ export const BlocksContainer = (props) => {
     document.getElementById("blocks").appendChild(linkBlocks);
     document.getElementById("blocks").appendChild(imageBlocks);
     document.getElementById("blocks").appendChild(infoBlocks);
+    document.getElementById("blocks").appendChild(headerBlocks);
+    document.getElementById("blocks").appendChild(footerBlocks);
 
     const categories = editor.BlockManager.getCategories();
     categories.each(category => {

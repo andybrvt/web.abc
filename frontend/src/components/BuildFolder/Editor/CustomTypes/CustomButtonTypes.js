@@ -3,6 +3,14 @@
 import './CustomButtonTypes.css'
 import React, { Component }  from 'react';
 
+const script = (props) => {
+
+  const myLibOpts = {
+    prop1: props.myprop1,
+    prop2: props.myprop2,
+  };
+  alert('My lib options: ' + JSON.stringify(myLibOpts));
+}
 // this will be the core of every button
 export const CoreButtonType = editor => {
 
@@ -13,6 +21,9 @@ export const CoreButtonType = editor => {
   editor.DomComponents.addType("button", {
     model: {
       defaults:{
+        script,
+        myprop1: 'value1',
+        myprop2: '10',
         name: "button",
         resizable:"true",
         dmode: 'absolute',
@@ -22,8 +33,26 @@ export const CoreButtonType = editor => {
                   },{
                     attributes: {class: 'fa fa-clone'},
                     command: 'tlb-clone',
-                  },]
-        // editable:true, ony works on text components
+                  },],
+        traits: [
+        {
+          type: 'select',
+          name: 'myprop1',
+          changeProp: true,
+          options: [
+            { value: 'value1', name: 'Value 1' },
+            { value: 'value2', name: 'Value 2' },
+          ],
+        }, {
+          type: 'number',
+          name: 'myprop2',
+          changeProp: true,
+        }
+      ],
+
+      'script-props': ['myprop1', 'myprop2'],
+
+
       }
     },
 

@@ -309,6 +309,14 @@ export const Editor = (props) => {
                 editor.runCommand('preview');
               }
             },
+            {
+              id: 'export',
+              className: 'btn-alert-button',
+              label: "Export",
+              command(editor){
+                editor.runCommand("export-template")
+              }
+            }
 
 
 

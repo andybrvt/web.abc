@@ -214,7 +214,7 @@ body{
 }
 
 .panel__right {
-  flex-basis: 400px;
+  flex-basis: 700px;
   position: relative;
   overflow-y: auto;
   z-index: 9999;

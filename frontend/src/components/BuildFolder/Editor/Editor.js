@@ -10,6 +10,7 @@ import {BlocksContainer} from '../Blocks/BlocksContainer';
 import {LayersContainer} from '../Layers/LayersContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
+import {TraitsContainer} from '../Traits/TraitsContainer';
 import {Drawer} from '../../UsefulComponents/Drawer';
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover } from 'antd';
@@ -263,7 +264,7 @@ export const Editor = (props) => {
           el: '.panel__right',
           // Make the panel resizable
           resizable: {
-            maxDim: 500,
+            maxDim: 700,
             minDim: 200,
             tc: 0, // Top handler
             cl: 1, // Left handler
@@ -294,6 +295,13 @@ export const Editor = (props) => {
               togglable: false
             },
             {
+              id: 'Traits',
+              active: true,
+              label: "Traits",
+              command: 'show-traits',
+              togglable: false
+            },
+            {
               id: 'alert-button',
               className: 'btn-alert-button',
               label: 'Clear',
@@ -321,10 +329,7 @@ export const Editor = (props) => {
               command(editor){
                 editor.runCommand("export-template")
               }
-            }
-
-
-
+            },
 
           ]
         },
@@ -352,7 +357,9 @@ export const Editor = (props) => {
             }
         ]
       },
-
+      traitManager: {
+       appendTo: '.traits-container',
+     },
       selectorManager: {
         // if it is a class you would do .NAMEH
         appendTo: '.styles-container'
@@ -485,6 +492,19 @@ export const Editor = (props) => {
         lmEl.style.display = "none";
       }
     })
+
+    editor.Commands.add('show-traits', {
+      getTraitsEl(editor) {
+        const row = editor.getContainer().closest('.editorRow');
+        return row.querySelector('.traits-container');
+      },
+      run(editor, sender) {
+        this.getTraitsEl(editor).style.display = '';
+      },
+      stop(editor, sender) {
+        this.getTraitsEl(editor).style.display = 'none';
+      },
+    });
 
 
     // editor.Panels.addPanel({
@@ -730,6 +750,7 @@ export const Editor = (props) => {
           </div>
           <LayersContainer editor = {editorMain}/>
           <StylesContainer editor = {editorMain} />
+          <TraitsContainer editor = {editorMain} />
         </div>
 
 

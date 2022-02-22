@@ -47,12 +47,18 @@ export const CoreButtonType = editor => {
           type: 'number',
           name: 'myprop2',
           changeProp: true,
+        }, {
+          name: 'onClick',
+
         }
       ],
 
       'script-props': ['myprop1', 'myprop2'],
 
 
+    },
+      init(){
+        console.log('run this script here')
       }
     },
 
@@ -70,7 +76,7 @@ export const CoreButtonType = editor => {
         dragstart: 'handleDragStart',
         click:  function(e) {
 
-      }
+        }
     },
     }),
 

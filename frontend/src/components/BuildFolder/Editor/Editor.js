@@ -19,7 +19,7 @@ import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard  } from '@fortawesome/free-solid-svg-icons'
 import {Canvas} from '../../TestingFolder/ReactDesignerTest';
-import { Button as Button, ButtonGroup, Box } from '@chakra-ui/react'
+import { Button as Button, ButtonGroup, Box, useColorModeValue, Text, Stack} from '@chakra-ui/react'
 import {
   ButtonType1,
   ButtonType2,
@@ -162,7 +162,7 @@ export const Editor = (props) => {
   const [currentHeight, setCurrentHeight] = useState(0);
   const [popOver, setPopOver]= useState(true);
   const [TextCssVariable, setTestCssVariable]= useState(null);
-
+  const [BlockClickType, setBlockClickType]= useState(null);
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
       function handleClickOutside(event){
@@ -184,7 +184,7 @@ export const Editor = (props) => {
     }, [ref]);
   }
   function testCoord (xVal, yVal, widthVal, heightVal){
-    setCurrentX(xVal)
+    setCurrentX(xVal+100)
     setCurrentY(yVal)
     setCurrentWidth(widthVal)
     setCurrentHeight(heightVal)
@@ -259,7 +259,7 @@ export const Editor = (props) => {
       },
       panels: {
         defaults: [
-          {
+          {/*
           id: 'layers',
           el: '.panel__right',
           // Make the panel resizable
@@ -274,7 +274,7 @@ export const Editor = (props) => {
             // instead of the `width` (default)
             keyWidth: 'flex-basis',
           },
-        },
+        */},
 
         {
           id:'panel-switcher', // id of the element, honestly be any becuase you are adding shit in
@@ -545,11 +545,14 @@ export const Editor = (props) => {
         opts.abort = 1;
       }
     });
-
+<<
     editor.on('component:selected', (block, obj) =>{
       console.log(block.getEl())
       // editor.addComponents('<div class="popoverDiv">New component</div>')
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()), 'corner')
+      console.log(block._previousAttributes.type)
+      setBlockClickType(block._previousAttributes.type)
+      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
+      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()), 'corner')
       console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
       console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
 
@@ -724,17 +727,26 @@ export const Editor = (props) => {
 
           <div>
 
-          <AntdPopover placement="left" content={<>
-            <ButtonGroup variant='outline' spacing='6'>
-                <AntdPopover>
-                  <BlockPopOver/>
-                </AntdPopover>
-            </ButtonGroup>
-          </>} arrowPointAtCenter>
-          <div style={{position:'absolute', background:'red',  left:currentX, zIndex:'10000', width:currentWidth, height:currentHeight,top:currentY}}>
-            testing this works {currentX} {currentY }
-          </div>
-          </AntdPopover>
+            {(BlockClickType=='box')?
+                  <AntdPopover trigger="click" placement="left" content={<>
+                    <ButtonGroup variant='outline' spacing='6'>
+                        <AntdPopover>
+
+                              <BlockPopOver/>
+
+
+
+                        </AntdPopover>
+                    </ButtonGroup>
+                  </>} arrowPointAtCenter>
+                  <div style={{position:'absolute',  left:currentX, zIndex:'10000', width:currentWidth, height:currentHeight,top:currentY}}>
+
+                  </div>
+                  </AntdPopover>
+                  :
+                  ''
+                }
+
 
           </div>
 
@@ -744,15 +756,33 @@ export const Editor = (props) => {
           <div id = "gjs"></div>
         </div>
 
+
+
+        <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
+          <Stack
+      bg={useColorModeValue('white', 'gray.800')}
+      style={{height:'100%'}}
+      boxShadow={'lg'}
+      p={8}
+      rounded={'xl'}
+      align={'center'}
+      pos={'relative'}
+      >
+      <Text>dfjasifdj;saldkf;asldjf</Text>
+    </Stack>
+
+        </div>
+        {/*
         <div id = "panelRight" class= {`panel__right`}>
           <div class= "panel__top">
             <div class="panel__switcher"></div>
           </div>
+
           <LayersContainer editor = {editorMain}/>
           <StylesContainer editor = {editorMain} />
           <TraitsContainer editor = {editorMain} />
         </div>
-
+        */}
 
       </div>
 

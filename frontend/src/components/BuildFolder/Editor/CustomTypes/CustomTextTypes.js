@@ -6,6 +6,7 @@ export const UpdateTextType = editor => {
     model: {
       defaults: {
         resizable: true,
+        toolbar: [], 
         // editable:false,
       }
     }

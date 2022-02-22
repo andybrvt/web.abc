@@ -43,10 +43,6 @@ import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
-import { BlockPopOver } from '../BlockPopOver/BlockPopOver';
-
-
-
 
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -143,7 +139,7 @@ class Home extends React.Component{
         <Header/>
 
         <Divider/>
-        {/*
+
         <div class="collectionList">
           <div style={{display:'flex', flexDirection:'row', width:'500px'}}>
             <div class="collectionTitle">
@@ -164,10 +160,7 @@ class Home extends React.Component{
             </div>
           </div>
         </div>
-        */}
 
-
-        <BlockPopOver  {...this.props}/>
 
         <div class="loginFormInnerContent">
 

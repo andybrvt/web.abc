@@ -427,7 +427,7 @@ export const Editor = (props) => {
     editor.Commands.add("show-layers", {
       // editor.getContainer gets the container you listed in init
       // closest will get the closes div element going upward the tree
-      getRowEl(editor){return editor.getContainer().closest('.row');},
+      getRowEl(editor){return editor.getContainer().closest('.editorRow');},
       // querySelector gets a element inside the row given the name
       getLayersEl(row){return row.querySelector(".layers-container")},
 
@@ -463,10 +463,6 @@ export const Editor = (props) => {
         })
 
 
-
-
-
-
       }
 
     })
@@ -475,7 +471,7 @@ export const Editor = (props) => {
     editor.Commands.add('show-styles', {
       // editor.getContainer gets the container you listed in init
       // closest will get the closes div element going upward the tree
-      getRowEl(editor){return editor.getContainer().closest('.row');},
+      getRowEl(editor){return editor.getContainer().closest('.editorRow');},
       // querySelector gets a element inside the row given the name
       getStyleEl(row){return row.querySelector(".styles-container")},
 
@@ -529,26 +525,34 @@ export const Editor = (props) => {
         opts.abort = 1;
       }
     });
+
     editor.on('component:selected', (block, obj) =>{
+      console.log(block.getEl())
       // editor.addComponents('<div class="popoverDiv">New component</div>')
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
+      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()), 'corner')
       console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
       console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
+
+
+
       // console.log(obj.event.srcElement.id)
       // console.log("Width: "+obj.event.srcElement.clientWidth)
       // console.log("Height: "+obj.event.srcElement.clientHeight)
-      if(obj.event) {
-        if(obj.event.clientX!=null || obj.event.clientY!=null ) {
-          // console.log(obj.event.clientX)
 
-          // console.log(obj.event.clientY)
-          testCoord(
-           editor.Canvas.getElementPos(editor.getSelected().getEl()).left,
-           editor.Canvas.getElementPos(editor.getSelected().getEl()).top,
-           obj.event.srcElement.clientWidth, obj.event.srcElement.clientHeight
-          )
-        }
-      }
+
+
+        // if(obj.event) {
+      //   if(obj.event.clientX!=null || obj.event.clientY!=null ) {
+      //     // console.log(obj.event.clientX)
+      //
+      //     // console.log(obj.event.clientY)
+      //     testCoord(
+      //      editor.Canvas.getElementPos(editor.getSelected().getEl()).left,
+      //      editor.Canvas.getElementPos(editor.getSelected().getEl()).top,
+      //      obj.event.srcElement.clientWidth, obj.event.srcElement.clientHeight
+      //     )
+      //   }
+      // }
 
 
 
@@ -630,7 +634,7 @@ export const Editor = (props) => {
 
           </div>
       </div>
-      <div class="row">
+      <div class="editorRow">
         <div class = "firstColumn">
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
@@ -708,7 +712,7 @@ export const Editor = (props) => {
             </ButtonGroup>
           </>} arrowPointAtCenter>
           <div style={{position:'absolute', background:'red',  left:currentX, zIndex:'10000', width:currentWidth, height:currentHeight,top:currentY}}>
-          testing this works {currentX} {currentY }
+            testing this works {currentX} {currentY }
           </div>
           </AntdPopover>
 

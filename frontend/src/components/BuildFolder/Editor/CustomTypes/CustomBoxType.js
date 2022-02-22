@@ -8,7 +8,8 @@ export const CustomBoxType = editor => {
     },
     model: {
       defaults:{
-        resizable:'true'
+        resizable:'true',
+        toolbar: [], 
       }
     }
   })

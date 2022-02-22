@@ -1,11 +1,11 @@
 .popoverContainer {
 
-  width:450px;
-  height:275px;
+  width:375px;
+  height:250px;
   /* padding:30px; */
   padding-top: 10px;
   /* padding-bottom: 10px; */
-  padding-left: 25px;
+  padding-left: 20px;
   padding-right: 30px;
   /* background:red; */
 }
@@ -22,13 +22,13 @@
 
 .rowHeaderPopOver{
   font-family: 'PlusJakartaSans-SemiBold';
-  font-size: 16px;
+  font-size: 13px;
   margin-top: 10px;
 }
 
 .TextPopOverHeader {
   font-family: 'PlusJakartaSans-SemiBold';
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .TextPopOverIndent{

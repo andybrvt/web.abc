@@ -1,0 +1,21 @@
+.attributeHeader{
+  margin-top: 10px;
+  font-family: 'PlusJakartaSans-Bold';
+  font-size: 14px;
+}
+
+
+
+.attributeSectionHeader{
+  font-family: 'PlusJakartaSans-SemiBold';
+
+    font-size: 13px;
+}
+
+.textStyleContainer{
+  margin-top: 50px;
+  /* marginTop:20px; */
+  display: flex;
+  flex-direction: row;
+  /* background: red; */
+}

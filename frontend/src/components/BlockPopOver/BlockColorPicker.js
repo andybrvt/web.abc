@@ -60,8 +60,8 @@ const theme = extendTheme({
             <Button
               aria-label={color}
               background={color}
-              height="27px"
-              width="27px"
+              height="22px"
+              width="22px"
               padding={0}
               minWidth="unset"
               borderRadius={3}

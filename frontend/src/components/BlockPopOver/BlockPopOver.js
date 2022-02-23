@@ -31,7 +31,7 @@ export const BlockPopOver = (props) => {
   const [sliderValue, setSliderValue] = useState(22)
   return(
     <div class="popoverContainer">
-      <div class="TextPopOverHeader">
+      <div class="attributeHeader">
         Text Settings
       </div>
       <Divider style={{marginTop:10, marginBottom:0}}/>

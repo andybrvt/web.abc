@@ -1,4 +1,4 @@
-/*
+0/*
   This will be the real editor to edit stuff directly
 */
 
@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard  } from '@fortawesome/free-solid-svg-icons'
 import {Canvas} from '../../TestingFolder/ReactDesignerTest';
 import { Button as Button, ButtonGroup, Box, useColorModeValue, Text, Stack} from '@chakra-ui/react'
+import { BlockAttributes } from './BlockAttributes';
 import {
   ButtonType1,
   ButtonType2,
@@ -525,7 +526,7 @@ export const Editor = (props) => {
         opts.abort = 1;
       }
     });
-<<
+
     editor.on('component:selected', (block, obj) =>{
       console.log(block.getEl())
       // editor.addComponents('<div class="popoverDiv">New component</div>')
@@ -738,20 +739,7 @@ export const Editor = (props) => {
 
 
 
-        <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
-          <Stack
-      bg={useColorModeValue('white', 'gray.800')}
-      style={{height:'100%'}}
-      boxShadow={'lg'}
-      p={8}
-      rounded={'xl'}
-      align={'center'}
-      pos={'relative'}
-      >
-      <Text>dfjasifdj;saldkf;asldjf</Text>
-    </Stack>
-
-        </div>
+        <BlockAttributes/>
         {/*
         <div id = "panelRight" class= {`panel__right`}>
           <div class= "panel__top">

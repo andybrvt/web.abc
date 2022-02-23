@@ -16,7 +16,7 @@ export const CompilerTest = (props) => {
 
             <body>
               <div>
-                <a onclick="window.parent.test();" href="#" >Call Me </a>
+                <a onClick="window.parent.test();" href="#" >Call Me </a>
               </div>
             ${html1}</body>
             <style>${css1}</style>

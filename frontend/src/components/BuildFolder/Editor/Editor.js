@@ -417,11 +417,9 @@ export const Editor = (props) => {
 
 
     editor.on("block:drag:start", (block, obj) => {
-      console.log(block, obj)
       setVisibility(false)
 
       if(translatedItems.includes(block.id)){
-        console.log('template here')
         editor.setDragMode("translate")
       } else {
         editor.setDragMode("absolute")
@@ -456,15 +454,19 @@ export const Editor = (props) => {
         const html = editor.getHtml();
         const css = editor.getCss();
 
+        const js = editor.getJs();
+        console.log(js)
         let formData = new FormData()
         formData.append("css", css)
+        formData.append('js', js)
 
         axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
         .then(res=> {
 
           props.history.push('/previewPage', {
             html: html,
-            css: css
+            css: css,
+            js: js
           })
 
         })
@@ -545,26 +547,14 @@ export const Editor = (props) => {
         opts.abort = 1;
       }
     });
-<<
+
     editor.on('component:selected', (block, obj) =>{
-      console.log(block.getEl())
-      // editor.addComponents('<div class="popoverDiv">New component</div>')
       console.log(block._previousAttributes.type)
       setBlockClickType(block._previousAttributes.type)
       console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
-      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()), 'corner')
       console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
       console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
-
-
-
-      // console.log(obj.event.srcElement.id)
-      // console.log("Width: "+obj.event.srcElement.clientWidth)
-      // console.log("Height: "+obj.event.srcElement.clientHeight)
-
-
-
-        // if(obj.event) {
+      // if(obj.event) {
       //   if(obj.event.clientX!=null || obj.event.clientY!=null ) {
       //     // console.log(obj.event.clientX)
       //
@@ -577,11 +567,7 @@ export const Editor = (props) => {
       //   }
       // }
 
-
-
-
       // editor.getSelected().append('\n<div>Edit Text</div>')
-      // console.log("model selected")
     })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
@@ -638,6 +624,15 @@ export const Editor = (props) => {
     // }
   }
 
+  const showPreview = () => {
+    console.log('open preview')
+    editorMain.runCommand('open-live-preview');
+
+  }
+
+  const clearCanvas = () => {
+    editorMain.runCommand('core:canvas-clear')
+  }
 
   return(
     <div>
@@ -650,7 +645,9 @@ export const Editor = (props) => {
           <div className = "pageDropContainer">
             <PagesContainer editor = {editorMain} />
           </div>
+
           <div className = "test2">
+
             <Avatar icon={<UserOutlined />}>
               0x086a842...
             </Avatar>
@@ -705,6 +702,20 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
             </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => showPreview()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+            </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => clearCanvas()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+            </div>
+
+
 
 
           </div>

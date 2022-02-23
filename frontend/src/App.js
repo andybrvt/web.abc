@@ -16,7 +16,7 @@ import { createBrowserHistory } from "history";
 import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import {Canvas} from './components/TestingFolder/ReactDesignerTest';
-import PreviewPage from './components/BuildFolder/Editor/PreviewPage';
+import {PreviewPage} from './components/BuildFolder/Editor/PreviewPage';
 
 
 function getLibrary(provider) {

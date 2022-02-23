@@ -1,20 +1,51 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import parse from "html-react-parser";
+import ScriptTag from 'react-script-tag';
 import './PreviewPage.css';
-class PreviewPage extends React.Component {
+
+export const PreviewPage = props => {
+
+  useEffect(() => {
+
+    // const script = document.createElement('script')
+    // script.src = "./PreviewPageJs.js";
+    // script.async = true;
+    // document.body.appendChild(script);
+    //
+    // return () => {
+    //   document.body.removeChild(script)
+    // }
+
+    const js = props.history.location.state.js
+    eval(js)
 
 
-  render() {
-    console.log(this.props.history.location.state.css)
-    return(
-      <div>
-        {parse(this.props.history.location.state.html)}
-        
-      </div>
-    )
+  },[])
+
+  return(
+    <div>
+      {parse(props.history.location.state.html)}
 
 
-  }
+    </div>
+  )
 }
-
-export default PreviewPage;
+// class PreviewPage extends React.Component {
+//
+//
+//
+//   render() {
+//     console.log(this.props.history.location.state.css)
+//     return(
+//       <div>
+//         <ScriptTag type="text/javascript" src="./PreviewPageJs" />
+//
+//
+//       </div>
+//     )
+//
+//
+//   }
+// }
+//
+// export default PreviewPage;

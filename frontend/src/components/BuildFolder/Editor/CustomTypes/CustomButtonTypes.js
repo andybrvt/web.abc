@@ -3,13 +3,11 @@
 import './CustomButtonTypes.css'
 import React, { Component }  from 'react';
 
-const script = (props) => {
+const script = () => {
+  console.log('right here')
 
-  // const myLibOpts = {
-  //   prop1: props.myprop1,
-  //   prop2: props.myprop2,
-  // };
-  // alert('My lib options: ' + JSON.stringify(myLibOpts));
+  alert('this is an alert')
+
 }
 // this will be the core of every button
 export const CoreButtonType = editor => {
@@ -53,7 +51,7 @@ export const CoreButtonType = editor => {
         }
       ],
 
-      'script-props': ['myprop1', 'myprop2'],
+      // 'script-props': ['myprop1', 'myprop2'],
 
 
     },

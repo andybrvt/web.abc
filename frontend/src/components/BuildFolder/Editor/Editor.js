@@ -549,11 +549,11 @@ export const Editor = (props) => {
     });
 
     editor.on('component:selected', (block, obj) =>{
-      console.log(block._previousAttributes.type)
+      // console.log(block._previousAttributes.type)
       setBlockClickType(block._previousAttributes.type)
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
+      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
+      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
+      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
       // if(obj.event) {
       //   if(obj.event.clientX!=null || obj.event.clientY!=null ) {
       //     // console.log(obj.event.clientX)
@@ -567,7 +567,21 @@ export const Editor = (props) => {
       //   }
       // }
 
-      // editor.getSelected().append('\n<div>Edit Text</div>')
+      const target = editor.getSelected()
+      const targetId = target.getId()
+      console.log(target, targetId)
+
+      target.set("script", `
+        function script(props) {
+          var element = document.getElementById("${targetId}");
+          element.addEventListener("click", function () {
+            alert("this is a test");
+          });
+        }
+
+      `)
+
+
     })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
@@ -732,7 +746,7 @@ export const Editor = (props) => {
 
 
         <div class="column">
-          {currentX==0 || currentY==0?
+          {/*currentX==0 || currentY==0?
             ''
           :
 
@@ -763,7 +777,7 @@ export const Editor = (props) => {
 
 
 
-          }
+          */}
           <div id = "gjs"></div>
         </div>
 
@@ -771,16 +785,16 @@ export const Editor = (props) => {
 
         <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
           <Stack
-      bg={useColorModeValue('white', 'gray.800')}
-      style={{height:'100%'}}
-      boxShadow={'lg'}
-      p={8}
-      rounded={'xl'}
-      align={'center'}
-      pos={'relative'}
-      >
-      <Text>dfjasifdj;saldkf;asldjf</Text>
-    </Stack>
+            bg={useColorModeValue('white', 'gray.800')}
+            style={{height:'100%'}}
+            boxShadow={'lg'}
+            p={8}
+            rounded={'xl'}
+            align={'center'}
+            pos={'relative'}
+            >
+            <Text>dfjasifdj;saldkf;asldjf</Text>
+          </Stack>
 
         </div>
         {/*

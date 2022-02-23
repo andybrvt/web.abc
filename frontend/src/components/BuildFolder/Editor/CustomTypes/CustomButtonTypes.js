@@ -3,11 +3,8 @@
 import './CustomButtonTypes.css'
 import React, { Component }  from 'react';
 
-const script = () => {
-  console.log('right here')
-
-  alert('this is an alert')
-
+const script = (props) => {
+  
 }
 // this will be the core of every button
 export const CoreButtonType = editor => {
@@ -51,7 +48,7 @@ export const CoreButtonType = editor => {
         }
       ],
 
-      // 'script-props': ['myprop1', 'myprop2'],
+      'script-props': ['id'],
 
 
     },

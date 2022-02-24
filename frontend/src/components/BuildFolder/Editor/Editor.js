@@ -1,4 +1,4 @@
-0/*
+/*
   This will be the real editor to edit stuff directly
 */
 
@@ -10,6 +10,7 @@ import {BlocksContainer} from '../Blocks/BlocksContainer';
 import {LayersContainer} from '../Layers/LayersContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
+import {TraitsContainer} from '../Traits/TraitsContainer';
 import {Drawer} from '../../UsefulComponents/Drawer';
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover } from 'antd';
@@ -264,7 +265,7 @@ export const Editor = (props) => {
           el: '.panel__right',
           // Make the panel resizable
           resizable: {
-            maxDim: 500,
+            maxDim: 700,
             minDim: 200,
             tc: 0, // Top handler
             cl: 1, // Left handler
@@ -295,6 +296,13 @@ export const Editor = (props) => {
               togglable: false
             },
             {
+              id: 'Traits',
+              active: true,
+              label: "Traits",
+              command: 'show-traits',
+              togglable: false
+            },
+            {
               id: 'alert-button',
               className: 'btn-alert-button',
               label: 'Clear',
@@ -322,10 +330,7 @@ export const Editor = (props) => {
               command(editor){
                 editor.runCommand("export-template")
               }
-            }
-
-
-
+            },
 
           ]
         },
@@ -353,7 +358,9 @@ export const Editor = (props) => {
             }
         ]
       },
-
+      traitManager: {
+       appendTo: '.traits-container',
+     },
       selectorManager: {
         // if it is a class you would do .NAMEH
         appendTo: '.styles-container'
@@ -411,11 +418,9 @@ export const Editor = (props) => {
 
 
     editor.on("block:drag:start", (block, obj) => {
-      console.log(block, obj)
       setVisibility(false)
 
       if(translatedItems.includes(block.id)){
-        console.log('template here')
         editor.setDragMode("translate")
       } else {
         editor.setDragMode("absolute")
@@ -450,15 +455,19 @@ export const Editor = (props) => {
         const html = editor.getHtml();
         const css = editor.getCss();
 
+        const js = editor.getJs();
+        console.log(js)
         let formData = new FormData()
         formData.append("css", css)
+        formData.append('js', js)
 
         axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
         .then(res=> {
 
           props.history.push('/previewPage', {
             html: html,
-            css: css
+            css: css,
+            js: js
           })
 
         })
@@ -486,6 +495,19 @@ export const Editor = (props) => {
         lmEl.style.display = "none";
       }
     })
+
+    editor.Commands.add('show-traits', {
+      getTraitsEl(editor) {
+        const row = editor.getContainer().closest('.editorRow');
+        return row.querySelector('.traits-container');
+      },
+      run(editor, sender) {
+        this.getTraitsEl(editor).style.display = '';
+      },
+      stop(editor, sender) {
+        this.getTraitsEl(editor).style.display = 'none';
+      },
+    });
 
 
     // editor.Panels.addPanel({
@@ -528,24 +550,12 @@ export const Editor = (props) => {
     });
 
     editor.on('component:selected', (block, obj) =>{
-      console.log(block.getEl())
-      // editor.addComponents('<div class="popoverDiv">New component</div>')
-      console.log(block._previousAttributes.type)
+      // console.log(block._previousAttributes.type)
       setBlockClickType(block._previousAttributes.type)
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
-      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()), 'corner')
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
-      console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
-
-
-
-      // console.log(obj.event.srcElement.id)
-      // console.log("Width: "+obj.event.srcElement.clientWidth)
-      // console.log("Height: "+obj.event.srcElement.clientHeight)
-
-
-
-        // if(obj.event) {
+      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
+      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
+      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
+      // if(obj.event) {
       //   if(obj.event.clientX!=null || obj.event.clientY!=null ) {
       //     // console.log(obj.event.clientX)
       //
@@ -558,11 +568,21 @@ export const Editor = (props) => {
       //   }
       // }
 
+      const target = editor.getSelected()
+      const targetId = target.getId()
+      console.log(target, targetId)
+
+      target.set("script", `
+        function script(props) {
+          var element = document.getElementById("${targetId}");
+          element.addEventListener("click", function () {
+            alert("this is a test");
+          });
+        }
+
+      `)
 
 
-
-      // editor.getSelected().append('\n<div>Edit Text</div>')
-      // console.log("model selected")
     })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
@@ -619,6 +639,15 @@ export const Editor = (props) => {
     // }
   }
 
+  const showPreview = () => {
+    console.log('open preview')
+    editorMain.runCommand('open-live-preview');
+
+  }
+
+  const clearCanvas = () => {
+    editorMain.runCommand('core:canvas-clear')
+  }
 
   return(
     <div>
@@ -631,7 +660,9 @@ export const Editor = (props) => {
           <div className = "pageDropContainer">
             <PagesContainer editor = {editorMain} />
           </div>
+
           <div className = "test2">
+
             <Avatar icon={<UserOutlined />}>
               0x086a842...
             </Avatar>
@@ -686,6 +717,20 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
             </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => showPreview()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+            </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => clearCanvas()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+            </div>
+
+
 
 
           </div>
@@ -702,7 +747,7 @@ export const Editor = (props) => {
 
 
         <div class="column">
-          {currentX==0 || currentY==0?
+          {/*currentX==0 || currentY==0?
             ''
           :
 
@@ -733,13 +778,14 @@ export const Editor = (props) => {
 
 
 
-          }
+          */}
           <div id = "gjs"></div>
         </div>
 
 
 
         <BlockAttributes/>
+
         {/*
         <div id = "panelRight" class= {`panel__right`}>
           <div class= "panel__top">
@@ -748,6 +794,7 @@ export const Editor = (props) => {
 
           <LayersContainer editor = {editorMain}/>
           <StylesContainer editor = {editorMain} />
+          <TraitsContainer editor = {editorMain} />
         </div>
         */}
 

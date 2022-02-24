@@ -10,8 +10,13 @@ class UploadFileCss(APIView):
     def post(self, request, *args, **kwargs):
         print(request.data['css'])
         css = request.data['css']
+        js = request.data['js']
 
         with open("../frontend/src/components/BuildFolder/Editor/PreviewPage.css", 'w') as f:
             print(css, file=f)
+        with open("../frontend/src/components/BuildFolder/Editor/PreviewPageJs.js", 'w') as f:
+            print(js, file=f)
+
+
 
         return Response("stuff here")

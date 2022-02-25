@@ -456,20 +456,21 @@ export const Editor = (props) => {
 
         const js = editor.getJs();
         console.log(js)
+
         let formData = new FormData()
-        formData.append("css", css)
-        formData.append('js', js)
-
-        axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
-        .then(res=> {
-
-          props.history.push('/previewPage', {
-            html: html,
-            css: css,
-            js: js
-          })
-
-        })
+        // formData.append("css", css)
+        // formData.append('js', js)
+        //
+        // axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
+        // .then(res=> {
+        //
+        //   props.history.push('/previewPage', {
+        //     html: html,
+        //     css: css,
+        //     js: js
+        //   })
+        //
+        // })
 
 
       }
@@ -508,39 +509,6 @@ export const Editor = (props) => {
       },
     });
 
-
-    // editor.Panels.addPanel({
-    //   id: 'basic-actions',
-    //   el: '.panel__basic-actions',
-    //   buttons: [
-    //     {
-    //       id: 'visibility',
-    //       active: true, // active by default
-    //       className: 'btn-toggle-borders',
-    //       label: '<u>B</u>',
-    //       command: 'sw-visibility', // Built-in command
-    //     }, {
-    //       id: 'export',
-    //       className: 'btn-open-export',
-    //       label: 'Exp',
-    //       command: 'export-template',
-    //       context: 'export-template', // For grouping context of buttons from the same panel
-    //     }, {
-    //       id: 'show-json',
-    //       className: 'btn-show-json',
-    //       label: 'JSON',
-    //       context: 'show-json',
-    //       command(editor) {
-    //         editor.Modal.setTitle('Components JSON')
-    //           .setContent(`<textarea style="width:100%; height: 250px;">
-    //             ${JSON.stringify(editor.getComponents())}
-    //           </textarea>`)
-    //           .open();
-    //       },
-    //     }
-    //   ],
-    // });
-
     editor.on('run:export-template:before', opts => {
       console.log('Before the command run');
       if (0 /* some condition */) {
@@ -575,7 +543,7 @@ export const Editor = (props) => {
         function script(props) {
           var element = document.getElementById("${targetId}");
           element.addEventListener("click", function () {
-            alert("this is a test");
+            console.log('this works')
           });
         }
 
@@ -583,6 +551,13 @@ export const Editor = (props) => {
 
 
     })
+
+    editor.on("storage:store", function(e){
+      console.log(e)
+
+
+    })
+    editor.on("straoge:load", function(e){console.log('load',e)})
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
@@ -646,6 +621,44 @@ export const Editor = (props) => {
 
   const clearCanvas = () => {
     editorMain.runCommand('core:canvas-clear')
+  }
+
+  const storeEditor = () => {
+    console.log('you are saving your editor here')
+
+    // editorMain.store()
+    // get css doing the save file --> styles in there should include everything
+
+
+    const formData =  new FormData()
+    formData.append("publicKey", 1)
+    const allPages = editorMain.Pages.getAll();
+    formData.append("numPages", allPages.length)
+    const htmlAll = allPages.map((p, index) => {
+      console.log(p.getName())
+      var pageName = p.getName()
+      var pageComp = p.getMainComponent()
+      var html = editorMain.CodeManager.getCode(pageComp, "html")
+      var css = editorMain.CodeManager.getCode(pageComp, 'css')
+      var js = editorMain.CodeManager.getCode(pageComp, "js")
+
+      var pageDict = {
+        "name": pageName,
+        'html': html,
+        'css': css,
+        'js': js
+      }
+      formData.append(index, JSON.stringify(pageDict))
+      // temp variable
+
+
+    })
+
+
+    axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview`, formData)
+
+
+
   }
 
   return(
@@ -728,6 +741,12 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
             </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => storeEditor()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+            </div>
 
 
 
@@ -782,22 +801,25 @@ export const Editor = (props) => {
         </div>
 
 
-
-        <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
-          <Stack
-            bg={useColorModeValue('white', 'gray.800')}
-            style={{height:'100%'}}
-            boxShadow={'lg'}
-            p={8}
-            rounded={'xl'}
-            align={'center'}
-            pos={'relative'}
-            >
-            <Text>dfjasifdj;saldkf;asldjf</Text>
-          </Stack>
-
-        </div>
         {/*
+          <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
+            <Stack
+              bg={useColorModeValue('white', 'gray.800')}
+              style={{height:'100%'}}
+              boxShadow={'lg'}
+              p={8}
+              rounded={'xl'}
+              align={'center'}
+              pos={'relative'}
+              >
+              <Text>dfjasifdj;saldkf;asldjf</Text>
+            </Stack>
+
+          </div>
+
+
+          */}
+
         <div id = "panelRight" class= {`panel__right`}>
           <div class= "panel__top">
             <div class="panel__switcher"></div>
@@ -807,7 +829,7 @@ export const Editor = (props) => {
           <StylesContainer editor = {editorMain} />
           <TraitsContainer editor = {editorMain} />
         </div>
-        */}
+
 
       </div>
 

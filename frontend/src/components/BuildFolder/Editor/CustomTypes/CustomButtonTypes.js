@@ -4,7 +4,7 @@ import './CustomButtonTypes.css'
 import React, { Component }  from 'react';
 
 const script = (props) => {
-  
+
 }
 // this will be the core of every button
 export const CoreButtonType = editor => {
@@ -17,8 +17,6 @@ export const CoreButtonType = editor => {
     model: {
       defaults:{
         script,
-        myprop1: 'value1',
-        myprop2: '10',
         name: "button",
         resizable:"true",
         dmode: 'absolute',
@@ -101,6 +99,7 @@ export const ButtonType1 = editor => {
               background: black;
               padding: 0 50px;
               height: 45px;
+              cursor: pointer;
             }
             .text{
               color: white;
@@ -127,6 +126,8 @@ export const ButtonType2 = editor => {
               background: white;
               border: 1px solid black;
               text-align: center;
+              cursor: pointer;
+
             }
             .text2{
 
@@ -153,6 +154,8 @@ export const ButtonType3 = editor => {
               padding:20px 55px 20px 55px;
               background: #6CB4EE;
               text-align: center;
+              cursor: pointer;
+
             }
             .text3{
 
@@ -182,6 +185,8 @@ export const ButtonType4 = editor => {
               flex-direction: row;
               color: white;
               font-size: 25px;
+              cursor: pointer;
+
             }
             .text4{
               margin-right: 10px;
@@ -216,6 +221,7 @@ export const ButtonType5 = editor => {
 
         text-transform: uppercase;
         text-decoration: none;
+        cursor: pointer;
 
 
       }

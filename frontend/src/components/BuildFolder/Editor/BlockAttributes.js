@@ -12,7 +12,7 @@ import {
   Slider,
   Box,
   Button,
-  Select,
+
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
@@ -25,13 +25,19 @@ import {
   Flex,
   NumberInputStepper,
   useColorModeValue,
-  Text,
+  Link,
+  FormControl,
+  FormLabel,
+  Code,
+  FormErrorMessage
 } from '@chakra-ui/react';
 import axios from 'axios';
-
+import Select, { CreatableSelect } from "./chakra-react-select";
 import { Button as AntdButton } from 'antd';
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined } from '@ant-design/icons';
 import './BlockAttributes.css';
+import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "./data";
+// https://codesandbox.io/s/648uv?file=/example.js:212-272
 import { BlockColorPicker } from '../../BlockPopOver/BlockColorPicker'
 export const BlockAttributes = (props) => {
   const onChange = (val) => {
@@ -58,16 +64,14 @@ export const BlockAttributes = (props) => {
         <Divider/>
           <div style={{marginTop:20, marginBottom:20}}>
             <Select
-              size='xs'
-              placeholder='Title' >
-               <option value='option1'>Title </option>
-               <option value='option2'>HeadLine </option>
-               <option value='option1'>Subheadline </option>
-               <option value='option2'>Normal Text</option>
-               <option value='option1'>Small Text </option>
+              name="colors"
+              options={TextSize}
+              placeholder="Normal Text"
+              closeMenuOnSelect={false}
+              size="sm">
             </Select>
           </div>
-        <div class="attributeHeader">Text Apperance</div>
+        <div class="attributeHeader">Text Appearance</div>
         // <Divider/>
         {/*
         <div class="attributeSectionHeader">Text Style</div>
@@ -76,16 +80,13 @@ export const BlockAttributes = (props) => {
           <div class="textStyleContainer">
             <div style={{marginTop:10, marginBottom:20}}>
               <Select
-                size='xs'
-                 placeholder='Calibri' >
-                 <option value='option1'>Helvetica </option>
-                 <option value='option2'>Times New Roman</option>
-                 <option value='option3'>Futura</option>
-                 <option value='option1'>Helvetica </option>
-                 <option value='option2'>Garamond</option>
-                 <option value='option1'>Cambria </option>
-                 <option value='option2'>Verdana</option>
+
+                options={TextFonts}
+                placeholder="Title"
+                closeMenuOnSelect={false}
+                size="sm">
               </Select>
+
               </div>
           </div>
             <div style={{flexDirection:'row', display:'flex',}}>

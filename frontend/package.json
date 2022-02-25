@@ -16,6 +16,7 @@
     "@usedapp/core": "^0.7.3",
     "antd": "^4.17.3",
     "axios": "^0.24.0",
+    "chakra-react-select": "^3.0.4",
     "codemirror": "^5.65.1",
     "font-awesome": "^4.7.0",
     "framer-motion": "^4.1.17",

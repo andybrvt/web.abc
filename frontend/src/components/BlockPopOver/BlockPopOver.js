@@ -43,17 +43,9 @@ export const BlockPopOver = (props) => {
          </div>
 
          <Select
-         // bg='tomato'
-        // borderColor='tomato'
-        // color='white'
+           size="sm"
            variant='flushed' placeholder='Calibri' >
-            <option value='option1'>Helvetica </option>
-            <option value='option2'>Times New Roman</option>
-            <option value='option3'>Futura</option>
-            <option value='option1'>Helvetica </option>
-            <option value='option2'>Garamond</option>
-            <option value='option1'>Cambria </option>
-            <option value='option2'>Verdana</option>
+
          </Select>
 
 

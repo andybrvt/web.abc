@@ -35,5 +35,8 @@ class SaveWebsitePreview(APIView):
 
             page = json.loads(request.data[f"{i}"])
             print(page['name'])
+            print(page['html'])
+            print(page['css'])
+            print(page['js'])
 
         return Response("stuff here")

@@ -64,6 +64,7 @@ export const BlockAttributes = (props) => {
         <Divider/>
           <div style={{marginTop:20, marginBottom:20}}>
             <Select
+              purpose="textSize"
               name="colors"
               options={TextSize}
               placeholder="Normal Text"
@@ -80,9 +81,10 @@ export const BlockAttributes = (props) => {
           <div class="textStyleContainer">
             <div style={{marginTop:10, marginBottom:20}}>
               <Select
-
+                purpose="textFonts"
+                test="fontType"
                 options={TextFonts}
-                placeholder="Title"
+                placeholder="Cambria"
                 closeMenuOnSelect={false}
                 size="sm">
               </Select>

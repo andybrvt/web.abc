@@ -275,11 +275,7 @@ const chakraComponents = {
           ...(isDisabled && item._disabled)
         }}
         ref={innerRef}
-<<<<<<< HEAD
-        // {...innerProps}
-=======
         {...innerProps}
->>>>>>> a7d78753b6b4251dcc6c4147b3805e8ef0f13725
         {...(isDisabled && { disabled: true })}
       >
         {children}

@@ -42,6 +42,7 @@ import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
+import * as dateFns from 'date-fns';
 
 
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
@@ -81,23 +82,24 @@ class Home extends React.Component{
       searchValue: "",
       selectedFile: "",
       sliderValue:0,
+      username: "",
+      password: "",
+      login: false,
+      websites: []
     };
   }
 
 
-  state = {
-    username: "",
-    password: "",
-    login: false,
-
-  };
 
 
   componentDidMount(){
     axios.get(`${global.API_ENDPOINT}/builder/getAllWebsite`)
     .then(res => {
-      console.log(res.data, 'nothing here')
 
+      console.log(res.data)
+      this.setState({
+        websites: res.data
+      })
     })
   }
 
@@ -150,6 +152,10 @@ class Home extends React.Component{
       console.log(eventId)
       this.props.history.push("/build")
     }
+
+  onBuildDirect = () => {
+    this.props.history.push("/build")
+  }
   render(){
 
     const account = this.props.account;
@@ -188,10 +194,12 @@ class Home extends React.Component{
            header={<div>Header</div>}
            footer={<div>Footer</div>}
            bordered
-           dataSource={data}
+           dataSource={this.state.websites}
            renderItem={item => (
-             <List.Item>
-               <Typography.Text mark>[ITEM]</Typography.Text> {item}
+             <List.Item
+               onClick = {() =>this.onBuildDirect()}
+               className = "testListItem">
+               <Typography.Text mark>{item.name} {dateFns.format(new Date(item.lastChanged), 'MM-dd-yyyy')}</Typography.Text>
              </List.Item>
            )}
          />

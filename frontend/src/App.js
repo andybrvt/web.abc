@@ -60,7 +60,7 @@ class App extends Component{
         <Routes>
           <Route exact path="/"  element={<Landing history={history}/>} />
           <Route exact path="/login"  element={<Login history={history} />} />
-          <Route exact path="/account"  element={<Home history={history} />} />
+          <Route exact path="/home"  element={<Home history={history} />} />
           <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
           <Route exact path="/test" element={<TestHTMLScraper history={history}/>} />
           <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />

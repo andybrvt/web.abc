@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import parse from "html-react-parser";
-import ScriptTag from 'react-script-tag';
 import './PreviewPage.css';
+
 
 export const PreviewPage = props => {
 

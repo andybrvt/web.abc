@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 """
     This will be each page of the website
@@ -32,3 +33,5 @@ class OwnerWalletKey(models.Model):
 class Website(models.Model):
     owner = models.ForeignKey(OwnerWalletKey, related_name = "owner_key", on_delete = models.CASCADE,null= True  )
     pages = models.ManyToManyField(WebsitePage, related_name="website_page", blank = True)
+    name = models.CharField(max_length= 255,default = "default website")
+    lastChanged = models.DateTimeField(default = timezone.now, blank = False)

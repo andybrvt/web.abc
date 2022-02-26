@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard  } from '@fortawesome/free-solid-svg-icons'
 import {Canvas} from '../../TestingFolder/ReactDesignerTest';
 import { Button as Button, ButtonGroup, Box, useColorModeValue, Text, Stack} from '@chakra-ui/react'
+import { BlockAttributes } from './BlockAttributes';
 import {
   ButtonType1,
   ButtonType2,
@@ -458,19 +459,19 @@ export const Editor = (props) => {
         console.log(js)
 
         let formData = new FormData()
-        // formData.append("css", css)
-        // formData.append('js', js)
-        //
-        // axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
-        // .then(res=> {
-        //
-        //   props.history.push('/previewPage', {
-        //     html: html,
-        //     css: css,
-        //     js: js
-        //   })
-        //
-        // })
+        formData.append("css", css)
+        formData.append('js', js)
+
+        axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
+        .then(res=> {
+
+          props.history.push('/previewPage', {
+            html: html,
+            css: css,
+            js: js
+          })
+
+        })
 
 
       }
@@ -634,6 +635,7 @@ export const Editor = (props) => {
     formData.append("publicKey", 1)
     const allPages = editorMain.Pages.getAll();
     formData.append("numPages", allPages.length)
+    formData.append("name", 'some test name') //Change this later
     const htmlAll = allPages.map((p, index) => {
       console.log(p.getName())
       var pageName = p.getName()
@@ -815,10 +817,11 @@ export const Editor = (props) => {
               <Text>dfjasifdj;saldkf;asldjf</Text>
             </Stack>
 
-          </div>
-
 
           */}
+
+        <BlockAttributes/>
+
 
         <div id = "panelRight" class= {`panel__right`}>
           <div class= "panel__top">

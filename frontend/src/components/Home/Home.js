@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Form } from '@ant-design/compatible';
-import { Input, Form, List, Avatar } from 'antd';
+import { Input, Form, List, Avatar,Typography } from 'antd';
 import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { NavLink, Redirect, } from "react-router-dom";
 // import './Account.css';
@@ -35,14 +35,25 @@ import {
 } from '@chakra-ui/react';
 import { EmailIcon } from '@chakra-ui/icons'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
-import { authAxios } from '../../components/util';
 import { UploadImageNFT } from './UploadImageNFT';
 import { CollectionList } from './CollectionList/CollectionList';
 import { WebsiteInput } from './WebsiteInput';
 import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
+
+
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
+
+const data = [
+  'Racing car sprays burning fuel into crowd.',
+  'Japanese princess to wed commoner.',
+  'Australian walks 100km after outback crash.',
+  'Man charged over missing wedding girl.',
+  'Los Angeles battles huge wildfires.',
+];
+
 
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -72,12 +83,23 @@ class Home extends React.Component{
       sliderValue:0,
     };
   }
+
+
   state = {
     username: "",
     password: "",
     login: false,
 
   };
+
+
+  componentDidMount(){
+    axios.get(`${global.API_ENDPOINT}/builder/getAllWebsite`)
+    .then(res => {
+      console.log(res.data, 'nothing here')
+
+    })
+  }
 
   renderSearchList = (searches) =>{
     // this function will display the list of users that are found by the search
@@ -130,7 +152,6 @@ class Home extends React.Component{
     }
   render(){
 
-    console.log(this.props)
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
 
@@ -159,6 +180,24 @@ class Home extends React.Component{
               <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1643051861827-4c04aba8c6b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
             </div>
           </div>
+
+
+
+          <List
+          class = "testList"
+           header={<div>Header</div>}
+           footer={<div>Footer</div>}
+           bordered
+           dataSource={data}
+           renderItem={item => (
+             <List.Item>
+               <Typography.Text mark>[ITEM]</Typography.Text> {item}
+             </List.Item>
+           )}
+         />
+
+
+
         </div>
 
 

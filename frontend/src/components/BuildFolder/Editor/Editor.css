@@ -164,16 +164,29 @@ body{
   font-size: 10px;
 }
 
-.test2{
+.rightHeader{
   position: absolute;
   top: 50%;
-  left: 95%;
+  left: 90%;
   z-index:999;
   transform: translateX(-50%) translateY(-50%);
   cursor: pointer;
-  font-family: 'PlusJakartaSans';
-  font-size: 10px;
+  justify-content: center;
+  align-items: center;
+  /* background: red; */
 }
+
+
+.rightHeaderProfile {
+
+   /* justify-content: center; */
+   display: flex;
+   flex-direction: row;
+
+
+}
+
+
 .menuContianer{
   font-family: 'PlusJakartaSans';
 }

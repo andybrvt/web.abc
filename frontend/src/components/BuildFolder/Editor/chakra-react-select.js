@@ -208,6 +208,7 @@ const chakraComponents = {
   MenuList: ({ innerRef, children, maxHeight, selectProps: { size } }) => {
     const { list } = useStyles();
     const chakraTheme = useTheme();
+
     const borderRadii = {
       sm: chakraTheme.radii.sm,
       md: chakraTheme.radii.md,

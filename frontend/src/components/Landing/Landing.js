@@ -121,7 +121,7 @@ class Landing extends React.Component{
             <div className="title">
               {
                 account ?
-                this.props.history.push("/account")
+                this.props.history.push("/home")
 
                  :
                 ''

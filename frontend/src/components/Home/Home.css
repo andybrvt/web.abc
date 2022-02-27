@@ -2,7 +2,7 @@
 .menu {
   width:100vw;
   height:7vh;
-  
+
 }
 
 .collectionList{
@@ -47,6 +47,13 @@
 }
 
 
+.testList{
+  height: 300px;
+  overflow: auto;
+}
+.testListItem{
+  cursor: pointer;
+}
 
 
 .searchBarContainer{

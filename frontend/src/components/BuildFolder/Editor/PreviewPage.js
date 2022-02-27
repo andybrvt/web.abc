@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import parse from "html-react-parser";
-// import './PreviewPage.css';
+import './PreviewPage.css';
 
 
 export const PreviewPage = props => {

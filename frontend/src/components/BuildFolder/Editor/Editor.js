@@ -216,26 +216,30 @@ export const Editor = (props) => {
         grapesjsStyleBg:{}
        },
       // this is the local storage
-      storageManager: {
-        id: 'gjs-', // just the identifier that you will be using
-        type: 'local', // type of storage
-        autosave: true,
-        autoload: true,
-        stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
-        storeComponents: true, // enable/disable storing of componets in JSON format
-        storeStyles: true,
-        storeHtml: true,
-        storeCss: true
-      },
-      // // this is the remote storage (probally gonna use this one here)
       // storageManager: {
-      //   type: 'remote',
-      //   stepsBeforeSave: 10,
-      //   urlStore: 'http://store/endpoint',
-      //   urlLoad: 'http://load/endpoint' // django endpoint would go here
-      //   params: {},
-      //   headers: {}
+      //   id: 'gjs-', // just the identifier that you will be using
+      //   type: 'local', // type of storage
+      //   autosave: true,
+      //   autoload: true,
+      //   stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
+      //   storeComponents: true, // enable/disable storing of componets in JSON format
+      //   storeStyles: true,
+      //   storeHtml: true,
+      //   storeCss: true
       // },
+      // // this is the remote storage (probally gonna use this one here)
+      storageManager: {
+        type: 'remote',
+        stepsBeforeSave: 3,
+        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite`,
+        urlLoad: 'http://load/endpoint', // django endpoint would go here
+        contentTypeJson: true,
+        params: {
+        },
+        headers: {
+          "Content-Type": "application/json",
+        }
+      },
       assetManager:{
         assets:[
           'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
@@ -456,6 +460,7 @@ export const Editor = (props) => {
 
         const js = editor.getJs();
         console.log(js)
+
         let formData = new FormData()
         formData.append("css", css)
         formData.append('js', js)
@@ -508,39 +513,6 @@ export const Editor = (props) => {
       },
     });
 
-
-    // editor.Panels.addPanel({
-    //   id: 'basic-actions',
-    //   el: '.panel__basic-actions',
-    //   buttons: [
-    //     {
-    //       id: 'visibility',
-    //       active: true, // active by default
-    //       className: 'btn-toggle-borders',
-    //       label: '<u>B</u>',
-    //       command: 'sw-visibility', // Built-in command
-    //     }, {
-    //       id: 'export',
-    //       className: 'btn-open-export',
-    //       label: 'Exp',
-    //       command: 'export-template',
-    //       context: 'export-template', // For grouping context of buttons from the same panel
-    //     }, {
-    //       id: 'show-json',
-    //       className: 'btn-show-json',
-    //       label: 'JSON',
-    //       context: 'show-json',
-    //       command(editor) {
-    //         editor.Modal.setTitle('Components JSON')
-    //           .setContent(`<textarea style="width:100%; height: 250px;">
-    //             ${JSON.stringify(editor.getComponents())}
-    //           </textarea>`)
-    //           .open();
-    //       },
-    //     }
-    //   ],
-    // });
-
     editor.on('run:export-template:before', opts => {
       console.log('Before the command run');
       if (0 /* some condition */) {
@@ -569,19 +541,27 @@ export const Editor = (props) => {
 
       const target = editor.getSelected()
       const targetId = target.getId()
-      console.log(target, targetId)
 
       target.set("script", `
         function script(props) {
           var element = document.getElementById("${targetId}");
           element.addEventListener("click", function () {
-            alert("this is a test");
+            console.log('this works')
           });
         }
 
       `)
 
 
+    })
+
+    editor.on("storage:store", function(e){
+      console.log('store',e)
+
+
+    })
+    editor.on("storage:load", function(e){
+      console.log('load',e)
     })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
@@ -646,6 +626,45 @@ export const Editor = (props) => {
 
   const clearCanvas = () => {
     editorMain.runCommand('core:canvas-clear')
+  }
+
+  const storeEditor = () => {
+    console.log('you are saving your editor here')
+
+    // editorMain.store()
+    // get css doing the save file --> styles in there should include everything
+
+
+    const formData =  new FormData()
+    formData.append("publicKey", 1)
+    const allPages = editorMain.Pages.getAll();
+    formData.append("numPages", allPages.length)
+    formData.append("name", 'some test name') //Change this later
+    const htmlAll = allPages.map((p, index) => {
+      console.log(p.getName())
+      var pageName = p.getName()
+      var pageComp = p.getMainComponent()
+      var html = editorMain.CodeManager.getCode(pageComp, "html")
+      var css = editorMain.CodeManager.getCode(pageComp, 'css')
+      var js = editorMain.CodeManager.getCode(pageComp, "js")
+
+      var pageDict = {
+        "name": pageName,
+        'html': html,
+        'css': css,
+        'js': js
+      }
+      formData.append(index, JSON.stringify(pageDict))
+      // temp variable
+
+
+    })
+
+
+    axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview`, formData)
+
+
+
   }
 
   return(
@@ -739,6 +758,12 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
             </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => storeEditor()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+            </div>
 
 
 
@@ -793,20 +818,40 @@ export const Editor = (props) => {
         </div>
 
 
+        {/*
+          <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
+            <Stack
+              bg={useColorModeValue('white', 'gray.800')}
+              style={{height:'100%'}}
+              boxShadow={'lg'}
+              p={8}
+              rounded={'xl'}
+              align={'center'}
+              pos={'relative'}
+              >
+              <Text>dfjasifdj;saldkf;asldjf</Text>
+            </Stack>
+
+
+          */}
 
         <BlockAttributes/>
 
+
         {/*
-        <div id = "panelRight" class= {`panel__right`}>
-          <div class= "panel__top">
-            <div class="panel__switcher"></div>
+          <div id = "panelRight" class= {`panel__right`}>
+            <div class= "panel__top">
+              <div class="panel__switcher"></div>
+            </div>
+
+            <LayersContainer editor = {editorMain}/>
+            <StylesContainer editor = {editorMain} />
+            <TraitsContainer editor = {editorMain} />
           </div>
 
-          <LayersContainer editor = {editorMain}/>
-          <StylesContainer editor = {editorMain} />
-          <TraitsContainer editor = {editorMain} />
-        </div>
-        */}
+
+          */}
+
 
       </div>
 

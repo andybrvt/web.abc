@@ -217,26 +217,30 @@ export const Editor = (props) => {
         grapesjsStyleBg:{}
        },
       // this is the local storage
-      storageManager: {
-        id: 'gjs-', // just the identifier that you will be using
-        type: 'local', // type of storage
-        autosave: true,
-        autoload: true,
-        stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
-        storeComponents: true, // enable/disable storing of componets in JSON format
-        storeStyles: true,
-        storeHtml: true,
-        storeCss: true
-      },
-      // // this is the remote storage (probally gonna use this one here)
       // storageManager: {
-      //   type: 'remote',
-      //   stepsBeforeSave: 10,
-      //   urlStore: 'http://store/endpoint',
-      //   urlLoad: 'http://load/endpoint' // django endpoint would go here
-      //   params: {},
-      //   headers: {}
+      //   id: 'gjs-', // just the identifier that you will be using
+      //   type: 'local', // type of storage
+      //   autosave: true,
+      //   autoload: true,
+      //   stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
+      //   storeComponents: true, // enable/disable storing of componets in JSON format
+      //   storeStyles: true,
+      //   storeHtml: true,
+      //   storeCss: true
       // },
+      // // this is the remote storage (probally gonna use this one here)
+      storageManager: {
+        type: 'remote',
+        stepsBeforeSave: 3,
+        urlStore: `${global.API_ENDPOINT}/builder/saveWebPreview`,
+        urlLoad: 'http://load/endpoint', // django endpoint would go here
+        contentTypeJson: true,
+        params: {
+        },
+        headers: {
+          "Content-Type": "application/json",
+        }
+      },
       assetManager:{
         assets:[
           'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
@@ -538,7 +542,6 @@ export const Editor = (props) => {
 
       const target = editor.getSelected()
       const targetId = target.getId()
-      console.log(target, targetId)
 
       target.set("script", `
         function script(props) {
@@ -554,11 +557,13 @@ export const Editor = (props) => {
     })
 
     editor.on("storage:store", function(e){
-      console.log(e)
+      console.log('store',e)
 
 
     })
-    editor.on("straoge:load", function(e){console.log('load',e)})
+    editor.on("storage:load", function(e){
+      console.log('load',e)
+    })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
@@ -823,15 +828,19 @@ export const Editor = (props) => {
         <BlockAttributes/>
 
 
-        <div id = "panelRight" class= {`panel__right`}>
-          <div class= "panel__top">
-            <div class="panel__switcher"></div>
+        {/*
+          <div id = "panelRight" class= {`panel__right`}>
+            <div class= "panel__top">
+              <div class="panel__switcher"></div>
+            </div>
+
+            <LayersContainer editor = {editorMain}/>
+            <StylesContainer editor = {editorMain} />
+            <TraitsContainer editor = {editorMain} />
           </div>
 
-          <LayersContainer editor = {editorMain}/>
-          <StylesContainer editor = {editorMain} />
-          <TraitsContainer editor = {editorMain} />
-        </div>
+
+          */}
 
 
       </div>

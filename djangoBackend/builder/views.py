@@ -72,3 +72,10 @@ class GetAllWebsite(APIView):
         serializer_website = serializers.WebSiteSerializer(websites,many = True).data
         print(serializer_website)
         return Response(serializer_website)
+
+@authentication_classes([])
+@permission_classes([])
+class SaveWebsite(APIView):
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        return Response("stuff here")

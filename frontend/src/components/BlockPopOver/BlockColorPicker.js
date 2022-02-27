@@ -60,11 +60,11 @@ const theme = extendTheme({
             <Button
               aria-label={color}
               background={color}
-              height="22px"
-              width="22px"
+              height="30px"
+              width="30px"
               padding={0}
               minWidth="unset"
-              borderRadius={3}
+              borderRadius={30}
             ></Button>
           </PopoverTrigger>
           <PopoverContent width="170px">

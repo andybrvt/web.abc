@@ -1,7 +1,8 @@
 .attributeHeader{
-  margin-top: 10px;
-  font-family: 'PlusJakartaSans-Bold';
-  font-size: 13px;
+  top: 10px;
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 14px;
+  /* background: red; */
 }
 
 
@@ -13,9 +14,20 @@
 }
 
 .textStyleContainer{
+  /* width:100%; */
+
   margin-top: 50px;
   /* marginTop:20px; */
   display: flex;
   flex-direction: row;
   /* background: red; */
+}
+
+.justifyButtonCSS{
+    margin-right: 10px;
+}
+
+
+.textPopOverButton {
+  margin-right: 15px;
 }

@@ -12,14 +12,15 @@ import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
 import {TraitsContainer} from '../Traits/TraitsContainer';
 import {Drawer} from '../../UsefulComponents/Drawer';
+import ProfileDropDown from './ProfileDropDown';
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover } from 'antd';
+import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover, Divider} from 'antd';
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShapes, faCircle, faFont, faKeyboard  } from '@fortawesome/free-solid-svg-icons'
-import {Canvas} from '../../TestingFolder/ReactDesignerTest';
-import { Button as Button, ButtonGroup, Box, useColorModeValue, Text, Stack} from '@chakra-ui/react'
+import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
+import {IconButtonCanvas} from '../../TestingFolder/ReactDesignerTest';
+import { Button as Button, ButtonGroup, Box, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
 import { BlockAttributes } from './BlockAttributes';
 import {
   ButtonType1,
@@ -86,8 +87,6 @@ import {
 } from '@chakra-ui/react'
 import { BlockPopOver } from '../../BlockPopOver/BlockPopOver';
 import axios from 'axios';
-
-
 
 const PLUGINS = [
 
@@ -661,11 +660,22 @@ export const Editor = (props) => {
             <PagesContainer editor = {editorMain} />
           </div>
 
-          <div className = "test2">
+          <div className = "rightHeader">
 
-            <Avatar icon={<UserOutlined />}>
-              0x086a842...
-            </Avatar>
+            <div class="rightHeaderProfile">
+              <IconButton
+                onClick={()=>showPreview()}
+                size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  />
+              <Divider style={{height:30, marginRight:25}} type="vertical"/>
+              <div>
+                <ProfileDropDown/>
+
+              </div>
+              <Divider style={{height:30}} type="vertical"/>
+                <Button style={{marginLeft:10, marginRight:10}} size="sm" colorScheme='blue' variant='solid'>
+                  Publish
+                </Button>
+          </div>
 
           </div>
       </div>

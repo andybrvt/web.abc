@@ -38,13 +38,12 @@ export const TextSize = [
 ];
 
 export const TextFonts = [
-  { id: 1, label: "Helvetica" },
-  { id: 2, label: "Times New Roman" },
-  { id: 3, label: "Futura" },
-  { id: 4, label: "Helvetica" },
-  { id: 5, label: "Garamond" },
-  { id: 6, label: "Cambria" },
-  { id: 7, label: "Verdana" },
+  { id: 1, label: "Poppins" },
+  { id: 2, label: "Raleway" },
+  { id: 3, label: "Lato" },
+  { id: 4, label: "Dancing" },
+  { id: 5, label: "Open Sans" },
+  { id: 76, label: "Roboto" },
 ];
 
 // let bigOptions = [];

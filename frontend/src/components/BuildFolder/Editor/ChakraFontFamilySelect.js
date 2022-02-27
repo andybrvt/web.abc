@@ -20,7 +20,7 @@ import {
   useFormControl,
   createIcon
 } from "@chakra-ui/react";
-
+import './ChakraFontFamilySelect.css';
 // Taken from the @chakra-ui/icons package to prevent needing it as a dependency
 // https://github.com/chakra-ui/chakra-ui/blob/main/packages/icons/src/ChevronDown.tsx
 const ChevronDown = createIcon({
@@ -224,24 +224,28 @@ const chakraComponents = {
         }}
         ref={innerRef}
       >
-      <div style={{fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
+      <div class="Poppins">
         {children[0]}
-        </div>
+      </div>
+      <div class="Raleway">
+        {children[1]}
+      </div>
+      <div class="Lato">
+        {children[2]}
+      </div>
 
-        <div style={{height:'50px'}}>
-          <div style={{fontSize:24, fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
-            {children[1]}
-            </div>
-        </div>
-        <div style={{fontSize:18, fontWeight:'600px', fontFamily:"PlusJakartaSans" }}>
-          {children[2]}
-          </div>
-        <div style={{fontSize:15, fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
-          {children[3]}
-          </div>
-          <div style={{fontSize:12, fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
+        <div style={{}}>
+          <div class="Dancing ">
             {children[4]}
             </div>
+        </div>
+
+        <div class="openSans">
+          {children[5]}
+        </div>
+        <div class="Roboto">
+          {children[6]}
+        </div>
       </Box>
     );
   },
@@ -318,7 +322,7 @@ const ChakraReactSelect = ({
 
   // Ensure that the size used is one of the options, either `sm`, `md`, or `lg`
   let realSize = size;
-  const sizeOptions = ["sm", "md", "lg"];
+  const sizeOptions = ["sm", "md", "lg", ];
   if (!sizeOptions.includes(size)) {
     realSize = "md";
   }

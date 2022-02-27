@@ -37,14 +37,13 @@ import { EmailIcon } from '@chakra-ui/icons'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import { UploadImageNFT } from './UploadImageNFT';
 import { CollectionList } from './CollectionList/CollectionList';
-import { WebsiteInput } from './WebsiteInput';
 import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import * as dateFns from 'date-fns';
-
-
+import { CreateWebsiteModal } from '../CreateWebsiteFolder/CreateWebsiteModal';
+import { WebsiteList } from './WebsiteList/WebsiteList';
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 
 const data = [
@@ -55,7 +54,6 @@ const data = [
   'Los Angeles battles huge wildfires.',
 ];
 
-
 function withMyHook(Component) {
   return function WrappedComponent(props) {
     const {activateBrowserWallet, account } = useEthers();
@@ -64,8 +62,6 @@ function withMyHook(Component) {
     {/*
     const contract = new Contract(simpleContractAddress, simpleContractInterface);
     */}
-
-
 
     return <Component {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
   }
@@ -85,18 +81,26 @@ class Home extends React.Component{
       username: "",
       password: "",
       login: false,
-      websites: []
+      websites: [],
+      createVisible: true,
     };
   }
 
+  closeCreateVisible = () => {
+    this.setState({
+      createVisible: false
+    })
+  }
 
-
+  openCreateVisible = () => {
+    this.setState({
+      createVisible: true
+    })
+  }
 
   componentDidMount(){
     axios.get(`${global.API_ENDPOINT}/builder/getAllWebsite`)
     .then(res => {
-
-      console.log(res.data)
       this.setState({
         websites: res.data
       })
@@ -105,9 +109,7 @@ class Home extends React.Component{
 
   renderSearchList = (searches) =>{
     // this function will display the list of users that are found by the search
-
     let searchList = []
-
     for(let i = 0; i< searches.length; i++){
       const user = searches[i]
       searchList.push(
@@ -126,32 +128,19 @@ class Home extends React.Component{
               <span style={{marginLeft:'25px'}}>
                 {this.capitalize(user.first_name)} {this.capitalize(user.last_name)}
                 <br/>
-
                 <div
                   class="headerPostText"
                   style={{marginLeft:'25px'}}
                 >
                   {"@"+user.username}
                 </div>
-
-
-
               </span>
             </div>
           </div>
-
-
       )
-
     }
-
     return searchList;
   }
-
-  navBuild = (eventId) => {
-      console.log(eventId)
-      this.props.history.push("/build")
-    }
 
   onBuildDirect = () => {
     this.props.history.push("/build")
@@ -173,7 +162,7 @@ class Home extends React.Component{
               My Collection
             </div>
             <Stack style={{marginLeft:'25px'}} direction='row' spacing={4}>
-              <Button onClick={this.navBuild}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
+              <Button onClick={this.openCreateVisible}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                 Create Site
               </Button>
 
@@ -187,24 +176,7 @@ class Home extends React.Component{
             </div>
           </div>
 
-
-
-          <List
-          class = "testList"
-           header={<div>Header</div>}
-           footer={<div>Footer</div>}
-           bordered
-           dataSource={this.state.websites}
-           renderItem={item => (
-             <List.Item
-               onClick = {() =>this.onBuildDirect()}
-               className = "testListItem">
-               <Typography.Text mark>{item.name} {dateFns.format(new Date(item.lastChanged), 'MM-dd-yyyy')}</Typography.Text>
-             </List.Item>
-           )}
-         />
-
-
+          <WebsiteList data = {this.state.websites} onBuildDirect = {this.onBuildDirect} />
 
         </div>
 
@@ -225,16 +197,15 @@ class Home extends React.Component{
                 {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
               </text>
           </div>
-          {/*
-
+        {/*
         <CollectionList  {...this.props}/>
         */}
-        <WebsiteInput {...this.props}/>
-
-
-
 
         </div>
+
+        <CreateWebsiteModal
+          onCancel={this.closeCreateVisible}
+          visible = {this.state.createVisible} />
 
       </div>
     )

@@ -86,16 +86,22 @@ class SaveWebsite(APIView):
         if len(curWebsite) == 0:
             # if there is no website by that id, you make a new one
             curWebsite = models.Website.objects.create(
-                websiteAssets = request.data
+                websiteAssets = json.dumps(request.data)
             )
         else:
             # just update the one you have
-            curWebsite.update(websiteAssets = request.data)
-        print(request.data)
+            curWebsite.update(websiteAssets = json.dumps(request.data))
+        print(type(request.data))
         print(len(curWebsite))
         return Response("stuff here")
 
+@authentication_classes([])
+@permission_classes([])
 class LoadWebsite(APIView):
     def get(self, request, *args, **kwargs):
+        print('load website')
+        curWebsite = models.Website.objects.filter(id = 2)
+        assets = curWebsite[0].websiteAssets
 
-        return Response("Here")
+
+        return Response(json.loads(assets))

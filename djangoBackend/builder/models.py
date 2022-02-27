@@ -35,3 +35,4 @@ class Website(models.Model):
     pages = models.ManyToManyField(WebsitePage, related_name="website_page", blank = True)
     name = models.CharField(max_length= 255,default = "default website")
     lastChanged = models.DateTimeField(default = timezone.now, blank = False)
+    websiteAssets = models.TextField(blank = True)

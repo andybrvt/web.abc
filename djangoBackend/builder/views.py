@@ -5,6 +5,8 @@ from rest_framework.decorators import authentication_classes, permission_classes
 import json
 from . import models
 from . import serializers
+from django.shortcuts import render, get_object_or_404
+
 
 # Create your views here.
 @authentication_classes([])
@@ -76,6 +78,24 @@ class GetAllWebsite(APIView):
 @authentication_classes([])
 @permission_classes([])
 class SaveWebsite(APIView):
-    def post(self, request, *args, **kwargs):
+    def post(self, request, id, *args, **kwargs):
+        # You are gonna need the id
+
+        curWebsite = models.Website.objects.filter(id = id )
+
+        if len(curWebsite) == 0:
+            # if there is no website by that id, you make a new one
+            curWebsite = models.Website.objects.create(
+                websiteAssets = request.data
+            )
+        else:
+            # just update the one you have
+            curWebsite.update(websiteAssets = request.data)
         print(request.data)
+        print(len(curWebsite))
         return Response("stuff here")
+
+class LoadWebsite(APIView):
+    def get(self, request, *args, **kwargs):
+
+        return Response("Here")

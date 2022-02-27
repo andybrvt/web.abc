@@ -232,8 +232,8 @@ export const Editor = (props) => {
       storageManager: {
         type: 'remote',
         stepsBeforeSave: 3,
-        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite`,
-        urlLoad: 'http://load/endpoint', // django endpoint would go here
+        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/2`,
+        urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite`, // django endpoint would go here
         contentTypeJson: true,
         params: {
         },

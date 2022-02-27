@@ -20,7 +20,7 @@ import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
 import {IconButtonCanvas} from '../../TestingFolder/ReactDesignerTest';
-import { Button as Button, ButtonGroup, Box, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
+import { Button as Button, ButtonGroup, Box, Tooltip, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
 import { BlockAttributes } from './BlockAttributes';
 import {
   ButtonType1,
@@ -682,9 +682,12 @@ export const Editor = (props) => {
           <div className = "rightHeader">
 
             <div class="rightHeaderProfile">
-              <IconButton
-                onClick={()=>showPreview()}
-                size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  />
+              <Tooltip label="Preview" aria-label='A tooltip'>
+                <IconButton
+                  onClick={showPreview}
+                  size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  />
+              </Tooltip>
+
               <Divider style={{height:30, marginRight:25}} type="vertical"/>
               <div>
                 <ProfileDropDown/>

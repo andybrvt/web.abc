@@ -188,7 +188,6 @@ export const Editor = (props) => {
     setCurrentY(yVal)
     setCurrentWidth(widthVal)
     setCurrentHeight(heightVal)
-    console.log(xVal, yVal)
     setTestCssVariable({
             position: "absolute",
             left: xVal,
@@ -202,7 +201,7 @@ export const Editor = (props) => {
 
   useEffect(() => {
 
-
+    const websiteId = props.history.location.state.websiteId
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: 1,
@@ -231,8 +230,8 @@ export const Editor = (props) => {
       storageManager: {
         type: 'remote',
         stepsBeforeSave: 3,
-        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/2`,
-        urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite`, // django endpoint would go here
+        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
+        urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
         contentTypeJson: true,
         params: {
         },
@@ -454,13 +453,9 @@ export const Editor = (props) => {
 
     editor.Commands.add('open-live-preview', {
       run(editor, sender){
-
         const html = editor.getHtml();
         const css = editor.getCss();
-
         const js = editor.getJs();
-        console.log(js)
-
         let formData = new FormData()
         formData.append("css", css)
         formData.append('js', js)
@@ -539,18 +534,20 @@ export const Editor = (props) => {
       //   }
       // }
 
-      const target = editor.getSelected()
-      const targetId = target.getId()
-
-      target.set("script", `
-        function script(props) {
-          var element = document.getElementById("${targetId}");
-          element.addEventListener("click", function () {
-            console.log('this works')
-          });
-        }
-
-      `)
+      //HERE IS A WAY TO SET THE JAVASCRIPT ON CLICK FUNCTION
+      // GONNA PUT THIS IN A FUNCTION CALL LATER
+      // const target = editor.getSelected()
+      // const targetId = target.getId()
+      //
+      // target.set("script", `
+      //   function script(props) {
+      //     var element = document.getElementById("${targetId}");
+      //     element.addEventListener("click", function () {
+      //       console.log('this works')
+      //     });
+      //   }
+      //
+      // `)
 
 
     })
@@ -629,7 +626,6 @@ export const Editor = (props) => {
   }
 
   const storeEditor = () => {
-    console.log('you are saving your editor here')
 
     // editorMain.store()
     // get css doing the save file --> styles in there should include everything

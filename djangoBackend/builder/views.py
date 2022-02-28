@@ -113,8 +113,8 @@ class CreateWebsite(APIView):
 @authentication_classes([])
 @permission_classes([])
 class LoadWebsite(APIView):
-    def get(self, request, *args, **kwargs):
+    def get(self, request, id, *args, **kwargs):
         print('load website')
-        curWebsite = models.Website.objects.filter(id = 2)
+        curWebsite = models.Website.objects.filter(id = id)
         assets = curWebsite[0].websiteAssets
         return Response(json.loads(assets))

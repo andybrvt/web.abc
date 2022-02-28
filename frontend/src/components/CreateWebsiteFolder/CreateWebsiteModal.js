@@ -22,7 +22,6 @@ export const CreateWebsiteModal = (props) => {
 
   const createWebSite = () => {
 
-    console.log('create website here')
     const address = props.account
     // Now you can create your website
     const formData = new FormData()
@@ -33,7 +32,9 @@ export const CreateWebsiteModal = (props) => {
     .then(res => {
       console.log(res.data) // this wants to be number
 
-      props.history.push(`/build/${res.data}`)
+      props.history.push(`/build/${res.data}`, {
+        websiteId: res.data
+      })
 
     })
 

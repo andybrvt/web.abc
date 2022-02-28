@@ -143,7 +143,9 @@ class Home extends React.Component{
   }
 
   onBuildDirect = (websiteId) => {
-    this.props.history.push(`/build/${websiteId}`)
+    this.props.history.push(`/build/${websiteId}`,{
+      websiteId: websiteId
+    })
   }
   render(){
 

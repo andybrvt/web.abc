@@ -82,7 +82,7 @@ class Home extends React.Component{
       password: "",
       login: false,
       websites: [],
-      createVisible: true,
+      createVisible: false,
     };
   }
 
@@ -149,7 +149,6 @@ class Home extends React.Component{
 
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
-
     return(
       <div>
         <Header/>
@@ -204,6 +203,7 @@ class Home extends React.Component{
         </div>
 
         <CreateWebsiteModal
+          account = {this.props.account}
           onCancel={this.closeCreateVisible}
           visible = {this.state.createVisible} />
 

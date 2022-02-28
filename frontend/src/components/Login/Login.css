@@ -1,6 +1,4 @@
 .loginFormInnerContent{
-  position:absolute;
-  top:40%;
   width:25%;
-  left:35%;
+  background-color: pink;
 }

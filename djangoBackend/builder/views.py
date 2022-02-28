@@ -77,12 +77,14 @@ class GetAllWebsite(APIView):
 
 @authentication_classes([])
 @permission_classes([])
+# fix this later
 class SaveWebsite(APIView):
     def post(self, request, id, *args, **kwargs):
         # You are gonna need the id
 
         curWebsite = models.Website.objects.filter(id = id )
 
+        # curWebsite = models.Website.objects.get_or_create()
         if len(curWebsite) == 0:
             # if there is no website by that id, you make a new one
             curWebsite = models.Website.objects.create(
@@ -95,6 +97,21 @@ class SaveWebsite(APIView):
         print(len(curWebsite))
         return Response("stuff here")
 
+class CreateWebsite(APIView):
+    def post(self, request, *args, **kwargs):
+        print('create website here')
+
+        print(request.data)
+        address, created = models.OwnerWalletKey.objects.get_or_create(
+            publicKey = request.data['owner']
+        )
+        website = models.Website.objects.create(
+            owner = address,
+            name = request.data['name']
+        )
+        websiteId = website.id
+        return Response(websiteId)
+
 @authentication_classes([])
 @permission_classes([])
 class LoadWebsite(APIView):
@@ -102,6 +119,4 @@ class LoadWebsite(APIView):
         print('load website')
         curWebsite = models.Website.objects.filter(id = 2)
         assets = curWebsite[0].websiteAssets
-
-
         return Response(json.loads(assets))

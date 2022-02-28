@@ -8,5 +8,6 @@ urlpatterns = [
     path('saveWebsite/<int:id>', views.SaveWebsite.as_view(), name = "save_website"),
     path("saveWebPreview", views.SaveWebsitePreview.as_view(), name ="save_web_preview"),
     path("getAllWebsite", views.GetAllWebsite.as_view(), name = "get_all_websites"),
-    path("loadWebsite", views.LoadWebsite.as_view(), name = "load_website")
+    path("loadWebsite", views.LoadWebsite.as_view(), name = "load_website"),
+    path("createWebsite", views.CreateWebsite.as_view(), name = "create_website")
 ]

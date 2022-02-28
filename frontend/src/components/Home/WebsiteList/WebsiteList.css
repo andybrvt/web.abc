@@ -8,3 +8,8 @@
   flex-wrap: wrap;
   min-width: 300px;
 }
+
+.boxContainer{
+  margin-right: 25px;
+  cursor: pointer;
+}

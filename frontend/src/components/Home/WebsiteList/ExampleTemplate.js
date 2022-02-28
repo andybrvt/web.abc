@@ -11,10 +11,13 @@ import React, {useState, useEffect} from 'react';
 import * as dateFns from 'date-fns';
 
 export const ExampleTemplate = (props) => {
+
   const IMAGE = props.unsplashImage;
   const item = props.item
   return (
-    <Center py={12} style={{marginRight:'25px'}}>
+    <Center
+      onClick = {() => props.onBuildDirect(item.id)}
+      py={12} className = "boxContainer">
       <Box
         role={'group'}
         p={6}

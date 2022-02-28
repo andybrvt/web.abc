@@ -37,7 +37,6 @@ import { EmailIcon } from '@chakra-ui/icons'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import { UploadImageNFT } from './UploadImageNFT';
 import { CollectionList } from './CollectionList/CollectionList';
-import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Input, Form, List, Avatar,Typography } from 'antd';
 import * as dateFns from 'date-fns';
-import { ExampleTemplate } from '../../BuildFolder/ExampleTemplate';
+import { ExampleTemplate } from './ExampleTemplate';
 import './WebsiteList.css';
 
 const images = [
@@ -28,6 +28,7 @@ export const WebsiteList = (props) => {
           data.map((item, index) => {
             return(
               <ExampleTemplate
+                onBuildDirect = {props.onBuildDirect}
                 item = {item}
                 unsplashImage={images[index%3]}/>
 

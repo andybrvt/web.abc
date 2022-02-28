@@ -1,0 +1,46 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+  Stack,
+  Slider,
+  Box,
+  Button,
+
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
+  Divider,
+  NumberInputField,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  NumberInput,
+  Flex,
+  NumberInputStepper,
+  useColorModeValue,
+  Link,
+  FormControl,
+  FormLabel,
+  Code,
+  FormErrorMessage,
+  IconButton,
+
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel
+} from '@chakra-ui/react';
+
+
+export const BlockStyles  =(props) => {
+
+  
+}

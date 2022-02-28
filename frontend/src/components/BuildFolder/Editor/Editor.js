@@ -21,7 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
 import {IconButtonCanvas} from '../../TestingFolder/ReactDesignerTest';
 import { Button as Button, ButtonGroup, Box, Tooltip, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
-import { BlockAttributes } from './BlockAttributes';
+import { BlockAttributes } from '../BlockAttributes/BlockAttributes';
 import {
   ButtonType1,
   ButtonType2,
@@ -85,7 +85,6 @@ import {
   PopoverCloseButton,
   PopoverAnchor,
 } from '@chakra-ui/react'
-import { BlockPopOver } from '../../BlockPopOver/BlockPopOver';
 import axios from 'axios';
 
 const PLUGINS = [
@@ -781,58 +780,10 @@ export const Editor = (props) => {
 
 
         <div class="column">
-          {/*currentX==0 || currentY==0?
-            ''
-          :
 
-          <div>
-
-            {(BlockClickType=='box')?
-                  <AntdPopover trigger="click" placement="left" content={<>
-                    <ButtonGroup variant='outline' spacing='6'>
-                        <AntdPopover>
-
-                              <BlockPopOver/>
-
-
-
-                        </AntdPopover>
-                    </ButtonGroup>
-                  </>} arrowPointAtCenter>
-                  <div style={{position:'absolute',  left:currentX, zIndex:'10000', width:currentWidth, height:currentHeight,top:currentY}}>
-
-                  </div>
-                  </AntdPopover>
-                  :
-                  ''
-                }
-
-
-          </div>
-
-
-
-          */}
           <div id = "gjs"></div>
         </div>
 
-
-        {/*
-          <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
-            <Stack
-              bg={useColorModeValue('white', 'gray.800')}
-              style={{height:'100%'}}
-              boxShadow={'lg'}
-              p={8}
-              rounded={'xl'}
-              align={'center'}
-              pos={'relative'}
-              >
-              <Text>dfjasifdj;saldkf;asldjf</Text>
-            </Stack>
-
-
-          */}
 
         <BlockAttributes/>
 

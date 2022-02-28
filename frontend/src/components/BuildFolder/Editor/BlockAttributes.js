@@ -12,7 +12,6 @@ import {
   Slider,
   Box,
   Button,
-
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
@@ -42,6 +41,7 @@ import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from ".
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
 import { BlockColorPicker } from '../../BlockPopOver/BlockColorPicker'
 export const BlockAttributes = (props) => {
+  console.log(props.type)
   const onChange = (val) => {
     setSliderValue(val);
   };
@@ -50,7 +50,6 @@ export const BlockAttributes = (props) => {
   const [sliderValue, setSliderValue] = useState(22)
   return(
     <div style={{width:400, height:'100%', background:'#F7FAFC', padding:20}}>
-
       <Stack
         bg={useColorModeValue('white', 'gray.900')}
         style={{height:'100%'}}
@@ -60,94 +59,112 @@ export const BlockAttributes = (props) => {
         // align={'center'}
         pos={'relative'}
         >
-
-        <div style={{marginBottom:30}}>
+      <div style={{marginBottom:30}}>
           test test test
-        </div>
-
-
-
-        <div class="attributeHeader">Text Style</div>
-        <Divider/>
-        <div style={{marginTop:20, marginBottom:20}}>
-          <Select
-            purpose="textSize"
-            name="colors"
-            options={TextSize}
-            placeholder="Normal Text"
-            closeMenuOnSelect={false}
-            size="sm">
-          </Select>
-        </div>
-        <div class="attributeHeader">Text Appearance</div>
-        <Divider/>
-        <div style={{marginTop:20, marginBottom:20}}>
-          <ChakraFontFamilySelect
-            style={{width:200}}
-            options={TextFonts}
-            placeholder="Cambria"
-            closeMenuOnSelect={false}
-            size="sm">
-          </ChakraFontFamilySelect>
-        </div>
-        <div style={{flexDirection:'row', display:'flex',}}>
-            <div style={{marginRight:25}}>
-              <BlockColorPicker/>
-            </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<BoldOutlined />}  />
-            </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<ItalicOutlined />}  />
-            </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<UnderlineOutlined />}  />
-            </div>
-        </div>
-
-      <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
-
-        <Stack shouldWrapChildren direction='row'>
-          <NumberInput size='xs' maxW={16} value={value} onChange={handleChange} min={10}>
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-        </Stack>
-
-        <div style={{width:150, marginLeft:25}}>
-          <Slider
-            focusThumbOnChange={false}
-            value={value}
-            onChange={handleChange}
-          >
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb fontSize='sm' boxSize='30px' children={value} />
-          </Slider>
-        </div>
       </div>
-      <div class="attributeHeader">Text alignment</div>
-      <Divider/>
-      <div style={{flexDirection:'row', display:'flex', marginTop:20, padding:10, marginBottom:10}}>
-          <div style={{marginRight:25}}>
+         {
+
+            (props.type=='text')?
+            <div>
+
+              <div class="attributeHeader">Text Style</div>
+              <Divider/>
+              <div style={{marginTop:20, marginBottom:20}}>
+                <Select
+                  purpose="textSize"
+                  name="colors"
+                  options={TextSize}
+                  placeholder="Normal Text"
+                  closeMenuOnSelect={false}
+                  size="sm">
+                </Select>
+              </div>
+              <div class="attributeHeader">Text Appearance</div>
+              <Divider/>
+              <div style={{marginTop:20, marginBottom:20}}>
+                <ChakraFontFamilySelect
+                  style={{width:200}}
+                  options={TextFonts}
+                  placeholder="Cambria"
+                  closeMenuOnSelect={false}
+                  size="sm">
+                </ChakraFontFamilySelect>
+              </div>
+              <div style={{flexDirection:'row', display:'flex',}}>
+                  <div style={{marginRight:25}}>
+                    <BlockColorPicker/>
+                  </div>
+                  <div class="textPopOverButton">
+                    <IconButton size="sm" aria-label='Search database'  icon={<BoldOutlined />}  />
+                  </div>
+                  <div class="textPopOverButton">
+                    <IconButton size="sm" aria-label='Search database'  icon={<ItalicOutlined />}  />
+                  </div>
+                  <div class="textPopOverButton">
+                    <IconButton size="sm" aria-label='Search database'  icon={<UnderlineOutlined />}  />
+                  </div>
+              </div>
+
+              <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
+
+                <Stack shouldWrapChildren direction='row'>
+                  <NumberInput size='xs' maxW={16} value={value} onChange={handleChange} min={10}>
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </Stack>
+
+                <div style={{width:150, marginLeft:25}}>
+                  <Slider
+                    focusThumbOnChange={false}
+                    value={value}
+                    onChange={handleChange}
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack />
+                    </SliderTrack>
+                    <SliderThumb fontSize='sm' boxSize='30px' children={value} />
+                  </Slider>
+                </div>
+              </div>
+              <div class="attributeHeader">Text alignment</div>
+              <Divider/>
+              <div style={{flexDirection:'row', display:'flex', marginTop:20, padding:10, marginBottom:10}}>
+                  <div style={{marginRight:25}}>
+                  </div>
+                  <div class="justifyButtonCSS">
+                    <IconButton size="sm" aria-label='Search database'  icon={<AlignLeftOutlined />}  />
+                  </div>
+                  <div class="justifyButtonCSS">
+                    <IconButton size="sm" aria-label='Search database'  icon={<AlignCenterOutlined />}  />
+                  </div>
+                  <div class="justifyButtonCSS">
+                    <IconButton size="sm" aria-label='Search database'  icon={<AlignRightOutlined />}  />
+                  </div>
+              </div>
+              <div class="attributeHeader">Opacity</div>
+              <Divider/>
+
           </div>
-          <div class="justifyButtonCSS">
-            <IconButton size="sm" aria-label='Search database'  icon={<AlignLeftOutlined />}  />
+          :
+          <div>
+           {
+              (props.type=='box')?
+            <div>
+              <AntdButton type="primary" shape="circle">
+                A
+              </AntdButton>
+            </div>
+            :
+            <div>test</div>
+            }
           </div>
-          <div class="justifyButtonCSS">
-            <IconButton size="sm" aria-label='Search database'  icon={<AlignCenterOutlined />}  />
-          </div>
-          <div class="justifyButtonCSS">
-            <IconButton size="sm" aria-label='Search database'  icon={<AlignRightOutlined />}  />
-          </div>
-      </div>
-      <div class="attributeHeader">Opacity</div>
-      <Divider/>
-    </Stack>
-    </div>
+          }
+      </Stack>
+  </div>
   )
+
 }

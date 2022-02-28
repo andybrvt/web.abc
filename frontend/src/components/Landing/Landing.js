@@ -11,7 +11,7 @@ import web from './web.png'
 import { useNavigate, } from 'react-router-dom';
 import { useEthers, useEtherBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
-
+import builderSVG from './builder.svg'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -109,13 +109,14 @@ class Landing extends React.Component{
 
     <div class="small1">
       <div class="splitScreenContainer">
+        {/*
         <div class="custom-shape-divider-top-1639728936">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
             </svg>
         </div>
 
-
+        */}
         <div class="splitLeft">
           <div class="splitLeft1">
             <div className="title">
@@ -127,10 +128,10 @@ class Landing extends React.Component{
                 ''
 
               }
-              Turn your website into NFTs
+              The start of your blockchain journey
             </div>
             <div class="title2">
-              Mint It. Own It.
+              Build It. Own It.
             </div>
             <div style={{marginTop:20}}>
               <Avatar src={<Image src={first} style={{ width: 32, marginRight:'10px' }} />} />
@@ -148,8 +149,7 @@ class Landing extends React.Component{
         <div class="splitRight">
           <div class="splitRightCenter">
           <Avatar size={600}
-
-             shape="square" src={<Image style={{borderRadius:20}} src={web}  />} />
+             shape="square" src={<Image style={{borderRadius:20}} src={builderSVG}  />} />
           </div>
         </div>
 

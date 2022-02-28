@@ -1,6 +1,6 @@
 .title {
     font-family: 'PlusJakartaSans-Bold';
-    font-size: 37.5px;
+    font-size: 65px;
 
 }
 
@@ -116,7 +116,7 @@
 }
 
 .splitRight{
-  flex:1;
+  flex:1.5;
 
     /* background: green; */
 }
@@ -125,8 +125,9 @@
   display: flex;
   align-items: center;
   top:25%;
-  left:7.5%;
+  left:30%;
   position: relative;
+  /* background: red; */
 
 }
 .custom-shape-divider-top-1639728936 {

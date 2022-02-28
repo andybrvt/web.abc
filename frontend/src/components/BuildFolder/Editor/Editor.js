@@ -515,7 +515,7 @@ export const Editor = (props) => {
     });
 
     editor.on('component:selected', (block, obj) =>{
-      // console.log(block._previousAttributes.type)
+      console.log(block._previousAttributes.type)
       setBlockClickType(block._previousAttributes.type)
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)

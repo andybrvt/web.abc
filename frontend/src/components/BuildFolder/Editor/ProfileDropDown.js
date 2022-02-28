@@ -33,8 +33,6 @@ function withMyHook(Component) {
     const contract = new Contract(simpleContractAddress, simpleContractInterface);
     */}
 
-
-
     return <Component {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
   }
 }
@@ -73,7 +71,7 @@ function withMyHook(Component) {
                 </MenuButton>
                 <MenuList>
                   <MenuGroup title='Profile'>
-                    <MenuItem icon={<UserOutlined size={30} />}>My Profile</MenuItem>
+                    <MenuItem icon={<UserOutlined size={30} />}>My Home</MenuItem>
                     <MenuItem>My Collection </MenuItem>
                   </MenuGroup>
                   <MenuDivider />

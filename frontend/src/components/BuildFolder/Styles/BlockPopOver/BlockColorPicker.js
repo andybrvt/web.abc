@@ -51,6 +51,11 @@ const theme = extendTheme({
     "pink.500"
   ];
 
+  const onColarChange = (e) => {
+    props.onStyleChange(e.target)
+    setColor(e.target.value)
+  }
+
   return (
     <ChakraProvider theme={theme}>
 
@@ -83,6 +88,8 @@ const theme = extendTheme({
               <SimpleGrid columns={5} spacing={2}>
                 {colors.map((c) => (
                   <Button
+                    value = {c}
+                    name = "color"
                     key={c}
                     aria-label={c}
                     background={c}
@@ -92,8 +99,8 @@ const theme = extendTheme({
                     minWidth="unset"
                     borderRadius={3}
                     _hover={{ background: c }}
-                    onClick={() => {
-                      setColor(c);
+                    onClick={(e) => {
+                      onColarChange(e)
                     }}
                   ></Button>
                 ))}

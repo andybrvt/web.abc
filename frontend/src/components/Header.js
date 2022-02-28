@@ -29,9 +29,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt,  } from '@fortawesome/free-solid-svg-icons'
 
 
+
 export const Header = (props) => {
   const {activateBrowserWallet, account } = useEthers();
   const etherBalance = useEtherBalance(account);
+  const { deactivate } = useWeb3React()
 
   const test = () => {
     console.log('stuff here')
@@ -76,7 +78,9 @@ export const Header = (props) => {
                   <MenuItem>FAQ</MenuItem>
                 </MenuGroup>
                 <MenuDivider />
-                  <MenuItem > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
+                  <MenuItem
+                    onClick = {() => deactivate()}
+                    > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
               </MenuList>
             </Menu>
           </div>

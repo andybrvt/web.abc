@@ -6,13 +6,15 @@
 }
 
 .collectionList{
-
     position:absolute;
     top:12.5%;
-    width:25%;
-    left:17.5%;
-
-
+    left:50%;
+    transform: translateX(-50%);
+    width:80%;
+}
+.collectionTopContainer{
+  display:flex;
+  flex-direction: row;
 }
 
 .collectionTitle{
@@ -48,8 +50,7 @@
 
 
 .testList{
-  height: 300px;
-  overflow: auto;
+  display: flex;
 }
 .testListItem{
   cursor: pointer;

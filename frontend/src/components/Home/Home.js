@@ -37,7 +37,6 @@ import { EmailIcon } from '@chakra-ui/icons'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import { UploadImageNFT } from './UploadImageNFT';
 import { CollectionList } from './CollectionList/CollectionList';
-import { ExampleTemplate } from '../BuildFolder/ExampleTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
@@ -82,7 +81,7 @@ class Home extends React.Component{
       password: "",
       login: false,
       websites: [],
-      createVisible: true,
+      createVisible: false,
     };
   }
 
@@ -142,14 +141,15 @@ class Home extends React.Component{
     return searchList;
   }
 
-  onBuildDirect = () => {
-    this.props.history.push("/build")
+  onBuildDirect = (websiteId) => {
+    this.props.history.push(`/build/${websiteId}`,{
+      websiteId: websiteId
+    })
   }
   render(){
 
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
-
     return(
       <div>
         <Header/>
@@ -157,7 +157,7 @@ class Home extends React.Component{
         <Divider/>
 
         <div class="collectionList">
-          <div style={{display:'flex', flexDirection:'row', width:'500px'}}>
+          <div class = "collectionTopContainer">
             <div class="collectionTitle">
               My Collection
             </div>
@@ -168,42 +168,39 @@ class Home extends React.Component{
 
             </Stack>
           </div>
-          <div style={{marginTop:'10%',width:900}}>
-            <div style={{display:'flex',}}>
-              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1643120500723-dc36f2d92718?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
-              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1642629026109-3109c5c9f969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'/>
-              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1643051861827-4c04aba8c6b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
-            </div>
-          </div>
 
           <WebsiteList data = {this.state.websites} onBuildDirect = {this.onBuildDirect} />
 
         </div>
 
-
-        <div class="loginFormInnerContent">
-
-          <div>
-
-              <text color="white" fontSize="md" fontWeight="medium" mr="2">
-                {account &&
-                  `${account.slice(0, 6)}...${account.slice(
-                    account.length - 4,
-                    account.length
-                  )}`}
-              </text>
-              <br/>
-              <text color="white" fontSize="md">
-                {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
-              </text>
-          </div>
         {/*
-        <CollectionList  {...this.props}/>
-        */}
+          <div class="loginFormInnerContent">
 
-        </div>
+            <div>
+
+                <text color="white" fontSize="md" fontWeight="medium" mr="2">
+                  {account &&
+                    `${account.slice(0, 6)}...${account.slice(
+                      account.length - 4,
+                      account.length
+                    )}`}
+                </text>
+                <br/>
+                <text color="white" fontSize="md">
+                  {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
+                </text>
+            </div>
+
+          <CollectionList  {...this.props}/>
+
+
+          </div>
+
+          */}
 
         <CreateWebsiteModal
+          history = {this.props.history}
+          account = {this.props.account}
           onCancel={this.closeCreateVisible}
           visible = {this.state.createVisible} />
 

@@ -1,0 +1,15 @@
+.websiteListContainer{
+  margin-top: 5%;
+  width: 100%;
+}
+.websiteList{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 300px;
+}
+
+.boxContainer{
+  margin-right: 25px;
+  cursor: pointer;
+}

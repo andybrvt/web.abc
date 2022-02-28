@@ -158,7 +158,7 @@ class Home extends React.Component{
         <Divider/>
 
         <div class="collectionList">
-          <div style={{display:'flex', flexDirection:'row', width:'500px'}}>
+          <div class = "collectionTopContainer">
             <div class="collectionTitle">
               My Collection
             </div>
@@ -169,40 +169,35 @@ class Home extends React.Component{
 
             </Stack>
           </div>
-          <div style={{marginTop:'10%',width:900}}>
-            <div style={{display:'flex',}}>
-              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1643120500723-dc36f2d92718?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
-              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1642629026109-3109c5c9f969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'/>
-              <ExampleTemplate unsplashImage='https://images.unsplash.com/photo-1643051861827-4c04aba8c6b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
-            </div>
-          </div>
 
           <WebsiteList data = {this.state.websites} onBuildDirect = {this.onBuildDirect} />
 
         </div>
 
-
-        <div class="loginFormInnerContent">
-
-          <div>
-
-              <text color="white" fontSize="md" fontWeight="medium" mr="2">
-                {account &&
-                  `${account.slice(0, 6)}...${account.slice(
-                    account.length - 4,
-                    account.length
-                  )}`}
-              </text>
-              <br/>
-              <text color="white" fontSize="md">
-                {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
-              </text>
-          </div>
         {/*
-        <CollectionList  {...this.props}/>
-        */}
+          <div class="loginFormInnerContent">
 
-        </div>
+            <div>
+
+                <text color="white" fontSize="md" fontWeight="medium" mr="2">
+                  {account &&
+                    `${account.slice(0, 6)}...${account.slice(
+                      account.length - 4,
+                      account.length
+                    )}`}
+                </text>
+                <br/>
+                <text color="white" fontSize="md">
+                  {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
+                </text>
+            </div>
+
+          <CollectionList  {...this.props}/>
+
+
+          </div>
+
+          */}
 
         <CreateWebsiteModal
           history = {this.props.history}

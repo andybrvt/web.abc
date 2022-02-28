@@ -16,7 +16,8 @@ export const ExampleTemplate = (props) => {
       <Box
         role={'group'}
         p={6}
-        maxW={'330px'}
+        maxW={'300px'}
+        minW={"300px"}
         w={'full'}
         bg={useColorModeValue('white', 'gray.800')}
         boxShadow={'2xl'}

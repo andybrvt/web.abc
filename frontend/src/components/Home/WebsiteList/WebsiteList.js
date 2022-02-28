@@ -16,7 +16,7 @@ export const WebsiteList = (props) => {
      dataSource={data}
      renderItem={item => (
        <List.Item
-         onClick = {() =>props.onBuildDirect()}
+         onClick = {() =>props.onBuildDirect(item.id)}
          className = "testListItem">
          <Typography.Text mark>{item.name} {dateFns.format(new Date(item.lastChanged), 'MM-dd-yyyy')}</Typography.Text>
        </List.Item>

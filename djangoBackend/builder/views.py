@@ -93,8 +93,6 @@ class SaveWebsite(APIView):
         else:
             # just update the one you have
             curWebsite.update(websiteAssets = json.dumps(request.data))
-        print(type(request.data))
-        print(len(curWebsite))
         return Response("stuff here")
 
 class CreateWebsite(APIView):

@@ -31,7 +31,10 @@ export const CreateWebsiteModal = (props) => {
 
     axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
     .then(res => {
-      console.log(res.data)
+      console.log(res.data) // this wants to be number
+
+      props.history.push(`/build/${res.data}`)
+
     })
 
   }

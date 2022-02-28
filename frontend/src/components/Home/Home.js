@@ -142,8 +142,8 @@ class Home extends React.Component{
     return searchList;
   }
 
-  onBuildDirect = () => {
-    this.props.history.push("/build")
+  onBuildDirect = (websiteId) => {
+    this.props.history.push(`/build/${websiteId}`)
   }
   render(){
 
@@ -203,6 +203,7 @@ class Home extends React.Component{
         </div>
 
         <CreateWebsiteModal
+          history = {this.props.history}
           account = {this.props.account}
           onCancel={this.closeCreateVisible}
           visible = {this.state.createVisible} />

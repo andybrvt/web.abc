@@ -66,7 +66,7 @@ class App extends Component{
           <Route exact path="/test" element={<TestHTMLScraper history={history}/>} />
           <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
           <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
-          <Route exact path="/build" element={<MainBuildContainer history={history}/>} />
+          <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />
           <Route exact path="/designerTest" element={<Canvas history={history}/>} />
           <Route exact path="/previewPage" element={<PreviewPage history={history}/>} />
         </Routes>

@@ -27,7 +27,9 @@ export const WebsiteList = (props) => {
         {
           data.map((item, index) => {
             return(
-              <ExampleTemplate unsplashImage={images[index%3]}/>
+              <ExampleTemplate
+                item = {item}
+                unsplashImage={images[index%3]}/>
 
             )
           })

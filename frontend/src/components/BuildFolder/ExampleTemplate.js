@@ -8,9 +8,11 @@ import {
   Image,
 } from '@chakra-ui/react';
 import React, {useState, useEffect} from 'react';
+import * as dateFns from 'date-fns';
 
 export const ExampleTemplate = (props) => {
   const IMAGE = props.unsplashImage;
+  const item = props.item
   return (
     <Center py={12} style={{marginRight:'25px'}}>
       <Box
@@ -56,17 +58,17 @@ export const ExampleTemplate = (props) => {
         </Box>
         <Stack pt={10} align={'center'}>
           <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-            In-Progress
+            Deployed
           </Text>
           <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
-            Charmander NFT collection
+            {global.CAPITALIZE(item.name)}
           </Heading>
           <Stack direction={'row'} align={'center'}>
             <Text fontWeight={800} fontSize={'md'}>
-              Deadline 12/4
+              Last Modified
             </Text>
             <Text color={'gray.600'}>
-              3 members
+              {dateFns.format(new Date(item.lastChanged), 'MMMM dd, yyyy')}
             </Text>
           </Stack>
         </Stack>

@@ -69,7 +69,7 @@ const theme = extendTheme({
               width="30px"
               padding={0}
               minWidth="unset"
-              borderRadius={30}
+              borderRadius={(props.background) ? 5:30} 
             ></Button>
           </PopoverTrigger>
           <PopoverContent width="170px">

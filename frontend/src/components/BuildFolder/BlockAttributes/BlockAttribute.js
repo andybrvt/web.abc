@@ -43,13 +43,15 @@ import Select, { CreatableSelect } from "../Styles/chakra-react-select";
 import { CreatableSelect as ChakraFontFamilySelect } from "../Styles/ChakraFontFamilySelect";
 import { Button as AntdButton } from 'antd';
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
-import './BlockAttributes.css';
+import './BlockAttribute.css';
 import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../Styles/data";
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
 import { BlockColorPicker } from '../Styles/BlockPopOver/BlockColorPicker'
 import {NewStylesContainer} from '../Styles/NewStylesContainer';
+import { ButtonBlockAttribute } from './ButtonBlockAttribute/ButtonBlockAttribute';
 
-export const BlockAttributes = (props) => {
+export const BlockAttribute = (props) => {
+  console.log(props.type)
   const onChange = (val) => {
     setSliderValue(val);
   };
@@ -69,30 +71,24 @@ export const BlockAttributes = (props) => {
     }
   }
   return(
-    <div style={{width:400, height:'100%', background:'#F7FAFC', padding:10}}>
-
+    <div style={{width:575, height:'100%', background:'#F7FAFC', padding:10}}>
       <Tabs variant='soft-rounded' colorScheme='green'>
-        <TabList>
+        <TabList style={{marginBottom:10}}>
          <Tab>Styles</Tab>
          <Tab>Action</Tab>
         </TabList>
         <TabPanels>
-
-          <TabPanel >
+          <TabPanel style={{height:'100%',}}>
             <NewStylesContainer
+              type={props.type}
               onStyleChange = {onStyleChange}
               />
           </TabPanel>
-
-
           <TabPanel style = {{background: 'pink'}}>
             Hi
           </TabPanel>
-
         </TabPanels>
-
       </Tabs>
-
     </div>
   )
 }

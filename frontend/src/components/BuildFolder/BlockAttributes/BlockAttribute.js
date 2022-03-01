@@ -49,7 +49,7 @@ import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from ".
 import { BlockColorPicker } from '../Styles/BlockPopOver/BlockColorPicker'
 import {NewStylesContainer} from '../Styles/NewStylesContainer';
 import { ButtonBlockAttribute } from './ButtonBlockAttribute/ButtonBlockAttribute';
-
+import { ActionAttribute } from './ActionAttribute'
 export const BlockAttribute = (props) => {
   console.log(props.type)
   const onChange = (val) => {
@@ -66,14 +66,14 @@ export const BlockAttribute = (props) => {
       case "color":
         console.log(item.value, 'here here')
         break;
-      default:
+      defaultp:
         console.log('no styles to change')
     }
   }
   return(
     <div style={{width:575, height:'100%', background:'#F7FAFC', padding:10}}>
       <Tabs variant='soft-rounded' colorScheme='green'>
-        <TabList style={{marginBottom:10}}>
+        <TabList style={{marginBottom:10, marginLeft:20}}>
          <Tab>Styles</Tab>
          <Tab>Action</Tab>
         </TabList>
@@ -85,7 +85,7 @@ export const BlockAttribute = (props) => {
               />
           </TabPanel>
           <TabPanel style = {{background: 'pink'}}>
-            Hi
+            <ActionAttribute/>
           </TabPanel>
         </TabPanels>
       </Tabs>

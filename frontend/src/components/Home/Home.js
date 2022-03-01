@@ -86,6 +86,17 @@ class Home extends React.Component{
     };
   }
 
+  navSmartContract = (eventId) => {
+      console.log(eventId)
+      this.props.history.push("/smartContract")
+  }
+
+  navDocs = (eventId) => {
+      console.log(eventId)
+      this.props.history.push("/docs")
+  }
+
+
   closeCreateVisible = () => {
     this.setState({
       createVisible: false
@@ -153,20 +164,22 @@ class Home extends React.Component{
     const etherBalance = this.props.etherBalance;
     return(
       <div>
-        <Header/>
+        <Header history={this.props.history}/>
 
         <Divider/>
 
         <div class="collectionList">
           <div class = "collectionTopContainer">
             <div class="collectionTitle">
-              My Collection
+              My Collection 
             </div>
             <Stack style={{marginLeft:'25px'}} direction='row' spacing={4}>
               <Button onClick={this.openCreateVisible}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                 Create Site
               </Button>
-
+              <Button style={{marginLeft:25}} onClick={this.navSmartContract  }  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
+                Customize Smart Contract
+              </Button>
             </Stack>
           </div>
 

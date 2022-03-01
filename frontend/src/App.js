@@ -17,8 +17,8 @@ import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import {Canvas} from './components/TestingFolder/ReactDesignerTest';
 import {PreviewPage} from './components/BuildFolder/Editor/PreviewPage';
-
-
+import {SmartContractCustomize} from './components/SmartContractCustomize';
+import {Docs} from './Docs.js';
 function getLibrary(provider) {
   return new Web3(provider)
 }
@@ -69,6 +69,8 @@ class App extends Component{
           <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />
           <Route exact path="/designerTest" element={<Canvas history={history}/>} />
           <Route exact path="/previewPage" element={<PreviewPage history={history}/>} />
+          <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
+          <Route exact path="/docs" element={<Docs history={history}/>} />
         </Routes>
         </CustomRouter>
 

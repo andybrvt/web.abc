@@ -86,7 +86,6 @@ import {
   PopoverAnchor,
 } from '@chakra-ui/react'
 import axios from 'axios';
-
 const PLUGINS = [
 
   grapesjsBlocksBasic,
@@ -776,11 +775,7 @@ export const Editor = (props) => {
         </div>
 
 
-<<<<<<< HEAD
-          <BlockAttributes editor = {editorMain}/>
-=======
-        <BlockAttribute type={BlockClickType}/>
->>>>>>> 47a38daa4baab862dd1b28a6343405ca029ff28d
+        <BlockAttribute editor = {editorMain}/>
 
 
 

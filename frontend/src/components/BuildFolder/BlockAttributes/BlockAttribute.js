@@ -46,12 +46,12 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 import './BlockAttribute.css';
 import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../Styles/data";
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
-import { BlockColorPicker } from '../Styles/BlockPopOver/BlockColorPicker'
+import { StyleColorPicker } from '../Styles/StylesComponents/StyleColorPicker'
 import {NewStylesContainer} from '../Styles/NewStylesContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
-
 import { ButtonBlockAttribute } from './ButtonBlockAttribute/ButtonBlockAttribute';
 import { ActionAttribute } from './ActionAttribute'
+
 export const BlockAttribute = (props) => {
   console.log(props.type)
   const onChange = (val) => {
@@ -98,13 +98,21 @@ export const BlockAttribute = (props) => {
         </TabList>
         <TabPanels>
 
-          <TabPanel >
-            <StylesContainer
-              editor = {props.editor}
-              />
+          <TabPanel style = {{
+              maxHeight: "800px",
+              overflow:'auto'
+            }}>
+              <StylesContainer
+                editor = {props.editor}
+                />
+
           </TabPanel>
-          <TabPanel style = {{background: 'pink'}}>
-            <ActionAttribute/>
+          <TabPanel>
+            {/*
+              <ActionAttribute/>
+              */}
+              <NewStylesContainer />
+
           </TabPanel>
         </TabPanels>
       </Tabs>

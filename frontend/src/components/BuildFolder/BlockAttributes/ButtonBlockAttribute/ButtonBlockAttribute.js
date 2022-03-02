@@ -43,7 +43,7 @@ import { Button as AntdButton } from 'antd';
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
 // import '../BlockAttribute.css'
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
-import { BlockColorPicker } from '../../Styles/BlockPopOver/BlockColorPicker';
+import { StyleColorPicker } from '../../Styles/StylesComponents/StyleColorPicker';
 import { CreatableSelect as ChakraFontFamilySelect } from "../../Styles/ChakraFontFamilySelect";
 import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../../Styles/data";
 export const ButtonBlockAttribute = (props) => {
@@ -64,7 +64,7 @@ export const ButtonBlockAttribute = (props) => {
       <Divider/>
       <div style={{flexDirection:'row', display:'flex', marginTop:20, marginBottom:20}}>
           <div style={{marginRight:25}}>
-            <BlockColorPicker
+            <StyleColorPicker
               background={true}
               onStyleChange = {props.onStyleChange}
               />
@@ -90,7 +90,7 @@ export const ButtonBlockAttribute = (props) => {
       </div>
       <div style={{flexDirection:'row', display:'flex',}}>
           <div style={{marginRight:25}}>
-            <BlockColorPicker
+            <StyleColorPicker
               background={false}
               onStyleChange = {props.onStyleChange}
               />

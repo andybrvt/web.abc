@@ -366,6 +366,7 @@ export const Editor = (props) => {
         appendTo: '.styles-container'
       },
       styleManager: {
+        appendTo: '.styles-manager',
         custom: true
       },
       layerManager:{

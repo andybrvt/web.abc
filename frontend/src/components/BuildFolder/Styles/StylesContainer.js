@@ -58,6 +58,7 @@ export const StylesContainer = (props) => {
           )
         })}
       </div>
+      <div class="styles-manager"> </div>
 
     </Stack>
 

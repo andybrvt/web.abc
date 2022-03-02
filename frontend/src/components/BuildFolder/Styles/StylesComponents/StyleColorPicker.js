@@ -34,7 +34,7 @@ const theme = extendTheme({
 });
 
 
-  export const BlockColorPicker = (props) => {
+  export const StyleColorPicker = (props) => {
   const [color, setColor] = useState(props.color);
 
   const colors = [
@@ -69,7 +69,7 @@ const theme = extendTheme({
               width="30px"
               padding={0}
               minWidth="unset"
-              borderRadius={(props.background) ? 5:30} 
+              borderRadius={(props.background) ? 5:30}
             ></Button>
           </PopoverTrigger>
           <PopoverContent width="170px">

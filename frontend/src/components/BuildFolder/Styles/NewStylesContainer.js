@@ -68,9 +68,6 @@ export const NewStylesContainer = (props) => {
         pos={'relative'}
         >
 
-        <div style={{marginBottom:30}}>
-          test test test
-        </div>
 
 
 

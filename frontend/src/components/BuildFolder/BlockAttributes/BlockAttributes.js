@@ -48,6 +48,7 @@ import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from ".
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
 import { BlockColorPicker } from '../Styles/BlockPopOver/BlockColorPicker'
 import {NewStylesContainer} from '../Styles/NewStylesContainer';
+import {StylesContainer} from '../Styles/StylesContainer';
 
 export const BlockAttributes = (props) => {
   const onChange = (val) => {
@@ -57,17 +58,34 @@ export const BlockAttributes = (props) => {
   const handleChange = (value) => setValue(value)
   const [sliderValue, setSliderValue] = useState(22)
 
+  const [editorMain, setEditorMain] = useState(null)
+
   const onStyleChange = (item) => {
-    console.log(item.name)
+
+    console.log(editorMain.getSelected().getEl())
+
     const style = item.name
     switch(style){
       case "color":
         console.log(item.value, 'here here')
+
+        // editorMain.getSelectedToStyle().setStyle({color:item.value})
+
         break;
       default:
         console.log('no styles to change')
     }
   }
+
+  useEffect(() => {
+    if(props.editor !== null){
+        setEditorMain(props.editor)
+    }
+
+
+  }, [props.editor])
+
+
   return(
     <div style={{width:400, height:'100%', background:'#F7FAFC', padding:10}}>
 
@@ -79,8 +97,8 @@ export const BlockAttributes = (props) => {
         <TabPanels>
 
           <TabPanel >
-            <NewStylesContainer
-              onStyleChange = {onStyleChange}
+            <StylesContainer
+              editor = {props.editor}
               />
           </TabPanel>
 

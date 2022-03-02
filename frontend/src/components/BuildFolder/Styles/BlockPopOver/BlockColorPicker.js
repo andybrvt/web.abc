@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import {
   Box,
@@ -35,24 +35,24 @@ const theme = extendTheme({
 
 
   export const BlockColorPicker = (props) => {
-  const [color, setColor] = useState("gray.500");
+  const [color, setColor] = useState(props.color);
 
   const colors = [
     // "gray.500",
     "Black",
-    "gray.500",
-    "red.500",
-    "green.500",
-    "blue.500",
-    "blue.800",
-    "yellow.500",
-    "orange.500",
-    "purple.500",
-    "pink.500"
+    "gray",
+    "red",
+    "green",
+    "blue",
+    "yellow",
+    "orange",
+    "purple",
+    "pink",
+    "white"
   ];
 
-  const onColarChange = (e) => {
-    props.onStyleChange(e.target)
+  const onColorChange = (e) => {
+    props.handleChange(e.target.value)
     setColor(e.target.value)
   }
 
@@ -100,7 +100,7 @@ const theme = extendTheme({
                     borderRadius={3}
                     _hover={{ background: c }}
                     onClick={(e) => {
-                      onColarChange(e)
+                      onColorChange(e)
                     }}
                   ></Button>
                 ))}
@@ -112,7 +112,7 @@ const theme = extendTheme({
                 size="sm"
                 value={color}
                 onChange={(e) => {
-                  setColor(e.target.value);
+                  onColorChange(e)
                 }}
               />
             </PopoverBody>

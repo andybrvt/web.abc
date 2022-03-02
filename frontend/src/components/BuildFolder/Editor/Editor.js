@@ -367,8 +367,7 @@ export const Editor = (props) => {
         appendTo: '.styles-container'
       },
       styleManager: {
-        appendTo: '.styles-container',
-
+        custom: true
       },
       layerManager:{
         appendTo: '.layers-container'
@@ -395,21 +394,15 @@ export const Editor = (props) => {
 
     })
 
+
     editor.runCommand('sw-visibility');
-    editor.StyleManager.addProperty('decorations', {
-      name: 'Gradient',
-      property: 'background-image',
-      type: 'gradient',
-      defaults: 'none'
-    });
+
 
     editor.on("run:preview", () => {
-      // editor.stopCommand("sw-visibility")
       const canvas = editor.Canvas.getElement();
       const canvasS = canvas.style;
       canvasS.left = '770px';
 
-      // setPreview(true)
     })
 
     editor.on("stop:preview", () => {
@@ -562,13 +555,10 @@ export const Editor = (props) => {
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
-    editor.on('load', () => {
-      const fontProperty = editor.StyleManager.getProperty('typography', 'font-family')
-      const typographySector = editor.StyleManager.getSector('Typography');
-
-    })
     setEditor(editor)
   },[])
+
+
 
   const menu = (
         <Menu className = "menuContianer">
@@ -623,6 +613,7 @@ export const Editor = (props) => {
   const clearCanvas = () => {
     editorMain.runCommand('core:canvas-clear')
   }
+
 
   const storeEditor = () => {
 
@@ -785,22 +776,28 @@ export const Editor = (props) => {
         </div>
 
 
-        <BlockAttributes/>
+          <BlockAttributes editor = {editorMain}/>
 
 
-        {/*
-          <div id = "panelRight" class= {`panel__right`}>
-            <div class= "panel__top">
-              <div class="panel__switcher"></div>
+
+          {/*
+            <div id = "panelRight" class= {`panel__right`}>
+              <div class= "panel__top">
+                <div class="panel__switcher"></div>
+              </div>
+              <StylesContainer editor = {editorMain} />
+              <LayersContainer editor = {editorMain}/>
+              <TraitsContainer editor = {editorMain} />
             </div>
 
-            <LayersContainer editor = {editorMain}/>
-            <StylesContainer editor = {editorMain} />
-            <TraitsContainer editor = {editorMain} />
-          </div>
+
+            */}
 
 
-          */}
+
+
+
+
 
 
       </div>

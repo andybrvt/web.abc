@@ -29,7 +29,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt,  } from '@fortawesome/free-solid-svg-icons'
 
 
-
 export const Header = (props) => {
   const {activateBrowserWallet, account } = useEthers();
   const etherBalance = useEtherBalance(account);
@@ -38,6 +37,12 @@ export const Header = (props) => {
   const test = () => {
     console.log('stuff here')
   }
+
+
+  const navHome = () => {
+      props.history.push("/home")
+  }
+
   return(
     <div>
 
@@ -50,14 +55,12 @@ export const Header = (props) => {
             <div className = "searchBarContainer">
             <div className = "autoCompleteHeader">
               <div>
-
               </div>
              </div>
             </div>
           </div>
           <div class="menuHeader3">
             <Menu colorScheme='teal' size='md'>
-
               <MenuButton as={Button} rightIcon={<Avatar icon={<UserOutlined />} />}>
               <text color="white" fontSize="md" fontWeight="medium" mr="2">
                 {account &&
@@ -69,7 +72,7 @@ export const Header = (props) => {
               </MenuButton>
               <MenuList>
                 <MenuGroup title='Profile'>
-                  <MenuItem icon={<UserOutlined size={30} />}>My Profile</MenuItem>
+                  <MenuItem onClick={navHome}  icon={<UserOutlined size={30} />}>My Home</MenuItem>
                   <MenuItem>My Collection </MenuItem>
                 </MenuGroup>
                 <MenuDivider />

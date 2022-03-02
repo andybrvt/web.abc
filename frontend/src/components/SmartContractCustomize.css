@@ -1,0 +1,9 @@
+.moveCollection{
+  position: absolute;
+  top:10%;
+  left:10%;
+}
+.actionAttributeHeader {
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 14px;
+}

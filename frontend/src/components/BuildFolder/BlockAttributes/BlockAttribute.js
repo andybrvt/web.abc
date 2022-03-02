@@ -43,14 +43,21 @@ import Select, { CreatableSelect } from "../Styles/chakra-react-select";
 import { CreatableSelect as ChakraFontFamilySelect } from "../Styles/ChakraFontFamilySelect";
 import { Button as AntdButton } from 'antd';
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
-import './BlockAttributes.css';
+import './BlockAttribute.css';
 import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../Styles/data";
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
 import { BlockColorPicker } from '../Styles/BlockPopOver/BlockColorPicker'
 import {NewStylesContainer} from '../Styles/NewStylesContainer';
+<<<<<<< HEAD:frontend/src/components/BuildFolder/BlockAttributes/BlockAttributes.js
 import {StylesContainer} from '../Styles/StylesContainer';
 
 export const BlockAttributes = (props) => {
+=======
+import { ButtonBlockAttribute } from './ButtonBlockAttribute/ButtonBlockAttribute';
+import { ActionAttribute } from './ActionAttribute'
+export const BlockAttribute = (props) => {
+  console.log(props.type)
+>>>>>>> 47a38daa4baab862dd1b28a6343405ca029ff28d:frontend/src/components/BuildFolder/BlockAttributes/BlockAttribute.js
   const onChange = (val) => {
     setSliderValue(val);
   };
@@ -72,7 +79,7 @@ export const BlockAttributes = (props) => {
         // editorMain.getSelectedToStyle().setStyle({color:item.value})
 
         break;
-      default:
+      defaultp:
         console.log('no styles to change')
     }
   }
@@ -87,30 +94,31 @@ export const BlockAttributes = (props) => {
 
 
   return(
-    <div style={{width:400, height:'100%', background:'#F7FAFC', padding:10}}>
-
+    <div style={{width:575, height:'100%', background:'#F7FAFC', padding:10}}>
       <Tabs variant='soft-rounded' colorScheme='green'>
-        <TabList>
+        <TabList style={{marginBottom:10, marginLeft:20}}>
          <Tab>Styles</Tab>
          <Tab>Action</Tab>
         </TabList>
         <TabPanels>
+<<<<<<< HEAD:frontend/src/components/BuildFolder/BlockAttributes/BlockAttributes.js
 
           <TabPanel >
             <StylesContainer
-              editor = {}
+              editor = {props.editor}
+=======
+          <TabPanel style={{height:'100%',}}>
+            <NewStylesContainer
+              type={props.type}
+              onStyleChange = {onStyleChange}
+>>>>>>> 47a38daa4baab862dd1b28a6343405ca029ff28d:frontend/src/components/BuildFolder/BlockAttributes/BlockAttribute.js
               />
           </TabPanel>
-
-
           <TabPanel style = {{background: 'pink'}}>
-            Hi
+            <ActionAttribute/>
           </TabPanel>
-
         </TabPanels>
-
       </Tabs>
-
     </div>
   )
 }

@@ -21,7 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
 import {IconButtonCanvas} from '../../TestingFolder/ReactDesignerTest';
 import { Button as Button, ButtonGroup, Box, Tooltip, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
-import { BlockAttributes } from '../BlockAttributes/BlockAttributes';
+import { BlockAttribute } from '../BlockAttributes/BlockAttribute';
 import {
   ButtonType1,
   ButtonType2,
@@ -508,7 +508,7 @@ export const Editor = (props) => {
     });
 
     editor.on('component:selected', (block, obj) =>{
-      console.log(block._previousAttributes.type)
+      // console.log(block._previousAttributes.type)
       setBlockClickType(block._previousAttributes.type)
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
@@ -776,7 +776,11 @@ export const Editor = (props) => {
         </div>
 
 
+<<<<<<< HEAD
           <BlockAttributes editor = {editorMain}/>
+=======
+        <BlockAttribute type={BlockClickType}/>
+>>>>>>> 47a38daa4baab862dd1b28a6343405ca029ff28d
 
 
 

@@ -5,7 +5,11 @@
   /* background: red; */
 }
 
-
+.miniAttributeHeader{
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 12px;
+  margin-bottom: 10px;
+}
 
 .attributeSectionHeader{
   font-family: 'PlusJakartaSans-SemiBold';
@@ -30,4 +34,10 @@
 
 .textPopOverButton {
   margin-right: 15px;
+}
+
+.buttonHeader {
+  font-size: 17.5px;
+  font-family: 'PlusJakartaSans-SemiBold';
+  margin-bottom: 20px;
 }

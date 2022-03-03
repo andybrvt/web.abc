@@ -34,11 +34,34 @@ export const PropertyContainer = (props) => {
         <StyleColorPicker
           handleChange = {handleChange}
           handleInput = {handleInput}
-          color = {curColor}/>
-      )
+          color = {curColor}/>)
     }
 
-    else if (type ==="select"){
+    else if (type ==="radio"){
+
+      const options = property.getOptions()
+      function getOptionId(opt){
+        return property.getOptionId(opt)
+      }
+      function getOptionLabel(opt){
+        return property.getOptionLabel(opt)
+      }
+
+      var curValue = property.hasValue() ? property.getValue() : getDefValue()
+
+
+
+      return(
+        <StyleRadio
+          field = {property.getId()}
+          handleChange = {handleChange}
+          handleInput = {handleInput}
+          curValue = {curValue}
+          options = {options}
+          getOptionId = {getOptionId}
+          getOptionLabel = {getOptionLabel}
+           />
+      )
 
     }
 

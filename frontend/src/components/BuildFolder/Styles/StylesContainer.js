@@ -13,15 +13,9 @@ export const StylesContainer = (props) => {
   // return function in useEffect will be the unmount
   useEffect(() => {
     if(props.editor !== null){
-      console.log('is it here')
       const tempEditor = props.editor
-      console.log(tempEditor)
       setEditor(props.editor)
-
-      // console.log()
       props.editor.on('style:custom', props =>{
-        console.log(tempEditor)
-
         setSectors(tempEditor.StyleManager.getSectors({visible:true}))
       })
 

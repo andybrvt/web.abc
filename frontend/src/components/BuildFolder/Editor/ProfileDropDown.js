@@ -47,7 +47,6 @@ function withMyHook(Component) {
 
 
   render() {
-    console.log(this.props)
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Menu,
+  Menu, Select,
   MenuButton,
   MenuList,
   MenuItem,
@@ -21,6 +21,9 @@ import {
   FormErrorMessage,
   IconButton,
   Input, Divider,
+  Text,
+  Image,
+  Badge,
   useColorModeValue,
 } from '@chakra-ui/react';
 import axios from 'axios';
@@ -61,38 +64,113 @@ export const SmartContractCustomize = (props) => {
                 Link
               </div>
               <Divider/>
+              <div style={{marginTop:25}}>
+                <Select size='sm' placeholder='Choose page'>
+                  <option value='option1'>Page 1</option>
+                  <option value='option2'>Page 2</option>
+                  <option value='option3'>Page 3</option>
+                </Select>
+              </div>
             </div>
+
             <div style={{marginTop:20, marginBottom:20}}>
               <div class="actionAttributeHeader">
-                Function
+                Add Function
               </div>
-              <Button onClick={onOpen}>Open Modal</Button>
               <Divider/>
+              <Button onClick={onOpen}>Open Modal</Button>
             </div>
           </Stack>
         </div>
       </div>
 
       <Modal
+        size="4xl"
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+        <ModalContent >
+          <ModalHeader>Choose Function </ModalHeader>
           <ModalCloseButton />
+          <ModalBody style={{display:'flex', flexDirection:'row'}} pb={10}>
+            <Box style={{marginRight:50}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+              <Image src={'https://bit.ly/2Z4KKcF'} alt={'Rear view of modern home with pool'} />
+              <Box p='6'>
+                  <Box display='flex' alignItems='baseline'>
+                    <Badge borderRadius='full' px='2' colorScheme='teal'>
+                      New
+                    </Badge>
+                    <Box
+                      color='gray.500'
+                      fontWeight='semibold'
+                      letterSpacing='wide'
+                      fontSize='xs'
+                      textTransform='uppercase'
+                      ml='2'
+                    >
+                      5 contracts &bull; 3 contracts
+                    </Box>
+                  </Box>
+                  <Box
+                    mt='1'
+                    fontWeight='semibold'
+                    as='h4'
+                    lineHeight='tight'
+                    isTruncated
+                  >
+                    NFT Collections
+                  </Box>
+                  <Box>
+                    Mint NFT, Buy NFT, Sell NFT ...
+
+                  </Box>
+                </Box>
+            </Box>
+            <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+              <Image src={'https://bit.ly/2Z4KKcF'} alt={'Rear view of modern home with pool'} />
+              <Box p='6'>
+                  <Box display='flex' alignItems='baseline'>
+                    <Badge borderRadius='full' px='2' colorScheme='teal'>
+                      Coming soon
+                    </Badge>
+                    <Box
+                      color='gray.500'
+                      fontWeight='semibold'
+                      letterSpacing='wide'
+                      fontSize='xs'
+                      textTransform='uppercase'
+                      ml='2'
+                    >
+                      2 beds &bull; 3 baths
+                    </Box>
+                  </Box>
+                  <Box
+                    mt='1'
+                    fontWeight='semibold'
+                    as='h4'
+                    lineHeight='tight'
+                    isTruncated
+                  >
+                    Banking coming soon...
+                  </Box>
+                  <Box>
+                    Send Eth, Receive Eth, ...
+
+                  </Box>
+                </Box>
+            </Box>
+          </ModalBody>
+
+
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>First name</FormLabel>
+              <FormLabel>Name of Project</FormLabel>
               <Input ref={initialRef} placeholder='First name' />
             </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Last name</FormLabel>
-              <Input placeholder='Last name' />
-            </FormControl>
           </ModalBody>
 
           <ModalFooter>
@@ -103,26 +181,7 @@ export const SmartContractCustomize = (props) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      {/*
-        <div class="collectionTitle">
-          NFT Smart Contracts
-        </div>
-        <div class="collectionTitle">
-          Mint Collection
-        </div>
-        <div class="collectionTitle">
-          Mint Smart Contract
-        </div>
-        <div class="collectionTitle">
-          Buy NFT
-        </div>
-        <div class="collectionTitle">
-          Sell NFT
-        </div>
 
-
-
-        */}
       // remove first div css later
 
     </div>

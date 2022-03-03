@@ -47,8 +47,7 @@ export const ActionAttribute = (props) => {
         // align={'center'}
         pos={'relative'}
         >
-        <div style={{height:775, padding:20}}>
-          
+        <div style={{height:775, width:350, padding:20}}>
           Add Function
         </div>
       </Stack>

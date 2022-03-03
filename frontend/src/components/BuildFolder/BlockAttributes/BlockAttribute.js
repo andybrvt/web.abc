@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Menu,
   MenuButton,
@@ -51,6 +51,28 @@ import {NewStylesContainer} from '../Styles/NewStylesContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
 import { ButtonBlockAttribute } from './ButtonBlockAttribute/ButtonBlockAttribute';
 import { ActionAttribute } from './ActionAttribute'
+import { motion, AnimatePresence } from "framer-motion";
+
+
+const routesAnimationVariants = {
+  hidden: {
+    opacity: 0,
+    x: "400px"
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { delay: 0, duration: 0.6 }
+  },
+  exit: {
+    x: "-400px",
+    opacity: 0,
+    transition: {
+      duration: 0.8
+    }
+  }
+};
+
 
 export const BlockAttribute = (props) => {
   console.log(props.type)
@@ -89,16 +111,35 @@ export const BlockAttribute = (props) => {
   }, [props.editor])
 
 
+  const TabPanelContent = ({ children }) => {
+  const currentPanelRef = useRef(document.createElement("div"));
+
+  return (
+    <Box
+      as={motion.div}
+      variants={routesAnimationVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      pos="absolute"
+      ref={currentPanelRef}
+      p={3}
+    >
+      {children}
+    </Box>
+  );
+};
+
   return(
     <div style={{width:575, height:'100%', background:'#F7FAFC', padding:10}}>
-      <Tabs variant='soft-rounded' colorScheme='green'>
+      <Tabs isLazy={true} variant='soft-rounded' colorScheme='green'>
         <TabList style={{marginBottom:10, marginLeft:20}}>
          <Tab>Styles</Tab>
          <Tab>Action</Tab>
         </TabList>
         <TabPanels>
 
-          <TabPanel style = {{
+          <TabPanel as={AnimatePresence} exitBeforeEnter style = {{
               maxHeight: "800px",
               overflow:'auto'
             }}>
@@ -107,9 +148,11 @@ export const BlockAttribute = (props) => {
                 />
 
           </TabPanel>
-          <TabPanel>
+            <TabPanel as={AnimatePresence} exitBeforeEnter style = {{background: 'pink'}}>
             {/*
-              <ActionAttribute/>
+              <TabPanelContent>
+                <ActionAttribute/>
+              </TabPanelContent>
               */}
               <NewStylesContainer />
 

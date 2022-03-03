@@ -1,0 +1,26 @@
+import React, { useState, useEffect } from 'react';
+import {
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from '@chakra-ui/react'
+
+export const StylesSelectInput = (props) => {
+
+
+
+
+  return(
+
+    <NumberInput defaultValue = {props.value} onChange = {e=>props.handleChange(e)}>
+      <NumberInputField />
+      <NumberInputStepper>
+        <NumberIncrementStepper />
+        <NumberDecrementStepper />
+      </NumberInputStepper>
+    </NumberInput>
+
+  )
+}

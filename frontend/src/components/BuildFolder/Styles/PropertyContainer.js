@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {StyleColorPicker} from './StylesComponents/StyleColorPicker';
 import {StyleRadio} from './StylesComponents/StyleRadio';
+import {StylesSelectInput} from './StylesComponents/StylesSelectInput';
 export const PropertyContainer = (props) => {
 
   const property = props.property
@@ -22,8 +23,21 @@ export const PropertyContainer = (props) => {
   const renderProperty = (property) => {
     const type = property.getType()
 
+
+
     if(type ==="number"){
-      return(<input />)
+
+      var curValue = property.hasValue() ? property.getValue() : getDefValue()
+
+
+      return(
+        <StylesSelectInput
+          field = {property.getId()}
+          value = {curValue}
+          handleChange = {handleChange}
+          handleInput = {handleInput}
+           />
+      )
     }
     else if (type ==="color"){
 
@@ -34,7 +48,7 @@ export const PropertyContainer = (props) => {
         <StyleColorPicker
           handleChange = {handleChange}
           handleInput = {handleInput}
-          color = {curColor}/>)
+          color = {curValue}/>)
     }
 
     else if (type ==="radio"){
@@ -62,8 +76,9 @@ export const PropertyContainer = (props) => {
           getOptionLabel = {getOptionLabel}
            />
       )
-
     }
+
+
 
   }
 

@@ -139,7 +139,7 @@ export const BlockAttribute = (props) => {
         </TabList>
         <TabPanels>
 
-          <TabPanel as={AnimatePresence} exitBeforeEnter style = {{
+          <TabPanel  style = {{
               maxHeight: "800px",
               overflow:'auto'
             }}>
@@ -148,7 +148,7 @@ export const BlockAttribute = (props) => {
                 />
 
           </TabPanel>
-            <TabPanel as={AnimatePresence} exitBeforeEnter style = {{background: 'pink'}}>
+            <TabPanel style = {{background: 'pink'}}>
             {/*
               <TabPanelContent>
                 <ActionAttribute/>

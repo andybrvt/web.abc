@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {StyleColorPicker} from './StylesComponents/StyleColorPicker';
 import {StyleRadio} from './StylesComponents/StyleRadio';
-import {StylesSelectInput} from './StylesComponents/StylesSelectInput';
+import {StyleSelectInput} from './StylesComponents/StyleSelectInput';
+import {StyleSelect} from './StylesComponents/StyleSelect';
 export const PropertyContainer = (props) => {
 
   const property = props.property
@@ -31,11 +32,35 @@ export const PropertyContainer = (props) => {
 
 
       return(
-        <StylesSelectInput
+        <StyleSelectInput
           field = {property.getId()}
           value = {curValue}
           handleChange = {handleChange}
           handleInput = {handleInput}
+           />
+      )
+    }
+    else if(type === "select"){
+
+      var curValue = property.hasValue() ? property.getValue() : getDefValue()
+      const options = property.getOptions()
+      function getOptionId(opt){
+        return property.getOptionId(opt)
+      }
+      function getOptionLabel(opt){
+        return property.getOptionLabel(opt)
+      }
+
+
+      return(
+        <StyleSelect
+          field = {property.getId()}
+          handleChange = {handleChange}
+          handleInput = {handleInput}
+          curValue = {curValue}
+          options = {options}
+          getOptionId = {getOptionId}
+          getOptionLabel = {getOptionLabel}
            />
       )
     }

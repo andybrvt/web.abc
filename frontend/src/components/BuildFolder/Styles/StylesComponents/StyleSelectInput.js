@@ -7,7 +7,7 @@ import {
   NumberDecrementStepper,
 } from '@chakra-ui/react'
 
-export const StylesSelectInput = (props) => {
+export const StyleSelectInput = (props) => {
 
 
 

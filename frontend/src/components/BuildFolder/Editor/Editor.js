@@ -213,30 +213,30 @@ export const Editor = (props) => {
         grapesjsStyleBg:{}
        },
       // this is the local storage
-      // storageManager: {
-      //   id: 'gjs-', // just the identifier that you will be using
-      //   type: 'local', // type of storage
-      //   autosave: true,
-      //   autoload: true,
-      //   stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
-      //   storeComponents: true, // enable/disable storing of componets in JSON format
-      //   storeStyles: true,
-      //   storeHtml: true,
-      //   storeCss: true
-      // },
-      // // this is the remote storage (probally gonna use this one here)
       storageManager: {
-        type: 'remote',
-        stepsBeforeSave: 3,
-        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
-        urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
-        contentTypeJson: true,
-        params: {
-        },
-        headers: {
-          "Content-Type": "application/json",
-        }
+        id: 'gjs-', // just the identifier that you will be using
+        type: 'local', // type of storage
+        autosave: true,
+        autoload: true,
+        stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
+        storeComponents: true, // enable/disable storing of componets in JSON format
+        storeStyles: true,
+        storeHtml: true,
+        storeCss: true
       },
+      // // this is the remote storage (probally gonna use this one here)
+      // storageManager: {
+      //   type: 'remote',
+      //   stepsBeforeSave: 3,
+      //   urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
+      //   urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
+      //   contentTypeJson: true,
+      //   params: {
+      //   },
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   }
+      // },
       assetManager:{
         assets:[
           'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
@@ -776,6 +776,7 @@ export const Editor = (props) => {
         </div>
 
 
+
         <BlockAttribute editor = {editorMain}/>
 
 
@@ -785,7 +786,6 @@ export const Editor = (props) => {
               <div class= "panel__top">
                 <div class="panel__switcher"></div>
               </div>
-              <StylesContainer editor = {editorMain} />
               <LayersContainer editor = {editorMain}/>
               <TraitsContainer editor = {editorMain} />
             </div>

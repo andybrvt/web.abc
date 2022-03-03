@@ -46,10 +46,9 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 import './BlockAttribute.css';
 import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../Styles/data";
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
-import { BlockColorPicker } from '../Styles/BlockPopOver/BlockColorPicker'
+import { StyleColorPicker } from '../Styles/StylesComponents/StyleColorPicker'
 import {NewStylesContainer} from '../Styles/NewStylesContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
-
 import { ButtonBlockAttribute } from './ButtonBlockAttribute/ButtonBlockAttribute';
 import { ActionAttribute } from './ActionAttribute'
 import { motion, AnimatePresence } from "framer-motion";
@@ -140,17 +139,23 @@ export const BlockAttribute = (props) => {
         </TabList>
         <TabPanels>
 
-          <TabPanel as={AnimatePresence} exitBeforeEnter>
-            <TabPanelContent>
-            <StylesContainer
-              editor = {props.editor}
-              />
-            </TabPanelContent>
+          <TabPanel as={AnimatePresence} exitBeforeEnter style = {{
+              maxHeight: "800px",
+              overflow:'auto'
+            }}>
+              <StylesContainer
+                editor = {props.editor}
+                />
+
           </TabPanel>
-          <TabPanel as={AnimatePresence} exitBeforeEnter style = {{background: 'pink'}}>
-            <TabPanelContent>
-              <ActionAttribute/>
-            </TabPanelContent>
+            <TabPanel as={AnimatePresence} exitBeforeEnter style = {{background: 'pink'}}>
+            {/*
+              <TabPanelContent>
+                <ActionAttribute/>
+              </TabPanelContent>
+              */}
+              <NewStylesContainer />
+
           </TabPanel>
         </TabPanels>
       </Tabs>

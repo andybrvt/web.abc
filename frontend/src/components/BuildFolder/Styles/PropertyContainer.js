@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {BlockColorPicker} from './BlockPopOver/BlockColorPicker';
+import {StyleColorPicker} from './StylesComponents/StyleColorPicker';
+import {StyleRadio} from './StylesComponents/StyleRadio';
 export const PropertyContainer = (props) => {
 
   const property = props.property
@@ -30,17 +31,23 @@ export const PropertyContainer = (props) => {
 
 
       return(
-        <BlockColorPicker
+        <StyleColorPicker
           handleChange = {handleChange}
           handleInput = {handleInput}
           color = {curColor}/>
       )
     }
+
+    else if (type ==="select"){
+
+    }
+
   }
 
   return(
     <div key = {property.getId()}>
       <div>Label:{property.getLabel()}</div>
+      <div>Type:{property.getType()}</div>
       {renderProperty(property)}
     </div>
 

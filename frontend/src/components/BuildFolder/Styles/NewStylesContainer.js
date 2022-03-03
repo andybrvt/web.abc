@@ -41,7 +41,7 @@ import {
 import Select, { CreatableSelect } from "./chakra-react-select";
 import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "./data";
 import { CreatableSelect as ChakraFontFamilySelect } from "./ChakraFontFamilySelect";
-import { BlockColorPicker } from './BlockPopOver/BlockColorPicker'
+import { StyleColorPicker } from './StylesComponents/StyleColorPicker'
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
 import { Button as AntdButton } from 'antd';
 import { ButtonBlockAttribute } from '../BlockAttributes/ButtonBlockAttribute/ButtonBlockAttribute';
@@ -105,7 +105,7 @@ export const NewStylesContainer = (props) => {
         </div>
         <div style={{flexDirection:'row', display:'flex',}}>
             <div style={{marginRight:25}}>
-              <BlockColorPicker
+              <StyleColorPicker
                 background={false}
                 onStyleChange = {props.onStyleChange}
                 />
@@ -167,7 +167,7 @@ export const NewStylesContainer = (props) => {
 
       }
 
-  
+
 
     </Stack>
 

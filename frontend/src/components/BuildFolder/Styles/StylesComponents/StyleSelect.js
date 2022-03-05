@@ -13,23 +13,27 @@ export const StyleSelect = (props) => {
   }
 
   return(
-    <Select
-      onChange = {(e) => handleClick(e.target.value)}
-      placeholder='Select option'>
+    <div>
+      {props.label}
+      <Select
+        onChange = {(e) => handleClick(e.target.value)}
+        placeholder='Select option'>
 
-      {
-        options.map((opt, index) => {
-
-
-
-          return(
-            <option value={props.getOptionId(opt)}>{props.getOptionLabel(opt)}</option>
-          )
-        })
-
-      }
+        {
+          options.map((opt, index) => {
 
 
-    </Select>
+
+            return(
+              <option value={props.getOptionId(opt)}>{props.getOptionLabel(opt)}</option>
+            )
+          })
+
+        }
+
+
+      </Select>
+    </div>
+
   )
 }

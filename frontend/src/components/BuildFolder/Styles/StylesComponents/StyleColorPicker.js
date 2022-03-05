@@ -58,10 +58,11 @@ const theme = extendTheme({
 
   return (
     <ChakraProvider theme={theme}>
-
+      {props.label}
       <Center>
         <Popover variant="picker">
           <PopoverTrigger>
+
             <Button
               aria-label={color}
               background={color}

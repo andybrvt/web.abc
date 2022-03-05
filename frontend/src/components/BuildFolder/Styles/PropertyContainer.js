@@ -29,10 +29,11 @@ export const PropertyContainer = (props) => {
     if(type ==="number"){
 
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
-
+      var label = property.getLabel()
 
       return(
         <StyleSelectInput
+          label = {label}
           field = {property.getId()}
           value = {curValue}
           handleChange = {handleChange}
@@ -51,9 +52,12 @@ export const PropertyContainer = (props) => {
         return property.getOptionLabel(opt)
       }
 
+      var label = property.getLabel()
+
 
       return(
         <StyleSelect
+          label = {label}
           field = {property.getId()}
           handleChange = {handleChange}
           handleInput = {handleInput}
@@ -68,9 +72,12 @@ export const PropertyContainer = (props) => {
 
       var curColor = property.hasValue() ? property.getValue() : getDefValue()
 
+      var label = property.getLabel()
+
 
       return(
         <StyleColorPicker
+          label = {label}
           handleChange = {handleChange}
           handleInput = {handleInput}
           color = {curValue}/>)
@@ -92,6 +99,7 @@ export const PropertyContainer = (props) => {
 
       return(
         <StyleRadio
+          label = {label}
           field = {property.getId()}
           handleChange = {handleChange}
           handleInput = {handleInput}
@@ -101,6 +109,25 @@ export const PropertyContainer = (props) => {
           getOptionLabel = {getOptionLabel}
            />
       )
+    }
+
+    else if(type === "composite"){
+
+      const compProp = property.getProperties()
+      console.log('this is the property here')
+      console.log(compProp)
+
+      return(
+        <div>
+        {  compProp.map((props,index) => {
+
+            return(
+              renderProperty(props)
+            )
+          })}
+        </div>
+      )
+
     }
 
 

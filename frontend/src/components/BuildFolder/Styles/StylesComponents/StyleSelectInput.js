@@ -13,14 +13,17 @@ export const StyleSelectInput = (props) => {
 
 
   return(
+    <div>
+      {props.label}
+      <NumberInput defaultValue = {props.value} onChange = {e=>props.handleChange(e)}>
+        <NumberInputField />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </NumberInput>
+    </div>
 
-    <NumberInput defaultValue = {props.value} onChange = {e=>props.handleChange(e)}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </NumberInput>
 
   )
 }

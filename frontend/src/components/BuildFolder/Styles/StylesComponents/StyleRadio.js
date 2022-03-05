@@ -15,6 +15,7 @@ export const StyleRadio = (props) => {
     <RadioGroup
       onChange = {(e) => props.handleChange(e)}
       defaultValue={props.curValue}>
+      {props.label}
       <Stack spacing={4} direction='row'>
         {
           options.map((opt, index) => {

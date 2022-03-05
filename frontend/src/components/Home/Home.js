@@ -171,7 +171,7 @@ class Home extends React.Component{
         <div class="collectionList">
           <div class = "collectionTopContainer">
             <div class="collectionTitle">
-              My Collection 
+              My Collection
             </div>
             <Stack style={{marginLeft:'25px'}} direction='row' spacing={4}>
               <Button onClick={this.openCreateVisible}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
@@ -186,6 +186,14 @@ class Home extends React.Component{
           <WebsiteList data = {this.state.websites} onBuildDirect = {this.onBuildDirect} />
 
         </div>
+
+
+
+
+
+
+
+
 
         {/*
           <div class="loginFormInnerContent">
@@ -216,7 +224,9 @@ class Home extends React.Component{
           history = {this.props.history}
           account = {this.props.account}
           onCancel={this.closeCreateVisible}
-          visible = {this.state.createVisible} />
+          visible = {this.state.createVisible}
+
+          />
 
       </div>
     )

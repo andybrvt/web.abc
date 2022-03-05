@@ -103,6 +103,25 @@ export const PropertyContainer = (props) => {
       )
     }
 
+    else if(type === "composite"){
+
+      const compProp = property.getProperties()
+      console.log('this is the property here')
+      console.log(compProp)
+
+      return(
+        <div>
+        {  compProp.map((props,index) => {
+
+            return(
+              renderProperty(props)
+            )
+          })}
+        </div>
+      )
+
+    }
+
 
 
   }

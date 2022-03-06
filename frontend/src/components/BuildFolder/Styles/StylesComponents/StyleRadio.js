@@ -10,7 +10,6 @@ export const StyleRadio = (props) => {
   const handleClick = (opt) => {
     props.handleChange(opt)
   }
-  console.log(field)
   return(
     <RadioGroup
       onChange = {(e) => props.handleChange(e)}

@@ -10,12 +10,17 @@ import {
 export const StyleSelectInput = (props) => {
 
 
-
+  const handleChange = (e) => {
+    props.handleChange(e)
+  }
 
   return(
     <div>
       {props.label}
-      <NumberInput defaultValue = {props.value} onChange = {e=>props.handleChange(e)}>
+      <NumberInput defaultValue = {props.value}
+        // onChange = {e=>props.handleChange(e)}
+        onChange = {e=>handleChange(e)}
+        >
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />

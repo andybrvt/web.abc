@@ -3,27 +3,32 @@ import {StyleColorPicker} from './StylesComponents/StyleColorPicker';
 import {StyleRadio} from './StylesComponents/StyleRadio';
 import {StyleSelectInput} from './StylesComponents/StyleSelectInput';
 import {StyleSelect} from './StylesComponents/StyleSelect';
+import {StyleStack} from './StylesComponents/StyleStack';
+import {StyleSlider} from './StylesComponents/StyleSlider';
+
 export const PropertyContainer = (props) => {
 
   const property = props.property
 
-  const getDefValue = () => {
-    return property.getDefaultValue()
-  }
 
-  // function handle changes of the component
-  const handleChange = (value) => {
-    property.upValue(value)
-  }
-
-  // function handle inputs of the component
-  const handleInput = (value) => {
-    property.upValue(value, { partial: true })
-  }
 
   const renderProperty = (property) => {
     const type = property.getType()
 
+    const getDefValue = () => {
+      return property.getDefaultValue()
+    }
+
+    // function handle changes of the component
+    const handleChange = (value) => {
+      console.log(property.getId())
+      property.upValue(value)
+    }
+
+    // function handle inputs of the component
+    const handleInput = (value) => {
+      property.upValue(value, { partial: true })
+    }
 
 
     if(type ==="number"){
@@ -114,20 +119,62 @@ export const PropertyContainer = (props) => {
     else if(type === "composite"){
 
       const compProp = property.getProperties()
-      console.log('this is the property here')
-      console.log(compProp)
 
       return(
         <div>
-        {  compProp.map((props,index) => {
+        {  compProp.map((prp,index) => {
 
+            console.log(prp.getId(), 'here are the props')
             return(
-              renderProperty(props)
+              renderProperty(prp)
             )
+
+
+
           })}
         </div>
       )
 
+    } else if(type==="stack"){
+
+      const layers = property.getLayers()
+      function addLayer(opt, layer){
+        property.addLayer(opt, layer)
+      }
+
+      const properties = property.getProperties()
+
+
+
+      return(
+        <StyleStack
+          label = {label}
+          field = {property.getId()}
+          handleChange = {handleChange}
+          handleInput = {handleInput}
+          layers = {layers}
+          addLayer = {addLayer}
+          renderProperty= {renderProperty}
+          properties = {properties}
+           />
+      )
+    } else if(type === "slider"){
+
+      const value = property.getValue()
+      const min = property.getMin()
+      const max = property.getMax()
+      const step = property.getStep()
+
+      return(
+        <StyleSlider
+          handleChange = {handleChange}
+          handleInput = {handleInput}
+          value = {value}
+          min = {min}
+          max= {max}
+          step ={step}
+           />
+      )
     }
 
 
@@ -136,8 +183,7 @@ export const PropertyContainer = (props) => {
 
   return(
     <div key = {property.getId()}>
-      <div>Label:{property.getLabel()}</div>
-      <div>Type:{property.getType()}</div>
+      <div>{property.getLabel()}</div>
       {renderProperty(property)}
     </div>
 

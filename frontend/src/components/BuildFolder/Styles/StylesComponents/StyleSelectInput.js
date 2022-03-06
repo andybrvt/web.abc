@@ -11,7 +11,6 @@ export const StyleSelectInput = (props) => {
 
 
   const handleChange = (e) => {
-    console.log(props.label, e)
     props.handleChange(e)
   }
 

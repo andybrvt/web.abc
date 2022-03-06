@@ -4,6 +4,7 @@ import {StyleRadio} from './StylesComponents/StyleRadio';
 import {StyleSelectInput} from './StylesComponents/StyleSelectInput';
 import {StyleSelect} from './StylesComponents/StyleSelect';
 import {StyleStack} from './StylesComponents/StyleStack';
+import {StyleSlider} from './StylesComponents/StyleSlider';
 
 export const PropertyContainer = (props) => {
 
@@ -157,6 +158,23 @@ export const PropertyContainer = (props) => {
           properties = {properties}
            />
       )
+    } else if(type === "slider"){
+
+      const value = property.getValue()
+      const min = property.getMin()
+      const max = property.getMax()
+      const step = property.getStep()
+
+      return(
+        <StyleSlider
+          handleChange = {handleChange}
+          handleInput = {handleInput}
+          value = {value}
+          min = {min}
+          max= {max}
+          step ={step}
+           />
+      )
     }
 
 
@@ -165,8 +183,7 @@ export const PropertyContainer = (props) => {
 
   return(
     <div key = {property.getId()}>
-      <div>Label:{property.getLabel()}</div>
-      <div>Type:{property.getType()}</div>
+      <div>{property.getLabel()}</div>
       {renderProperty(property)}
     </div>
 

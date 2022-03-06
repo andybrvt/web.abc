@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { IconButton, Box, HStack, VStack } from '@chakra-ui/react'
+import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 
 
 export const StyleStack = (props) => {
@@ -17,15 +19,20 @@ export const StyleStack = (props) => {
 
   return(
     <div>
-      <button onClick={() => addLayer({}, {at:0})} >this is a button</button>
+       <IconButton
+         onClick={() => addLayer({}, {at:0})}
+         aria-label='Add to friends' icon={<AddIcon />} />
       {
         layers.map((layer, index) => {
           return(
-            <div>
-              <button onClick={() => moveLayer(layer,layer.getIndex() - 1)}>up</button>
-              <button onClick={() => moveLayer(layer,layer.getIndex() + 1)}>down</button>
-              <div onClick = {() => layer.select()}>{layer.getLabel()}</div>
-              <button onClick={() => layer.remove()}>Delete</button>
+            <VStack>
+              <HStack>
+                <button onClick={() => moveLayer(layer,layer.getIndex() - 1)}>up</button>
+                <button onClick={() => moveLayer(layer,layer.getIndex() + 1)}>down</button>
+                <div onClick = {() => layer.select()}>{layer.getLabel()}</div>
+                <button onClick={() => layer.remove()}>Delete</button>
+              </HStack>
+
               {
                 layer.isSelected() ?
 
@@ -47,7 +54,7 @@ export const StyleStack = (props) => {
 
                 <div></div>
               }
-            </div>
+            </VStack>
           )
         })
       }

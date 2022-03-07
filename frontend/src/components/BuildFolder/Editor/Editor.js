@@ -85,6 +85,10 @@ import {
   PopoverAnchor,
 } from '@chakra-ui/react'
 import axios from 'axios';
+import { useEthers } from "@usedapp/core";
+
+
+
 const PLUGINS = [
   grapesjsBlocksBasic,
   CoreButtonType,
@@ -138,6 +142,8 @@ const translatedItems = [
   "footer1"
 ]
 export const Editor = (props) => {
+
+  const {activateBrowserWallet, account } = useEthers();
 
   const [preview, setPreview] =useState(false);
 
@@ -302,7 +308,7 @@ export const Editor = (props) => {
       pageManager: {
         pages: [
           {
-            id: 'page-1',
+            id: 'page 1',
             name: 'Page 1',
             component: '<div id="comp1">Page 1</div>',
 
@@ -389,14 +395,15 @@ export const Editor = (props) => {
         formData.append('js', js)
 
 
-        console.log(websiteId)
         axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
         .then(res=> {
 
           props.history.push(`/previewPage/${websiteId}/1`, {
             html: html,
             css: css,
-            js: js
+            js: js,
+            websiteId:websiteId,
+            pageId: 1,
           })
 
         })
@@ -460,6 +467,9 @@ export const Editor = (props) => {
 
     })
     editor.on("storage:load", function(e){
+      console.log(websiteId)
+      // now get all the pages id and name and any information needed
+      axios.get(`${global.API_ENDPOINT}/builder/getWebsitePages/${websiteId}`)
 
     })
     editor.on('run:export-template', () => console.log('After the command run'));
@@ -500,8 +510,7 @@ export const Editor = (props) => {
 
   const storeEditor = () => {
 
-    // editorMain.store()
-    // get css doing the save file --> styles in there should include everything
+    const websiteId = props.history.location.state.websiteId
 
 
     const formData =  new FormData()
@@ -509,12 +518,18 @@ export const Editor = (props) => {
     const allPages = editorMain.Pages.getAll();
     formData.append("numPages", allPages.length)
     formData.append("name", 'some test name') //Change this later
+    formData.append("owner", account)
+
+
     const htmlAll = allPages.map((p, index) => {
       var pageName = p.getName()
+      var pageId = p.getId()
       var pageComp = p.getMainComponent()
       var html = editorMain.CodeManager.getCode(pageComp, "html")
       var css = editorMain.CodeManager.getCode(pageComp, 'css')
       var js = editorMain.CodeManager.getCode(pageComp, "js")
+
+
 
       var pageDict = {
         "name": pageName,
@@ -526,10 +541,12 @@ export const Editor = (props) => {
       // temp variable
 
 
+
+
     })
 
 
-    axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview`, formData)
+    axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview/${websiteId}`, formData)
 
   }
 

@@ -77,10 +77,9 @@ export const  Home = (props) => {
   const etherBalance = useEtherBalance(account);
   const createWebSite = () => {
 
-    const address = props.account
     // Now you can create your website
     const formData = new FormData()
-    formData.append("owner", address)
+    formData.append("owner", account)
     formData.append("name", name)
 
     axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)

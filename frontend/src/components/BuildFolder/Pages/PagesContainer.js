@@ -23,7 +23,6 @@ export const PagesContainer = (props) => {
       setPagesMethod(pm.getAll())
 
       props.editor.on('page', () => {
-        console.log('update pages')
         setPages([...pm.getAll()])
 
       })
@@ -54,9 +53,7 @@ export const PagesContainer = (props) => {
 
   const selectPage = (page) => {
 
-    console.log("id"+ page.id)
     setcurPageID(page.id)
-    console.log("name"+pageManager.get(page.id).attributes.name)
     SetPageName(pageManager.get(page.id).attributes.name)
     if(pageManager !== null){
       return pageManager.select(page)
@@ -76,9 +73,11 @@ export const PagesContainer = (props) => {
   }
 
   const addPage = () => {
-    console.log('add pages')
     if(pageManager !== null){
-      console.log('add pages here too')
+
+      // NEED TO FIX THIS, ID FOR PAGES USING THE PAGE LENGTH IS NOT
+      // GOOD, IT LEADS YOU TO NOT BE ABLE TO CREATE PAGES BECUASE OF CONFLICINT
+      // PAGE IDS
       const len = pageManager.getAll().length+1;
       pageManager.add({
         id: `page ${len}`,
@@ -98,7 +97,7 @@ export const PagesContainer = (props) => {
                 <Menu.Item
                   // class={"menuContianerText"+ (isSelected(pg) ? "selected" : "")}
                   key = {pg.id}
-                  onClick = {() => selectPage(pg)}
+                  // onClick = {() => selectPage(pg)}
                   >
                   <div className = "menuContianerText">
                     {pg.get('name')}
@@ -106,6 +105,7 @@ export const PagesContainer = (props) => {
 
                   </div>
 
+                  <div onClick = {() => removePage(pg.id)}>X</div>
                 </Menu.Item>
 
               )
@@ -137,12 +137,7 @@ export const PagesContainer = (props) => {
             <div><input type="text" defaultValue={pageName} onKeyPress={(event) => {
             const key = event.which || event.keyCode;
             if (key === 13) { //enter key
-              console.log("hi")
-              console.log(event.target.value)
-              console.log("hellooo" + curPageID)
-              console.log(pageManager.getAll())
-              // console.log(pageManager.get("page-1"))
-              console.log(pageManager.get(curPageID))
+
               // https://github.com/artf/grapesjs/issues/3878
               // console.log(pageManager.getMain())
                 // pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })

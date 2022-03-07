@@ -70,7 +70,7 @@ class App extends Component{
           <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
           <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />
           <Route exact path="/designerTest" element={<Canvas history={history}/>} />
-          <Route exact path="/previewPage/:websiteId/:pageNumber" element={<PreviewPage history={history}/>} />
+          <Route exact path="/previewPage/:websiteId/:pageId" element={<PreviewPage history={history}/>} />
           <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
           <Route exact path="/docs" element={<Docs history={history}/>} />
         </Routes>

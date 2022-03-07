@@ -9,6 +9,7 @@ class WebsitePage(models.Model):
     html = models.TextField(blank = True)
     css = models.TextField(blank = True)
     js = models.TextField(blank = True)
+    pageNum = models.IntegerField(default = 0, blank =False)
 
 
 """

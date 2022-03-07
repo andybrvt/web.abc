@@ -27,15 +27,40 @@ class UploadFileCss(APIView):
         return Response("stuff here")
 
 
+"""
+    Save the preview of the website in the form of its
+    HTML, CSS, and JS. Since, the website is already created
+    you will just get the website using the id,
+
+    DELETE LATER
+    but then you have
+    to figure out if the webpage is already created, and you update it
+    or if you made a new page so you have to add it in or if they deleted
+    one, so you take it out.
+
+    Use the ordering to figure out the page number that you have to update for
+
+    1. Figure out how to update with just the same number of pages
+    2. Figure out how to update with one added
+    3. Figure out how to update with one deleted
+    4. Figure out when they change pages or delete alot or even all
+
+
+"""
 @authentication_classes([])
 @permission_classes([])
 class SaveWebsitePreview(APIView):
-    def post(self, request, *args, **kwargs):
+    # When you are saving a website preview, the website is already created
+    # so you don't have to do get or create
+    def post(self, request, webId, *args, **kwargs):
+        print(webId)
+        print(request.data['owner'])
         print(request.data['numPages'])
+
         numPages = int(request.data["numPages"])
         webname = request.data['name']
-        ownerKey = models.OwnerWalletKey.objects.create(
-            publicKey = "1"
+        ownerKey, created = models.OwnerWalletKey.objects.get_or_create(
+            publicKey = request.data['owner']
         )
         website = models.Website.objects.create(
             owner = ownerKey
@@ -45,16 +70,12 @@ class SaveWebsitePreview(APIView):
             # load up page info dict
 
             page = json.loads(request.data[f"{i}"])
-            print(page['name'])
-            print(page['html'])
-            print(page['css'])
-            print(page['js'])
-
             page = models.WebsitePage.objects.create(
                 name = page['name'],
                 html = page['html'],
                 css = page['css'],
-                js = page['js']
+                js = page['js'],
+                pageNum = i,
             )
             pages.append(page)
 
@@ -97,7 +118,7 @@ class SaveWebsite(APIView):
 
 class CreateWebsite(APIView):
     def post(self, request, *args, **kwargs):
-        print('create website here')
+        print(request.data['owner'])
 
         print(request.data)
         address, created = models.OwnerWalletKey.objects.get_or_create(
@@ -116,5 +137,19 @@ class LoadWebsite(APIView):
     def get(self, request, id, *args, **kwargs):
         print('load website')
         curWebsite = models.Website.objects.filter(id = id)
-        assets = curWebsite[0].websiteAssets
-        return Response(json.loads(assets))
+        try:
+            assets = curWebsite[0].websiteAssets
+            return Response(json.loads(assets))
+        except:
+            return Response({})
+
+
+@authentication_classes([])
+@permission_classes([])
+class GetWebsitePages(APIView):
+    def get(self, request, webId, *args, **kwargs):
+
+        curWebsite = get_object_or_404(models.Website, id = webId )
+        curWebsiteSerializer= serializers.WebSiteSerializer(curWebsite, many = False).data
+        print(curWebsiteSerializer['pages'])
+        return Response('here is all the id of the pages')

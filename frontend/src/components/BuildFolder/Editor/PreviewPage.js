@@ -15,14 +15,9 @@ export const PreviewPage = props => {
 
   useEffect(() => {
 
-    // const script = document.createElement('script')
-    // script.src = "./PreviewPageJs.js";
-    // script.async = true;
-    // document.body.appendChild(script);
-    //
-    // return () => {
-    //   document.body.removeChild(script)
-    // }
+    console.log(props.history.location.state.websiteId)
+    console.log(props.history.location.state.pageId)
+
 
     const test = document.getElementsByClassName("myclass")
     if(test !== null){
@@ -36,7 +31,7 @@ export const PreviewPage = props => {
 
 
     const js = props.history.location.state.js
-    eval(js)
+   eval(js)
 
 
   },[props.history.location.state.html])

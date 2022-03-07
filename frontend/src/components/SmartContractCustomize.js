@@ -85,7 +85,7 @@ export const SmartContractCustomize = (props) => {
       </div>
 
       <Modal
-        size="4xl"
+        size="3xl"
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
@@ -93,85 +93,29 @@ export const SmartContractCustomize = (props) => {
       >
         <ModalOverlay />
         <ModalContent >
-          <ModalHeader>Choose Function </ModalHeader>
+          <ModalHeader>Choose Function -- NFT </ModalHeader>
+          
           <ModalCloseButton />
           <ModalBody style={{display:'flex', flexDirection:'row'}} pb={10}>
-            <Box style={{marginRight:50}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-              <Image src={'https://bit.ly/2Z4KKcF'} alt={'Rear view of modern home with pool'} />
-              <Box p='6'>
-                  <Box display='flex' alignItems='baseline'>
-                    <Badge borderRadius='full' px='2' colorScheme='teal'>
-                      New
-                    </Badge>
-                    <Box
-                      color='gray.500'
-                      fontWeight='semibold'
-                      letterSpacing='wide'
-                      fontSize='xs'
-                      textTransform='uppercase'
-                      ml='2'
-                    >
-                      5 contracts &bull; 3 contracts
-                    </Box>
-                  </Box>
-                  <Box
-                    mt='1'
-                    fontWeight='semibold'
-                    as='h4'
-                    lineHeight='tight'
-                    isTruncated
-                  >
-                    NFT Collections
-                  </Box>
-                  <Box>
-                    Mint NFT, Buy NFT, Sell NFT ...
-
-                  </Box>
-                </Box>
-            </Box>
-            <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-              <Image src={'https://bit.ly/2Z4KKcF'} alt={'Rear view of modern home with pool'} />
-              <Box p='6'>
-                  <Box display='flex' alignItems='baseline'>
-                    <Badge borderRadius='full' px='2' colorScheme='teal'>
-                      Coming soon
-                    </Badge>
-                    <Box
-                      color='gray.500'
-                      fontWeight='semibold'
-                      letterSpacing='wide'
-                      fontSize='xs'
-                      textTransform='uppercase'
-                      ml='2'
-                    >
-                      2 beds &bull; 3 baths
-                    </Box>
-                  </Box>
-                  <Box
-                    mt='1'
-                    fontWeight='semibold'
-                    as='h4'
-                    lineHeight='tight'
-                    isTruncated
-                  >
-                    Banking coming soon...
-                  </Box>
-                  <Box>
-                    Send Eth, Receive Eth, ...
-
-                  </Box>
-                </Box>
-            </Box>
+            Your current selected template is NFT
+            Essentials
           </ModalBody>
 
-
-          <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>Name of Project</FormLabel>
-              <Input ref={initialRef} placeholder='First name' />
-            </FormControl>
-
+          <ModalBody pb={3}>
+            <Button colorScheme='blue' mr={3}>
+              Buy NFT
+            </Button>
           </ModalBody>
+
+          <Divider/>
+
+          <ModalBody pb={3}>
+            <Button colorScheme='blue' mr={3}>
+              Sell NFT
+            </Button>
+          </ModalBody>
+
+          <Divider/>
 
           <ModalFooter>
             <Button colorScheme='blue' mr={3}>

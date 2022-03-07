@@ -4,7 +4,7 @@ import { withRouter, Routes, Route, Router, BrowserRouter } from "react-router-d
 import { Layout, Menu, Breadcrumb } from 'antd';
 import Landing from './components/Landing/Landing';
 import TestHTMLScraper from './components/Landing/TestHTMLScraper';
-import Home from './components/Home/Home';
+import { Home } from './components/Home/Home';
 import Login from './components/Login/Login';
 import SideMenu from './SideMenu';
 import { MainBuildContainer } from './components/BuildFolder/MainBuildContainer';

@@ -26,18 +26,12 @@ export const PreviewPage = props => {
 
     const test = document.getElementsByClassName("myclass")
     if(test !== null){
-
-      console.log(test)
       for(let i =0; i<test.length; i++){
-        console.log(test[i])
 
         test[i].addEventListener("click", function(){
-          console.log('you can connect it here')
           activateBrowserWallet()
         })
       }
-
-
     }
 
 

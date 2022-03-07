@@ -201,30 +201,30 @@ export const Editor = (props) => {
         grapesjsStyleBg:{}
       },
       // this is the local storage
-      storageManager: {
-        id: 'gjs-', // just the identifier that you will be using
-        type: 'local', // type of storage
-        autosave: true,
-        autoload: true,
-        stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
-        storeComponents: true, // enable/disable storing of componets in JSON format
-        storeStyles: true,
-        storeHtml: true,
-        storeCss: true
-      },
-      // // this is the remote storage (probally gonna use this one here)
       // storageManager: {
-      //   type: 'remote',
-      //   stepsBeforeSave: 3,
-      //   urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
-      //   urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
-      //   contentTypeJson: true,
-      //   params: {
-      //   },
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   }
+      //   id: 'gjs-', // just the identifier that you will be using
+      //   type: 'local', // type of storage
+      //   autosave: true,
+      //   autoload: true,
+      //   stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
+      //   storeComponents: true, // enable/disable storing of componets in JSON format
+      //   storeStyles: true,
+      //   storeHtml: true,
+      //   storeCss: true
       // },
+      // // this is the remote storage (probally gonna use this one here)
+      storageManager: {
+        type: 'remote',
+        stepsBeforeSave: 3,
+        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
+        urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
+        contentTypeJson: true,
+        params: {
+        },
+        headers: {
+          "Content-Type": "application/json",
+        }
+      },
       assetManager:{
         assets:[
           'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
@@ -388,10 +388,12 @@ export const Editor = (props) => {
         formData.append("css", css)
         formData.append('js', js)
 
+
+        console.log(websiteId)
         axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
         .then(res=> {
 
-          props.history.push('/previewPage', {
+          props.history.push(`/previewPage/${websiteId}/1`, {
             html: html,
             css: css,
             js: js

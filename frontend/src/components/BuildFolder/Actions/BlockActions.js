@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Stack, HStack, VStack, Box, Button, ButtonGroup } from '@chakra-ui/react'
-
+import {RedirectActions} from './RedirectActions';
 
 export const BlockActions = (props) => {
 
@@ -25,7 +25,7 @@ export const BlockActions = (props) => {
     <Stack>
       Link an action to a text or box when you click on it.
       <div>
-        redirecting (focus on this right now)
+        <RedirectActions />
       </div>
 
       <Button

@@ -193,6 +193,7 @@ export const ModernTemplateBlocks = [
           width: 30%;
           left: 12%;
           top: 20%;
+          color:white;
           font-family: Monospace;}
         .mBodyText{
           position: absolute;

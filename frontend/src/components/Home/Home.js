@@ -190,36 +190,6 @@ class Home extends React.Component{
 
 
 
-
-
-
-
-
-        {/*
-          <div class="loginFormInnerContent">
-
-            <div>
-
-                <text color="white" fontSize="md" fontWeight="medium" mr="2">
-                  {account &&
-                    `${account.slice(0, 6)}...${account.slice(
-                      account.length - 4,
-                      account.length
-                    )}`}
-                </text>
-                <br/>
-                <text color="white" fontSize="md">
-                  {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
-                </text>
-            </div>
-
-          <CollectionList  {...this.props}/>
-
-
-          </div>
-
-          */}
-
         <CreateWebsiteModal
           history = {this.props.history}
           account = {this.props.account}

@@ -1,4 +1,5 @@
 .loginFormInnerContent{
+  position: relative;
   width:25%;
   background-color: pink;
 }

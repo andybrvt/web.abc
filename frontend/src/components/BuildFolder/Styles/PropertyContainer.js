@@ -21,7 +21,6 @@ export const PropertyContainer = (props) => {
 
     // function handle changes of the component
     const handleChange = (value) => {
-      console.log(property.getId())
       property.upValue(value)
     }
 
@@ -124,7 +123,6 @@ export const PropertyContainer = (props) => {
         <div>
         {  compProp.map((prp,index) => {
 
-            console.log(prp.getId(), 'here are the props')
             return(
               renderProperty(prp)
             )

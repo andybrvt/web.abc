@@ -1,7 +1,6 @@
 /*
   This will be the real editor to edit stuff directly
 */
-
 import React, { useState, useEffect, useRef } from 'react';
 import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
@@ -87,7 +86,6 @@ import {
 } from '@chakra-ui/react'
 import axios from 'axios';
 const PLUGINS = [
-
   grapesjsBlocksBasic,
   CoreButtonType,
   ButtonType1,
@@ -95,7 +93,6 @@ const PLUGINS = [
   ButtonType3,
   ButtonType4,
   ButtonType5,
-
   UpdateTextType,
   Header1TextType,
   Header2TextType,
@@ -104,25 +101,19 @@ const PLUGINS = [
   Header5TextType,
   Header6TextType,
   ParagraphTextType,
-
   ShapeType,
   Circle1,
   Triangle2,
-
   LineTypes,
   Line1,
   Line2,
-
   InputTypes,
   Input1,
   Input2,
-
   RowCore,
   ColumnCore,
   grapesjsStyleBg,
-
   CustomLinkText1,
-
   CustomBoxType
 ]
 
@@ -161,26 +152,22 @@ export const Editor = (props) => {
   const [popOver, setPopOver]= useState(true);
   const [TextCssVariable, setTestCssVariable]= useState(null);
   const [BlockClickType, setBlockClickType]= useState(null);
+
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
       function handleClickOutside(event){
         const className = event.srcElement.className
         if (ref.current && !ref.current.contains(event.target) && typeof className ==="string") {
-
-
             if(className.includes("gjs-frame")){
               setVisibility(false)
-            }
-
-        }
-      }
-
+            }}}
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
         document.addEventListener("mousedown", handleClickOutside)
       }
     }, [ref]);
   }
+
   function testCoord (xVal, yVal, widthVal, heightVal){
     setCurrentX(xVal+100)
     setCurrentY(yVal)
@@ -194,8 +181,9 @@ export const Editor = (props) => {
             color: "red",
           })
   }
-  const wrapperRef  = useRef(null);
-  useOutSideAlerter(wrapperRef)
+
+  // const wrapperRef  = useRef(null);
+  // useOutSideAlerter(wrapperRef)
 
   useEffect(() => {
 
@@ -211,7 +199,7 @@ export const Editor = (props) => {
       autosave: true,
       pluginsOpts: {
         grapesjsStyleBg:{}
-       },
+      },
       // this is the local storage
       storageManager: {
         id: 'gjs-', // just the identifier that you will be using
@@ -260,80 +248,53 @@ export const Editor = (props) => {
       },
       panels: {
         defaults: [
-          {/*
-          id: 'layers',
-          el: '.panel__right',
-          // Make the panel resizable
-          resizable: {
-            maxDim: 700,
-            minDim: 200,
-            tc: 0, // Top handler
-            cl: 1, // Left handler
-            cr: 0, // Right handler
-            bc: 0, // Bottom handler
-            // Being a flex child we need to change `flex-basis` property
-            // instead of the `width` (default)
-            keyWidth: 'flex-basis',
-          },
-        */},
 
-        {
-          id:'panel-switcher', // id of the element, honestly be any becuase you are adding shit in
-          el: '.panel__switcher', // this is the element you want to put it in
-          buttons:[
-            {
-              id: 'show-layers',
-              active: true, // gotta set this one too to active only (like the button is clicked on)
-              label: 'Layers',
-              command: "show-layers", //PUT BACK LATER
-              togglable: false,
-            },
-            {
-              id: 'show-style',
-              active: true, // means when the button is active then the thing runs
-              label: 'Styles',
-              command: 'show-styles', // PUT BACK LATER
-              togglable: false
-            },
-            {
-              id: 'Traits',
-              active: true,
-              label: "Traits",
-              command: 'show-traits',
-              togglable: false
-            },
-            {
-              id: 'alert-button',
-              className: 'btn-alert-button',
-              label: 'Clear',
-              command(editor) {
-                // editor.BlockManager.getAll().reset();
-                editor.runCommand('core:canvas-clear');
-              }
-
-            },
-
-            {
-              id: 'preview',
-              className: 'btn-alert-button',
-              label: 'Preview',
-              command(editor) {
-                console.log('is this the preview')
-                // editor.BlockManager.getAll().reset();
-                editor.runCommand('open-live-preview');
-              }
-            },
-            {
-              id: 'export',
-              className: 'btn-alert-button',
-              label: "Export",
-              command(editor){
-                editor.runCommand("export-template")
-              }
-            },
-
-          ]
-        },
+        // {
+        //   id:'panel-switcher', // id of the element, honestly be any becuase you are adding shit in
+        //   el: '.panel__switcher', // this is the element you want to put it in
+        //   buttons:[
+        //     {
+        //       id: 'show-layers',
+        //       active: true, // gotta set this one too to active only (like the button is clicked on)
+        //       label: 'Layers',
+        //       command: "show-layers", //PUT BACK LATER
+        //       togglable: false,
+        //     },
+        //     {
+        //       id: 'show-style',
+        //       active: true, // means when the button is active then the thing runs
+        //       label: 'Styles',
+        //       command: 'show-styles', // PUT BACK LATER
+        //       togglable: false
+        //     },
+        //     {
+        //       id: 'Traits',
+        //       active: true,
+        //       label: "Traits",
+        //       command: 'show-traits',
+        //       togglable: false
+        //     },
+        //     {
+        //       id: 'alert-button',
+        //       className: 'btn-alert-button',
+        //       label: 'Clear',
+        //       command(editor) {
+        //         // editor.BlockManager.getAll().reset();
+        //         editor.runCommand('core:canvas-clear');
+        //       }
+        //
+        //     },
+        //     {
+        //       id: 'export',
+        //       className: 'btn-alert-button',
+        //       label: "Export",
+        //       command(editor){
+        //         editor.runCommand("export-template")
+        //       }
+        //     },
+        //
+        //   ]
+        // },
 
 
       ]
@@ -346,54 +307,33 @@ export const Editor = (props) => {
             component: '<div id="comp1">Page 1</div>',
 
           },
-          {
-            id: 'page-2',
-            name: 'Page 2',
-            component: '<div id="comp1">Page 2</div>',
-          },
-           {
-             id: 'page-3',
-             name: 'Page 3',
-             component: '<div id="comp1">Page 3</div>',
-            }
         ]
       },
       traitManager: {
        appendTo: '.traits-container',
-     },
-      selectorManager: {
-        // if it is a class you would do .NAMEH
-        appendTo: '.styles-container'
       },
       styleManager: {
-        appendTo: '.styles-manager',
         custom: true
       },
-      layerManager:{
-        appendTo: '.layers-container'
-      },
-      deviceManager:{ // the width and see what it looks like on different devices
-
+      deviceManager:{
         devices:[
           {
             name: 'Desktop',
-            width: '', //default size
-
+            width: '',
           }, {
             name: 'Mobile',
             width: '320px', // value used on canvas width
             widthMedia: '480px', // this value will be used in css@media
           }
         ]
-
       },
       blockManager: {
-        // if it is id then you would use #NAME
         appendTo: '#blocks',
       }
 
     })
 
+    editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
 
     editor.runCommand('sw-visibility');
 
@@ -404,13 +344,10 @@ export const Editor = (props) => {
       canvasS.left = '770px';
 
     })
-
     editor.on("stop:preview", () => {
       // editor.runCommand("sw-visibility")
       // setPreview(false)
     })
-
-
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
 
@@ -421,7 +358,6 @@ export const Editor = (props) => {
       }
     })
 
-    editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
 
     // CHANGE THIS LATER
     editor.Commands.add("show-layers", {
@@ -468,38 +404,6 @@ export const Editor = (props) => {
 
     })
 
-    // CHANGE THIS LATER
-    editor.Commands.add('show-styles', {
-      // editor.getContainer gets the container you listed in init
-      // closest will get the closes div element going upward the tree
-      getRowEl(editor){return editor.getContainer().closest('.editorRow');},
-      // querySelector gets a element inside the row given the name
-      getStyleEl(row){return row.querySelector(".styles-container")},
-
-      // get the style container and then show it because you put display as ''
-      run(editor, sender){
-        const lmEl = this.getStyleEl(this.getRowEl(editor));
-        lmEl.style.display = "";
-      },
-      stop(editor, sender){
-        const lmEl = this.getStyleEl(this.getRowEl(editor));
-        lmEl.style.display = "none";
-      }
-    })
-
-    editor.Commands.add('show-traits', {
-      getTraitsEl(editor) {
-        const row = editor.getContainer().closest('.editorRow');
-        return row.querySelector('.traits-container');
-      },
-      run(editor, sender) {
-        this.getTraitsEl(editor).style.display = '';
-      },
-      stop(editor, sender) {
-        this.getTraitsEl(editor).style.display = 'none';
-      },
-    });
-
     editor.on('run:export-template:before', opts => {
       console.log('Before the command run');
       if (0 /* some condition */) {
@@ -508,8 +412,13 @@ export const Editor = (props) => {
     });
 
     editor.on('component:selected', (block, obj) =>{
-      // console.log(block._previousAttributes.type)
       setBlockClickType(block._previousAttributes.type)
+
+
+      console.log(editor.getSelected().getEl())
+
+
+
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
@@ -545,12 +454,11 @@ export const Editor = (props) => {
     })
 
     editor.on("storage:store", function(e){
-      console.log('store',e)
 
 
     })
     editor.on("storage:load", function(e){
-      console.log('load',e)
+
     })
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
@@ -559,26 +467,6 @@ export const Editor = (props) => {
   },[])
 
 
-
-  const menu = (
-        <Menu className = "menuContianer">
-          <Menu.Item >
-            <div className = "menuContianerText">
-                1st menu item
-            </div>
-          </Menu.Item>
-          <Menu.Item>
-            <div className = "menuContianerText">
-                2st menu item
-            </div>
-          </Menu.Item>
-          <Menu.Item>
-            <div className = "menuContianerText">
-                3st menu item
-            </div>
-          </Menu.Item>
-        </Menu>
-      )
   // mechanics for opening and closing the drawer
   const changeDrawerVisibility = (category) => {
 
@@ -596,16 +484,9 @@ export const Editor = (props) => {
         setVisibility(false)
       }
     }
-
-    // if(visibility){
-    //   setVisibility(false)
-    // } else {
-    //   setVisibility(true)
-    // }
   }
 
   const showPreview = () => {
-    console.log('open preview')
     editorMain.runCommand('open-live-preview');
 
   }
@@ -627,7 +508,6 @@ export const Editor = (props) => {
     formData.append("numPages", allPages.length)
     formData.append("name", 'some test name') //Change this later
     const htmlAll = allPages.map((p, index) => {
-      console.log(p.getName())
       var pageName = p.getName()
       var pageComp = p.getMainComponent()
       var html = editorMain.CodeManager.getCode(pageComp, "html")
@@ -649,8 +529,6 @@ export const Editor = (props) => {
 
     axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview`, formData)
 
-
-
   }
 
   return(
@@ -670,7 +548,7 @@ export const Editor = (props) => {
             <div class="rightHeaderProfile">
               <Tooltip label="Preview" aria-label='A tooltip'>
                 <IconButton
-                  onClick={showPreview}
+                  onClick={() => showPreview()}
                   size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  />
               </Tooltip>
 
@@ -761,7 +639,9 @@ export const Editor = (props) => {
 
         </div>
 
-        <div ref = {wrapperRef}>
+        <div
+          // ref = {wrapperRef}
+          >
           <Drawer  visibility = {visibility}>
             <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
           </Drawer>
@@ -778,27 +658,6 @@ export const Editor = (props) => {
 
 
         <BlockAttribute editor = {editorMain}/>
-
-
-
-          {/*
-            <div id = "panelRight" class= {`panel__right`}>
-              <div class= "panel__top">
-                <div class="panel__switcher"></div>
-              </div>
-              <LayersContainer editor = {editorMain}/>
-              <TraitsContainer editor = {editorMain} />
-            </div>
-
-
-            */}
-
-
-
-
-
-
-
 
       </div>
 

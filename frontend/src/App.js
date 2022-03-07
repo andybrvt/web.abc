@@ -19,6 +19,7 @@ import {Canvas} from './components/TestingFolder/ReactDesignerTest';
 import {PreviewPage} from './components/BuildFolder/Editor/PreviewPage';
 import {SmartContractCustomize} from './components/SmartContractCustomize';
 import {Docs} from './Docs.js';
+import {CollectionList} from './components/Home/CollectionList/CollectionList';
 function getLibrary(provider) {
   return new Web3(provider)
 }
@@ -62,6 +63,7 @@ class App extends Component{
           <Route exact path="/"  element={<Landing history={history}/>} />
           <Route exact path="/login"  element={<Login history={history} />} />
           <Route exact path="/home"  element={<Home history={history} />} />
+          <Route exact path="/collectionList" element={<CollectionList history={history}/>} />
           <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
           <Route exact path="/test" element={<TestHTMLScraper history={history}/>} />
           <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />

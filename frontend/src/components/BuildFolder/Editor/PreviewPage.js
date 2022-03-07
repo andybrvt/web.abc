@@ -1,9 +1,17 @@
 import React, {useEffect} from 'react';
 import parse from "html-react-parser";
 import './PreviewPage.css';
+import { useEthers, useEtherBalance } from "@usedapp/core";
 
 
 export const PreviewPage = props => {
+
+
+  const {account, activateBrowserWallet, deactivate} = useEthers()
+
+  const isConnected = account !== undefined
+
+
 
   useEffect(() => {
 
@@ -16,11 +24,28 @@ export const PreviewPage = props => {
     //   document.body.removeChild(script)
     // }
 
+    const test = document.getElementsByClassName("myclass")
+    if(test !== null){
+
+      console.log(test)
+      for(let i =0; i<test.length; i++){
+        console.log(test[i])
+
+        test[i].addEventListener("click", function(){
+          console.log('you can connect it here')
+          activateBrowserWallet()
+        })
+      }
+
+
+    }
+
+
     const js = props.history.location.state.js
     eval(js)
 
 
-  },[])
+  },[props.history.location.state.html])
 
   return(
     <div>

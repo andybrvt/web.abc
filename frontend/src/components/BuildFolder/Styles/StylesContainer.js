@@ -45,14 +45,13 @@ export const StylesContainer = (props) => {
       // align={'center'}
       pos={'relative'}
       >
-      <div id = "styles-manager" class = "styles-manager">
+      <div class = "styles-manager">
         {sectors.map((item,index) => {
           return(
             <SectorContainer sector = {item}/>
           )
         })}
       </div>
-      <div class="styles-manager"> </div>
 
     </Stack>
 

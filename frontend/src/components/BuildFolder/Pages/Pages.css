@@ -16,11 +16,12 @@
 
 .menuContianerText{
   font-size: 15px;
+  width: 90%;
 }
 
 .menuCloseButton{
-  position: absolute;
   right: 0;
+  width: 10%;
 }
 
 

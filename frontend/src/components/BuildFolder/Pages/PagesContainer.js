@@ -90,9 +90,16 @@ export const PagesContainer = (props) => {
     }
   }
 
-  const removePage = (pageId) => {
+  const removePage = (websiteId) => {
     if(pageManager !== null){
-      return pageManager.remove(pageId)
+      console.log(websiteId)
+
+      axios.post(`${global.API_ENDPOINT}/builder/deleteWebsitePage/${websiteId}`)
+
+      return pageManager.remove(websiteId)
+      // put an axios call here
+
+
     }
   }
 
@@ -221,7 +228,9 @@ export const PagesContainer = (props) => {
 
           :
 
-            <div onDoubleClick = {() => {
+            <div
+
+              onDoubleClick = {() => {
                 setPrevPageName(pageName)
                 changePageCondition(true)
               }}>

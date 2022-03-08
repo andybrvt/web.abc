@@ -181,3 +181,16 @@ class AddWebsitePage(APIView):
             "pages": curWebsiteSerializer['pages']
         }
         return Response(content)
+
+
+
+class DeleteWebsitePage(APIView):
+
+    def post(self, request, webId, *args, **kwargs):
+
+        try:
+            models.WebsitePage.objects.get(id = webId).delete()
+        except:
+            print('object not found')
+
+        return Response('delete the page here')

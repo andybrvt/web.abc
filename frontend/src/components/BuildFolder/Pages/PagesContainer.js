@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./Pages.css";
 import { ChevronDownIcon,AddIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
+import axios from 'axios';
 
 
 
@@ -75,17 +76,35 @@ export const PagesContainer = (props) => {
   const addPage = () => {
     if(pageManager !== null){
 
-      // NEED TO FIX THIS, ID FOR PAGES USING THE PAGE LENGTH IS NOT
-      // GOOD, IT LEADS YOU TO NOT BE ABLE TO CREATE PAGES BECUASE OF CONFLICINT
-      // PAGE IDS
+      const websiteId = props.websiteId
       const len = pageManager.getAll().length+1;
-      pageManager.add({
-        id: `page ${len}`,
-        name: `Page ${len}`,
-        component:"<div>New Page</div>"
+
+      var formData = new FormData()
+      formData.append("name", `Page ${len}`)
+
+      axios.post(`${global.API_ENDPOINT}/builder/addWebsitePage/${websiteId}`, formData)
+      .then(res =>{
+        console.log(res.data)
+
+        pageManager.add({
+          id: `${res.data.pageId}`,
+          name: `Page ${len}`,
+          component: "<div>New Page</div>"
+        })
+
+        const newPage = pageManager.get(`${res.data.pageId}`)
+        pageManager.select(newPage);
+
       })
-      const newPage = pageManager.get(`page ${len}`)
-      pageManager.select(newPage);
+
+      // const len = pageManager.getAll().length+1;
+      // pageManager.add({
+      //   id: `page ${len}`,
+      //   name: `Page ${len}`,
+      //   component:"<div>New Page</div>"
+      // })
+      // const newPage = pageManager.get(`page ${len}`)
+      // pageManager.select(newPage);
     }
   }
 
@@ -133,23 +152,25 @@ export const PagesContainer = (props) => {
 
         <div
           onClick = {() => triggerPage(getCurrentPage())}>
-          { pageCondition?
-            <div><input type="text" defaultValue={pageName} onKeyPress={(event) => {
-            const key = event.which || event.keyCode;
-            if (key === 13) { //enter key
+          {
+             pageCondition ?
+            <div>
+              <input type="text" defaultValue={pageName} onKeyPress={(event) => {
+                const key = event.which || event.keyCode;
+                if (key === 13) { //enter key
 
-              // https://github.com/artf/grapesjs/issues/3878
-              // console.log(pageManager.getMain())
-                // pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
-                pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
-                editor.on('storage:store', function(e) {
-                    console.log('Stored ', e);
-              })
-            }
-          }} autoFocus={true}/>
+                  // https://github.com/artf/grapesjs/issues/3878
+                  // console.log(pageManager.getMain())
+                    // pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
+                    pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
+                    editor.on('storage:store', function(e) {
+                        console.log('Stored ', e);
+                  })
+                }
+              }} autoFocus={true}/>
             <Dropdown overlay={menu} placement="bottomCenter" trigger={['hover']}>
-          <ChevronDownIcon />
-          </Dropdown>
+              <ChevronDownIcon />
+            </Dropdown>
       </div>
 
           :

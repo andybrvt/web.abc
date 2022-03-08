@@ -141,15 +141,19 @@ const translatedItems = [
   "header3",
   "footer1"
 ]
+
+
 export const Editor = (props) => {
 
+  const websiteId = props.history.location.state.websiteId
+
   const {activateBrowserWallet, account } = useEthers();
-
   const [preview, setPreview] =useState(false);
-
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
+  const [pageIds, setPageIds] = useState([]);
+
 
   const [currentX, setCurrentX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
@@ -306,14 +310,14 @@ export const Editor = (props) => {
       ]
       },
       pageManager: {
-        pages: [
-          {
-            id: 'page 1',
-            name: 'Page 1',
-            component: '<div id="comp1">Page 1</div>',
-
-          },
-        ]
+        // pages: [
+        //   {
+        //     id: 'page 1',
+        //     name: 'Page 1',
+        //     component: '<div id="comp1">Page 1</div>',
+        //
+        //   },
+        // ]
       },
       traitManager: {
        appendTo: '.traits-container',
@@ -466,12 +470,18 @@ export const Editor = (props) => {
 
 
     })
+
+
     editor.on("storage:load", function(e){
-      console.log(websiteId)
-      // now get all the pages id and name and any information needed
+
       axios.get(`${global.API_ENDPOINT}/builder/getWebsitePages/${websiteId}`)
+      .then(res=> {
+        setPageIds(res.data)
+      })
+
 
     })
+
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
@@ -559,7 +569,9 @@ export const Editor = (props) => {
             <div class="logoFont">web.abc</div>
           </div>
           <div className = "pageDropContainer">
-            <PagesContainer editor = {editorMain} />
+            <PagesContainer
+              websiteId = {websiteId}
+              editor = {editorMain} />
           </div>
 
           <div className = "rightHeader">

@@ -62,8 +62,8 @@ class SaveWebsitePreview(APIView):
         ownerKey, created = models.OwnerWalletKey.objects.get_or_create(
             publicKey = request.data['owner']
         )
-        website = models.Website.objects.create(
-            owner = ownerKey
+        website = models.Website.objects.get(
+            id = webId
         )
         pages = []
         for i in range(numPages):
@@ -144,12 +144,40 @@ class LoadWebsite(APIView):
             return Response({})
 
 
+"""
+    Used to get all the pages of a given website
+"""
 @authentication_classes([])
 @permission_classes([])
 class GetWebsitePages(APIView):
+
     def get(self, request, webId, *args, **kwargs):
 
         curWebsite = get_object_or_404(models.Website, id = webId )
         curWebsiteSerializer= serializers.WebSiteSerializer(curWebsite, many = False).data
-        print(curWebsiteSerializer['pages'])
-        return Response('here is all the id of the pages')
+        pages = curWebsiteSerializer['pages']
+        return Response(pages)
+
+
+"""
+    Create and adds a new website page to a website
+"""
+@authentication_classes([])
+@permission_classes([])
+class AddWebsitePage(APIView):
+    def post(self, request, webId, *args, **kwargs):
+
+        # first and formost, get the website
+        curWebsite = get_object_or_404(models.Website, id = webId )
+        page = models.WebsitePage.objects.create(
+            name = request.data['name']
+        )
+        curWebsite.pages.add(page)
+        curWebsite.save()
+
+        curWebsiteSerializer = serializers.WebSiteSerializer(curWebsite, many = False).data
+        content = {
+            "pageId": page.id,
+            "pages": curWebsiteSerializer['pages']
+        }
+        return Response(content)

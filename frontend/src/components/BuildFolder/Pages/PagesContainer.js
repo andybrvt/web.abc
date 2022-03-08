@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import "./Pages.css";
-import { ChevronDownIcon,AddIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon,AddIcon, CloseIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
 import axios from 'axios';
 import { Input } from '@chakra-ui/react'
 
+// MAKE SURE TO DO A FUNCTION FOR DELETING IN THE BACKEND THE PAGE CORRECTLY
 
 export const PagesContainer = (props) => {
 
@@ -139,18 +140,22 @@ export const PagesContainer = (props) => {
               return(
 
                 <Menu.Item
-                  // class={"menuContianerText"+ (isSelected(pg) ? "selected" : "")}
                   key = {pg.id}
                   >
-                  <div
-                    onClick = {() => selectPage(pg)}
-                    className = "menuContianerText">
-                    {pg.get('name')}
+                  <div class = "menuContianerItem">
+                    <div
+                      onClick = {() => selectPage(pg)}
+                      className = "menuContianerText">
+                      {pg.get('name')}
+
+                    </div>
+                    <div
+                      class = "menuCloseButton"
+                      onClick = {() => removePage(pg.id)}><CloseIcon /></div>
 
 
                   </div>
 
-                  <div onClick = {() => removePage(pg.id)}>X</div>
                 </Menu.Item>
 
               )

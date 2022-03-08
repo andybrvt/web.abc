@@ -1,3 +1,10 @@
+.cover-page{
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+}
+
+
 .pages-wrp, .pages {
   display: flex;
   flex-direction: column

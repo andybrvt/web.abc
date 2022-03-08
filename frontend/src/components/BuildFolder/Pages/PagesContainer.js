@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import "./Pages.css";
 import { ChevronDownIcon,AddIcon } from '@chakra-ui/icons'
 import { Menu, Dropdown, Button, Space } from 'antd';
 import axios from 'axios';
-
+import { Input } from '@chakra-ui/react'
 
 
 export const PagesContainer = (props) => {
@@ -13,9 +13,33 @@ export const PagesContainer = (props) => {
 
   const [pages, setPages] = useState([]);
   const [curPageID, setcurPageID]=useState("page-1")
-  const [pageName, SetPageName] = useState(null);
+  const [pageName, setPageName] = useState(null);
   const [pageCondition, changePageCondition] = useState(false);
+  const [prevPageName, setPrevPageName] = useState(null);
+
+  const escFunction = useCallback((event) => {
+
+      if (event.key === "Escape") {
+        changePageCondition(false)
+
+      }
+
+
+
+  }, []);
+
+
   useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  }, []);
+
+  useEffect(() => {
+
+
     if(props.editor !== null){
       const pm = props.editor.Pages;
       setEditor(props.editor)
@@ -23,8 +47,11 @@ export const PagesContainer = (props) => {
 
       setPagesMethod(pm.getAll())
 
+
       props.editor.on('page', () => {
         setPages([...pm.getAll()])
+        setcurPageID(pm.getSelected().getId())
+        setPageName(pm.getSelected().get("name"))
 
       })
     }
@@ -46,7 +73,8 @@ export const PagesContainer = (props) => {
 
   const getCurrentPage = () => {
     if(pageManager !== null){
-      return pageManager.getSelected().get("name");
+      const name = pageManager.getSelected().get("name")
+      return name;
     }
     return "Undefined"
   }
@@ -55,7 +83,7 @@ export const PagesContainer = (props) => {
   const selectPage = (page) => {
 
     setcurPageID(page.id)
-    SetPageName(pageManager.get(page.id).attributes.name)
+    setPageName(pageManager.get(page.id).attributes.name)
     if(pageManager !== null){
       return pageManager.select(page)
     }
@@ -67,11 +95,7 @@ export const PagesContainer = (props) => {
     }
   }
 
-  const triggerPage=(name)=> {
-    changePageCondition(true)
 
-
-  }
 
   const addPage = () => {
     if(pageManager !== null){
@@ -113,12 +137,14 @@ export const PagesContainer = (props) => {
           {
             pages.map((pg, index) =>{
               return(
+
                 <Menu.Item
                   // class={"menuContianerText"+ (isSelected(pg) ? "selected" : "")}
                   key = {pg.id}
-                  // onClick = {() => selectPage(pg)}
                   >
-                  <div className = "menuContianerText">
+                  <div
+                    onClick = {() => selectPage(pg)}
+                    className = "menuContianerText">
                     {pg.get('name')}
 
 
@@ -147,40 +173,64 @@ export const PagesContainer = (props) => {
       );
 
   return(
-    <div>
+    <div class= "cover-page">
 
 
-        <div
-          onClick = {() => triggerPage(getCurrentPage())}>
+        <div>
           {
              pageCondition ?
-            <div>
-              <input type="text" defaultValue={pageName} onKeyPress={(event) => {
-                const key = event.which || event.keyCode;
-                if (key === 13) { //enter key
 
-                  // https://github.com/artf/grapesjs/issues/3878
-                  // console.log(pageManager.getMain())
-                    // pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
-                    pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
-                    editor.on('storage:store', function(e) {
-                        console.log('Stored ', e);
-                  })
-                }
-              }} autoFocus={true}/>
-            <Dropdown overlay={menu} placement="bottomCenter" trigger={['hover']}>
-              <ChevronDownIcon />
-            </Dropdown>
-      </div>
+            <div>
+              {/*
+                <input type="text" defaultValue={pageName} onKeyPress={(event) => {
+                  const key = event.which || event.keyCode;
+                  if (key === 13) { //enter key
+
+                    // https://github.com/artf/grapesjs/issues/3878
+                    // console.log(pageManager.getMain())
+                      // pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
+                      pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
+                      editor.on('storage:store', function(e) {
+                          console.log('Stored ', e);
+                    })
+                  }
+                }} autoFocus={true}/>
+
+                */}
+                <Input
+                  onKeyPress = {(event)=> {
+                    const key = event.which || event.keyCode;
+                    console.log(key)
+                    if(key === 13){
+                      pageManager.get(curPageID).set({ id: curPageID, name: event.target.value })
+                      changePageCondition(false)
+                    }
+
+                  }}
+                  value = {pageCondition ? prevPageName : pageName}
+                  onChange = {(e) => setPrevPageName(e.target.value)}
+                  variant='flushed'
+                  placeholder='Page Name' />
+
+            </div>
 
           :
-          <div>
-            {getCurrentPage()} <ChevronDownIcon />
-        </div>
+
+            <div onDoubleClick = {() => {
+                setPrevPageName(pageName)
+                changePageCondition(true)
+              }}>
+              {pageName}
+            </div>
           }
 
         </div>
 
+        <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
+          <div>
+            <ChevronDownIcon />
+          </div>
+        </Dropdown>
 
     </div>
   )

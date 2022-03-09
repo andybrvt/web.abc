@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "brownie": "^0.9.9"
+  }
+}

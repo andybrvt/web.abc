@@ -105,7 +105,7 @@ export const CollectionList = (props) => {
 
 
 
-      
+
 
       </div>
     )

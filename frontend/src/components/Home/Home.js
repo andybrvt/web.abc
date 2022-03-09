@@ -52,7 +52,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faPlus, faUserFriends  } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import * as dateFns from 'date-fns';
-
+import { SendMoney } from './SendMoney/SendMoney';
 import { WebsiteList } from './WebsiteList/WebsiteList';
 import {nft1} from './nft.jpg'
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
@@ -166,8 +166,8 @@ export const  Home = (props) => {
 
 
 
-
         {/*
+
           <div class="loginFormInnerContent">
 
             <div>
@@ -185,12 +185,12 @@ export const  Home = (props) => {
                 </text>
             </div>
 
-          <CollectionList  {...this.props}/>
+          <CollectionList  {...props}/>
 
 
           </div>
-
           */}
+          <SendMoney  {...props}/>
 
           <Modal
             size="4xl"

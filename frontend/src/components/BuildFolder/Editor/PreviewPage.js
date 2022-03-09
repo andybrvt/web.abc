@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import parse from "html-react-parser";
 import './PreviewPage.css';
 import { useEthers, useEtherBalance } from "@usedapp/core";
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
 export const PreviewPage = props => {
@@ -11,55 +13,65 @@ export const PreviewPage = props => {
 
   const isConnected = account !== undefined
 
+  const [html, setHtml] = useState("")
 
+  const {websiteId, pageId} = useParams()
 
   useEffect(() => {
 
-    console.log(props.history.location.state.websiteId)
-    console.log(props.history.location.state.pageId)
+      const test = document.getElementsByClassName("myclass")
+      if(test !== null){
+        for(let i =0; i<test.length; i++){
 
-
-    const test = document.getElementsByClassName("myclass")
-    if(test !== null){
-      for(let i =0; i<test.length; i++){
-
-        test[i].addEventListener("click", function(){
-          activateBrowserWallet()
-        })
+          test[i].addEventListener("click", function(){
+            activateBrowserWallet()
+          })
+        }
       }
-    }
+
+      axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/${websiteId}/${pageId}`)
+      .then(res => {
+        console.log(res.data)
+        setHtml(res.data.html)
+        eval(res.data.js)
 
 
-    const js = props.history.location.state.js
-   eval(js)
+      })
 
 
-  },[props.history.location.state.html])
+  }, [])
+
+
+
+  // useEffect(() => {
+  //
+  //   console.log(props.history.location.state.websiteId)
+  //   console.log(props.history.location.state.pageId)
+  //
+  //
+  //   const test = document.getElementsByClassName("myclass")
+  //   if(test !== null){
+  //     for(let i =0; i<test.length; i++){
+  //
+  //       test[i].addEventListener("click", function(){
+  //         activateBrowserWallet()
+  //       })
+  //     }
+  //   }
+  //
+  //
+  //   const js = props.history.location.state.js
+  //  eval(js)
+  //
+  //
+  // },[props.history.location.state.html])
+
 
   return(
     <div>
-      {parse(props.history.location.state.html)}
+      {parse(html)}
 
 
     </div>
   )
 }
-// class PreviewPage extends React.Component {
-//
-//
-//
-//   render() {
-//     console.log(this.props.history.location.state.css)
-//     return(
-//       <div>
-//         <ScriptTag type="text/javascript" src="./PreviewPageJs" />
-//
-//
-//       </div>
-//     )
-//
-//
-//   }
-// }
-//
-// export default PreviewPage;

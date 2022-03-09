@@ -349,9 +349,9 @@ export const Editor = (props) => {
 
 
     editor.on("run:preview", () => {
-      const canvas = editor.Canvas.getElement();
-      const canvasS = canvas.style;
-      canvasS.left = '770px';
+      // const canvas = editor.Canvas.getElement();
+      // const canvasS = canvas.style;
+      // canvasS.left = '770px';
 
     })
     editor.on("stop:preview", () => {
@@ -391,26 +391,31 @@ export const Editor = (props) => {
 
     editor.Commands.add('open-live-preview', {
       run(editor, sender){
-        const html = editor.getHtml();
-        const css = editor.getCss();
-        const js = editor.getJs();
-        let formData = new FormData()
-        formData.append("css", css)
-        formData.append('js', js)
 
+        const pageId = editor.Pages.getSelected().getId()
+        console.log(pageId, websiteId)
 
-        axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
-        .then(res=> {
-
-          props.history.push(`/previewPage/${websiteId}/1`, {
-            html: html,
-            css: css,
-            js: js,
-            websiteId:websiteId,
-            pageId: 1,
-          })
-
-        })
+        props.history.push(`/previewPage/${websiteId}/${pageId}`)
+        // const html = editor.getHtml();
+        // const css = editor.getCss();
+        // const js = editor.getJs();
+        // let formData = new FormData()
+        // formData.append("css", css)
+        // formData.append('js', js)
+        //
+        //
+        // axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
+        // .then(res=> {
+        //
+        //   props.history.push(`/previewPage/${websiteId}/1`, {
+        //     html: html,
+        //     css: css,
+        //     js: js,
+        //     websiteId:websiteId,
+        //     pageId: 1,
+        //   })
+        //
+        // })
 
 
       }
@@ -543,13 +548,13 @@ export const Editor = (props) => {
 
       var pageDict = {
         "name": pageName,
+        'pageId': pageId,
         'html': html,
         'css': css,
         'js': js
       }
       formData.append(index, JSON.stringify(pageDict))
       // temp variable
-
 
 
 

@@ -4,6 +4,26 @@
   font-size: 20px;
 }
 
+.menuContianer{
+  font-family: 'PlusJakartaSans';
+}
+
+.menuContianerItem{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.menuContianerText{
+  font-size: 15px;
+  width: 90%;
+}
+
+.menuCloseButton{
+  right: 0;
+  width: 10%;
+}
+
 
 .pages-wrp, .pages {
   display: flex;

@@ -65,24 +65,26 @@ class SaveWebsitePreview(APIView):
         website = models.Website.objects.get(
             id = webId
         )
+
+        # at this point all pages exist becuase everytime you add or delete a
+        # page, it will already be saved, so you just need to get the id of the pages
+        # to update them
+
+
         pages = []
         for i in range(numPages):
-            # load up page info dict
-
-            page = json.loads(request.data[f"{i}"])
-            page = models.WebsitePage.objects.create(
-                name = page['name'],
-                html = page['html'],
-                css = page['css'],
-                js = page['js'],
-                pageNum = i,
+            pageDict = json.loads(request.data[f"{i}"])
+            page, created = models.WebsitePage.objects.get_or_create(
+                id = pageDict['pageId']
             )
-            pages.append(page)
+            print(page)
+            page.name = pageDict['name']
+            page.html = pageDict['html']
+            page.css = pageDict['css']
+            page.js = pageDict['js']
+            page.save()
 
 
-        website.pages.set(pages)
-
-        website.save()
         return Response("stuff here")
 
 @authentication_classes([])
@@ -183,7 +185,8 @@ class AddWebsitePage(APIView):
         return Response(content)
 
 
-
+@authentication_classes([])
+@permission_classes([])
 class DeleteWebsitePage(APIView):
 
     def post(self, request, webId, *args, **kwargs):
@@ -194,3 +197,28 @@ class DeleteWebsitePage(APIView):
             print('object not found')
 
         return Response('delete the page here')
+
+"""
+    This will grab the html, css, and js of a website page
+
+"""
+@authentication_classes([])
+@permission_classes([])
+class GetPageInfo(APIView):
+    def get(self, request, webId, pageId, *args, **kwargs):
+        try:
+            page = models.WebsitePage.objects.get(id = pageId)
+            serializedPage = serializers.PageSerializer(page, many = False).data
+            css = serializedPage['css']
+            with open("../frontend/src/components/BuildFolder/Editor/PreviewPage.css", 'w') as f:
+                print(css, file=f)
+            # write in the page here
+            content = {
+                'html': serializedPage['html'],
+                'js': serializedPage['js']
+            }
+            print(content)
+            return Response(content)
+        except:
+            print('page does not exist')
+        return Response("what is the response here")

@@ -192,8 +192,8 @@ export const Editor = (props) => {
           })
   }
 
-  // const wrapperRef  = useRef(null);
-  // useOutSideAlerter(wrapperRef)
+  const wrapperRef  = useRef(null);
+  useOutSideAlerter(wrapperRef)
 
   useEffect(() => {
 
@@ -399,6 +399,7 @@ export const Editor = (props) => {
         // const html = editor.getHtml();
         // const css = editor.getCss();
         // const js = editor.getJs();
+        // console.log(js)
         // let formData = new FormData()
         // formData.append("css", css)
         // formData.append('js', js)
@@ -433,10 +434,6 @@ export const Editor = (props) => {
       setBlockClickType(block._previousAttributes.type)
 
 
-      console.log(editor.getSelected().getEl())
-
-
-
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
@@ -457,7 +454,7 @@ export const Editor = (props) => {
       // GONNA PUT THIS IN A FUNCTION CALL LATER
       // const target = editor.getSelected()
       // const targetId = target.getId()
-      //
+      // console.log(targetId)
       // target.set("script", `
       //   function script(props) {
       //     var element = document.getElementById("${targetId}");

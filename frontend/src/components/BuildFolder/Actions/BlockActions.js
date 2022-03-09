@@ -12,7 +12,7 @@ export const BlockActions = (props) => {
 
     }
 
-  })
+  },[props.editor])
   const linkConnectWalletAction = () => {
 
     const currentComp = editor.getSelected()
@@ -25,7 +25,9 @@ export const BlockActions = (props) => {
     <Stack>
       Link an action to a text or box when you click on it.
       <div>
-        <RedirectActions />
+        <RedirectActions
+          editor = {editor}
+          />
       </div>
 
       <Button

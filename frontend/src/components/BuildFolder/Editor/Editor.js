@@ -395,10 +395,7 @@ export const Editor = (props) => {
         const pageId = editor.Pages.getSelected().getId()
         console.log(pageId, websiteId)
 
-        props.history.push(`/previewPage/${websiteId}/${pageId}`, {
-          websiteId: websiteId,
-          pageId: pageId
-        })
+        props.history.push(`/previewPage/${websiteId}/${pageId}`)
         // const html = editor.getHtml();
         // const css = editor.getCss();
         // const js = editor.getJs();

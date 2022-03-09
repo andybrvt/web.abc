@@ -3,6 +3,7 @@ import parse from "html-react-parser";
 import './PreviewPage.css';
 import { useEthers, useEtherBalance } from "@usedapp/core";
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
 export const PreviewPage = props => {
@@ -13,6 +14,8 @@ export const PreviewPage = props => {
   const isConnected = account !== undefined
 
   const [html, setHtml] = useState("")
+
+  const {websiteId, pageId} = useParams()
 
   useEffect(() => {
 
@@ -25,8 +28,7 @@ export const PreviewPage = props => {
           })
         }
       }
-      const websiteId = props.history.location.state.websiteId
-      const pageId = props.history.location.state.pageId
+
       axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/${websiteId}/${pageId}`)
       .then(res => {
         console.log(res.data)

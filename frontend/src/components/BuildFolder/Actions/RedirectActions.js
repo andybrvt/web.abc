@@ -27,16 +27,29 @@ export const RedirectActions = (props) => {
 
     const target = editor.getSelected()
     const targetId = target.getId()
-    target.set("script", `
-      function script(props) {
-        var element = document.getElementById("${targetId}");
-        element.addEventListener("click", function () {
-          window.location.replace("http://localhost:3000/previewPage/${websiteId}/${pageId}");
 
-        });
-      }
 
-    `)
+    console.log(target.is("link"))
+
+    if(target.is("link")){
+
+      target.addAttributes({ href: `http://localhost:3000/previewPage/${websiteId}/${pageId}` });
+      // target.set("href", `http://localhost:3000/previewPage/${websiteId}/${pageId}`)
+      console.log('does this work?')
+    } else {
+      target.set("script", `
+        function script(props) {
+          var element = document.getElementById("${targetId}");
+          element.addEventListener("click", function () {
+            window.location.replace("http://localhost:3000/previewPage/${websiteId}/${pageId}");
+
+          });
+        }
+
+      `)
+
+
+    }
 
 
   }

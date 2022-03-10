@@ -51,7 +51,6 @@ export const CoreButtonType = editor => {
 
     },
       init(){
-        console.log('run this script here')
       }
     },
 

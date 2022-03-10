@@ -225,7 +225,7 @@ export const Editor = (props) => {
       // // this is the remote storage (probally gonna use this one here)
       storageManager: {
         type: 'remote',
-        stepsBeforeSave: 3,
+        stepsBeforeSave: 2,
         urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
         urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
         contentTypeJson: true,
@@ -320,7 +320,7 @@ export const Editor = (props) => {
         // ]
       },
       traitManager: {
-       appendTo: '.traits-container',
+       appendTo: '.trait-container',
       },
       styleManager: {
         custom: true
@@ -449,6 +449,7 @@ export const Editor = (props) => {
       //     )
       //   }
       // }
+
 
       //HERE IS A WAY TO SET THE JAVASCRIPT ON CLICK FUNCTION
       // GONNA PUT THIS IN A FUNCTION CALL LATER
@@ -687,7 +688,6 @@ export const Editor = (props) => {
 
           <div id = "gjs"></div>
         </div>
-
 
 
         <BlockAttribute editor = {editorMain}/>

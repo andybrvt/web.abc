@@ -70,6 +70,7 @@ export const BlockAttribute = (props) => {
         <TabList style={{marginBottom:10, marginLeft:20}}>
          <Tab>Styles</Tab>
          <Tab>Action</Tab>
+         <Tab>Traits</Tab>
         </TabList>
         <TabPanels>
 
@@ -87,6 +88,12 @@ export const BlockAttribute = (props) => {
               <BlockActions
                 editor = {props.editor}
                  />
+
+          </TabPanel>
+            <TabPanel >
+
+              <div class= "trait-container"></div>
+
 
           </TabPanel>
         </TabPanels>

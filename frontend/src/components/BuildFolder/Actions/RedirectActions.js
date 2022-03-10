@@ -75,10 +75,13 @@ export const RedirectActions = (props) => {
       <AccordionItem>
         <h2>
           <AccordionButton>
-            <Box flex='1' textAlign='left'>
-              Redirect
-            </Box>
-            <AccordionIcon />
+              <Button
+                colorScheme='blue'
+                flex='1' textAlign='left'>
+                Redirect
+              </Button>
+              <AccordionIcon />
+
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>

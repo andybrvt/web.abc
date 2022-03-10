@@ -7,16 +7,21 @@ import { DAppProvider } from "@usedapp/core";
 import { ChakraProvider } from '@chakra-ui/react'
 import './global.js'
 import "grapesjs/dist/css/grapes.min.css"
+import { MoralisProvider } from "react-moralis";
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <DAppProvider config={{
-      }}>
-    <ChakraProvider>
-      <App />
-      </ChakraProvider>
-    </DAppProvider>
+    <MoralisProvider appId="bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg" serverUrl="https://9gobbcdpfilv.usemoralis.com:2053/server">
+
+      <DAppProvider config={{
+        }}>
+      <ChakraProvider>
+        <App />
+        </ChakraProvider>
+      </DAppProvider>
+    </MoralisProvider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );

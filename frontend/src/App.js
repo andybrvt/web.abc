@@ -16,10 +16,15 @@ import { createBrowserHistory } from "history";
 import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import {Canvas} from './components/TestingFolder/ReactDesignerTest';
+import {MoralisTest} from './components/TestingFolder/MoralisTest';
 import {PreviewPage} from './components/BuildFolder/Editor/PreviewPage';
 import {SmartContractCustomize} from './components/SmartContractCustomize';
 import {Docs} from './Docs.js';
 import {CollectionList} from './components/Home/CollectionList/CollectionList';
+import { MoralisProvider } from "react-moralis";
+
+
+
 function getLibrary(provider) {
   return new Web3(provider)
 }
@@ -65,7 +70,7 @@ class App extends Component{
           <Route exact path="/home"  element={<Home history={history} />} />
           <Route exact path="/collectionList" element={<CollectionList history={history}/>} />
           <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
-          <Route exact path="/test" element={<TestHTMLScraper history={history}/>} />
+          <Route exact path="/test" element={<MoralisTest history={history}/>} />
           <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
           <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
           <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />

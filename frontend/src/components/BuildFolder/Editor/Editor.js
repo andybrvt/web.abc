@@ -86,6 +86,7 @@ import {
 } from '@chakra-ui/react'
 import axios from 'axios';
 import { useEthers } from "@usedapp/core";
+import { useParams } from 'react-router-dom';
 
 
 
@@ -145,7 +146,8 @@ const translatedItems = [
 
 export const Editor = (props) => {
 
-  const websiteId = props.history.location.state.websiteId
+  const {websiteId} = useParams()
+
 
   const {activateBrowserWallet, account } = useEthers();
   const [preview, setPreview] =useState(false);
@@ -197,7 +199,6 @@ export const Editor = (props) => {
 
   useEffect(() => {
 
-    const websiteId = props.history.location.state.websiteId
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: 1,

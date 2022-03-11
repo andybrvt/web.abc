@@ -45,14 +45,60 @@ import { StyleColorPicker } from './StylesComponents/StyleColorPicker'
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
 import { Button as AntdButton } from 'antd';
 import { ButtonBlockAttribute } from '../BlockAttributes/ButtonBlockAttribute/ButtonBlockAttribute';
+import {StyleRadio} from './StylesComponents/StyleRadio';
+
+
+
 export const NewStylesContainer = (props) => {
-  console.log(props.type)
+  console.log(props.editor)
+  // property.getID() is "text-align"
+  {/*
+  const handleChange = (value) => {
+    property.upValue(value)
+  }
+
+  // function handle inputs of the component
+  const handleInput = (value) => {
+    property.upValue(value, { partial: true })
+  }
   const onChange = (val) => {
     setSliderValue(val);
   };
+  */}
   const [value, setValue] = React.useState(20)
-  const handleChange = (value) => setValue(value)
+
   const [sliderValue, setSliderValue] = useState(22)
+  const [editorMain, setEditor] = useState(null);
+  const [sectors, setSectors] = useState([]);
+
+  const handleChange = (value) => setValue(value)
+  const editor=null
+  if(props.editor!=null){
+  const editor=props.editor
+  }
+  useEffect(() => {
+    if(props.editor !== null){
+      const tempEditor = props.editor
+      setEditor(props.editor)
+      props.editor.on('style:custom', props =>{
+        setSectors(tempEditor.StyleManager.getSectors({visible:true}))
+      })
+
+
+
+      return () => {
+        props.editor.off('style:custom', props => {
+
+          setSectors(tempEditor.StyleManager.getSectors({visible:true}))
+
+        })
+      }
+    }
+
+    // for unmount
+
+  }, [props.editor])
+
 
   return(
       <Stack
@@ -105,7 +151,7 @@ export const NewStylesContainer = (props) => {
         </div>
         <div style={{flexDirection:'row', display:'flex',}}>
             <div style={{marginRight:25}}>
-              <StyleColorPicker
+                <StyleColorPicker
                 background={false}
                 onStyleChange = {props.onStyleChange}
                 />
@@ -148,18 +194,10 @@ export const NewStylesContainer = (props) => {
         <div class="attributeHeader">Text alignment</div>
         <Divider/>
         <div style={{flexDirection:'row', display:'flex', marginTop:20, padding:10, marginBottom:10}}>
-            <div style={{marginRight:25}}>
-            </div>
-            <div class="justifyButtonCSS">
-              <IconButton size="sm" aria-label='Search database'  icon={<AlignLeftOutlined />}  />
-            </div>
-            <div class="justifyButtonCSS">
-              <IconButton size="sm" aria-label='Search database'  icon={<AlignCenterOutlined />}  />
-            </div>
-            <div class="justifyButtonCSS">
-              <IconButton size="sm" aria-label='Search database'  icon={<AlignRightOutlined />}  />
-            </div>
-        </div>
+
+        <StyleRadio editor={editor}/>
+          </div>
+
         <div class="attributeHeader">Opacity</div>
         <Divider/>
       </div>

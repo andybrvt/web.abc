@@ -132,7 +132,7 @@ export const  Home = (props) => {
       websiteId: websiteId
     })
   }
-  console.log(props)
+  
 
     return(
       <div>

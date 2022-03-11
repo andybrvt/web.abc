@@ -48,7 +48,7 @@ import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from ".
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
 import {StylesContainer} from '../Styles/StylesContainer';
 import {BlockActions} from '../Actions/BlockActions';
-
+import {NewStylesContainer} from '../Styles/NewStylesContainer';
 
 
 export const BlockAttribute = (props) => {
@@ -78,17 +78,22 @@ export const BlockAttribute = (props) => {
               maxHeight: "800px",
               overflow:'auto'
             }}>
+
+              {/*
               <StylesContainer
                 editor = {props.editor}
                 />
+                */}
 
-          </TabPanel>
-            <TabPanel >
+            <NewStylesContainer editor = {props.editor}/>
+            
+            </TabPanel>
 
-              <BlockActions
-                editor = {props.editor}
-                 />
 
+          <TabPanel >
+            <BlockActions
+              editor = {props.editor}
+               />
           </TabPanel>
             <TabPanel >
 

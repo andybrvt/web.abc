@@ -102,16 +102,7 @@ export const PropertyContainer = (props) => {
 
 
       return(
-        <StyleRadio
-          label = {label}
-          field = {property.getId()}
-          handleChange = {handleChange}
-          handleInput = {handleInput}
-          curValue = {curValue}
-          options = {options}
-          getOptionId = {getOptionId}
-          getOptionLabel = {getOptionLabel}
-           />
+    <div>hi</div>
       )
     }
 

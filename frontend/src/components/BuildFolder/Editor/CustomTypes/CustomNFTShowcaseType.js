@@ -18,8 +18,12 @@ export const CustomNFTShowcase = editor => {
 
 
     view: {
+
+      events: {
+        dblclick: 'onActive'
+      },
       onActive(){
-        console.log('it is active')
+        editor.Modal.open()
       }
     }
 

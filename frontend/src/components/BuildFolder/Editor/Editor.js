@@ -63,6 +63,9 @@ import {
 import {
   CustomBoxType
 } from './CustomTypes/CustomBoxType';
+import {
+  CustomNFTShowcase
+} from './CustomTypes/CustomNFTShowcaseType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -72,8 +75,13 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderMark,
-} from '@chakra-ui/react'
-import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -83,11 +91,13 @@ import {
   PopoverArrow,
   PopoverCloseButton,
   PopoverAnchor,
+  useDisclosure,
+  Lorem
 } from '@chakra-ui/react'
 import axios from 'axios';
 import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
-
+import {PickNFTModal} from '../NFT/PickNFTModal';
 
 
 const PLUGINS = [
@@ -119,7 +129,8 @@ const PLUGINS = [
   ColumnCore,
   grapesjsStyleBg,
   CustomLinkText1,
-  CustomBoxType
+  CustomBoxType,
+  CustomNFTShowcase
 ]
 
 
@@ -140,11 +151,19 @@ const translatedItems = [
   "header1",
   "header2",
   "header3",
-  "footer1"
+  "footer1",
+
 ]
 
 
 export const Editor = (props) => {
+
+  // For nft modal
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [scrollBehavior, setScrollBehavior] = React.useState('inside')
+  const btnRef = React.useRef()
+
+
 
   const {websiteId} = useParams()
 
@@ -164,6 +183,8 @@ export const Editor = (props) => {
   const [popOver, setPopOver]= useState(true);
   const [TextCssVariable, setTestCssVariable]= useState(null);
   const [BlockClickType, setBlockClickType]= useState(null);
+
+  const [showModal, setShowModal] = useState(false);
 
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
@@ -344,21 +365,16 @@ export const Editor = (props) => {
 
     })
 
+    editor.DomComponents.addType("NFTShowcase", {
+      view: {
+        onActive(){
+          onOpen()
+        }
+      }
+    })
+
     editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
-
     editor.runCommand('sw-visibility');
-
-
-    editor.on("run:preview", () => {
-      // const canvas = editor.Canvas.getElement();
-      // const canvasS = canvas.style;
-      // canvasS.left = '770px';
-
-    })
-    editor.on("stop:preview", () => {
-      // editor.runCommand("sw-visibility")
-      // setPreview(false)
-    })
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
 
@@ -367,27 +383,6 @@ export const Editor = (props) => {
       } else {
         editor.setDragMode("absolute")
       }
-    })
-
-
-    // CHANGE THIS LATER
-    editor.Commands.add("show-layers", {
-      // editor.getContainer gets the container you listed in init
-      // closest will get the closes div element going upward the tree
-      getRowEl(editor){return editor.getContainer().closest('.editorRow');},
-      // querySelector gets a element inside the row given the name
-      getLayersEl(row){return row.querySelector(".layers-container")},
-
-      // get the style container and then show it because you put display as ''
-      run(editor, sender){
-        const lmEl = this.getLayersEl(this.getRowEl(editor));
-        lmEl.style.display = "";
-      },
-      stop(editor, sender){
-        const lmEl = this.getLayersEl(this.getRowEl(editor));
-        lmEl.style.display = "none";
-      }
-
     })
 
     editor.Commands.add('open-live-preview', {
@@ -489,6 +484,9 @@ export const Editor = (props) => {
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
+    editor.on("component:add", (model, argument) => {
+      console.log(model)
+    })
     setEditor(editor)
   },[])
 
@@ -666,34 +664,23 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
             </div>
-
-
-
-
           </div>
-
         </div>
 
-        <div
-          // ref = {wrapperRef}
-          >
+        <div ref = {wrapperRef}>
           <Drawer  visibility = {visibility}>
             <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
           </Drawer>
-
         </div>
-
-
-
         <div class="column">
-
           <div id = "gjs"></div>
         </div>
-
 
         <BlockAttribute editor = {editorMain}/>
 
       </div>
+
+      <PickNFTModal onClose = {onClose} isOpen = {isOpen} scrollBehavior={scrollBehavior}/>
 
 
 

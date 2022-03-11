@@ -12,6 +12,7 @@ import {ImageBlocks} from './BasicBlocks/ImageBlocks';
 import {InformationalBlocks} from './BasicBlocks/InformationalBlocks';
 import {HeaderBlocks} from './BasicBlocks/HeaderBlocks';
 import {FooterBlocks} from './BasicBlocks/FooterBlocks';
+import {NFTShowcaseBlocks} from './Web3Blocks/NFTShowcaseBlocks';
 export const BlocksContainer = (props) => {
 
   const [editor, setEditor] = useState(null)
@@ -80,6 +81,9 @@ export const BlocksContainer = (props) => {
     const footerBlocks = editor.BlockManager.render(
       FooterBlocks, {external: true}
     )
+    const nftBlocks = editor.BlockManager.render(
+      NFTShowcaseBlocks, {external: true}
+    )
 
 
 
@@ -94,6 +98,7 @@ export const BlocksContainer = (props) => {
     document.getElementById("blocks").appendChild(infoBlocks);
     document.getElementById("blocks").appendChild(headerBlocks);
     document.getElementById("blocks").appendChild(footerBlocks);
+    document.getElementById("blocks").appendChild(nftBlocks);
 
     const categories = editor.BlockManager.getCategories();
     categories.each(category => {

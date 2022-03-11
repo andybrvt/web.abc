@@ -63,6 +63,9 @@ import {
 import {
   CustomBoxType
 } from './CustomTypes/CustomBoxType';
+import {
+  CustomNFTShowcase
+} from './CustomTypes/CustomNFTShowcaseType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -119,7 +122,8 @@ const PLUGINS = [
   ColumnCore,
   grapesjsStyleBg,
   CustomLinkText1,
-  CustomBoxType
+  CustomBoxType,
+  CustomNFTShowcase
 ]
 
 
@@ -140,7 +144,8 @@ const translatedItems = [
   "header1",
   "header2",
   "header3",
-  "footer1"
+  "footer1",
+
 ]
 
 
@@ -489,6 +494,9 @@ export const Editor = (props) => {
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
+    editor.on("component:add", (model, argument) => {
+      console.log(model)
+    })
     setEditor(editor)
   },[])
 

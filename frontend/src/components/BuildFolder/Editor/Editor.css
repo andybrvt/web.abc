@@ -112,7 +112,7 @@ body{
   min-height: 75px;
   overflow: auto;
   width: 5vw;
-  z-index: 2000;
+  z-index: 1000;
     background: white;
   padding-top: 25px;
   /* box-shadow: 4px 4px 4px gainsboro; */

@@ -13,8 +13,9 @@ export const CustomNFTShowcase = editor => {
       },
       defaults:{
 
-        content:
-        `<div>name</div>`
+        components: model => {
+          return `<h1>Header test: ${model.get('type')}</h1>`;
+        },
       }
 
     },

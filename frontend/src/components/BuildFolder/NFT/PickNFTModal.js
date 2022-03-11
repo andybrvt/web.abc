@@ -16,6 +16,7 @@ export const PickNFTModal  = (props) => {
 
   return(
     <Modal
+      motionPreset = "none"
       onClose={props.onClose}
       isOpen={props.isOpen}
       scrollBehavior={props.scrollBehavior}

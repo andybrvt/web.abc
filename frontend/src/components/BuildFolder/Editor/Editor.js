@@ -247,7 +247,7 @@ export const Editor = (props) => {
       // // this is the remote storage (probally gonna use this one here)
       storageManager: {
         type: 'remote',
-        stepsBeforeSave: 2,
+        stepsBeforeSave: 10,
         urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
         urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
         contentTypeJson: true,

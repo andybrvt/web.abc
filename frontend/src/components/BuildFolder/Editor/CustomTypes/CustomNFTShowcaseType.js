@@ -8,10 +8,13 @@ export const CustomNFTShowcase = editor => {
       name: 'NFTShowcase',
       tagName: "NFTShowcase",
       resizable: 'true',
+      attributes: {
+        name: "stuff",
+      },
       defaults:{
 
         content:
-        `<div>this is a list</div>`
+        `<div>name</div>`
       }
 
     },
@@ -22,9 +25,7 @@ export const CustomNFTShowcase = editor => {
       events: {
         dblclick: 'onActive'
       },
-      onActive(){
-        editor.Modal.open()
-      }
+
     }
 
   })

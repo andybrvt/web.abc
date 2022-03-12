@@ -46,6 +46,7 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 import { Button as AntdButton } from 'antd';
 import { ButtonBlockAttribute } from '../BlockAttributes/ButtonBlockAttribute/ButtonBlockAttribute';
 import {StyleRadio} from './StylesComponents/StyleRadio';
+import {TextAttributes} from './StylesComponents/TextAttributes';
 
 
 
@@ -83,11 +84,16 @@ const [property, setProperty] = useState(null);
       props.editor.on('component:selected', block =>{
         // const showSectors = tempEditor.StyleManager.getSectors();
         // console.log(showSectors)
-        const sector = tempEditor.StyleManager.getSector('typography');
-        console.log(sector)
+        console.log(block)
+        console.log(block._previousAttributes.type)
+        if(block._previousAttributes.type==="text")
+        {
+          console.log("helooo")
+          const property = tempEditor.StyleManager.getProperty('typography', 'text-align');
+          setProperty(property)
+        }
 
-        const property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
-        setProperty(property)
+
       })
 
 
@@ -98,8 +104,10 @@ const [property, setProperty] = useState(null);
           console.log(showSectors)
           const sector = tempEditor.StyleManager.getSector('typography');
           console.log(sector)
-
-          const property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
+          const test = tempEditor.StyleManager.getProperties()
+          console.log(test)
+          // const property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
+          // const   property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
           setProperty(property)
 
         })
@@ -167,15 +175,10 @@ const [property, setProperty] = useState(null);
                 onStyleChange = {props.onStyleChange}
                 />
             </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<BoldOutlined />}  />
-            </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<ItalicOutlined />}  />
-            </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<UnderlineOutlined />}  />
-            </div>
+            <TextAttributes
+              property={property}
+              editor={editor}
+              />
         </div>
         <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
 

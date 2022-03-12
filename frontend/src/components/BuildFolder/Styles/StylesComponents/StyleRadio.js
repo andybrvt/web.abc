@@ -3,39 +3,44 @@ import { Radio, RadioGroup, Stack, IconButton } from '@chakra-ui/react'
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
 
 export const StyleRadio = (props) => {
-  const handleClick=null
-  if(props.editor!=null){
-  console.log(props.editor)
-    const sector1=props.editor.styleManager.getSector('typography');
-    console.log(sector1)
-    //all properties is sector1.getProperties()
-    const property = props.editor.styleManager.getProperty('typography', 'text-align')
-  console.log(property)
+  console.log("start")
+  console.log(props.property)
+  const property=props.property
+  if(property!=null) {
 
-  const type = property.getType()
+    const type = property.getType()
+    console.log(property.getOptions())
+    const getDefValue = () => {
+      return property.getDefaultValue()
+    }
+    const options = props.options
+    const field = props.field
+    function getOptionId(opt){
+      return property.getOptionId(opt)
+    }
+    function getOptionLabel(opt){
+      return property.getOptionLabel(opt)
+    }
 
-  const getDefValue = () => {
-    return property.getDefaultValue()
   }
-  const options = props.options
-  const field = props.field
-  function getOptionId(opt){
-    return property.getOptionId(opt)
-  }
-  function getOptionLabel(opt){
-    return property.getOptionLabel(opt)
-  }
-  handleClick = (opt) => {
+
+  const handleClick = (opt) => {
+    console.log("test button click")
     // props.handleChange(opt)
-    property.upValue(opt)
+        property.upValue(opt)
   }
-  }
+
+
+
+    const handleInput = (value) => {
+        property.upValue(value, { partial: true })
+      }
+
   return(
     <RadioGroup
-      onChange = {(e) => props.handleChange(e)}
       defaultValue={props.curValue}>
       {props.label}
-      {props.editor!=null?
+      {property!=null?
         <Stack spacing={4} direction='row'>
 
 

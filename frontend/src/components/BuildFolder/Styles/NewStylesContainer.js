@@ -50,7 +50,7 @@ import {StyleRadio} from './StylesComponents/StyleRadio';
 
 
 export const NewStylesContainer = (props) => {
-  console.log(props.editor)
+
   // property.getID() is "text-align"
   {/*
   const handleChange = (value) => {
@@ -70,26 +70,37 @@ export const NewStylesContainer = (props) => {
   const [sliderValue, setSliderValue] = useState(22)
   const [editorMain, setEditor] = useState(null);
   const [sectors, setSectors] = useState([]);
-
+const [property, setProperty] = useState(null);
   const handleChange = (value) => setValue(value)
   const editor=null
-  if(props.editor!=null){
-  const editor=props.editor
-  }
+
+
+
   useEffect(() => {
     if(props.editor !== null){
       const tempEditor = props.editor
       setEditor(props.editor)
-      props.editor.on('style:custom', props =>{
-        setSectors(tempEditor.StyleManager.getSectors({visible:true}))
+      props.editor.on('component:selected', block =>{
+        // const showSectors = tempEditor.StyleManager.getSectors();
+        // console.log(showSectors)
+        const sector = tempEditor.StyleManager.getSector('typography');
+        console.log(sector)
+
+        const property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
+        setProperty(property)
       })
 
 
 
       return () => {
-        props.editor.off('style:custom', props => {
+        props.editor.off('component:selected', block => {
+          const showSectors = tempEditor.StyleManager.getSectors();
+          console.log(showSectors)
+          const sector = tempEditor.StyleManager.getSector('typography');
+          console.log(sector)
 
-          setSectors(tempEditor.StyleManager.getSectors({visible:true}))
+          const property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
+          setProperty(property)
 
         })
       }
@@ -195,8 +206,11 @@ export const NewStylesContainer = (props) => {
         <Divider/>
         <div style={{flexDirection:'row', display:'flex', marginTop:20, padding:10, marginBottom:10}}>
 
-        <StyleRadio editor={editor}/>
-          </div>
+          <StyleRadio
+            property={property}
+            editor={editor}
+            />
+        </div>
 
         <div class="attributeHeader">Opacity</div>
         <Divider/>

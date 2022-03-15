@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import $ from 'jquery';
+import ImagePicker from 'react-image-picker'
 
 
 
@@ -23,6 +24,8 @@ export const PickNFTModal  = (props) => {
   const [nft, setNft] = useState([])
   const [nftImgs, setNFTImgs] = useState([])
 
+
+  const [images, setImages] = useState([])
 
   useEffect(() => {
 
@@ -79,7 +82,9 @@ export const PickNFTModal  = (props) => {
   }
 
 
-  console.log(nftImgs)
+  const onPickImages = () => {
+
+  }
 
 
   return(
@@ -94,18 +99,20 @@ export const PickNFTModal  = (props) => {
         <ModalHeader>Modal Title</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <button
-            onClick = {fetchNFTs}
-            >click this for a test</button>
 
-          {
+          <ImagePicker
+            images = {nftImgs.map((image, index) => ({src:image, value:index}))}
+            onPick = {onPickImages.bind(this)}
+            multiple
+            />
+          {/*
             nftImgs.map((image, index) => {
               console.log(image)
               return(
                 <img width={100} height={100} src={image}/>
               )
             })
-          }
+          */}
 
         </ModalBody>
         <ModalFooter>

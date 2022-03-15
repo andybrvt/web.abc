@@ -52,7 +52,6 @@ import {StyleFontSize} from './StylesComponents/StyleFontSize';
 
 
 export const NewStylesContainer = (props) => {
-
   // property.getID() is "text-align"
   {/*
   const handleChange = (value) => {

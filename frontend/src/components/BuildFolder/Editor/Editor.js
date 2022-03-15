@@ -232,31 +232,42 @@ export const Editor = (props) => {
       pluginsOpts: {
         grapesjsStyleBg:{}
       },
-      // this is the local storage
-      // storageManager: {
-      //   id: 'gjs-', // just the identifier that you will be using
-      //   type: 'local', // type of storage
-      //   autosave: true,
-      //   autoload: true,
-      //   stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
-      //   storeComponents: true, // enable/disable storing of componets in JSON format
-      //   storeStyles: true,
-      //   storeHtml: true,
-      //   storeCss: true
-      // },
-      // // this is the remote storage (probally gonna use this one here)
-      storageManager: {
-        type: 'remote',
-        stepsBeforeSave: 10,
-        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
-        urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
-        contentTypeJson: true,
-        params: {
-        },
-        headers: {
-          "Content-Type": "application/json",
-        }
+      selectorManager: {
+         componentFirst: true,
+       },
+      canvas:{
+        styles: [],
+        scripts:  [
+          "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",
+          "https://unpkg.com/moralis/dist/moralis.js"
+        ]
       },
+
+      // this is the local storage
+      storageManager: {
+        id: 'gjs-', // just the identifier that you will be using
+        type: 'local', // type of storage
+        autosave: true,
+        autoload: true,
+        stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
+        storeComponents: true, // enable/disable storing of componets in JSON format
+        storeStyles: true,
+        storeHtml: true,
+        storeCss: true
+      },
+      // // this is the remote storage (probally gonna use this one here)
+      // storageManager: {
+      //   type: 'remote',
+      //   stepsBeforeSave: 2,
+      //   urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
+      //   urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
+      //   contentTypeJson: true,
+      //   params: {
+      //   },
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   }
+      // },
       assetManager:{
         assets:[
           'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
@@ -374,6 +385,12 @@ export const Editor = (props) => {
     })
 
     editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
+
+    // editor.addComponents(`
+    //   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" crossorigin="anonymous"></script>
+    //   <script src="https://unpkg.com/moralis/dist/moralis.js" crossorigin="anonymous"></script>
+    //   `)
+
     editor.runCommand('sw-visibility');
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
@@ -384,6 +401,9 @@ export const Editor = (props) => {
         editor.setDragMode("absolute")
       }
     })
+
+
+    console.log(editor.Canvas.getConfig(), 'config here')
 
     editor.Commands.add('open-live-preview', {
       run(editor, sender){
@@ -430,6 +450,7 @@ export const Editor = (props) => {
       setBlockClickType(block._previousAttributes.type)
 
 
+
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
       // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
@@ -446,6 +467,29 @@ export const Editor = (props) => {
       //   }
       // }
 
+      const target = editor.getSelected()
+      const targetId = target.getId()
+
+      target.set("script", `
+
+        async function script(props){
+          Moralis.initialize("bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg");
+          Moralis.serverURL = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+
+          console.log('does this work')
+          const options = {
+            chain: "rinkeby",
+            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+          };
+
+          const nftList = await Moralis.Web3.getNFTs(options);
+
+
+        }
+
+
+
+      `)
 
       //HERE IS A WAY TO SET THE JAVASCRIPT ON CLICK FUNCTION
       // GONNA PUT THIS IN A FUNCTION CALL LATER
@@ -485,7 +529,8 @@ export const Editor = (props) => {
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
     editor.on("component:add", (model, argument) => {
-      console.log(model)
+
+
     })
     setEditor(editor)
   },[])
@@ -680,7 +725,11 @@ export const Editor = (props) => {
 
       </div>
 
-      <PickNFTModal onClose = {onClose} isOpen = {isOpen} scrollBehavior={scrollBehavior}/>
+      <PickNFTModal
+        editor = {editorMain}
+        onClose = {onClose}
+        isOpen = {isOpen}
+        scrollBehavior={scrollBehavior}/>
 
 
 

@@ -160,6 +160,15 @@ export const ButtonBlocks = [
     content:{type:'button5'}
 
   },
+  {
+    label: 'stuff',
+    category: 'Buttons',
+    media:
+    `<i class="fas fa-arrow-right"></i>
+      `,
+    content:`<i class="fas fa-arrow-right"></i>`
+
+  },
 
 
 ]

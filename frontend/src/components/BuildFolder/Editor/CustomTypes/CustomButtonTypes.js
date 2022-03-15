@@ -191,7 +191,7 @@ export const ButtonType4 = editor => {
         content:
         `<div class = "button4">
             <i class="fas fa-arrow-right"></i>
-
+            Hi
           </div>`,
       }
     }

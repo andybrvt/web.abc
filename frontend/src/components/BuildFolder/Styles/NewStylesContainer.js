@@ -46,6 +46,7 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 import { Button as AntdButton } from 'antd';
 import { ButtonBlockAttribute } from '../BlockAttributes/ButtonBlockAttribute/ButtonBlockAttribute';
 import {StyleRadio} from './StylesComponents/StyleRadio';
+import {TextAttributes} from './StylesComponents/TextAttributes';
 
 
 
@@ -69,26 +70,44 @@ export const NewStylesContainer = (props) => {
   const [sliderValue, setSliderValue] = useState(22)
   const [editorMain, setEditor] = useState(null);
   const [sectors, setSectors] = useState([]);
-
+const [property, setProperty] = useState(null);
   const handleChange = (value) => setValue(value)
   const editor=null
-  if(props.editor!=null){
-  const editor=props.editor
-  }
+
+
+
   useEffect(() => {
     if(props.editor !== null){
       const tempEditor = props.editor
       setEditor(props.editor)
-      props.editor.on('style:custom', props =>{
-        setSectors(tempEditor.StyleManager.getSectors({visible:true}))
+      props.editor.on('component:selected', block =>{
+        // const showSectors = tempEditor.StyleManager.getSectors();
+        // console.log(showSectors)
+        console.log(block)
+        console.log(block._previousAttributes.type)
+        if(block._previousAttributes.type==="text")
+        {
+          console.log("helooo")
+          const property = tempEditor.StyleManager.getProperty('typography', 'text-align');
+          setProperty(property)
+        }
+
+
       })
 
 
 
       return () => {
-        props.editor.off('style:custom', props => {
-
-          setSectors(tempEditor.StyleManager.getSectors({visible:true}))
+        props.editor.off('component:selected', block => {
+          const showSectors = tempEditor.StyleManager.getSectors();
+          console.log(showSectors)
+          const sector = tempEditor.StyleManager.getSector('typography');
+          console.log(sector)
+          const test = tempEditor.StyleManager.getProperties()
+          console.log(test)
+          // const property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
+          // const   property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
+          setProperty(property)
 
         })
       }
@@ -155,15 +174,10 @@ export const NewStylesContainer = (props) => {
                 onStyleChange = {props.onStyleChange}
                 />
             </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<BoldOutlined />}  />
-            </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<ItalicOutlined />}  />
-            </div>
-            <div class="textPopOverButton">
-              <IconButton size="sm" aria-label='Search database'  icon={<UnderlineOutlined />}  />
-            </div>
+            <TextAttributes
+              property={property}
+              editor={editor}
+              />
         </div>
         <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
 
@@ -194,8 +208,11 @@ export const NewStylesContainer = (props) => {
         <Divider/>
         <div style={{flexDirection:'row', display:'flex', marginTop:20, padding:10, marginBottom:10}}>
 
-        <StyleRadio editor={editor}/>
-          </div>
+          <StyleRadio
+            property={property}
+            editor={editor}
+            />
+        </div>
 
         <div class="attributeHeader">Opacity</div>
         <Divider/>

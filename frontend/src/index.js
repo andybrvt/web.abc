@@ -12,15 +12,17 @@ import { MoralisProvider } from "react-moralis";
 
 ReactDOM.render(
   <React.StrictMode>
+
     <MoralisProvider appId="bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg" serverUrl="https://9gobbcdpfilv.usemoralis.com:2053/server">
 
-      <DAppProvider config={{
-        }}>
-      <ChakraProvider>
-        <App />
-        </ChakraProvider>
-      </DAppProvider>
-    </MoralisProvider>
+    <DAppProvider config={{
+      }}>
+    <ChakraProvider>
+      <App />
+      </ChakraProvider>
+    </DAppProvider>
+
+  </MoralisProvider>
 
   </React.StrictMode>,
   document.getElementById('root')

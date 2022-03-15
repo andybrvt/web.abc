@@ -43,7 +43,6 @@ export const PickNFTModal  = (props) => {
     const nftList = await Web3Api.account.getNFTs(options);
     setNft(nftList.result)
 
-    var list = []
     nftList.result.forEach(function(nft){
       let url = fixURL(nft.token_uri)
 
@@ -51,14 +50,16 @@ export const PickNFTModal  = (props) => {
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        setNFTImgs([...nftImgs, data.image])
+        setNFTImgs(oldArray => [...oldArray, fixURL(data.image)])
         // console.log(data.image)
 
-        $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.image)+"'/>" )
+        // $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.image)+"'/>" )
 
       })
 
     })
+
+
 
 
   }
@@ -78,6 +79,7 @@ export const PickNFTModal  = (props) => {
   }
 
 
+  console.log(nftImgs)
 
 
   return(
@@ -96,9 +98,14 @@ export const PickNFTModal  = (props) => {
             onClick = {fetchNFTs}
             >click this for a test</button>
 
-            <div id = "content">
-
-            </div>
+          {
+            nftImgs.map((image, index) => {
+              console.log(image)
+              return(
+                <img width={100} height={100} src={image}/>
+              )
+            })
+          }
 
         </ModalBody>
         <ModalFooter>

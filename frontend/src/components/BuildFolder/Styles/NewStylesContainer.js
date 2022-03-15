@@ -47,6 +47,7 @@ import { Button as AntdButton } from 'antd';
 import { ButtonBlockAttribute } from '../BlockAttributes/ButtonBlockAttribute/ButtonBlockAttribute';
 import {StyleRadio} from './StylesComponents/StyleRadio';
 import {TextAttributes} from './StylesComponents/TextAttributes';
+import {StyleFontSize} from './StylesComponents/StyleFontSize';
 
 
 
@@ -71,25 +72,52 @@ export const NewStylesContainer = (props) => {
   const [sliderValue, setSliderValue] = useState(22)
   const [editorMain, setEditor] = useState(null);
   const [sectors, setSectors] = useState([]);
-const [property, setProperty] = useState(null);
+  const [property, setProperty] = useState(null);
   const handleChange = (value) => setValue(value)
   const editor=null
 
+  // all sectors: 'general', 'flex', 'dimension', 'typography', 'decorations','extra'
 
+// for sector typography 8 properties
+// 'font-family' , 'font-size' ; 'font-weight'; 'letter-spacing';
+// 'color'; 'line-height'; 'text-align'; 'text-shadow'
 
+// for sector decorations 5 properties
+// 'background-color', 'border-radius', 'border', 'box-shadow', 'background',
+
+// for sector dimension 6 properties
+// 'width', 'height', 'max-width', 'margin', 'padding'
+
+// for sector general 7 properties
+// 'display', 'float', 'position' (type radio), 'top', 'right', 'left', 'bottom'
+
+// for sector flex 10 properties
+// 'flex-direction', 'flex-wrap', 'justify-content', 'align-items', 'align-content', 'order',
+// 'flex-basis', 'flex-grow', 'flex-shrink', 'align-self'
+
+// for sector extra
+// 'opacity', 'transition'
   useEffect(() => {
     if(props.editor !== null){
       const tempEditor = props.editor
       setEditor(props.editor)
       props.editor.on('component:selected', block =>{
-        // const showSectors = tempEditor.StyleManager.getSectors();
-        // console.log(showSectors)
+        const showSectors = tempEditor.StyleManager.getSectors();
+        console.log("all sectors")
+        console.log(showSectors)
+        const sector = tempEditor.StyleManager.getSector('typography');
+        const test = tempEditor.StyleManager.getProperties('typography')
+        console.log("decoration!!")
+        console.log(sector)
+        console.log(test)
         console.log(block)
         console.log(block._previousAttributes.type)
         if(block._previousAttributes.type==="text")
         {
           console.log("helooo")
-          const property = tempEditor.StyleManager.getProperty('typography', 'text-align');
+          const property = tempEditor.StyleManager.getProperty('typography', 'font-size');
+          console.log(property)
+
           setProperty(property)
         }
 
@@ -102,14 +130,6 @@ const [property, setProperty] = useState(null);
         props.editor.off('component:selected', block => {
           const showSectors = tempEditor.StyleManager.getSectors();
           console.log(showSectors)
-          const sector = tempEditor.StyleManager.getSector('typography');
-          console.log(sector)
-          const test = tempEditor.StyleManager.getProperties()
-          console.log(test)
-          // const property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
-          // const   property = tempEditor.StyleManager.getProperty(sector.id, 'text-align');
-          setProperty(property)
-
         })
       }
     }
@@ -175,36 +195,20 @@ const [property, setProperty] = useState(null);
                 onStyleChange = {props.onStyleChange}
                 />
             </div>
+
             <TextAttributes
               property={property}
               editor={editor}
               />
         </div>
-        <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
 
-          <Stack shouldWrapChildren direction='row'>
-            <NumberInput size='xs' maxW={16} value={value} onChange={handleChange} min={10}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-          </Stack>
 
-          <div style={{width:150, marginLeft:25}}>
-            <Slider
-              focusThumbOnChange={false}
-              value={value}
-              onChange={handleChange}
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb fontSize='sm' boxSize='30px' children={value} />
-            </Slider>
-          </div>
-        </div>
+        <StyleFontSize
+          property={property}
+          editor={editor}
+        />
+
+
         <div class="attributeHeader">Text alignment</div>
         <Divider/>
         <div style={{flexDirection:'row', display:'flex', marginTop:20, padding:10, marginBottom:10}}>

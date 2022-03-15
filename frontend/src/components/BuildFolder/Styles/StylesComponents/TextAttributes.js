@@ -39,13 +39,13 @@ export const TextAttributes = (props) => {
   return(
     <div style={{flexDirection:'row', display:'flex',}}>
 
-      <div onClick = {() => handleClick("left")} class="textPopOverButton">
+      <div onClick = {() => handleClick("700")} class="textPopOverButton">
         <IconButton size="sm" aria-label='Search database'  icon={<BoldOutlined />}  />
       </div>
-      <div onClick = {() => handleClick("center")} class="textPopOverButton">
+      <div onClick = {() => handleClick("200")} class="textPopOverButton">
         <IconButton size="sm" aria-label='Search database'  icon={<ItalicOutlined />}  />
       </div>
-      <div onClick={() => handleClick("right")} class="textPopOverButton">
+      <div onClick={() => handleClick("100")} class="textPopOverButton">
         <IconButton size="sm" aria-label='Search database'  icon={<UnderlineOutlined />}  />
       </div>
     </div>

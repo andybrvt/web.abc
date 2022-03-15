@@ -50,7 +50,6 @@ import {StyleRadio} from './StylesComponents/StyleRadio';
 
 
 export const NewStylesContainer = (props) => {
-  console.log(props.editor)
   // property.getID() is "text-align"
   {/*
   const handleChange = (value) => {

@@ -35,7 +35,6 @@ export const RedirectActions = (props) => {
 
       target.addAttributes({ href: `http://localhost:3000/previewPage/${websiteId}/${pageId}` });
       // target.set("href", `http://localhost:3000/previewPage/${websiteId}/${pageId}`)
-      console.log('does this work?')
     } else {
       target.set("script", `
         function script(props) {

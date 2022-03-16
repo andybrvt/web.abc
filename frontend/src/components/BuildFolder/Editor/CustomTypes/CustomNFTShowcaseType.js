@@ -22,14 +22,31 @@ export const CustomNFTShowcase = editor => {
       name: 'NFTShowcase',
       tagName: "NFTShowcase",
       resizable: 'true',
-      attributes: { type: 'text', required: true },
       defaults:{
+        attributes: { class: 'nft-collection-container' },
         someprop: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
 
-        // components: model => {
-        //   console.log(model)
-        //   return ();
-        // },
+        styles: `
+          .nft-collection-container{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+          }
+          .nftContainers{
+
+            flex:1;
+            flex-basis: 30%;
+            background-color: red;
+            margin: 2px;
+          }
+          .nftContainers img{
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+
+          }
+
+        `,
 
 
         'script-props': ["someprop",],

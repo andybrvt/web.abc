@@ -96,9 +96,16 @@ export const PickNFTModal  = (props) => {
   const onApplyImages = () => {
 
     const target = editorMain.getSelected()
+
     images.forEach(img => {
       console.log(img)
-      target.append(<img width = {100} height= {100}src = {img.src}/>)
+      target.append(
+        <div class = "nftContainers">
+          <img width = {100} height= {100}src = {img.src}/>
+
+        </div>
+
+      )
     })
     // target.append(<div>did this work</div>)
     props.onClose()

@@ -101,15 +101,15 @@ export const NewStylesContainer = (props) => {
       const tempEditor = props.editor
       setEditor(props.editor)
       props.editor.on('component:selected', block =>{
-        const showSectors = tempEditor.StyleManager.getSectors();
-        console.log("all sectors")
-        console.log(showSectors)
-        const sector = tempEditor.StyleManager.getSector('typography');
+        // const showSectors = tempEditor.StyleManager.getSectors();
+        // console.log("all sectors")
+        // console.log(showSectors)
+        // const sector = tempEditor.StyleManager.getSector('typography');
         const test = tempEditor.StyleManager.getProperties('typography')
         console.log("decoration!!")
-        console.log(sector)
+        // console.log(sector)
         console.log(test)
-        console.log(block)
+        // console.log(block)
         console.log(block._previousAttributes.type)
         if(block._previousAttributes.type==="text")
         {

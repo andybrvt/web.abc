@@ -9,7 +9,7 @@ export const TextAttributes = (props) => {
   if(property!=null) {
 
     const type = property.getType()
-    console.log(property.getOptions())
+
     const getDefValue = () => {
       return property.getDefaultValue()
     }

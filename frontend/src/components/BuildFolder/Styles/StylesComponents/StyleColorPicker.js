@@ -55,7 +55,7 @@ const theme = extendTheme({
     props.handleChange(e.target.value)
     setColor(e.target.value)
   }
-  
+
   return (
     <ChakraProvider theme={theme}>
       {props.label}

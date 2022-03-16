@@ -65,6 +65,7 @@ export const StyleFontSize = (props) => {
   const handleClick = (opt) => {
     console.log("test button click")
     // props.handleChange(opt)
+        setValue(opt)
         property.upValue(opt)
   }
 
@@ -78,7 +79,7 @@ export const StyleFontSize = (props) => {
     <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
 
       <Stack shouldWrapChildren direction='row'>
-        <NumberInput size='xs' maxW={16} value={value} onChange={handleChange} min={10}>
+        <NumberInput size='xs' maxW={16} value={value} onChange={handleClick} min={10}>
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />
@@ -91,7 +92,7 @@ export const StyleFontSize = (props) => {
         <Slider
           focusThumbOnChange={false}
           value={value}
-          onChange={handleChange}
+          onChange={handleClick}
         >
           <SliderTrack>
             <SliderFilledTrack />

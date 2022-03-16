@@ -468,6 +468,7 @@ export const Editor = (props) => {
       // }
 
       const target = editor.getSelected()
+      target.append(<div>what is this here</div>)
       const targetId = target.getId()
 
       target.set("script", `

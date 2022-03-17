@@ -15,7 +15,9 @@ export const SectorContainer = (props) => {
           properties.map((property, index) => {
 
             return(
-              <PropertyContainer property = {property}/>
+              <PropertyContainer
+                blockType={props.blockType}
+                property = {property}/>
 
             )
           })

@@ -6,10 +6,10 @@ import {StyleSelect} from './StylesComponents/StyleSelect';
 import {StyleStack} from './StylesComponents/StyleStack';
 import {StyleSlider} from './StylesComponents/StyleSlider';
 import {StyleFontSize} from './StylesComponents/StyleFontSize';
+import { Input } from '@chakra-ui/react'
 export const PropertyContainer = (props) => {
 
   const property = props.property
-
 
 
   const renderProperty = (property) => {
@@ -34,10 +34,27 @@ export const PropertyContainer = (props) => {
 
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
       var label = property.getLabel()
+      console.log(property)
+      if(property.getLabel()=='Top' &&props.blockType=="text"){
+        return (
+          <div>
+            <span class="attributeHeader">
+              Top
+            </span>
+
+            <Input style={{width:60, padding:10}} value={25}></Input>
+          </div>
+        )
+      }
+
       console.log(property.getLabel())
       if(property.getLabel()=='Font size'){
         return (
-          <StyleFontSize/>
+          <StyleFontSize
+            value = {curValue}
+            handleChange = {handleChange}
+            handleInput = {handleInput}
+            />
         )
       }
       return(

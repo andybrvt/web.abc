@@ -6,7 +6,7 @@ class ImageItem extends React.Component{
 
     const {img, name, value, isSelected} = this.props
     const item = {
-      img: img,
+      src: img,
       name: name,
       value: value
     }
@@ -15,7 +15,7 @@ class ImageItem extends React.Component{
         class = "imageItemContainer"
         onClick = {() => this.props.onImageClick(item)}>
 
-        <div class = "imageItem">
+        <div class = {`imageItem ${isSelected ? "selected" : ""}`}>
           <img width ={100} height = {100} src = {img} />
         </div>
 

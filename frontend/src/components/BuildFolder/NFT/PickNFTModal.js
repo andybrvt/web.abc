@@ -117,7 +117,7 @@ export const PickNFTModal  = (props) => {
 
           <div class = "nftName">
 
-            <div class = "nftNameText">This is a name of the nft</div>
+            <div class = "nftNameText">{img.name}</div>
 
           </div>
 
@@ -129,6 +129,9 @@ export const PickNFTModal  = (props) => {
 
     })
     // target.append(<div>did this work</div>)
+    setNft([])
+    setNFTImgs([])
+    setImages([])
     props.onClose()
   }
 
@@ -176,6 +179,7 @@ export const PickNFTModal  = (props) => {
 
             <ImagePickerCustom
               nftImgs = {nftImgs}
+              onPick = {onPickImages}
                />
 
         </ModalBody>

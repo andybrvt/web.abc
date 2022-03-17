@@ -17,7 +17,6 @@ class ImagePickerCustom extends React.Component{
     const pickedImages = this.state.selected
     let newerPickedImage
 
-    console.log(image)
     // if(pickedImages.has())
     if(pickedImages.has(image.value)){
       newerPickedImage = pickedImages.delete(image.value)
@@ -29,6 +28,12 @@ class ImagePickerCustom extends React.Component{
       this.setState({
         selected: newerPickedImage
       })
+
+      const pickedImageToArray = []
+      newerPickedImage.map((image, i) => pickedImageToArray.push(image))
+
+      console.log(pickedImageToArray)
+      this.props.onPick(pickedImageToArray)
     }
 
   }
@@ -36,7 +41,6 @@ class ImagePickerCustom extends React.Component{
   render(){
 
     const { nftImgs } = this.props;
-    console.log(this.props)
     return(
       <div class="pickerContainer">
         {

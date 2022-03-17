@@ -66,7 +66,7 @@ export const StyleFontSize = (props) => {
     console.log("test button click")
     // props.handleChange(opt)
         setValue(opt)
-        property.upValue(opt)
+        
   }
 
 

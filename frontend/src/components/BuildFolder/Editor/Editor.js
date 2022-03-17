@@ -152,7 +152,7 @@ const translatedItems = [
   "header2",
   "header3",
   "footer1",
-
+  "NFTShowcase"
 ]
 
 

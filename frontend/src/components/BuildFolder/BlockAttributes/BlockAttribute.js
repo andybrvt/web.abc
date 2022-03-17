@@ -79,14 +79,14 @@ export const BlockAttribute = (props) => {
               overflow:'auto'
             }}>
 
-              {/*
+
               <StylesContainer
                 editor = {props.editor}
                 />
-                */}
 
+              {/*
             <NewStylesContainer editor = {props.editor}/>
-            
+              */}
             </TabPanel>
 
 

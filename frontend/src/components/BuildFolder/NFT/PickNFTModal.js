@@ -11,8 +11,11 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+import './PickNFTModal.css'
 import $ from 'jquery';
-
+{/*
+import ImagePicker from 'react-image-picker'
+*/}
 
 
 
@@ -23,7 +26,7 @@ export const PickNFTModal  = (props) => {
   const Web3Api = useMoralisWeb3Api()
   const [nft, setNft] = useState([])
   const [nftImgs, setNFTImgs] = useState([])
-
+  const [editorMain, setEditorMain] = useState(null)
 
   const [images, setImages] = useState([])
 
@@ -35,6 +38,12 @@ export const PickNFTModal  = (props) => {
     }
   }, [props.isOpen])
 
+
+  useEffect(() => {
+    if(props.editor !== null){
+      setEditorMain(props.editor)
+    }
+  }, [props.editor])
 
   const fetchNFTs = async() => {
     const options = {
@@ -82,10 +91,21 @@ export const PickNFTModal  = (props) => {
   }
 
 
-  const onPickImages = () => {
-
+  const onPickImages = (list) => {
+    console.log(list)
+    setImages(list)
   }
 
+  const onApplyImages = () => {
+
+    const target = editorMain.getSelected()
+    images.forEach(img => {
+      console.log(img)
+      target.append(<img width = {100} height= {100}src = {img.src}/>)
+    })
+    // target.append(<div>did this work</div>)
+    props.onClose()
+  }
 
   return(
     <Modal
@@ -99,25 +119,38 @@ export const PickNFTModal  = (props) => {
         <ModalHeader>Modal Title</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
+          <div className = "nftHolder">
+            {/*
+              nftImgs.map((image, index) => {
+                console.log(image)
+                return(
+                  <img width={100} height={100} src={image}/>
+                )
+              })
+            */}
+
+
+
+
+
+
+
+          </div>
+
           {/*
           <ImagePicker
             images = {nftImgs.map((image, index) => ({src:image, value:index}))}
             onPick = {onPickImages.bind(this)}
             multiple
             />
-          */}
-          {/*
-            nftImgs.map((image, index) => {
-              console.log(image)
-              return(
-                <img width={100} height={100} src={image}/>
-              )
-            })
-          */}
+            */}
 
         </ModalBody>
         <ModalFooter>
           <Button onClick={props.onClose}>Close</Button>
+          <Button
+            colorScheme='blue'
+            onClick={onApplyImages}>Apply</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

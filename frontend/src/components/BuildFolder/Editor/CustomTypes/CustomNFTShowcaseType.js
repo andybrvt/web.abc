@@ -26,10 +26,10 @@ export const CustomNFTShowcase = editor => {
       defaults:{
         someprop: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
 
-        components: model => {
-          console.log(model)
-          return (<h1>Header test: <img src={model.get('someprop')} /></h1>);
-        },
+        // components: model => {
+        //   console.log(model)
+        //   return ();
+        // },
 
 
         'script-props': ["someprop",],

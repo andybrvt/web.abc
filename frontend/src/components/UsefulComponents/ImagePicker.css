@@ -1,3 +1,5 @@
 .pickerContainer{
   background: pink;
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -95,6 +95,13 @@ export const PickNFTModal  = (props) => {
     setImages(list)
   }
 
+  const onCloseModal = () =>{
+    setNft([])
+    setNFTImgs([])
+    setImages([])
+    props.onClose()
+  }
+
   const onApplyImages = () => {
 
     const target = editorMain.getSelected()
@@ -128,7 +135,7 @@ export const PickNFTModal  = (props) => {
   return(
     <Modal
       motionPreset = "none"
-      onClose={props.onClose}
+      onClose={onCloseModal}
       isOpen={props.isOpen}
       scrollBehavior={props.scrollBehavior}
       size = {'6xl'}
@@ -173,7 +180,7 @@ export const PickNFTModal  = (props) => {
 
         </ModalBody>
         <ModalFooter>
-          <Button onClick={props.onClose}>Close</Button>
+          <Button onClick={onCloseModal}>Close</Button>
           <Button
             colorScheme='blue'
             onClick={onApplyImages}>Apply</Button>

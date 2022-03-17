@@ -13,6 +13,26 @@ class ImagePickerCustom extends React.Component{
     }
   }
 
+  onImageClick = (image) => {
+    const pickedImages = this.state.selected
+    let newerPickedImage
+
+    console.log(image)
+    // if(pickedImages.has())
+    if(pickedImages.has(image.value)){
+      newerPickedImage = pickedImages.delete(image.value)
+    } else {
+      newerPickedImage = pickedImages.set(image.value, image)
+    }
+
+    if(newerPickedImage){
+      this.setState({
+        selected: newerPickedImage
+      })
+    }
+
+  }
+
   render(){
 
     const { nftImgs } = this.props;
@@ -24,8 +44,11 @@ class ImagePickerCustom extends React.Component{
 
             return(
               <ImageItem
+                isSelected = {this.state.selected.has(index)}
                 img = {item.img}
                 name = {item.name}
+                value = {index}
+                onImageClick = {this.onImageClick}
                  />
             )
           })

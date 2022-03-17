@@ -1,13 +1,18 @@
+import image12 from '../../../../images/image12.png';
+
+
 export const NFTShowcaseBlocks = [
 
   {
     id: 'NFTShowcase',
     label: "NFTShowcase",
-    category: "test",
+    category: "BlockChain",
     activate: true,
     media:
     `
-      <div>This is just a list of images</div>
+      <div>
+        <img class="img" src="${image12}" />
+      </div>
     `,
     content: {type: 'NFTShowcase'}
   },

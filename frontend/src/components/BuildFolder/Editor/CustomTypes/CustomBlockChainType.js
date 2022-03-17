@@ -11,7 +11,6 @@ const script = function(props) {
 
 export const CustomNFTShowcase = editor => {
 
-
   editor.DomComponents.addType("NFTShowcase", {
 
     isComponent: el => {
@@ -31,22 +30,52 @@ export const CustomNFTShowcase = editor => {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
+            background-image: linear-gradient(to right, #8360c3, #2ebf91);
           }
           .nftContainers{
 
             flex:1;
             flex-basis: 30%;
-            background-color: red;
             margin: 2px;
+            padding: 25px 0px;
           }
-          .nftContainers img{
+          .nftCards {
+            width: 300px;
+            height: 300px;
             position: relative;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 5px;
+            background: white;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 
+          }
+          .nftCards img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+          }
+          .nftName{
+            position: relative;
+            height: 100px;
+
+          }
+          .nftNameText{
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 80%;
+            transform: translateX(-50%) translateY(-50%);
+            color: white;
+            font-size: 30px;
+            text-align: center;
           }
 
         `,
+
 
 
         'script-props': ["someprop",],
@@ -105,6 +134,28 @@ export const CustomNFTShowcase = editor => {
         dblclick: 'onActive'
       },
 
+    }
+
+  })
+}
+
+
+export const CustomTransactionList = editor => {
+
+
+  editor.DomComponents.addType("TransactionList", {
+    isComponent: el => {
+      return el.id === "TransactionList"
+    },
+
+    model: {
+      name: 'TransactionList',
+      tagName: 'Transaction List',
+      resizable: 'true',
+      defaults: {
+
+        content: `<div>stuff here</div>`
+      }
     }
 
   })

@@ -62,7 +62,7 @@ export const PickNFTModal  = (props) => {
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        setNFTImgs(oldArray => [...oldArray, fixURL(data.image)])
+        setNFTImgs(oldArray => [...oldArray, {img: fixURL(data.image), name: data.name}])
         // console.log(data.image)
 
         // $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.image)+"'/>" )
@@ -104,11 +104,23 @@ export const PickNFTModal  = (props) => {
       console.log(img)
       target.append(
         <div class = "nftContainers">
-          <img width = {100} height= {100}src = {img.src}/>
+
+          <div class = "nftCards">
+            <img class = "nftImages" src = {img.src}/>
+          </div>
+
+          <div class = "nftName">
+
+            <div class = "nftNameText">This is a name of the nft</div>
+
+          </div>
+
 
         </div>
 
       )
+
+
     })
     // target.append(<div>did this work</div>)
     props.onClose()
@@ -146,7 +158,7 @@ export const PickNFTModal  = (props) => {
 
           {/*
           <ImagePicker
-            images = {nftImgs.map((image, index) => ({src:image, value:index}))}
+            images = {nftImgs.map((image, index) => ({src:image.img, value:index}))}
             onPick = {onPickImages.bind(this)}
             multiple
             />

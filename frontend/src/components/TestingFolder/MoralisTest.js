@@ -8,6 +8,31 @@ export const MoralisTest = () => {
   const { web3 } = useMoralis()
   const Web3Api = useMoralisWeb3Api()
   const [nft, setNft] = useState([])
+  const [transactionList, setTransactions] = useState([])
+
+
+
+
+
+
+  const getTransactions = async() => {
+
+    const options = {
+      chain: "eth",
+      address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+      order: "desc",
+      from_block: "0",
+    };
+    const transactions = await Web3Api.account.getTransactions(options);
+
+    console.log(transactions)
+
+    const transList = transactions.result
+
+    setTransactions(transList.slice(0, 10))
+  }
+
+
 
   const fetchNFTs = async () => {
 
@@ -61,11 +86,20 @@ export const MoralisTest = () => {
   return(
     <div>
       <button
-        onClick = {fetchNFTs}
+        onClick = {getTransactions}
         >click this for a test</button>
-      <div id = "content">
 
-      </div>
+      {
+        transactionList.map((item, index) =>{
+          console.log(item)
+          return(
+            <div key = {index}>
+              hash: {item.hash}
+              
+            </div>
+          )
+        })
+      }
     </div>
   )
 }

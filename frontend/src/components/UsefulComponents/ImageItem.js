@@ -11,9 +11,14 @@ class ImageItem extends React.Component{
       value: value
     }
     return(
-      <div onClick = {() => this.props.onImageClick(item)}>
-      
-        <img width ={100} height = {100} src = {img} />
+      <div
+        class = "imageItemContainer"
+        onClick = {() => this.props.onImageClick(item)}>
+
+        <div class = "imageItem">
+          <img width ={100} height = {100} src = {img} />
+        </div>
+
       </div>
     )
   }

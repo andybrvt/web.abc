@@ -64,8 +64,9 @@ import {
   CustomBoxType
 } from './CustomTypes/CustomBoxType';
 import {
-  CustomNFTShowcase
-} from './CustomTypes/CustomNFTShowcaseType';
+  CustomNFTShowcase,
+  CustomTransactionList,
+} from './CustomTypes/CustomBlockChainType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -130,7 +131,8 @@ const PLUGINS = [
   grapesjsStyleBg,
   CustomLinkText1,
   CustomBoxType,
-  CustomNFTShowcase
+  CustomNFTShowcase,
+  CustomTransactionList,
 ]
 
 
@@ -152,7 +154,8 @@ const translatedItems = [
   "header2",
   "header3",
   "footer1",
-  "NFTShowcase"
+  "NFTShowcase",
+  "TransactionList"
 ]
 
 
@@ -244,30 +247,30 @@ export const Editor = (props) => {
       },
 
       // this is the local storage
-      storageManager: {
-        id: 'gjs-', // just the identifier that you will be using
-        type: 'local', // type of storage
-        autosave: true,
-        autoload: true,
-        stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
-        storeComponents: true, // enable/disable storing of componets in JSON format
-        storeStyles: true,
-        storeHtml: true,
-        storeCss: true
-      },
-      // // this is the remote storage (probally gonna use this one here)
       // storageManager: {
-      //   type: 'remote',
-      //   stepsBeforeSave: 2,
-      //   urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
-      //   urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
-      //   contentTypeJson: true,
-      //   params: {
-      //   },
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   }
+      //   id: 'gjs-', // just the identifier that you will be using
+      //   type: 'local', // type of storage
+      //   autosave: true,
+      //   autoload: true,
+      //   stepsBeforeSave: 1, // how mnay changes are neccary before save happens,
+      //   storeComponents: true, // enable/disable storing of componets in JSON format
+      //   storeStyles: true,
+      //   storeHtml: true,
+      //   storeCss: true
       // },
+      // // this is the remote storage (probally gonna use this one here)
+      storageManager: {
+        type: 'remote',
+        stepsBeforeSave: 2,
+        urlStore: `${global.API_ENDPOINT}/builder/saveWebsite/${websiteId}`,
+        urlLoad: `${global.API_ENDPOINT}/builder/loadWebsite/${websiteId}`, // django endpoint would go here
+        contentTypeJson: true,
+        params: {
+        },
+        headers: {
+          "Content-Type": "application/json",
+        }
+      },
       assetManager:{
         assets:[
           'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
@@ -467,29 +470,43 @@ export const Editor = (props) => {
       //   }
       // }
 
-      const target = editor.getSelected()
-      const targetId = target.getId()
-
-      target.set("script", `
-
-        async function script(props){
-          Moralis.initialize("bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg");
-          Moralis.serverURL = "https://9gobbcdpfilv.usemoralis.com:2053/server";
-
-          console.log('does this work')
-          const options = {
-            chain: "rinkeby",
-            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
-          };
-
-          const nftList = await Moralis.Web3.getNFTs(options);
-
-
-        }
 
 
 
-      `)
+      // SET SCRIPTS AT DEPLOYMENT ONLY (OR YOU CAN RUN THIS ON JUST THE PREVIEW PAGE
+      // NO NEED TO HAVE ANY CONNECTIONS WITH THE EDITOR)
+      // const target = editor.getSelected()
+      // const targetId = target.getId()
+      //
+      // target.set("script", `
+      //
+      //   async function script(props){
+      //     Moralis.initialize("bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg");
+      //     Moralis.serverURL = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+      //
+      //     console.log('does this work 12341234')
+      //     const options = {
+      //       chain: "rinkeby",
+      //       address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+      //     };
+      //
+      //     const nftList = await Moralis.Web3.getNFTs(options);
+      //
+      //     console.log(nftList)
+      //
+      //     // used to set it after wards when running the program
+      //     // const collection = document.getElementsByClassName("nftImages")
+      //     //
+      //     // for(let i = 0; i< collection.length; i++){
+      //     //     collection[i].src = nftList[]
+      //     // }
+      //
+      //
+      //   }
+      //
+      //
+      //
+      // `)
 
       //HERE IS A WAY TO SET THE JAVASCRIPT ON CLICK FUNCTION
       // GONNA PUT THIS IN A FUNCTION CALL LATER

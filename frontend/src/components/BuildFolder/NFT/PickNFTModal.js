@@ -13,9 +13,8 @@ import {
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import './PickNFTModal.css'
 import $ from 'jquery';
-{/*
 import ImagePicker from 'react-image-picker'
-*/}
+import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
 
 
 
@@ -132,6 +131,7 @@ export const PickNFTModal  = (props) => {
       onClose={props.onClose}
       isOpen={props.isOpen}
       scrollBehavior={props.scrollBehavior}
+      size = {'6xl'}
     >
       <ModalOverlay />
       <ModalContent>
@@ -157,12 +157,19 @@ export const PickNFTModal  = (props) => {
           </div>
 
           {/*
-          <ImagePicker
-            images = {nftImgs.map((image, index) => ({src:image.img, value:index}))}
-            onPick = {onPickImages.bind(this)}
-            multiple
-            />
+            <ImagePicker
+              images = {nftImgs.map((image, index) => ({src:image.img, value:index}))}
+              onPick = {onPickImages.bind(this)}
+              multiple
+              />
+
             */}
+
+
+
+            <ImagePickerCustom
+              nftImgs = {nftImgs}
+               />
 
         </ModalBody>
         <ModalFooter>

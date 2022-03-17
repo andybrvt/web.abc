@@ -16,5 +16,15 @@ export const NFTShowcaseBlocks = [
     `,
     content: {type: 'NFTShowcase'}
   },
+  {
+    id: 'TransactionList',
+    label: 'TransactionList',
+    category: "BlockChain",
+    activate: true,
+    media: `
+      <div>Here is my transaction list</div>
+    `,
+    content: {type: 'TransactionList'}
+  }
 
 ]

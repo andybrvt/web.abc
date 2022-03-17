@@ -9,7 +9,7 @@ export const TextAttributes = (props) => {
   if(property!=null) {
 
     const type = property.getType()
-    console.log(property.getOptions())
+
     const getDefValue = () => {
       return property.getDefaultValue()
     }
@@ -27,14 +27,15 @@ export const TextAttributes = (props) => {
   const handleClick = (opt) => {
     console.log("test button click")
     // props.handleChange(opt)
-        property.upValue(opt)
+    props.setThisProperty("font-weight")
+    if(property!=null){
+      property.upValue(opt)
+    }
+
   }
 
 
 
-    const handleInput = (value) => {
-        property.upValue(value, { partial: true })
-      }
 
   return(
     <div style={{flexDirection:'row', display:'flex',}}>

@@ -11,9 +11,12 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
-import $ from 'jquery';
-import ImagePicker from 'react-image-picker'
 import './PickNFTModal.css'
+import $ from 'jquery';
+{/*
+import ImagePicker from 'react-image-picker'
+*/}
+
 
 
 export const PickNFTModal  = (props) => {
@@ -153,13 +156,13 @@ export const PickNFTModal  = (props) => {
 
           </div>
 
-
+          {/*
           <ImagePicker
             images = {nftImgs.map((image, index) => ({src:image.img, value:index}))}
             onPick = {onPickImages.bind(this)}
             multiple
             />
-
+            */}
 
         </ModalBody>
         <ModalFooter>

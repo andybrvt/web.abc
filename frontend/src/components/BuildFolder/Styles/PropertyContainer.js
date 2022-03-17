@@ -5,7 +5,7 @@ import {StyleSelectInput} from './StylesComponents/StyleSelectInput';
 import {StyleSelect} from './StylesComponents/StyleSelect';
 import {StyleStack} from './StylesComponents/StyleStack';
 import {StyleSlider} from './StylesComponents/StyleSlider';
-
+import {StyleFontSize} from './StylesComponents/StyleFontSize';
 export const PropertyContainer = (props) => {
 
   const property = props.property
@@ -34,7 +34,12 @@ export const PropertyContainer = (props) => {
 
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
       var label = property.getLabel()
-
+      console.log(property.getLabel())
+      if(property.getLabel()=='Font size'){
+        return (
+          <StyleFontSize/>
+        )
+      }
       return(
         <StyleSelectInput
           label = {label}

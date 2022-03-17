@@ -9,7 +9,7 @@ export const StyleRadio = (props) => {
   if(property!=null) {
 
     const type = property.getType()
-    console.log(property.getOptions())
+
     const getDefValue = () => {
       return property.getDefaultValue()
     }
@@ -27,7 +27,10 @@ export const StyleRadio = (props) => {
   const handleClick = (opt) => {
     console.log("test button click")
     // props.handleChange(opt)
-        property.upValue(opt)
+    props.setThisProperty("text-align")
+    if(property!=null){
+      property.upValue(opt)
+    }
   }
 
 

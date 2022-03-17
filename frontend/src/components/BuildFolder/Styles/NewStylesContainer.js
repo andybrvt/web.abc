@@ -72,9 +72,14 @@ export const NewStylesContainer = (props) => {
   const [editorMain, setEditor] = useState(null);
   const [sectors, setSectors] = useState([]);
   const [property, setProperty] = useState(null);
+  const [currProperty, setCurrProperty] = useState(null);
   const handleChange = (value) => setValue(value)
   const editor=null
 
+
+  const setThisProperty=(opt)=> {
+    setCurrProperty(opt)
+  }
   // all sectors: 'general', 'flex', 'dimension', 'typography', 'decorations','extra'
 
 // for sector typography 8 properties
@@ -101,21 +106,21 @@ export const NewStylesContainer = (props) => {
       const tempEditor = props.editor
       setEditor(props.editor)
       props.editor.on('component:selected', block =>{
-        const showSectors = tempEditor.StyleManager.getSectors();
-        console.log("all sectors")
-        console.log(showSectors)
-        const sector = tempEditor.StyleManager.getSector('typography');
-        const test = tempEditor.StyleManager.getProperties('typography')
-        console.log("decoration!!")
-        console.log(sector)
-        console.log(test)
-        console.log(block)
+        // const showSectors = tempEditor.StyleManager.getSectors();
+        // console.log("all sectors")
+        // console.log(showSectors)
+        // const sector = tempEditor.StyleManager.getSector('typography');
+        // const test = tempEditor.StyleManager.getProperties('typography')
+        // console.log(sector)
+        // console.log(test)
+        console.log("current property set")
+        console.log(currProperty)
+        // console.log(block)
         console.log(block._previousAttributes.type)
         if(block._previousAttributes.type==="text")
         {
-          console.log("helooo")
-          const property = tempEditor.StyleManager.getProperty('typography', 'font-size');
-          console.log(property)
+          const property = tempEditor.StyleManager.getProperty('typography',currProperty );
+
 
           setProperty(property)
         }
@@ -127,15 +132,12 @@ export const NewStylesContainer = (props) => {
 
       return () => {
         props.editor.off('component:selected', block => {
-          const showSectors = tempEditor.StyleManager.getSectors();
-          console.log(showSectors)
         })
       }
     }
-
     // for unmount
 
-  }, [props.editor])
+  }, [props.editor, currProperty])
 
 
   return(
@@ -196,6 +198,7 @@ export const NewStylesContainer = (props) => {
             </div>
 
             <TextAttributes
+              setThisProperty={setThisProperty}
               property={property}
               editor={editor}
               />
@@ -213,6 +216,7 @@ export const NewStylesContainer = (props) => {
         <div style={{flexDirection:'row', display:'flex', marginTop:20, padding:10, marginBottom:10}}>
 
           <StyleRadio
+            setThisProperty={setThisProperty}
             property={property}
             editor={editor}
             />

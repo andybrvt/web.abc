@@ -58,7 +58,9 @@ export const StylesContainer = (props) => {
         {sectors.map((item,index) => {
           console.log(item)
           return(
-            <SectorContainer sector = {item}/>
+            <SectorContainer
+              blockType={props.blockType}
+              sector = {item}/>
           )
         })}
       </div>

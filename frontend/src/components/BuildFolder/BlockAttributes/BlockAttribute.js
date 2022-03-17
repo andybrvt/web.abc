@@ -81,6 +81,7 @@ export const BlockAttribute = (props) => {
 
 
               <StylesContainer
+                blockType={props.blockType}
                 editor = {props.editor}
                 />
 

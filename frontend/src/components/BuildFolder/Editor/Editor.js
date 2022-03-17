@@ -738,7 +738,9 @@ export const Editor = (props) => {
           <div id = "gjs"></div>
         </div>
 
-        <BlockAttribute editor = {editorMain}/>
+        <BlockAttribute
+          blockType={BlockClickType}
+          editor = {editorMain}/>
 
       </div>
 

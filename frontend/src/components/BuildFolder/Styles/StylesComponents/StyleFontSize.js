@@ -43,7 +43,7 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 
 export const StyleFontSize = (props) => {
   const [value, setValue] = React.useState(20)
-  const handleChange = (value) => setValue(value)
+
 
 
   console.log("start")
@@ -62,13 +62,10 @@ export const StyleFontSize = (props) => {
 
   }
 
-  const handleClick = (opt) => {
-    console.log("test button click")
-    // props.handleChange(opt)
-        setValue(opt)
-        
+  const handleChange = (e) => {
+    setValue(e)
+    props.handleChange(e)
   }
-
 
 
     const handleInput = (value) => {
@@ -79,7 +76,7 @@ export const StyleFontSize = (props) => {
     <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
 
       <Stack shouldWrapChildren direction='row'>
-        <NumberInput size='xs' maxW={16} value={value} onChange={handleClick} min={10}>
+        <NumberInput size='xs' maxW={16} value={value} onChange = {e=>handleChange(e)} min={10}>
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />
@@ -92,7 +89,7 @@ export const StyleFontSize = (props) => {
         <Slider
           focusThumbOnChange={false}
           value={value}
-          onChange={handleClick}
+          onChange = {e=>handleChange(e)}
         >
           <SliderTrack>
             <SliderFilledTrack />

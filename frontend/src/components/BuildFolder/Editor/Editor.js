@@ -99,6 +99,7 @@ import axios from 'axios';
 import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
 import {PickNFTModal} from '../NFT/PickNFTModal';
+import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 
 
 const PLUGINS = [
@@ -160,6 +161,9 @@ const translatedItems = [
 
 
 export const Editor = (props) => {
+
+  const Web3Api = useMoralisWeb3Api()
+
 
   // For nft modal
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -403,6 +407,30 @@ export const Editor = (props) => {
       } else {
         editor.setDragMode("absolute")
       }
+    })
+
+    editor.on("block:drag:stop", async(block, obj) => {
+      console.log(block.get('type'))
+      const type = block.get('type')
+
+      if(type === "TransactionList"){
+        const options = {
+          chain: "eth",
+          address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+          order: "desc",
+          from_block: "0",
+        };
+        const transactions = await Web3Api.account.getTransactions(options)
+        console.log(transactions)
+
+        const recentTransactions = transactions.result.slice(0,20)
+        recentTransactions.forEach((transaction) => {
+          block.append(<div>{transaction.hash}</div>)
+
+        })
+      }
+
+
     })
 
 

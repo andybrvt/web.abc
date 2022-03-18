@@ -10,11 +10,8 @@ export const StylesContainer = (props) => {
   const [editorMain, setEditor] = useState(null);
   const [sectors, setSectors] = useState([]);
   if(props.editor !== null){
-  console.log(props.editor)
   const sector1=props.editor.StyleManager.getSector('typography');
-  console.log(sector1)
   const property = sector1.getProperties()
-  console.log(property)
 }
   // return function in useEffect will be the unmount
   useEffect(() => {
@@ -56,7 +53,6 @@ export const StylesContainer = (props) => {
       >
       <div class = "styles-manager">
         {sectors.map((item,index) => {
-          console.log(item)
           return(
             <SectorContainer
               blockType={props.blockType}

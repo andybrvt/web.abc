@@ -11,6 +11,8 @@ const script = function(props) {
 
 export const CustomNFTShowcase = editor => {
 
+
+
   editor.DomComponents.addType("NFTShowcase", {
 
     isComponent: el => {
@@ -169,10 +171,11 @@ export const CustomTransactionList = editor => {
       }
     },
     view: {
+      //render when first loading in
       onRender(){
-        console.log(this.model)
-        this.model.components("")
-        this.model.append(<div>what is this</div>)
+        // console.log(this.model)
+        // this.model.components("")
+        // this.model.append(<div>what is this</div>)
       }
     }
 

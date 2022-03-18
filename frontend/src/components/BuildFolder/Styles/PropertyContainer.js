@@ -6,6 +6,7 @@ import {StyleSelect} from './StylesComponents/StyleSelect';
 import {StyleStack} from './StylesComponents/StyleStack';
 import {StyleSlider} from './StylesComponents/StyleSlider';
 import {StyleFontSize} from './StylesComponents/StyleFontSize';
+import {StylePositionTop} from './StylesComponents/StylePositionTop';
 import { Input } from '@chakra-ui/react'
 export const PropertyContainer = (props) => {
 
@@ -35,15 +36,14 @@ export const PropertyContainer = (props) => {
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
       var label = property.getLabel()
       console.log(property)
-      if(property.getLabel()=='Top' &&props.blockType=="text"){
+      if(property.getLabel()=='Top' && props.blockType=="text"){
         return (
-          <div>
-            <span class="attributeHeader">
-              Top
-            </span>
+          <StylePositionTop
+            value = {curValue}
+            handleChange = {handleChange}
+            handleInput = {handleInput}
+            />
 
-            <Input style={{width:60, padding:10}} value={25}></Input>
-          </div>
         )
       }
 

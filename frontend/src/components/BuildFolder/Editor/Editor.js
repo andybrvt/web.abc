@@ -243,10 +243,15 @@ export const Editor = (props) => {
          componentFirst: true,
        },
       canvas:{
-        styles: [],
+        styles: [
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
+        ],
         scripts:  [
           "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",
-          "https://unpkg.com/moralis/dist/moralis.js"
+          "https://unpkg.com/moralis/dist/moralis.js",
+          "https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js",
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+
         ]
       },
 
@@ -425,7 +430,13 @@ export const Editor = (props) => {
 
         const recentTransactions = transactions.result.slice(0,20)
         recentTransactions.forEach((transaction) => {
-          block.append(<div>{transaction.hash}</div>)
+          console.log(transaction)
+          block.append(
+            <div class = "transactionItem">
+              <div class="btn btn-secondary buttonOpa" >{transaction.hash}</div>
+            </div>
+
+          )
 
         })
       }

@@ -159,8 +159,15 @@ export const CustomTransactionList = editor => {
         styles: `
           .nft-transactions-container{
             background: pink;
-            width: 80%;
             height: 200px;
+            overflow:auto;
+            height: 300px;
+          }
+          .transactionItem{
+            padding: 20px;
+          }
+          .buttonOpa{
+            opacity: 0.5;
           }
         `,
 

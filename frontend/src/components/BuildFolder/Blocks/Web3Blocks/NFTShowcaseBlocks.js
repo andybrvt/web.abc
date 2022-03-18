@@ -24,7 +24,9 @@ export const NFTShowcaseBlocks = [
     media: `
       <div>Here is my transaction list</div>
     `,
-    content: {type: 'TransactionList'}
+    content: {
+      activeOnRender: 1,
+      type: 'TransactionList'}
   }
 
 ]

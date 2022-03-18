@@ -153,10 +153,30 @@ export const CustomTransactionList = editor => {
       tagName: 'Transaction List',
       resizable: 'true',
       defaults: {
+        attributes: {class: 'nft-transactions-container'},
+        styles: `
+          .nft-transactions-container{
+            background: pink;
+            width: 80%;
+            height: 200px;
+          }
+        `,
 
-        content: `<div>stuff here</div>`
+
+      },
+      init(){
+
+      }
+    },
+    view: {
+      onRender(){
+        console.log(this.model)
+        this.model.components("")
+        this.model.append(<div>what is this</div>)
       }
     }
+
+
 
   })
 }

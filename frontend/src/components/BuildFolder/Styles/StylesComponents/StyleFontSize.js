@@ -43,11 +43,6 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 
 export const StyleFontSize = (props) => {
   const [value, setValue] = React.useState(20)
-
-
-
-  console.log("start")
-  console.log(props.property)
   const property=props.property
   if(property!=null) {
 

@@ -11,6 +11,8 @@ const script = function(props) {
 
 export const CustomNFTShowcase = editor => {
 
+
+
   editor.DomComponents.addType("NFTShowcase", {
 
     isComponent: el => {
@@ -153,10 +155,38 @@ export const CustomTransactionList = editor => {
       tagName: 'Transaction List',
       resizable: 'true',
       defaults: {
+        attributes: {class: 'nft-transactions-container'},
+        styles: `
+          .nft-transactions-container{
+            background: pink;
+            height: 200px;
+            overflow:auto;
+            height: 300px;
+          }
+          .transactionItem{
+            padding: 20px;
+          }
+          .buttonOpa{
+            opacity: 0.5;
+          }
+        `,
 
-        content: `<div>stuff here</div>`
+
+      },
+      init(){
+
+      }
+    },
+    view: {
+      //render when first loading in
+      onRender(){
+        // console.log(this.model)
+        // this.model.components("")
+        // this.model.append(<div>what is this</div>)
       }
     }
+
+
 
   })
 }

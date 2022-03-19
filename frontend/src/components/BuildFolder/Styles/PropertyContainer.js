@@ -47,7 +47,6 @@ export const PropertyContainer = (props) => {
         )
       }
 
-      console.log(property.getLabel())
       if(property.getLabel()=='Font size'){
         return (
           <StyleFontSize

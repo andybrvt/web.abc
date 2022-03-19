@@ -13,9 +13,8 @@ import {
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import './PickNFTModal.css'
 import $ from 'jquery';
-{/*
 import ImagePicker from 'react-image-picker'
-*/}
+import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
 
 
 
@@ -96,6 +95,13 @@ export const PickNFTModal  = (props) => {
     setImages(list)
   }
 
+  const onCloseModal = () =>{
+    setNft([])
+    setNFTImgs([])
+    setImages([])
+    props.onClose()
+  }
+
   const onApplyImages = () => {
 
     const target = editorMain.getSelected()
@@ -111,7 +117,7 @@ export const PickNFTModal  = (props) => {
 
           <div class = "nftName">
 
-            <div class = "nftNameText">This is a name of the nft</div>
+            <div class = "nftNameText">{img.name}</div>
 
           </div>
 
@@ -123,15 +129,19 @@ export const PickNFTModal  = (props) => {
 
     })
     // target.append(<div>did this work</div>)
+    setNft([])
+    setNFTImgs([])
+    setImages([])
     props.onClose()
   }
 
   return(
     <Modal
       motionPreset = "none"
-      onClose={props.onClose}
+      onClose={onCloseModal}
       isOpen={props.isOpen}
       scrollBehavior={props.scrollBehavior}
+      size = {'6xl'}
     >
       <ModalOverlay />
       <ModalContent>
@@ -157,16 +167,24 @@ export const PickNFTModal  = (props) => {
           </div>
 
           {/*
-          <ImagePicker
-            images = {nftImgs.map((image, index) => ({src:image.img, value:index}))}
-            onPick = {onPickImages.bind(this)}
-            multiple
-            />
+            <ImagePicker
+              images = {nftImgs.map((image, index) => ({src:image.img, value:index}))}
+              onPick = {onPickImages.bind(this)}
+              multiple
+              />
+
             */}
+
+
+
+            <ImagePickerCustom
+              nftImgs = {nftImgs}
+              onPick = {onPickImages}
+               />
 
         </ModalBody>
         <ModalFooter>
-          <Button onClick={props.onClose}>Close</Button>
+          <Button onClick={onCloseModal}>Close</Button>
           <Button
             colorScheme='blue'
             onClick={onApplyImages}>Apply</Button>

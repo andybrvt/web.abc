@@ -432,36 +432,47 @@ export const Editor = (props) => {
         const recentTransactions = transactions.result.slice(0,20)
         const transactionAddress = 'https://etherscan.io/tx/'
         const addressAddress = "https://etherscan.io/address/"
-        recentTransactions.forEach((transaction) => {
+
+        block.components("")
+        block.append(<div>Latest Transactions</div>)
+        recentTransactions.forEach((transaction,index) => {
           console.log(transaction)
 
 
 
           block.append(
-            <div class = "transactionItem">
-              <div>TX</div>
-              <div>
-                <a href = {`${transactionAddress}`+`${transaction.hash}`}>
-                  {transaction.hash.slice(0,13)+'...'}
-                </a>
+            <div key = {index} class = "transactionItem">
+              <div class = "txBox">
+                <div>TX</div>
               </div>
 
-              <div class="toFromContainer">
+              <div class = "hashBlock">
                 <div>
-                  From:
-                  <a href = {`${addressAddress}`+`${transaction.from_address}`}>
-                    {transaction.from_address.slice(0,13)+'...'}
-                  </a>
-                </div>
-                <div>
-                  To:
-                  <a href = {`${addressAddress}`+`${transaction.to_address}`}>
-                    {transaction.to_address.slice(0,13)+'...'}
+                  <a href = {`${transactionAddress}`+`${transaction.hash}`}>
+                    {transaction.hash.slice(0,13)+'...'}
                   </a>
                 </div>
               </div>
 
-              <div>{renderTimestamp(transaction.block_timestamp)}</div>
+              <div class ="toFromBlock">
+                <div class="toFromContainer">
+                  <div>
+                    From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
+                      {transaction.from_address.slice(0,13)+'...'}
+                    </a>
+                  </div>
+                  <div>
+                    To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
+                      {transaction.to_address.slice(0,13)+'...'}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class ="dateBlock">
+                <div>{renderTimestamp(transaction.block_timestamp)}</div>
+              </div>
+
 
             </div>
 

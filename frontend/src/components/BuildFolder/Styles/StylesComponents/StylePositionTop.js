@@ -43,15 +43,29 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 
 export const StylePositionTop = (props) => {
   const [value, setValue] = React.useState(20)
+  const property=props.property
+  if(property!=null) {
+
+    const type = property.getType()
+
+    const getDefValue = () => {
+      return property.getDefaultValue()
+    }
+    const options = props.options
+    const field = props.field
 
 
+  }
 
   const handleChange = (e) => {
-    console.log(e)
     setValue(e)
     props.handleChange(e)
   }
 
+
+    const handleInput = (value) => {
+        property.upValue(value, { partial: true })
+      }
 
   return(
     <div>
@@ -61,10 +75,6 @@ export const StylePositionTop = (props) => {
       <Input onChange = {e=>handleChange(e)} style={{width:60, padding:10}} ></Input>
 
     </div>
-
-
-
-
 
 
 

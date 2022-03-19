@@ -47,6 +47,17 @@ export const PropertyContainer = (props) => {
         )
       }
 
+      if(property.getLabel()=='Top' && props.blockType=="text"){
+        return (
+          <StylePositionTop
+            value = {curValue}
+            handleChange = {handleChange}
+            handleInput = {handleInput}
+            />
+
+        )
+      }
+
       if(property.getLabel()=='Font size'){
         return (
           <StyleFontSize

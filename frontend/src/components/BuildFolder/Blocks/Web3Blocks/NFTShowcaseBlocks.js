@@ -1,4 +1,5 @@
 import image12 from '../../../../images/image12.png';
+import image13 from '../../../../images/image13.png';
 
 
 export const NFTShowcaseBlocks = [
@@ -22,7 +23,9 @@ export const NFTShowcaseBlocks = [
     category: "BlockChain",
     activate: true,
     media: `
-      <div>Here is my transaction list</div>
+      <div>
+        <img class="img" src="${image13}" />
+      </div>
     `,
     content: {
       activeOnRender: 1,

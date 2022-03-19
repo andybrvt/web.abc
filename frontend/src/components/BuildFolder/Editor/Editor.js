@@ -416,69 +416,73 @@ export const Editor = (props) => {
     })
 
     editor.on("block:drag:stop", async(block, obj) => {
-      console.log(block.get('type'))
-      const type = block.get('type')
-
-      if(type === "TransactionList"){
-        const options = {
-          chain: "eth",
-          address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
-          order: "desc",
-          from_block: "0",
-        };
-        const transactions = await Web3Api.account.getTransactions(options)
-        console.log(transactions)
-
-        const recentTransactions = transactions.result.slice(0,20)
-        const transactionAddress = 'https://etherscan.io/tx/'
-        const addressAddress = "https://etherscan.io/address/"
-
-        block.components("")
-        block.append(<div>Latest Transactions</div>)
-        recentTransactions.forEach((transaction,index) => {
-          console.log(transaction)
+      if(block !== null){
 
 
+        const type = block.get('type')
 
-          block.append(
-            <div key = {index} class = "transactionItem">
-              <div class = "txBox">
-                <div>TX</div>
-              </div>
+        if(type === "TransactionList"){
+          const options = {
+            chain: "eth",
+            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            order: "desc",
+            from_block: "0",
+          };
+          const transactions = await Web3Api.account.getTransactions(options)
+          console.log(transactions)
 
-              <div class = "hashBlock">
-                <div>
-                  <a href = {`${transactionAddress}`+`${transaction.hash}`}>
-                    {transaction.hash.slice(0,13)+'...'}
-                  </a>
+          const recentTransactions = transactions.result.slice(0,20)
+          const transactionAddress = 'https://etherscan.io/tx/'
+          const addressAddress = "https://etherscan.io/address/"
+
+          block.components("")
+          block.append(<div>Latest Transactions</div>)
+          recentTransactions.forEach((transaction,index) => {
+            console.log(transaction)
+
+
+
+            block.append(
+              <div key = {index} class = "transactionItem">
+                <div class = "txBox">
+                  <div>TX</div>
                 </div>
-              </div>
 
-              <div class ="toFromBlock">
-                <div class="toFromContainer">
+                <div class = "hashBlock">
                   <div>
-                    From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
-                      {transaction.from_address.slice(0,13)+'...'}
-                    </a>
-                  </div>
-                  <div>
-                    To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
-                      {transaction.to_address.slice(0,13)+'...'}
+                    <a href = {`${transactionAddress}`+`${transaction.hash}`}>
+                      {transaction.hash.slice(0,13)+'...'}
                     </a>
                   </div>
                 </div>
+
+                <div class ="toFromBlock">
+                  <div class="toFromContainer">
+                    <div>
+                      From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
+                        {transaction.from_address.slice(0,13)+'...'}
+                      </a>
+                    </div>
+                    <div>
+                      To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
+                        {transaction.to_address.slice(0,13)+'...'}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class ="dateBlock">
+                  <div>{renderTimestamp(transaction.block_timestamp)}</div>
+                </div>
+
+
               </div>
 
-              <div class ="dateBlock">
-                <div>{renderTimestamp(transaction.block_timestamp)}</div>
-              </div>
+            )
 
+          })
+        }
 
-            </div>
-
-          )
-
-        })
       }
 
 

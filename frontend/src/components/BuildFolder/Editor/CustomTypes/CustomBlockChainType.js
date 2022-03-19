@@ -158,14 +158,22 @@ export const CustomTransactionList = editor => {
         attributes: {class: 'nft-transactions-container'},
         styles: `
           .nft-transactions-container{
+            border-radius: 25px;
             background: white;
             width: 700px;
             height: 200px;
-            overflow:auto;
+            overflow:hidden;
             height: 300px;
             padding: 20px;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
           }
+
+          .nft-transactions-container::-webkit-scrollbar {
+            display: none;
+          }
+
           .transactionItem{
             padding: 10px 10px;
             border-bottom: 1px lightgray solid;
@@ -213,9 +221,9 @@ export const CustomTransactionList = editor => {
             <div>
               Latest Transactions
             </div>
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
+              <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
+                <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
               </div>
             </div>
 

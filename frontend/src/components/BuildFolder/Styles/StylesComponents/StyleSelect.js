@@ -33,6 +33,7 @@ export const StyleSelect = (props) => {
 
 
       </Select>
+      
     </div>
 
   )

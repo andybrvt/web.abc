@@ -168,7 +168,7 @@ export const NewStylesContainer = (props) => {
       <div style={{height:775, padding:20}}>
         <div class="attributeHeader">Text Style</div>
         <Divider/>
-        <div style={{marginTop:20, marginBottom:20}}>
+        <div style={{ marginTop:20, marginBottom:20}}>
           <Select
             purpose="textSize"
             name="colors"

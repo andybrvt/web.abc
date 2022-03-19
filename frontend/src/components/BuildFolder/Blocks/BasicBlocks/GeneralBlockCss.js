@@ -16,9 +16,7 @@ export const colStyle = `
   .col{
     position: relative;
     min-height: 100px;
-    height: 90vh;
     flex-grow: 1;
-    flex-basis: 100%;
   }
 `
 

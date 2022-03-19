@@ -158,19 +158,72 @@ export const CustomTransactionList = editor => {
         attributes: {class: 'nft-transactions-container'},
         styles: `
           .nft-transactions-container{
-            background: pink;
+            background: white;
+            width: 700px;
             height: 200px;
             overflow:auto;
             height: 300px;
+            padding: 20px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
           }
           .transactionItem{
-            padding: 20px;
+            padding: 10px 10px;
+            border-bottom: 1px lightgray solid;
+            display: flex;
           }
           .buttonOpa{
-            opacity: 0.5;
+            color: black;
+            background: lightgray;
+          }
+          .toFromContainer{
+
+          }
+          .dateContainer{
+            right: 0;
+          }
+
+          .txBox{
+            position: relative;
+            width: 7%;
+          }
+          .hashBlock{
+            position: relative;
+            width: 23%;
+          }
+          .hashBlock a{
+            color: blue;
+          }
+          .toFromBlock{
+            position: relative;
+            width: 40%;
+          }
+          .toFromBlock a{
+            color: blue;
+          }
+          .dateBlock{
+            position: relative;
+            width: 30%;
           }
         `,
 
+        components: model => {
+          return (
+
+          <div>
+            <div>
+              Latest Transactions
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+
+
+          </div>
+
+        )
+        }
 
       },
       init(){

@@ -4,6 +4,17 @@ import image4 from '../../../../images/image4.png';
 import image5 from '../../../../images/image5.png';
 import image6 from '../../../../images/image6.png';
 
+
+const menuSingle = `
+
+  .menuSingle{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+
+  }
+`
 // This will be for the header and be used for navigation
 export const HeaderBlocks = [
   {
@@ -39,15 +50,10 @@ export const HeaderBlocks = [
           top: 50%;
           transform: translateX(-50%) translateY(-50%);
         }
-        .menuContainerSingle{
+        .menuContainerSingle1{
+          postion: relative;
         }
-        .menuSingle{
-          position: relative;
-          top: 50%;
-          transform: translateY(-50%);
-          -ms-transform: translateY(-50%);
-
-        }
+        ${menuSingle}
         .headerItemSingle{
           color: black;
           font-size: 25px;
@@ -64,7 +70,6 @@ export const HeaderBlocks = [
         }
         .iconHolderHolder{
           position: absolute;
-          background: red;
           right: 0;
           width: 10%;
           margin-right: 5%;
@@ -110,7 +115,7 @@ export const HeaderBlocks = [
 
           </div>
 
-          <div class='menuContainerSingle'>
+          <div class='menuContainerSingle1'>
             <div class="menuSingle">
               <a class="headerItemSingle">
                 Home
@@ -131,10 +136,12 @@ export const HeaderBlocks = [
 
 
           <div class="iconSingle iconSingle1">
+            Hi
             <i class="fa-light fa-magnifying-glass"></i>
           </div>
 
           <div class="iconSingle iconSingle2">
+            Hi
             <i class="fas fa-user"></i>
           </div>
 
@@ -179,15 +186,15 @@ export const HeaderBlocks = [
           top: 50%;
           transform: translateX(-50%) translateY(-50%);
         }
-        .menuContainerSingle{
+        .menuContainerSingle2{
           position:absolute;
           top: 50%;
           transform: translateY(-50%);
           right: 5%;
         }
-        .menuSingle{
+        ${menuSingle}
+        .menuSingle2{
           position: relative;
-
         }
         .headerItemSingle{
           color: black;
@@ -233,8 +240,8 @@ export const HeaderBlocks = [
 
           </div>
 
-          <div class='menuContainerSingle'>
-            <div class="menuSingle">
+          <div class='menuContainerSingle2'>
+            <div class="menuSingle2">
               <a class="headerItemSingle">
                 Home
               </a>
@@ -262,6 +269,7 @@ export const HeaderBlocks = [
   },
   {
     id: "header3",
+    label: 'what is this',
     category: "Header",
     media: `
     <style>
@@ -293,7 +301,7 @@ export const HeaderBlocks = [
           top: 50%;
           transform: translateX(-50%) translateY(-50%);
         }
-        .menuContainerSingle{
+        .menuContainerSingle3{
           position: absolute;
           left: 50%;
           top: 50%;
@@ -301,8 +309,9 @@ export const HeaderBlocks = [
           -ms-transform: translateY(-50%) translateX(-50%);
 
         }
-        .menuSingle{
-
+        ${menuSingle}
+        .menuSingle3{
+          position: relative;
         }
         .headerItemSingle{
           color: black;
@@ -320,7 +329,6 @@ export const HeaderBlocks = [
         }
         .iconHolderHolder{
           position: absolute;
-          background: red;
           right: 0;
           width: 10%;
           margin-right: 5%;
@@ -367,10 +375,10 @@ export const HeaderBlocks = [
 
           </div>
 
-          <div class='menuContainerSingle'>
-            <div class="menuSingle">
+          <div class='menuContainerSingle3'>
+            <div class="menuSingle3">
               <a class="headerItemSingle">
-                Home
+                Home 123
               </a>
               <a class="headerItemSingle">
                 About
@@ -389,11 +397,14 @@ export const HeaderBlocks = [
 
           <div class="iconSingle iconSingle1">
             <i class="fa-light fa-magnifying-glass"></i>
+            Hi
           </div>
 
           <div class="iconSingle iconSingle2">
             <i class="fas fa-user"></i>
+            Hi
           </div>
+
 
 
 

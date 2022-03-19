@@ -100,6 +100,7 @@ import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
 import {PickNFTModal} from '../NFT/PickNFTModal';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+import * as dateFns from 'date-fns';
 
 
 const PLUGINS = [
@@ -429,11 +430,39 @@ export const Editor = (props) => {
         console.log(transactions)
 
         const recentTransactions = transactions.result.slice(0,20)
+        const transactionAddress = 'https://etherscan.io/tx/'
+        const addressAddress = "https://etherscan.io/address/"
         recentTransactions.forEach((transaction) => {
           console.log(transaction)
+
+
+
           block.append(
             <div class = "transactionItem">
-              <div class="btn btn-secondary buttonOpa" >{transaction.hash}</div>
+              <div>TX</div>
+              <div>
+                <a href = {`${transactionAddress}`+`${transaction.hash}`}>
+                  {transaction.hash.slice(0,13)+'...'}
+                </a>
+              </div>
+
+              <div class="toFromContainer">
+                <div>
+                  From:
+                  <a href = {`${addressAddress}`+`${transaction.from_address}`}>
+                    {transaction.from_address.slice(0,13)+'...'}
+                  </a>
+                </div>
+                <div>
+                  To:
+                  <a href = {`${addressAddress}`+`${transaction.to_address}`}>
+                    {transaction.to_address.slice(0,13)+'...'}
+                  </a>
+                </div>
+              </div>
+
+              <div>{renderTimestamp(transaction.block_timestamp)}</div>
+
             </div>
 
           )
@@ -591,6 +620,27 @@ export const Editor = (props) => {
     setEditor(editor)
   },[])
 
+  const renderTimestamp = timestamp =>{
+    console.log(timestamp)
+    let prefix = '';
+    console.log(new Date().getTime())
+    console.log(new Date(timestamp).getTime())
+    const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000)
+    console.log(timeDiff)
+    if (timeDiff < 1 ) {
+      prefix = `Just now`;
+    } else if (timeDiff < 60 && timeDiff >= 1 ) {
+      prefix = `${timeDiff} minutes ago`;
+    }else if (timeDiff < 24*60 && timeDiff > 60) {
+      prefix = `${Math.round(timeDiff/60)} hours ago`;
+    } else if (timeDiff < 31*24*60 && timeDiff > 24*60) {
+      prefix = `${Math.round(timeDiff/(60*24))} days ago`;
+    } else {
+        prefix = `${new Date(timestamp).toLocaleDateString("en-US")}`;
+    }
+
+    return prefix;
+  }
 
   // mechanics for opening and closing the drawer
   const changeDrawerVisibility = (category) => {

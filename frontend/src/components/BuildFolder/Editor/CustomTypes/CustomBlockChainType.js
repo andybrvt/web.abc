@@ -158,19 +158,29 @@ export const CustomTransactionList = editor => {
         attributes: {class: 'nft-transactions-container'},
         styles: `
           .nft-transactions-container{
-            background: pink;
+            background: white;
+            width: 700px;
             height: 200px;
             overflow:auto;
             height: 300px;
           }
           .transactionItem{
-            padding: 20px;
+            padding: 10px 10px;
+            border-bottom: 1px lightgray solid;
+            display: flex;
           }
           .buttonOpa{
-            opacity: 0.5;
+            color: black;
+            background: lightgray;
+          }
+          .toFromContainer{
+
           }
         `,
 
+        components: model => {
+          return (<div>Transaction List</div>)
+        }
 
       },
       init(){

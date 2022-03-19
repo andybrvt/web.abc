@@ -7,7 +7,11 @@ import {StyleStack} from './StylesComponents/StyleStack';
 import {StyleSlider} from './StylesComponents/StyleSlider';
 import {StyleFontSize} from './StylesComponents/StyleFontSize';
 import {StylePositionTop} from './StylesComponents/StylePositionTop';
+import {StylePositionLeft} from './StylesComponents/StylePositionLeft';
+import {StylePositionBottom} from './StylesComponents/StylePositionBottom';
+import {StylePositionRight} from './StylesComponents/StylePositionRight';
 import { Input } from '@chakra-ui/react'
+import './StylesComponents/StylePosition.css'
 export const PropertyContainer = (props) => {
 
   const property = props.property
@@ -36,28 +40,51 @@ export const PropertyContainer = (props) => {
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
       var label = property.getLabel()
       console.log(property)
-      if(property.getLabel()=='Top' && props.blockType=="text"){
-        return (
-          <StylePositionTop
-            value = {curValue}
-            handleChange = {handleChange}
-            handleInput = {handleInput}
-            />
 
+      if(property.getLabel()=='Top' && props.blockType=="text") {
+        return (
+          <div style={{height:150}}>
+            <StylePositionTop
+              value = {curValue}
+              handleChange = {handleChange}
+              handleInput = {handleInput}
+              />
+          </div>
         )
       }
-
-      if(property.getLabel()=='Top' && props.blockType=="text"){
+      if(property.getLabel()=='Left' && props.blockType=="text"){
         return (
-          <StylePositionTop
-            value = {curValue}
-            handleChange = {handleChange}
-            handleInput = {handleInput}
-            />
-
+          <div>
+            <StylePositionLeft
+              value = {curValue}
+              handleChange = {handleChange}
+              handleInput = {handleInput}
+              />
+          </div>
         )
       }
-
+      if(property.getLabel()=='Right' && props.blockType=="text") {
+        return (
+          <div>
+            <StylePositionRight
+              value = {curValue}
+              handleChange = {handleChange}
+              handleInput = {handleInput}
+              />
+          </div>
+        )
+      }
+      if(property.getLabel()=='Bottom' && props.blockType=="text"){
+        return (
+          <div>
+            <StylePositionBottom
+              value = {curValue}
+              handleChange = {handleChange}
+              handleInput = {handleInput}
+              />
+          </div>
+        )
+      }
       if(property.getLabel()=='Font size'){
         return (
           <StyleFontSize
@@ -134,7 +161,7 @@ export const PropertyContainer = (props) => {
 
 
       return(
-    <div>hi</div>
+    <div>{property.getLabel()}</div>
       )
     }
 
@@ -204,7 +231,7 @@ export const PropertyContainer = (props) => {
 
   return(
     <div key = {property.getId()}>
-      <div>{property.getLabel()}</div>
+     {/*  <div>{property.getLabel()}</div> */}
       {renderProperty(property)}
     </div>
 

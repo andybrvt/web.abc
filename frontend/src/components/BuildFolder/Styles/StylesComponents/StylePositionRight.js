@@ -41,21 +41,19 @@ import {
 
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
 
-export const StylePositionTop = (props) => {
+export const StylePositionRight = (props) => {
   const [value, setValue] = React.useState(20)
   const property=props.property
-
   const handleChange = (e) => {
     setValue(e.target.value)
     props.handleChange(e.target.value)
   }
 
-
   return(
     <div>
-      <div class="stylePositionTopCSS">
+      <div class="stylePositionRightCSS">
         <span class="changeAttributeFont">
-          Top
+          Right
         </span>
         <Input
           onChange = {e=>handleChange(e)}
@@ -63,5 +61,8 @@ export const StylePositionTop = (props) => {
         </Input>
       </div>
     </div>
+
+
+
   )
 }

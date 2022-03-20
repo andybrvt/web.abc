@@ -142,7 +142,7 @@ export const HeaderBlocks = [
 
           <div class="iconSingle iconSingle2">
             Hi
-            <i class="fas fa-user"></i>
+            <i class="bi bi-person-circle"></i>
           </div>
 
 

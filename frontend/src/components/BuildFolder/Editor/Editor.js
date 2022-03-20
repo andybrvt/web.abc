@@ -66,6 +66,7 @@ import {
 import {
   CustomNFTShowcase,
   CustomTransactionList,
+  CustomStatsList
 } from './CustomTypes/CustomBlockChainType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
@@ -135,6 +136,7 @@ const PLUGINS = [
   CustomBoxType,
   CustomNFTShowcase,
   CustomTransactionList,
+  CustomStatsList
 ]
 
 
@@ -157,7 +159,6 @@ const translatedItems = [
   "header3",
   "footer1",
   "NFTShowcase",
-  "TransactionList"
 ]
 
 
@@ -429,8 +430,6 @@ export const Editor = (props) => {
             from_block: "0",
           };
           const transactions = await Web3Api.account.getTransactions(options)
-          console.log(transactions)
-
           const recentTransactions = transactions.result.slice(0,20)
           const transactionAddress = 'https://etherscan.io/tx/'
           const addressAddress = "https://etherscan.io/address/"
@@ -438,9 +437,6 @@ export const Editor = (props) => {
           block.components("")
           block.append(<div>Latest Transactions</div>)
           recentTransactions.forEach((transaction,index) => {
-            console.log(transaction)
-
-
 
             block.append(
               <div key = {index} class = "transactionItem">
@@ -481,6 +477,43 @@ export const Editor = (props) => {
             )
 
           })
+        }
+
+        if(type === "StatsList"){
+          const options = {
+            chain: "eth",
+            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            order: "desc",
+            from_block: "0",
+          };
+          const transactions = await Web3Api.account.getTransactions(options)
+          const totalTransactions = transactions.total
+
+          const targetId = block.getId()
+          console.log(targetId)
+
+          let interval = 5000;
+
+          let startValue = 0;
+          let endValue = 5000;
+          let duration = Math.floor(interval/endValue)
+          let counter = setInterval(function(){
+            startValue += 1;
+            block.components(`${startValue}`)
+          })
+          // const target = editor.getSelected()
+          // const targetId = target.getId()
+          // console.log(targetId)
+          // target.set("script", `
+          //   function script(props) {
+          //     var element = document.getElementById("${targetId}");
+          //     element.addEventListener("click", function () {
+          //       console.log('this works')
+          //     });
+          //   }
+          //
+          // `)
+
         }
 
       }

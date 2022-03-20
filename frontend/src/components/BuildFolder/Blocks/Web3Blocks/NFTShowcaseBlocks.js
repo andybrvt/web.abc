@@ -30,6 +30,16 @@ export const NFTShowcaseBlocks = [
     content: {
       activeOnRender: 1,
       type: 'TransactionList'}
+  },{
+    id: "Web3Stats",
+    label: "Web3 Stats",
+    category: 'BlockChain',
+    activate: true,
+    media: `<div>This will be for the stats</div>`,
+    content: {
+      activeOnRender:1,
+      type: 'StatsList'
+    }
   }
 
 ]

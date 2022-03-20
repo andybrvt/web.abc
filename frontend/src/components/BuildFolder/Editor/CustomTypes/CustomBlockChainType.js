@@ -214,7 +214,9 @@ export const CustomTransactionList = editor => {
           </div>
 
         )
-        }
+      },
+      'script-props': ['id'],
+
 
       },
       init(){
@@ -247,7 +249,6 @@ export const CustomStatsList = editor => {
       tagName: 'Stats List',
       resiable: 'true',
       defaults: {
-
         attributes: {class: "stats-list-container"},
         styles: `
           .stats-list-container{
@@ -263,7 +264,10 @@ export const CustomStatsList = editor => {
 
           )
 
-        }
+        },
+        'script-props': ['id'],
+
+
       }
     },
 

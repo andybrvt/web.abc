@@ -5,7 +5,6 @@ export const SectorContainer = (props) => {
 
   const sector = props.sector;
   const properties = sector.getProperties();
-  console.log(sector.getName())
   return(
     <div key = {sector.getId()}>
         <div class="attributeHeader">{sector.getName()}</div>

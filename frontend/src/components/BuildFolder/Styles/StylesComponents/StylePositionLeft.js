@@ -42,26 +42,23 @@ import {
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
 
 export const StylePositionLeft = (props) => {
-  const [value, setValue] = React.useState(20)
+  const [value, setValue] = React.useState(0);
   const property=props.property
   const handleChange = (e) => {
     setValue(e.target.value)
     props.handleChange(e.target.value)
   }
-
   return(
     <div>
-      <div class="stylePositionLeftCSS">
-        <span class="changeAttributeFont">
-          Left
-        </span>
-        <Input
-          onChange = {e=>handleChange(e)}
-          style={{width:60, padding:10}} >
-        </Input>
-      </div>
+      <span class="changeAttributeFont">
+        Left
+      </span>
+      <Input
+        defaultValue = {props.value}
+        onChange = {e=>handleChange(e)}
+        style={{width:60, padding:10}} >
+      </Input>
     </div>
-
 
   )
 }

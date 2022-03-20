@@ -71,7 +71,7 @@ export const StyleFontSize = (props) => {
     <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
 
       <Stack shouldWrapChildren direction='row'>
-        <NumberInput size='xs' maxW={16} value={value} onChange = {e=>handleChange(e)} min={10}>
+        <NumberInput defaultValue={props.value} size='xs' maxW={16} value={value} onChange = {e=>handleChange(e)} min={10}>
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />

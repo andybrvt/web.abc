@@ -486,33 +486,49 @@ export const Editor = (props) => {
             order: "desc",
             from_block: "0",
           };
-          const transactions = await Web3Api.account.getTransactions(options)
-          const totalTransactions = transactions.total
-
-          const targetId = block.getId()
-          console.log(targetId)
-
-          let interval = 5000;
-
-          let startValue = 0;
-          let endValue = 5000;
-          let duration = Math.floor(interval/endValue)
-          let counter = setInterval(function(){
-            startValue += 1;
-            block.components(`${startValue}`)
-          })
-          // const target = editor.getSelected()
-          // const targetId = target.getId()
-          // console.log(targetId)
-          // target.set("script", `
-          //   function script(props) {
-          //     var element = document.getElementById("${targetId}");
-          //     element.addEventListener("click", function () {
-          //       console.log('this works')
-          //     });
-          //   }
+          // const transactions = await Web3Api.account.getTransactions(options)
+          // const totalTransactions = transactions.total
           //
+          // const target = block
+          // const targetId = block.getId()
+          // console.log(targetId)
+
+          // let interval = 5000;
+          //
+          // let startValue = 0;
+          // let endValue = 5000;
+          // let duration = Math.floor(interval/endValue)
+          // let counter = setInterval(function(){
+          //   startValue += 1;
+          //   block.components(`${startValue}`)
+          // })
+
+
+          // block.set("script", `
+          //   function script(props){
+          //     alert("what is this");
+          //
+          //   }
           // `)
+
+          // console.log('is this working');
+          // let containers = document.querySelectorAll(".stats-list-container");
+          // let interval = 5000;
+          //
+          // containers.forEach((container) => {
+          //   let startValue = 0;
+          //   let endValue = parseInt(5000);
+          //   let duration = Math.floor(internval/endValue);
+          //   let counter = setInterval(function(){
+          //     startValue += 1;
+          //     console.log(startValue);
+          //     container.textContent = startValue;
+          //     if(startValue == endValue){
+          //       clearInterval(counter);
+          //     }
+          //   }, duration);
+          //
+          // })
 
         }
 
@@ -638,6 +654,16 @@ export const Editor = (props) => {
       //   }
       //
       // `)
+
+      const target = editor.getSelected()
+      const targetId = target.getId()
+      console.log(targetId)
+      target.set("script", `
+        function script(props) {
+          alert('this works righ')
+        }
+
+      `)
 
 
     })

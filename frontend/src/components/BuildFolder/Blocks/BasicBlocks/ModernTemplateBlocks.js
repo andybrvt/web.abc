@@ -71,6 +71,12 @@ const background = `
   height: 100%;
 }`
 
+const tempHeight = `
+  .tempHeight{
+    height: 90vh;
+  }
+`
+
 
 // this will be used more for modernized templates like that of the
 // web3 space
@@ -185,6 +191,7 @@ export const ModernTemplateBlocks = [
         ${logo}
         ${headerItem}
         ${normalButton}
+        ${tempHeight}
         .gradientBackground1{
           background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)}
         .mHeaderText{
@@ -216,7 +223,7 @@ export const ModernTemplateBlocks = [
           width: 50%;}
       </style>
 
-      <div data-gjs-dmode="absolute" class="row">
+      <div data-gjs-dmode="absolute" class="row tempHeight">
         <div class="col">
           <div class ='gradientBackground gradientBackground1'/>
         </div>
@@ -389,6 +396,7 @@ export const ModernTemplateBlocks = [
     ${logo}
     ${headerItem}
     ${normalButton}
+    ${tempHeight}
     .gradientBackground2{
       background-image: radial-gradient(ellipse at left, #e66465, #9198e5);
     }
@@ -428,7 +436,7 @@ export const ModernTemplateBlocks = [
       top: 17%;
       height: 70%;}
     </style>
-    <div data-gjs-dmode="absolute" class="row">
+    <div data-gjs-dmode="absolute" class="row tempHeight">
       <div class="col">
         <div class = "gradientBackground gradientBackground2"/>
       </div>
@@ -613,6 +621,7 @@ export const ModernTemplateBlocks = [
 
         ${headerItem}
         ${normalButton}
+        ${tempHeight}
         .colExtraHeight{
           height: 95vh;
         }
@@ -671,7 +680,7 @@ export const ModernTemplateBlocks = [
           width: 100%;
         }
       </style>
-      <div data-gjs-dmode="absolute" class="row">
+      <div data-gjs-dmode="absolute" class="row tempHeight">
         <div class="col colExtraHeight">
           <div class="gradientBackground gradientBackground3"/>
         </div>

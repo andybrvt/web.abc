@@ -39,7 +39,6 @@ export const PropertyContainer = (props) => {
 
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
       var label = property.getLabel()
-      console.log(property)
 
       if(property.getLabel()=='Top' && props.blockType=="text") {
         return (

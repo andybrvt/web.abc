@@ -145,7 +145,7 @@ export const PickNFTModal  = (props) => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
+        <ModalHeader>Choose which NFT you want to display on your website</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <div className = "nftHolder">

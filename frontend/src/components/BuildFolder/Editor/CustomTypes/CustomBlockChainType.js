@@ -30,6 +30,7 @@ export const CustomNFTShowcase = editor => {
             flex-wrap: wrap;
             flex-direction: row;
             background-image: linear-gradient(to right, #8360c3, #2ebf91);
+            padding: 50px 15%;
           }
           .nftContainers{
 
@@ -39,8 +40,7 @@ export const CustomNFTShowcase = editor => {
             padding: 25px 0px;
           }
           .nftCards {
-            width: 300px;
-            height: 300px;
+            width: 200px;
             position: relative;
             left: 50%;
             transform: translateX(-50%);
@@ -54,7 +54,6 @@ export const CustomNFTShowcase = editor => {
           .nftCards img{
             position: relative;
             width: 100%;
-            height: 100%;
             border-radius: 20px;
           }
           .nftName{

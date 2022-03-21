@@ -29,7 +29,11 @@ export const StylesContainer = (props) => {
           console.log(typographySector)
           let fontProperty = props.editor.StyleManager.getProperty('typography', 'font-family');
           console.log(fontProperty)
-          
+          const roboto = "Raleway, sans-serif";
+          const font = { id: roboto, label: roboto.split(',')[0] };
+          console.log(fontProperty.getOptions())
+          fontProperty.setOptions([...fontProperty.getOptions(), font]);
+          console.log(fontProperty.getOptions())
           {/*
           let fontProperty = props.editor.StyleManager.getProperty('Typography', 'font-family');
           let list = fontProperty.get('list');

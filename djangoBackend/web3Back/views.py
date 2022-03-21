@@ -5,6 +5,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from bs4 import BeautifulSoup as bs
 from django.http import JsonResponse
 from urllib.parse import urljoin
+from . import models
 # Create your views here.
 import requests
 
@@ -27,6 +28,14 @@ def findCss(list):
 
     return finalCss
 
+@authentication_classes([])
+@permission_classes([])
+class WaitListEmailsView(APIView):
+    def post(self, request, *args, **kwargs):
+
+        email, created = models.WaitListEmails.objects.get_or_create(email = request.data['email'])
+
+        return Response({created, email.id})
 
 @authentication_classes([])
 @permission_classes([])

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css'
 import { Layout, Menu, Divider, Breadcrumb, Avatar, Image} from 'antd';
-
+import { Input } from '@chakra-ui/react'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import first from './first.png'
 import second from './second.png'
@@ -12,7 +12,7 @@ import { useNavigate, } from 'react-router-dom';
 import { useEthers, useEtherBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
 import builderSVG from './builder.svg'
-
+import axios from "axios";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -35,7 +35,9 @@ class Landing extends React.Component{
   }
   state = {
     trigger: false,
-
+    email: '',
+    errors: {},
+    showPosition: false,
   };
   subComponent() {
     return (<div>Hello World</div>);
@@ -56,8 +58,69 @@ class Landing extends React.Component{
     // this.props.history.push("/login")
   }
 
+  handleEmailValidation(){
+    let {email} = this.state;
+    let errors = {};
+    let emailIsTrue = true;
+
+    if(email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)){
+      emailIsTrue = false;
+      errors['email'] = "Enter a valid email"
+    }
+
+    this.setState({
+      errors: errors
+    })
+
+    return emailIsTrue;
+
+  }
 
 
+  handleEmailValidation(){
+    let {email} = this.state;
+    let errors = {};
+    let emailIsTrue = true;
+    if(email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)){
+      emailIsTrue = false;
+      errors['email'] = "Enter a valid email"
+    }
+    this.setState({
+      errors: errors
+    })
+    return emailIsTrue;
+  }
+
+  handleEmailChange = e => {
+    console.log(e.target.value)
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+
+  handleEmailSubmit = e => {
+    e.preventDefault()
+    console.log('hits here')
+    const { email } = this.state;
+
+    if(this.handleEmailValidation()){
+      axios.post(`${global.API_ENDPOINT}/web3Back/onWaitListAdd`,{
+        email: email
+      })
+      .then(res=> {
+        console.log(res.data)
+        this.setState({
+          email: '',
+          showPosition: true,
+          position: res.data[1]
+        })
+      })
+    } else {
+      alert("email is not valid")
+    }
+    // Now just do an axios call here
+  }
 
 
   render(){
@@ -133,17 +196,39 @@ class Landing extends React.Component{
             <div class="title2">
               Build It. Own It.
             </div>
+            {/*
             <div style={{marginTop:20}}>
               <Avatar src={<Image src={first} style={{ width: 32, marginRight:'10px' }} />} />
               <Avatar src={<Image src={second} style={{ width: 32 }} />} />
               <Avatar src={<Image src={second} style={{ width: 32 }} />} />
               <Avatar src={<Image src={second} style={{ width: 32 }} />} />
             </div>
-            <div class="getStartedBtn">
-              <span class="containerText">
-                Get started
-                </span>
-            </div>
+            */}
+
+
+            <form onSubmit = {this.handleEmailSubmit}>
+                <label style = {{
+                    width: '100%',
+                  }}>
+                  <div class = "inputField">
+
+                    <Input style={{width:450}} variant='outline'   onChange = {this.handleEmailChange}
+                      value = {this.state.email} placeholder='Enter email' />
+                    <button type="submit" class="getStartedBtn">
+                      <span class="containerText">
+                        Join the waitlist
+                        </span>
+                    </button>
+
+                  </div>
+
+                </label>
+
+
+
+            </form>
+
+
           </div>
         </div>
         <div class="splitRight">

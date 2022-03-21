@@ -159,6 +159,7 @@ const translatedItems = [
   "header3",
   "footer1",
   "NFTShowcase",
+  "Web3Stats",
 ]
 
 
@@ -487,46 +488,72 @@ export const Editor = (props) => {
         }
 
         if(type === "StatsList"){
-          const options = {
+          const transactionsOptions = {
             chain: "eth",
             address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
             order: "desc",
             from_block: "0",
           };
-          const transactions = await Web3Api.account.getTransactions(options)
+          // const transactions = await Web3Api.account.getTransactions(transactionsOptions)
+
+          const transfersOptions = {
+            chain: "eth",
+            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            from_block: "0",
+          };
+          // const transfers = await Web3Api.account.getTokenTransfers(transfersOptions);
+
+
+          const nftTransfersOptions = {
+            chain: "eth",
+            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            limit: "5",
+          };
+          // const transfersNFT = await Web3Api.account.getNFTTransfers(nftTransfersOptions);
+
+          let [transactions, transfers,transfersNFT] = await Promise.all([
+            Web3Api.account.getTransactions(transactionsOptions),
+            Web3Api.account.getTokenTransfers(transfersOptions),
+            Web3Api.account.getNFTTransfers(nftTransfersOptions)
+          ])
+
           const totalTransactions = transactions.total
+          const totalTransfers = transfers.total
+          const totalTransfersNFT = transfersNFT.total
+          console.log(transactions, 'here are the transactions')
+          console.log(transfers, 'here are the transferes')
+          console.log(transfersNFT, 'here are the nfts')
 
           const target = block
           const targetId = block.getId()
-          console.log(targetId)
-
-          // let interval = 5000;
-          //
-          // let startValue = 0;
-          // let endValue = 5000;
-          // let duration = Math.floor(interval/endValue)
-          // let counter = setInterval(function(){
-          //   startValue += 1;
-          //   block.components(`${startValue}`)
-          // })
-
 
           block.set("script", `
             function script(props){
-              console.log('is this working');
 
-              let containers = document.querySelectorAll(".stats-list-container");
-              let interval = 5000;
+              let containers = document.querySelectorAll(".numTransactions, .numTransfers, .numNFTTransfers");
+              console.log(containers, 'here are the containers')
+              let interval = 2000;
 
-              console.log(containers)
 
               containers.forEach((container) => {
+
+                console.log(container.className);
+
                 let startValue = 0;
-                let endValue = parseInt(1000);
-                let duration = Math.floor(5000/endValue);
+                let endValue = 0;
+                if(container.className === "numTransactions"){
+                  endValue = parseInt(${totalTransactions});
+                }
+                if(container.className === "numTransfers"){
+                  endValue = parseInt(${totalTransfers});
+                }
+                if(container.className === "numNFTTransfers"){
+                  endValue = parseInt(${totalTransfersNFT});
+                }
+
+                let duration = Math.floor(interval/endValue);
                 let counter = setInterval(function(){
                   startValue += 1;
-                  console.log(startValue);
                   container.textContent = startValue;
                   if(startValue == endValue){
                     clearInterval(counter);

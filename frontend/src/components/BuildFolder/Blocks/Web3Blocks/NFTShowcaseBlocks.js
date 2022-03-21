@@ -1,12 +1,13 @@
 import image12 from '../../../../images/image12.png';
 import image13 from '../../../../images/image13.png';
+import image14 from '../../../../images/image14.png';
 
 
 export const NFTShowcaseBlocks = [
 
   {
     id: 'NFTShowcase',
-    label: "NFTShowcase",
+    label: "NFT Collection",
     category: "BlockChain",
     activate: true,
     media:
@@ -15,13 +16,18 @@ export const NFTShowcaseBlocks = [
         <img class="img" src="${image12}" />
       </div>
     `,
-    content: {type: 'NFTShowcase'},
+    // content: {type: 'NFTShowcase'},
+    content:
+    `
+        <div data-gjs-type= "NFTShowcase"></div>
+
+    `,
     select:true,
 
   },
   {
     id: 'TransactionList',
-    label: 'TransactionList',
+    label: 'Transactions List',
     category: "BlockChain",
     activate: true,
     media: `
@@ -41,7 +47,10 @@ export const NFTShowcaseBlocks = [
     label: "Web3 Stats",
     category: 'BlockChain',
     activate: true,
-    media: `<div>This will be for the stats</div>`,
+    media: `
+    <div>
+      <img class="img" src="${image14}" />
+    </div>`,
     content: {
       activeOnRender:1,
       type: 'StatsList'

@@ -30,6 +30,7 @@ export const CustomNFTShowcase = editor => {
             flex-wrap: wrap;
             flex-direction: row;
             background-image: linear-gradient(to right, #8360c3, #2ebf91);
+            padding: 50px 15%;
           }
           .nftContainers{
 
@@ -39,8 +40,7 @@ export const CustomNFTShowcase = editor => {
             padding: 25px 0px;
           }
           .nftCards {
-            width: 300px;
-            height: 300px;
+            width: 200px;
             position: relative;
             left: 50%;
             transform: translateX(-50%);
@@ -54,7 +54,6 @@ export const CustomNFTShowcase = editor => {
           .nftCards img{
             position: relative;
             width: 100%;
-            height: 100%;
             border-radius: 20px;
           }
           .nftName{
@@ -249,17 +248,56 @@ export const CustomStatsList = editor => {
       tagName: 'Stats List',
       resiable: 'true',
       defaults: {
-        attributes: {class: "stats-list-container"},
+        attributes: {
+          class: "stats-list-container"
+        },
         styles: `
           .stats-list-container{
-
+            color: white;
+            background: black;
+            padding: 25px 20%;
+          }
+          .stats-holder{
+            display: flex;
+            flex-direction: row;
+          }
+          .single-stat-holder{
+            flex: 1;
+            flex-basis: 30%;
+            margin: 2px;
+            padding: 25px;
+            text-align: center;
+            font-size: 20px;
+          }
+          .numTransactions{
+            font-size: 55px;
+          }
+          .numTransfers{
+            font-size: 55px;
+          }
+          .numNFTTransfers{
+            font-size: 55px;
           }
         `,
         components: model => {
 
           return(
-            <div>
-              HI
+            <div class = "stats-holder">
+              <div class = "single-stat-holder">
+                <div class = "numTransactions">0</div>
+                Total Transactions
+              </div>
+
+              <div class = "single-stat-holder">
+                <div class = "numTransfers">0</div>
+                Total Token Transfers
+              </div>
+
+              <div class = "single-stat-holder">
+                <div class = "numNFTTransfers">0</div>
+                Total NFT transfers
+              </div>
+
             </div>
 
           )

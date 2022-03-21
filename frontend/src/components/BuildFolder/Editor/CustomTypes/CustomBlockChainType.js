@@ -10,9 +10,6 @@ const script = function(props) {
 
 
 export const CustomNFTShowcase = editor => {
-
-
-
   editor.DomComponents.addType("NFTShowcase", {
 
     isComponent: el => {
@@ -77,23 +74,17 @@ export const CustomNFTShowcase = editor => {
           }
 
         `,
-
-
-
         'script-props': ["someprop",],
 
       },
 
       init() {
-
         console.log('everytime this updates')
          // this.on('change:someprop', this.handlePropChange);
          // // Listen to any attribute change
          this.on('change:attributes', this.doStuff);
          // // Listen to title attribute change
          // this.on('change:attributes:title', this.handleTitleChange);
-
-
        },
 
        handlePropChange() {
@@ -112,7 +103,6 @@ export const CustomNFTShowcase = editor => {
        updated(property, value, prevValue){
          console.log('update here')
        },
-
        doStuff(){
 
          const options = {
@@ -124,18 +114,13 @@ export const CustomNFTShowcase = editor => {
          // console.log(nftList)
 
        }
-
-
-
     },
 
 
     view: {
-
       events: {
         dblclick: 'onActive'
       },
-
     }
 
   })
@@ -143,8 +128,6 @@ export const CustomNFTShowcase = editor => {
 
 
 export const CustomTransactionList = editor => {
-
-
   editor.DomComponents.addType("TransactionList", {
     isComponent: el => {
       return el.id === "TransactionList"
@@ -158,6 +141,7 @@ export const CustomTransactionList = editor => {
         attributes: {class: 'nft-transactions-container'},
         styles: `
           .nft-transactions-container{
+            border-radius: 25px;
             background: white;
             width: 700px;
             height: 200px;
@@ -165,7 +149,14 @@ export const CustomTransactionList = editor => {
             height: 300px;
             padding: 20px;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
           }
+
+          .nft-transactions-container::-webkit-scrollbar {
+            display: none;
+          }
+
           .transactionItem{
             padding: 10px 10px;
             border-bottom: 1px lightgray solid;
@@ -213,9 +204,9 @@ export const CustomTransactionList = editor => {
             <div>
               Latest Transactions
             </div>
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
+              <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
+                <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
               </div>
             </div>
 
@@ -238,6 +229,46 @@ export const CustomTransactionList = editor => {
         // this.model.append(<div>what is this</div>)
       }
     }
+
+
+
+  })
+}
+
+export const CustomStatsList = editor => {
+
+  editor.DomComponents.addType("StatsList", {
+
+    isComponent: el => {
+      return el.id === "StatsList"
+    },
+    model: {
+      name: "StatsList",
+      tagName: 'Stats List',
+      resiable: 'true',
+      defaults: {
+
+        attributes: {class: "stats-list-container"},
+        styles: `
+          .stats-list-container{
+
+          }
+        `,
+        components: model => {
+
+          return(
+            <div>
+              HI
+            </div>
+
+          )
+
+        }
+      }
+    },
+
+
+
 
 
 

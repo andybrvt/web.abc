@@ -66,6 +66,7 @@ import {
 import {
   CustomNFTShowcase,
   CustomTransactionList,
+  CustomStatsList
 } from './CustomTypes/CustomBlockChainType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
@@ -135,6 +136,7 @@ const PLUGINS = [
   CustomBoxType,
   CustomNFTShowcase,
   CustomTransactionList,
+  CustomStatsList
 ]
 
 
@@ -157,7 +159,6 @@ const translatedItems = [
   "header3",
   "footer1",
   "NFTShowcase",
-  "TransactionList"
 ]
 
 
@@ -416,69 +417,121 @@ export const Editor = (props) => {
     })
 
     editor.on("block:drag:stop", async(block, obj) => {
-      console.log(block.get('type'))
-      const type = block.get('type')
-
-      if(type === "TransactionList"){
-        const options = {
-          chain: "eth",
-          address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
-          order: "desc",
-          from_block: "0",
-        };
-        const transactions = await Web3Api.account.getTransactions(options)
-        console.log(transactions)
-
-        const recentTransactions = transactions.result.slice(0,20)
-        const transactionAddress = 'https://etherscan.io/tx/'
-        const addressAddress = "https://etherscan.io/address/"
-
-        block.components("")
-        block.append(<div>Latest Transactions</div>)
-        recentTransactions.forEach((transaction,index) => {
-          console.log(transaction)
+      if(block !== null){
 
 
+        const type = block.get('type')
 
-          block.append(
-            <div key = {index} class = "transactionItem">
-              <div class = "txBox">
-                <div>TX</div>
-              </div>
+        if(type === "TransactionList"){
+          const options = {
+            chain: "eth",
+            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            order: "desc",
+            from_block: "0",
+          };
+          const transactions = await Web3Api.account.getTransactions(options)
+          const recentTransactions = transactions.result.slice(0,20)
+          const transactionAddress = 'https://etherscan.io/tx/'
+          const addressAddress = "https://etherscan.io/address/"
 
-              <div class = "hashBlock">
-                <div>
-                  <a href = {`${transactionAddress}`+`${transaction.hash}`}>
-                    {transaction.hash.slice(0,13)+'...'}
-                  </a>
+          block.components("")
+          block.append(<div>Latest Transactions</div>)
+          recentTransactions.forEach((transaction,index) => {
+
+            block.append(
+              <div key = {index} class = "transactionItem">
+                <div class = "txBox">
+                  <div>TX</div>
                 </div>
-              </div>
 
-              <div class ="toFromBlock">
-                <div class="toFromContainer">
+                <div class = "hashBlock">
                   <div>
-                    From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
-                      {transaction.from_address.slice(0,13)+'...'}
-                    </a>
-                  </div>
-                  <div>
-                    To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
-                      {transaction.to_address.slice(0,13)+'...'}
+                    <a href = {`${transactionAddress}`+`${transaction.hash}`}>
+                      {transaction.hash.slice(0,13)+'...'}
                     </a>
                   </div>
                 </div>
+
+                <div class ="toFromBlock">
+                  <div class="toFromContainer">
+                    <div>
+                      From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
+                        {transaction.from_address.slice(0,13)+'...'}
+                      </a>
+                    </div>
+                    <div>
+                      To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
+                        {transaction.to_address.slice(0,13)+'...'}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class ="dateBlock">
+                  <div>{renderTimestamp(transaction.block_timestamp)}</div>
+                </div>
+
+
               </div>
 
-              <div class ="dateBlock">
-                <div>{renderTimestamp(transaction.block_timestamp)}</div>
-              </div>
+            )
+
+          })
+        }
+
+        if(type === "StatsList"){
+          const options = {
+            chain: "eth",
+            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            order: "desc",
+            from_block: "0",
+          };
+          // const transactions = await Web3Api.account.getTransactions(options)
+          // const totalTransactions = transactions.total
+          //
+          // const target = block
+          // const targetId = block.getId()
+          // console.log(targetId)
+
+          // let interval = 5000;
+          //
+          // let startValue = 0;
+          // let endValue = 5000;
+          // let duration = Math.floor(interval/endValue)
+          // let counter = setInterval(function(){
+          //   startValue += 1;
+          //   block.components(`${startValue}`)
+          // })
 
 
-            </div>
+          // block.set("script", `
+          //   function script(props){
+          //     alert("what is this");
+          //
+          //   }
+          // `)
 
-          )
+          // console.log('is this working');
+          // let containers = document.querySelectorAll(".stats-list-container");
+          // let interval = 5000;
+          //
+          // containers.forEach((container) => {
+          //   let startValue = 0;
+          //   let endValue = parseInt(5000);
+          //   let duration = Math.floor(internval/endValue);
+          //   let counter = setInterval(function(){
+          //     startValue += 1;
+          //     console.log(startValue);
+          //     container.textContent = startValue;
+          //     if(startValue == endValue){
+          //       clearInterval(counter);
+          //     }
+          //   }, duration);
+          //
+          // })
 
-        })
+        }
+
       }
 
 
@@ -601,6 +654,16 @@ export const Editor = (props) => {
       //   }
       //
       // `)
+
+      const target = editor.getSelected()
+      const targetId = target.getId()
+      console.log(targetId)
+      target.set("script", `
+        function script(props) {
+          alert('this works righ')
+        }
+
+      `)
 
 
     })

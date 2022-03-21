@@ -249,6 +249,7 @@ export const Editor = (props) => {
       canvas:{
         styles: [
           "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
+          'https://fonts.googleapis.com/css?family=Archivo+Narrow:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext',
         ],
         scripts:  [
           "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",
@@ -417,6 +418,10 @@ export const Editor = (props) => {
         editor.setDragMode("absolute")
       }
     })
+
+
+
+
 
     editor.on("block:drag:stop", async(block, obj) => {
 

@@ -96,7 +96,7 @@ export const PropertyContainer = (props) => {
         )
       }
       if((property.getLabel()=='Max width'|| property.getLabel()=='Max height' ||
-      property.getLabel()=='Min height'
+      property.getLabel()=='Min height' || property.getLabel()=='Line height'
     ) && props.blockType=="text"){
         return (
           ''

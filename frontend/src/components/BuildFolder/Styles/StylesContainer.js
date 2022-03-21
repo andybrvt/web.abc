@@ -21,7 +21,26 @@ export const StylesContainer = (props) => {
       props.editor.on('style:custom', props =>{
         setSectors(tempEditor.StyleManager.getSectors({visible:true}))
       })
+      props.editor.on('load', ()=> {
 
+          const tempEditor = props.editor
+          let styleManager = props.editor.StyleManager;
+          let typographySector = props.editor.StyleManager.getSector('typography');
+          console.log(typographySector)
+          let fontProperty = props.editor.StyleManager.getProperty('typography', 'font-family');
+          console.log(fontProperty)
+          
+          {/*
+          let fontProperty = props.editor.StyleManager.getProperty('Typography', 'font-family');
+          let list = fontProperty.get('list');
+          list.push({ value: 'Roboto, Arial, sans-serif', name: 'Roboto' });
+          fontProperty.set('list', list);
+          styleManager.render();
+          */}
+
+
+
+      })
 
 
       return () => {

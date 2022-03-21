@@ -51,7 +51,8 @@ export const StylesContainer = (props) => {
       // align={'center'}
       pos={'relative'}
       >
-      <div class = "styles-manager">
+      <div class="blockTypeHeader">{props.blockType}</div>
+      <div>
         {sectors.map((item,index) => {
           return(
             <SectorContainer

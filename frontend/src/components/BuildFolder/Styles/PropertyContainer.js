@@ -39,21 +39,35 @@ export const PropertyContainer = (props) => {
 
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
       var label = property.getLabel()
+      console.log(props.sectorName)
+      console.log(label)
+      if(  (props.sectorName=="Dimension" && property.getLabel()=='Top')||
+           (props.sectorName=="Dimension" && property.getLabel()=='Left')||
+           (props.sectorName=="Dimension" && property.getLabel()=='Right')||
+           (props.sectorName=="Dimension" && property.getLabel()=='Bottom')
+      ){
 
+        console.log("TESTLAKD;AL;KJSDF")
+        return (
+          ''
+        )
+      }
       if(property.getLabel()=='Top' && props.blockType=="text") {
         return (
-          <div style={{height:150}}>
-            <StylePositionTop
-              value = {curValue}
-              handleChange = {handleChange}
-              handleInput = {handleInput}
-              />
+          <div style={{height:50}}>
+            <div class="paddingPosition">
+              <StylePositionTop
+                value = {curValue}
+                handleChange = {handleChange}
+                handleInput = {handleInput}
+                />
+            </div>
           </div>
         )
       }
       if(property.getLabel()=='Left' && props.blockType=="text"){
         return (
-          <div>
+          <div class="paddingPosition">
             <StylePositionLeft
               value = {curValue}
               handleChange = {handleChange}
@@ -64,7 +78,7 @@ export const PropertyContainer = (props) => {
       }
       if(property.getLabel()=='Right' && props.blockType=="text") {
         return (
-          <div>
+          <div class="paddingPosition">
             <StylePositionRight
               value = {curValue}
               handleChange = {handleChange}
@@ -75,7 +89,7 @@ export const PropertyContainer = (props) => {
       }
       if(property.getLabel()=='Bottom' && props.blockType=="text"){
         return (
-          <div>
+          <div class="paddingPosition">
             <StylePositionBottom
               value = {curValue}
               handleChange = {handleChange}
@@ -84,6 +98,14 @@ export const PropertyContainer = (props) => {
           </div>
         )
       }
+      if((property.getLabel()=='Max width'|| property.getLabel()=='Max height' ||
+      property.getLabel()=='Min height'
+    ) && props.blockType=="text"){
+        return (
+          ''
+        )
+      }
+
       if(property.getLabel()=='Font size'){
         return (
           <StyleFontSize
@@ -116,7 +138,11 @@ export const PropertyContainer = (props) => {
 
       var label = property.getLabel()
 
-
+      if(property.getLabel()=='Display'){
+        return (
+        ''
+        )
+      }
       return(
         <StyleSelect
           label = {label}
@@ -146,6 +172,7 @@ export const PropertyContainer = (props) => {
     }
 
     else if (type ==="radio"){
+      {/* taken out is float, position,*/}
 
       const options = property.getOptions()
       function getOptionId(opt){
@@ -160,7 +187,7 @@ export const PropertyContainer = (props) => {
 
 
       return(
-    <div>{property.getLabel()}</div>
+        ''
       )
     }
 

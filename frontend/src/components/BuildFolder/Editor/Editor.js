@@ -160,6 +160,7 @@ const translatedItems = [
   "footer1",
   "NFTShowcase",
   "Web3Stats",
+  "TransactionList"
 ]
 
 
@@ -422,6 +423,7 @@ export const Editor = (props) => {
 
       if(block !== null){
 
+        // GOTTA SET THIS SO IT CAN RUN ON PREVIEW TOO
 
         const type = block.get('type')
 
@@ -437,52 +439,168 @@ export const Editor = (props) => {
           const transactionAddress = 'https://etherscan.io/tx/'
           const addressAddress = "https://etherscan.io/address/"
 
-          block.components("")
-          block.append(<div>Latest Transactions</div>)
-          recentTransactions.forEach((transaction,index) => {
+          block.set("script", `
+            async function script(props){
 
-            block.append(
-              <div key = {index} class = "transactionItem">
-                <div class = "txBox">
-                  <div>TX</div>
-                </div>
+              const renderTimestamp = timestamp =>{
+                let prefix = '';
+                const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000)
+                if (timeDiff < 1 ) {
+                  prefix = 'Just now';
+                } else if (timeDiff < 60 && timeDiff >= 1 ) {
+                  prefix = timeDiff+' minutes ago';
+                }else if (timeDiff < 24*60 && timeDiff > 60) {
+                  prefix = Math.round(timeDiff/60)+' hours ago';
+                } else if (timeDiff < 31*24*60 && timeDiff > 24*60) {
+                  prefix = Math.round(timeDiff/(60*24))+' days ago';
+                } else {
+                    prefix = new Date(timestamp).toLocaleDateString("en-US");
+                }
 
-                <div class = "hashBlock">
-                  <div>
-                    <a href = {`${transactionAddress}`+`${transaction.hash}`}>
-                      {transaction.hash.slice(0,13)+'...'}
-                    </a>
-                  </div>
-                </div>
+                return prefix;
+              }
 
-                <div class ="toFromBlock">
-                  <div class="toFromContainer">
-                    <div>
-                      From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
-                        {transaction.from_address.slice(0,13)+'...'}
-                      </a>
-                    </div>
-                    <div>
-                      To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
-                        {transaction.to_address.slice(0,13)+'...'}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class ="dateBlock">
-                  <div>{renderTimestamp(transaction.block_timestamp)}</div>
-                </div>
+              const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+              const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+              Moralis.start({ serverUrl, appId });
 
 
-              </div>
 
-            )
+              const options = {
+                chain: "eth",
+                address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+                order: "desc",
+                from_block: "0",
+              };
+              const transactions = await Moralis.Web3API.account.getTransactions(options);
+              const recentTransactions = transactions.result.slice(0,20)
 
-          })
+
+              let transactionContainer = document.querySelectorAll(".nft-transactions-container");
+              console.log(transactionContainer)
+
+              transactionContainer.forEach((container) => {
+                console.log(container)
+
+                recentTransactions.forEach((transaction, index) => {
+                  console.log(transaction)
+
+                  var element = document.createElement("div");
+                  element.className = "transactionItem";
+                  element.key = index;
+
+                  // FOR TX SYMBOL
+                  var txBox = document.createElement("div");
+                  txBox.className += "txBox";
+                  var tx = document.createElement("div");
+                  tx.appendChild(document.createTextNode("TX"));
+                  txBox.appendChild(tx);
+                  element.appendChild(txBox);
+
+                  // FOR HASH BLOCK
+                  var hashBlock = document.createElement("div");
+                  hashBlock.className += "hashBlock";
+                  var hash = document.createElement("div")
+                  var hashLink = document.createElement("a")
+                  hashLink.appendChild(document.createTextNode(transaction.hash.slice(0,14)+"..."))
+                  hash.appendChild(hashLink)
+                  hashBlock.appendChild(hash)
+                  element.appendChild(hashBlock)
+
+
+                  // FOR TO FROM BLOCK
+                  var toFromBlock = document.createElement("div")
+                  toFromBlock.className = "toFromBlock";
+
+                  var toFromContainer = document.createElement("div")
+                  toFromContainer.className = "toFromContainer";
+
+                  var fromContainer = document.createElement("div");
+                  fromContainer.appendChild(document.createTextNode("From "));
+                  var fromHash = document.createElement("a");
+                  fromHash.appendChild(document.createTextNode(transaction.from_address.slice(0,14)+'...'));
+                  fromContainer.appendChild(fromHash)
+
+                  var toContainer = document.createElement("div");
+                  toContainer.appendChild(document.createTextNode("To "));
+                  var toHash = document.createElement("a");
+                  toHash.appendChild(document.createTextNode(transaction.to_address.slice(0,14)+"..."));
+                  toContainer.appendChild(toHash);
+
+                  toFromContainer.appendChild(fromContainer)
+                  toFromContainer.appendChild(toContainer)
+
+                  toFromBlock.appendChild(toFromContainer)
+                  element.appendChild(toFromBlock)
+
+
+
+                  // DATEBLOCK
+                  var dateBlock = document.createElement("div")
+                  dateBlock.className = "dateBlock";
+                  var dateCont = document.createElement("div")
+                  dateCont.appendChild(document.createTextNode(renderTimestamp(transaction.block_timestamp)));
+                  dateBlock.appendChild(dateCont);
+
+                  element.appendChild(dateBlock);
+
+                  container.appendChild(element)
+
+
+                })
+
+
+              })
+            }
+          `)
+          // block.components("")
+          // block.append(<div>Latest Transactions</div>)
+          // recentTransactions.forEach((transaction,index) => {
+          //
+          //   block.append(
+          //     <div key = {index} class = "transactionItem">
+          //       <div class = "txBox">
+          //         <div>TX</div>
+          //       </div>
+          //
+          //       <div class = "hashBlock">
+          //         <div>
+          //           <a href = {`${transactionAddress}`+`${transaction.hash}`}>
+          //             {transaction.hash.slice(0,13)+'...'}
+          //           </a>
+          //         </div>
+          //       </div>
+          //
+          //       <div class ="toFromBlock">
+          //         <div class="toFromContainer">
+          //           <div>
+          //             From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
+          //               {transaction.from_address.slice(0,13)+'...'}
+          //             </a>
+          //           </div>
+          //           <div>
+          //             To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
+          //               {transaction.to_address.slice(0,13)+'...'}
+          //             </a>
+          //           </div>
+          //         </div>
+          //       </div>
+          //
+          //       <div class ="dateBlock">
+          //         <div>{renderTimestamp(transaction.block_timestamp)}</div>
+          //       </div>
+          //
+          //
+          //     </div>
+          //
+          //   )
+          //
+          // })
         }
 
         if(type === "StatsList"){
+
+          // GOTTA SET THIS SO IT CAN RUN ON PREVIEW
           const transactionsOptions = {
             chain: "eth",
             address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",

@@ -137,12 +137,23 @@ export const CustomTransactionList = editor => {
       tagName: 'Transaction List',
       resizable: 'true',
       defaults: {
-        attributes: {class: 'nft-transactions-container'},
+        attributes: {class: 'nft-transactions-background-container'},
         styles: `
+          .nft-transactions-background-container{
+            background: black;
+            padding: 50px 0;
+            color:white;
+          }
+          .nft-trans-whole-cont{
+            position: relative;
+            width: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
           .nft-transactions-container{
+
             border-radius: 25px;
             background: white;
-            width: 700px;
             height: 200px;
             overflow:auto;
             height: 300px;
@@ -150,6 +161,7 @@ export const CustomTransactionList = editor => {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
             -ms-overflow-style: none;
             scrollbar-width: none;
+            color: black;
           }
 
           .nft-transactions-container::-webkit-scrollbar {
@@ -160,6 +172,7 @@ export const CustomTransactionList = editor => {
             padding: 10px 10px;
             border-bottom: 1px lightgray solid;
             display: flex;
+            flex-direction: row;
           }
           .buttonOpa{
             color: black;
@@ -198,15 +211,48 @@ export const CustomTransactionList = editor => {
 
         components: model => {
           return (
+          <div class = "nft-trans-whole-cont">
 
-          <div>
-            <div>
-              Latest Transactions
-            </div>
-            <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
-              <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
-                <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
+            My Latest Transactions
+            <div class = "nft-transactions-container">
+              <div>
+                Latest Transactions
               </div>
+              <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
+                <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
+                  <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+
+              <div class = "transactionItem">
+                   <div class = "txBox">
+                     <div>TX</div>
+                   </div>
+
+                   <div class = "hashBlock">
+                     <div>
+                       Contract Address
+                     </div>
+                   </div>
+
+                   <div class ="toFromBlock">
+                     <div class="toFromContainer">
+                       <div>
+                         From
+                       </div>
+                       <div>
+                         To
+                       </div>
+                     </div>
+                   </div>
+
+                   <div class ="dateBlock">
+                     Date
+                   </div>
+
+
+                 </div>
+
             </div>
 
 

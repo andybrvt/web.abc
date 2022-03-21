@@ -13,7 +13,6 @@ export const SectorContainer = (props) => {
 
   const sector = props.sector;
   const properties = sector.getProperties();
-  console.log(sector.getName())
   return(
     <div style={{marginBottom:25}} key = {sector.getId()}>
         {sector.getName()=="General"?

@@ -417,6 +417,8 @@ export const Editor = (props) => {
     })
 
     editor.on("block:drag:stop", async(block, obj) => {
+
+
       if(block !== null){
 
 
@@ -486,12 +488,12 @@ export const Editor = (props) => {
             order: "desc",
             from_block: "0",
           };
-          // const transactions = await Web3Api.account.getTransactions(options)
-          // const totalTransactions = transactions.total
-          //
-          // const target = block
-          // const targetId = block.getId()
-          // console.log(targetId)
+          const transactions = await Web3Api.account.getTransactions(options)
+          const totalTransactions = transactions.total
+
+          const target = block
+          const targetId = block.getId()
+          console.log(targetId)
 
           // let interval = 5000;
           //
@@ -504,31 +506,34 @@ export const Editor = (props) => {
           // })
 
 
-          // block.set("script", `
-          //   function script(props){
-          //     alert("what is this");
-          //
-          //   }
-          // `)
+          block.set("script", `
+            function script(props){
+              console.log('is this working');
 
-          // console.log('is this working');
-          // let containers = document.querySelectorAll(".stats-list-container");
-          // let interval = 5000;
-          //
-          // containers.forEach((container) => {
-          //   let startValue = 0;
-          //   let endValue = parseInt(5000);
-          //   let duration = Math.floor(internval/endValue);
-          //   let counter = setInterval(function(){
-          //     startValue += 1;
-          //     console.log(startValue);
-          //     container.textContent = startValue;
-          //     if(startValue == endValue){
-          //       clearInterval(counter);
-          //     }
-          //   }, duration);
-          //
-          // })
+              let containers = document.querySelectorAll(".stats-list-container");
+              let interval = 5000;
+
+              console.log(containers)
+
+              containers.forEach((container) => {
+                let startValue = 0;
+                let endValue = parseInt(1000);
+                let duration = Math.floor(5000/endValue);
+                let counter = setInterval(function(){
+                  startValue += 1;
+                  console.log(startValue);
+                  container.textContent = startValue;
+                  if(startValue == endValue){
+                    clearInterval(counter);
+                  }
+                }, duration);
+
+              })
+            }
+          `)
+
+
+
 
         }
 
@@ -655,15 +660,6 @@ export const Editor = (props) => {
       //
       // `)
 
-      const target = editor.getSelected()
-      const targetId = target.getId()
-      console.log(targetId)
-      target.set("script", `
-        function script(props) {
-          alert('this works righ')
-        }
-
-      `)
 
 
     })

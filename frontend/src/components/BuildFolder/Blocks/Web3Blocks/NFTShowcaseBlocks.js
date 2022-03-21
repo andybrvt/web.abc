@@ -15,7 +15,9 @@ export const NFTShowcaseBlocks = [
         <img class="img" src="${image12}" />
       </div>
     `,
-    content: {type: 'NFTShowcase'}
+    content: {type: 'NFTShowcase'},
+    select:true,
+
   },
   {
     id: 'TransactionList',
@@ -29,7 +31,11 @@ export const NFTShowcaseBlocks = [
     `,
     content: {
       activeOnRender: 1,
-      type: 'TransactionList'}
+      type: 'TransactionList'
+    },
+    select:true,
+
+
   },{
     id: "Web3Stats",
     label: "Web3 Stats",
@@ -39,7 +45,9 @@ export const NFTShowcaseBlocks = [
     content: {
       activeOnRender:1,
       type: 'StatsList'
-    }
+    },
+    select:true,
+
   }
 
 ]

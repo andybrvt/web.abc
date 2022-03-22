@@ -1,12 +1,13 @@
 #slidingDrawer{
   width: 25vw;
   height: 95vh;
-  background-color: white;
+  background-color: lightgray;
   position: absolute;
   left: 0;
   transition: transform .5s cubic-bezier(0, .52, 0, 1);
   z-index: 999;
-  box-shadow: 2px 4px 4px grey;
+
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
   overflow: auto;
 }
 
@@ -15,7 +16,7 @@
 }
 
 #slidingDrawer.show{
-  transform: translate3d(4vw, 0, 0);
+  transform: translate3d(3.5vw, 0, 0);
 }
 
 

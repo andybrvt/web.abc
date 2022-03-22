@@ -212,8 +212,9 @@ export const CustomTransactionList = editor => {
         components: model => {
           return (
           <div class = "nft-trans-whole-cont">
-
-            My Latest Transactions
+            <div>
+              My Latest Transactions
+            </div>
             <div class = "nft-transactions-container">
               <div>
                 Latest Transactions

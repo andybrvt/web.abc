@@ -17,7 +17,7 @@ import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover, Div
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
+import { faShapes, faCircle, faFont, faKeyboard, faPlay, faTrash, faEye, faSave } from '@fortawesome/free-solid-svg-icons'
 import {IconButtonCanvas} from '../../TestingFolder/ReactDesignerTest';
 import { Button as Button, ButtonGroup, Box, Tooltip, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
 import { BlockAttribute } from '../BlockAttributes/BlockAttribute';
@@ -960,74 +960,59 @@ export const Editor = (props) => {
                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
 
-            <div className = "buttonHolder">
+            {/*
+              <div className = "buttonHolder">
+                <AntButton
+                  onClick = {() => changeDrawerVisibility("shapes")}
+                  type="primary" shape="circle" icon={<FontAwesomeIcon style={{marginRight:5}} icon={faShapes} />} size="large" />
+              </div>
 
-              <AntButton
-                onClick = {() => changeDrawerVisibility("shapes")}
-                type="primary" shape="circle" icon={<FontAwesomeIcon style={{marginRight:5}} icon={faShapes} />} size="large" />
-            </div>
-
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => changeDrawerVisibility("pens")}
-                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
-            </div>
-
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => changeDrawerVisibility("colors")}
-                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
-            </div>
-
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => changeDrawerVisibility("input")}
-                type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
-            </div>
+              */}
 
 
-            <div className = "buttonHolder">
-              <AntButton
-                // onClick = {() => changeDrawerVisibility("colors")}
-                shape="circle" icon={<FontAwesomeIcon icon={faFont} />} size="large" />
-            </div>
+            {/*
+              <div className = "buttonHolder">
+                <AntButton
+                  onClick = {() => changeDrawerVisibility("input")}
+                  type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
+              </div>
+
+              */}
 
 
-            <div className = "buttonHolder">
-              <AntButton
-                // onClick = {() => changeDrawerVisibility("colors")}
-                shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
-            </div>
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => showPreview()}
                 shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+                 icon={<FontAwesomeIcon icon={faEye} />} size="large" />
             </div>
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => clearCanvas()}
                 shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+                 icon={<FontAwesomeIcon icon={faTrash} />} size="large" />
             </div>
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => storeEditor()}
                 shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+                 icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>
           </div>
         </div>
 
         <div ref = {wrapperRef}>
           <Drawer  visibility = {visibility}>
-            <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
+
+              <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
+
+
           </Drawer>
         </div>
         <div class="column">
           <div id = "gjs"></div>
         </div>
+
 
         <BlockAttribute
           blockType={BlockClickType}

@@ -41,15 +41,12 @@ export const PropertyContainer = (props) => {
 
       var curValue = property.hasValue() ? property.getValue() : getDefValue()
       var label = property.getLabel()
-      console.log(props.sectorName)
-      console.log(label)
       if(  (props.sectorName=="Dimension" && property.getLabel()=='Top')||
            (props.sectorName=="Dimension" && property.getLabel()=='Left')||
            (props.sectorName=="Dimension" && property.getLabel()=='Right')||
            (props.sectorName=="Dimension" && property.getLabel()=='Bottom')
       ){
 
-        console.log("TESTLAKD;AL;KJSDF")
         return (
           ''
         )

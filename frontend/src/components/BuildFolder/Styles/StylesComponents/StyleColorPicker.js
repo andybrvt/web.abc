@@ -58,8 +58,9 @@ const theme = extendTheme({
 
   return (
     <ChakraProvider theme={theme}>
-      {props.label}
-      <Center>
+        <div class="miniStyleHeader">
+          {props.label}
+        </div>
         <Popover variant="picker">
           <PopoverTrigger>
 
@@ -119,7 +120,7 @@ const theme = extendTheme({
             </PopoverBody>
           </PopoverContent>
         </Popover>
-      </Center>
+
     </ChakraProvider>
   );
 }

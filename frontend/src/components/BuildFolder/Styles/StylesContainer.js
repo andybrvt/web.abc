@@ -74,7 +74,12 @@ export const StylesContainer = (props) => {
       // align={'center'}
       pos={'relative'}
       >
-      <div class="blockTypeHeader">{props.blockType}</div>
+
+        <div class={`${(props.blockType) ? "testThis" : ""}`}>
+          <div class="blockTypeHeader">
+            {props.blockType}
+          </div>
+        </div>
       <div>
         {sectors.map((item,index) => {
           return(

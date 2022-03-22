@@ -1,8 +1,15 @@
 .attributeHeader{
   top: 10px;
   font-family: 'PlusJakartaSans-SemiBold';
-  font-size: 14px;
+  font-size: 16px;
   /* background: red; */
+}
+
+
+.accordionHeader{
+  top: 10px;
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 14px;
 }
 
 .miniAttributeHeader{

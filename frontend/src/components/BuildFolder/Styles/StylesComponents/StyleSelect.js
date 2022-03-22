@@ -14,10 +14,13 @@ export const StyleSelect = (props) => {
 
   return(
     <div>
-      {props.label}
+      <div class="miniStyleHeader">
+        {props.label}
+      </div>
+
       <Select
         onChange = {(e) => handleClick(e.target.value)}
-        placeholder='Select option'>
+        placeholder={props.curValue}>
 
         {
           options.map((opt, index) => {
@@ -33,7 +36,7 @@ export const StyleSelect = (props) => {
 
 
       </Select>
-      
+
     </div>
 
   )

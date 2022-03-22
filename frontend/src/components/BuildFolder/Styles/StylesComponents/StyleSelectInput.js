@@ -16,7 +16,9 @@ export const StyleSelectInput = (props) => {
 
   return(
     <div>
-      {props.label}
+      <div class="miniStyleHeader">
+        {props.label}
+      </div>
       <NumberInput defaultValue = {props.value}
         // onChange = {e=>props.handleChange(e)}
         onChange = {e=>handleChange(e)}

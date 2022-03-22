@@ -68,10 +68,14 @@ export const StyleFontSize = (props) => {
       }
 
   return(
-    <div style={{marginTop:30, flexDirection:'row', display:'flex', marginBottom:10}}>
+    <div>
+      <div class="miniStyleHeader">
+        Font Size
+      </div>
+      <div style={{flexDirection:'row', display:'flex', marginBottom:10}}>
 
       <Stack shouldWrapChildren direction='row'>
-        <NumberInput defaultValue={props.value} size='xs' maxW={16} value={value} onChange = {e=>handleChange(e)} min={10}>
+        <NumberInput defaultValue={props.value} style={{width:75}} value={value} onChange = {e=>handleChange(e)} min={10}>
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />
@@ -80,21 +84,22 @@ export const StyleFontSize = (props) => {
         </NumberInput>
       </Stack>
 
-      <div style={{width:150, marginLeft:25}}>
+      <div style={{marginTop:5, width:200, marginLeft:25}}>
         <Slider
+          colorScheme='tomato'
           focusThumbOnChange={false}
           value={value}
           onChange = {e=>handleChange(e)}
         >
           <SliderTrack>
-            <SliderFilledTrack />
+            <SliderFilledTrack bg='tomato'/>
           </SliderTrack>
           <SliderThumb fontSize='sm' boxSize='30px' children={value} />
         </Slider>
       </div>
     </div>
 
-
+    </div>
 
 
 

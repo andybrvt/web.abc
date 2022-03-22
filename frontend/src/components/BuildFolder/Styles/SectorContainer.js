@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle,
    faArrowsAlt,
    faTextHeight,
-   faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
+   faFont, faKeyboard, faPlay, faPalette } from '@fortawesome/free-solid-svg-icons'
 
 
 export const SectorContainer = (props) => {
@@ -22,24 +22,40 @@ export const SectorContainer = (props) => {
   const properties = sector.getProperties();
   return(
     <div style={{marginBottom:25}} key = {sector.getId()}>
-        {sector.getName()=="General" || sector.getName()=="Dimension" ?
+        {(sector.getName()=="General" || sector.getName()=="Dimension" || sector.getName()=="Decorations")?
           ''
         :
-        <div class="attributeHeader">{sector.getName()}</div>
+
+        <div>
+          {
+            (sector.getName()=="Extra")?
+              <div class="attributeHeader">
+                Opacity
+              </div>
+            :
+              <div class="attributeHeader">{sector.getName()}</div>
+          }
+
+        </div>
+
         }
 
         <div style={{marginTop:10, marginBottom:20}}/>
         {sector.getName()=="General" ?
-          <Accordion allowToggle>
+          <Accordion style={{marginTop:50}} allowToggle>
             <AccordionItem>
               <h2>
                 <AccordionButton>
-                    <FontAwesomeIcon style={{color:'#1890ff', marginRight:20}} icon={faArrowsAlt} />
-                    <div class="attributeHeader">
-                      Position
+                  <FontAwesomeIcon style={{color:'#1890ff', marginRight:10}} icon={faArrowsAlt} />
+                  <Box flex='1' textAlign='left'>
+                    <div style={{display:'flex', flexDirection:'row', }}>
+                      <div class="accordionHeader">
+                        Position
+                      </div>
                     </div>
-
+                  </Box>
                   <AccordionIcon />
+
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
@@ -66,10 +82,14 @@ export const SectorContainer = (props) => {
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
-                        <FontAwesomeIcon style={{color:'#1890ff', marginRight:20}} icon={faTextHeight} />
-                        <div class="attributeHeader">
-                          Dimension
+                      <FontAwesomeIcon style={{color:'#1890ff', marginRight:10}} icon={faTextHeight} />
+                      <Box flex='1' textAlign='left'>
+                        <div style={{display:'flex', flexDirection:'row'}}>
+                          <div class="accordionHeader">
+                            Dimensions
+                          </div>
                         </div>
+                      </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
@@ -78,7 +98,7 @@ export const SectorContainer = (props) => {
                       properties.map((property, index) => {
 
                         return(
-                          <div style={{padding:15}}>
+                          <div style={{padding:10}}>
                             <PropertyContainer
                               sectorName={sector.getName()}
                               blockType={props.blockType}
@@ -95,28 +115,58 @@ export const SectorContainer = (props) => {
               </Accordion>
 
             :
+
             <div>
               {
-                properties.map((property, index) => {
+                (sector.getName()=="Decorations" )?
+                  <Accordion allowToggle>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton>
+                          <FontAwesomeIcon style={{color:'#1890ff', marginRight:10}} icon={faPalette} />
+                          <Box flex='1' textAlign='left'>
+                            <div style={{display:'flex', flexDirection:'row'}}>
+                              <div class="accordionHeader">
+                                Decorations
+                              </div>
+                            </div>
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        {
+                          properties.map((property, index) => {
+                            return(
+                              <div style={{padding:15}}>
+                                <PropertyContainer
+                                  sectorName={sector.getName()}
+                                  blockType={props.blockType}
+                                  property = {property}/>
+                              </div>
+                            )
+                          })
+                        }
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
+                :
 
-                  return(
-                    <PropertyContainer
-                      sectorName={sector.getName()}
-                      blockType={props.blockType}
-                      property = {property}/>
-
-                  )
-                })
+                <div>
+                  {
+                    properties.map((property, index) => {
+                      return(
+                        <PropertyContainer
+                          sectorName={sector.getName()}
+                          blockType={props.blockType}
+                          property = {property}/>
+                      )
+                    })
+                  }
+                </div>
               }
             </div>
-
-
           }
-
-
-
-
-
 
         </div>
 

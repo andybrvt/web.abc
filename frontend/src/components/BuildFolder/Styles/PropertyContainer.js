@@ -10,7 +10,9 @@ import {StylePositionTop} from './StylesComponents/StylePositionTop';
 import {StylePositionLeft} from './StylesComponents/StylePositionLeft';
 import {StylePositionBottom} from './StylesComponents/StylePositionBottom';
 import {StylePositionRight} from './StylesComponents/StylePositionRight';
-import { Input } from '@chakra-ui/react'
+import { CreatableSelect as ChakraFontFamilySelect } from './chakra-react-select';
+import { Input, Center} from '@chakra-ui/react'
+import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../Styles/data";
 import './StylesComponents/StylePosition.css'
 export const PropertyContainer = (props) => {
 
@@ -112,6 +114,7 @@ export const PropertyContainer = (props) => {
             />
         )
       }
+
       return(
         <StyleSelectInput
           label = {label}
@@ -141,6 +144,33 @@ export const PropertyContainer = (props) => {
         )
       }
       return(
+        <div>
+        {/*
+          (property.getLabel()=='Font family')?
+          <ChakraFontFamilySelect
+            style={{width:200}}
+            options={TextFonts}
+            placeholder="Cambria"
+            closeMenuOnSelect={false}
+            size="sm"
+            value = {curValue}
+            handleChange = {handleChange}
+            handleInput = {handleInput}
+             />
+
+          :
+          <StyleSelect
+            label = {label}
+            field = {property.getId()}
+            handleChange = {handleChange}
+            handleInput = {handleInput}
+            curValue = {curValue}
+            options = {options}
+            getOptionId = {getOptionId}
+            getOptionLabel = {getOptionLabel}
+             />
+
+        */}
         <StyleSelect
           label = {label}
           field = {property.getId()}
@@ -151,6 +181,7 @@ export const PropertyContainer = (props) => {
           getOptionId = {getOptionId}
           getOptionLabel = {getOptionLabel}
            />
+        </div>
       )
     }
     else if (type ==="color"){
@@ -218,16 +249,7 @@ export const PropertyContainer = (props) => {
 
 
       return(
-        <StyleStack
-          label = {label}
-          field = {property.getId()}
-          handleChange = {handleChange}
-          handleInput = {handleInput}
-          layers = {layers}
-          addLayer = {addLayer}
-          renderProperty= {renderProperty}
-          properties = {properties}
-           />
+        ''
       )
     } else if(type === "slider"){
 
@@ -237,14 +259,18 @@ export const PropertyContainer = (props) => {
       const step = property.getStep()
 
       return(
-        <StyleSlider
-          handleChange = {handleChange}
-          handleInput = {handleInput}
-          value = {value}
-          min = {min}
-          max= {max}
-          step ={step}
-           />
+        <Center>
+          <div style={{width:'90%'}}>
+            <StyleSlider
+              handleChange = {handleChange}
+              handleInput = {handleInput}
+              value = {value}
+              min = {min}
+              max= {max}
+              step ={step}
+             />
+           </div>
+         </Center>
       )
     }
 

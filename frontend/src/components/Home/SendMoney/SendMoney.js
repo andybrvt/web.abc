@@ -53,7 +53,8 @@ export const SendMoney = (props) => {
 
   const { account, chainId } = useEthers()
   const { abi } = TransactionContract
-  const TransactionContractAddress = chainId ? networkMapping[String(chainId)]["Transaction"][0] : constants.AddressZero
+  // const TransactionContractAddress = chainId ? networkMapping[String(chainId)]["Transaction"][0] : constants.AddressZero
+  const TransactionContractAddress =  constants.AddressZero
   const TransactionContractInterface = new utils.Interface(abi)
   const transactionContract = new Contract(TransactionContractAddress,TransactionContractInterface)
 

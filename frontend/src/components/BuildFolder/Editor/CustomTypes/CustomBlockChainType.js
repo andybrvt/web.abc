@@ -218,11 +218,7 @@ export const CustomTransactionList = editor => {
               <div>
                 Latest Transactions
               </div>
-              <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
-                <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
-                  <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
-                </div>
-              </div>
+
 
               <div class = "transactionItem">
                    <div class = "txBox">
@@ -251,6 +247,12 @@ export const CustomTransactionList = editor => {
                    </div>
 
 
+                 </div>
+
+                 <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
+                   <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
+                     <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
+                   </div>
                  </div>
 
             </div>

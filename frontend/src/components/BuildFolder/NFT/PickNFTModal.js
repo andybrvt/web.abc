@@ -47,7 +47,7 @@ export const PickNFTModal  = (props) => {
   const fetchNFTs = async() => {
     const options = {
       chain: "eth",
-      address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+      address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
     }
 
 

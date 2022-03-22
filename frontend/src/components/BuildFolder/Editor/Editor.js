@@ -167,9 +167,6 @@ const translatedItems = [
 export const Editor = (props) => {
 
   const Web3Api = useMoralisWeb3Api()
-
-
-  // For nft modal
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [scrollBehavior, setScrollBehavior] = React.useState('inside')
   const btnRef = React.useRef()
@@ -425,7 +422,7 @@ export const Editor = (props) => {
 
     editor.on("block:drag:stop", async(block, obj) => {
 
-
+      console.log(account)
       if(block !== null){
 
         // GOTTA SET THIS SO IT CAN RUN ON PREVIEW TOO
@@ -446,6 +443,9 @@ export const Editor = (props) => {
 
           block.set("script", `
             async function script(props){
+
+              let spinnerWrapper = document.getElementsByClassName("nft-transactions-background-container")[0].getElementsByClassName("spinner-border")[0]
+              console.log(spinnerWrapper)
 
               const renderTimestamp = timestamp =>{
                 let prefix = '';
@@ -473,12 +473,16 @@ export const Editor = (props) => {
 
               const options = {
                 chain: "eth",
-                address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+                address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
                 order: "desc",
                 from_block: "0",
               };
               const transactions = await Moralis.Web3API.account.getTransactions(options);
               const recentTransactions = transactions.result.slice(0,20)
+
+
+              spinnerWrapper.parentElement.removeChild(spinnerWrapper);
+
 
 
               let transactionContainer = document.querySelectorAll(".nft-transactions-container");
@@ -558,49 +562,6 @@ export const Editor = (props) => {
               })
             }
           `)
-          // block.components("")
-          // block.append(<div>Latest Transactions</div>)
-          // recentTransactions.forEach((transaction,index) => {
-          //
-          //   block.append(
-          //     <div key = {index} class = "transactionItem">
-          //       <div class = "txBox">
-          //         <div>TX</div>
-          //       </div>
-          //
-          //       <div class = "hashBlock">
-          //         <div>
-          //           <a href = {`${transactionAddress}`+`${transaction.hash}`}>
-          //             {transaction.hash.slice(0,13)+'...'}
-          //           </a>
-          //         </div>
-          //       </div>
-          //
-          //       <div class ="toFromBlock">
-          //         <div class="toFromContainer">
-          //           <div>
-          //             From <a href = {`${addressAddress}`+`${transaction.from_address}`}>
-          //               {transaction.from_address.slice(0,13)+'...'}
-          //             </a>
-          //           </div>
-          //           <div>
-          //             To <a href = {`${addressAddress}`+`${transaction.to_address}`}>
-          //               {transaction.to_address.slice(0,13)+'...'}
-          //             </a>
-          //           </div>
-          //         </div>
-          //       </div>
-          //
-          //       <div class ="dateBlock">
-          //         <div>{renderTimestamp(transaction.block_timestamp)}</div>
-          //       </div>
-          //
-          //
-          //     </div>
-          //
-          //   )
-          //
-          // })
         }
 
         if(type === "StatsList"){
@@ -608,7 +569,7 @@ export const Editor = (props) => {
           // GOTTA SET THIS SO IT CAN RUN ON PREVIEW
           const transactionsOptions = {
             chain: "eth",
-            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
             order: "desc",
             from_block: "0",
           };
@@ -616,7 +577,7 @@ export const Editor = (props) => {
 
           const transfersOptions = {
             chain: "eth",
-            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
             from_block: "0",
           };
           // const transfers = await Web3Api.account.getTokenTransfers(transfersOptions);
@@ -624,7 +585,7 @@ export const Editor = (props) => {
 
           const nftTransfersOptions = {
             chain: "eth",
-            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+            address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
             limit: "5",
           };
           // const transfersNFT = await Web3Api.account.getNFTTransfers(nftTransfersOptions);
@@ -646,10 +607,45 @@ export const Editor = (props) => {
           const targetId = block.getId()
 
           block.set("script", `
-            function script(props){
+            async function script(props){
+
+              const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+              const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+              Moralis.start({ serverUrl, appId });
+
+              const transactionsOptions = {
+                chain: "eth",
+                address: "0xfDDec20451Aa93B367E0179f5f86695eb7BD137f",
+                order: "desc",
+                from_block: "0",
+              };
+
+              const transfersOptions = {
+                chain: "eth",
+                address: "0xfDDec20451Aa93B367E0179f5f86695eb7BD137f",
+                from_block: "0",
+              };
+
+
+              const nftTransfersOptions = {
+                chain: "eth",
+                address: "0xfDDec20451Aa93B367E0179f5f86695eb7BD137f",
+                limit: "5",
+              };
+
+              let [transactions, transfers,transfersNFT] = await Promise.all([
+                Moralis.Web3API.account.getTransactions(transactionsOptions),
+                Moralis.Web3API.account.getTokenTransfers(transfersOptions),
+                Moralis.Web3API.account.getNFTTransfers(nftTransfersOptions)
+              ])
+
+              const totalTransactions = transactions.total
+              const totalTransfers = transfers.total
+              const totalTransfersNFT = transfersNFT.total
+
+
 
               let containers = document.querySelectorAll(".numTransactions, .numTransfers, .numNFTTransfers");
-              console.log(containers, 'here are the containers')
               let interval = 2000;
 
 
@@ -660,20 +656,20 @@ export const Editor = (props) => {
                 let startValue = 0;
                 let endValue = 0;
                 if(container.className === "numTransactions"){
-                  endValue = parseInt(${totalTransactions});
+                  endValue = parseInt(totalTransactions);
                 }
                 if(container.className === "numTransfers"){
-                  endValue = parseInt(${totalTransfers});
+                  endValue = parseInt(totalTransfers);
                 }
                 if(container.className === "numNFTTransfers"){
-                  endValue = parseInt(${totalTransfersNFT});
+                  endValue = parseInt(totalTransfersNFT);
                 }
 
                 let duration = Math.floor(interval/endValue);
                 let counter = setInterval(function(){
                   startValue += 1;
                   container.textContent = startValue;
-                  if(startValue == endValue){
+                  if(startValue == endValue || endValue == 0){
                     clearInterval(counter);
                   }
                 }, duration);

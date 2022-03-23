@@ -26,6 +26,8 @@ export const WrapperGradientSelector = (props) => {
   }, [props.editor])
 
   const setWrapperBackground = (gradient) => {
+    console.log(editorMain.Canvas.getBody())
+    console.log(editorMain.getWrapper().getEl())
     editorMain.getWrapper().setStyle({
       background: gradient+';'
     })

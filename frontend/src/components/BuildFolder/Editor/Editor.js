@@ -988,16 +988,17 @@ export const Editor = (props) => {
             </div>
             <div className = "buttonHolder">
               <AntButton
-                onClick = {() => clearCanvas()}
-                shape="circle"
-                 icon={<FontAwesomeIcon icon={faTrash} />} size="large" />
-            </div>
-            <div className = "buttonHolder">
-              <AntButton
                 onClick = {() => storeEditor()}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => clearCanvas()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faTrash} />} size="large" />
+            </div>
+
           </div>
         </div>
 

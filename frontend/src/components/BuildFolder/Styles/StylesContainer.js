@@ -5,14 +5,15 @@ import {
 } from '@chakra-ui/react';
 import {SectorContainer} from './SectorContainer';
 import "./StylesContainer.css";
+import {WrapperGradientSelector} from './WrapperGradientSelector';
 export const StylesContainer = (props) => {
 
   const [editorMain, setEditor] = useState(null);
   const [sectors, setSectors] = useState([]);
   if(props.editor !== null){
-  const sector1=props.editor.StyleManager.getSector('typography');
-  const property = sector1.getProperties()
-}
+    const sector1=props.editor.StyleManager.getSector('typography');
+    const property = sector1.getProperties()
+  }
   // return function in useEffect will be the unmount
   useEffect(() => {
     if(props.editor !== null){
@@ -26,9 +27,7 @@ export const StylesContainer = (props) => {
           const tempEditor = props.editor
           let styleManager = props.editor.StyleManager;
           let typographySector = props.editor.StyleManager.getSector('typography');
-          console.log(typographySector)
           let fontProperty = props.editor.StyleManager.getProperty('typography', 'font-family');
-          console.log(fontProperty)
           const roboto = "Raleway, sans-serif";
           const font = { id: roboto, label: roboto.split(',')[0] };
           console.log(fontProperty.getOptions())
@@ -61,6 +60,13 @@ export const StylesContainer = (props) => {
   }, [props.editor])
 
 
+  const testClick = ()=> {
+    console.log(editorMain.getWrapper())
+    editorMain.getWrapper().setStyle({
+      background: "linear-gradient(#e66465, #9198e5);"
+    })
+  }
+
   return(
 
 
@@ -89,6 +95,13 @@ export const StylesContainer = (props) => {
           )
         })}
       </div>
+      {
+        props.blockType === "wrapper" ?
+
+        <WrapperGradientSelector editor = {editorMain}/>
+        :
+        ''
+      }
 
     </Stack>
 

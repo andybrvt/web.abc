@@ -194,7 +194,7 @@ export const ModernTemplateBlocks = [
         ${normalButton}
         ${tempHeight}
         .gradientBackground1{
-          background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
+          // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
         }
         .mHeaderText{
           position: absolute;
@@ -227,7 +227,7 @@ export const ModernTemplateBlocks = [
 
       <div data-gjs-dmode="absolute" class="row tempHeight">
         <div class="col">
-          <div class ='gradientBackground gradientBackground1'/>
+          <div class ='gradientBackground'/>
         </div>
 
         <div class="header">

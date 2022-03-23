@@ -5,7 +5,8 @@ import {
 } from '@chakra-ui/react';
 import {SectorContainer} from './SectorContainer';
 import "./StylesContainer.css";
-import {WrapperGradientSelector} from './WrapperGradientSelector';
+import { WrapperGradientSelector } from './WrapperGradientSelector';
+import { RoundedCornersSelector } from './RoundedCornersSelector';
 export const StylesContainer = (props) => {
 
   const [editorMain, setEditor] = useState(null);
@@ -22,7 +23,7 @@ export const StylesContainer = (props) => {
       props.editor.on('style:custom', props =>{
         setSectors(tempEditor.StyleManager.getSectors({visible:true}))
       })
-      
+
       props.editor.on('load', ()=> {
 
           const tempEditor = props.editor
@@ -61,12 +62,6 @@ export const StylesContainer = (props) => {
   }, [props.editor])
 
 
-  const testClick = ()=> {
-    console.log(editorMain.getWrapper())
-    editorMain.getWrapper().setStyle({
-      background: "linear-gradient(#e66465, #9198e5);"
-    })
-  }
 
   return(
 
@@ -96,6 +91,18 @@ export const StylesContainer = (props) => {
           )
         })}
       </div>
+      {
+        props.blockType === "image" ?
+
+        <RoundedCornersSelector editor = {editorMain}/>
+
+      :
+
+      ""
+
+
+      }
+
       {
         props.blockType === "wrapper" ?
 

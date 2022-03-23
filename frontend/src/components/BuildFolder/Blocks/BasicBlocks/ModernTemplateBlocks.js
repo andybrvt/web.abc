@@ -95,9 +95,10 @@ export const ModernTemplateBlocks = [
       ${mediaButton}
       ${background}
       .gradientBackground1{
-        background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)}
+        // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
+      }
       .mHeaderText{
-        color: white;
+        color: black;
         position: absolute;
         font-size: 70px;
         width: 30%;
@@ -108,7 +109,7 @@ export const ModernTemplateBlocks = [
         text-align:left;}
       .mBodyText{
         text-align: left;
-        color:white;
+        color:black;
         position: absolute;
         width: 30%;
         left: 12%;
@@ -193,7 +194,8 @@ export const ModernTemplateBlocks = [
         ${normalButton}
         ${tempHeight}
         .gradientBackground1{
-          background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)}
+          background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
+        }
         .mHeaderText{
           position: absolute;
           font-size: 70px;

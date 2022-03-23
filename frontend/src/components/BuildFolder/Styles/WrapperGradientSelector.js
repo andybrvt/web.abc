@@ -7,6 +7,9 @@ const gradientList = [
   'linear-gradient(to right, #8360c3, #2ebf91)',
   'linear-gradient(to right, #8e2de2, #4a00e0)',
   'linear-gradient(to right, #fffbd5, #b20a2c)',
+  'linear-gradient(to right, #5433ff, #20bdff, #a5fecb)',
+  'linear-gradient(to right, #0f2027, #203a43, #2c5364)',
+  'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'
 
 ]
 

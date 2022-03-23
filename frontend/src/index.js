@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'antd/dist/antd.css';
 import './fonts.css';
-import { DAppProvider } from "@usedapp/core";
+import { DAppProvider, ChainId } from "@usedapp/core";
 import { ChakraProvider } from '@chakra-ui/react'
 import './global.js'
 import "grapesjs/dist/css/grapes.min.css"

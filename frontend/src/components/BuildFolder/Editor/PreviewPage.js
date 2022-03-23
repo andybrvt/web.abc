@@ -14,6 +14,7 @@ export const PreviewPage = props => {
   const isConnected = account !== undefined
 
   const [html, setHtml] = useState("")
+  const [srcDoc, setSrcDoc] = useState("")
 
   const {websiteId, pageId} = useParams()
 
@@ -31,10 +32,24 @@ export const PreviewPage = props => {
 
       axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/${websiteId}/${pageId}`)
       .then(res => {
-        console.log(res.data)
+        console.log(res.data, 'what is this here')
         setHtml(res.data.html)
         eval(res.data.js)
 
+        setSrcDoc(
+          `
+          <html>
+
+            <body>
+
+            ${res.data.html}
+            </body>
+            <style>${res.data.css}</style>
+            <script>${res.data.js}</script>
+          <html>
+
+          `
+        )
 
       })
 
@@ -68,9 +83,20 @@ export const PreviewPage = props => {
 
 
   return(
-    <div>
-      {parse(html)}
+    <div style = {{
+        height: '100vh',
+        width: '100vw'
+      }}>
+      {/*parse(html)*/}
 
+      <iframe
+        srcDoc = {srcDoc}
+        // sandbox= "allow-scripts" // just so that you cant access other codes out side
+        title = "output"
+        frameBorder = "0"
+        width = "100%"
+        height = "100%"
+         />
 
     </div>
   )

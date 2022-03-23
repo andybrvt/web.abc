@@ -215,7 +215,8 @@ class GetPageInfo(APIView):
             # write in the page here
             content = {
                 'html': serializedPage['html'],
-                'js': serializedPage['js']
+                'css': serializedPage['css'],
+                'js': serializedPage['js'],
             }
             print(content)
             return Response(content)

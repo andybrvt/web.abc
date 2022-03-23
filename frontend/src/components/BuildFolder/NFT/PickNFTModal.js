@@ -15,11 +15,13 @@ import './PickNFTModal.css'
 import $ from 'jquery';
 import ImagePicker from 'react-image-picker'
 import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
+import { useEthers } from "@usedapp/core";
 
 
 
 export const PickNFTModal  = (props) => {
 
+  const {activateBrowserWallet, account, chainId } = useEthers();
 
   const { web3 } = useMoralis()
   const Web3Api = useMoralisWeb3Api()
@@ -47,7 +49,7 @@ export const PickNFTModal  = (props) => {
   const fetchNFTs = async() => {
     const options = {
       chain: "eth",
-      address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
+      address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
     }
 
 

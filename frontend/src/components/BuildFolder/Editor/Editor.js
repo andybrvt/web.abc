@@ -17,7 +17,7 @@ import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover, Div
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
+import { faShapes, faCircle, faFont, faKeyboard, faPlay, faTrash, faEye, faSave } from '@fortawesome/free-solid-svg-icons'
 import {IconButtonCanvas} from '../../TestingFolder/ReactDesignerTest';
 import { Button as Button, ButtonGroup, Box, Tooltip, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
 import { BlockAttribute } from '../BlockAttributes/BlockAttribute';
@@ -177,7 +177,8 @@ export const Editor = (props) => {
   const {websiteId} = useParams()
 
 
-  const {activateBrowserWallet, account } = useEthers();
+  const {activateBrowserWallet, account, chainId } = useEthers();
+  console.log(account, 'this is the account here')
   const [preview, setPreview] =useState(false);
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
@@ -228,7 +229,6 @@ export const Editor = (props) => {
   useOutSideAlerter(wrapperRef)
 
   useEffect(() => {
-
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: 1,
@@ -286,7 +286,6 @@ export const Editor = (props) => {
       assetManager:{
         assets:[
           'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
-           // Pass an object with your properties
            {
              type: 'image',
              src: image1,
@@ -295,8 +294,6 @@ export const Editor = (props) => {
              name: 'displayName1'
            },
            {
-             // As the 'image' is the base type of assets, omitting it will
-             // be set as `image` by default
              src: 'http://placehold.it/350x250/79c267/fff/image3.jpg',
              height: 350,
              width: 250,
@@ -449,6 +446,8 @@ export const Editor = (props) => {
     editor.on("block:drag:stop", async(block, obj) => {
 
       console.log(account)
+
+      const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
       if(block !== null){
 
         // GOTTA SET THIS SO IT CAN RUN ON PREVIEW TOO
@@ -456,14 +455,6 @@ export const Editor = (props) => {
         const type = block.get('type')
 
         if(type === "TransactionList"){
-          const options = {
-            chain: "eth",
-            address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
-            order: "desc",
-            from_block: "0",
-          };
-          const transactions = await Web3Api.account.getTransactions(options)
-          const recentTransactions = transactions.result.slice(0,20)
           const transactionAddress = 'https://etherscan.io/tx/'
           const addressAddress = "https://etherscan.io/address/"
 
@@ -472,6 +463,9 @@ export const Editor = (props) => {
 
               let spinnerWrapper = document.getElementsByClassName("nft-transactions-background-container")[0].getElementsByClassName("spinner-border")[0]
               console.log(spinnerWrapper)
+
+              const transactionAddress = 'https://etherscan.io/tx/'
+              const addressAddress = "https://etherscan.io/address/"
 
               const renderTimestamp = timestamp =>{
                 let prefix = '';
@@ -499,7 +493,7 @@ export const Editor = (props) => {
 
               const options = {
                 chain: "eth",
-                address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
+                address: "${account}",
                 order: "desc",
                 from_block: "0",
               };
@@ -537,6 +531,7 @@ export const Editor = (props) => {
                   hashBlock.className += "hashBlock";
                   var hash = document.createElement("div")
                   var hashLink = document.createElement("a")
+                  hashLink.href = transactionAddress+transaction.hash;
                   hashLink.appendChild(document.createTextNode(transaction.hash.slice(0,14)+"..."))
                   hash.appendChild(hashLink)
                   hashBlock.appendChild(hash)
@@ -553,12 +548,14 @@ export const Editor = (props) => {
                   var fromContainer = document.createElement("div");
                   fromContainer.appendChild(document.createTextNode("From "));
                   var fromHash = document.createElement("a");
+                  fromHash.href = addressAddress + transaction.from_address;
                   fromHash.appendChild(document.createTextNode(transaction.from_address.slice(0,14)+'...'));
                   fromContainer.appendChild(fromHash)
 
                   var toContainer = document.createElement("div");
                   toContainer.appendChild(document.createTextNode("To "));
                   var toHash = document.createElement("a");
+                  toHash.href =addressAddress + transaction.to_address;
                   toHash.appendChild(document.createTextNode(transaction.to_address.slice(0,14)+"..."));
                   toContainer.appendChild(toHash);
 
@@ -614,7 +611,6 @@ export const Editor = (props) => {
             address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
             limit: "5",
           };
-          // const transfersNFT = await Web3Api.account.getNFTTransfers(nftTransfersOptions);
 
           let [transactions, transfers,transfersNFT] = await Promise.all([
             Web3Api.account.getTransactions(transactionsOptions),
@@ -625,10 +621,6 @@ export const Editor = (props) => {
           const totalTransactions = transactions.total
           const totalTransfers = transfers.total
           const totalTransfersNFT = transfersNFT.total
-          console.log(transactions, 'here are the transactions')
-          console.log(transfers, 'here are the transferes')
-          console.log(transfersNFT, 'here are the nfts')
-
           const target = block
           const targetId = block.getId()
 
@@ -641,21 +633,21 @@ export const Editor = (props) => {
 
               const transactionsOptions = {
                 chain: "eth",
-                address: "0xfDDec20451Aa93B367E0179f5f86695eb7BD137f",
+                address: "${account}",
                 order: "desc",
                 from_block: "0",
               };
 
               const transfersOptions = {
                 chain: "eth",
-                address: "0xfDDec20451Aa93B367E0179f5f86695eb7BD137f",
+                address: "${account}",
                 from_block: "0",
               };
 
 
               const nftTransfersOptions = {
                 chain: "eth",
-                address: "0xfDDec20451Aa93B367E0179f5f86695eb7BD137f",
+                address: "${account}",
                 limit: "5",
               };
 
@@ -715,14 +707,11 @@ export const Editor = (props) => {
     })
 
 
-    console.log(editor.Canvas.getConfig(), 'config here')
 
     editor.Commands.add('open-live-preview', {
       run(editor, sender){
 
         const pageId = editor.Pages.getSelected().getId()
-        console.log(pageId, websiteId)
-
         props.history.push(`/previewPage/${websiteId}/${pageId}`)
         // const html = editor.getHtml();
         // const css = editor.getCss();
@@ -843,13 +832,10 @@ export const Editor = (props) => {
 
 
     editor.on("storage:load", function(e){
-
       axios.get(`${global.API_ENDPOINT}/builder/getWebsitePages/${websiteId}`)
       .then(res=> {
         setPageIds(res.data)
       })
-
-
     })
 
     editor.on('run:export-template', () => console.log('After the command run'));
@@ -860,7 +846,7 @@ export const Editor = (props) => {
 
     })
     setEditor(editor)
-  },[])
+  },[account])
 
   const renderTimestamp = timestamp =>{
     console.log(timestamp)
@@ -972,74 +958,60 @@ export const Editor = (props) => {
                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             </div>
 
-            <div className = "buttonHolder">
+            {/*
+              <div className = "buttonHolder">
+                <AntButton
+                  onClick = {() => changeDrawerVisibility("shapes")}
+                  type="primary" shape="circle" icon={<FontAwesomeIcon style={{marginRight:5}} icon={faShapes} />} size="large" />
+              </div>
 
-              <AntButton
-                onClick = {() => changeDrawerVisibility("shapes")}
-                type="primary" shape="circle" icon={<FontAwesomeIcon style={{marginRight:5}} icon={faShapes} />} size="large" />
-            </div>
-
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => changeDrawerVisibility("pens")}
-                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
-            </div>
-
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => changeDrawerVisibility("colors")}
-                type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
-            </div>
-
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => changeDrawerVisibility("input")}
-                type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
-            </div>
+              */}
 
 
-            <div className = "buttonHolder">
-              <AntButton
-                // onClick = {() => changeDrawerVisibility("colors")}
-                shape="circle" icon={<FontAwesomeIcon icon={faFont} />} size="large" />
-            </div>
+            {/*
+              <div className = "buttonHolder">
+                <AntButton
+                  onClick = {() => changeDrawerVisibility("input")}
+                  type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
+              </div>
+
+              */}
 
 
-            <div className = "buttonHolder">
-              <AntButton
-                // onClick = {() => changeDrawerVisibility("colors")}
-                shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
-            </div>
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => showPreview()}
                 shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
-            </div>
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => clearCanvas()}
-                shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+                 icon={<FontAwesomeIcon icon={faEye} />} size="large" />
             </div>
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => storeEditor()}
                 shape="circle"
-                 icon={<FontAwesomeIcon icon={faCircle} />} size="large" />
+                 icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => clearCanvas()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faTrash} />} size="large" />
+            </div>
+
           </div>
         </div>
 
         <div ref = {wrapperRef}>
           <Drawer  visibility = {visibility}>
-            <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
+
+              <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
+
+
           </Drawer>
         </div>
         <div class="column">
           <div id = "gjs"></div>
         </div>
+
 
         <BlockAttribute
           blockType={BlockClickType}

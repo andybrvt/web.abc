@@ -89,8 +89,8 @@ export const BlocksContainer = (props) => {
 
     document.getElementById('blocks').appendChild(buttonBlocks);
     document.getElementById('blocks').appendChild(textBlocks);
-    document.getElementById('blocks').appendChild(lineBlocks);
-    document.getElementById('blocks').appendChild(inputBlocks);
+    // document.getElementById('blocks').appendChild(lineBlocks);
+    // document.getElementById('blocks').appendChild(inputBlocks);
     document.getElementById("blocks").appendChild(templateBlocks);
     document.getElementById("blocks").appendChild(mTemplateBlocks);
     document.getElementById("blocks").appendChild(linkBlocks);

@@ -100,6 +100,7 @@ import axios from 'axios';
 import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
 import {PickNFTModal} from '../NFT/PickNFTModal';
+import {EditorHeader} from './EditorHeader'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import * as dateFns from 'date-fns';
 
@@ -416,9 +417,34 @@ export const Editor = (props) => {
       }
     })
 
+    {/*
+      new modal
+    let bstModal, modalTitle, modalBody;
+    editor.on('modal', (props) => {
+      if (!bstModal) {
+        // const modalEl = document.getElementById('gjsModal');
+        // modalTitle = document.querySelector('.modal-title');
+        // modalBody = document.querySelector('.modal-body');
+        // bstModal = new bootstrap.Modal(modalEl);
+        // update GrapesJS modal state when Bootstrap modal is closed
+        const modalEl = document.getElementById('gjsModal');
+        bstModal = new bootstrap.Modal(modalEl);
+        modalEl.addEventListener('hide.bs.modal', props.close);
+      }
 
-
-
+      if (props.open) {
+        // // clear the current elements
+        // modalTitle.innerHTML = '';
+        // modalBody.innerHTML = '';
+        // // Add new elements
+        // modalTitle.appendChild(props.title);
+        // modalBody.appendChild(props.content);
+        bstModal.show();
+      } else {
+        bstModal.hide();
+      }
+    });
+    */}
 
     editor.on("block:drag:stop", async(block, obj) => {
 
@@ -933,38 +959,10 @@ export const Editor = (props) => {
     <div>
 
 
-      <div className = "editorHeaderContainer">
-          <div class="editorHeader">
-            <div class="logoFont">web.abc</div>
-          </div>
-          <div className = "pageDropContainer">
-            <PagesContainer
-              websiteId = {websiteId}
-              editor = {editorMain} />
-          </div>
+      <EditorHeader/>
 
-          <div className = "rightHeader">
 
-            <div class="rightHeaderProfile">
-              <Tooltip label="Preview" aria-label='A tooltip'>
-                <IconButton
-                  onClick={() => showPreview()}
-                  size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  />
-              </Tooltip>
 
-              <Divider style={{height:30, marginRight:25}} type="vertical"/>
-              <div>
-                <ProfileDropDown/>
-
-              </div>
-              <Divider style={{height:30}} type="vertical"/>
-                <Button style={{marginLeft:10, marginRight:10}} size="sm" colorScheme='blue' variant='solid'>
-                  Publish
-                </Button>
-          </div>
-
-          </div>
-      </div>
       <div class="editorRow">
         <div class = "firstColumn">
           <div className = "mainButtons">

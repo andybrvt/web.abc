@@ -21,6 +21,7 @@ export const StylesContainer = (props) => {
       props.editor.on('style:custom', props =>{
         setSectors(tempEditor.StyleManager.getSectors({visible:true}))
       })
+      
       props.editor.on('load', ()=> {
 
           const tempEditor = props.editor

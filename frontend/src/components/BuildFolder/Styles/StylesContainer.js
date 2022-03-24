@@ -7,6 +7,7 @@ import {SectorContainer} from './SectorContainer';
 import "./StylesContainer.css";
 import { WrapperGradientSelector } from './WrapperGradientSelector';
 import { RoundedCornersSelector } from './RoundedCornersSelector';
+import { ShadowSelector } from './ShadowSelector';
 export const StylesContainer = (props) => {
 
   const [editorMain, setEditor] = useState(null);
@@ -94,7 +95,10 @@ export const StylesContainer = (props) => {
       {
         props.blockType === "image" ?
 
-        <RoundedCornersSelector editor = {editorMain}/>
+        <div>
+          <RoundedCornersSelector editor = {editorMain}/>
+          <ShadowSelector editor = {editorMain} />
+        </div>
 
       :
 

@@ -7,7 +7,6 @@ export const rowStyle = `
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: nowrap;
-    color: white;
     font-family: Monospace;
   }
 `
@@ -29,6 +28,7 @@ export const normalButton = `
     height: 45px;
     border-radius: 15px;
     font-family: Monospace;
+    color:white;
   }
 `
 

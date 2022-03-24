@@ -93,36 +93,43 @@ export const InformationalBlocks = [
         ${rowStyle}
         ${colStyle}
         .infoRow2{
-          padding: 20px;
-          background: #00008B;
         }
         .infoColH2{
           height: 60vh;
         }
-        .image{
+        .image2{
+          border-radius: 25px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
           position: relative;
-          height: 100%;
-          left: 50%;
-          transform: translateX(-50%);
+          height: 80%;
+
         }
+        .imageInfoHolder2{
+          position: relative;
+          display: flex;
+          height: 80%;
+          width: 70%;
+          left: 50%;
+          top: 50%;
+          transform: translateY(-50%) translateX(-50%);
+        }
+
+        .infoHolder2{
+          padding: 20px;
+          position: relative;
+          width: 60%;
+          margin-right: 50px;
+        }
+
         .infoHeader2{
           position:relative;
-          color:white;
-          width: 70%;
           font-size: 50px;
-          left: 50%;
-          transform:translateX(-50%);
           text-align: center;
-          top: 15%;
         }
         .infoBody2{
           position: relative;
-          color: white;
-          width: 70%;
-          left: 50%;
-          transform:translateX(-50%);
           text-align: center;
-          top:15%;
         }
 
       </style>
@@ -130,17 +137,26 @@ export const InformationalBlocks = [
       <div class="row infoRow2">
 
         <div class = "col infoColH2">
-          <h1 class="infoHeader2">
-            This is what the protocol does
-          </h1>
-          <div class="infoBody2">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
+          <div class = "imageInfoHolder2">
+            <div class = "infoHolder2">
+
+              <h1 class="infoHeader2">
+                This is what the protocol does
+              </h1>
+              <div class="infoBody2">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+              </div>
+
+            </div>
+
+            <img class ="image2" src = "https://images.unsplash.com/photo-1634320714682-ae8b9c9cee60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"/>
+
           </div>
+
+
         </div>
 
-        <div class = "col infoColH2">
-          <img class ="image" src = "https://images.unsplash.com/photo-1634320714682-ae8b9c9cee60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"/>
-        </div>
       </div>
 
     `

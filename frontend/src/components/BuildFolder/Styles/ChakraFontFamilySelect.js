@@ -205,7 +205,7 @@ const chakraComponents = {
       </selectComponents.Menu>
     );
   },
-  MenuList: ({ innerRef, children, maxHeight, selectProps: { size } }) => {
+  MenuList: ({ props, innerRef, children, maxHeight, selectProps: { size } }) => {
     const { list } = useStyles();
     const chakraTheme = useTheme();
     const borderRadii = {
@@ -213,6 +213,7 @@ const chakraComponents = {
       md: chakraTheme.radii.md,
       lg: chakraTheme.radii.md
     };
+
 
     return (
       <Box
@@ -224,7 +225,9 @@ const chakraComponents = {
         }}
         ref={innerRef}
       >
-      <div class="Poppins">
+      <div class="Poppins"
+
+      >
         {children[0]}
       </div>
       <div class="Raleway">
@@ -299,7 +302,9 @@ const ChakraReactSelect = ({
   ...props
 }) => {
   const chakraTheme = useTheme();
-
+  const handleChange = (e) => {
+    props.handleChange(e)
+  }
   // Combine the props passed into the component with the props
   // that can be set on a surrounding form control to get
   // the values of isDisabled and isInvalid

@@ -31,10 +31,22 @@ export const StylesContainer = (props) => {
           let styleManager = props.editor.StyleManager;
           let typographySector = props.editor.StyleManager.getSector('typography');
           let fontProperty = props.editor.StyleManager.getProperty('typography', 'font-family');
-          const roboto = "Raleway, sans-serif";
-          const font = { id: roboto, label: roboto.split(',')[0] };
+          const roboto = "'Roboto', sans-serif;";
+          const raleway="'Raleway', sans-serif";
+          const lato="'Lato', sans-serif";
+          const poppins="'Poppins', sans-serif"
+          fontProperty.setOptions([]);
+          
+          const robotoFont = { id: roboto, label: roboto.split(',')[0] };
+          const ralewayFont = { id: raleway, label: raleway.split(',')[0] };
+          const latoFont = { id: lato, label: lato.split(',')[0] };
+          const poppinsFont = { id: poppins, label: poppins.split(',')[0] };
+
           console.log(fontProperty.getOptions())
-          fontProperty.setOptions([...fontProperty.getOptions(), font]);
+          fontProperty.setOptions([...fontProperty.getOptions(), robotoFont]);
+          fontProperty.setOptions([...fontProperty.getOptions(), ralewayFont]);
+          fontProperty.setOptions([...fontProperty.getOptions(), latoFont]);
+          fontProperty.setOptions([...fontProperty.getOptions(), poppinsFont]);
           console.log(fontProperty.getOptions())
           {/*
           let fontProperty = props.editor.StyleManager.getProperty('Typography', 'font-family');

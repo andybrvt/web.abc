@@ -10,6 +10,7 @@ import image8 from '../../../../images/image8.png';
 import image9 from '../../../../images/image9.png';
 import image11 from '../../../../images/image11.png';
 import image15 from '../../../../images/image15.png';
+import image16 from '../../../../images/image16.png';
 export const InformationalBlocks = [
   {
     id: 'info1',
@@ -79,15 +80,10 @@ export const InformationalBlocks = [
     id: 'info2',
     category: 'Information',
     media: `
-    <style>
-      .img{
-        width: 400px;
-        height: 175;
-      }
-    </style>
     <div>
-      <img class="img" src =${imageMedia1} />
-    </div>`,
+      <img class="img" src="${image16}" />
+    </div>`
+    ,
     content: `
       <style>
         ${rowStyle}

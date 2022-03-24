@@ -16,6 +16,7 @@ export const colStyle = `
     position: relative;
     min-height: 100px;
     flex-grow: 1;
+    flex: 1;
   }
 `
 

@@ -7,6 +7,22 @@ const gradientList = [
   'linear-gradient(to right, #8360c3, #2ebf91)',
   'linear-gradient(to right, #8e2de2, #4a00e0)',
   'linear-gradient(to right, #fffbd5, #b20a2c)',
+  'linear-gradient(to right, #5433ff, #20bdff, #a5fecb)',
+  'linear-gradient(to right, #0f2027, #203a43, #2c5364)',
+  'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)',
+  'linear-gradient(to top, #a8edea 0%, #fed6e3 100%)',
+  'linear-gradient(to top, #d299c2 0%, #fef9d7 100%)',
+  'linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%)',
+  'linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%)',
+  'linear-gradient(to top, #accbee 0%, #e7f0fd 100%)',
+  'linear-gradient(to top, #6a85b6 0%, #bac8e0 100%)',
+  'linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)',
+  'linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%)',
+  'linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)',
+  'linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%)',
+  'linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%)',
+  'linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)'
+
 
 ]
 

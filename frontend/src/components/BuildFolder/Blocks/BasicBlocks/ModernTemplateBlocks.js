@@ -41,7 +41,6 @@ const headerItem = `
   }`
 const headerItemMedia = `
   .headerItem{
-    color:white;
     text-align: center;
     justify-content:center;
     padding: 7px;
@@ -95,9 +94,10 @@ export const ModernTemplateBlocks = [
       ${mediaButton}
       ${background}
       .gradientBackground1{
-        background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)}
+        // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
+      }
       .mHeaderText{
-        color: white;
+        color: black;
         position: absolute;
         font-size: 70px;
         width: 30%;
@@ -108,7 +108,7 @@ export const ModernTemplateBlocks = [
         text-align:left;}
       .mBodyText{
         text-align: left;
-        color:white;
+        color:black;
         position: absolute;
         width: 30%;
         left: 12%;
@@ -124,6 +124,9 @@ export const ModernTemplateBlocks = [
           left: 27%;
           top: 75%;}
       .mImage{
+        border-radius: 25px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
         position: absolute;
         right: 5%;
         top: 20%;
@@ -193,14 +196,14 @@ export const ModernTemplateBlocks = [
         ${normalButton}
         ${tempHeight}
         .gradientBackground1{
-          background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)}
+          // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
+        }
         .mHeaderText{
           position: absolute;
           font-size: 70px;
           width: 30%;
           left: 12%;
           top: 20%;
-          color:white;
           font-family: Monospace;}
         .mBodyText{
           position: absolute;
@@ -217,6 +220,8 @@ export const ModernTemplateBlocks = [
             left: 25%;
             top: 70%;}
         .mImage{
+          border-radius: 25px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
           position: absolute;
           right: 5%;
           top: 15%;
@@ -225,7 +230,7 @@ export const ModernTemplateBlocks = [
 
       <div data-gjs-dmode="absolute" class="row tempHeight">
         <div class="col">
-          <div class ='gradientBackground gradientBackground1'/>
+          <div class ='gradientBackground'/>
         </div>
 
         <div class="header">
@@ -290,7 +295,8 @@ export const ModernTemplateBlocks = [
         ${mediaButton}
         ${background}
         .gradientBackground2{
-          background-image:radial-gradient(ellipse at left, #e66465, #9198e5)}
+          // background-image:radial-gradient(ellipse at left, #e66465, #9198e5)
+        }
         .posMenu{
           margin-right: 20%;
         }
@@ -301,7 +307,6 @@ export const ModernTemplateBlocks = [
           font-size: 10px;
         }
         .posHeaderText2{
-          color: white;
           position: absolute;
           width: 30%;
           left: 62%;
@@ -311,7 +316,6 @@ export const ModernTemplateBlocks = [
           text-align:left;}
         .posBodyText2{
           text-align: left;
-          color:white;
           position: absolute;
           width: 30%;
           left: 62%;
@@ -327,6 +331,9 @@ export const ModernTemplateBlocks = [
             left: 75%;
             top: 75%;}
         .mImage2{
+          border-radius: 25px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
           position: absolute;
           left: 15%;
           top: 17%;
@@ -334,7 +341,7 @@ export const ModernTemplateBlocks = [
       </style>
       <div data-gjs-dmode="absolute" class="rowStyleM">
         <div class="colStyleM">
-          <div class ='gradientBackground gradientBackground2'/>
+          <div class =''/>
         </div>
 
         <div class="header">
@@ -398,7 +405,7 @@ export const ModernTemplateBlocks = [
     ${normalButton}
     ${tempHeight}
     .gradientBackground2{
-      background-image: radial-gradient(ellipse at left, #e66465, #9198e5);
+      // background-image: radial-gradient(ellipse at left, #e66465, #9198e5);
     }
     .posMenu{
       margin-right: 20%;
@@ -415,7 +422,9 @@ export const ModernTemplateBlocks = [
       width: 30%;
       left: 60%;
       top: 20%;
-      font-family: Monospace;}
+      font-family: Monospace;
+
+    }
     .posBodyText2{
       position: absolute;
       width: 25%;
@@ -431,6 +440,9 @@ export const ModernTemplateBlocks = [
         left: 73%;
         top: 70%;}
     .mImage2{
+      border-radius: 25px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
       position: absolute;
       left: 15%;
       top: 17%;
@@ -438,7 +450,7 @@ export const ModernTemplateBlocks = [
     </style>
     <div data-gjs-dmode="absolute" class="row tempHeight">
       <div class="col">
-        <div class = "gradientBackground gradientBackground2"/>
+        <div class = ""/>
       </div>
       <div class="header">
         <a class="logo ">
@@ -507,9 +519,9 @@ export const ModernTemplateBlocks = [
         ${headerItemMedia}
         ${mediaButton}
         .gradientBackground3{
-          background-image:linear-gradient(180deg, #00008B, rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, #8A2BE2, rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, #8B008B, rgba(0,0,255,0) 70.71%);
+          // background-image:linear-gradient(180deg, #00008B, rgba(255,0,0,0) 70.71%),
+          //   linear-gradient(127deg, #8A2BE2, rgba(0,255,0,0) 70.71%),
+          //   linear-gradient(336deg, #8B008B, rgba(0,0,255,0) 70.71%);
           }
         .posMenu3{
           margin-right: 20%;
@@ -519,10 +531,9 @@ export const ModernTemplateBlocks = [
           text-align: center;
           margin-left: 7%;
           font-size: 10px;
-          color: white;
+          color: black;
         }
         .posHeaderText3{
-            color:white;
             position: absolute;
             font-size: 15px;
             width: 60%;
@@ -532,7 +543,6 @@ export const ModernTemplateBlocks = [
             text-align: center;
             font-family: Monospace;}
           .posBodyText3{
-            color:white;
             position: absolute;
             width: 60%;
             left: 50%;
@@ -552,11 +562,14 @@ export const ModernTemplateBlocks = [
               transform: translateX(-50%);
               top: 38%;}
           .mImage3{
+            border-radius: 25px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
             position: absolute;
-            left: 0px;
-            top: 30%;
-            height: 70%;
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 50%;
+            height: 45%;
           }
 
         </style>
@@ -605,7 +618,7 @@ export const ModernTemplateBlocks = [
             Buy Now
           </div>
 
-          <img class ="mImage3" src = "https://scontent.fphx1-2.fna.fbcdn.net/v/t1.15752-9/273507140_254136436903148_3145629171275539631_n.png?_nc_cat=100&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Zku0EcA0WH0AX_5xMwP&_nc_ht=scontent.fphx1-2.fna&oh=03_AVIG_fLpTYd-e52JBJTo1_MnUqa_rfLuqEzXVWZIVAUgbA&oe=623455E6"/>
+          <img class ="mImage3" src = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
 
 
         </div>
@@ -632,12 +645,15 @@ export const ModernTemplateBlocks = [
           font-size: 25px;
         }
         .gradientBackground3{
-          background-image:linear-gradient(180deg, #00008B, rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, #8A2BE2, rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, #8B008B, rgba(0,0,255,0) 70.71%);
+          // background-image:linear-gradient(180deg, #00008B, rgba(255,0,0,0) 70.71%),
+          //   linear-gradient(127deg, #8A2BE2, rgba(0,255,0,0) 70.71%),
+          //   linear-gradient(336deg, #8B008B, rgba(0,0,255,0) 70.71%);
         }
-        .posMenu{
-          margin-right: 22%;
+        .posMenu3{
+          position:absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
         }
         .posProfile{
 
@@ -673,11 +689,14 @@ export const ModernTemplateBlocks = [
             transform: translateX(-50%);
             top: 38%;}
         .mImage3{
+          border-radius: 25px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
           position: absolute;
-          left: 0px;
-          top: 30%;
-          height: 70%;
-          width: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 50%;
+          height: 45%;
         }
       </style>
       <div data-gjs-dmode="absolute" class="row tempHeight">
@@ -685,10 +704,8 @@ export const ModernTemplateBlocks = [
           <div class="gradientBackground gradientBackground3"/>
         </div>
         <div class="header">
-          <a class="newLogo">
-            Web.abc
-          </a>
-          <div class="menuM posMenu">
+          <a class="newLogo">Web.abc</a>
+          <div class="menuM posMenu3">
             <a class="headerItem">
               Home
             </a>
@@ -721,7 +738,7 @@ export const ModernTemplateBlocks = [
           Buy Now
         </div>
 
-        <img class ="mImage3" src = "https://scontent.fphx1-2.fna.fbcdn.net/v/t1.15752-9/273507140_254136436903148_3145629171275539631_n.png?_nc_cat=100&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Zku0EcA0WH0AX_5xMwP&_nc_ht=scontent.fphx1-2.fna&oh=03_AVIG_fLpTYd-e52JBJTo1_MnUqa_rfLuqEzXVWZIVAUgbA&oe=623455E6"/>
+        <img class ="mImage3" src = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
 
 
 

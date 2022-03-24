@@ -248,6 +248,13 @@ export const Editor = (props) => {
         styles: [
           "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
           'https://fonts.googleapis.com/css?family=Archivo+Narrow:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext',
+          'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap',
+          // open sans
+          'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap',
+          // roboto
+          'https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap',
+          // lato, raleway, poppins
+          'https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@300&family=Raleway:wght@300&display=swap',
         ],
         scripts:  [
           "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",

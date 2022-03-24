@@ -171,6 +171,8 @@ export const PropertyContainer = (props) => {
              />
 
         */}
+
+        
         <StyleSelect
           label = {label}
           field = {property.getId()}

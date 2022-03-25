@@ -16,7 +16,7 @@ import $ from 'jquery';
 import ImagePicker from 'react-image-picker'
 import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
 import { useEthers } from "@usedapp/core";
-
+import { Checkbox } from '@chakra-ui/react'
 
 
 export const PickNFTModal  = (props) => {
@@ -28,6 +28,7 @@ export const PickNFTModal  = (props) => {
   const [nft, setNft] = useState([])
   const [nftImgs, setNFTImgs] = useState([])
   const [editorMain, setEditorMain] = useState(null)
+  const [allSelected, setAllSelected] = useState(false)
 
   const [images, setImages] = useState([])
 
@@ -95,6 +96,10 @@ export const PickNFTModal  = (props) => {
   const onPickImages = (list) => {
     console.log(list)
     setImages(list)
+  }
+
+  const onSelectAll = () => {
+    setAllSelected(true)
   }
 
   const onCloseModal = () =>{
@@ -182,10 +187,15 @@ export const PickNFTModal  = (props) => {
             <ImagePickerCustom
               nftImgs = {nftImgs}
               onPick = {onPickImages}
+              allSelected = {allSelected}
                />
 
         </ModalBody>
         <ModalFooter>
+          {/*
+            <Checkbox  isChecked = {allSelected} onChange= {(e) => setAllSelected(e.target.checked)} >Select All</Checkbox>
+            
+            */}
           <Button onClick={onCloseModal}>Close</Button>
           <Button
             colorScheme='blue'

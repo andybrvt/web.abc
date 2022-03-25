@@ -1,6 +1,7 @@
 import image12 from '../../../../images/image12.png';
 import image13 from '../../../../images/image13.png';
 import image14 from '../../../../images/image14.png';
+import image20 from '../../../../images/image20.png';
 
 
 export const NFTShowcaseBlocks = [
@@ -13,7 +14,7 @@ export const NFTShowcaseBlocks = [
     media:
     `
       <div>
-        <img class="img" src="${image12}" />
+        <img class="img" src="${image20}" />
       </div>
     `,
     // content: {type: 'NFTShowcase'},

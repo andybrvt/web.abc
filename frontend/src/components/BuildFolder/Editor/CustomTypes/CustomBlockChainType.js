@@ -29,8 +29,9 @@ export const CustomNFTShowcase = editor => {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            background-image: linear-gradient(to right, #8360c3, #2ebf91);
             padding: 50px 15%;
+            font-family: Monospace;
+
           }
           .nftContainers{
 
@@ -67,8 +68,7 @@ export const CustomNFTShowcase = editor => {
             top: 50%;
             width: 80%;
             transform: translateX(-50%) translateY(-50%);
-            color: white;
-            font-size: 30px;
+            font-size: 14px;
             text-align: center;
           }
 
@@ -140,9 +140,9 @@ export const CustomTransactionList = editor => {
         attributes: {class: 'nft-transactions-background-container'},
         styles: `
           .nft-transactions-background-container{
-            background: black;
             padding: 50px 0;
-            color:white;
+            color:black;
+            font-family: Monospace;
           }
           .nft-trans-whole-cont{
             position: relative;

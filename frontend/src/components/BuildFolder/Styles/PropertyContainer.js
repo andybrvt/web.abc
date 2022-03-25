@@ -12,11 +12,21 @@ import {StylePositionBottom} from './StylesComponents/StylePositionBottom';
 import {StylePositionRight} from './StylesComponents/StylePositionRight';
 import { CreatableSelect as ChakraFontFamilySelect } from './chakra-react-select';
 import { Input, Center} from '@chakra-ui/react'
-import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../Styles/data";
+import { groupedOptions, dogOptions, TextSize, colourOptions} from "../Styles/data";
 import './StylesComponents/StylePosition.css'
 export const PropertyContainer = (props) => {
 
   const property = props.property
+
+
+  const TextFonts = [
+    { id: 1, label: "Lato" },
+    { id: 2, label: "Raleway" },
+    { id: 3, label: "Poppins" },
+    { id: 4, label: "Merriweather" },
+    { id: 5, label: "Open Sans" },
+    { id: 76, label: "Roboto" },
+  ];
 
 
   const renderProperty = (property) => {
@@ -145,7 +155,7 @@ export const PropertyContainer = (props) => {
       }
       return(
         <div>
-        {/*
+          {
           (property.getLabel()=='Font family')?
           <ChakraFontFamilySelect
             style={{width:200}}
@@ -153,9 +163,9 @@ export const PropertyContainer = (props) => {
             placeholder="Cambria"
             closeMenuOnSelect={false}
             size="sm"
-            value = {curValue}
+            // value = {curValue}
             handleChange = {handleChange}
-            handleInput = {handleInput}
+            // handleInput = {handleInput}
              />
 
           :
@@ -169,10 +179,10 @@ export const PropertyContainer = (props) => {
             getOptionId = {getOptionId}
             getOptionLabel = {getOptionLabel}
              />
+         }
 
-        */}
 
-        
+        {/*
         <StyleSelect
           label = {label}
           field = {property.getId()}
@@ -183,6 +193,7 @@ export const PropertyContainer = (props) => {
           getOptionId = {getOptionId}
           getOptionLabel = {getOptionLabel}
            />
+           */}
         </div>
       )
     }

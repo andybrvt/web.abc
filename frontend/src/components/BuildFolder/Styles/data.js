@@ -15,19 +15,6 @@ export const flavourOptions = [
 ];
 
 
-export const optionLength = [
-  { value: 1, label: "general" },
-  {
-    value: 2,
-    label:
-      "Evil is the moment when I lack the strength to be true to the Good that compels me."
-  },
-  {
-    value: 3,
-    label:
-      "It is now an easy matter to spell out the ethic of a truth: 'Do all that you can to persevere in that which exceeds your perseverance. Persevere in the interruption. Seize in your being that which has seized and broken you."
-  }
-];
 
 export const TextSize = [
   { id: 1, label: "Normal Text" },
@@ -37,14 +24,6 @@ export const TextSize = [
   { id: 5, label: "Small Text" },
 ];
 
-export const TextFonts = [
-  { id: 1, label: "Poppins" },
-  { id: 2, label: "Raleway" },
-  { id: 3, label: "Lato" },
-  { id: 4, label: "Dancing" },
-  { id: 5, label: "Open Sans" },
-  { id: 76, label: "Roboto" },
-];
 
 // let bigOptions = [];
 // for (let i = 0; i < 10000; i++) {

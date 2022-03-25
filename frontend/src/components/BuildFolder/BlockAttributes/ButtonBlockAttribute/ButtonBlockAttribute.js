@@ -45,8 +45,16 @@ import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, A
 // https://codesandbox.io/s/648uv?file=/example.js:212-272
 import { StyleColorPicker } from '../../Styles/StylesComponents/StyleColorPicker';
 import { CreatableSelect as ChakraFontFamilySelect } from "../../Styles/ChakraFontFamilySelect";
-import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "../../Styles/data";
+import { groupedOptions, dogOptions, TextSize, colourOptions} from "../../Styles/data";
 export const ButtonBlockAttribute = (props) => {
+  const TextFonts1 = [
+    { id: 1, label: "Lato" },
+    { id: 2, label: "Raleway" },
+    { id: 3, label: "Poppins" },
+    { id: 4, label: "Meriwether" },
+    { id: 5, label: "Open Sans" },
+    { id: 76, label: "Roboto" },
+  ];
   console.log(props.type)
   const onChange = (val) => {
     setSliderValue(val);
@@ -81,7 +89,7 @@ export const ButtonBlockAttribute = (props) => {
 
         <ChakraFontFamilySelect
           style={{width:200}}
-          options={TextFonts}
+          options={TextFonts1}
           placeholder="Cambria"
           closeMenuOnSelect={false}
           size="sm">

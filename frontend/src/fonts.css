@@ -19,3 +19,45 @@
     font-weight: 400;
     font-style: normal;
 }
+
+
+@font-face {
+    font-family: 'Lato';
+    src: url('./Lato-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./Merriweather.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('./Raleway.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('./OpenSans.ttf');
+    font-weight: 400;
+    font-style: normal;
+}

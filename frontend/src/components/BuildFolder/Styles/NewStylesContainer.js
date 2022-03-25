@@ -39,7 +39,7 @@ import {
   TabPanel
 } from '@chakra-ui/react';
 import Select, { CreatableSelect } from "./chakra-react-select";
-import { groupedOptions, dogOptions, TextSize, colourOptions, TextFonts} from "./data";
+import { groupedOptions, dogOptions, TextSize, colourOptions} from "./data";
 import { CreatableSelect as ChakraFontFamilySelect } from "./ChakraFontFamilySelect";
 import { StyleColorPicker } from './StylesComponents/StyleColorPicker'
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
@@ -66,6 +66,15 @@ export const NewStylesContainer = (props) => {
     setSliderValue(val);
   };
   */}
+
+  const TextFonts3 = [
+    { id: 1, label: "Lato" },
+    { id: 2, label: "Raleway" },
+    { id: 3, label: "Poppins" },
+    { id: 4, label: "Meriwether" },
+    { id: 5, label: "Open Sans" },
+    { id: 76, label: "Roboto" },
+  ];
   const [value, setValue] = React.useState(20)
 
   const [sliderValue, setSliderValue] = useState(22)
@@ -183,7 +192,7 @@ export const NewStylesContainer = (props) => {
         <div style={{marginTop:20, marginBottom:20}}>
           <ChakraFontFamilySelect
             style={{width:200}}
-            options={TextFonts}
+            options={TextFonts3}
             placeholder="Cambria"
             closeMenuOnSelect={false}
             size="sm">

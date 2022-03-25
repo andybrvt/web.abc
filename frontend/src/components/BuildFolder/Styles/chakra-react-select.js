@@ -205,7 +205,7 @@ const chakraComponents = {
       </selectComponents.Menu>
     );
   },
-  MenuList: ({ innerRef, children, maxHeight, selectProps: { size } }) => {
+  MenuList: ({ innerRef, children, maxHeight, selectProps: {handleChange, size } }) => {
     const { list } = useStyles();
     const chakraTheme = useTheme();
 
@@ -225,24 +225,41 @@ const chakraComponents = {
         }}
         ref={innerRef}
       >
-      <div style={{fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
-        {children[0]}
+      <div class="Lato"
+        onClick= {() => handleChange("'Lato', sans-serif;")}
+
+      >
+          {children[0]}
+      </div>
+      <div class="Raleway"
+        onClick= {() => handleChange("'Raleway', sans-serif;")}
+        >
+            {children[1]}
+      </div>
+      <div class="Poppins"
+        onClick= {() => handleChange("'Poppins', sans-serif;")}
+        >
+          {children[2]}
+      </div>
+
+        <div style={{}}>
+          <div class="Merriweather "
+            onClick= {() => handleChange("'Merriweather', sans-serif;")}
+            >
+            {children[3]}
+            </div>
         </div>
 
-        <div style={{height:'50px'}}>
-          <div style={{fontSize:24, fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
-            {children[1]}
-            </div>
+        <div class="OpenSans"
+          onClick= {() => handleChange("'Open Sans', sans-serif;")}
+            >
+          {children[4]}
         </div>
-        <div style={{fontSize:18, fontWeight:'600px', fontFamily:"PlusJakartaSans" }}>
-          {children[2]}
-          </div>
-        <div style={{fontSize:15, fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
-          {children[3]}
-          </div>
-          <div style={{fontSize:12, fontWeight:'bold', fontFamily:"PlusJakartaSans" }}>
-            {children[4]}
-            </div>
+        <div class="Roboto"
+          onClick= {() => handleChange("'Roboto', sans-serif;")}
+          >
+            {children[5]}
+        </div>
       </Box>
     );
   },
@@ -271,7 +288,7 @@ const chakraComponents = {
           w: "100%",
           textAlign: "start",
           bg: isFocused ? item._focus.bg : "transparent",
-          // fontSize: size,
+          fontSize: size,
           ...(isDisabled && item._disabled)
         }}
         ref={innerRef}

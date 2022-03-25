@@ -149,6 +149,10 @@ export const CustomAutomaticNFTShowcase = editor => {
             font-family: Monospace;
 
           }
+
+          .delete-nft-collectionContainer{
+            
+          }
           .nft-collection-title {
             text-align: center;
             font-size: 25px;
@@ -208,11 +212,16 @@ export const CustomAutomaticNFTShowcase = editor => {
               <div class = "nft-collection-title">
                 My NFT Collection
               </div>
-              <div class = "nft-collection-container">
+              <div class = "nft-collection-container ">
 
-                <div class = "nftContainers">
+                <div class = "nftContainers delete-nft-collectionContainer">
 
                   <div class = "nftCards">
+                    <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
+                      <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
+                        <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
                   </div>
 
                   <div class = "nftName">

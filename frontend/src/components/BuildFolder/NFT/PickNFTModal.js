@@ -111,6 +111,8 @@ export const PickNFTModal  = (props) => {
 
   const onApplyImages = () => {
 
+
+
     const target = editorMain.getSelected()
 
     images.forEach(img => {
@@ -135,7 +137,8 @@ export const PickNFTModal  = (props) => {
 
 
     })
-    // target.append(<div>did this work</div>)
+
+
     setNft([])
     setNFTImgs([])
     setImages([])
@@ -194,7 +197,7 @@ export const PickNFTModal  = (props) => {
         <ModalFooter>
           {/*
             <Checkbox  isChecked = {allSelected} onChange= {(e) => setAllSelected(e.target.checked)} >Select All</Checkbox>
-            
+
             */}
           <Button onClick={onCloseModal}>Close</Button>
           <Button

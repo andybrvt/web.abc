@@ -27,6 +27,26 @@ export const NFTShowcaseBlocks = [
 
   },
   {
+    id: 'AutomaticNFTShowcase',
+    label: "Automatic NFT Collection",
+    category: "BlockChain",
+    activate: true,
+    media:
+    `
+      <div>
+        <img class="img" src="${image20}" />
+      </div>
+    `,
+    // content: {type: 'NFTShowcase'},
+    content:
+    `
+        <div data-gjs-type= "AutomaticNFTShowcase"></div>
+
+    `,
+    select:true,
+
+  },
+  {
     id: 'TransactionList',
     label: 'Transactions List',
     category: "BlockChain",

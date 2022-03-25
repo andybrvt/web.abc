@@ -139,15 +139,19 @@ export const CustomAutomaticNFTShowcase = editor => {
       tagName: "AutomaticNFTShowcase",
       resizable: 'true',
       defaults:{
-        attributes: { class: 'nft-collection-container' },
+        attributes: { class: 'nft-collection-container-background' },
         someprop: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
 
         styles: `
+
+          .nft-collection-container-background{
+            padding: 50px 15%;
+
+          }
           .nft-collection-container{
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            padding: 50px 15%;
             font-family: Monospace;
 
           }
@@ -196,7 +200,12 @@ export const CustomAutomaticNFTShowcase = editor => {
         components: model => {
           return(
             <div>
-              My NFT Collection
+              <div>
+                My NFT Collection
+              </div>
+              <div class = "nft-collection-container">
+
+              </div>
             </div>
           )
         }

@@ -181,7 +181,6 @@ export const Editor = (props) => {
 
 
   const {activateBrowserWallet, account, chainId } = useEthers();
-  console.log(account, 'this is the account here')
   const [preview, setPreview] =useState(false);
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
@@ -463,6 +462,65 @@ export const Editor = (props) => {
 
         const type = block.get('type')
         console.log(type)
+
+        // This is where you set the scripts
+        // Remember this has nothing to do with the outside information
+        // this is strictly within the iframe
+        if(type === "AutomaticNFTShowcase"){
+          block.set("script", `
+            async function script(props){
+
+              // let spinnerWrapper = document.getElementsByClassName("nft-collection-container-background")[0].getElementsByClassName("");
+              let collectionContainer = document.querySelectorAll(".nft-collection-container");
+
+              // Now I actually need to get the nft
+
+              const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+              const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+              Moralis.start({ serverUrl, appId });
+
+              const options = {
+                chain: "eth",
+                address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
+              }
+
+
+              const nftList = await Moralis.Web3API.account.getNFTs(options);
+
+              console.log(nftList)
+
+
+
+
+
+
+              collectionContainer.forEach((collection) => {
+                console.log(collection)
+
+
+                var nftContainers= document.createElement("div");
+                nftContainers.className = 'nftContainers';
+
+                // The card porition of the nft (picture)
+                var nftCards = document.createElement("div")
+                nftCards.className = "nftCards";
+
+
+                // The name porition of the nft
+
+
+
+                nftContainers.appendChild(document.createTextNode("stuff here"));
+
+                collection.appendChild(nftContainers);
+              })
+
+
+            }
+          `)
+
+        }
+
 
         if(type === "TransactionList"){
           const transactionAddress = 'https://etherscan.io/tx/'

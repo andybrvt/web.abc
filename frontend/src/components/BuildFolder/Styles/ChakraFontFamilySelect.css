@@ -1,38 +1,42 @@
-.openSans {
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Open Sans', sans-serif;
-}
-
 
 .Roboto {
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 15px;
   font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 .Poppins {
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 16px;
   font-family: 'Poppins', sans-serif;
+  /* color:red; */
 }
 
 
 .Raleway {
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 16px;
   font-family: 'Raleway', sans-serif;
 }
 
-.Lato {
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Lato', sans-serif;
+.Merriweather{
+  font-size: 16px;
+  font-family: 'Merriweather', sans-serif;
 }
+
+.OpenSans {
+  font-size: 16px;
+  font-family: 'OpenSans', sans-serif;
+
+  }
+
+
+.Lato {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+
+  }
 
 
 .Dancing{
   font-size: 12px;
-  font-weight: bold;
   font-family: 'Dancing Script', cursive;
 }

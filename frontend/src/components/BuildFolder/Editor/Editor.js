@@ -257,6 +257,8 @@ export const Editor = (props) => {
           'https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap',
           // lato, raleway, poppins
           'https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@300&family=Raleway:wght@300&display=swap',
+          // meriwether
+          'https://fonts.googleapis.com/css2?family=Merriweather&display=swap',
         ],
         scripts:  [
           "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",

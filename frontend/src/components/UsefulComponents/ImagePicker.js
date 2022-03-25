@@ -13,6 +13,59 @@ class ImagePickerCustom extends React.Component{
     }
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps.allSelected !== this.props.allSelected){
+      if(this.props.allSelected){
+        // this.onSelectAll()
+
+      } else {
+
+      }
+
+    }
+
+  }
+
+  onSelectAll = () => {
+    const {nftImgs} = this.props;
+
+    var selectedObj = {}
+    var pickedImageToArray = []
+
+
+
+
+    nftImgs.map((item, i) => {
+
+      const img = item.img
+      const name = item.name
+      const value = i;
+      const obj = {
+        src: img,
+        name: name,
+        value: value
+      }
+
+
+
+      // selectedObj[i] = obj;
+      // pickedImageToArray.push(obj)
+
+
+    })
+
+
+
+
+
+
+
+  }
+
+  onUnselectAll = () => {
+
+  }
+
   onImageClick = (image) => {
     const pickedImages = this.state.selected
     let newerPickedImage
@@ -32,7 +85,6 @@ class ImagePickerCustom extends React.Component{
       const pickedImageToArray = []
       newerPickedImage.map((image, i) => pickedImageToArray.push(image))
 
-      console.log(pickedImageToArray)
       this.props.onPick(pickedImageToArray)
     }
 
@@ -41,8 +93,11 @@ class ImagePickerCustom extends React.Component{
   render(){
 
     const { nftImgs } = this.props;
+    console.log(this.state.selected)
     return(
       <div class="pickerContainer">
+
+
         {
           nftImgs.map((item, index) => {
 

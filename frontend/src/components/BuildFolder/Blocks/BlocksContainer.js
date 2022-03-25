@@ -87,18 +87,18 @@ export const BlocksContainer = (props) => {
 
 
 
+    document.getElementById("blocks").appendChild(mTemplateBlocks);
+    document.getElementById("blocks").appendChild(nftBlocks);
+    document.getElementById("blocks").appendChild(templateBlocks);
+    document.getElementById("blocks").appendChild(infoBlocks);
+    document.getElementById("blocks").appendChild(headerBlocks);
+    document.getElementById("blocks").appendChild(footerBlocks);
     document.getElementById('blocks').appendChild(buttonBlocks);
     document.getElementById('blocks').appendChild(textBlocks);
     // document.getElementById('blocks').appendChild(lineBlocks);
     // document.getElementById('blocks').appendChild(inputBlocks);
-    document.getElementById("blocks").appendChild(templateBlocks);
-    document.getElementById("blocks").appendChild(mTemplateBlocks);
     document.getElementById("blocks").appendChild(linkBlocks);
     document.getElementById("blocks").appendChild(imageBlocks);
-    document.getElementById("blocks").appendChild(infoBlocks);
-    document.getElementById("blocks").appendChild(headerBlocks);
-    document.getElementById("blocks").appendChild(footerBlocks);
-    document.getElementById("blocks").appendChild(nftBlocks);
 
     const categories = editor.BlockManager.getCategories();
     categories.each(category => {

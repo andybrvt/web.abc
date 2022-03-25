@@ -65,6 +65,7 @@ import {
 } from './CustomTypes/CustomBoxType';
 import {
   CustomNFTShowcase,
+  CustomAutomaticNFTShowcase,
   CustomTransactionList,
   CustomStatsList
 } from './CustomTypes/CustomBlockChainType';
@@ -136,6 +137,7 @@ const PLUGINS = [
   CustomLinkText1,
   CustomBoxType,
   CustomNFTShowcase,
+  CustomAutomaticNFTShowcase,
   CustomTransactionList,
   CustomStatsList
 ]
@@ -161,7 +163,8 @@ const translatedItems = [
   "footer1",
   "NFTShowcase",
   "Web3Stats",
-  "TransactionList"
+  "TransactionList",
+  'AutomaticNFTShowcase'
 ]
 
 
@@ -454,7 +457,6 @@ export const Editor = (props) => {
 
     editor.on("block:drag:stop", async(block, obj) => {
 
-      console.log(account)
 
       const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
       if(block !== null){
@@ -462,6 +464,7 @@ export const Editor = (props) => {
         // GOTTA SET THIS SO IT CAN RUN ON PREVIEW TOO
 
         const type = block.get('type')
+        console.log(type)
 
         if(type === "TransactionList"){
           const transactionAddress = 'https://etherscan.io/tx/'

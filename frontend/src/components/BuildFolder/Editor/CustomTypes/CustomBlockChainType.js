@@ -29,8 +29,9 @@ export const CustomNFTShowcase = editor => {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            background-image: linear-gradient(to right, #8360c3, #2ebf91);
             padding: 50px 15%;
+            font-family: Monospace;
+
           }
           .nftContainers{
 
@@ -67,8 +68,7 @@ export const CustomNFTShowcase = editor => {
             top: 50%;
             width: 80%;
             transform: translateX(-50%) translateY(-50%);
-            color: white;
-            font-size: 30px;
+            font-size: 14px;
             text-align: center;
           }
 
@@ -126,6 +126,100 @@ export const CustomNFTShowcase = editor => {
 }
 
 
+// this is the new nft model so that its automatic
+export const CustomAutomaticNFTShowcase = editor => {
+  editor.DomComponents.addType("AutomaticNFTShowcase", {
+
+    isComponent: el => {
+        return el.id === "AutomaticNFTShowcase"
+      },
+
+    model: {
+      name: 'AutomaticNFTShowcase',
+      tagName: "AutomaticNFTShowcase",
+      resizable: 'true',
+      defaults:{
+        attributes: { class: 'nft-collection-container' },
+        someprop: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+
+        styles: `
+          .nft-collection-container{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            padding: 50px 15%;
+            font-family: Monospace;
+
+          }
+          .nftContainers{
+
+            flex:1;
+            flex-basis: 30%;
+            margin: 2px;
+            padding: 25px 0px;
+          }
+          .nftCards {
+            width: 200px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 5px;
+            background: white;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+          }
+          .nftCards img{
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+          }
+          .nftName{
+            position: relative;
+            height: 100px;
+
+          }
+          .nftNameText{
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 80%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 14px;
+            text-align: center;
+          }
+
+        `,
+        'script-props': ["someprop",],
+
+        components: model => {
+          return(
+            <div>
+              My NFT Collection
+            </div>
+          )
+        }
+
+      },
+
+      init() {
+
+      },
+
+    },
+
+
+    view: {
+      onRender(){
+
+      }
+    }
+
+  })
+}
+
+
 export const CustomTransactionList = editor => {
   editor.DomComponents.addType("TransactionList", {
     isComponent: el => {
@@ -140,9 +234,13 @@ export const CustomTransactionList = editor => {
         attributes: {class: 'nft-transactions-background-container'},
         styles: `
           .nft-transactions-background-container{
-            background: black;
             padding: 50px 0;
-            color:white;
+            color:black;
+            font-family: Monospace;
+          }
+          .transactionText{
+            font-size: 35px;
+            text-align: center;
           }
           .nft-trans-whole-cont{
             position: relative;
@@ -212,7 +310,7 @@ export const CustomTransactionList = editor => {
         components: model => {
           return (
           <div class = "nft-trans-whole-cont">
-            <div>
+            <div class = "transactionText">
               My Latest Transactions
             </div>
             <div class = "nft-transactions-container">

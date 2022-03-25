@@ -10,6 +10,10 @@ import image8 from '../../../../images/image8.png';
 import image9 from '../../../../images/image9.png';
 import image11 from '../../../../images/image11.png';
 import image15 from '../../../../images/image15.png';
+import image16 from '../../../../images/image16.png';
+import image17 from '../../../../images/image17.png';
+import image18 from '../../../../images/image18.png';
+import image19 from '../../../../images/image19.png';
 export const InformationalBlocks = [
   {
     id: 'info1',
@@ -79,15 +83,10 @@ export const InformationalBlocks = [
     id: 'info2',
     category: 'Information',
     media: `
-    <style>
-      .img{
-        width: 400px;
-        height: 175;
-      }
-    </style>
     <div>
-      <img class="img" src =${imageMedia1} />
-    </div>`,
+      <img class="img" src="${image16}" />
+    </div>`
+    ,
     content: `
       <style>
         ${rowStyle}
@@ -165,29 +164,33 @@ export const InformationalBlocks = [
     id: 'info3',
     category: 'Information',
     media: `
-    <style>
-      .img{
-        width: 400px;
-        height: 175;
-      }
-    </style>
     <div>
-      <img class="img" src =${imageMedia2} />
+      <img class="img" src="${image17}" />
     </div>`,
     content: `
       <style>
         ${rowStyle}
         ${colStyle}
         .infoRow3{
-          padding: 20px;
-          background: #F0F8FF;
+
         }
         .infoColH3{
           height: 60vh;
         }
-        .image3{
+        .innerRow{
           position: relative;
-          height: 70%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 70%;
+          padding: 25px 0px;
+          display: flex;
+        }
+        .image3{
+          border-radius: 25px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+          position: relative;
+          height: 60%;
           left: 50%;
           transform: translateX(-50%);
         }
@@ -212,7 +215,7 @@ export const InformationalBlocks = [
         }
         .miniText3{
           position: relative;
-          width: 40%;
+          width: 80%;
           top: 5%;
           left: 50%;
           transform:translateX(-50%);
@@ -224,7 +227,7 @@ export const InformationalBlocks = [
 
       <div class="row infoRow3">
 
-
+        <div class = "innerRow">
         <div class = "col infoColH3">
           <img class ="image3" src = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
           <div class = "miniText3">
@@ -243,6 +246,12 @@ export const InformationalBlocks = [
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
           </div>
         </div>
+
+
+        </div>
+
+
+
       </div>
 
     `
@@ -251,27 +260,23 @@ export const InformationalBlocks = [
     id: 'info4',
     category: 'Information',
     media: `
-    <style>
-      .img{
-        width: 400px;
-        height: 175;
-      }
-    </style>
+
     <div>
-      <img class="img" src =${image8} />
+      <img  src =${image18} />
     </div>`,
     content: `
       <style>
         ${rowStyle}
         ${colStyle}
         .infoRow4{
-          padding: 20px;
-          background: black;
         }
         .infoColH4{
           height: 60vh;
         }
         .image4{
+          border-radius: 25px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
           position: relative;
           height: 70%;
           left: 50%;
@@ -279,7 +284,6 @@ export const InformationalBlocks = [
         }
         .infoHeader4{
           position:relative;
-          color:white;
           width: 70%;
           font-size: 50px;
           left: 50%;
@@ -289,7 +293,6 @@ export const InformationalBlocks = [
         }
         .infoBody4{
           position: relative;
-          color: white;
           width: 70%;
           left: 50%;
           transform:translateX(-50%);
@@ -303,7 +306,6 @@ export const InformationalBlocks = [
           left: 50%;
           transform:translateX(-50%);
           text-align: center;
-          color:white;
         }
 
       </style>
@@ -322,81 +324,7 @@ export const InformationalBlocks = [
 
     `
   },
-  {
-    id: 'info5',
-    category: 'Information',
-    media: `
-    <style>
-      .img{
-        width: 400px;
-        height: 175;
-      }
-    </style>
-    <div>
-      <img class="img" src =${image9} />
-    </div>`,
-    content: `
-      <style>
-        ${rowStyle}
-        ${colStyle}
-        .infoRow5{
-          padding: 20px;
-          background: black;
-        }
-        .infoColH5{
-          height: 60vh;
-        }
-        .image5{
-          position: relative;
-          height: 70%;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        .infoHeader5{
-          position:relative;
-          color:white;
-          width: 70%;
-          font-size: 50px;
-          left: 50%;
-          transform:translateX(-50%);
-          text-align: center;
-          top: 15%;
-        }
-        .infoBody5{
-          position: relative;
-          color: white;
-          width: 70%;
-          left: 50%;
-          transform:translateX(-50%);
-          text-align: center;
-          top:15%;
-        }
-        .miniText5{
-          position: relative;
-          width: 70%;
-          top: 30%;
-          left: 50%;
-          font-size: 40px;
-          transform:translateX(-50%);
-          text-align: center;
-          color:white;
-        }
 
-      </style>
-
-      <div class="row infoRow5">
-
-
-        <div class = "col infoColH5">
-          <div class = "miniText5">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-          </div>
-        </div>
-
-      </div>
-
-    `
-  },
   {
     id: 'info6',
     category: 'Information',
@@ -408,15 +336,13 @@ export const InformationalBlocks = [
       }
     </style>
     <div>
-      <img class="img" src =${image11} />
+      <img class="img" src =${image19} />
     </div>`,
     content: `
       <style>
         ${rowStyle}
         ${colStyle}
         .infoRow6{
-          padding: 20px;
-          background: white;
         }
         .infoColH6{
           height: 60vh;

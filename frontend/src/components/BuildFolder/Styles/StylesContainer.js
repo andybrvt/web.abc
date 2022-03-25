@@ -26,7 +26,6 @@ export const StylesContainer = (props) => {
       })
 
       props.editor.on('load', ()=> {
-
           const tempEditor = props.editor
           let styleManager = props.editor.StyleManager;
           let typographySector = props.editor.StyleManager.getSector('typography');
@@ -35,7 +34,7 @@ export const StylesContainer = (props) => {
           const raleway="'Raleway', sans-serif";
           const lato="'Lato', sans-serif";
           const poppins="'Poppins', sans-serif"
-
+          const montserrat="'Montserrat', sans-serif"
           const opensans="'Open Sans', sans-serif;";
           const merriwether="'Merriweather', sans-serif;";
           fontProperty.setOptions([]);
@@ -46,14 +45,15 @@ export const StylesContainer = (props) => {
           const poppinsFont = { id: poppins, label: poppins.split(',')[0] };
           const merriwetherFont = { id: merriwether, label: merriwether.split(',')[0] };
           const opensansFont = { id: opensans, label: opensans.split(',')[0] };
-          console.log(fontProperty.getOptions())
+          const montserratFont = { id: montserrat, label: montserrat.split(',')[0] };
+
           fontProperty.setOptions([...fontProperty.getOptions(), robotoFont]);
           fontProperty.setOptions([...fontProperty.getOptions(), ralewayFont]);
           fontProperty.setOptions([...fontProperty.getOptions(), latoFont]);
           fontProperty.setOptions([...fontProperty.getOptions(), poppinsFont]);
           fontProperty.setOptions([...fontProperty.getOptions(), opensansFont]);
           fontProperty.setOptions([...fontProperty.getOptions(), merriwetherFont]);
-          console.log(fontProperty.getOptions())
+          fontProperty.setOptions([...fontProperty.getOptions(), montserratFont]);
           {/*
           let fontProperty = props.editor.StyleManager.getProperty('Typography', 'font-family');
           let list = fontProperty.get('list');
@@ -61,17 +61,11 @@ export const StylesContainer = (props) => {
           fontProperty.set('list', list);
           styleManager.render();
           */}
-
-
-
       })
-
 
       return () => {
         props.editor.off('style:custom', props => {
-
           setSectors(tempEditor.StyleManager.getSectors({visible:true}))
-
         })
       }
     }

@@ -101,6 +101,7 @@ import axios from 'axios';
 import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
 import {PickNFTModal} from '../NFT/PickNFTModal';
+import {PickImageModal} from './PickImageModal';
 import {EditorHeader} from './EditorHeader'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import * as dateFns from 'date-fns';
@@ -171,7 +172,10 @@ const translatedItems = [
 export const Editor = (props) => {
 
   const Web3Api = useMoralisWeb3Api()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  // const {  onOpen, onClose, testOpen } = useDisclosure()
+
+  const { isOpen: isNFTOpen, onOpen: onNFTOpen, onClose: onNFTClose } = useDisclosure()
+  const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
   const [scrollBehavior, setScrollBehavior] = React.useState('inside')
   const btnRef = React.useRef()
 
@@ -259,6 +263,8 @@ export const Editor = (props) => {
           'https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@300&family=Raleway:wght@300&display=swap',
           // meriwether
           'https://fonts.googleapis.com/css2?family=Merriweather&display=swap',
+          // Montserrat
+          "https://fonts.googleapis.com/css2?family=Montserrat&display=swap",
         ],
         scripts:  [
           "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",
@@ -398,11 +404,12 @@ export const Editor = (props) => {
       }
 
     })
+  
 
     editor.DomComponents.addType("NFTShowcase", {
       view: {
         onActive(){
-          onOpen()
+          onNFTOpen()
         }
       }
     })
@@ -1091,11 +1098,15 @@ export const Editor = (props) => {
 
       <PickNFTModal
         editor = {editorMain}
-        onClose = {onClose}
-        isOpen = {isOpen}
+        onClose = {onNFTClose}
+        isOpen = {isNFTOpen}
         scrollBehavior={scrollBehavior}/>
 
-
+      <PickImageModal
+          editor = {editorMain}
+          onClose = {onImageOpen}
+          isOpen = {isImageOpen}
+          scrollBehavior={scrollBehavior}/>
 
     </div>
 

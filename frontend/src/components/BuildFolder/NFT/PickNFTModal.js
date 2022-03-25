@@ -64,7 +64,9 @@ export const PickNFTModal  = (props) => {
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        setNFTImgs(oldArray => [...oldArray, {img: fixURL(data.image), name: data.name}])
+          setNFTImgs(oldArray => [...oldArray, {img: fixURL(data.image), name: data.name}])
+
+        
         // console.log(data.image)
 
         // $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.image)+"'/>" )
@@ -77,6 +79,8 @@ export const PickNFTModal  = (props) => {
 
 
   }
+
+
 
 
   const fixURL = (url) => {

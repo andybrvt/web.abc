@@ -472,50 +472,87 @@ export const Editor = (props) => {
           block.set("script", `
             async function script(props){
 
+              const fixURL = (url) => {
+                if(url !== null && url !== undefined){
+                  if(url.startsWith("ipfs")){
+                    console.log(url.split("ipfs://").slice(-1)[0])
+                    return "https://ipfs.moralis.io:2053/ipfs/"+url.split("ipfs://").slice(-1)[0]
+                  }
+                  else {
+                    return url+"?format=json"
+                  }
+
+                }
+              }
+
+
               // let spinnerWrapper = document.getElementsByClassName("nft-collection-container-background")[0].getElementsByClassName("");
               let collectionContainer = document.querySelectorAll(".nft-collection-container");
-
-              // Now I actually need to get the nft
 
               const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
               const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
               Moralis.start({ serverUrl, appId });
-
               const options = {
                 chain: "eth",
                 address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
               }
 
-
               const nftList = await Moralis.Web3API.account.getNFTs(options);
 
-              console.log(nftList)
+              nftList.result.forEach(function(nft){
+                let url = fixURL(nft.token_uri);
+
+                fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                  console.log(data)
+                  const img = fixURL(data.image);
+                  const name = data.name;
+
+
+                  collectionContainer.forEach((collection) => {
+                    console.log(collection)
+
+
+                    var nftContainers= document.createElement("div");
+                    nftContainers.className = 'nftContainers';
+
+                    // The card porition of the nft (picture)
+                    var nftCards = document.createElement("div")
+                    nftCards.className = "nftCards";
+                    var nftImages = document.createElement("img");
+                    nftImages.className = "nftImages";
+                    nftImages.src = img;
+                    nftCards.appendChild(nftImages);
+
+
+                    // The name porition of the nft
+                    var nftName = document.createElement("div");
+                    nftName.className = "nftName";
+                    var nftNameText = document.createElement("div");
+                    nftNameText.className = "nftNameText";
+                    nftNameText.appendChild(document.createTextNode(name));
+                    nftName.appendChild(nftNameText);
+
+
+                    nftContainers.appendChild(nftCards);
+                    nftContainers.appendChild(nftName);
+
+                    collection.appendChild(nftContainers);
+                  })
 
 
 
 
 
 
-              collectionContainer.forEach((collection) => {
-                console.log(collection)
+                })
+                .catch(err => {
+                  console.log(err)
+                })
 
-
-                var nftContainers= document.createElement("div");
-                nftContainers.className = 'nftContainers';
-
-                // The card porition of the nft (picture)
-                var nftCards = document.createElement("div")
-                nftCards.className = "nftCards";
-
-
-                // The name porition of the nft
-
-
-
-                nftContainers.appendChild(document.createTextNode("stuff here"));
-
-                collection.appendChild(nftContainers);
               })
+
 
 
             }

@@ -146,7 +146,12 @@ export const CustomAutomaticNFTShowcase = editor => {
 
           .nft-collection-container-background{
             padding: 50px 15%;
+            font-family: Monospace;
 
+          }
+          .nft-collection-title {
+            text-align: center;
+            font-size: 25px;
           }
           .nft-collection-container{
             display: flex;
@@ -200,11 +205,24 @@ export const CustomAutomaticNFTShowcase = editor => {
         components: model => {
           return(
             <div>
-              <div>
+              <div class = "nft-collection-title">
                 My NFT Collection
               </div>
               <div class = "nft-collection-container">
 
+                <div class = "nftContainers">
+
+                  <div class = "nftCards">
+                  </div>
+
+                  <div class = "nftName">
+
+                    <div class = "nftNameText">Name</div>
+
+                  </div>
+
+
+                </div>
               </div>
             </div>
           )

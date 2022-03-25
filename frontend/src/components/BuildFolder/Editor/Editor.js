@@ -421,7 +421,7 @@ export const Editor = (props) => {
     //   <script src="https://unpkg.com/moralis/dist/moralis.js" crossorigin="anonymous"></script>
     //   `)
 
-    editor.runCommand('sw-visibility');
+    // editor.runCommand('sw-visibility');
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
 
@@ -479,50 +479,106 @@ export const Editor = (props) => {
           block.set("script", `
             async function script(props){
 
-              // let spinnerWrapper = document.getElementsByClassName("nft-collection-container-background")[0].getElementsByClassName("");
-              let collectionContainer = document.querySelectorAll(".nft-collection-container");
+              const fixURL = (url) => {
+                if(url !== null && url !== undefined){
+                  if(url.startsWith("ipfs")){
+                    return "https://ipfs.moralis.io:2053/ipfs/"+url.split("ipfs://").slice(-1)[0]
+                  }
+                  else {
+                    return url+"?format=json"
+                  }
 
-              // Now I actually need to get the nft
+                }
+              }
+
+              function imageExists(image_url){
+
+                  var http = new XMLHttpRequest();
+
+                  http.open('HEAD', image_url, false);
+                  http.send();
+
+                  return http.status != 404;
+
+              }
+
+
+              // let spinnerWrapper = document.getElementsByClassName("nft-collection-container-background")[0].getElementsByClassName("");
+
+              let placeHolderContainer = document.getElementsByClassName("delete-nft-collectionContainer")[0];
+
+              console.log(placeHolderContainer, 'test test test')
+              let collectionContainer = document.querySelectorAll(".nft-collection-container");
 
               const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
               const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
               Moralis.start({ serverUrl, appId });
-
               const options = {
                 chain: "eth",
                 address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
               }
 
-
               const nftList = await Moralis.Web3API.account.getNFTs(options);
 
-              console.log(nftList)
+
+              placeHolderContainer.parentElement.removeChild(placeHolderContainer);
+
+
+              nftList.result.forEach(function(nft){
+                let url = fixURL(nft.token_uri);
+
+                fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                  const img = fixURL(data.image);
+                  const name = data.name;
+
+                  console.log(imageExists(img), 'does it exist')
+
+                  if(imageExists(img)){
+                    collectionContainer.forEach((collection) => {
+                      console.log(collection)
+
+
+                      var nftContainers= document.createElement("div");
+                      nftContainers.className = 'nftContainers';
+
+                      // The card porition of the nft (picture)
+                      var nftCards = document.createElement("div")
+                      nftCards.className = "nftCards";
+                      var nftImages = document.createElement("img");
+                      nftImages.className = "nftImages";
+                      nftImages.src = img;
+                      nftCards.appendChild(nftImages);
+
+
+                      // The name porition of the nft
+                      var nftName = document.createElement("div");
+                      nftName.className = "nftName";
+                      var nftNameText = document.createElement("div");
+                      nftNameText.className = "nftNameText";
+                      nftNameText.appendChild(document.createTextNode(name));
+                      nftName.appendChild(nftNameText);
+
+
+                      nftContainers.appendChild(nftCards);
+                      nftContainers.appendChild(nftName);
+
+                      collection.appendChild(nftContainers);
+                    })
 
 
 
+                  }
 
 
+                })
+                .catch(err => {
+                  console.log(err)
+                })
 
-              collectionContainer.forEach((collection) => {
-                console.log(collection)
-
-
-                var nftContainers= document.createElement("div");
-                nftContainers.className = 'nftContainers';
-
-                // The card porition of the nft (picture)
-                var nftCards = document.createElement("div")
-                nftCards.className = "nftCards";
-
-
-                // The name porition of the nft
-
-
-
-                nftContainers.appendChild(document.createTextNode("stuff here"));
-
-                collection.appendChild(nftContainers);
               })
+
 
 
             }

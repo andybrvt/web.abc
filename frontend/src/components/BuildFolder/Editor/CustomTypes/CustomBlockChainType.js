@@ -146,7 +146,16 @@ export const CustomAutomaticNFTShowcase = editor => {
 
           .nft-collection-container-background{
             padding: 50px 15%;
+            font-family: Monospace;
 
+          }
+
+          .delete-nft-collectionContainer{
+
+          }
+          .nft-collection-title {
+            text-align: center;
+            font-size: 25px;
           }
           .nft-collection-container{
             display: flex;
@@ -200,11 +209,29 @@ export const CustomAutomaticNFTShowcase = editor => {
         components: model => {
           return(
             <div>
-              <div>
+              <div class = "nft-collection-title">
                 My NFT Collection
               </div>
-              <div class = "nft-collection-container">
+              <div class = "nft-collection-container ">
 
+                <div class = "nftContainers delete-nft-collectionContainer">
+
+                  <div class = "nftCards">
+                    <div data-gjs-selectable="false" data-gjs-hoverable="false" class="d-flex justify-content-center">
+                      <div data-gjs-selectable="false" data-gjs-hoverable="false" class="spinner-border" role="status">
+                        <span data-gjs-selectable="false" data-gjs-hoverable="false" class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class = "nftName">
+
+                    <div class = "nftNameText">Name</div>
+
+                  </div>
+
+
+                </div>
               </div>
             </div>
           )
@@ -409,9 +436,9 @@ export const CustomStatsList = editor => {
         },
         styles: `
           .stats-list-container{
-            color: white;
-            background: black;
+            color: black;
             padding: 25px 20%;
+            font-family: Monospace;
           }
           .stats-holder{
             display: flex;

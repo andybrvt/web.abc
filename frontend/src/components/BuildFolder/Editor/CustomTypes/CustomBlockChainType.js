@@ -151,7 +151,7 @@ export const CustomAutomaticNFTShowcase = editor => {
           }
 
           .delete-nft-collectionContainer{
-            
+
           }
           .nft-collection-title {
             text-align: center;
@@ -436,9 +436,9 @@ export const CustomStatsList = editor => {
         },
         styles: `
           .stats-list-container{
-            color: white;
-            background: black;
+            color: black;
             padding: 25px 20%;
+            font-family: Monospace;
           }
           .stats-holder{
             display: flex;

@@ -414,7 +414,7 @@ export const Editor = (props) => {
     //   <script src="https://unpkg.com/moralis/dist/moralis.js" crossorigin="anonymous"></script>
     //   `)
 
-    editor.runCommand('sw-visibility');
+    // editor.runCommand('sw-visibility');
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
 

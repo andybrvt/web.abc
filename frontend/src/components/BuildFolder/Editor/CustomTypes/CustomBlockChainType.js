@@ -1,6 +1,7 @@
 // Function will be used as add nfts in
 import React, { useState, useEffect } from 'react';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+import imageUser from '../../../../images/imageUser.svg';
 
 // this.innerHTML ="some content"
 
@@ -498,4 +499,93 @@ export const CustomStatsList = editor => {
 
 
   })
+}
+
+export const CustomAddressProfile = editor => {
+
+  editor.DomComponents.addType("AddressProfile", {
+
+    isComponent: el => {
+      return el.id === "AddressProfile"
+    },
+
+    model: {
+      name: "AddressProfile",
+      tagName: 'AddressProfile',
+      resiable: 'true',
+      defaults:{
+        attributes: {
+          class: "address-profile-container"
+        },
+        styles: `
+          .address-profile-container{
+            height: 40vh;
+            position: relative;
+            font-family: Monospace;
+          }
+          .profile-inner-wrapper{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .centerInfo{
+            text-align: center;
+          }
+          .userCircleWrapper{
+            width: 135px;
+            height: 135px;
+            border-radius: 80px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+          }
+          .userCircle{
+            width: 120px;
+            height: 120px;
+            border-radius: 75px;
+            position: absolute;
+            overflow:hidden;
+            background: gray;
+            left: 50%;
+            top: 50%;
+            transform: translateY(-50%) translateX(-50%);
+          }
+          .circleProfilePic{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            left: 50%;
+            top: 50%;
+            transform: translateY(-50%) translateX(-50%);
+          }
+        `,
+        components: model => {
+          return(
+            <div class = "profile-inner-wrapper">
+              <div class = "userCircleWrapper">
+                <div class = "userCircle">
+                  <img class = "circleProfilePic" src = {imageUser}/>
+                </div>
+              </div>
+              <div class = "centerInfo">
+                This will be the name
+              </div>
+              <div class = "centerInfo">
+                This will be where the social media would be put
+              </div>
+              <div class = "centerInfo">
+                Put address of the person here
+              </div>
+            </div>
+          )
+        }
+
+      },
+
+    }
+
+
+  })
+
 }

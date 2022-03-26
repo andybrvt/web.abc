@@ -67,7 +67,8 @@ import {
   CustomNFTShowcase,
   CustomAutomaticNFTShowcase,
   CustomTransactionList,
-  CustomStatsList
+  CustomStatsList,
+  CustomAddressProfile
 } from './CustomTypes/CustomBlockChainType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
@@ -139,7 +140,8 @@ const PLUGINS = [
   CustomNFTShowcase,
   CustomAutomaticNFTShowcase,
   CustomTransactionList,
-  CustomStatsList
+  CustomStatsList,
+  CustomAddressProfile
 ]
 
 
@@ -164,7 +166,8 @@ const translatedItems = [
   "NFTShowcase",
   "Web3Stats",
   "TransactionList",
-  'AutomaticNFTShowcase'
+  'AutomaticNFTShowcase',
+  'AddressProfile'
 ]
 
 
@@ -414,7 +417,7 @@ export const Editor = (props) => {
     //   <script src="https://unpkg.com/moralis/dist/moralis.js" crossorigin="anonymous"></script>
     //   `)
 
-    // editor.runCommand('sw-visibility');
+    editor.runCommand('sw-visibility');
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
 

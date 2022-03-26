@@ -79,6 +79,21 @@ export const NFTShowcaseBlocks = [
     },
     select:true,
 
+  },{
+    id: "AddressProfile",
+    label: "Address Profile",
+    category: 'BlockChain',
+    activate: true,
+    media: `
+    <div>
+      <img class="img" src="${image21}" />
+    </div>`,
+    content: {
+      activeOnRender:1,
+      type: 'AddressProfile'
+    },
+    select:true,
+
   }
 
 ]

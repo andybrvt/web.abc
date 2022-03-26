@@ -25,7 +25,8 @@ export const PropertyContainer = (props) => {
     { id: 3, label: "Poppins" },
     { id: 4, label: "Merriweather" },
     { id: 5, label: "Open Sans" },
-    { id: 76, label: "Roboto" },
+    { id: 6, label: "Roboto" },
+    { id: 7, label: "Montserrat" },
   ];
 
 
@@ -160,7 +161,7 @@ export const PropertyContainer = (props) => {
           <ChakraFontFamilySelect
             style={{width:200}}
             options={TextFonts}
-            placeholder="Cambria"
+            placeholder={curValue}
             closeMenuOnSelect={false}
             size="sm"
             // value = {curValue}

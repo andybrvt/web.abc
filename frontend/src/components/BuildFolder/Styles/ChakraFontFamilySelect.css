@@ -5,6 +5,12 @@
   font-weight: 300;
 }
 
+
+.Montserrat {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  }
+
 .Poppins {
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
@@ -15,17 +21,17 @@
 .Raleway {
   font-size: 16px;
   font-family: 'Raleway', sans-serif;
+  font-weight: 500;
 }
 
 .Merriweather{
   font-size: 16px;
-  font-family: 'Merriweather', sans-serif;
+  font-family: 'Merriweather';
 }
 
 .OpenSans {
   font-size: 16px;
-  font-family: 'OpenSans', sans-serif;
-
+  font-family: 'OpenSans';
   }
 
 

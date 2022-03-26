@@ -253,12 +253,19 @@ const chakraComponents = {
         <div class="OpenSans"
           onClick= {() => handleChange("'Open Sans', sans-serif;")}
             >
+
           {children[4]}
         </div>
         <div class="Roboto"
           onClick= {() => handleChange("'Roboto', sans-serif;")}
           >
             {children[5]}
+        </div>
+        <div class="Montserrat"
+
+          onClick= {() => handleChange("'Montserrat', sans-serif;")}
+          >
+            {children[6]}
         </div>
       </Box>
     );

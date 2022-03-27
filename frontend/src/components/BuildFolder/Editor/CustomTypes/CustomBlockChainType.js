@@ -1,7 +1,7 @@
 // Function will be used as add nfts in
 import React, { useState, useEffect } from 'react';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
-import imageUser from '../../../../images/imageUser.svg';
+import imageUser from '../../../../images/imageUser.png';
 
 // this.innerHTML ="some content"
 
@@ -512,7 +512,7 @@ export const CustomAddressProfile = editor => {
     model: {
       name: "AddressProfile",
       tagName: 'AddressProfile',
-      resiable: 'true',
+      resizable: 'true',
       defaults:{
         attributes: {
           class: "address-profile-container"
@@ -539,6 +539,7 @@ export const CustomAddressProfile = editor => {
             left: 50%;
             transform: translateX(-50%);
             background: white;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
           }
           .userCircle{
             width: 120px;
@@ -565,18 +566,20 @@ export const CustomAddressProfile = editor => {
             <div class = "profile-inner-wrapper">
               <div class = "userCircleWrapper">
                 <div class = "userCircle">
-                  <img class = "circleProfilePic" src = {imageUser}/>
+                  <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
                 </div>
               </div>
               <div class = "centerInfo">
-                This will be the name
+                <h1 data-gjs-type ="text">
+                  Here will be your name
+                </h1>
               </div>
-              <div class = "centerInfo">
-                This will be where the social media would be put
-              </div>
-              <div class = "centerInfo">
-                Put address of the person here
-              </div>
+
+
+                <div data-gjs-type ="CopyToClipboard" >
+                  0x0000000000000000
+                </div>
+
             </div>
           )
         }

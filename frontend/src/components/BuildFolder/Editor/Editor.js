@@ -70,6 +70,9 @@ import {
   CustomStatsList,
   CustomAddressProfile
 } from './CustomTypes/CustomBlockChainType';
+import {
+  CustomCopyToClipboard
+} from './CustomTypes/CustomCopyToClipboardTypes';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -142,7 +145,8 @@ const PLUGINS = [
   CustomAutomaticNFTShowcase,
   CustomTransactionList,
   CustomStatsList,
-  CustomAddressProfile
+  CustomAddressProfile,
+  CustomCopyToClipboard
 ]
 
 
@@ -407,7 +411,9 @@ export const Editor = (props) => {
       }
 
     })
-  
+
+
+
 
     editor.DomComponents.addType("NFTShowcase", {
       view: {

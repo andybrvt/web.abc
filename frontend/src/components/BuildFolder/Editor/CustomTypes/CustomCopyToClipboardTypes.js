@@ -15,10 +15,13 @@ export const CustomCopyToClipboard = editor => {
       resizable: 'true',
       defaults: {
         attributes: {
-          class: 'copy-to-clipboard-button'
+          class: 'copy-to-clipboard-address-button',
+          "data-toggle": 'tooltip',
+          "data-placement": 'top',
+          "title": 'Copy',
         },
         styles: `
-          .copy-to-clipboard-button{
+          .copy-to-clipboard-address-button{
             width: 200px;
             height: 40px;
             background: white;
@@ -31,8 +34,9 @@ export const CustomCopyToClipboard = editor => {
             position: relative;
             left: 50%;
             transform: translateX(-50%);
+            cursor: pointer;
           }
-          .copy-to-clipboard-button:hover{
+          .copy-to-clipboard-address-button:hover{
             color: black;
           }
         `,

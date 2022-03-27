@@ -473,13 +473,24 @@ export const Editor = (props) => {
     editor.on("block:drag:stop", async(block, obj) => {
 
 
+      // delete this later so that it is the actual account
       const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+
       if(block !== null){
 
         // GOTTA SET THIS SO IT CAN RUN ON PREVIEW TOO
 
         const type = block.get('type')
         console.log(type)
+
+
+        if(type === "AddressProfile"){
+
+          const wrapper = editor.getWrapper()
+          const el = wrapper.find('.copy-to-clipboard-address-button')[0]
+          el.components(account.slice(0, 15) +'...')
+        }
+
 
         // This is where you set the scripts
         // Remember this has nothing to do with the outside information

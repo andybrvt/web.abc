@@ -19,6 +19,7 @@ export const CustomCopyToClipboard = editor => {
           "data-toggle": 'tooltip',
           "data-placement": 'top',
           "title": 'Copy',
+          onclick:"copyAddress()"
         },
         styles: `
           .copy-to-clipboard-address-button{

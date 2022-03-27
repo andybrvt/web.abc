@@ -58,6 +58,18 @@ export const PreviewPage = props => {
                 $('[data-toggle="tooltip"]').tooltip()
               })
             </script>
+            <script>
+              function copyAddress() {
+                /* Get the text field */
+                var copyText = document.getElementsByClassName("copy-to-clipboard-address-button")[0];
+
+                console.log(copyText.getAttribute('value'))
+
+                /* Copy the text inside the text field */
+                navigator.clipboard.writeText(copyText.getAttribute('value'));
+
+              }
+            </script>
           <html>
 
           `

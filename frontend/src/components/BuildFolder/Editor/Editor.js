@@ -488,6 +488,7 @@ export const Editor = (props) => {
 
           const wrapper = editor.getWrapper()
           const el = wrapper.find('.copy-to-clipboard-address-button')[0]
+          el.addAttributes({"value":account})
           el.components(account.slice(0, 15) +'...')
         }
 

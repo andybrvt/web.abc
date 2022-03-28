@@ -17,7 +17,7 @@ import { Menu, Dropdown, Button as AntButton, Space, Popover as AntdPopover, Div
 import { LockOutlined, PlusOutlined, RadarChartOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { Input, Form, List, Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShapes, faCircle, faFont, faKeyboard, faPlay, faTrash, faEye, faSave } from '@fortawesome/free-solid-svg-icons'
+import { faShapes, faCircle, faFont, faKeyboard, faPlay, faTrash, faEye, faSave, faImage } from '@fortawesome/free-solid-svg-icons'
 import {IconButtonCanvas} from '../../TestingFolder/ReactDesignerTest';
 import { Button as Button, ButtonGroup, Box, Tooltip, useColorModeValue, Text, Stack, IconButton } from '@chakra-ui/react'
 import { BlockAttribute } from '../BlockAttributes/BlockAttribute';
@@ -113,7 +113,7 @@ import {AddSocialMediaModal} from '../SocialMedia/AddSocialMediaModal';
 import {EditorHeader} from './EditorHeader'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import * as dateFns from 'date-fns';
-
+import { TestModal } from './TestModal';
 
 const PLUGINS = [
   grapesjsBlocksBasic,
@@ -203,6 +203,7 @@ export const Editor = (props) => {
   const [preview, setPreview] =useState(false);
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
+  const [imageModal, setImageModal] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
   const [pageIds, setPageIds] = useState([]);
 
@@ -216,6 +217,12 @@ export const Editor = (props) => {
   const [BlockClickType, setBlockClickType]= useState(null);
 
   const [showModal, setShowModal] = useState(false);
+
+
+
+  const closeImageModal=() => {
+    setImageModal(false)
+  }
 
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
@@ -320,22 +327,16 @@ export const Editor = (props) => {
         }
       },
       assetManager:{
-        assets:[
-          'http://placehold.it/350x250/78c5d6/fff/image1.jpg',
-           {
-             type: 'image',
-             src: image1,
-             height: 350,
-             width: 250,
-             name: 'displayName1'
-           },
-           {
-             src: 'http://placehold.it/350x250/79c267/fff/image3.jpg',
-             height: 350,
-             width: 250,
-             name: 'displayName2'
-           },
-        ]
+        assets: [
+      'https://via.placeholder.com/350x250/78c5d6/fff/image1.jpg',
+      'https://via.placeholder.com/350x250/459ba8/fff/image2.jpg',
+      'https://via.placeholder.com/350x250/79c267/fff/image3.jpg',
+      'https://via.placeholder.com/350x250/c5d647/fff/image4.jpg',
+      'https://via.placeholder.com/350x250/f28c33/fff/image5.jpg',
+      'https://via.placeholder.com/350x250/e868a2/fff/image6.jpg',
+      'https://via.placeholder.com/350x250/cc4360/fff/image7.jpg',
+    ],
+        // custom:true,
       },
       panels: {
         defaults: [
@@ -402,7 +403,7 @@ export const Editor = (props) => {
       },
 
       styleManager: {
-        custom: true
+
       },
       deviceManager:{
         devices:[
@@ -1141,7 +1142,7 @@ export const Editor = (props) => {
 
 
             {/*
-              <div className = "buttonHolder">
+              <div className =<<< "buttonHolder">
                 <AntButton
                   onClick = {() => changeDrawerVisibility("input")}
                   type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
@@ -1150,6 +1151,21 @@ export const Editor = (props) => {
               */}
 
 
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => showPreview()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faEye} />} size="large" />
+            </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() =>
+
+                  setImageModal(true)
+                 }
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faImage} />} size="large" />
+            </div>
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => showPreview()}
@@ -1209,6 +1225,13 @@ export const Editor = (props) => {
           onClose = {onImageOpen}
           isOpen = {isImageOpen}
           scrollBehavior={scrollBehavior}/>
+
+
+        <TestModal
+          editor = {editorMain}
+          visible={imageModal}
+          closeModal={closeImageModal}
+        />
 
     </div>
 

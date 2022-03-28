@@ -74,10 +74,21 @@ class SaveWebsitePreview(APIView):
         pages = []
         for i in range(numPages):
             pageDict = json.loads(request.data[f"{i}"])
-            page, created = models.WebsitePage.objects.get_or_create(
-                id = pageDict['pageId']
-            )
+
+            print(pageDict['pageId'].isdigit())
+
+            # If true use normal id, if false, use secondaryId
+            if pageDict['pageId'].isdigit():
+                page, created = models.WebsitePage.objects.get_or_create(
+                    id = pageDict['pageId']
+                )
+            else:
+                page, created = models.WebsitePage.objects.get_or_create(
+                    secondaryId = pageDict['pageId']
+                )
+
             print(page)
+
             page.name = pageDict['name']
             page.html = pageDict['html']
             page.css = pageDict['css']
@@ -207,7 +218,12 @@ class DeleteWebsitePage(APIView):
 class GetPageInfo(APIView):
     def get(self, request, webId, pageId, *args, **kwargs):
         try:
-            page = models.WebsitePage.objects.get(id = pageId)
+            if pageId.isdigit():
+                page = models.WebsitePage.objects.get(id = pageId)
+            else:
+                print('here here')
+                page = models.WebsitePage.objects.filter(secondaryId = pageId)[0]
+                print(page)
             serializedPage = serializers.PageSerializer(page, many = False).data
             css = serializedPage['css']
             with open("../frontend/src/components/BuildFolder/Editor/PreviewPage.css", 'w') as f:

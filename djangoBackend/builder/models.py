@@ -9,7 +9,7 @@ class WebsitePage(models.Model):
     html = models.TextField(blank = True)
     css = models.TextField(blank = True)
     js = models.TextField(blank = True)
-
+    secondaryId = models.CharField(max_length = 255, blank = True)
     # delete this later
     pageNum = models.IntegerField(default = 0, blank =False)
 

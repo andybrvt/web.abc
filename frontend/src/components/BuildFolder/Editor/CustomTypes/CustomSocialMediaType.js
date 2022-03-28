@@ -56,29 +56,29 @@ export const CustomSocialMediaFooter = editor => {
           }
 
         `,
-        components: model => {
-
-          return(
-            <div class = "social-media-footer-container">
-              <div class = "socialMediaIcon facebookIcon">
-                <i class="fab fa-facebook"></i>
-              </div>
-              <div class = "socialMediaIcon instagramIcon">
-                <i class="fab fa-instagram"></i>
-              </div>
-              <div class = "socialMediaIcon twitterIcon">
-                <i class="fab fa-twitter"></i>
-              </div>
-              <div class = 'socialMediaIcon discordIcon'>
-                <i class="fab fa-discord"></i>
-              </div>
-              <div class = 'socialMediaIcon linkedInIcon'>
-                <i class="fab fa-linkedin"></i>
-              </div>
-
-            </div>
-          )
-        },
+        // components: model => {
+        //
+        //   return(
+        //     <div class = "social-media-footer-container">
+        //       <div class = "socialMediaIcon facebookIcon">
+        //         <i class="fab fa-facebook"></i>
+        //       </div>
+        //       <div class = "socialMediaIcon instagramIcon">
+        //         <i class="fab fa-instagram"></i>
+        //       </div>
+        //       <div class = "socialMediaIcon twitterIcon">
+        //         <i class="fab fa-twitter"></i>
+        //       </div>
+        //       <div class = 'socialMediaIcon discordIcon'>
+        //         <i class="fab fa-discord"></i>
+        //       </div>
+        //       <div class = 'socialMediaIcon linkedInIcon'>
+        //         <i class="fab fa-linkedin"></i>
+        //       </div>
+        //
+        //     </div>
+        //   )
+        // },
         'script-props': ["id",],
 
       },

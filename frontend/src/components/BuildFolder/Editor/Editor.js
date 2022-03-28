@@ -1021,10 +1021,13 @@ export const Editor = (props) => {
 
     })
 
-    editor.addComponents(`<div>
-      <img src="https://path/image" />
-      <span title="foo">Hello world!!!</span>
-    </div>`);
+    editor.addComponents(`
+      <div data-gjs-type = "AddressProfile"></div>
+      <div data-gjs-type = "SocialMediaFooter"></div>
+      <div data-gjs-type = "AutomaticNFTShowcase"></div>
+      <div data-gjs-type = "StatsList"></div>
+      <div data-gjs-type = "TransactionList"></div>
+    `);
 
     setEditor(editor)
   },[account])

@@ -1085,6 +1085,7 @@ export const Editor = (props) => {
 
   const storeEditor = () => {
 
+    editorMain.store()
     const websiteId = props.history.location.state.websiteId
 
 

@@ -265,6 +265,9 @@ export const Editor = (props) => {
       selectorManager: {
          componentFirst: true,
        },
+      layerManager: {
+        appendTo: '.layers-container'
+      },
       canvas:{
         styles: [
           "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
@@ -397,9 +400,7 @@ export const Editor = (props) => {
         //   },
         // ]
       },
-      traitManager: {
-       appendTo: '.trait-container',
-      },
+
       styleManager: {
         custom: true
       },
@@ -1200,7 +1201,7 @@ export const Editor = (props) => {
         editor = {editorMain}
         onClose = {onSocialMediaClose}
         isOpen = {isSocialMediaOpen}
-        
+
          />
 
       <PickImageModal

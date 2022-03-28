@@ -69,8 +69,13 @@ export const BlockAttribute = (props) => {
       <Tabs variant='soft-rounded' colorScheme='green'>
         <TabList style={{marginBottom:10, marginLeft:20}}>
          <Tab>Styles</Tab>
-         <Tab>Action</Tab>
-         <Tab>Traits</Tab>
+         <Tab>Layers</Tab>
+         {/*
+
+           <Tab>Action</Tab>
+           <Tab>Traits</Tab>
+           */}
+
         </TabList>
         <TabPanels>
 
@@ -90,18 +95,33 @@ export const BlockAttribute = (props) => {
               */}
             </TabPanel>
 
-
-          <TabPanel >
-            <BlockActions
-              editor = {props.editor}
-               />
-          </TabPanel>
-            <TabPanel >
-
-              <div class= "trait-container"></div>
+            <TabPanel>
+            
+                <div class= "layers-container"></div>
 
 
-          </TabPanel>
+            </TabPanel>
+
+            {/*
+              <TabPanel >
+                <BlockActions
+                  editor = {props.editor}
+                   />
+              </TabPanel>
+
+
+              <TabPanel >
+
+                  <div class= "trait-container"></div>
+
+
+              </TabPanel>
+
+
+
+              */}
+
+
         </TabPanels>
       </Tabs>
     </div>

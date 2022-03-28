@@ -109,6 +109,7 @@ import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
 import {PickNFTModal} from '../NFT/PickNFTModal';
 import {PickImageModal} from './PickImageModal';
+import {AddSocialMediaModal} from '../SocialMedia/AddSocialMediaModal';
 import {EditorHeader} from './EditorHeader'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import * as dateFns from 'date-fns';
@@ -188,6 +189,8 @@ export const Editor = (props) => {
 
   const { isOpen: isNFTOpen, onOpen: onNFTOpen, onClose: onNFTClose } = useDisclosure()
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
+  const { isOpen: isSocialMediaOpen, onOpen: onSocialMediaOpen, onClose: onSocialMediaClose} = useDisclosure()
+
   const [scrollBehavior, setScrollBehavior] = React.useState('inside')
   const btnRef = React.useRef()
 
@@ -425,6 +428,14 @@ export const Editor = (props) => {
       view: {
         onActive(){
           onNFTOpen()
+        }
+      }
+    })
+
+    editor.DomComponents.addType("SocialMediaFooter", {
+      view: {
+        onActive(){
+          onSocialMediaOpen()
         }
       }
     })
@@ -1184,6 +1195,13 @@ export const Editor = (props) => {
         onClose = {onNFTClose}
         isOpen = {isNFTOpen}
         scrollBehavior={scrollBehavior}/>
+
+      <AddSocialMediaModal
+        editor = {editorMain}
+        onClose = {onSocialMediaClose}
+        isOpen = {isSocialMediaOpen}
+        
+         />
 
       <PickImageModal
           editor = {editorMain}

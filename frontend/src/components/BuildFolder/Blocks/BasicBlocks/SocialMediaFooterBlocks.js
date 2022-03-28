@@ -13,7 +13,8 @@ export const SocialMediaFooterBlocks = [
     `,
     content: `
       <div data-gjs-type = "SocialMediaFooter"></div>
-    `
+    `,
+    select:true
   }
 
 ]

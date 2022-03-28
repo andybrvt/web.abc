@@ -78,22 +78,21 @@ export const CustomSocialMediaFooter = editor => {
 
             </div>
           )
-        }
-      },
-
-      init(){
+        },
+        'script-props': ["id",],
 
       },
-      view: {
-        onRender(){
-
-        }
-      }
 
 
 
+    },
 
+    view: {
+      events: {
+        dblclick: 'onActive'
+      },
     }
+
 
   })
 }

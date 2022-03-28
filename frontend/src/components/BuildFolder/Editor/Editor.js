@@ -70,6 +70,12 @@ import {
   CustomStatsList,
   CustomAddressProfile
 } from './CustomTypes/CustomBlockChainType';
+import {
+  CustomCopyToClipboard
+} from './CustomTypes/CustomCopyToClipboardTypes';
+import {
+  CustomSocialMediaFooter
+} from './CustomTypes/CustomSocialMediaType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -103,6 +109,7 @@ import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
 import {PickNFTModal} from '../NFT/PickNFTModal';
 import {PickImageModal} from './PickImageModal';
+import {AddSocialMediaModal} from '../SocialMedia/AddSocialMediaModal';
 import {EditorHeader} from './EditorHeader'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import * as dateFns from 'date-fns';
@@ -142,7 +149,9 @@ const PLUGINS = [
   CustomAutomaticNFTShowcase,
   CustomTransactionList,
   CustomStatsList,
-  CustomAddressProfile
+  CustomAddressProfile,
+  CustomCopyToClipboard,
+  CustomSocialMediaFooter
 ]
 
 
@@ -168,7 +177,8 @@ const translatedItems = [
   "Web3Stats",
   "TransactionList",
   'AutomaticNFTShowcase',
-  'AddressProfile'
+  'AddressProfile',
+  "SocialMediaFooter1"
 ]
 
 
@@ -179,6 +189,8 @@ export const Editor = (props) => {
 
   const { isOpen: isNFTOpen, onOpen: onNFTOpen, onClose: onNFTClose } = useDisclosure()
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
+  const { isOpen: isSocialMediaOpen, onOpen: onSocialMediaOpen, onClose: onSocialMediaClose} = useDisclosure()
+
   const [scrollBehavior, setScrollBehavior] = React.useState('inside')
   const btnRef = React.useRef()
 
@@ -277,6 +289,7 @@ export const Editor = (props) => {
           "https://fonts.googleapis.com/css2?family=Montserrat&display=swap",
         ],
         scripts:  [
+          "https://kit.fontawesome.com/2638379ee9.js",
           "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",
           "https://unpkg.com/moralis/dist/moralis.js",
           "https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js",
@@ -410,10 +423,20 @@ export const Editor = (props) => {
     })
 
 
+
+
     editor.DomComponents.addType("NFTShowcase", {
       view: {
         onActive(){
           onNFTOpen()
+        }
+      }
+    })
+
+    editor.DomComponents.addType("SocialMediaFooter", {
+      view: {
+        onActive(){
+          onSocialMediaOpen()
         }
       }
     })
@@ -468,13 +491,25 @@ export const Editor = (props) => {
     editor.on("block:drag:stop", async(block, obj) => {
 
 
+      // delete this later so that it is the actual account
       const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+
       if(block !== null){
 
         // GOTTA SET THIS SO IT CAN RUN ON PREVIEW TOO
 
         const type = block.get('type')
         console.log(type)
+
+
+        if(type === "AddressProfile"){
+
+          const wrapper = editor.getWrapper()
+          const el = wrapper.find('.copy-to-clipboard-address-button')[0]
+          el.addAttributes({"value":account})
+          el.components(account.slice(0, 15) +'...')
+        }
+
 
         // This is where you set the scripts
         // Remember this has nothing to do with the outside information
@@ -1106,7 +1141,7 @@ export const Editor = (props) => {
 
 
             {/*
-              <div className = "buttonHolder">
+              <div className =<<< "buttonHolder">
                 <AntButton
                   onClick = {() => changeDrawerVisibility("input")}
                   type="primary" shape="circle" icon={<FontAwesomeIcon icon={faKeyboard} />} size="large" />
@@ -1176,6 +1211,13 @@ export const Editor = (props) => {
         onClose = {onNFTClose}
         isOpen = {isNFTOpen}
         scrollBehavior={scrollBehavior}/>
+
+      <AddSocialMediaModal
+        editor = {editorMain}
+        onClose = {onSocialMediaClose}
+        isOpen = {isSocialMediaOpen}
+
+         />
 
       <PickImageModal
           editor = {editorMain}

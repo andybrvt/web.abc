@@ -73,6 +73,9 @@ import {
 import {
   CustomCopyToClipboard
 } from './CustomTypes/CustomCopyToClipboardTypes';
+import {
+  CustomSocialMediaFooter
+} from './CustomTypes/CustomSocialMediaType';
 import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
 import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
@@ -146,7 +149,8 @@ const PLUGINS = [
   CustomTransactionList,
   CustomStatsList,
   CustomAddressProfile,
-  CustomCopyToClipboard
+  CustomCopyToClipboard,
+  CustomSocialMediaFooter
 ]
 
 
@@ -172,7 +176,8 @@ const translatedItems = [
   "Web3Stats",
   "TransactionList",
   'AutomaticNFTShowcase',
-  'AddressProfile'
+  'AddressProfile',
+  "SocialMediaFooter1"
 ]
 
 
@@ -274,6 +279,7 @@ export const Editor = (props) => {
           "https://fonts.googleapis.com/css2?family=Montserrat&display=swap",
         ],
         scripts:  [
+          "https://kit.fontawesome.com/2638379ee9.js",
           "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js",
           "https://unpkg.com/moralis/dist/moralis.js",
           "https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js",
@@ -430,7 +436,7 @@ export const Editor = (props) => {
     //   <script src="https://unpkg.com/moralis/dist/moralis.js" crossorigin="anonymous"></script>
     //   `)
 
-    // editor.runCommand('sw-visibility');
+    editor.runCommand('sw-visibility');
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
 

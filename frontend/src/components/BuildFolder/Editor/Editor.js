@@ -444,6 +444,9 @@ export const Editor = (props) => {
 
     editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
 
+
+
+
     // editor.addComponents(`
     //   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" crossorigin="anonymous"></script>
     //   <script src="https://unpkg.com/moralis/dist/moralis.js" crossorigin="anonymous"></script>
@@ -1016,8 +1019,13 @@ export const Editor = (props) => {
 
     editor.on("component:add", (model, argument) => {
 
-
     })
+
+    editor.addComponents(`<div>
+      <img src="https://path/image" />
+      <span title="foo">Hello world!!!</span>
+    </div>`);
+
     setEditor(editor)
   },[account])
 
@@ -1093,7 +1101,10 @@ export const Editor = (props) => {
       var css = editorMain.CodeManager.getCode(pageComp, 'css')
       var js = editorMain.CodeManager.getCode(pageComp, "js")
 
-
+      console.log(pageName)
+      if(!pageName){
+        pageName = ""
+      }
 
       var pageDict = {
         "name": pageName,
@@ -1166,12 +1177,7 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faImage} />} size="large" />
             </div>
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => showPreview()}
-                shape="circle"
-                 icon={<FontAwesomeIcon icon={faEye} />} size="large" />
-            </div>
+
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => storeEditor()}

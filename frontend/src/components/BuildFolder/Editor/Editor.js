@@ -504,7 +504,7 @@ export const Editor = (props) => {
           // const el = wrapper.find('.copy-to-clipboard-address-button')[0]
           // el.addAttributes({"value":account})
           // el.components(account.slice(0, 15) +'...')
-
+          //
           block.append(
 
             <div class = "profile-inner-wrapper">
@@ -571,6 +571,7 @@ export const Editor = (props) => {
               const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
               const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
               Moralis.start({ serverUrl, appId });
+
               const options = {
                 chain: "eth",
                 address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
@@ -1113,8 +1114,8 @@ export const Editor = (props) => {
 
                     let placeHolderContainer = document.getElementsByClassName("delete-nft-collectionContainer")[0];
 
-                    console.log(placeHolderContainer, 'test test test')
                     let collectionContainer = document.querySelectorAll(".nft-collection-container");
+                    console.log(collectionContainer, 'whattt is this')
 
                     const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
                     const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";

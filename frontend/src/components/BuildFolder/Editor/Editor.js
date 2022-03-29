@@ -222,7 +222,7 @@ export const Editor = (props) => {
 
   const [isNewlyCreated, setIsNewlyCreated] = useState(false);
 
-
+  const [currentPage, setCurrentPage] = useState(null);
   const closeImageModal=() => {
     setImageModal(false)
   }
@@ -902,8 +902,9 @@ export const Editor = (props) => {
 
     editor.Commands.add('open-live-preview', {
       run(editor, sender){
-
+        
         const pageId = editor.Pages.getSelected().getId()
+        
         props.history.push(`/previewPage/${websiteId}/${pageId}`)
         // const html = editor.getHtml();
         // const css = editor.getCss();
@@ -1467,8 +1468,8 @@ export const Editor = (props) => {
 
   const storeEditor = () => {
     editorMain.store()
-    const websiteId = props.history.location.state.websiteId
 
+    const websiteId = props.history.location.state.websiteId
     const formData =  new FormData()
     formData.append("publicKey", 1)
     const allPages = editorMain.Pages.getAll();
@@ -1498,21 +1499,25 @@ export const Editor = (props) => {
       }
       formData.append(index, JSON.stringify(pageDict))
       // temp variable
-
-
-
+      setCurrentPage(pageId)
     })
+    
 
 
     axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview/${websiteId}`, formData)
-
+    // editorMain.runCommand('open-live-preview');
   }
 
+  
+  
   return(
     <div>
 
-
-      <EditorHeader/>
+      <EditorHeader
+        storeEditor={storeEditor}
+        currentPage={currentPage}
+        websiteId={websiteId}
+        />
 
 
 

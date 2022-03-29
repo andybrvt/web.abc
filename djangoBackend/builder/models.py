@@ -9,7 +9,7 @@ class WebsitePage(models.Model):
     html = models.TextField(blank = True)
     css = models.TextField(blank = True)
     js = models.TextField(blank = True)
-
+    secondaryId = models.CharField(max_length = 255, blank = True)
     # delete this later
     pageNum = models.IntegerField(default = 0, blank =False)
 
@@ -40,3 +40,4 @@ class Website(models.Model):
     lastChanged = models.DateTimeField(default = timezone.now, blank = False)
     websiteAssets = models.TextField(blank = True)
     # initialPage = models.ForeignKey(WebsitePage, related_name = "initial_page", on_delete= models.CASCADE, null = True)
+    newlyCreated = models.BooleanField(default = True)

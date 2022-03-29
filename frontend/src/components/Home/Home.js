@@ -63,7 +63,6 @@ export const  Home = (props) => {
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  console.log(props)
   const onChange = (val) => {
 
   };
@@ -84,7 +83,6 @@ export const  Home = (props) => {
 
     axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
     .then(res => {
-      console.log(res.data) // this wants to be number
 
       props.history.push(`/build/${res.data}`, {
         websiteId: res.data
@@ -96,12 +94,10 @@ export const  Home = (props) => {
 
 
   const navSmartContract = (eventId) => {
-      console.log(eventId)
       props.history.push("/smartContract")
   }
 
   const navDocs = (eventId) => {
-      console.log(eventId)
       props.history.push("/docs")
   }
 
@@ -221,7 +217,7 @@ export const  Home = (props) => {
                           textTransform='uppercase'
                           ml='2'
                         >
-                          Time &bull; 10 minutes
+                          Time &bull; 5 minutes
                         </Box>
                       </Box>
                       <div
@@ -236,7 +232,7 @@ export const  Home = (props) => {
                     </Box>
                 </Box>
 
-                <Box style={{marginRight:50}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                <Box style={{marginRight:50, opacity: 0.3}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                   <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                   <Box p='6'>
                       <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>

@@ -174,7 +174,9 @@ export const EditorHeader = (props) => {
                 <div class="summaryLinkContainer">
                   <Center>
                     <Tag>
-                    <div class="summaryLink"><a href="www.google.com">www.google.com </a></div>
+                    <div class="summaryLink">
+                      <a href="www.google.com">www.google.com </a>
+                    </div>
                     </Tag>
                   </Center>
                 </div>

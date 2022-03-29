@@ -126,23 +126,23 @@ export const AddSocialMediaModal = (props) => {
         const linkedin = document.getElementsByClassName("linkedInIcon")[0]
 
         if(facebook){
-          facebook.href ="https://www.facebook.com/andy.le.169/";
+          facebook.href ="${facebook}";
           facebook.target = "_blank"
         }
         if(instagram){
-          instagram.href ="https://www.facebook.com/andy.le.169/";
+          instagram.href ="${instagram}";
           instagram.target = "_blank"
         }
         if(twitter){
-          twitter.href ="https://www.facebook.com/andy.le.169/";
+          twitter.href ="${twitter}";
           twitter.target = "_blank"
         }
         if(discord){
-          discord.href ="https://www.facebook.com/andy.le.169/";
+          discord.href ="${discord}";
           discord.target = "_blank"
         }
         if(linkedin){
-          linkedin.href ="https://www.facebook.com/andy.le.169/";
+          linkedin.href ="${linkedin}";
           linkedin.target = "_blank"
         }
       }

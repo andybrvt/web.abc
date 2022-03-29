@@ -80,10 +80,11 @@ export const SendMoney = (props) => {
 
   return(
     <div>
-      test
+      {/*
       <Button onClick={pressMoney} style={{marginLeft:25}} colorScheme='teal' variant='solid'>
         Send 0.1 Eth
       </Button>
+      */}
     </div>
   )
 }

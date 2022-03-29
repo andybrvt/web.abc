@@ -74,10 +74,21 @@ class SaveWebsitePreview(APIView):
         pages = []
         for i in range(numPages):
             pageDict = json.loads(request.data[f"{i}"])
-            page, created = models.WebsitePage.objects.get_or_create(
-                id = pageDict['pageId']
-            )
+
+            print(pageDict['pageId'].isdigit())
+
+            # If true use normal id, if false, use secondaryId
+            if pageDict['pageId'].isdigit():
+                page, created = models.WebsitePage.objects.get_or_create(
+                    id = pageDict['pageId']
+                )
+            else:
+                page, created = models.WebsitePage.objects.get_or_create(
+                    secondaryId = pageDict['pageId']
+                )
+
             print(page)
+
             page.name = pageDict['name']
             page.html = pageDict['html']
             page.css = pageDict['css']
@@ -115,7 +126,9 @@ class SaveWebsite(APIView):
             )
         else:
             # just update the one you have
-            curWebsite.update(websiteAssets = json.dumps(request.data))
+            curWebsite.update(
+                newlyCreated = False,
+                websiteAssets = json.dumps(request.data))
         return Response("stuff here")
 
 class CreateWebsite(APIView):
@@ -207,7 +220,12 @@ class DeleteWebsitePage(APIView):
 class GetPageInfo(APIView):
     def get(self, request, webId, pageId, *args, **kwargs):
         try:
-            page = models.WebsitePage.objects.get(id = pageId)
+            if pageId.isdigit():
+                page = models.WebsitePage.objects.get(id = pageId)
+            else:
+                print('here here')
+                page = models.WebsitePage.objects.filter(secondaryId = pageId)[0]
+                print(page)
             serializedPage = serializers.PageSerializer(page, many = False).data
             css = serializedPage['css']
             with open("../frontend/src/components/BuildFolder/Editor/PreviewPage.css", 'w') as f:
@@ -223,3 +241,16 @@ class GetPageInfo(APIView):
         except:
             print('page does not exist')
         return Response("what is the response here")
+
+@authentication_classes([])
+@permission_classes([])
+# check if the website is newly created
+class GetNewlyCreated(APIView):
+    def get(self, request, webId, *args, **kwargs):
+
+        try:
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            print(curWebsite.newlyCreated)
+        except:
+            print('cannot find website')
+        return Response(curWebsite.newlyCreated)

@@ -13,5 +13,6 @@ urlpatterns = [
     path('getWebsitePages/<int:webId>', views.GetWebsitePages.as_view(), name = "get_website_pages"),
     path('addWebsitePage/<int:webId>', views.AddWebsitePage.as_view(), name = "add_website_page"),
     path("deleteWebsitePage/<int:webId>",views.DeleteWebsitePage.as_view(), name = "delete_website_page"),
-    path("getPageInfo/<int:webId>/<int:pageId>", views.GetPageInfo.as_view(), name = "get_page_info")
+    path("getPageInfo/<int:webId>/<slug:pageId>", views.GetPageInfo.as_view(), name = "get_page_info"),
+    path("isNewlyCreated/<int:webId>", views.GetNewlyCreated.as_view(), name = "get_newly_created")
 ]

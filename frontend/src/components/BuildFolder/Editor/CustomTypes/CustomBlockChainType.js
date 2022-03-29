@@ -561,28 +561,28 @@ export const CustomAddressProfile = editor => {
             transform: translateY(-50%) translateX(-50%);
           }
         `,
-        components: model => {
-          return(
-            <div class = "profile-inner-wrapper">
-              <div class = "userCircleWrapper">
-                <div class = "userCircle">
-                  <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
-                </div>
-              </div>
-              <div class = "centerInfo">
-                <h1 data-gjs-type ="text">
-                  Here will be your name
-                </h1>
-              </div>
-
-
-                <div data-gjs-type ="CopyToClipboard" >
-                  0x0000000000000000
-                </div>
-
-            </div>
-          )
-        }
+        // components: model => {
+        //   return(
+        //     <div class = "profile-inner-wrapper">
+        //       <div class = "userCircleWrapper">
+        //         <div class = "userCircle">
+        //           <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
+        //         </div>
+        //       </div>
+        //       <div class = "centerInfo">
+        //         <h1 data-gjs-type ="text">
+        //           Here will be your name
+        //         </h1>
+        //       </div>
+        //
+        //
+        //         <div data-gjs-type ="CopyToClipboard" >
+        //           0x0000000000000000
+        //         </div>
+        //
+        //     </div>
+        //   )
+        // }
 
       },
 

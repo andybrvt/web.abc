@@ -243,9 +243,13 @@ body{
   text-align: center;
 }
 .buttonHolder{
-  margin-top: 20px;
+  margin-top: 25px;
   font-size: 25px;
   text-align: center;
+}
+
+.buttonShadow{
+  boxShadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6);
 }
 
 .gjs-bdrag{

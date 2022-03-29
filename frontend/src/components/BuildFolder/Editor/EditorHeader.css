@@ -12,6 +12,19 @@
   margin-right: 10px;
 }
 
+
+.outer {
+  height:450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  left:35%;
+  position: relative;
+  margin-bottom: 20px;
+}
 .summaryLinkContainer {
   margin-top: 30px;
 }

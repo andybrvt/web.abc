@@ -724,6 +724,7 @@ export const Editor = (props) => {
                   var hash = document.createElement("div")
                   var hashLink = document.createElement("a")
                   hashLink.href = transactionAddress+transaction.hash;
+                  hashLink.target ="_blank";
                   hashLink.appendChild(document.createTextNode(transaction.hash.slice(0,14)+"..."))
                   hash.appendChild(hashLink)
                   hashBlock.appendChild(hash)
@@ -740,6 +741,7 @@ export const Editor = (props) => {
                   var fromContainer = document.createElement("div");
                   fromContainer.appendChild(document.createTextNode("From "));
                   var fromHash = document.createElement("a");
+                  fromHash.target ="_blank";
                   fromHash.href = addressAddress + transaction.from_address;
                   fromHash.appendChild(document.createTextNode(transaction.from_address.slice(0,14)+'...'));
                   fromContainer.appendChild(fromHash)
@@ -747,6 +749,7 @@ export const Editor = (props) => {
                   var toContainer = document.createElement("div");
                   toContainer.appendChild(document.createTextNode("To "));
                   var toHash = document.createElement("a");
+                  toHash.target ="_blank";
                   toHash.href =addressAddress + transaction.to_address;
                   toHash.appendChild(document.createTextNode(transaction.to_address.slice(0,14)+"..."));
                   toContainer.appendChild(toHash);
@@ -902,9 +905,9 @@ export const Editor = (props) => {
 
     editor.Commands.add('open-live-preview', {
       run(editor, sender){
-        
+
         const pageId = editor.Pages.getSelected().getId()
-        
+
         props.history.push(`/previewPage/${websiteId}/${pageId}`)
         // const html = editor.getHtml();
         // const css = editor.getCss();
@@ -1504,15 +1507,15 @@ export const Editor = (props) => {
       // temp variable
       setCurrentPage(pageId)
     })
-    
+
 
 
     axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview/${websiteId}`, formData)
     // editorMain.runCommand('open-live-preview');
   }
 
-  
-  
+
+
   return(
     <div>
 

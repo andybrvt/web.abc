@@ -67,6 +67,115 @@ export const InitialEditorModal = (props) => {
 
   const onApplyChanges = () => {
 
+
+      // const target = editorMain.getSelected();
+      const wrapper = editorMain.getWrapper()
+      const el = wrapper.find('.social-media-footer-block')[0]
+      console.log(el)
+
+      el.components("")
+      el.append(
+        <div class = "social-media-footer-container">
+          {
+            facebook !== "" ?
+
+            <div class = "socialMediaIcon">
+              <a class = " facebookIcon">
+                <i class="fab fa-facebook"></i>
+              </a>
+
+            </div>
+
+            :
+
+            ""
+          }
+          {
+            instagram !== "" ?
+
+            <div class = "socialMediaIcon">
+              <a class = "instagramIcon">
+                <i class="fab fa-instagram"></i>
+              </a>
+
+            </div>
+
+            :
+
+            ""
+
+          }
+          {
+            twitter !== "" ?
+
+            <div class = "socialMediaIcon">
+              <a class = "twitterIcon">
+                <i class="fab fa-twitter"></i>
+              </a>
+
+            </div>
+            :
+
+            ""
+          }
+          {
+            discord  !== "" ?
+            <div class = "socialMediaIcon">
+              <a class = 'discordIcon'>
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+
+            :
+            ""
+          }
+          {
+            linkedin !== "" ?
+            <div class = "socialMediaIcon">
+              <a class = 'linkedInIcon'>
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+
+            :
+            ""
+
+          }
+
+        </div>
+      )
+
+      el.set("script", `
+        function script(props){
+          const facebook = document.getElementsByClassName("facebookIcon")[0]
+          const instagram = document.getElementsByClassName("instagramIcon")[0]
+          const twitter = document.getElementsByClassName("twitterIcon")[0]
+          const discord = document.getElementsByClassName("discordIcon")[0]
+          const linkedin = document.getElementsByClassName("linkedInIcon")[0]
+
+          if(facebook){
+            facebook.href ="${facebook}";
+            facebook.target = "_blank"
+          }
+          if(instagram){
+            instagram.href ="${instagram}";
+            instagram.target = "_blank"
+          }
+          if(twitter){
+            twitter.href ="${twitter}";
+            twitter.target = "_blank"
+          }
+          if(discord){
+            discord.href ="${discord}";
+            discord.target = "_blank"
+          }
+          if(linkedin){
+            linkedin.href ="${linkedin}";
+            linkedin.target = "_blank"
+          }
+        }
+      `)
+
     props.onClose();
   }
 
@@ -83,8 +192,8 @@ export const InitialEditorModal = (props) => {
     <Modal
       motionPreset = "none"
       onClose={onCloseModal}
-      // isOpen={props.isOpen}
-      isOpen={true}
+      isOpen={props.isOpen}
+      // isOpen={true}
     >
       <ModalOverlay />
       <ModalContent>
@@ -162,36 +271,44 @@ export const InitialEditorModal = (props) => {
             </Stack>
 
           </div>
+          <div>
+            ***Don't worry, you can change this later, just double-click
+            on the social media component and change.
+          </div>
+
+          {/*
+            <div class = "lowerInitialEditorMContainer">
+              <div>Set background</div>
+
+              <div class = 'wrapperHContainer'>
+                {
+                  gradientList.map((gradient, index)=> {
 
 
-          <div class = "lowerInitialEditorMContainer">
-            <div>Set background</div>
+                    return(
+                      <div style = {{
+                          background: gradient,
+                        }}
+                        onClick = {() => setWrapperBackground(gradient)}
+                        class="wrapperHBoxItem"></div>
 
-            <div class = 'wrapperHContainer'>
-              {
-                gradientList.map((gradient, index)=> {
+                    )
+                  })
+                }
 
-
-                  return(
-                    <div style = {{
-                        background: gradient,
-                      }}
-                      onClick = {() => setWrapperBackground(gradient)}
-                      class="wrapperHBoxItem"></div>
-
-                  )
-                })
-              }
+              </div>
 
             </div>
 
-          </div>
+
+            <div>
+              ***Don't worry, you can change this later, just select the background
+              on LAYERS (body) and change.
+            </div>
 
 
-          <div>
-            ***Don't worry, you can change this later, just select the background
-            on LAYERS (body) and change.
-          </div>
+
+            */}
 
         </ModalBody>
         <ModalFooter>

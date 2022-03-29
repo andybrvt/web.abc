@@ -27,7 +27,7 @@ export const CustomSocialMediaFooter = editor => {
             flex-direction: row;
             position: relative;
             left: 50%;
-            width: 15%;
+            width: 20%;
             transform: translateX(-50%);
             padding: 25px 0px;
           }

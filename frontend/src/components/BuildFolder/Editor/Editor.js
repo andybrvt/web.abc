@@ -4,7 +4,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
-import './Editor.css'
+import './Editor.css';
+import imageUser from '../../../images/imageUser.png';
 import {BlocksContainer} from '../Blocks/BlocksContainer';
 import {LayersContainer} from '../Layers/LayersContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
@@ -499,10 +500,33 @@ export const Editor = (props) => {
 
         if(type === "AddressProfile"){
 
-          const wrapper = editor.getWrapper()
-          const el = wrapper.find('.copy-to-clipboard-address-button')[0]
-          el.addAttributes({"value":account})
-          el.components(account.slice(0, 15) +'...')
+          // const wrapper = editor.getWrapper()
+          // const el = wrapper.find('.copy-to-clipboard-address-button')[0]
+          // el.addAttributes({"value":account})
+          // el.components(account.slice(0, 15) +'...')
+
+          block.append(
+
+            <div class = "profile-inner-wrapper">
+              <div class = "userCircleWrapper">
+                <div class = "userCircle">
+                  <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
+                </div>
+              </div>
+              <div class = "centerInfo">
+                <h1 data-gjs-type ="text">
+                  Here will be your name
+                </h1>
+              </div>
+
+
+                <div data-gjs-type ="CopyToClipboard" value = {account} >
+                  {account.slice(0,15)+'...'}
+                </div>
+
+            </div>
+          )
+
         }
 
 
@@ -1027,11 +1051,36 @@ export const Editor = (props) => {
                `
              )
 
-          console.log(editor.getComponents())
           setTimeout(() => {
             editor.getComponents().forEach(component => {
               const type = component.get("type")
 
+
+              if(type === "AddressProfile"){
+                component.append(
+
+                  <div class = "profile-inner-wrapper">
+                    <div class = "userCircleWrapper">
+                      <div class = "userCircle">
+                        <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
+                      </div>
+                    </div>
+                    <div class = "centerInfo">
+                      <h1 data-gjs-type ="text">
+                        Here will be your name
+                      </h1>
+                    </div>
+
+
+                      <div data-gjs-type ="CopyToClipboard" value = {account} >
+                        {account.slice(0,15)+'...'}
+                      </div>
+
+                  </div>
+                )
+
+
+              }
               if(type === "AutomaticNFTShowcase"){
                 component.set("script", `
                   async function script(props){
@@ -1421,9 +1470,7 @@ export const Editor = (props) => {
     editorMain.runCommand('core:canvas-clear')
   }
 
-  const testAdd = () => {
-    editorMain.addComponents('<div>just a div</div>')
-  }
+
 
   const storeEditor = () => {
     editorMain.store()
@@ -1527,12 +1574,7 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => testAdd()}
-                shape="circle"
-                 icon={<FontAwesomeIcon icon={faSave} />} size="large" />
-            </div>
+
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => clearCanvas()}

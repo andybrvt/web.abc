@@ -43,8 +43,6 @@ export const AddSocialMediaModal = (props) => {
   const onApplySocialMedia = () => {
 
     const target = editorMain.getSelected();
-    console.log(target)
-    console.log(facebook)
     target.components("")
     target.append(
       <div class = "social-media-footer-container">

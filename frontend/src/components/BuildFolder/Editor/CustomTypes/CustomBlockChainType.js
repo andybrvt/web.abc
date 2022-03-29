@@ -215,7 +215,7 @@ export const CustomAutomaticNFTShowcase = editor => {
               <div class = "nft-collection-title">
                 My NFT Collection
               </div>
-              <div class = "nft-collection-container ">
+              <div class = "nft-collection-container">
 
                 <div class = "nftContainers delete-nft-collectionContainer">
 
@@ -517,10 +517,10 @@ export const CustomAddressProfile = editor => {
       resizable: 'true',
       defaults:{
         attributes: {
-          class: "address-profile-container"
+          class: "address-profile-container-type"
         },
         styles: `
-          .address-profile-container{
+          .address-profile-container-type{
             height: 40vh;
             position: relative;
             font-family: Monospace;

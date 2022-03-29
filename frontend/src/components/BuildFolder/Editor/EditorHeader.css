@@ -38,3 +38,7 @@
 .boldoption {
     font-weight: bold;
 }
+
+.logoFont{
+  cursor: pointer;
+}

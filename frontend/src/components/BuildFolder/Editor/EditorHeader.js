@@ -75,7 +75,9 @@ export const EditorHeader = (props) => {
   return(
     <div className = "editorHeaderContainer">
         <div class="editorHeader">
-          <div class="logoFont">web.abc</div>
+          <div class="logoFont">
+            <a href= "/home">web.abc</a>
+          </div>
         </div>
         <div className = "pageDropContainer">
           {/*

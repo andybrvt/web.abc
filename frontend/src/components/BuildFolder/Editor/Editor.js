@@ -115,6 +115,7 @@ import {EditorHeader} from './EditorHeader'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import * as dateFns from 'date-fns';
 import { TestModal } from './TestModal';
+import {InitialEditorModal} from './InitialEditorModal';
 
 const PLUGINS = [
   grapesjsBlocksBasic,
@@ -186,12 +187,12 @@ const translatedItems = [
 export const Editor = (props) => {
 
   const Web3Api = useMoralisWeb3Api()
-  // const {  onOpen, onClose, testOpen } = useDisclosure()
 
+  // Open and close for modals
   const { isOpen: isNFTOpen, onOpen: onNFTOpen, onClose: onNFTClose } = useDisclosure()
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
   const { isOpen: isSocialMediaOpen, onOpen: onSocialMediaOpen, onClose: onSocialMediaClose} = useDisclosure()
-
+  const { isOpen: isInitialModalOpen, onOpen: onInitialModalOpen, onClose: onInitialModalClose} = useDisclosure()
   const [scrollBehavior, setScrollBehavior] = React.useState('inside')
   const btnRef = React.useRef()
 
@@ -503,7 +504,7 @@ export const Editor = (props) => {
           // const el = wrapper.find('.copy-to-clipboard-address-button')[0]
           // el.addAttributes({"value":account})
           // el.components(account.slice(0, 15) +'...')
-
+          //
           block.append(
 
             <div class = "profile-inner-wrapper">
@@ -570,6 +571,7 @@ export const Editor = (props) => {
               const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
               const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
               Moralis.start({ serverUrl, appId });
+
               const options = {
                 chain: "eth",
                 address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
@@ -1040,6 +1042,9 @@ export const Editor = (props) => {
 
         setIsNewlyCreated(res.data)
         if(res.data === true){
+
+          onInitialModalOpen()
+
           editor.addComponents(
                `
                <div data-gjs-type = "AddressProfile"></div>
@@ -1112,8 +1117,8 @@ export const Editor = (props) => {
 
                     let placeHolderContainer = document.getElementsByClassName("delete-nft-collectionContainer")[0];
 
-                    console.log(placeHolderContainer, 'test test test')
                     let collectionContainer = document.querySelectorAll(".nft-collection-container");
+                    console.log(collectionContainer, 'whattt is this')
 
                     const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
                     const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
@@ -1398,20 +1403,9 @@ export const Editor = (props) => {
                     })
                   }
                 `)
-
-
-
-
               }
-
-
-
-
             })
-
-
           }, 1000)
-
         }
 
       })
@@ -1562,7 +1556,7 @@ export const Editor = (props) => {
 
               */}
 
-            {/*
+
             <div className = "buttonHolder">
               <AntButton
                 type="primary"
@@ -1571,10 +1565,10 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faEye} />} size="large" />
             </div>
-            */}
+
             <div className = "buttonHolder">
               <AntButton
-                onClick = {() => showPreview()}
+                onClick = {() => storeEditor()}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>
@@ -1622,16 +1616,23 @@ export const Editor = (props) => {
 
       <PickImageModal
           editor = {editorMain}
-          onClose = {onImageOpen}
+          onClose = {onImageClose}
           isOpen = {isImageOpen}
           scrollBehavior={scrollBehavior}/>
 
+      <InitialEditorModal
 
-        <TestModal
-          editor = {editorMain}
-          visible={imageModal}
-          closeModal={closeImageModal}
-        />
+        editor = {editorMain}
+        onClose = {onInitialModalClose}
+        isOpen = {isInitialModalOpen}
+
+         />
+
+      <TestModal
+        editor = {editorMain}
+        visible={imageModal}
+        closeModal={closeImageModal}
+      />
 
     </div>
 

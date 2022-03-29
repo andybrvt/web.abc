@@ -60,6 +60,7 @@ export const EditorHeader = (props) => {
     };
 
     const openCallDouble = () =>{
+      props.storeEditor()
       setTimeout(() => {
         setShowLoader(false)
 
@@ -95,7 +96,7 @@ export const EditorHeader = (props) => {
                 onClick={
                 openCallDouble
                 }
-      
+
                 size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  >
                 // <div>Publish</div>
             </IconButton>
@@ -177,7 +178,8 @@ export const EditorHeader = (props) => {
                   <Center>
                     <Tag>
                     <div class="summaryLink">
-                      <a href="www.google.com">www.google.com </a>
+
+                      <a href={"/previewPage/" + props.websiteId +"/"+ props.currentPage} >{"localhost:3000/previewPage/" + props.websiteId +"/"+ props.currentPage} </a>
                     </div>
                     </Tag>
                   </Center>

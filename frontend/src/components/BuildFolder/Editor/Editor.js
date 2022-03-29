@@ -1414,6 +1414,9 @@ export const Editor = (props) => {
     }, 1000)
 
 
+    const dc = editor.DomComponents;
+    editor.on('load', () => editor.select(dc.getWrapper()));
+
     setEditor(editor)
   },[account])
 

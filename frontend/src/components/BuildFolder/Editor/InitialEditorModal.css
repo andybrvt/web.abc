@@ -1,0 +1,32 @@
+.wrapperHContainer{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.wrapperHBoxItem{
+  flex: 1;
+  flex-basis: 10%;
+  margin: 2px;
+  /* width: 100px; */
+  height: 40px;
+  border-radius: 10px;
+  transition: 0.1s;
+
+}
+
+.wrapperHBoxItem:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.upperInitialEditorMContainer{
+  padding: 10px;
+  font-size: 25px;
+}
+
+.lowerInitialEditorMContainer{
+  padding: 10px;
+  font-size: 25px;
+}

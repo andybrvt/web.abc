@@ -147,7 +147,7 @@ export const CustomAutomaticNFTShowcase = editor => {
 
           .nft-collection-container-background{
             padding: 50px 15%;
-            font-family: Monospace;
+            font-family: Lato;
 
           }
 
@@ -156,13 +156,14 @@ export const CustomAutomaticNFTShowcase = editor => {
           }
           .nft-collection-title {
             text-align: center;
-            font-size: 25px;
+            font-size: 35px;
+            font-weight:bold;
           }
           .nft-collection-container{
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            font-family: Monospace;
+            font-family: Lato;
 
           }
           .nftContainers{
@@ -200,7 +201,8 @@ export const CustomAutomaticNFTShowcase = editor => {
             top: 50%;
             width: 80%;
             transform: translateX(-50%) translateY(-50%);
-            font-size: 14px;
+            font-size: 18px;
+            font-weight:600;
             text-align: center;
           }
 
@@ -529,7 +531,9 @@ export const CustomAddressProfile = editor => {
             transform: translateY(-50%);
           }
           .centerInfo{
+            margin-top:25px;
             text-align: center;
+            margin-bottom:25px;
           }
           .userCircleWrapper{
             width: 135px;
@@ -542,8 +546,8 @@ export const CustomAddressProfile = editor => {
             box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
           }
           .userCircle{
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 75px;
             position: absolute;
             overflow:hidden;

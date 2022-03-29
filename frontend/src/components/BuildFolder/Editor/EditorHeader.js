@@ -95,7 +95,7 @@ export const EditorHeader = (props) => {
                 onClick={
                 openCallDouble
                 }
-                // onClick={() => showPreview()}
+      
                 size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  >
                 // <div>Publish</div>
             </IconButton>

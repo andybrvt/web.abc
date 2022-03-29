@@ -218,6 +218,7 @@ export const Editor = (props) => {
 
   const [showModal, setShowModal] = useState(false);
 
+  const [isNewlyCreated, setIsNewlyCreated] = useState(false);
 
 
   const closeImageModal=() => {
@@ -441,16 +442,6 @@ export const Editor = (props) => {
         }
       }
     })
-
-    editor.addComponents(`<script src="https://kit.fontawesome.com/2638379ee9.js" crossorigin="anonymous"></script>`);
-
-
-
-
-    // editor.addComponents(`
-    //   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" crossorigin="anonymous"></script>
-    //   <script src="https://unpkg.com/moralis/dist/moralis.js" crossorigin="anonymous"></script>
-    //   `)
 
     editor.runCommand('sw-visibility');
     editor.on("block:drag:start", (block, obj) => {
@@ -1017,28 +1008,376 @@ export const Editor = (props) => {
     editor.on('run:export-template', () => console.log('After the command run'));
     editor.on('abort:export-template', () => console.log('Command aborted'));
 
-    editor.on("component:add", (model, argument) => {
 
-    })
+    setTimeout(() => {
+      axios.get(`${global.API_ENDPOINT}/builder/isNewlyCreated/${websiteId}`)
+      .then( res => {
 
-    editor.addComponents(`
-      <div data-gjs-type = "AddressProfile"></div>
-      <div data-gjs-type = "SocialMediaFooter"></div>
-      <div data-gjs-type = "AutomaticNFTShowcase"></div>
-      <div data-gjs-type = "StatsList"></div>
-      <div data-gjs-type = "TransactionList"></div>
-    `);
+        console.log(res.data, 'put in the new stuf erhe')
+
+        setIsNewlyCreated(res.data)
+        if(res.data === true){
+          editor.addComponents(
+               `
+               <div data-gjs-type = "AddressProfile"></div>
+              <div data-gjs-type = "SocialMediaFooter"></div>
+              <div data-gjs-type = "AutomaticNFTShowcase"></div>
+              <div data-gjs-type = "StatsList"></div>
+              <div data-gjs-type = "TransactionList"></div>
+               `
+             )
+
+          console.log(editor.getComponents())
+          setTimeout(() => {
+            editor.getComponents().forEach(component => {
+              const type = component.get("type")
+
+              if(type === "AutomaticNFTShowcase"){
+                component.set("script", `
+                  async function script(props){
+
+                    const fixURL = (url) => {
+                      if(url !== null && url !== undefined){
+                        if(url.startsWith("ipfs")){
+                          return "https://ipfs.moralis.io:2053/ipfs/"+url.split("ipfs://").slice(-1)[0]
+                        }
+                        else {
+                          return url+"?format=json"
+                        }
+
+                      }
+                    }
+
+                    function imageExists(image_url){
+
+                        var http = new XMLHttpRequest();
+
+                        http.open('HEAD', image_url, false);
+                        http.send();
+
+                        return http.status != 404;
+
+                    }
+
+
+                    // let spinnerWrapper = document.getElementsByClassName("nft-collection-container-background")[0].getElementsByClassName("");
+
+                    let placeHolderContainer = document.getElementsByClassName("delete-nft-collectionContainer")[0];
+
+                    console.log(placeHolderContainer, 'test test test')
+                    let collectionContainer = document.querySelectorAll(".nft-collection-container");
+
+                    const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+                    const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+                    Moralis.start({ serverUrl, appId });
+                    const options = {
+                      chain: "eth",
+                      address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
+                    }
+
+                    const nftList = await Moralis.Web3API.account.getNFTs(options);
+
+
+                    placeHolderContainer.parentElement.removeChild(placeHolderContainer);
+
+
+                    nftList.result.forEach(function(nft){
+                      let url = fixURL(nft.token_uri);
+
+                      fetch(url)
+                      .then(response => response.json())
+                      .then(data => {
+                        const img = fixURL(data.image);
+                        const name = data.name;
+
+                        console.log(imageExists(img), 'does it exist')
+
+                        if(imageExists(img)){
+                          collectionContainer.forEach((collection) => {
+                            console.log(collection)
+
+
+                            var nftContainers= document.createElement("div");
+                            nftContainers.className = 'nftContainers';
+
+                            // The card porition of the nft (picture)
+                            var nftCards = document.createElement("div")
+                            nftCards.className = "nftCards";
+                            var nftImages = document.createElement("img");
+                            nftImages.className = "nftImages";
+                            nftImages.src = img;
+                            nftCards.appendChild(nftImages);
+
+
+                            // The name porition of the nft
+                            var nftName = document.createElement("div");
+                            nftName.className = "nftName";
+                            var nftNameText = document.createElement("div");
+                            nftNameText.className = "nftNameText";
+                            nftNameText.appendChild(document.createTextNode(name));
+                            nftName.appendChild(nftNameText);
+
+
+                            nftContainers.appendChild(nftCards);
+                            nftContainers.appendChild(nftName);
+
+                            collection.appendChild(nftContainers);
+                          })
+
+
+
+                        }
+
+
+                      })
+                      .catch(err => {
+                        console.log(err)
+                      })
+
+                    })
+
+
+
+                  }
+                `)
+
+              }
+
+              if(type === "TransactionList"){
+                const transactionAddress = 'https://etherscan.io/tx/'
+                const addressAddress = "https://etherscan.io/address/"
+
+                component.set("script", `
+                  async function script(props){
+
+                    let spinnerWrapper = document.getElementsByClassName("nft-transactions-background-container")[0].getElementsByClassName("spinner-border")[0]
+                    console.log(spinnerWrapper)
+
+                    const transactionAddress = 'https://etherscan.io/tx/'
+                    const addressAddress = "https://etherscan.io/address/"
+
+                    const renderTimestamp = timestamp =>{
+                      let prefix = '';
+                      const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000)
+                      if (timeDiff < 1 ) {
+                        prefix = 'Just now';
+                      } else if (timeDiff < 60 && timeDiff >= 1 ) {
+                        prefix = timeDiff+' minutes ago';
+                      }else if (timeDiff < 24*60 && timeDiff > 60) {
+                        prefix = Math.round(timeDiff/60)+' hours ago';
+                      } else if (timeDiff < 31*24*60 && timeDiff > 24*60) {
+                        prefix = Math.round(timeDiff/(60*24))+' days ago';
+                      } else {
+                          prefix = new Date(timestamp).toLocaleDateString("en-US");
+                      }
+
+                      return prefix;
+                    }
+
+                    const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+                    const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+                    Moralis.start({ serverUrl, appId });
+
+
+
+                    const options = {
+                      chain: "eth",
+                      address: "${account}",
+                      order: "desc",
+                      from_block: "0",
+                    };
+                    const transactions = await Moralis.Web3API.account.getTransactions(options);
+                    const recentTransactions = transactions.result.slice(0,20)
+
+
+                    spinnerWrapper.parentElement.removeChild(spinnerWrapper);
+
+
+
+                    let transactionContainer = document.querySelectorAll(".nft-transactions-container");
+                    console.log(transactionContainer)
+
+                    transactionContainer.forEach((container) => {
+                      console.log(container)
+
+                      recentTransactions.forEach((transaction, index) => {
+                        console.log(transaction)
+
+                        var element = document.createElement("div");
+                        element.className = "transactionItem";
+                        element.key = index;
+
+                        // FOR TX SYMBOL
+                        var txBox = document.createElement("div");
+                        txBox.className += "txBox";
+                        var tx = document.createElement("div");
+                        tx.appendChild(document.createTextNode("TX"));
+                        txBox.appendChild(tx);
+                        element.appendChild(txBox);
+
+                        // FOR HASH BLOCK
+                        var hashBlock = document.createElement("div");
+                        hashBlock.className += "hashBlock";
+                        var hash = document.createElement("div")
+                        var hashLink = document.createElement("a")
+                        hashLink.href = transactionAddress+transaction.hash;
+                        hashLink.appendChild(document.createTextNode(transaction.hash.slice(0,14)+"..."))
+                        hash.appendChild(hashLink)
+                        hashBlock.appendChild(hash)
+                        element.appendChild(hashBlock)
+
+
+                        // FOR TO FROM BLOCK
+                        var toFromBlock = document.createElement("div")
+                        toFromBlock.className = "toFromBlock";
+
+                        var toFromContainer = document.createElement("div")
+                        toFromContainer.className = "toFromContainer";
+
+                        var fromContainer = document.createElement("div");
+                        fromContainer.appendChild(document.createTextNode("From "));
+                        var fromHash = document.createElement("a");
+                        fromHash.href = addressAddress + transaction.from_address;
+                        fromHash.appendChild(document.createTextNode(transaction.from_address.slice(0,14)+'...'));
+                        fromContainer.appendChild(fromHash)
+
+                        var toContainer = document.createElement("div");
+                        toContainer.appendChild(document.createTextNode("To "));
+                        var toHash = document.createElement("a");
+                        toHash.href =addressAddress + transaction.to_address;
+                        toHash.appendChild(document.createTextNode(transaction.to_address.slice(0,14)+"..."));
+                        toContainer.appendChild(toHash);
+
+                        toFromContainer.appendChild(fromContainer)
+                        toFromContainer.appendChild(toContainer)
+
+                        toFromBlock.appendChild(toFromContainer)
+                        element.appendChild(toFromBlock)
+
+
+
+                        // DATEBLOCK
+                        var dateBlock = document.createElement("div")
+                        dateBlock.className = "dateBlock";
+                        var dateCont = document.createElement("div")
+                        dateCont.appendChild(document.createTextNode(renderTimestamp(transaction.block_timestamp)));
+                        dateBlock.appendChild(dateCont);
+
+                        element.appendChild(dateBlock);
+
+                        container.appendChild(element)
+
+
+                      })
+
+
+                    })
+                  }
+                `)
+              }
+
+              if(type === "StatsList"){
+
+
+                component.set("script", `
+                  async function script(props){
+
+                    const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+                    const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+                    Moralis.start({ serverUrl, appId });
+
+                    const transactionsOptions = {
+                      chain: "eth",
+                      address: "${account}",
+                      order: "desc",
+                      from_block: "0",
+                    };
+
+                    const transfersOptions = {
+                      chain: "eth",
+                      address: "${account}",
+                      from_block: "0",
+                    };
+
+
+                    const nftTransfersOptions = {
+                      chain: "eth",
+                      address: "${account}",
+                      limit: "5",
+                    };
+
+                    let [transactions, transfers,transfersNFT] = await Promise.all([
+                      Moralis.Web3API.account.getTransactions(transactionsOptions),
+                      Moralis.Web3API.account.getTokenTransfers(transfersOptions),
+                      Moralis.Web3API.account.getNFTTransfers(nftTransfersOptions)
+                    ])
+
+                    const totalTransactions = transactions.total
+                    const totalTransfers = transfers.total
+                    const totalTransfersNFT = transfersNFT.total
+
+
+
+                    let containers = document.querySelectorAll(".numTransactions, .numTransfers, .numNFTTransfers");
+                    let interval = 2000;
+
+
+                    containers.forEach((container) => {
+
+                      console.log(container.className);
+
+                      let startValue = 0;
+                      let endValue = 0;
+                      if(container.className === "numTransactions"){
+                        endValue = parseInt(totalTransactions);
+                      }
+                      if(container.className === "numTransfers"){
+                        endValue = parseInt(totalTransfers);
+                      }
+                      if(container.className === "numNFTTransfers"){
+                        endValue = parseInt(totalTransfersNFT);
+                      }
+
+                      let duration = Math.floor(interval/endValue);
+                      let counter = setInterval(function(){
+                        startValue += 1;
+                        container.textContent = startValue;
+                        if(startValue == endValue || endValue == 0){
+                          clearInterval(counter);
+                        }
+                      }, duration);
+
+                    })
+                  }
+                `)
+
+
+
+
+              }
+
+
+
+
+            })
+
+
+          }, 1000)
+
+        }
+
+      })
+
+    }, 1000)
+
 
     setEditor(editor)
   },[account])
 
+
   const renderTimestamp = timestamp =>{
-    console.log(timestamp)
     let prefix = '';
-    console.log(new Date().getTime())
-    console.log(new Date(timestamp).getTime())
     const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000)
-    console.log(timeDiff)
     if (timeDiff < 1 ) {
       prefix = `Just now`;
     } else if (timeDiff < 60 && timeDiff >= 1 ) {
@@ -1082,12 +1421,13 @@ export const Editor = (props) => {
     editorMain.runCommand('core:canvas-clear')
   }
 
+  const testAdd = () => {
+    editorMain.addComponents('<div>just a div</div>')
+  }
 
   const storeEditor = () => {
-
     editorMain.store()
     const websiteId = props.history.location.state.websiteId
-
 
     const formData =  new FormData()
     formData.append("publicKey", 1)
@@ -1105,7 +1445,6 @@ export const Editor = (props) => {
       var css = editorMain.CodeManager.getCode(pageComp, 'css')
       var js = editorMain.CodeManager.getCode(pageComp, "js")
 
-      console.log(pageName)
       if(!pageName){
         pageName = ""
       }
@@ -1185,6 +1524,12 @@ export const Editor = (props) => {
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => storeEditor()}
+                shape="circle"
+                 icon={<FontAwesomeIcon icon={faSave} />} size="large" />
+            </div>
+            <div className = "buttonHolder">
+              <AntButton
+                onClick = {() => testAdd()}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>

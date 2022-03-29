@@ -20,7 +20,6 @@ const images = [
 export const WebsiteList = (props) => {
 
   var data = props.data
-  console.log(props)
   return(
     <div className = "websiteListContainer">
       <div className = "websiteList">

@@ -126,7 +126,9 @@ class SaveWebsite(APIView):
             )
         else:
             # just update the one you have
-            curWebsite.update(websiteAssets = json.dumps(request.data))
+            curWebsite.update(
+                newlyCreated = False,
+                websiteAssets = json.dumps(request.data))
         return Response("stuff here")
 
 class CreateWebsite(APIView):
@@ -239,3 +241,16 @@ class GetPageInfo(APIView):
         except:
             print('page does not exist')
         return Response("what is the response here")
+
+@authentication_classes([])
+@permission_classes([])
+# check if the website is newly created
+class GetNewlyCreated(APIView):
+    def get(self, request, webId, *args, **kwargs):
+
+        try:
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            print(curWebsite.newlyCreated)
+        except:
+            print('cannot find website')
+        return Response(curWebsite.newlyCreated)

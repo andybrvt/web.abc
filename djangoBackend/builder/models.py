@@ -40,3 +40,4 @@ class Website(models.Model):
     lastChanged = models.DateTimeField(default = timezone.now, blank = False)
     websiteAssets = models.TextField(blank = True)
     # initialPage = models.ForeignKey(WebsitePage, related_name = "initial_page", on_delete= models.CASCADE, null = True)
+    newlyCreated = models.BooleanField(default = True)

@@ -63,7 +63,6 @@ export const  Home = (props) => {
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  console.log(props)
   const onChange = (val) => {
 
   };
@@ -84,7 +83,6 @@ export const  Home = (props) => {
 
     axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
     .then(res => {
-      console.log(res.data) // this wants to be number
 
       props.history.push(`/build/${res.data}`, {
         websiteId: res.data
@@ -96,12 +94,10 @@ export const  Home = (props) => {
 
 
   const navSmartContract = (eventId) => {
-      console.log(eventId)
       props.history.push("/smartContract")
   }
 
   const navDocs = (eventId) => {
-      console.log(eventId)
       props.history.push("/docs")
   }
 

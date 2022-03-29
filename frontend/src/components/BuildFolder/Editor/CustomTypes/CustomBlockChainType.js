@@ -546,8 +546,8 @@ export const CustomAddressProfile = editor => {
             box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
           }
           .userCircle{
-            width: 150px;
-            height: 150px;
+            width: 125px;
+            height: 125px;
             border-radius: 75px;
             position: absolute;
             overflow:hidden;

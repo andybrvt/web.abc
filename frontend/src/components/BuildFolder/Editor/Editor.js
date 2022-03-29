@@ -427,7 +427,6 @@ export const Editor = (props) => {
 
 
 
-
     editor.DomComponents.addType("NFTShowcase", {
       view: {
         onActive(){
@@ -1528,11 +1527,23 @@ export const Editor = (props) => {
         <div class = "firstColumn">
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
-             <AntButton
-               onClick = {() => changeDrawerVisibility("basic")}
-               type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
-            </div>
+               <AntButton
+                 // style={{width:50, height:50}}
+                 size="large"
+                 onClick = {() => changeDrawerVisibility("basic")}
+                 type="primary" shape="circle" icon={<PlusOutlined />} />
+              </div>
+              <div className = "buttonHolder">
+                <AntButton
+                  type="primary"
+                  class="buttonShadow"
+                  onClick = {() =>
 
+                    setImageModal(true)
+                   }
+                  shape="circle"
+                   icon={<FontAwesomeIcon icon={faImage} />} size="large" />
+              </div>
             {/*
               <div className = "buttonHolder">
                 <AntButton
@@ -1552,30 +1563,22 @@ export const Editor = (props) => {
 
               */}
 
-
+            {/*
             <div className = "buttonHolder">
               <AntButton
+                type="primary"
+                class="buttonShadow"
                 onClick = {() => showPreview()}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faEye} />} size="large" />
             </div>
+            */}
             <div className = "buttonHolder">
               <AntButton
-                onClick = {() =>
-
-                  setImageModal(true)
-                 }
-                shape="circle"
-                 icon={<FontAwesomeIcon icon={faImage} />} size="large" />
-            </div>
-
-            <div className = "buttonHolder">
-              <AntButton
-                onClick = {() => storeEditor()}
+                onClick = {() => showPreview()}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>
-
             <div className = "buttonHolder">
               <AntButton
                 onClick = {() => clearCanvas()}

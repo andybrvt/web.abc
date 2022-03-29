@@ -59,18 +59,27 @@ export const TestModal= (props) => {
 
     */}
 
-    {/*props.editor.getComponents().add(
-      '<div>Text</div>', {at: 1}
-    )*/}
+    {/*
+      props.editor.addComponents(
+        <img data-gjs-type="Image" data-gjs-prop="Image" src={fileList[0].thumbUrl}/>, {at: 1}
+          )
+
+      */}
 
     const uploadImage=()=> {
       console.log(fileList)
       console.log(fileList[0].thumbUrl)
       console.log(fileList[0].originFileObj)
       console.log(fileList[0].originFileObj.thumbUrl)
-      props.editor.getComponents().add(
-        <img src={fileList[0].thumbUrl}/>, {at: 1}
-          )
+      const component = props.editor.addComponents(
+        <img data-gjs-type="image" src={fileList[0].thumbUrl}/>, {at: 1}
+          )[0]; 
+      // component.set('draggable',false)
+      // component.setTraits([{ type: 'Image',}])
+      // component.set({
+      //  type: 'image',
+      //  name: 'Image',
+      // });
       props.closeModal()
     }
 

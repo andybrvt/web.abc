@@ -348,7 +348,7 @@ export const CustomTransactionList = editor => {
 
         components: model => {
           return (
-          <div class = "nft-trans-whole-cont">
+          <div data-gjs="box" class = "nft-trans-whole-cont">
             <div class = "transactionText">
               Latest Transactions
             </div>

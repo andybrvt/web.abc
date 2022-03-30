@@ -33,12 +33,28 @@ export const SectorContainer = (props) => {
                 Opacity
               </div>
             :
-              <div class="attributeHeader">{sector.getName()}</div>
+
+            <div>
+              {
+                (sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter" ||  props.blockType=="AddressProfile" ))?
+                ''
+                :
+
+                
+                <div class="attributeHeader">{sector.getName()}</div>
+
+              }
+     
+
+            </div>
+           
           }
 
         </div>
 
         }
+        {/* remove typography from sector when image block */}
+      
 
         <div style={{marginTop:10, marginBottom:20}}/>
         {sector.getName()=="General" ?
@@ -151,19 +167,32 @@ export const SectorContainer = (props) => {
                     </AccordionItem>
                   </Accordion>
                 :
-
                 <div>
                   {
-                    properties.map((property, index) => {
-                      return(
-                        <PropertyContainer
-                          sectorName={sector.getName()}
-                          blockType={props.blockType}
-                          property = {property}/>
-                      )
-                    })
+                    (sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="AddressProfile" ))?
+                      <div>
+
+                      </div>
+                    :
+
+
+                    <div>
+                      {
+                        properties.map((property, index) => {
+                          return(
+                            <PropertyContainer
+                              sectorName={sector.getName()}
+                              blockType={props.blockType}
+                              property = {property}/>
+                          )
+                        })
+                      }
+                    </div>
                   }
+
+
                 </div>
+                
               }
             </div>
           }

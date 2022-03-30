@@ -17,6 +17,9 @@ import {
 } from '@chakra-ui/react';
 import './InitialEditorModal.css'
 
+import { faFacebook, faInstagram, faTwitter, faDiscord  } from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const gradientList = [
   'linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%)',
@@ -110,7 +113,7 @@ export const InitialEditorModal = (props) => {
 
             <div class = "socialMediaIcon">
               <a class = "twitterIcon">
-                <i class="fab fa-twitter"></i>
+                <i class="fa fa-twitter"></i>
               </a>
 
             </div>
@@ -158,11 +161,11 @@ export const InitialEditorModal = (props) => {
             facebook.target = "_blank"
           }
           if(instagram){
-            instagram.href ="https://www.instagram.com/${instagram}";
+            instagram.href ="${instagram}";
             instagram.target   = "_blank"
           }
           if(twitter){
-            twitter.href ="${twitter}";
+            twitter.href ="'${twitter}";
             twitter.target = "_blank"
           }
           if(discord){
@@ -211,8 +214,9 @@ export const InitialEditorModal = (props) => {
 
                 <InputGroup>
                   <InputLeftElement
+                    color='gray.300'
                     pointerEvents='none'
-                    children={<i class="fab fa-facebook"></i>}
+                    children={<i class="fas fa-facebook"></i>}
                   />
                 <Input
                   value = {facebook}
@@ -221,8 +225,9 @@ export const InitialEditorModal = (props) => {
                 </InputGroup>
               <InputGroup>
                   <InputLeftElement
+                    color='gray.300'
                     pointerEvents='none'
-                    children={<i class="fab fa-instagram"></i>}
+                    children={<i class="fas fa-instagram"></i>}
                   />
                 <Input
                   value = {instagram}
@@ -233,8 +238,9 @@ export const InitialEditorModal = (props) => {
 
               <InputGroup>
                   <InputLeftElement
+                   color='gray.300'
                     pointerEvents='none'
-                    children={<i class="fab fa-twitter"></i>}
+                    children={<i class="fas fa-twitter"></i>}
                   />
                 <Input
                   value = {twitter}
@@ -245,8 +251,9 @@ export const InitialEditorModal = (props) => {
 
                 <InputGroup>
                   <InputLeftElement
+                    
                     pointerEvents='none'
-                    children={  <i class="fab fa-discord"></i>}
+                    children={  <FontAwesomeIcon icon="fas-brands fa-discord" />}
                   />
                 <Input
                   value = {discord}

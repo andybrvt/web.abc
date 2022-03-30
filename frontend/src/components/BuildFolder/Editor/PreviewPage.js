@@ -4,6 +4,8 @@ import './PreviewPage.css';
 import { useEthers, useEtherBalance } from "@usedapp/core";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft  } from '@fortawesome/free-solid-svg-icons'
 
 
 export const PreviewPage = props => {
@@ -106,14 +108,31 @@ export const PreviewPage = props => {
   //
   // },[props.history.location.state.html])
 
-
   return(
     <div style = {{
         height: '100vh',
         width: '100vw'
       }}>
       {/*parse(html)*/}
+      <div class = "previewHeaderContainer">
 
+        <div
+          onClick = {() => props.history.back()}
+          class = "goBackIconContainer">
+          <div class = "goBackIcon">
+            <FontAwesomeIcon style={{color:'black'}} icon={faArrowLeft} />
+          </div>
+
+        </div>
+
+        <div class = "prviewTextContainer">
+          <div>
+            Preview
+          </div>
+        </div>
+
+
+      </div>
       <iframe
         srcDoc = {srcDoc}
         // sandbox= "allow-scripts" // just so that you cant access other codes out side

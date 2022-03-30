@@ -228,8 +228,8 @@ class GetPageInfo(APIView):
                 print(page)
             serializedPage = serializers.PageSerializer(page, many = False).data
             css = serializedPage['css']
-            with open("../frontend/src/components/BuildFolder/Editor/PreviewPage.css", 'w') as f:
-                print(css, file=f)
+            # with open("../frontend/src/components/BuildFolder/Editor/PreviewPage.css", 'w') as f:
+            #     print(css, file=f)
             # write in the page here
             content = {
                 'html': serializedPage['html'],

@@ -76,155 +76,133 @@ export const EditorHeader = (props) => {
   return(
     <div className = "editorHeaderContainer">
         <div class="editorHeader">
-          <div class="logoFont">
-            <a href= "/home">web.abc</a>
+
+          <div class="logoContainer">
+
+            <a class = "logoHref" href= "/home">web.abc</a>
+
+
           </div>
-        </div>
-        <div className = "pageDropContainer">
-          {/*
-          <PagesContainer
-            websiteId = {websiteId}
-            editor = {editorMain} />
-            */}
-        </div>
 
-        <div className = "rightHeader">
-
-          <div class="rightHeaderProfile">
-            <Tooltip label="Preview" aria-label='A tooltip'>
-              <IconButton
-                onClick={
-                openCallDouble
-                }
-
-                size="sm" aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  >
-                // <div>Publish</div>
-            </IconButton>
-
-            </Tooltip>
-
-            <Divider style={{height:30, marginRight:25}} type="vertical"/>
-            <div>
-              <ProfileDropDown/>
-
-            </div>
-            <Divider style={{height:30}} type="vertical"/>
+          <div className = "pageDropContainer">
             {/*
-              <Button style={{marginLeft:10, marginRight:10}} size="sm" colorScheme='blue' variant='solid'>
-                Publish
-              </Button>
+            <PagesContainer
+              websiteId = {websiteId}
+              editor = {editorMain} />
               */}
           </div>
 
-        </div>
+          <div className = "rightHeader">
+              <div class = "rightHeaderItem">
+                <Tooltip label="Preview" aria-label='A tooltip'>
 
-
-        {/*
-
-          isOpen={setTimeout(() => {
-            setShowLoader(false)
-          }, 4000)}
-          */}
-        <Modal
-          // size="3m"
-          // size="3xl"
-          size="3xl"
-          initialFocusRef={initialRef}
-          finalFocusRef={finalRef}
-          // isOpen={true}
-          isOpen={isOpen}
-          onClose={closeCallDouble}
-        >
-          <ModalOverlay />
-          <ModalContent style={{padding:100}} >
-            <ModalCloseButton/>
-            {showLoader?
-              <div class="outer">
-                <div>
-                  <div class="inner">
-                    <Spinner
-                      thickness='4px'
-                      speed='0.65s'
-                      emptyColor='gray.200'
-                      color='blue.500'
-                      size='xl'
-                    />
-                  </div>
-                  <div class="">
-                  <div class="summaryHeader">Deploying website... </div>
-                  </div>
-                </div>
+                  <IconButton
+                    onClick={
+                    openCallDouble
+                    }
+                    aria-label='Search database'  icon={<FontAwesomeIcon style={{color:'#1890ff'}} icon={faPlay} />}  >
+                </IconButton>
+                </Tooltip >
               </div>
-            :
-            <div style={{height:450}}>
-              <ModalBody style={{display:'flex', flexDirection:'row'}} pb={10}>
-                <Lottie
-                   options={defaultOptions}
-                   height={200}
-                   width={200}
-                />
-                <div class="loadingio-spinner-spin-2whtxrqb0wh"><div class="ldio-acynehsphbr">
-                </div> </div>
-
-              </ModalBody>
-
-
-              <ModalBody pb={6}>
-                <Center>
-                  <div class="summaryHeader">Your website has been deployed! </div>
-
-                </Center>
-                <div class="summaryLinkContainer">
-                  <Center>
-                    <Tag>
-                    <div class="summaryLink">
-
-                      <a href={"/previewPage/" + props.websiteId +"/"+ props.currentPage} >{"localhost:3000/previewPage/" + props.websiteId +"/"+ props.currentPage} </a>
-                    </div>
-                    </Tag>
-                  </Center>
-                </div>
-                <Center>
-                    <div class="twitterHeader"> Share on Twitter </div>
-                    <TwitterShareButton
-                      style={{marginTop:20}}
-                      title={"I just deployed my personal website on @web.abc. Check it out!"}
-                      url={"https://peing.net/ja/"}
-                      // hashtags={["hashtag1", "hashtag2"]}
-                    >
-                      <TwitterIcon size={32} round />
-                    </TwitterShareButton>
-                  </Center>
-
-              </ModalBody>
-
-
+              <div class = "rightHeaderItem">
+                <Button>Deploy</Button>
+              </div>
+              <div class = "rightHeaderItem">
+                <ProfileDropDown/>
+              </div>
             </div>
 
-            }
+          </div>
 
 
 
+          <Modal
+            // size="3m"
+            // size="3xl"
+            size="3xl"
+            initialFocusRef={initialRef}
+            finalFocusRef={finalRef}
+            // isOpen={true}
+            isOpen={isOpen}
+            onClose={closeCallDouble}
+          >
+            <ModalOverlay />
+            <ModalContent style={{padding:100}} >
+              <ModalCloseButton/>
+              {showLoader?
+                <div class="outer">
+                  <div>
+                    <div class="inner">
+                      <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='blue.500'
+                        size='xl'
+                      />
+                    </div>
+                    <div class="">
+                    <div class="summaryHeader">Deploying website... </div>
+                    </div>
+                  </div>
+                </div>
+              :
+              <div style={{height:450}}>
+                <ModalBody style={{display:'flex', flexDirection:'row'}} pb={10}>
+                  <Lottie
+                     options={defaultOptions}
+                     height={200}
+                     width={200}
+                  />
+                  <div class="loadingio-spinner-spin-2whtxrqb0wh"><div class="ldio-acynehsphbr">
+                  </div> </div>
+
+                </ModalBody>
 
 
+                <ModalBody pb={6}>
+                  <Center>
+                    <div class="summaryHeader">Your website has been deployed! </div>
+
+                  </Center>
+                  <div class="summaryLinkContainer">
+                    <Center>
+                      <Tag>
+                      <div class="summaryLink">
+
+                        <a href={"/previewPage/" + props.websiteId +"/"+ props.currentPage} >{"localhost:3000/previewPage/" + props.websiteId +"/"+ props.currentPage} </a>
+                      </div>
+                      </Tag>
+                    </Center>
+                  </div>
+                  <Center>
+                      <div class="twitterHeader"> Share on Twitter </div>
+                      <TwitterShareButton
+                        style={{marginTop:20}}
+                        title={"I just deployed my personal website on @web.abc. Check it out!"}
+                        url={"https://peing.net/ja/"}
+                        // hashtags={["hashtag1", "hashtag2"]}
+                      >
+                        <TwitterIcon size={32} round />
+                      </TwitterShareButton>
+                    </Center>
+
+                </ModalBody>
 
 
+              </div>
+
+              }
+
+            </ModalContent>
+            <ModalFooter>
+
+              <Button onClick={closeCallDouble}>Close</Button>
+            </ModalFooter>
+          </Modal>
 
 
-
-
-
-
-
-          </ModalContent>
-          <ModalFooter>
-
-            <Button onClick={closeCallDouble}>Close</Button>
-          </ModalFooter>
-        </Modal>
-
-    </div>
-
+        </div>
 
 
 

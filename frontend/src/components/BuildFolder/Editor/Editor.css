@@ -123,12 +123,7 @@ body{
   flex-basis: 100%;
 }
 
-.editorHeaderContainer{
-  height: 5vh;
-  position: relative;
-  /* box-shadow: 2px 4px 4px gainsboro; */
-  z-index: 1000;
-}
+
 
 .logoHeader{
 
@@ -146,50 +141,6 @@ body{
   flex-direction: row;
   display: flex;
 }
-.editorHeader{
-  position: relative;
-  top: 50%;
-  width:100%;
-  transform:  translateY(-50%);
-
-}
-.pageDropContainer{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index:999;
-  transform: translateX(-50%) translateY(-50%);
-  cursor: pointer;
-  font-family: 'PlusJakartaSans';
-  font-size: 10px;
-}
-
-.rightHeader{
-  position: absolute;
-  top: 50%;
-  left: 90%;
-  z-index:999;
-  transform: translateX(-50%) translateY(-50%);
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  /* background: red; */
-}
-
-
-.rightHeaderProfile {
-
-   /* justify-content: center; */
-   display: flex;
-   flex-direction: row;
-
-
-}
-
-
-
-
-
 
 
 .gjs-cv-canvas{

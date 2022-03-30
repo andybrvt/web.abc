@@ -39,6 +39,56 @@
     font-weight: bold;
 }
 
-.logoFont{
-  cursor: pointer;
+
+
+
+.editorHeaderContainer{
+  height: 5vh;
+  position: relative;
+  /* box-shadow: 2px 4px 4px gainsboro; */
+  z-index: 1000;
+}
+
+.editorHeader{
+  position: relative;
+  top: 50%;
+  width:100%;
+  transform:  translateY(-50%);
+  display: flex;
+  flex-direction: row;
+}
+
+.logoContainer{
+  position: relative;
+  width: 10%;
+  background: white;
+  color: black;
+  font-family: 'PlusJakartaSans-Bold';
+  font-size: 18px;
+}
+.logoHref{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+
+}
+
+.pageDropContainer{
+  width: 70%;
+}
+
+.rightHeader{
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+}
+.rightHeaderItem{
+  margin: 2px;
+}
+.rightHeaderProfile {
+   /* justify-content: center; */
+   display: flex;
+   flex-direction: row;
 }

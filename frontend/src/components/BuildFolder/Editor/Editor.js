@@ -1511,7 +1511,9 @@ export const Editor = (props) => {
 
 
     axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview/${websiteId}`, formData)
-    // editorMain.runCommand('open-live-preview');
+    .then(res => {
+      editorMain.runCommand('open-live-preview');
+    })
   }
 
 

@@ -64,7 +64,7 @@ export const EditorHeader = (props) => {
       setTimeout(() => {
         setShowLoader(false)
 
-      }, 2500)
+      }, 1500)
       onOpen(true)
     }
 
@@ -179,7 +179,7 @@ export const EditorHeader = (props) => {
                     <Tag>
                     <div class="summaryLink">
 
-                      <a href={"/previewPage/" + props.websiteId +"/"+ props.currentPage} >{"localhost:3000/previewPage/" + props.websiteId +"/"+ props.currentPage} </a>
+                      <a target="_blank" href={"/previewPage/" + props.websiteId +"/"+ props.currentPage} >{"localhost:3000/previewPage/" + props.websiteId +"/"+ props.currentPage} </a>
                     </div>
                     </Tag>
                   </Center>
@@ -188,8 +188,8 @@ export const EditorHeader = (props) => {
                     <div class="twitterHeader"> Share on Twitter </div>
                     <TwitterShareButton
                       style={{marginTop:20}}
-                      title={"I just deployed my personal website on @web.abc. Check it out!"}
-                      url={"https://peing.net/ja/"}
+                      title={"I just deployed my personal website on @webdotabc. Check it out!"}
+                      url={"https:/ /previewPage/" + props.websiteId +"/"+ props.currentPage}
                       // hashtags={["hashtag1", "hashtag2"]}
                     >
                       <TwitterIcon size={32} round />

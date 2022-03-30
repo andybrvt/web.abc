@@ -72,7 +72,7 @@ export const TestModal= (props) => {
       console.log(fileList[0].originFileObj)
       console.log(fileList[0].originFileObj.thumbUrl)
       const component = props.editor.addComponents(
-        <img data-gjs-type="image" src={fileList[0].thumbUrl}/>, {at: 1}
+        <img data-gjs-type="image" src={fileList[0].thumbUrl}/>, {at: 2}
           )[0]; 
       // component.set('draggable',false)
       // component.setTraits([{ type: 'Image',}])

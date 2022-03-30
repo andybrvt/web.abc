@@ -158,8 +158,8 @@ export const InitialEditorModal = (props) => {
             facebook.target = "_blank"
           }
           if(instagram){
-            instagram.href ="${instagram}";
-            instagram.target = "_blank"
+            instagram.href ="https://www.instagram.com/${instagram}";
+            instagram.target   = "_blank"
           }
           if(twitter){
             twitter.href ="${twitter}";
@@ -272,8 +272,6 @@ export const InitialEditorModal = (props) => {
 
           </div>
           <div>
-            ***Don't worry, you can change this later, just double-click
-            on the social media component and change.
           </div>
 
           {/*

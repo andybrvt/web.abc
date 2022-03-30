@@ -7,6 +7,7 @@ urlpatterns = [
     path("uploadCss", views.UploadFileCss.as_view(), name = "upload_css"),
     path('saveWebsite/<int:id>', views.SaveWebsite.as_view(), name = "save_website"),
     path("saveWebPreview/<int:webId>", views.SaveWebsitePreview.as_view(), name ="save_web_preview"),
+    path("saveOfficialWeb/<int:webId>", views.SaveWebsiteOfficial.as_view(), name = "save_web_official"),
     path("getAllWebsite", views.GetAllWebsite.as_view(), name = "get_all_websites"),
     path("loadWebsite/<int:id>", views.LoadWebsite.as_view(), name = "load_website"),
     path("createWebsite", views.CreateWebsite.as_view(), name = "create_website"),
@@ -14,5 +15,6 @@ urlpatterns = [
     path('addWebsitePage/<int:webId>', views.AddWebsitePage.as_view(), name = "add_website_page"),
     path("deleteWebsitePage/<int:webId>",views.DeleteWebsitePage.as_view(), name = "delete_website_page"),
     path("getPageInfo/<int:webId>/<slug:pageId>", views.GetPageInfo.as_view(), name = "get_page_info"),
+    path("getOfficialPageInfo/<int:webId>/<slug:pageId>", views.GetOfficialPageInfo.as_view(), name = "get_page_info"),
     path("isNewlyCreated/<int:webId>", views.GetNewlyCreated.as_view(), name = "get_newly_created")
 ]

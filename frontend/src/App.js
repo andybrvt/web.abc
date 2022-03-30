@@ -18,6 +18,7 @@ import Web3 from 'web3'
 import {Canvas} from './components/TestingFolder/ReactDesignerTest';
 import {MoralisTest} from './components/TestingFolder/MoralisTest';
 import {PreviewPage} from './components/BuildFolder/Editor/PreviewPage';
+import {OfficialPage} from './components/BuildFolder/Editor/OfficialWebsite/OfficialPage';
 import {SmartContractCustomize} from './components/SmartContractCustomize';
 import {Docs} from './Docs.js';
 import {CollectionList} from './components/Home/CollectionList/CollectionList';
@@ -76,6 +77,7 @@ class App extends Component{
           <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />
           <Route exact path="/designerTest" element={<Canvas history={history}/>} />
           <Route exact path="/previewPage/:websiteId/:pageId" element={<PreviewPage history={history}/>} />
+          <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
           <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
           <Route exact path="/docs" element={<Docs history={history}/>} />
         </Routes>

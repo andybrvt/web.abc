@@ -11,3 +11,9 @@ class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.WebsitePage
         fields = ("__all__")
+
+
+class OfficialWebsitePageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.OfficialWebsitePage
+        fields = ("__all__")

@@ -1523,6 +1523,9 @@ export const Editor = (props) => {
         storeEditor={storeEditor}
         currentPage={currentPage}
         websiteId={websiteId}
+        editor = {editorMain}
+        history = {props.history}
+        account = {account}
         />
 
 

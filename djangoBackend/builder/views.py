@@ -98,6 +98,42 @@ class SaveWebsitePreview(APIView):
 
         return Response("stuff here")
 
+class SaveWebsiteOfficial(APIView):
+
+    def post(self, request, webId, *args, **kwargs):
+
+        numPages = int(request.data["numPages"])
+        webname = request.data['name']
+        ownerKey, created = models.OwnerWalletKey.objects.get_or_create(
+            publicKey = request.data['owner']
+        )
+        website = models.Website.objects.get(
+            id = webId
+        )
+        pages = []
+        for i in range(numPages):
+            pageDict = json.loads(request.data[f"{i}"])
+
+            print(pageDict['pageId'].isdigit())
+
+            if pageDict['pageId'].isdigit():
+                page, created = models.OfficialWebsitePage.objects.get_or_create(
+                    id = pageDict['pageId']
+                )
+            else:
+                page, created = models.OfficialWebsitePage.objects.get_or_create(
+                    secondaryId = pageDict['pageId']
+                )
+
+            page.name = pageDict['name']
+            page.html = pageDict['html']
+            page.css = pageDict['css']
+            page.js = pageDict['js']
+            page.save()
+
+        return Response("stuff here")
+
+
 @authentication_classes([])
 @permission_classes([])
 class GetAllWebsite(APIView):
@@ -241,6 +277,35 @@ class GetPageInfo(APIView):
         except:
             print('page does not exist')
         return Response("what is the response here")
+
+
+@authentication_classes([])
+@permission_classes([])
+class GetOfficialPageInfo(APIView):
+    def get(self, request, webId, pageId, *args, **kwargs):
+        try:
+            if pageId.isdigit():
+                page = models.OfficialWebsitePage.objects.get(id = pageId)
+            else:
+                print('here here')
+                page = models.OfficialWebsitePage.objects.filter(secondaryId = pageId)[0]
+                print(page)
+            serializedPage = serializers.OfficialWebsitePageSerializer(page, many = False).data
+            css = serializedPage['css']
+            # with open("../frontend/src/components/BuildFolder/Editor/PreviewPage.css", 'w') as f:
+            #     print(css, file=f)
+            # write in the page here
+            content = {
+                'html': serializedPage['html'],
+                'css': serializedPage['css'],
+                'js': serializedPage['js'],
+            }
+            print(content)
+            return Response(content)
+        except:
+            print('page does not exist')
+        return Response("what is the response here")
+
 
 @authentication_classes([])
 @permission_classes([])

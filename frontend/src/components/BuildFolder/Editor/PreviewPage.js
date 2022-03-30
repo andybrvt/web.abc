@@ -35,8 +35,8 @@ export const PreviewPage = props => {
       axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/${websiteId}/${pageId}`)
       .then(res => {
         console.log(res.data, 'what is this here')
-        setHtml(res.data.html)
-        eval(res.data.js)
+        // setHtml(res.data.html)
+        // eval(res.data.js)
 
         setSrcDoc(
           `

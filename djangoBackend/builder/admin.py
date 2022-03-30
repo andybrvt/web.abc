@@ -5,3 +5,4 @@ from . import models
 admin.site.register(models.Website)
 admin.site.register(models.WebsitePage)
 admin.site.register(models.OwnerWalletKey)
+admin.site.register(models.OfficialWebsitePage)

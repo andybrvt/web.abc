@@ -41,15 +41,27 @@ import { FacebookIcon, TwitterIcon } from "react-share";
 import Lottie from 'react-lottie';
 import './EditorHeader.css'
 import animationData from './lotties/confetti';
+import axios from 'axios';
 
 
 
 export const EditorHeader = (props) => {
 
+
+  const [editorMain, setEditorMain] = useState(null)
   const [showLoader, setShowLoader] = useState(true)
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+
+  useEffect(() => {
+    if(props.editor !== null){
+      setEditorMain(props.editor)
+    }
+  }, [props.editor])
+
+
   const defaultOptions = {
       loop: true,
       autoplay: true,
@@ -61,11 +73,56 @@ export const EditorHeader = (props) => {
 
     const openCallDouble = () =>{
       props.storeEditor()
-      setTimeout(() => {
-        setShowLoader(false)
 
-      }, 1500)
-      onOpen(true)
+    }
+
+    const onDeployCall = () => {
+      props.storeEditor();
+
+      // editorMain.store();
+      const websiteId = props.history.location.state.websiteId
+      const formData = new FormData()
+      formData.append('publicKey', 1) // fill this in wiht our account
+      const allPages = editorMain.Pages.getAll();
+      formData.append("numPages", allPages.length)
+      formData.append("name", 'some test name') //Change this later
+      formData.append("owner", props.account)
+
+
+      const htmlAll = allPages.map((p, index) => {
+        var pageName = p.getName()
+        var pageId = p.getId()
+        var pageComp = p.getMainComponent()
+        var html = editorMain.CodeManager.getCode(pageComp, "html")
+        var css = editorMain.CodeManager.getCode(pageComp, 'css')
+        var js = editorMain.CodeManager.getCode(pageComp, "js")
+
+        if(!pageName){
+          pageName = ""
+        }
+
+        var pageDict = {
+          "name": pageName,
+          'pageId': pageId,
+          'html': html,
+          'css': css,
+          'js': js
+        }
+        formData.append(index, JSON.stringify(pageDict))
+        // temp variable
+        // setCurrentPage(pageId)
+      })
+
+
+      axios.post(`${global.API_ENDPOINT}/builder/saveOfficialWeb/${websiteId}`, formData)
+      .then(res => {
+        setTimeout(() => {
+          setShowLoader(false)
+
+        }, 1500)
+        onOpen(true)
+      })
+
     }
 
     const closeCallDouble = () =>{
@@ -105,7 +162,7 @@ export const EditorHeader = (props) => {
                 </Tooltip >
               </div>
               <div class = "rightHeaderItem">
-                <Button>Deploy</Button>
+                <Button onClick = {onDeployCall}>Deploy</Button>
               </div>
               <div class = "rightHeaderItem">
                 <ProfileDropDown/>

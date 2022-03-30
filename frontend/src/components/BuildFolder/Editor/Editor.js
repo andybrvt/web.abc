@@ -515,7 +515,7 @@ export const Editor = (props) => {
               </div>
               <div class = "centerInfo">
                 <h1 data-gjs-type ="text">
-                  Your name
+                  @username
                 </h1>
               </div>
 
@@ -1075,7 +1075,7 @@ export const Editor = (props) => {
                     </div>
                     <div class = "centerInfo">
                       <h1 data-gjs-type ="text">
-                        Your name
+                        @username
                       </h1>
                     </div>
 

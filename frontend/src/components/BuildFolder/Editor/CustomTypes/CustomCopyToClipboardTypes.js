@@ -23,7 +23,7 @@ export const CustomCopyToClipboard = editor => {
         },
         styles: `
           .copy-to-clipboard-address-button{
-            width: 200px;
+            width: 225px;
             height: 40px;
             background: white;
             border-radius: 25px;

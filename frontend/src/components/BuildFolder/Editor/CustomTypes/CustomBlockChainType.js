@@ -42,7 +42,7 @@ export const CustomNFTShowcase = editor => {
             padding: 25px 0px;
           }
           .nftCards {
-            width: 200px;
+            width: 150px;
             position: relative;
             left: 50%;
             transform: translateX(-50%);
@@ -156,8 +156,8 @@ export const CustomAutomaticNFTShowcase = editor => {
           }
           .nft-collection-title {
             text-align: center;
-            font-size: 35px;
-            font-weight:bold;
+            font-size:40px;
+            // font-weight:bold;
           }
           .nft-collection-container{
             display: flex;
@@ -180,7 +180,7 @@ export const CustomAutomaticNFTShowcase = editor => {
             transform: translateX(-50%);
             border-radius: 20px;
             overflow: hidden;
-            padding: 5px;
+            // padding: 5px;
             background: white;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 
@@ -201,7 +201,7 @@ export const CustomAutomaticNFTShowcase = editor => {
             top: 50%;
             width: 80%;
             transform: translateX(-50%) translateY(-50%);
-            font-size: 18px;
+            font-size: 22px;
             font-weight:600;
             text-align: center;
           }
@@ -275,7 +275,7 @@ export const CustomTransactionList = editor => {
           .nft-transactions-background-container{
             padding: 50px 0;
             color:black;
-            font-family: Monospace;
+            font-family: Lato;
           }
           .transactionText{
             font-size: 35px;
@@ -348,15 +348,14 @@ export const CustomTransactionList = editor => {
 
         components: model => {
           return (
-          <div class = "nft-trans-whole-cont">
+          <div data-gjs="box" class = "nft-trans-whole-cont">
             <div class = "transactionText">
-              My Latest Transactions
+              Latest Transactions
             </div>
             <div class = "nft-transactions-container">
               <div>
-                Latest Transactions
+                Transaction List
               </div>
-
 
               <div class = "transactionItem">
                    <div class = "txBox">
@@ -441,7 +440,7 @@ export const CustomStatsList = editor => {
           .stats-list-container{
             color: black;
             padding: 25px 20%;
-            font-family: Monospace;
+            font-family: Lato;
           }
           .stats-holder{
             display: flex;
@@ -523,7 +522,7 @@ export const CustomAddressProfile = editor => {
           .address-profile-container-type{
             height: 40vh;
             position: relative;
-            font-family: Monospace;
+            font-family: Lato;
           }
           .profile-inner-wrapper{
             position: relative;

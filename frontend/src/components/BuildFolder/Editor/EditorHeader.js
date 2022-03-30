@@ -64,7 +64,7 @@ export const EditorHeader = (props) => {
       setTimeout(() => {
         setShowLoader(false)
 
-      }, 2500)
+      }, 1500)
       onOpen(true)
     }
 

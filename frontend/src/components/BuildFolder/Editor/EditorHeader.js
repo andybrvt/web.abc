@@ -50,6 +50,8 @@ export const EditorHeader = (props) => {
 
   const [editorMain, setEditorMain] = useState(null)
   const [showLoader, setShowLoader] = useState(true)
+  const [currentPage, setCurrentPage] = useState(null);
+
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -77,9 +79,8 @@ export const EditorHeader = (props) => {
     }
 
     const onDeployCall = () => {
-      props.storeEditor();
 
-      // editorMain.store();
+      editorMain.store();
       const websiteId = props.history.location.state.websiteId
       const formData = new FormData()
       formData.append('publicKey', 1) // fill this in wiht our account
@@ -110,7 +111,7 @@ export const EditorHeader = (props) => {
         }
         formData.append(index, JSON.stringify(pageDict))
         // temp variable
-        // setCurrentPage(pageId)
+        setCurrentPage(pageId)
       })
 
 
@@ -227,7 +228,7 @@ export const EditorHeader = (props) => {
                       <Tag>
                       <div class="summaryLink">
 
-                        <a href={"/previewPage/" + props.websiteId +"/"+ props.currentPage} >{"localhost:3000/previewPage/" + props.websiteId +"/"+ props.currentPage} </a>
+                        <a href={"/webabc/" + props.websiteId +"/"+ currentPage} >{"localhost:3000/webabc/" + props.websiteId +"/"+ currentPage} </a>
                       </div>
                       </Tag>
                     </Center>

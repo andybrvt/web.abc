@@ -30,9 +30,8 @@ import { faSignOutAlt,  } from '@fortawesome/free-solid-svg-icons'
 
 
 export const Header = (props) => {
-  const {activateBrowserWallet, account, deactivate} = useEthers();
+  const {activateBrowserWallet, account, deactivate } = useEthers();
   const etherBalance = useEtherBalance(account);
-  
 
 
 
@@ -52,8 +51,12 @@ export const Header = (props) => {
           <div class="menuHeader1">
             <div class="logoFont">web.abc</div>
           </div>
+          <div
+            onClick = {() => handleDeactivateAccount()}
+
+            >Hi this is used to disconnect</div>
           <div class="menuHeader2">
-            
+
           </div>
           <div class="menuHeader3">
             <Menu colorScheme='teal' size='md'>
@@ -67,22 +70,22 @@ export const Header = (props) => {
               </text>
               </MenuButton>
               <MenuList>
-         
-                    
+
+
                     <MenuItem onClick={navHome} icon={<UserOutlined size={30} />}> Home</MenuItem>
                     <MenuItem onClick={deactivate} > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
                     <MenuItem isDisabled>Docs (Coming soon) </MenuItem>
-           
-                
-                  
-                  
-                  
-                    {/* 
+
+
+
+
+
+                    {/*
                     <MenuDivider />
                     <MenuGroup title='Help'>
                     <MenuItem isDisabled>Docs (Coming soon)</MenuItem>
                     <MenuItem isDisabled>FAQ (Coming soon)</MenuItem>
-                    
+
                     </MenuGroup>
                     <MenuDivider />
                      <MenuItem > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>

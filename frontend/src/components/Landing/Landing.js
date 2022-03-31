@@ -53,10 +53,7 @@ const property = {
 
 
 class Landing extends React.Component{
-  constructor(props) {
-    super(props);
 
-  }
   state = {
     trigger: false,
     email: '',
@@ -150,6 +147,9 @@ class Landing extends React.Component{
   render(){
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
+    if(account){
+      this.props.history.push("/home")
+    }
     return(
      <div>
 
@@ -259,9 +259,13 @@ class Landing extends React.Component{
                           <div class = "featureInfoTitle">
                             Personal Website
                           </div>
+                          <div style = {{
+                              marginBottom: '10px'
+                            }}>
+                            Build you own customizable website to congergate
+                            all your blockchain antics. Showcase:
 
-                          Build you own customizable website to congergate, in real time,
-                          all your blockchain antics. Showcase:
+                          </div>
 
                           <List style={{ }} spacing={3}>
                             <ListItem>
@@ -421,7 +425,7 @@ class Landing extends React.Component{
 
                </div>
                <div class = 'socialMediaIcon '>
-                 
+
                  <a href="https://discord.gg/jSdfutS9Uw" target="_blank">
                    <i class="fab fa-discord"></i>
                  </a>

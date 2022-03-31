@@ -498,7 +498,7 @@ export const Editor = (props) => {
 
 
       // delete this later so that it is the actual account
-      const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+      // const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
 
       if(block !== null){
 
@@ -584,7 +584,7 @@ export const Editor = (props) => {
 
               const options = {
                 chain: "eth",
-                address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
+                address: "${account}",
               }
 
               const nftList = await Moralis.Web3API.account.getNFTs(options);
@@ -1139,7 +1139,7 @@ export const Editor = (props) => {
                     Moralis.start({ serverUrl, appId });
                     const options = {
                       chain: "eth",
-                      address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
+                      address: "${account}",
                     }
 
                     const nftList = await Moralis.Web3API.account.getNFTs(options);

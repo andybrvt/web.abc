@@ -22,6 +22,14 @@ export const WebsiteList = (props) => {
   var data = props.data
   return(
     <div className = "websiteListContainer">
+
+      {
+        data.length === 0 ?
+
+        <div>No websites created yet</div>
+
+      :
+
       <div className = "websiteList">
         {
           data.map((item, index) => {
@@ -35,6 +43,9 @@ export const WebsiteList = (props) => {
           })
         }
       </div>
+      }
+
+
     </div>
 
   )

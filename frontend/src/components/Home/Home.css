@@ -59,3 +59,17 @@
 .searchBarContainer{
   width:60%;
 }
+
+.loadingContainer{
+  padding: 25px;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 35px;
+
+}
+
+.loadingText{
+
+}

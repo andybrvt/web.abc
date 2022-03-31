@@ -153,7 +153,9 @@ class Landing extends React.Component{
     return(
      <div>
 
-       <Menu theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
+       <Menu style = {{
+           padding: '25px'
+         }} theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
          <div class = "logoContainer">
            <div class="logoFont">web.abc</div>
          </div>
@@ -412,8 +414,11 @@ class Landing extends React.Component{
                </div>
               */}
 
-               <div href="https://twitter.com/webdotabc" target="_blank" class = "socialMediaIcon ">
-                 <i class="fab fa-twitter"></i>
+               <div  class = "socialMediaIcon ">
+                 <a href="https://twitter.com/webdotabc" target="_blank">
+                   <i class="fab fa-twitter"></i>
+                 </a>
+
                </div>
                <div class = 'socialMediaIcon '>
                  <i class="fab fa-discord"></i>

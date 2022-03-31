@@ -150,6 +150,9 @@ class Landing extends React.Component{
   render(){
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
+    if(account){
+      this.props.history.push("/home")
+    }
     return(
      <div>
 
@@ -260,8 +263,13 @@ class Landing extends React.Component{
                           <div class = "featureInfoTitle">
                             Personal Website
                           </div>
-                          Build you own customizable website to congergate, in real time,
-                          all your blockchain antics. Showcase:
+                          <div style = {{
+                              marginBottom: '10px'
+                            }}>
+                            Build you own customizable website to congergate
+                            all your blockchain antics. Showcase:
+
+                          </div>
 
                           <List spacing={3}>
                             <ListItem>

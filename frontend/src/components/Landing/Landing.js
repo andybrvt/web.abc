@@ -234,7 +234,7 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                 <div class ="featureCard">
-                  <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' h={500}>
+                  <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
                     <Image src={property.imageUrl} alt={property.imageAlt} />
 
                     <Box p='6'>
@@ -242,16 +242,7 @@ class Landing extends React.Component{
                         <Badge borderRadius='full' px='2' colorScheme='teal'>
                           New
                         </Badge>
-                        <Box
-                          color='gray.500'
-                          fontWeight='semibold'
-                          letterSpacing='wide'
-                          fontSize='xs'
-                          textTransform='uppercase'
-                          ml='2'
-                        >
-                          {property.beds} beds &bull; {property.baths} baths
-                        </Box>
+
                       </Box>
 
                       <Box
@@ -261,14 +252,11 @@ class Landing extends React.Component{
                         lineHeight='tight'
                         isTruncated
                       >
-                        {property.title}
+                        Personal Website
                       </Box>
 
                       <Box>
-                        {property.formattedPrice}
-                        <Box as='span' color='gray.600' fontSize='sm'>
-                          / wk
-                        </Box>
+                        Say something here
                       </Box>
 
 
@@ -280,24 +268,15 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' h={500}>
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
                    <Image src={property.imageUrl} alt={property.imageAlt} />
 
                    <Box p='6'>
                      <Box display='flex' alignItems='baseline'>
-                       <Badge borderRadius='full' px='2' colorScheme='teal'>
-                         New
+                       <Badge borderRadius='full' px='2' colorScheme='red'>
+                         Comming soon
                        </Badge>
-                       <Box
-                         color='gray.500'
-                         fontWeight='semibold'
-                         letterSpacing='wide'
-                         fontSize='xs'
-                         textTransform='uppercase'
-                         ml='2'
-                       >
-                         {property.beds} beds &bull; {property.baths} baths
-                       </Box>
+
                      </Box>
 
                      <Box
@@ -307,14 +286,11 @@ class Landing extends React.Component{
                        lineHeight='tight'
                        isTruncated
                      >
-                       {property.title}
+                       NFT Collections
                      </Box>
 
                      <Box>
-                       {property.formattedPrice}
-                       <Box as='span' color='gray.600' fontSize='sm'>
-                         / wk
-                       </Box>
+                       Say something about nft here
                      </Box>
 
 
@@ -325,24 +301,15 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' h={500}>
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
                    <Image src={property.imageUrl} alt={property.imageAlt} />
 
                    <Box p='6'>
                      <Box display='flex' alignItems='baseline'>
-                       <Badge borderRadius='full' px='2' colorScheme='teal'>
-                         New
+                       <Badge borderRadius='full' px='2' colorScheme='red'>
+                         Comming soon
                        </Badge>
-                       <Box
-                         color='gray.500'
-                         fontWeight='semibold'
-                         letterSpacing='wide'
-                         fontSize='xs'
-                         textTransform='uppercase'
-                         ml='2'
-                       >
-                         {property.beds} beds &bull; {property.baths} baths
-                       </Box>
+
                      </Box>
 
                      <Box
@@ -352,14 +319,12 @@ class Landing extends React.Component{
                        lineHeight='tight'
                        isTruncated
                      >
-                       {property.title}
+                       DAOs
                      </Box>
 
                      <Box>
-                       {property.formattedPrice}
-                       <Box as='span' color='gray.600' fontSize='sm'>
-                         / wk
-                       </Box>
+                       Say something about daos here
+
                      </Box>
 
 
@@ -375,19 +340,19 @@ class Landing extends React.Component{
          <div class = "socialMediaContainer">
 
            <div class = "socialMediaMiddleC">
-               <div class = "socialMediaIcon facebookIcon">
+               <div class = "socialMediaIcon ">
                  <i class="fab fa-facebook"></i>
                </div>
-               <div class = "socialMediaIcon instagramIcon">
+               <div class = "socialMediaIcon ">
                  <i class="fab fa-instagram"></i>
                </div>
-               <div class = "socialMediaIcon twitterIcon">
+               <div class = "socialMediaIcon ">
                  <i class="fab fa-twitter"></i>
                </div>
-               <div class = 'socialMediaIcon discordIcon'>
+               <div class = 'socialMediaIcon '>
                  <i class="fab fa-discord"></i>
                </div>
-               <div class = 'socialMediaIcon linkedInIcon'>
+               <div class = 'socialMediaIcon '>
                  <i class="fab fa-linkedin"></i>
                </div>
 

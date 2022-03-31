@@ -444,7 +444,7 @@ export const Editor = (props) => {
       }
     })
 
-    editor.runCommand('sw-visibility');
+    // editor.runCommand('sw-visibility');
     editor.on("block:drag:start", (block, obj) => {
       setVisibility(false)
 
@@ -1523,7 +1523,6 @@ export const Editor = (props) => {
 
       <EditorHeader
         storeEditor={storeEditor}
-        currentPage={currentPage}
         websiteId={websiteId}
         editor = {editorMain}
         history = {props.history}

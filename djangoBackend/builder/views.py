@@ -319,3 +319,21 @@ class GetNewlyCreated(APIView):
         except:
             print('cannot find website')
         return Response(curWebsite.newlyCreated)
+
+@authentication_classes([])
+@permission_classes([])
+class GetUserWebsites(APIView):
+    def get(self, request, userKey, *args, **kwargs):
+        print(userKey)
+
+        curUser, create = models.OwnerWalletKey.objects.get_or_create(
+            publicKey = userKey
+        )
+
+        websites = models.Website.objects.filter(
+            owner = curUser
+        )
+        serializer_website = serializers.WebSiteSerializer(websites,many = True).data
+
+
+        return Response(serializer_website)

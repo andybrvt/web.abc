@@ -1,4 +1,4 @@
-
+import image23 from '../../../../images/image23.png';
 
 export const SocialMediaFooterBlocks = [
 
@@ -9,7 +9,9 @@ export const SocialMediaFooterBlocks = [
     activate: true,
     media:
     `
-      <div>This will be the footer</div>
+    <div>
+      <img class="img" src="${image23}" />
+    </div>
     `,
     content: `
       <div data-gjs-type = "SocialMediaFooter"></div>

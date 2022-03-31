@@ -115,11 +115,23 @@ export const  Home = (props) => {
   }
 
   useEffect(() => {
-    axios.get(`${global.API_ENDPOINT}/builder/getAllWebsite`)
-    .then(res => {
-      setWebsites(res.data)
-    })
-   }, [])
+    // axios.get(`${global.API_ENDPOINT}/builder/getAllWebsite`)
+    // .then(res => {
+    //   setWebsites(res.data)
+    // })
+
+    if(account){
+      axios.get(`${global.API_ENDPOINT}/builder/getUserWebsites/`+account)
+      .then(res => {
+
+        console.log(res.data)
+        setWebsites(res.data)
+
+      })
+    }
+
+
+  }, [account])
 
 
 
@@ -186,7 +198,10 @@ export const  Home = (props) => {
 
           </div>
           */}
-          <SendMoney  {...props}/>
+          {/*
+            <SendMoney  {...props}/>
+
+            */}
 
           <Modal
             size="4xl"

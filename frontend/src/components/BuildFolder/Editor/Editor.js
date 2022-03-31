@@ -507,7 +507,7 @@ export const Editor = (props) => {
           //
           block.append(
 
-            <div class = "profile-inner-wrapper">
+            <div data-gjs-type ="box" class = "profile-inner-wrapper">
               <div class = "userCircleWrapper">
                 <div class = "userCircle">
                   <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
@@ -1067,7 +1067,7 @@ export const Editor = (props) => {
               if(type === "AddressProfile"){
                 component.append(
 
-                  <div class = "profile-inner-wrapper">
+                  <div data-gjs-type ="box" class = "profile-inner-wrapper">
                     <div class = "userCircleWrapper">
                       <div class = "userCircle">
                         <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>

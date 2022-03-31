@@ -34,9 +34,6 @@ export const Header = (props) => {
   const etherBalance = useEtherBalance(account);
   const { deactivate } = useWeb3React()
 
-  const test = () => {
-    console.log('stuff here')
-  }
 
 
   const navHome = () => {

@@ -16,7 +16,7 @@ import axios from "axios";
 import { Button, ButtonGroup, Box, Image, Badge } from '@chakra-ui/react'
 import Lottie from 'react-lottie';
 import animationData from './drag-and-drop.json';
-import image24 from '../../images/image24';
+import image24 from '../../images/image24.png';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;

@@ -232,8 +232,7 @@ class Landing extends React.Component{
 
          <div class = "descriptionContainer">
            <div class = 'descriptionText'>
-             Making start contract is hard enough, let's not let coding stop
-             you from participating in the blockchain.
+           Building on the blockchain made for everyone
            </div>
 
          </div>
@@ -271,18 +270,18 @@ class Landing extends React.Component{
 
                           </div>
 
-                          <List spacing={3}>
+                          <List style={{ }} spacing={3}>
                             <ListItem>
                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                                All your nfts
+                                Nfts
                             </ListItem>
                             <ListItem>
                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                              All your recent transactions
+                              Recent transactions
                             </ListItem>
                             <ListItem>
                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                              All your "stats" on the blockchain
+                              "Stats" on the blockchain
                             </ListItem>
                             {/* You can also use custom icons from react-icons */}
 
@@ -429,7 +428,10 @@ class Landing extends React.Component{
 
                </div>
                <div class = 'socialMediaIcon '>
-                 <i class="fab fa-discord"></i>
+
+                 <a href="https://discord.gg/jSdfutS9Uw" target="_blank">
+                   <i class="fab fa-discord"></i>
+                 </a>
                </div>
 
             </div>

@@ -13,11 +13,17 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
 import builderSVG from './builder.svg'
 import axios from "axios";
-import { Button, ButtonGroup, Box, Image, Badge } from '@chakra-ui/react'
+import {
+  List,
+  ListItem,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
+  Button, ButtonGroup, Box, Image, Badge } from '@chakra-ui/react'
 import Lottie from 'react-lottie';
 import animationData from './drag-and-drop.json';
 import image24 from '../../images/image24.png';
-
+import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -234,7 +240,7 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                 <div class ="featureCard">
-                  <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
+                  <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
                     <Image src={image24} alt={property.imageAlt} />
 
                     <Box p='6'>
@@ -252,18 +258,27 @@ class Landing extends React.Component{
                           <div class = "featureInfoTitle">
                             Personal Website
                           </div>
+                          Build you own customizable website to congergate, in real time,
+                          all your blockchain antics. Showcase:
 
-                          <div>
-                            Build you own customizable website to congergate, in real time,
-                            all your blockchain antics. Showcase:
-                            <br />
-                            -All your nfts
-                            <br />
-                            -All your recent transactions
-                            <br />
-                            -All your "stats" on the blockchain
+                          <List spacing={3}>
+                            <ListItem>
+                              <ListIcon as={CheckCircleIcon} color='green.500' />
+                                All your nfts
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon as={CheckCircleIcon} color='green.500' />
+                              All your recent transactions
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon as={CheckCircleIcon} color='green.500' />
+                              All your "stats" on the blockchain
+                            </ListItem>
+                            {/* You can also use custom icons from react-icons */}
 
-                          </div>
+                          </List>
+
+
                         </div>
 
                       </Box>
@@ -277,7 +292,7 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
                    <Image src={property.imageUrl} alt={property.imageAlt} />
 
                    <Box p='6'>
@@ -290,18 +305,37 @@ class Landing extends React.Component{
 
                      <Box
                        mt='1'
-                       fontWeight='semibold'
-                       as='h4'
-                       lineHeight='tight'
-                       isTruncated
                      >
-                       NFT Collections
-                     </Box>
+                       <div class = "featureInfoText">
+                         <div class = "featureInfoTitle">
+                           NFT Collections
+                         </div>
+                         Build you own customizable NFT collection website without the
+                         hassle.
 
-                     <Box>
-                       Say something about nft here
-                     </Box>
+                         {/*
+                           <List spacing={3}>
+                             <ListItem>
+                               <ListIcon as={CheckCircleIcon} color='green.500' />
+                                 All your nfts
+                             </ListItem>
+                             <ListItem>
+                               <ListIcon as={CheckCircleIcon} color='green.500' />
+                               All your recent transactions
+                             </ListItem>
+                             <ListItem>
+                               <ListIcon as={CheckCircleIcon} color='green.500' />
+                               All your "stats" on the blockchain
+                             </ListItem>
 
+                           </List>
+
+                           */}
+
+
+                       </div>
+
+                     </Box>
 
                    </Box>
                  </Box>
@@ -310,7 +344,7 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
                    <Image src={property.imageUrl} alt={property.imageAlt} />
 
                    <Box p='6'>
@@ -323,16 +357,35 @@ class Landing extends React.Component{
 
                      <Box
                        mt='1'
-                       fontWeight='semibold'
-                       as='h4'
-                       lineHeight='tight'
-                       isTruncated
                      >
-                       DAOs
-                     </Box>
+                       <div class = "featureInfoText">
+                         <div class = "featureInfoTitle">
+                           DAOs
+                         </div>
+                         Build you own customizable DAO website.
 
-                     <Box>
-                       Say something about daos here
+                         {/*
+
+                           <List spacing={3}>
+                             <ListItem>
+                               <ListIcon as={CheckCircleIcon} color='green.500' />
+                                 All your nfts
+                             </ListItem>
+                             <ListItem>
+                               <ListIcon as={CheckCircleIcon} color='green.500' />
+                               All your recent transactions
+                             </ListItem>
+                             <ListItem>
+                               <ListIcon as={CheckCircleIcon} color='green.500' />
+                               All your "stats" on the blockchain
+                             </ListItem>
+
+                           </List>
+
+                           */}
+
+
+                       </div>
 
                      </Box>
 

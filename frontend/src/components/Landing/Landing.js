@@ -1,6 +1,6 @@
 import React from 'react';
 import './Landing.css'
-import { Layout, Menu, Divider, Breadcrumb, Avatar, Image} from 'antd';
+import { Layout, Menu, Divider, Breadcrumb, Avatar} from 'antd';
 import { Input } from '@chakra-ui/react'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import first from './first.png'
@@ -13,7 +13,7 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
 import builderSVG from './builder.svg'
 import axios from "axios";
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button, ButtonGroup, Box, Image, Badge } from '@chakra-ui/react'
 import Lottie from 'react-lottie';
 import animationData from './drag-and-drop.json';
 
@@ -31,6 +31,17 @@ function withMyHook(Home) {
     return <Home {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
   }
 }
+
+const property = {
+    imageUrl: 'https://bit.ly/2Z4KKcF',
+    imageAlt: 'Rear view of modern home with pool',
+    beds: 3,
+    baths: 2,
+    title: 'Modern home in city center in the heart of historic Los Angeles',
+    formattedPrice: '$1,900.00',
+    reviewCount: 34,
+    rating: 4,
+  }
 
 
 
@@ -160,13 +171,14 @@ class Landing extends React.Component{
                  The start of your blockchain journey
                </div>
                <div class="title2">
-                 Easy as a drag-n-drop.
+                 Build Dapps with UI with just a drag-n-drop.
                </div>
 
 
 
                <form onSubmit = {this.handleEmailSubmit}>
                    <label style = {{
+                       marginTop: '15px',
                        width: '100%',
                      }}>
                      <div class = "inputField">
@@ -204,10 +216,184 @@ class Landing extends React.Component{
              </div>
 
            </div>
+         </div>
 
 
+         <div class = "descriptionContainer">
+           <div class = 'descriptionText'>
+             Making start contract is hard enough, let's not let coding stop
+             you from participating in the blockchain.
+           </div>
 
          </div>
+
+
+         <div class = "featureContainer">
+
+           <div class = "featureCardHolder">
+
+             <div class = "cardContainer">
+                <div class ="featureCard">
+                  <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' h={500}>
+                    <Image src={property.imageUrl} alt={property.imageAlt} />
+
+                    <Box p='6'>
+                      <Box display='flex' alignItems='baseline'>
+                        <Badge borderRadius='full' px='2' colorScheme='teal'>
+                          New
+                        </Badge>
+                        <Box
+                          color='gray.500'
+                          fontWeight='semibold'
+                          letterSpacing='wide'
+                          fontSize='xs'
+                          textTransform='uppercase'
+                          ml='2'
+                        >
+                          {property.beds} beds &bull; {property.baths} baths
+                        </Box>
+                      </Box>
+
+                      <Box
+                        mt='1'
+                        fontWeight='semibold'
+                        as='h4'
+                        lineHeight='tight'
+                        isTruncated
+                      >
+                        {property.title}
+                      </Box>
+
+                      <Box>
+                        {property.formattedPrice}
+                        <Box as='span' color='gray.600' fontSize='sm'>
+                          / wk
+                        </Box>
+                      </Box>
+
+
+                    </Box>
+                  </Box>
+
+                </div>
+             </div>
+
+             <div class = "cardContainer">
+               <div class ="featureCard">
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' h={500}>
+                   <Image src={property.imageUrl} alt={property.imageAlt} />
+
+                   <Box p='6'>
+                     <Box display='flex' alignItems='baseline'>
+                       <Badge borderRadius='full' px='2' colorScheme='teal'>
+                         New
+                       </Badge>
+                       <Box
+                         color='gray.500'
+                         fontWeight='semibold'
+                         letterSpacing='wide'
+                         fontSize='xs'
+                         textTransform='uppercase'
+                         ml='2'
+                       >
+                         {property.beds} beds &bull; {property.baths} baths
+                       </Box>
+                     </Box>
+
+                     <Box
+                       mt='1'
+                       fontWeight='semibold'
+                       as='h4'
+                       lineHeight='tight'
+                       isTruncated
+                     >
+                       {property.title}
+                     </Box>
+
+                     <Box>
+                       {property.formattedPrice}
+                       <Box as='span' color='gray.600' fontSize='sm'>
+                         / wk
+                       </Box>
+                     </Box>
+
+
+                   </Box>
+                 </Box>
+               </div>
+             </div>
+
+             <div class = "cardContainer">
+               <div class ="featureCard">
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' h={500}>
+                   <Image src={property.imageUrl} alt={property.imageAlt} />
+
+                   <Box p='6'>
+                     <Box display='flex' alignItems='baseline'>
+                       <Badge borderRadius='full' px='2' colorScheme='teal'>
+                         New
+                       </Badge>
+                       <Box
+                         color='gray.500'
+                         fontWeight='semibold'
+                         letterSpacing='wide'
+                         fontSize='xs'
+                         textTransform='uppercase'
+                         ml='2'
+                       >
+                         {property.beds} beds &bull; {property.baths} baths
+                       </Box>
+                     </Box>
+
+                     <Box
+                       mt='1'
+                       fontWeight='semibold'
+                       as='h4'
+                       lineHeight='tight'
+                       isTruncated
+                     >
+                       {property.title}
+                     </Box>
+
+                     <Box>
+                       {property.formattedPrice}
+                       <Box as='span' color='gray.600' fontSize='sm'>
+                         / wk
+                       </Box>
+                     </Box>
+
+
+                   </Box>
+                 </Box>
+               </div>
+             </div>
+
+           </div>
+
+         </div>
+
+         <div class = "socialMediaContainer">
+
+           <div class = "socialMediaMiddleC">
+               <div class = "socialMediaIcon facebookIcon">
+                 <i class="fab fa-facebook"></i>
+               </div>
+               <div class = "socialMediaIcon instagramIcon">
+                 <i class="fab fa-instagram"></i>
+               </div>
+               <div class = "socialMediaIcon twitterIcon">
+                 <i class="fab fa-twitter"></i>
+               </div>
+               <div class = 'socialMediaIcon discordIcon'>
+                 <i class="fab fa-discord"></i>
+               </div>
+               <div class = 'socialMediaIcon linkedInIcon'>
+                 <i class="fab fa-linkedin"></i>
+               </div>
+
+            </div>
+         </div>
+
 
 
        </div>

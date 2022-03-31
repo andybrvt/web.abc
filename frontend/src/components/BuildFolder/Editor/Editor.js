@@ -116,7 +116,7 @@ import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import * as dateFns from 'date-fns';
 import { TestModal } from './TestModal';
 import {InitialEditorModal} from './InitialEditorModal';
-
+import { TrashModal } from './TrashModal'
 const PLUGINS = [
   grapesjsBlocksBasic,
   CoreButtonType,
@@ -206,6 +206,7 @@ export const Editor = (props) => {
   const [editorMain, setEditor] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [imageModal, setImageModal] = useState(false);
+  const [trashCondition, setTrashCondition] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
   const [pageIds, setPageIds] = useState([]);
 
@@ -226,6 +227,15 @@ export const Editor = (props) => {
   const closeImageModal=() => {
     setImageModal(false)
   }
+
+  const openTrashModal=() => {
+    setTrashCondition(true)
+  }
+
+  const closeTrashModal=() => {
+    setTrashCondition(false)
+  }
+
 
   const useOutSideAlerter = (ref) => {
     useEffect(() => {
@@ -1516,6 +1526,48 @@ export const Editor = (props) => {
     })
   }
 
+  const onlySave = () => {
+    editorMain.store()
+
+    const websiteId = props.history.location.state.websiteId
+    const formData =  new FormData()
+    formData.append("publicKey", 1)
+    const allPages = editorMain.Pages.getAll();
+    formData.append("numPages", allPages.length)
+    formData.append("name", 'some test name') //Change this later
+    formData.append("owner", account)
+
+
+    const htmlAll = allPages.map((p, index) => {
+      var pageName = p.getName()
+      var pageId = p.getId()
+      var pageComp = p.getMainComponent()
+      var html = editorMain.CodeManager.getCode(pageComp, "html")
+      var css = editorMain.CodeManager.getCode(pageComp, 'css')
+      var js = editorMain.CodeManager.getCode(pageComp, "js")
+
+      if(!pageName){
+        pageName = ""
+      }
+
+      var pageDict = {
+        "name": pageName,
+        'pageId': pageId,
+        'html': html,
+        'css': css,
+        'js': js
+      }
+      formData.append(index, JSON.stringify(pageDict))
+      // temp variable
+      setCurrentPage(pageId)
+    })
+
+
+
+    axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview/${websiteId}`, formData)
+    
+  }
+
 
 
   return(
@@ -1571,7 +1623,7 @@ export const Editor = (props) => {
 
               */}
 
-
+            {/* 
             <div className = "buttonHolder">
               <AntButton
                 type="primary"
@@ -1580,16 +1632,23 @@ export const Editor = (props) => {
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faEye} />} size="large" />
             </div>
-
+            */}
             <div className = "buttonHolder">
               <AntButton
-                onClick = {() => storeEditor()}
+                type="primary"
+                onClick = {() => onlySave()}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faSave} />} size="large" />
             </div>
+
+
+            
+
+
             <div className = "buttonHolder">
               <AntButton
-                onClick = {() => clearCanvas()}
+                type="primary"
+                onClick = {() => openTrashModal()}
                 shape="circle"
                  icon={<FontAwesomeIcon icon={faTrash} />} size="large" />
             </div>
@@ -1647,6 +1706,14 @@ export const Editor = (props) => {
         editor = {editorMain}
         visible={imageModal}
         closeModal={closeImageModal}
+      />
+
+
+      <TrashModal 
+        editor = {editorMain}
+        visible={trashCondition} // trashcondition
+        onlySave={onlySave}
+        closeModal={closeTrashModal}
       />
 
     </div>

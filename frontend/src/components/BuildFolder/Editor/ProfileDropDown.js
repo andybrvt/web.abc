@@ -53,12 +53,6 @@ function withMyHook(Component) {
     const etherBalance = this.props.etherBalance;
 
     return (
-      <div>
-
-      <div className="">
-        <div class="">
-
-            <div class="">
               <Menu colorScheme='teal' size='md'>
 
                 <MenuButton as={Button} rightIcon={<Avatar icon={<UserOutlined />} />}>
@@ -70,27 +64,22 @@ function withMyHook(Component) {
                     )}`}
                 </text>
                 </MenuButton>
+       
                 <MenuList>
                   <MenuGroup title='Profile'>
-                    <MenuItem onClick={()=> this.navHome()} icon={<UserOutlined size={30} />}>My Home</MenuItem>
+                    <MenuItem onClick={()=> this.navHome()}con={<UserOutlined size={30} />}>My Home</MenuItem>
                     <MenuItem isDisabled>My Collection (Coming soon) </MenuItem>
                   </MenuGroup>
                   <MenuDivider />
                   <MenuGroup title='Help'>
                     <MenuItem isDisabled>Docs (Coming soon)</MenuItem>
                     <MenuItem isDisabled>FAQ (Coming soon)</MenuItem>
-                  </MenuGroup>
+                    </MenuGroup>
                   <MenuDivider />
                     <MenuItem > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
-                </MenuList>
+              </MenuList>
               </Menu>
-            </div>
-        </div>
-      </div>
 
-
-
-      </div>
     )
   }
 }

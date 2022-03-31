@@ -39,9 +39,8 @@ export const Header = (props) => {
       props.history.push("/home")
   }
 
-  const disconnectWallet = () => {
-    deactivate()
-    props.history.push('/')
+  function handleDeactivateAccount() {
+    deactivate();
   }
 
   return(
@@ -53,16 +52,11 @@ export const Header = (props) => {
             <div class="logoFont">web.abc</div>
           </div>
           <div
-            onClick = {() => disconnectWallet()}
+            onClick = {() => handleDeactivateAccount()}
 
             >Hi this is used to disconnect</div>
           <div class="menuHeader2">
-            <div className = "searchBarContainer">
-            <div className = "autoCompleteHeader">
-              <div>
-              </div>
-             </div>
-            </div>
+
           </div>
           <div class="menuHeader3">
             <Menu colorScheme='teal' size='md'>
@@ -76,19 +70,26 @@ export const Header = (props) => {
               </text>
               </MenuButton>
               <MenuList>
-                <MenuGroup title='Profile'>
-                  <MenuItem onClick={navHome}  icon={<UserOutlined size={30} />}>My Home</MenuItem>
-                  <MenuItem>My Collection </MenuItem>
-                </MenuGroup>
-                <MenuDivider />
-                <MenuGroup title='Help'>
-                  <MenuItem>Docs</MenuItem>
-                  <MenuItem>FAQ</MenuItem>
-                </MenuGroup>
-                <MenuDivider />
-                  <MenuItem
-                    > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
-              </MenuList>
+
+
+                    <MenuItem onClick={navHome} icon={<UserOutlined size={30} />}> Home</MenuItem>
+                    <MenuItem onClick={deactivate} > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
+                    <MenuItem isDisabled>Docs (Coming soon) </MenuItem>
+
+
+
+
+
+                    {/*
+                    <MenuDivider />
+                    <MenuGroup title='Help'>
+                    <MenuItem isDisabled>Docs (Coming soon)</MenuItem>
+                    <MenuItem isDisabled>FAQ (Coming soon)</MenuItem>
+
+                    </MenuGroup>
+                    <MenuDivider />
+                     <MenuItem > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
+             */} </MenuList>
             </Menu>
           </div>
       </div>

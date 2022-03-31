@@ -18,23 +18,92 @@
   /* display: flex; */
   /* height:93vh; */
   /* flex-direction: column; */
-  border: 3px dotted gray;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .splitScreenContainer{
   display: flex;
   flex-direction: row;
   height: 70vh;
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   /* background-color: #ffc53d; */
 
 }
 .lottieContainer{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.descriptionContainer{
+  position: relative;
+  height: 50vh;
+}
+
+.descriptionText{
+  text-align: center;
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 25px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
 }
 
 
+.featureContainer{
+  position: relative;
+  height: 70vh;
+}
 
+.featureCardHolder{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: 100%;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cardContainer{
+  position: relative;
+  height: 100%;
+  flex: 1;
+}
+
+.featureCard{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  position: absolute;
+  text-align: center;
+
+  border-radius: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.socialMediaContainer{
+  height: 15vh;
+  position: relative;
+
+}
+
+.socialMediaMiddleC{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 50%;
+  width: 20%;
+  transform: translateX(-50%);
+  padding: 25px 0px;
+}
+
+.socialMediaIcon{
+  flex: 1;
+  margin: 2px;
+  padding: 10px;
+  font-size: 25px;
+  text-align:center;
+}
 
 .title {
     font-family: 'PlusJakartaSans-Bold';

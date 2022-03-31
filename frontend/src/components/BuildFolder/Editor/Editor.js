@@ -1527,45 +1527,7 @@ export const Editor = (props) => {
   }
 
   const onlySave = () => {
-    editorMain.store()
-
-    const websiteId = props.history.location.state.websiteId
-    const formData =  new FormData()
-    formData.append("publicKey", 1)
-    const allPages = editorMain.Pages.getAll();
-    formData.append("numPages", allPages.length)
-    formData.append("name", 'some test name') //Change this later
-    formData.append("owner", account)
-
-
-    const htmlAll = allPages.map((p, index) => {
-      var pageName = p.getName()
-      var pageId = p.getId()
-      var pageComp = p.getMainComponent()
-      var html = editorMain.CodeManager.getCode(pageComp, "html")
-      var css = editorMain.CodeManager.getCode(pageComp, 'css')
-      var js = editorMain.CodeManager.getCode(pageComp, "js")
-
-      if(!pageName){
-        pageName = ""
-      }
-
-      var pageDict = {
-        "name": pageName,
-        'pageId': pageId,
-        'html': html,
-        'css': css,
-        'js': js
-      }
-      formData.append(index, JSON.stringify(pageDict))
-      // temp variable
-      setCurrentPage(pageId)
-    })
-
-
-
-    axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview/${websiteId}`, formData)
-    
+    editorMain.store()  
   }
 
 

@@ -54,7 +54,8 @@ import axios from 'axios';
 import * as dateFns from 'date-fns';
 import { SendMoney } from './SendMoney/SendMoney';
 import { WebsiteList } from './WebsiteList/WebsiteList';
-import {nft1} from './nft.jpg'
+import {nft1} from './nft.jpg';
+import { Spinner } from '@chakra-ui/react'
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 
 
@@ -68,6 +69,7 @@ export const  Home = (props) => {
   };
   const handleChange = (value) => setValue(value)
   const [value, setValue] = React.useState(20)
+  const [isLoading, setIsLoading] = useState(true)
   const [name, setName] = useState("");
   const [websites, setWebsites] = React.useState([])
   const [createVisible, setCreateVisible] = React.useState(false)
@@ -115,11 +117,22 @@ export const  Home = (props) => {
   }
 
   useEffect(() => {
-    axios.get(`${global.API_ENDPOINT}/builder/getAllWebsite`)
-    .then(res => {
-      setWebsites(res.data)
-    })
-   }, [])
+    // axios.get(`${global.API_ENDPOINT}/builder/getAllWebsite`)
+    // .then(res => {
+    //   setWebsites(res.data)
+    // })
+
+    if(account){
+      axios.get(`${global.API_ENDPOINT}/builder/getUserWebsites/`+account)
+      .then(res => {
+
+        setWebsites(res.data)
+        setIsLoading(false)
+      })
+    }
+
+
+  }, [account])
 
 
 
@@ -154,7 +167,23 @@ export const  Home = (props) => {
             </Stack>
           </div>
 
-          <WebsiteList data = {websites} onBuildDirect = {onBuildDirect} />
+          {
+            isLoading ?
+
+            <div class = "loadingContainer">
+              <div class = "loadingText">Fetching your websites</div>
+              <div>
+                <Spinner color='red.500' />
+              </div>
+
+            </div>
+
+            :
+
+            <WebsiteList data = {websites} onBuildDirect = {onBuildDirect} />
+
+
+          }
 
         </div>
 
@@ -189,7 +218,10 @@ export const  Home = (props) => {
 
           </div>
           */}
-          <SendMoney  {...props}/>
+          {/*
+            <SendMoney  {...props}/>
+
+            */}
 
           <Modal
             size="4xl"

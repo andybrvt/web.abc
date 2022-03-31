@@ -1565,7 +1565,7 @@ export const Editor = (props) => {
 
 
     axios.post(`${global.API_ENDPOINT}/builder/saveWebPreview/${websiteId}`, formData)
-    
+
   }
 
 
@@ -1623,7 +1623,7 @@ export const Editor = (props) => {
 
               */}
 
-            {/* 
+            {/*
             <div className = "buttonHolder">
               <AntButton
                 type="primary"
@@ -1642,7 +1642,7 @@ export const Editor = (props) => {
             </div>
 
 
-            
+
 
 
             <div className = "buttonHolder">
@@ -1709,7 +1709,7 @@ export const Editor = (props) => {
       />
 
 
-      <TrashModal 
+      <TrashModal
         editor = {editorMain}
         visible={trashCondition} // trashcondition
         onlySave={onlySave}

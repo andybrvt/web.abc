@@ -293,7 +293,8 @@ class Landing extends React.Component{
                        as='h4'
                        lineHeight='tight'
                        isTruncated
-                     >
+                     >+
+                     
                        NFT Collections
                      </Box>
 

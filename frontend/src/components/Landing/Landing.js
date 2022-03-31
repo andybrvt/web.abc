@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css'
+import './Landing.css'
 import { Layout, Menu, Divider, Breadcrumb, Avatar, Image} from 'antd';
 import { Input } from '@chakra-ui/react'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -13,8 +13,15 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
 import builderSVG from './builder.svg'
 import axios from "axios";
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import Lottie from 'react-lottie';
+import animationData from './drag-and-drop.json';
+
+
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+
+
 
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 function withMyHook(Home) {
@@ -129,127 +136,104 @@ class Landing extends React.Component{
     return(
      <div>
 
-
-       <Menu style={{left:'500px'}} theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
-         <Menu.Item style={{left:'0%'}} key="1"><div class="logoFont">web.abc</div></Menu.Item>
-         <Menu.Item style={{left:'66%'}} key="1">
-           <span className="menuItemFont">
-             About
-           </span>
-         </Menu.Item>
-         <Menu.Item style={{left:'67%'}} key="2">
-           <span className="menuItemFont">
-             Team
-           </span>
-         </Menu.Item>
-
-         <div style={{position:'absolute', left:'90%', top:'1%'}}>
-         <div class="loginKey">
-           <div class="loginBtn">
-             <div
-              onClick={this.triggerWallet} className="loginFont">
-              Connect wallet
-
-             </div>
-           </div>
+       <Menu theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
+         <div class = "logoContainer">
+           <div class="logoFont">web.abc</div>
          </div>
+
+         <div class = "middleHeaderContainer">
          </div>
+
+        <div class = "connectWalletContainer">
+          <Button
+            onClick={this.triggerWallet}
+            colorScheme='blue'>Connect Wallet</Button>
+        </div>
        </Menu>
 
+       <div class = "bigContainer">
+         <div class = "splitScreenContainer">
+           <div class="splitLeft">
+             <div class="splitLeft1">
+               <div className="title">
 
-       {/*
-         <div>
-           <text color="white" fontSize="md">
-             // etherBalance will be an object, so we stringify it
-             {etherBalance && JSON.stringify(etherBalance)} ETH
-           </text>
+                 The start of your blockchain journey
+               </div>
+               <div class="title2">
+                 Easy as a drag-n-drop.
+               </div>
+
+
+
+               <form onSubmit = {this.handleEmailSubmit}>
+                   <label style = {{
+                       width: '100%',
+                     }}>
+                     <div class = "inputField">
+
+                       <Input style={{width:450}} variant='outline'   onChange = {this.handleEmailChange}
+                         value = {this.state.email} placeholder='Enter email' />
+                       <button type="submit" class="getStartedBtn">
+                         <span class="containerText">
+                           Join the waitlist
+                           </span>
+                       </button>
+
+                     </div>
+
+                   </label>
+               </form>
+             </div>
+           </div>
+
+
+
+           <div class="splitRight">
+              <div class = "lottieContainer">
+               <Lottie
+                  options={{
+                      loop: true,
+                      autoplay: true,
+                      animationData: animationData,
+                      rendererSettings: {
+                        preserveAspectRatio: "xMidYMid slice"
+                      }
+                    }}
+
+               />
+             </div>
+
+           </div>
+
+
+
          </div>
+
+
+       </div>
+
+         {/*
+
+
+
+
+        <div class="small1">
+          <div class="splitScreenContainer">
+
+
+
+
+          </div>
+          <div style={{paddingLeft:'50px',paddingRight:'50px', paddingTop:'0px'}}>
+          <Divider style={{color:'red'}}></Divider>
+          </div>
+        </div>
+
+
+
          */}
 
-
-  <div class="bigContainer">
-
-
-    <div class="small1">
-      <div class="splitScreenContainer">
-        {/*
-        <div class="custom-shape-divider-top-1639728936">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
-        </div>
-
-        */}
-        <div class="splitLeft">
-          <div class="splitLeft1">
-            <div className="title">
-              {
-                account ?
-                this.props.history.push("/home")
-
-                 :
-                ''
-
-              }
-              The start of your blockchain journey
-            </div>
-            <div class="title2">
-              Build It. Own It.
-            </div>
-            {/*
-            <div style={{marginTop:20}}>
-              <Avatar src={<Image src={first} style={{ width: 32, marginRight:'10px' }} />} />
-              <Avatar src={<Image src={second} style={{ width: 32 }} />} />
-              <Avatar src={<Image src={second} style={{ width: 32 }} />} />
-              <Avatar src={<Image src={second} style={{ width: 32 }} />} />
-            </div>
-            */}
-
-
-            <form onSubmit = {this.handleEmailSubmit}>
-                <label style = {{
-                    width: '100%',
-                  }}>
-                  <div class = "inputField">
-
-                    <Input style={{width:450}} variant='outline'   onChange = {this.handleEmailChange}
-                      value = {this.state.email} placeholder='Enter email' />
-                    <button type="submit" class="getStartedBtn">
-                      <span class="containerText">
-                        Join the waitlist
-                        </span>
-                    </button>
-
-                  </div>
-
-                </label>
-
-
-
-            </form>
-
-
-          </div>
-        </div>
-        <div class="splitRight">
-          <div class="splitRightCenter">
-          <Avatar size={600}
-             shape="square" src={<Image style={{borderRadius:20}} src={builderSVG}  />} />
-          </div>
-        </div>
-
-      </div>
-      <div style={{paddingLeft:'50px',paddingRight:'50px', paddingTop:'0px'}}>
-      <Divider style={{color:'red'}}></Divider>
-      </div>
-    </div>
-    <div class="small2">
-
-
-    </div>
-  </div>
-
-  </div>
+     </div>
 
     )
   }

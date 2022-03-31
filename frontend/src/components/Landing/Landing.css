@@ -1,3 +1,41 @@
+.logoContainer{
+  width: 5%;
+}
+.middleHeaderContainer{
+  width: 80%;
+}
+.connectWalletContainer{
+  width: 15%;
+  text-align: center;
+}
+.logoFont{
+  font-family: 'PlusJakartaSans-Bold';
+  font-size: 18px;
+  margin-left: 25px;
+  cursor: pointer;
+}
+.bigContainer{
+  /* display: flex; */
+  /* height:93vh; */
+  /* flex-direction: column; */
+  border: 3px dotted gray;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.splitScreenContainer{
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+  /* background-color: #ffc53d; */
+
+}
+.lottieContainer{
+}
+
+
+
+
 .title {
     font-family: 'PlusJakartaSans-Bold';
     font-size: 65px;
@@ -48,27 +86,11 @@
     justify-content: center;
   }
 
-.logoFont{
-  font-family: 'PlusJakartaSans-Bold';
-  font-size: 18px;
-  margin-left: 25px;
-}
-
-.bigContainer{
-  display: flex;
-  height:93vh;
-  flex-direction: column;
-  /* background: red; */
-}
 
 
-.splitScreenContainer{
-  display: flex;
-  flex-direction: row;
-  height: 70vh;
-  /* background-color: #ffc53d; */
 
-}
+
+
 
 .getStartedBtn {
   margin-top: 25px;

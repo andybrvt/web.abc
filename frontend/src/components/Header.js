@@ -30,14 +30,18 @@ import { faSignOutAlt,  } from '@fortawesome/free-solid-svg-icons'
 
 
 export const Header = (props) => {
-  const {activateBrowserWallet, account } = useEthers();
+  const {activateBrowserWallet, account, deactivate } = useEthers();
   const etherBalance = useEtherBalance(account);
-  const { deactivate } = useWeb3React()
 
 
 
   const navHome = () => {
       props.history.push("/home")
+  }
+
+  const disconnectWallet = () => {
+    deactivate()
+    props.history.push('/')
   }
 
   return(
@@ -48,6 +52,10 @@ export const Header = (props) => {
           <div class="menuHeader1">
             <div class="logoFont">web.abc</div>
           </div>
+          <div
+            onClick = {() => disconnectWallet()}
+
+            >Hi this is used to disconnect</div>
           <div class="menuHeader2">
             <div className = "searchBarContainer">
             <div className = "autoCompleteHeader">
@@ -79,7 +87,6 @@ export const Header = (props) => {
                 </MenuGroup>
                 <MenuDivider />
                   <MenuItem
-                    onClick = {() => deactivate()}
                     > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
               </MenuList>
             </Menu>

@@ -34,7 +34,7 @@
 
 .descriptionContainer{
   position: relative;
-  height: 50vh;
+  height: 25vh;
 }
 
 .descriptionText{
@@ -55,6 +55,7 @@
 .featureContainer{
   position: relative;
   height: 70vh;
+  /* background-color: red; */
 }
 
 .featureCardHolder{

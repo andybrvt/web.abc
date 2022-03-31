@@ -39,10 +39,12 @@ function withMyHook(Component) {
 
 
  class ProfileDropDown extends React.Component {
-
-
    constructor(props) {
     super(props);
+  }
+
+  navHome = () => {
+    this.props.history.push("/home")
   }
 
 
@@ -70,13 +72,13 @@ function withMyHook(Component) {
                 </MenuButton>
                 <MenuList>
                   <MenuGroup title='Profile'>
-                    <MenuItem icon={<UserOutlined size={30} />}>My Home</MenuItem>
-                    <MenuItem>My Collection </MenuItem>
+                    <MenuItem onClick={()=> this.navHome()} icon={<UserOutlined size={30} />}>My Home</MenuItem>
+                    <MenuItem isDisabled>My Collection (Coming soon) </MenuItem>
                   </MenuGroup>
                   <MenuDivider />
                   <MenuGroup title='Help'>
-                    <MenuItem>Docs</MenuItem>
-                    <MenuItem>FAQ</MenuItem>
+                    <MenuItem isDisabled>Docs (Coming soon)</MenuItem>
+                    <MenuItem isDisabled>FAQ (Coming soon)</MenuItem>
                   </MenuGroup>
                   <MenuDivider />
                     <MenuItem > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>

@@ -166,7 +166,7 @@ export const EditorHeader = (props) => {
                 <Button onClick = {onDeployCall}>Deploy</Button>
               </div>
               <div class = "rightHeaderItem">
-                <ProfileDropDown/>
+                <ProfileDropDown {...props} />
               </div>
             </div>
 

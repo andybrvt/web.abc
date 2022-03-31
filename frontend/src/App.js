@@ -23,12 +23,15 @@ import {SmartContractCustomize} from './components/SmartContractCustomize';
 import {Docs} from './Docs.js';
 import {CollectionList} from './components/Home/CollectionList/CollectionList';
 import { MoralisProvider } from "react-moralis";
-
+import {PageNotFound} from './PageNotFound';
+import { useEthers } from "@usedapp/core";
 
 
 function getLibrary(provider) {
   return new Web3(provider)
 }
+
+
 
 // created custom router for react router v6
 // https://stackoverflow.com/questions/63471931/using-history-with-react-router-dom-v6
@@ -41,6 +44,8 @@ const CustomRouter = ({
     action: history.action,
     location: history.location,
   });
+
+
 
   React.useLayoutEffect(() => history.listen(setState), [history]);
 
@@ -56,14 +61,19 @@ const CustomRouter = ({
 };
 
 
-class App extends Component{
-
-  render(){
-    const history = createBrowserHistory();
+// class App extends Component{
 
 
-    return(
-      <CustomRouter history={history}>
+  // render(){
+export const App = ()=> {
+  const history = createBrowserHistory();
+
+  const { activateBrowserWallet, account } = useEthers();
+
+  return(
+    <CustomRouter history={history}>
+      {
+        account ?
 
         <Routes>
           <Route exact path="/"  element={<Landing history={history}/>} />
@@ -80,11 +90,28 @@ class App extends Component{
           <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
           <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
           <Route exact path="/docs" element={<Docs history={history}/>} />
+          <Route exact path="*" element={<PageNotFound />} />
         </Routes>
-        </CustomRouter>
 
-    )
-  }
+        :
+
+        <Routes>
+          <Route exact path="/"  element={<Landing history={history}/>} />
+          <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
+          <Route exact path="*" element={<PageNotFound />} />
+
+        </Routes>
+
+      }
+
+      </CustomRouter>
+
+  )
 }
 
-export default App;
+
+
+  // }
+// }
+
+// export default App;

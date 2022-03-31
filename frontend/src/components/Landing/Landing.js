@@ -16,7 +16,7 @@ import axios from "axios";
 import { Button, ButtonGroup, Box, Image, Badge } from '@chakra-ui/react'
 import Lottie from 'react-lottie';
 import animationData from './drag-and-drop.json';
-
+import image24 from '../../images/image24.png';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -235,7 +235,7 @@ class Landing extends React.Component{
              <div class = "cardContainer">
                 <div class ="featureCard">
                   <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
-                    <Image src={property.imageUrl} alt={property.imageAlt} />
+                    <Image src={image24} alt={property.imageAlt} />
 
                     <Box p='6'>
                       <Box display='flex' alignItems='baseline'>
@@ -247,16 +247,25 @@ class Landing extends React.Component{
 
                       <Box
                         mt='1'
-                        fontWeight='semibold'
-                        as='h4'
-                        lineHeight='tight'
-                        isTruncated
                       >
-                        Personal Website
-                      </Box>
+                        <div class = "featureInfoText">
+                          <div class = "featureInfoTitle">
+                            Personal Website
+                          </div>
 
-                      <Box>
-                        Say something here
+                          <div>
+                            Build you own customizable website to congergate, in real time,
+                            all your blockchain antics. Showcase:
+                            <br />
+                            -All your nfts
+                            <br />
+                            -All your recent transactions
+                            <br />
+                            -All your "stats" on the blockchain
+
+                          </div>
+                        </div>
+
                       </Box>
 
 

@@ -1527,7 +1527,7 @@ export const Editor = (props) => {
   }
 
   const onlySave = () => {
-    editorMain.store()  
+    editorMain.store()
   }
 
 
@@ -1585,7 +1585,7 @@ export const Editor = (props) => {
 
               */}
 
-            {/* 
+            {/*
             <div className = "buttonHolder">
               <AntButton
                 type="primary"
@@ -1604,7 +1604,7 @@ export const Editor = (props) => {
             </div>
 
 
-            
+
 
 
             <div className = "buttonHolder">
@@ -1671,7 +1671,7 @@ export const Editor = (props) => {
       />
 
 
-      <TrashModal 
+      <TrashModal
         editor = {editorMain}
         visible={trashCondition} // trashcondition
         onlySave={onlySave}

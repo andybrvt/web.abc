@@ -90,7 +90,6 @@ export const App = ()=> {
           <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
           <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
           <Route exact path="/docs" element={<Docs history={history}/>} />
-          <Route exact path="*" element={<PageNotFound />} />
         </Routes>
 
         :
@@ -98,7 +97,10 @@ export const App = ()=> {
         <Routes>
           <Route exact path="/"  element={<Landing history={history}/>} />
           <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
-          <Route exact path="*" element={<PageNotFound />} />
+          {/*
+            <Route exact path="*" element={<PageNotFound />} />
+
+            */}
 
         </Routes>
 

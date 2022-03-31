@@ -147,7 +147,7 @@ export const  Home = (props) => {
       <div>
         <Header history={props.history}/>
 
-        <Divider/>
+
 
         <div class="collectionList">
           <div class = "collectionTopContainer">

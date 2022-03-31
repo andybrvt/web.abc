@@ -30,14 +30,18 @@ import { faSignOutAlt,  } from '@fortawesome/free-solid-svg-icons'
 
 
 export const Header = (props) => {
-  const {activateBrowserWallet, account } = useEthers();
+  const {activateBrowserWallet, account, deactivate} = useEthers();
   const etherBalance = useEtherBalance(account);
-  const { deactivate } = useWeb3React()
+  
 
 
 
   const navHome = () => {
       props.history.push("/home")
+  }
+
+  function handleDeactivateAccount() {
+    deactivate();
   }
 
   return(
@@ -49,12 +53,7 @@ export const Header = (props) => {
             <div class="logoFont">web.abc</div>
           </div>
           <div class="menuHeader2">
-            <div className = "searchBarContainer">
-            <div className = "autoCompleteHeader">
-              <div>
-              </div>
-             </div>
-            </div>
+            
           </div>
           <div class="menuHeader3">
             <Menu colorScheme='teal' size='md'>
@@ -68,20 +67,26 @@ export const Header = (props) => {
               </text>
               </MenuButton>
               <MenuList>
-                <MenuGroup title='Profile'>
-                  <MenuItem onClick={navHome}  icon={<UserOutlined size={30} />}>My Home</MenuItem>
-                  <MenuItem>My Collection </MenuItem>
-                </MenuGroup>
-                <MenuDivider />
-                <MenuGroup title='Help'>
-                  <MenuItem>Docs</MenuItem>
-                  <MenuItem>FAQ</MenuItem>
-                </MenuGroup>
-                <MenuDivider />
-                  <MenuItem
-                    onClick = {() => deactivate()}
-                    > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
-              </MenuList>
+         
+                    
+                    <MenuItem onClick={navHome} icon={<UserOutlined size={30} />}> Home</MenuItem>
+                    <MenuItem onClick={deactivate} > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
+                    <MenuItem isDisabled>Docs (Coming soon) </MenuItem>
+           
+                
+                  
+                  
+                  
+                    {/* 
+                    <MenuDivider />
+                    <MenuGroup title='Help'>
+                    <MenuItem isDisabled>Docs (Coming soon)</MenuItem>
+                    <MenuItem isDisabled>FAQ (Coming soon)</MenuItem>
+                    
+                    </MenuGroup>
+                    <MenuDivider />
+                     <MenuItem > <FontAwesomeIcon style={{marginRight:5}} icon={faSignOutAlt} />Log Out</MenuItem>
+             */} </MenuList>
             </Menu>
           </div>
       </div>

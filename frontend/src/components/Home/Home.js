@@ -158,9 +158,12 @@ export const  Home = (props) => {
               <Button onClick={onOpen}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                 Create Site
               </Button>
+              {/*
               <Button style={{marginLeft:25}} onClick={navSmartContract  }  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                 Customize Smart Contract
               </Button>
+              */}
+              
             </Stack>
           </div>
 

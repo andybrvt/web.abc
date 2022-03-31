@@ -31,6 +31,7 @@ import {
   Button,
   Link,
   FormControl,
+  Center,
   FormLabel,
   Code,
   Modal, ModalBody, ModalFooter, ModalHeader,
@@ -224,7 +225,7 @@ export const  Home = (props) => {
             */}
 
           <Modal
-            size="4xl"
+            id='mymodal'
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}
             isOpen={isOpen}
@@ -235,11 +236,11 @@ export const  Home = (props) => {
               <ModalHeader>Create Project </ModalHeader>
               <ModalCloseButton />
 
-              <ModalBody style={{display:'flex', flexDirection:'row'}} pb={10}>
+              <ModalBody style={{display:'flex', flexDirection:'row'}} pb={20}>
 
-                <Box style={{marginRight:50}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                <Box style={{marginRight:25}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                   <Image src={'https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'} alt={'Rear view of modern home with pool'} />
-                  <Box p='6'>
+                  <Box p='2'>
                       <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
                         <Badge borderRadius='full' px='3' colorScheme='teal'>
                           New
@@ -267,7 +268,7 @@ export const  Home = (props) => {
                     </Box>
                 </Box>
 
-                <Box style={{marginRight:50, opacity: 0.3}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                <Box style={{marginRight:25, opacity: 0.3}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                   <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                   <Box p='6'>
                       <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
@@ -297,6 +298,37 @@ export const  Home = (props) => {
                     </Box>
                 </Box>
 
+
+
+                <Box style={{marginRight:25, opacity: 0.3}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                  <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
+                  <Box p='6'>
+                      <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                        <Badge borderRadius='full' px='3' colorScheme='teal'>
+                          Coming soon
+                        </Badge>
+                        <Box
+                          color='gray.500'
+                          fontWeight='semibold'
+                          letterSpacing='wide'
+                          fontSize='xs'
+                          textTransform='uppercase'
+                          ml='2'
+                        >
+                          5 contracts &bull; 3 contracts
+                        </Box>
+                      </Box>
+                      <div
+                        style={{fontWeight:'bold', fontSize:20}}
+                      >
+                        DAOs
+                      </div>
+                      <div style={{marginTop:5}}>
+                        Tokenomics, governance, treasury
+
+                      </div>
+                    </Box>
+                </Box>
 
                 {/*
                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
@@ -337,11 +369,12 @@ export const  Home = (props) => {
 
 
               <ModalBody pb={6}>
+             
                 <FormControl>
                   <FormLabel>Name of Project</FormLabel>
-                  <Input onChange = {onInputChange} ref={initialRef} placeholder='Enter name' />
+                  <Input style={{width:'50%'}} onChange = {onInputChange} ref={initialRef} placeholder='Enter name' />
                 </FormControl>
-
+              
               </ModalBody>
 
               <ModalFooter>

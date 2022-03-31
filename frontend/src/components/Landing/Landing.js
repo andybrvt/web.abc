@@ -53,10 +53,7 @@ const property = {
 
 
 class Landing extends React.Component{
-  constructor(props) {
-    super(props);
 
-  }
   state = {
     trigger: false,
     email: '',

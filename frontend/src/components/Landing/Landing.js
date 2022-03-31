@@ -292,13 +292,12 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
-                   <Image src={property.imageUrl} alt={property.imageAlt} />
-
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
+                 <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                    <Box p='6'>
                      <Box display='flex' alignItems='baseline'>
                        <Badge borderRadius='full' px='2' colorScheme='red'>
-                         Comming soon
+                         Coming soon
                        </Badge>
 
                      </Box>
@@ -344,13 +343,12 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
-                   <Image src={property.imageUrl} alt={property.imageAlt} />
-
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
+                 <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
                    <Box p='6'>
                      <Box display='flex' alignItems='baseline'>
                        <Badge borderRadius='full' px='2' colorScheme='red'>
-                         Comming soon
+                         Coming soon
                        </Badge>
 
                      </Box>
@@ -402,20 +400,23 @@ class Landing extends React.Component{
          <div class = "socialMediaContainer">
 
            <div class = "socialMediaMiddleC">
-               <div class = "socialMediaIcon ">
+             {/**
+              * <div class = "socialMediaIcon ">
                  <i class="fab fa-facebook"></i>
                </div>
                <div class = "socialMediaIcon ">
                  <i class="fab fa-instagram"></i>
                </div>
-               <div class = "socialMediaIcon ">
+              * <div class = 'socialMediaIcon '>
+                 <i class="fab fa-linkedin"></i>
+               </div>
+              */}
+
+               <div href="https://twitter.com/webdotabc" target="_blank" class = "socialMediaIcon ">
                  <i class="fab fa-twitter"></i>
                </div>
                <div class = 'socialMediaIcon '>
                  <i class="fab fa-discord"></i>
-               </div>
-               <div class = 'socialMediaIcon '>
-                 <i class="fab fa-linkedin"></i>
                </div>
 
             </div>

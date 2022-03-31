@@ -51,10 +51,12 @@ export const Header = (props) => {
           <div class="menuHeader1">
             <div class="logoFont">web.abc</div>
           </div>
+          {/*}
           <div
             onClick = {() => handleDeactivateAccount()}
 
             >Hi this is used to disconnect</div>
+          */}
           <div class="menuHeader2">
 
           </div>

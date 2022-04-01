@@ -115,7 +115,7 @@ urllib3
 varint==1.0.2
 vvm==0.1.0
 vyper==0.2.16
-wcwidth==0.1.9
+wcwidth
 web3==5.23.1
 websocket-client==0.59.0
 websockets==9.1

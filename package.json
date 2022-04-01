@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "aws-cli": "^0.0.2",
     "brownie": "^0.9.9"
   }
 }

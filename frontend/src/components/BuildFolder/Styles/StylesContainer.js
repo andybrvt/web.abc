@@ -12,10 +12,7 @@ export const StylesContainer = (props) => {
 
   const [editorMain, setEditor] = useState(null);
   const [sectors, setSectors] = useState([]);
-  if(props.editor !== null){
-    const sector1=props.editor.StyleManager.getSector('typography');
-    const property = sector1.getProperties()
-  }
+
   // return function in useEffect will be the unmount
   useEffect(() => {
     if(props.editor !== null){

@@ -77,8 +77,6 @@ import {
 import {
   CustomSocialMediaFooter
 } from './CustomTypes/CustomSocialMediaType';
-import grapesjsBlocksBasic from 'grapesjs-blocks-basic';
-import grapesjsStyleBg from 'grapesjs-style-bg';
 import image1 from '../../../images/image3.png';
 import {
   Slider,
@@ -118,7 +116,6 @@ import { TestModal } from './TestModal';
 import {InitialEditorModal} from './InitialEditorModal';
 import { TrashModal } from './TrashModal'
 const PLUGINS = [
-  grapesjsBlocksBasic,
   CoreButtonType,
   ButtonType1,
   ButtonType2,
@@ -144,7 +141,6 @@ const PLUGINS = [
   Input2,
   RowCore,
   ColumnCore,
-  grapesjsStyleBg,
   CustomLinkText1,
   CustomBoxType,
   CustomNFTShowcase,
@@ -279,9 +275,7 @@ export const Editor = (props) => {
       width: 'auto',
       plugins:PLUGINS,
       autosave: true,
-      pluginsOpts: {
-        grapesjsStyleBg:{}
-      },
+
       selectorManager: {
          componentFirst: true,
        },

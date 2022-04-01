@@ -25,6 +25,7 @@ import {CollectionList} from './components/Home/CollectionList/CollectionList';
 import { MoralisProvider } from "react-moralis";
 import {PageNotFound} from './PageNotFound';
 import { useEthers } from "@usedapp/core";
+import grapesjs from 'grapesjs';
 
 
 function getLibrary(provider) {
@@ -67,7 +68,7 @@ const CustomRouter = ({
   // render(){
 export const App = ()=> {
   const history = createBrowserHistory();
-
+  console.log(grapesjs.version)
   const { activateBrowserWallet, account } = useEthers();
 
   return(
@@ -77,27 +78,33 @@ export const App = ()=> {
 
         <Routes>
           <Route exact path="/"  element={<Landing history={history}/>} />
-          <Route exact path="/login"  element={<Login history={history} />} />
-          <Route exact path="/home"  element={<Home history={history} />} />
-          <Route exact path="/collectionList" element={<CollectionList history={history}/>} />
-          <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
-          <Route exact path="/test" element={<MoralisTest history={history}/>} />
-          <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
-          <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
-          <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />
-          <Route exact path="/designerTest" element={<Canvas history={history}/>} />
-          <Route exact path="/previewPage/:websiteId/:pageId" element={<PreviewPage history={history}/>} />
-          <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
-          <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
-          <Route exact path="/docs" element={<Docs history={history}/>} />
+
+            <Route exact path="/login"  element={<Login history={history} />} />
+            <Route exact path="/home"  element={<Home history={history} />} />
+            <Route exact path="/collectionList" element={<CollectionList history={history}/>} />
+            <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
+            <Route exact path="/test" element={<MoralisTest history={history}/>} />
+            <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
+            <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
+            <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />
+            <Route exact path="/designerTest" element={<Canvas history={history}/>} />
+            <Route exact path="/previewPage/:websiteId/:pageId" element={<PreviewPage history={history}/>} />
+            <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
+            <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
+            <Route exact path="/docs" element={<Docs history={history}/>} />
+
+
+
         </Routes>
 
         :
 
         <Routes>
           <Route exact path="/"  element={<Landing history={history}/>} />
-          <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
-          {/*
+            <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
+
+        {/*
+
             <Route exact path="*" element={<PageNotFound />} />
 
             */}

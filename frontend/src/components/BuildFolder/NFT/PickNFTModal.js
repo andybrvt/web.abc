@@ -13,7 +13,6 @@ import {
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import './PickNFTModal.css'
 import $ from 'jquery';
-import ImagePicker from 'react-image-picker'
 import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
 import { useEthers } from "@usedapp/core";
 import { Checkbox } from '@chakra-ui/react'

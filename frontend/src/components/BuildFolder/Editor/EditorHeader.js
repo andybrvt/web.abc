@@ -227,8 +227,8 @@ export const EditorHeader = (props) => {
                     <Center>
                       <Tag>
                       <div class="summaryLink">
-
-                        <a href={`${global.FRONTEND_ENDPOINT}/webabc/${props.websiteId}/${currentPage}`} target="_blank">{`${global.FRONTEND_ENDPOINT}/webabc/${props.websiteId}/${currentPage}`} </a>
+                      <a href={`/webabc/${props.websiteId}/${currentPage}`} target="_blank">{`${global.FRONTEND_ENDPOINT}/webabc/${props.websiteId}/${currentPage}`} </a>
+                    
                       </div>
                       </Tag>
                     </Center>

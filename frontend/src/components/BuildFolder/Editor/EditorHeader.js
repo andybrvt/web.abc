@@ -228,7 +228,7 @@ export const EditorHeader = (props) => {
                       <Tag>
                       <div class="summaryLink">
 
-                        <a href={"/webabc/" + props.websiteId +"/"+ currentPage} >{"localhost:3000/webabc/" + props.websiteId +"/"+ currentPage} </a>
+                        <a href={"/webabc/" + props.websiteId +"/"+ currentPage} >{"https://webdotabc.xyz/webabc/" + props.websiteId +"/"+ currentPage} </a>
                       </div>
                       </Tag>
                     </Center>

@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-p(s&x2e7t$ut_l^708r3cn5!(j8^7gg%xy3s(n2tnd)7i=sg!k
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "api.buildmediaservices.com",
     "webdotabc.xyz",
     "127.0.0.1",
     "webabc-eb.us-west-1.elasticbeanstalk.com",

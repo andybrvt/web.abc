@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
+    "webabc-eb.us-west-1.elasticbeanstalk.com"
 ]
 
 

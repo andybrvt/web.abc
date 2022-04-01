@@ -23,6 +23,7 @@ click==8.0.1
 colorama==0.4.3
 cryptography==36.0.2
 cytoolz==0.11.0
+dataclasses==0.8
 dataclassy==0.10.4
 Django==3.2.11
 django-cors-headers==3.10.1
@@ -69,6 +70,7 @@ packaging==21.0
 paramiko==2.10.3
 parsimonious==0.8.1
 pathspec==0.5.9
+pkg_resources==0.0.0
 platformdirs==2.3.0
 pluggy==1.0.0
 prompt-toolkit==3.0.20

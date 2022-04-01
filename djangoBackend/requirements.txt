@@ -16,7 +16,7 @@ cached-property==1.5.2
 cement==2.8.2
 certifi==2021.5.30
 cffi==1.15.0
-chardet==3.0.4
+chardet
 charset-normalizer==2.0.6
 click==8.0.1
 colorama==0.4.3

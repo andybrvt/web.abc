@@ -492,7 +492,7 @@ export const Editor = (props) => {
 
 
       // delete this later so that it is the actual account
-      // const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+      const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
 
       if(block !== null){
 
@@ -1066,6 +1066,7 @@ export const Editor = (props) => {
           setTimeout(() => {
             editor.getComponents().forEach(component => {
               const type = component.get("type")
+              const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
 
 
               if(type === "AddressProfile"){
@@ -1282,6 +1283,7 @@ export const Editor = (props) => {
                         var hash = document.createElement("div")
                         var hashLink = document.createElement("a")
                         hashLink.href = transactionAddress+transaction.hash;
+                        hashLink.target ="_blank";
                         hashLink.appendChild(document.createTextNode(transaction.hash.slice(0,14)+"..."))
                         hash.appendChild(hashLink)
                         hashBlock.appendChild(hash)
@@ -1299,6 +1301,7 @@ export const Editor = (props) => {
                         fromContainer.appendChild(document.createTextNode("From "));
                         var fromHash = document.createElement("a");
                         fromHash.href = addressAddress + transaction.from_address;
+                        fromHash.target ="_blank";
                         fromHash.appendChild(document.createTextNode(transaction.from_address.slice(0,14)+'...'));
                         fromContainer.appendChild(fromHash)
 
@@ -1306,6 +1309,7 @@ export const Editor = (props) => {
                         toContainer.appendChild(document.createTextNode("To "));
                         var toHash = document.createElement("a");
                         toHash.href =addressAddress + transaction.to_address;
+                        toHash.target ="_blank";
                         toHash.appendChild(document.createTextNode(transaction.to_address.slice(0,14)+"..."));
                         toContainer.appendChild(toHash);
 

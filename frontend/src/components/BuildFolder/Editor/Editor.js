@@ -492,7 +492,7 @@ export const Editor = (props) => {
 
 
       // delete this later so that it is the actual account
-      const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+      // const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
 
       if(block !== null){
 
@@ -1066,7 +1066,7 @@ export const Editor = (props) => {
           setTimeout(() => {
             editor.getComponents().forEach(component => {
               const type = component.get("type")
-              const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+              // const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
 
 
               if(type === "AddressProfile"){

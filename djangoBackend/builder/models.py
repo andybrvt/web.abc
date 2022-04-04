@@ -53,3 +53,4 @@ class Website(models.Model):
     websiteAssets = models.TextField(blank = True)
     # initialPage = models.ForeignKey(WebsitePage, related_name = "initial_page", on_delete= models.CASCADE, null = True)
     newlyCreated = models.BooleanField(default = True)
+    type = models.CharField(max_length = 255, default = "personal") #this will be use to knwo which website type you are making

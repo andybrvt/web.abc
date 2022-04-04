@@ -214,9 +214,8 @@ export const InitialEditorModal = (props) => {
 
                 <InputGroup>
                   <InputLeftElement
-                    color='gray.300'
                     pointerEvents='none'
-                    children={<i class="fas fa-facebook"></i>}
+                    children={<i class="fab fa-facebook"></i>}
                   />
                 <Input
                   value = {facebook}
@@ -225,22 +224,19 @@ export const InitialEditorModal = (props) => {
                 </InputGroup>
               <InputGroup>
                   <InputLeftElement
-                    color='gray.300'
                     pointerEvents='none'
-                    children={<i class="fas fa-instagram"></i>}
+                    children={<i class="fab fa-instagram"></i>}
                   />
                 <Input
                   value = {instagram}
-
                   onChange = {e => setInstagram(e.target.value)}
                   type='tel' placeholder='https://' />
               </InputGroup>
 
               <InputGroup>
                   <InputLeftElement
-                   color='gray.300'
                     pointerEvents='none'
-                    children={<i class="fas fa-twitter"></i>}
+                    children={<i class="fab fa-twitter"></i>}
                   />
                 <Input
                   value = {twitter}
@@ -251,9 +247,9 @@ export const InitialEditorModal = (props) => {
 
                 <InputGroup>
                   <InputLeftElement
-                    
+
                     pointerEvents='none'
-                    children={  <FontAwesomeIcon icon="fas-brands fa-discord" />}
+                    children={  <i class="fab fa-discord"></i>}
                   />
                 <Input
                   value = {discord}

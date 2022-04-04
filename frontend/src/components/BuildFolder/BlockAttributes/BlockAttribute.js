@@ -82,7 +82,7 @@ export const BlockAttribute = (props) => {
 
           <TabPanel  style = {{
               maxHeight: "800px",
-       
+              overflow: 'auto'
             }}>
 
 

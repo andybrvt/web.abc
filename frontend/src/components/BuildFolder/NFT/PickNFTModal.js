@@ -10,7 +10,7 @@ import {
   useDisclosure,
   Button,
 } from '@chakra-ui/react';
-import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+import { useMoralis, useMoralisWeb3Api, useMoralisCloudFunction } from "react-moralis";
 import './PickNFTModal.css'
 import $ from 'jquery';
 import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
@@ -31,11 +31,20 @@ export const PickNFTModal  = (props) => {
 
   const [images, setImages] = useState([])
 
+  const [curUrl, setCurUrl] = useState("");
+
+  const {fetch} = useMoralisCloudFunction(
+    "fetchJSON",
+    {theUrl: curUrl},
+    { autoFetch: false }
+
+  )
+
   useEffect(() => {
 
     console.log(props.isOpen)
     if(props.isOpen){
-      fetchNFTs()
+      fetchNFTsCloud()
     }
   }, [props.isOpen])
 
@@ -46,9 +55,77 @@ export const PickNFTModal  = (props) => {
     }
   }, [props.editor])
 
+
+  useEffect(() => {
+
+    fetch({
+      onSuccess: (data) => {
+
+        console.log(data)
+        if(data.status === 302){
+          const newUrl = data.headers.location
+          setCurUrl(newUrl)
+        } else {
+
+          setNFTImgs(oldArray => [...oldArray, {img: fixURL(data.data.image), name: data.data.name}])
+
+        }
+
+
+      },
+      onError: (err) => console.log(curUrl, 'here is the errors')
+
+    })
+  }, [curUrl])
+
+
+  const fetchNFTsCloud = async() => {
+    const options = {
+      chain: "eth",
+      // address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+      address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
+      // address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
+
+    };
+
+    const nftList = await Web3Api.account.getNFTs(options);
+    setNft(nftList.result)
+
+
+    nftList.result.forEach( async(nft) => {
+
+        const metadata = JSON.parse(nft.metadata)
+
+        if(metadata !== null){
+          if(metadata.name === undefined){
+            console.log(metadata)
+          }
+
+          setNFTImgs(oldArray => [...oldArray, {img: fixURL(metadata.image), name: metadata.name}])
+
+
+        } else if(nft.token_uri !== null){
+          let url = fixURL(nft.token_uri)
+
+          setCurUrl(url)
+
+
+        }
+
+
+
+      })
+
+
+  }
+
+
+
+
   const fetchNFTs = async() => {
     const options = {
       chain: "eth",
+      // address: account,
       address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
     }
 
@@ -65,7 +142,7 @@ export const PickNFTModal  = (props) => {
       .then(data => {
           setNFTImgs(oldArray => [...oldArray, {img: fixURL(data.image), name: data.name}])
 
-        
+
         // console.log(data.image)
 
         // $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.image)+"'/>" )

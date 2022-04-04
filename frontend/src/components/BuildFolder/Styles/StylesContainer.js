@@ -22,43 +22,43 @@ export const StylesContainer = (props) => {
         setSectors(tempEditor.StyleManager.getSectors({visible:true}))
       })
 
-      props.editor.on('load', ()=> {
-          const tempEditor = props.editor
-          let styleManager = props.editor.StyleManager;
-          let typographySector = props.editor.StyleManager.getSector('typography');
-          let fontProperty = props.editor.StyleManager.getProperty('typography', 'font-family');
-          const roboto = "'Roboto', sans-serif;";
-          const raleway="'Raleway', sans-serif";
-          const lato="'Lato', sans-serif";
-          const poppins="'Poppins', sans-serif"
-          const montserrat="'Montserrat', sans-serif"
-          const opensans="'Open Sans', sans-serif;";
-          const merriwether="'Merriweather', sans-serif;";
-          fontProperty.setOptions([]);
-
-          const robotoFont = { id: roboto, label: roboto.split(',')[0] };
-          const ralewayFont = { id: raleway, label: raleway.split(',')[0] };
-          const latoFont = { id: lato, label: lato.split(',')[0] };
-          const poppinsFont = { id: poppins, label: poppins.split(',')[0] };
-          const merriwetherFont = { id: merriwether, label: merriwether.split(',')[0] };
-          const opensansFont = { id: opensans, label: opensans.split(',')[0] };
-          const montserratFont = { id: montserrat, label: montserrat.split(',')[0] };
-
-          fontProperty.setOptions([...fontProperty.getOptions(), robotoFont]);
-          fontProperty.setOptions([...fontProperty.getOptions(), ralewayFont]);
-          fontProperty.setOptions([...fontProperty.getOptions(), latoFont]);
-          fontProperty.setOptions([...fontProperty.getOptions(), poppinsFont]);
-          fontProperty.setOptions([...fontProperty.getOptions(), opensansFont]);
-          fontProperty.setOptions([...fontProperty.getOptions(), merriwetherFont]);
-          fontProperty.setOptions([...fontProperty.getOptions(), montserratFont]);
-          {/*
-          let fontProperty = props.editor.StyleManager.getProperty('Typography', 'font-family');
-          let list = fontProperty.get('list');
-          list.push({ value: 'Roboto, Arial, sans-serif', name: 'Roboto' });
-          fontProperty.set('list', list);
-          styleManager.render();
-          */}
-      })
+      // props.editor.on('load', ()=> {
+      //     const tempEditor = props.editor
+      //     let styleManager = props.editor.StyleManager;
+      //     let typographySector = props.editor.StyleManager.getSector('typography');
+      //     let fontProperty = props.editor.StyleManager.getProperty('typography', 'font-family');
+      //     const roboto = "'Roboto', sans-serif;";
+      //     const raleway="'Raleway', sans-serif";
+      //     const lato="'Lato', sans-serif";
+      //     const poppins="'Poppins', sans-serif"
+      //     const montserrat="'Montserrat', sans-serif"
+      //     const opensans="'Open Sans', sans-serif;";
+      //     const merriwether="'Merriweather', sans-serif;";
+      //     fontProperty.setOptions([]);
+      //
+      //     const robotoFont = { id: roboto, label: roboto.split(',')[0] };
+      //     const ralewayFont = { id: raleway, label: raleway.split(',')[0] };
+      //     const latoFont = { id: lato, label: lato.split(',')[0] };
+      //     const poppinsFont = { id: poppins, label: poppins.split(',')[0] };
+      //     const merriwetherFont = { id: merriwether, label: merriwether.split(',')[0] };
+      //     const opensansFont = { id: opensans, label: opensans.split(',')[0] };
+      //     const montserratFont = { id: montserrat, label: montserrat.split(',')[0] };
+      //
+      //     fontProperty.setOptions([...fontProperty.getOptions(), robotoFont]);
+      //     fontProperty.setOptions([...fontProperty.getOptions(), ralewayFont]);
+      //     fontProperty.setOptions([...fontProperty.getOptions(), latoFont]);
+      //     fontProperty.setOptions([...fontProperty.getOptions(), poppinsFont]);
+      //     fontProperty.setOptions([...fontProperty.getOptions(), opensansFont]);
+      //     fontProperty.setOptions([...fontProperty.getOptions(), merriwetherFont]);
+      //     fontProperty.setOptions([...fontProperty.getOptions(), montserratFont]);
+      //     {/*
+      //     let fontProperty = props.editor.StyleManager.getProperty('Typography', 'font-family');
+      //     let list = fontProperty.get('list');
+      //     list.push({ value: 'Roboto, Arial, sans-serif', name: 'Roboto' });
+      //     fontProperty.set('list', list);
+      //     styleManager.render();
+      //     */}
+      // })
 
       return () => {
         props.editor.off('style:custom', props => {

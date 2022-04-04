@@ -27,7 +27,7 @@ export const MoralisTest = () => {
         $("#content").html($("#content").html()+"<h3>"+data.data.name+"</h3>" )
         $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.data.image)+"'/>" )
       }, // ratings should be 4.5
-
+      onError: (err) => console.log(JSON.stringify(err))
 
     })
   }, [curUrl])
@@ -68,7 +68,6 @@ export const MoralisTest = () => {
       // let url = fixURL(nft.token_uri)
 
       // console.log(nft.token_uri, nft)
-      console.log(JSON.parse(nft.metadata), nft)
       // setCurUrl(nft.token_uri)
       // console.log()
 
@@ -78,6 +77,13 @@ export const MoralisTest = () => {
         $("#content").html($("#content").html()+"<h2>"+metadata.name+"</h2>" )
         $("#content").html($("#content").html()+"<h3>"+metadata.name+"</h3>" )
         $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(metadata.image)+"'/>" )
+
+      } else if(nft.token_uri !== null){
+        console.log(nft, nft.token_uri)
+        let url = fixURL(nft.token_uri)
+
+        setCurUrl(url)
+
 
       }
 

@@ -23,11 +23,20 @@ export const MoralisTest = () => {
 
     fetch({
       onSuccess: (data) => {
-        $("#content").html($("#content").html()+"<h2>"+data.data.name+"</h2>" )
-        $("#content").html($("#content").html()+"<h3>"+data.data.name+"</h3>" )
-        $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.data.image)+"'/>" )
+
+        console.log(data)
+        if(data.status === 302){
+          const newUrl = data.headers.location
+          setCurUrl(newUrl)
+        } else {
+          $("#content").html($("#content").html()+"<h2>This is the fetch one</h2>" )
+          $("#content").html($("#content").html()+"<h3>"+data.data.name+"</h3>" )
+          $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(data.data.image)+"'/>" )
+        }
+
+
       }, // ratings should be 4.5
-      onError: (err) => console.log(JSON.stringify(err))
+      onError: (err) => console.log(curUrl, 'here is the errors')
 
     })
   }, [curUrl])
@@ -54,7 +63,8 @@ export const MoralisTest = () => {
   const fetchNFTsCloud = async() => {
     const options = {
       chain: "eth",
-      address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+      // address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+      address: "0x3865C0B68111d1507269aa2df16b3251F714Dcdf",
       // address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
 
     };
@@ -74,12 +84,14 @@ export const MoralisTest = () => {
       const metadata = JSON.parse(nft.metadata)
 
       if(metadata !== null){
+        if(metadata.name === undefined){
+          console.log(metadata)
+        }
         $("#content").html($("#content").html()+"<h2>"+metadata.name+"</h2>" )
         $("#content").html($("#content").html()+"<h3>"+metadata.name+"</h3>" )
         $("#content").html($("#content").html()+"<img width=100 height=100 src='"+fixURL(metadata.image)+"'/>" )
 
       } else if(nft.token_uri !== null){
-        console.log(nft, nft.token_uri)
         let url = fixURL(nft.token_uri)
 
         setCurUrl(url)

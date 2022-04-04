@@ -493,7 +493,7 @@ export const Editor = (props) => {
 
       // delete this later so that it is the actual account
       // const account = "0x5b92a53e91495052b7849ea585bec7e99c75293b";
-      const account = "0x53a19F44548182602b3B665AB9B9717735Ed53be";
+      // const account = "0x53a19F44548182602b3B665AB9B9717735Ed53be";
 
 
       if(block !== null){
@@ -1235,18 +1235,110 @@ export const Editor = (props) => {
                     placeHolderContainer.parentElement.removeChild(placeHolderContainer);
 
 
-                    nftList.result.forEach(function(nft){
-                      let url = fixURL(nft.token_uri);
+                    nftList.result.forEach(async(nft) =>{
+                      const metadata = JSON.parse(nft.metadata)
 
-                      fetch(url)
-                      .then(response => response.json())
-                      .then(data => {
-                        const img = fixURL(data.image);
-                        const name = data.name;
+                      if(metadata !== null){
 
-                        console.log(imageExists(img), 'does it exist')
+                        const img = fixURL(metadata.image);
+                        const name = metadata.name;
 
-                        if(imageExists(img)){
+                        if(metadata.name === undefined){
+                          console.log(metadata)
+                        }
+
+                        collectionContainer.forEach((collection) => {
+                          console.log(collection)
+
+
+                          var nftContainers= document.createElement("div");
+                          nftContainers.className = 'nftContainers';
+
+                          // The card porition of the nft (picture)
+                          var nftCards = document.createElement("div")
+                          nftCards.className = "nftCards";
+                          var nftImages = document.createElement("img");
+                          nftImages.className = "nftImages";
+                          nftImages.src = img;
+                          nftCards.appendChild(nftImages);
+
+
+                          // The name porition of the nft
+                          var nftName = document.createElement("div");
+                          nftName.className = "nftName";
+                          var nftNameText = document.createElement("div");
+                          nftNameText.className = "nftNameText";
+                          nftNameText.appendChild(document.createTextNode(name));
+                          nftName.appendChild(nftNameText);
+
+
+                          nftContainers.appendChild(nftCards);
+                          nftContainers.appendChild(nftName);
+
+                          collection.appendChild(nftContainers);
+                        })
+
+
+                      } else if(nft.token_uri !== null){
+                        let url = fixURL(nft.token_uri)
+                        const params = { theUrl: url}
+
+                        const data = await Moralis.Cloud.run("fetchJSON", params)
+
+                        console.log(data, 'stuff here')
+                        if (data.status === 302){
+                          const newUrl = data.headers.location
+
+                          const newParams = {theUrl: newUrl}
+                          const newData = await Moralis.Cloud.run("fetchJSON", params)
+
+                          const img = fixURL(newData.image);
+                          const name = newData.name;
+
+                          if(newData.name === undefined){
+                            console.log(metadata)
+                          }
+
+                          collectionContainer.forEach((collection) => {
+                            console.log(collection)
+
+
+                            var nftContainers= document.createElement("div");
+                            nftContainers.className = 'nftContainers';
+
+                            // The card porition of the nft (picture)
+                            var nftCards = document.createElement("div")
+                            nftCards.className = "nftCards";
+                            var nftImages = document.createElement("img");
+                            nftImages.className = "nftImages";
+                            nftImages.src = img;
+                            nftCards.appendChild(nftImages);
+
+
+                            // The name porition of the nft
+                            var nftName = document.createElement("div");
+                            nftName.className = "nftName";
+                            var nftNameText = document.createElement("div");
+                            nftNameText.className = "nftNameText";
+                            nftNameText.appendChild(document.createTextNode(name));
+                            nftName.appendChild(nftNameText);
+
+
+                            nftContainers.appendChild(nftCards);
+                            nftContainers.appendChild(nftName);
+
+                            collection.appendChild(nftContainers);
+                          })
+
+
+                        } else {
+                          const img = fixURL(data.image);
+                          const name = data.name;
+
+                          if(data.name === undefined){
+                            console.log(metadata)
+                          }
+
                           collectionContainer.forEach((collection) => {
                             console.log(collection)
 
@@ -1280,15 +1372,14 @@ export const Editor = (props) => {
 
 
 
+
                         }
 
 
-                      })
-                      .catch(err => {
-                        console.log(err)
-                      })
+                      }
 
                     })
+
 
 
 

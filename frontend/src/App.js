@@ -101,7 +101,7 @@ export const App = ()=> {
 
         <Routes>
           <Route exact path="/"  element={<Landing history={history}/>} />
-            <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
+          <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
 
         {/*
 

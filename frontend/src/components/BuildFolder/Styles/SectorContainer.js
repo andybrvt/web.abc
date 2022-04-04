@@ -18,6 +18,20 @@ import { faShapes, faCircle,
 
 export const SectorContainer = (props) => {
 
+
+  // const [properties, setProperties] = useState([])
+
+
+  // useEffect(() => {
+  //
+  //   if(props.sector !== null){
+  //     const sector = props.sector;
+  //     setProperties(sector.getProperties())
+  //   }
+  //
+  // }, [props.sector])
+  console.log('here in the sector container')
+  console.log(props.sector, 'here here here')
   const sector = props.sector;
   const properties = sector.getProperties();
   return(
@@ -40,21 +54,21 @@ export const SectorContainer = (props) => {
                 ''
                 :
 
-                
+
                 <div class="attributeHeader">{sector.getName()}</div>
 
               }
-     
+
 
             </div>
-           
+
           }
 
         </div>
 
         }
         {/* remove typography from sector when image block */}
-      
+
 
         <div style={{marginTop:10, marginBottom:20}}/>
         {sector.getName()=="General" ?
@@ -192,7 +206,7 @@ export const SectorContainer = (props) => {
 
 
                 </div>
-                
+
               }
             </div>
           }

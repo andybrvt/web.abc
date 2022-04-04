@@ -16,8 +16,9 @@ import { groupedOptions, dogOptions, TextSize, colourOptions} from "../Styles/da
 import './StylesComponents/StylePosition.css'
 export const PropertyContainer = (props) => {
 
+  console.log('here in the property container')
   const property = props.property
-
+  console.log(property, 'here here here')
 
   const TextFonts = [
     { id: 1, label: "Lato" },

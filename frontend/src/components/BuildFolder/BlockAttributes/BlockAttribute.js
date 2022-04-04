@@ -58,6 +58,7 @@ export const BlockAttribute = (props) => {
   useEffect(() => {
     if(props.editor !== null){
         setEditorMain(props.editor)
+        console.log('in the styles container')
     }
 
 
@@ -96,7 +97,7 @@ export const BlockAttribute = (props) => {
             </TabPanel>
 
             <TabPanel>
-            
+
                 <div class= "layers-container"></div>
 
 

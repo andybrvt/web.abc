@@ -65,7 +65,7 @@ export const BlockAttribute = (props) => {
 
 
   return(
-    <div style={{width:575, height:'100%', background:'#F7FAFC', padding:10}}>
+    <div style={{width:575, background:'#F7FAFC', padding:10}}>
       <Tabs variant='soft-rounded' colorScheme='green'>
         <TabList style={{marginBottom:10, marginLeft:20}}>
          <Tab>Styles</Tab>
@@ -81,7 +81,7 @@ export const BlockAttribute = (props) => {
 
           <TabPanel  style = {{
               maxHeight: "800px",
-              overflow:'auto'
+       
             }}>
 
 

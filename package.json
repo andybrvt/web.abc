@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "aws-cli": "^0.0.2",
-    "brownie": "^0.9.9"
+    "brownie": "^0.9.9",
+    "rc-queue-anim": "^2.0.0"
   }
 }

@@ -5,6 +5,17 @@
 
 }
 
+.choiceBox {
+  margin-right: 25px;
+}
+
+.choiceBox:hover {
+
+  opacity:0.6;
+  /* border: 1px solid #d0d0d0; */
+}
+
+
 .collectionList{
     position:absolute;
     top:12.5%;

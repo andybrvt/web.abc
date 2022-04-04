@@ -12,7 +12,7 @@ import { formatEther } from "@ethersproject/units";
 import { SignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import './Home.css';
 import web from '../Landing/web.png';
-
+import QueueAnim from 'rc-queue-anim';
 import { Contract } from "@ethersproject/contracts";
 import { ethers } from "ethers";
 import { Header } from '../Header'
@@ -68,13 +68,17 @@ export const  Home = (props) => {
   const onChange = (val) => {
 
   };
+
+  
+
+
   const handleChange = (value) => setValue(value)
   const [value, setValue] = React.useState(20)
   const [isLoading, setIsLoading] = useState(true)
   const [name, setName] = useState("");
   const [websites, setWebsites] = React.useState([])
   const [createVisible, setCreateVisible] = React.useState(false)
-
+  const [triggerChoice, setTriggerChoice] = React.useState(false)
   const {activateBrowserWallet, account } = useEthers();
   const etherBalance = useEtherBalance(account);
   const createWebSite = () => {
@@ -213,17 +217,10 @@ export const  Home = (props) => {
                   {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
                 </text>
             </div>
-
-          <CollectionList  {...props}/>
-
-
           </div>
           */}
-          {/*
-            <SendMoney  {...props}/>
 
-            */}
-
+         
           <Modal
             id='mymodal'
             initialFocusRef={initialRef}
@@ -234,155 +231,190 @@ export const  Home = (props) => {
             <ModalOverlay />
             <ModalContent >
               <ModalHeader>Create Project </ModalHeader>
-              <ModalCloseButton />
+              <ModalCloseButton onClick={()=>setTriggerChoice("")} />
+                {
+                  (triggerChoice=="nftChoice")?
+                  
+                  <div>
+                    
+                    <QueueAnim 
+                      type={['right', 'left']}
+                      ease={['easeOutQuart', 'easeInOutQuart']}
+                      delay={300}>
+                    <div key="1">enter in queue</div>
+                    <div key="2">enter in queue</div>
+                    <div key="3">
+                      
 
-              <ModalBody style={{display:'flex', flexDirection:'row'}} pb={20}>
 
-                <Box style={{marginRight:25}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                  <Image src={'https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'} alt={'Rear view of modern home with pool'} />
-                  <Box p='2'>
-                      <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                        <Badge borderRadius='full' px='3' colorScheme='teal'>
-                          New
-                        </Badge>
-                        <Box
-                          color='gray.500'
-                          fontWeight='semibold'
-                          letterSpacing='wide'
-                          fontSize='xs'
-                          textTransform='uppercase'
-                          ml='2'
-                        >
-                          Time &bull; 5 minutes
-                        </Box>
+                    {
+                        (triggerChoice!=null) ?
+                        <ModalFooter>
+                          <div key="4">
+                             <Button onClick={()=>setTriggerChoice("")} mr={3}>
+                              Back
+                            </Button>
+                            <Button colorScheme='blue'>Next</Button>
+                          </div>
+                        </ModalFooter>
+                        :
+                        ''
+                    }
+
+
+                    </div>
+
+                    </QueueAnim>
+                    
+                 
+
+                      
+                  </div>
+         
+                  :
+                  <div>
+                    <ModalBody pb={20}>
+                      <QueueAnim  style={{display:'flex', flexDirection:'row'}} 
+                       type={['right', 'left']}
+                      ease={['easeOutQuart', 'easeInOutQuart']}
+                      interval={500}
+                      delay={300}>
+                        <div key="a" class="choiceBox">
+                          <Box
+                            style={{height:400}}
+                            class="choiceBox" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                          <Image
+                        
+                          src={'https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'} alt={'Rear view of modern home with pool'}/>
+                          <Box p='6'>
+                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                  New
+                                </Badge>
+                                <Box
+                                  color='gray.500'
+                                  fontWeight='semibold'
+                                  letterSpacing='wide'
+                                  fontSize='xs'
+                                  textTransform='uppercase'
+                                  ml='2'
+                                >
+                                  Time &bull; 5 minutes
+                                </Box>
+                              </Box>
+                              <div
+                                style={{fontWeight:'bold', fontSize:20}}
+                              >
+                                Personal Website
+                              </div>
+                              <div style={{marginTop:5}}>
+                              Show yourself on the blockchain
+
+                              </div>
+                            </Box>
+                          </Box>
+                        </div>
+                        <div key="b" class="choiceBox">
+                        <Box 
+                          onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                          <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
+                          <Box p='6'>
+                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                  Coming soon
+                                </Badge>
+                                <Box
+                                  color='gray.500'
+                                  fontWeight='semibold'
+                                  letterSpacing='wide'
+                                  fontSize='xs'
+                                  textTransform='uppercase'
+                                  ml='2'
+                                >
+                                  5 contracts &bull; 3 contracts
+                                </Box>
+                              </Box>
+                              <div
+                                style={{fontWeight:'bold', fontSize:20}}
+                              >
+                                NFT Collections
+                              </div>
+                              <div style={{marginTop:5}}>
+                                Mint NFT, Buy NFT, Sell NFT ...
+
+                              </div>
+                            </Box>
+                         </Box>
+                       </div>
+
+
+                       <div key="c">
+                       <Box style={{marginRight:25, opacity: 0.5}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                        <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
+                        <Box p='6'>
+                            <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                              <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                Coming soon
+                              </Badge>
+                              <Box
+                                color='gray.500'
+                                fontWeight='semibold'
+                                letterSpacing='wide'
+                                fontSize='xs'
+                                textTransform='uppercase'
+                                ml='2'
+                              >
+                                5 contracts &bull; 3 contracts
+                              </Box>
+                            </Box>
+                            <div
+                              style={{fontWeight:'bold', fontSize:20}}
+                            >
+                              DAOs
+                            </div>
+                            <div style={{marginTop:5}}>
+                              Tokenomics, governance, treasury
+
+                            </div>
+                          </Box>
                       </Box>
-                      <div
-                        style={{fontWeight:'bold', fontSize:20}}
-                      >
-                        Personal Website
+
+                       </div>
+                      </QueueAnim>
+                      
+                      
+                    </ModalBody>
+
+                    <ModalBody pb={6}>
+                      <FormControl>
+                        <FormLabel>Name of Project</FormLabel>
+                        <Input style={{width:'50%'}} onChange = {onInputChange} ref={initialRef} placeholder='Enter name' />
+                      </FormControl>
+                    </ModalBody>
+                    
+
+                    <ModalFooter>
+                      <div>
+                        <Button onClick={createWebSite} colorScheme='blue' mr={3}>
+                          Save
+                        </Button>
+                        <Button onClick={onClose}>Close</Button>
                       </div>
-                      <div style={{marginTop:5}}>
-                        Show yourself on the blockchain
+                    </ModalFooter>
 
-                      </div>
-                    </Box>
-                </Box>
+                      
+                  
+                  </div>
 
-                <Box style={{marginRight:25, opacity: 0.3}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                  <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
-                  <Box p='6'>
-                      <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                        <Badge borderRadius='full' px='3' colorScheme='teal'>
-                          Coming soon
-                        </Badge>
-                        <Box
-                          color='gray.500'
-                          fontWeight='semibold'
-                          letterSpacing='wide'
-                          fontSize='xs'
-                          textTransform='uppercase'
-                          ml='2'
-                        >
-                          5 contracts &bull; 3 contracts
-                        </Box>
-                      </Box>
-                      <div
-                        style={{fontWeight:'bold', fontSize:20}}
-                      >
-                        NFT Collections
-                      </div>
-                      <div style={{marginTop:5}}>
-                        Mint NFT, Buy NFT, Sell NFT ...
+                }
 
-                      </div>
-                    </Box>
-                </Box>
-
-
-
-                <Box style={{marginRight:25, opacity: 0.3}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                  <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
-                  <Box p='6'>
-                      <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                        <Badge borderRadius='full' px='3' colorScheme='teal'>
-                          Coming soon
-                        </Badge>
-                        <Box
-                          color='gray.500'
-                          fontWeight='semibold'
-                          letterSpacing='wide'
-                          fontSize='xs'
-                          textTransform='uppercase'
-                          ml='2'
-                        >
-                          5 contracts &bull; 3 contracts
-                        </Box>
-                      </Box>
-                      <div
-                        style={{fontWeight:'bold', fontSize:20}}
-                      >
-                        DAOs
-                      </div>
-                      <div style={{marginTop:5}}>
-                        Tokenomics, governance, treasury
-
-                      </div>
-                    </Box>
-                </Box>
-
-                {/*
-                <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                  <Image src={'https://images.unsplash.com/photo-1643101808019-34feab61ea6a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'} alt={'Rear view of modern home with pool'} />
-                  <Box p='6'>
-                      <Box display='flex' alignItems='baseline'>
-                        <Badge borderRadius='full' px='2' colorScheme='teal'>
-                          Coming soon
-                        </Badge>
-                        <Box
-                          color='gray.500'
-                          fontWeight='semibold'
-                          letterSpacing='wide'
-                          fontSize='xs'
-                          textTransform='uppercase'
-                          ml='2'
-                        >
-                          2 beds &bull; 3 baths
-                        </Box>
-                      </Box>
-                      <Box
-                        mt='1'
-                        fontWeight='semibold'
-                        as='h4'
-                        lineHeight='tight'
-                        isTruncated
-                      >
-                        Banking coming soon...
-                      </Box>
-                      <Box>
-                        Send Eth, Receive Eth, ...
-
-                      </Box>
-                    </Box>
-                </Box>
-                */}
-              </ModalBody>
-
-
-              <ModalBody pb={6}>
-             
-                <FormControl>
-                  <FormLabel>Name of Project</FormLabel>
-                  <Input style={{width:'50%'}} onChange = {onInputChange} ref={initialRef} placeholder='Enter name' />
-                </FormControl>
+                
               
-              </ModalBody>
+                      
+             
 
-              <ModalFooter>
-                <Button onClick={createWebSite} colorScheme='blue' mr={3}>
-                  Save
-                </Button>
-                <Button onClick={onClose}>Cancel</Button>
-              </ModalFooter>
+
+              
             </ModalContent>
           </Modal>
 

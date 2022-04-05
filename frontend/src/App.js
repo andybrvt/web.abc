@@ -86,7 +86,7 @@ export const App = ()=> {
             <Route exact path="/test" element={<MoralisTest history={history}/>} />
             <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
             <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
-            <Route exact path="/build/:websiteId" element={<MainBuildContainer history={history}/>} />
+            <Route exact path="/build/:websiteId/:buildType" element={<MainBuildContainer history={history}/>} />
             <Route exact path="/designerTest" element={<Canvas history={history}/>} />
             <Route exact path="/previewPage/:websiteId/:pageId" element={<PreviewPage history={history}/>} />
             <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />

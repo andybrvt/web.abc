@@ -171,13 +171,14 @@ class CreateWebsite(APIView):
     def post(self, request, *args, **kwargs):
         print(request.data['owner'])
 
-        print(request.data)
+        print(request.data['type'])
         address, created = models.OwnerWalletKey.objects.get_or_create(
             publicKey = request.data['owner']
         )
         website = models.Website.objects.create(
             owner = address,
-            name = request.data['name']
+            name = request.data['name'],
+            type = request.data['type']
         )
         websiteId = website.id
         return Response(websiteId)

@@ -69,7 +69,7 @@ export const  Home = (props) => {
 
   };
 
-  
+
 
 
   const handleChange = (value) => setValue(value)
@@ -81,17 +81,18 @@ export const  Home = (props) => {
   const [triggerChoice, setTriggerChoice] = React.useState(false)
   const {activateBrowserWallet, account } = useEthers();
   const etherBalance = useEtherBalance(account);
-  const createWebSite = () => {
+  const createWebSite = (type) => {
 
     // Now you can create your website
     const formData = new FormData()
     formData.append("owner", account)
     formData.append("name", name)
+    formData.append('type', type)
 
     axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
     .then(res => {
 
-      props.history.push(`/build/${res.data}`, {
+      props.history.push(`/build/${res.data}/${type}`, {
         websiteId: res.data
       })
 
@@ -141,8 +142,9 @@ export const  Home = (props) => {
 
 
 
-  const onBuildDirect = (websiteId) => {
-    props.history.push(`/build/${websiteId}`,{
+  const onBuildDirect = (websiteId, websiteType) => {
+    console.log(websiteId, websiteType)
+    props.history.push(`/build/${websiteId}/${websiteType}`,{
       websiteId: websiteId
     })
   }
@@ -168,7 +170,7 @@ export const  Home = (props) => {
                 Customize Smart Contract
               </Button>
               */}
-              
+
             </Stack>
           </div>
 
@@ -220,7 +222,7 @@ export const  Home = (props) => {
           </div>
           */}
 
-         
+
           <Modal
             id='mymodal'
             initialFocusRef={initialRef}
@@ -234,17 +236,17 @@ export const  Home = (props) => {
               <ModalCloseButton onClick={()=>setTriggerChoice("")} />
                 {
                   (triggerChoice=="nftChoice")?
-                  
+
                   <div>
-                    
-                    <QueueAnim 
+
+                    <QueueAnim
                       type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
                       delay={300}>
                     <div key="1">enter in queue</div>
                     <div key="2">enter in queue</div>
                     <div key="3">
-                      
+
 
 
                     {
@@ -254,7 +256,9 @@ export const  Home = (props) => {
                              <Button onClick={()=>setTriggerChoice("")} mr={3}>
                               Back
                             </Button>
-                            <Button colorScheme='blue'>Next</Button>
+                            <Button
+                              onClick = {() => createWebSite("nft")}
+                               colorScheme='blue'>Next</Button>
                           </div>
                         </ModalFooter>
                         :
@@ -265,16 +269,16 @@ export const  Home = (props) => {
                     </div>
 
                     </QueueAnim>
-                    
-                 
 
-                      
+
+
+
                   </div>
-         
+
                   :
                   <div>
                     <ModalBody pb={20}>
-                      <QueueAnim  style={{display:'flex', flexDirection:'row'}} 
+                      <QueueAnim  style={{display:'flex', flexDirection:'row'}}
                        type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
                       interval={500}
@@ -284,7 +288,7 @@ export const  Home = (props) => {
                             style={{height:400}}
                             class="choiceBox" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                           <Image
-                        
+
                           src={'https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'} alt={'Rear view of modern home with pool'}/>
                           <Box p='6'>
                               <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
@@ -315,7 +319,7 @@ export const  Home = (props) => {
                           </Box>
                         </div>
                         <div key="b" class="choiceBox">
-                        <Box 
+                        <Box
                           onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                           <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                           <Box p='6'>
@@ -381,8 +385,8 @@ export const  Home = (props) => {
 
                        </div>
                       </QueueAnim>
-                      
-                      
+
+
                     </ModalBody>
 
                     <ModalBody pb={6}>
@@ -391,30 +395,30 @@ export const  Home = (props) => {
                         <Input style={{width:'50%'}} onChange = {onInputChange} ref={initialRef} placeholder='Enter name' />
                       </FormControl>
                     </ModalBody>
-                    
+
 
                     <ModalFooter>
                       <div>
-                        <Button onClick={createWebSite} colorScheme='blue' mr={3}>
+                        <Button onClick={() => createWebSite("personal")} colorScheme='blue' mr={3}>
                           Save
                         </Button>
                         <Button onClick={onClose}>Close</Button>
                       </div>
                     </ModalFooter>
 
-                      
-                  
+
+
                   </div>
 
                 }
 
-                
-              
-                      
-             
 
 
-              
+
+
+
+
+
             </ModalContent>
           </Modal>
 

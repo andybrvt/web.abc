@@ -16,7 +16,7 @@ export const ExampleTemplate = (props) => {
   const item = props.item
   return (
     <Center
-      onClick = {() => props.onBuildDirect(item.id)}
+      onClick = {() => props.onBuildDirect(item.id, item.type)}
       py={12} className = "boxContainer">
       <Box
         role={'group'}

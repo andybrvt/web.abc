@@ -33,4 +33,35 @@ export const CustomMintNFTButton = editor => {
     }
 
   })
+
+}
+
+
+export const CustomNFTMarketPlace = editor => {
+
+  editor.DomComponents.addType("NFTMarketPlace", {
+
+    isComponent: el => {
+      return el.id === "NFTMarketPlace"
+    },
+
+    model: {
+      name: 'NFTMarketPlace',
+      tagName: "NFTMarketPlace",
+      resiable: "true",
+      defaults: {
+        components: model => {
+
+          return(
+            <div>This will be my market place</div>
+          )
+        }
+      },
+      init(){
+
+      }
+    }
+
+
+  })
 }

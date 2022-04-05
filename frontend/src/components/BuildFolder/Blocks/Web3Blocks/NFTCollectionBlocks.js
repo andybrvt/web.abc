@@ -17,6 +17,19 @@ export const NFTCollectionBlocks = [
     `
 
 
+  },
+  {
+    id: "NFTMarketPlace",
+    label: "NFT Market Place",
+    category: "NFT Collection",
+    activate: true,
+    media: `
+      <div>this is a market place</div>
+    `,
+    content: `
+      <div>This is a market place</div>
+    `
+
   }
 
 

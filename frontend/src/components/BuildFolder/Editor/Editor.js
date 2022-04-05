@@ -79,7 +79,8 @@ import {
   CustomSocialMediaFooter
 } from './CustomTypes/CustomSocialMediaType';
 import {
-  CustomMintNFTButton
+  CustomMintNFTButton,
+  CustomNFTMarketPlace
 } from './CustomTypes/CustomNFTCollectionTypes';
 
 import image1 from '../../../images/image3.png';
@@ -155,7 +156,8 @@ const PLUGINS = [
   CustomAddressProfile,
   CustomCopyToClipboard,
   CustomSocialMediaFooter,
-  CustomMintNFTButton
+  CustomMintNFTButton,
+  CustomNFTMarketPlace
 ]
 
 

@@ -285,7 +285,7 @@ export const Editor = (props) => {
       width: 'auto',
       plugins:PLUGINS,
       autosave: true,
-
+      
       selectorManager: {
          componentFirst: true,
        },

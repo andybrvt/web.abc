@@ -235,7 +235,7 @@ export const  Home = (props) => {
       
               { triggerChoice=='nftChoice' ? 
                 <ModalHeader>
-                Start NFT Project
+                Creating a NFT website-- what step are you on?
               </ModalHeader>
                 :
                 <ModalHeader>
@@ -253,14 +253,100 @@ export const  Home = (props) => {
 
                   <div>
 
+
+                    <div style={{display:'flex', flexDirection:'row'}}>
+                      <div class="choiceNFT">
+                        <Box
+                          
+                          onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                          <Center>
+                          <Image src={'https://img.freepik.com/free-vector/business-people-standing-document_1262-19213.jpg?t=st=1649198192~exp=1649198792~hmac=8932d708981d401c253a04216faa0dbf1a60302935d04b7f4907f44993c26460&w=996'} />
+
+                          </Center>
+                          
+                          <Box p='6'>
+                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                  Intermediate
+                                </Badge>
+                                <Box
+                                  color='gray.500'
+                                  fontWeight='semibold'
+                                  letterSpacing='wide'
+                                  fontSize='xs'
+                                  textTransform='uppercase'
+                                  ml='2'
+                                >
+                                  Import info on your collection
+                                </Box>
+                              </Box>
+                              <div
+                                style={{fontWeight:'bold', fontSize:20}}
+                              > 
+                               Own an existing smart contract
+                              </div>
+                              <div style={{marginTop:5}}>
+                              
+                              </div>
+                          </Box>
+                        </Box>
+                      </div>
+                      <div class="choiceNFT">
+                        <Box
+                          
+                          onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                          <Center>
+                          <Image
+                            style={{marginTop:25, width:'50%', height:'50%'}}
+                            src={'https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.png'} alt={'Rear view of modern home with pool'} />
+
+                          </Center>
+                          
+                          <Box p='6'>
+                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                  Intermediate
+                                </Badge>
+                                <Box
+                                  color='gray.500'
+                                  fontWeight='semibold'
+                                  letterSpacing='wide'
+                                  fontSize='xs'
+                                  textTransform='uppercase'
+                                  ml='2'
+                                >
+                                  Import info on your collection
+                                </Box>
+                              </Box>
+                              <div
+                                style={{fontWeight:'bold', fontSize:20}}
+                              >
+                                Own a NFT collection on OpenSea
+                              </div>
+                              <div style={{marginTop:5}}>
+                              
+                              </div>
+                          </Box>
+                        </Box>
+                      </div>
+
+
+                    </div>
+
+                    
+                        
+                        
+
+
                     <QueueAnim
                       type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
                       delay={300}>
                     <div key="1">
                       <div>Enter Smart Contract</div>
-
+                      <Input style={{width:'50%'}} onChange = {onInputChange} ref={initialRef} placeholder='Enter address' />
                       <div>Enter OpenSea URL</div>
+                    
                     </div>
                     <div key="2">enter in queue</div>
                     <div key="3">
@@ -299,74 +385,76 @@ export const  Home = (props) => {
                       <QueueAnim  style={{display:'flex', flexDirection:'row'}}
                        type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
-                      interval={500}
-                      delay={300}>
-                        <div key="a" class="choiceBox">
-                          <Box
-                            style={{height:400}}
-                            class="choiceBox" maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                          <Image
-
-                          src={'https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'} alt={'Rear view of modern home with pool'}/>
-                          <Box p='6'>
-                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                                <Badge borderRadius='full' px='3' colorScheme='teal'>
-                                  New
-                                </Badge>
-                                <Box
-                                  color='gray.500'
-                                  fontWeight='semibold'
-                                  letterSpacing='wide'
-                                  fontSize='xs'
-                                  textTransform='uppercase'
-                                  ml='2'
-                                >
-                                  Time &bull; 5 minutes
-                                </Box>
+                      interval={300}
+                      delay={100}>
+                        <div key="a">
+                          <div class="choiceBox">
+                            <Box
+                              style={{height:400}}
+                              maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                              <Image src={'https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'} alt={'Rear view of modern home with pool'}/>
+                              <Box p='6'>
+                                  <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                    <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                      New
+                                    </Badge>
+                                    <Box
+                                      color='gray.500'
+                                      fontWeight='semibold'
+                                      letterSpacing='wide'
+                                      fontSize='xs'
+                                      textTransform='uppercase'
+                                      ml='2'
+                                    >
+                                      Time &bull; 5 minutes
+                                    </Box>
+                                  </Box>
+                                  <div
+                                    style={{fontWeight:'bold', fontSize:20}}
+                                  >
+                                    Personal Website
+                                  </div>
+                                  <div style={{marginTop:5}}>
+                                     Show yourself on the blockchain
+                                  </div>
                               </Box>
-                              <div
-                                style={{fontWeight:'bold', fontSize:20}}
-                              >
-                                Personal Website
-                              </div>
-                              <div style={{marginTop:5}}>
-                              Show yourself on the blockchain
-
-                              </div>
                             </Box>
-                          </Box>
+                          </div>
+                          
                         </div>
-                        <div key="b" class="choiceBox">
-                        <Box
-                          onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                          <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
-                          <Box p='6'>
-                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                                <Badge borderRadius='full' px='3' colorScheme='teal'>
-                                  Coming soon
-                                </Badge>
-                                <Box
-                                  color='gray.500'
-                                  fontWeight='semibold'
-                                  letterSpacing='wide'
-                                  fontSize='xs'
-                                  textTransform='uppercase'
-                                  ml='2'
-                                >
-                                  5 contracts &bull; 3 contracts
-                                </Box>
-                              </Box>
-                              <div
-                                style={{fontWeight:'bold', fontSize:20}}
-                              >
-                                NFT Collections
-                              </div>
-                              <div style={{marginTop:5}}>
-                                Mint NFT, Buy NFT, Sell NFT ...
+                        <div key="b">
+                          <div class="choiceBox">
+                            <Box
+                            onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                              <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
+                              <Box p='6'>
+                                  <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                    <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                      Coming soon
+                                    </Badge>
+                                    <Box
+                                      color='gray.500'
+                                      fontWeight='semibold'
+                                      letterSpacing='wide'
+                                      fontSize='xs'
+                                      textTransform='uppercase'
+                                      ml='2'
+                                    >
+                                      5 contracts &bull; 3 contracts
+                                    </Box>
+                                  </Box>
+                                  <div
+                                    style={{fontWeight:'bold', fontSize:20}}
+                                  >
+                                    NFT Collections
+                                  </div>
+                                  <div style={{marginTop:5}}>
+                                    Mint NFT, Buy NFT, Sell NFT ...
 
-                              </div>
+                                  </div>
+                                </Box>
                             </Box>
-                         </Box>
+                          </div>
                        </div>
 
 

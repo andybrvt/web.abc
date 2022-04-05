@@ -64,7 +64,6 @@ export const BlockAttribute = (props) => {
 
   }, [props.editor])
 
-
   return(
     <div style={{width:575, background:'#F7FAFC', padding:10}}>
       <Tabs variant='soft-rounded' colorScheme='green'>
@@ -82,7 +81,7 @@ export const BlockAttribute = (props) => {
 
           <TabPanel  style = {{
               maxHeight: "800px",
-              overflow: 'auto'
+              // overflow: 'auto'
             }}>
 
 

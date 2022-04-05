@@ -9,11 +9,11 @@ export const NFTCollectionBlocks = [
     activate: true,
     media: `
       <div>
-        Hi there
+        <button type="button" class="btn btn-primary">Mint</button>
       </div>
     `,
     content: `
-      <div>Here is my nft button</div>
+      <div data-gjs-type= "MintNFTButton"></div>
     `
 
 

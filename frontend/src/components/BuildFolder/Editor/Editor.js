@@ -194,7 +194,7 @@ export const Editor = (props) => {
 
 
 
-  const {websiteId} = useParams()
+  const {websiteId, buildType} = useParams()
 
 
   const {activateBrowserWallet, account, chainId } = useEthers();
@@ -216,10 +216,9 @@ export const Editor = (props) => {
   const [BlockClickType, setBlockClickType]= useState(null);
 
   const [showModal, setShowModal] = useState(false);
-
   const [isNewlyCreated, setIsNewlyCreated] = useState(false);
-
   const [currentPage, setCurrentPage] = useState(null);
+
   const closeImageModal=() => {
     setImageModal(false)
   }
@@ -264,6 +263,11 @@ export const Editor = (props) => {
 
   const wrapperRef  = useRef(null);
   useOutSideAlerter(wrapperRef)
+
+
+  const showPersonalTemplate = (editor) =>{
+
+  }
 
   useEffect(() => {
     const editor = grapesjs.init({
@@ -335,68 +339,18 @@ export const Editor = (props) => {
       },
       assetManager:{
         assets: [
-      'https://via.placeholder.com/350x250/78c5d6/fff/image1.jpg',
-      'https://via.placeholder.com/350x250/459ba8/fff/image2.jpg',
-      'https://via.placeholder.com/350x250/79c267/fff/image3.jpg',
-      'https://via.placeholder.com/350x250/c5d647/fff/image4.jpg',
-      'https://via.placeholder.com/350x250/f28c33/fff/image5.jpg',
-      'https://via.placeholder.com/350x250/e868a2/fff/image6.jpg',
-      'https://via.placeholder.com/350x250/cc4360/fff/image7.jpg',
-    ],
+          'https://via.placeholder.com/350x250/78c5d6/fff/image1.jpg',
+          'https://via.placeholder.com/350x250/459ba8/fff/image2.jpg',
+          'https://via.placeholder.com/350x250/79c267/fff/image3.jpg',
+          'https://via.placeholder.com/350x250/c5d647/fff/image4.jpg',
+          'https://via.placeholder.com/350x250/f28c33/fff/image5.jpg',
+          'https://via.placeholder.com/350x250/e868a2/fff/image6.jpg',
+          'https://via.placeholder.com/350x250/cc4360/fff/image7.jpg',
+        ],
         // custom:true,
       },
       panels: {
-        defaults: [
-
-        // {
-        //   id:'panel-switcher', // id of the element, honestly be any becuase you are adding shit in
-        //   el: '.panel__switcher', // this is the element you want to put it in
-        //   buttons:[
-        //     {
-        //       id: 'show-layers',
-        //       active: true, // gotta set this one too to active only (like the button is clicked on)
-        //       label: 'Layers',
-        //       command: "show-layers", //PUT BACK LATER
-        //       togglable: false,
-        //     },
-        //     {
-        //       id: 'show-style',
-        //       active: true, // means when the button is active then the thing runs
-        //       label: 'Styles',
-        //       command: 'show-styles', // PUT BACK LATER
-        //       togglable: false
-        //     },
-        //     {
-        //       id: 'Traits',
-        //       active: true,
-        //       label: "Traits",
-        //       command: 'show-traits',
-        //       togglable: false
-        //     },
-        //     {
-        //       id: 'alert-button',
-        //       className: 'btn-alert-button',
-        //       label: 'Clear',
-        //       command(editor) {
-        //         // editor.BlockManager.getAll().reset();
-        //         editor.runCommand('core:canvas-clear');
-        //       }
-        //
-        //     },
-        //     {
-        //       id: 'export',
-        //       className: 'btn-alert-button',
-        //       label: "Export",
-        //       command(editor){
-        //         editor.runCommand("export-template")
-        //       }
-        //     },
-        //
-        //   ]
-        // },
-
-
-      ]
+        defaults: []
       },
       pageManager: {
         // pages: [
@@ -506,11 +460,7 @@ export const Editor = (props) => {
 
         if(type === "AddressProfile"){
 
-          // const wrapper = editor.getWrapper()
-          // const el = wrapper.find('.copy-to-clipboard-address-button')[0]
-          // el.addAttributes({"value":account})
-          // el.components(account.slice(0, 15) +'...')
-          //
+
           block.append(
 
             <div data-gjs-type ="box" class = "profile-inner-wrapper">
@@ -880,41 +830,6 @@ export const Editor = (props) => {
 
         if(type === "StatsList"){
 
-          // GOTTA SET THIS SO IT CAN RUN ON PREVIEW
-          const transactionsOptions = {
-            chain: "eth",
-            address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
-            order: "desc",
-            from_block: "0",
-          };
-          // const transactions = await Web3Api.account.getTransactions(transactionsOptions)
-
-          const transfersOptions = {
-            chain: "eth",
-            address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
-            from_block: "0",
-          };
-          // const transfers = await Web3Api.account.getTokenTransfers(transfersOptions);
-
-
-          const nftTransfersOptions = {
-            chain: "eth",
-            address: "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab",
-            limit: "5",
-          };
-
-          let [transactions, transfers,transfersNFT] = await Promise.all([
-            Web3Api.account.getTransactions(transactionsOptions),
-            Web3Api.account.getTokenTransfers(transfersOptions),
-            Web3Api.account.getNFTTransfers(nftTransfersOptions)
-          ])
-
-          const totalTransactions = transactions.total
-          const totalTransfers = transfers.total
-          const totalTransfersNFT = transfersNFT.total
-          const target = block
-          const targetId = block.getId()
-
           block.set("script", `
             async function script(props){
 
@@ -986,10 +901,6 @@ export const Editor = (props) => {
               })
             }
           `)
-
-
-
-
         }
 
       }
@@ -1005,35 +916,12 @@ export const Editor = (props) => {
         const pageId = editor.Pages.getSelected().getId()
 
         props.history.push(`/previewPage/${websiteId}/${pageId}`)
-        // const html = editor.getHtml();
-        // const css = editor.getCss();
-        // const js = editor.getJs();
-        // console.log(js)
-        // let formData = new FormData()
-        // formData.append("css", css)
-        // formData.append('js', js)
-        //
-        //
-        // axios.post(`${global.API_ENDPOINT}/builder/uploadCss`, formData)
-        // .then(res=> {
-        //
-        //   props.history.push(`/previewPage/${websiteId}/1`, {
-        //     html: html,
-        //     css: css,
-        //     js: js,
-        //     websiteId:websiteId,
-        //     pageId: 1,
-        //   })
-        //
-        // })
-
 
       }
 
     })
 
     editor.on('run:export-template:before', opts => {
-      console.log('Before the command run');
       if (0 /* some condition */) {
         opts.abort = 1;
       }
@@ -1041,27 +929,6 @@ export const Editor = (props) => {
 
     editor.on('component:selected', (block, obj) =>{
       setBlockClickType(block._previousAttributes.type)
-
-
-
-      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()))
-      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).top)
-      // console.log(editor.Canvas.getElementPos(editor.getSelected().getEl()).left)
-      // if(obj.event) {
-      //   if(obj.event.clientX!=null || obj.event.clientY!=null ) {
-      //     // console.log(obj.event.clientX)
-      //
-      //     // console.log(obj.event.clientY)
-      //     testCoord(
-      //      editor.Canvas.getElementPos(editor.getSelected().getEl()).left,
-      //      editor.Canvas.getElementPos(editor.getSelected().getEl()).top,
-      //      obj.event.srcElement.clientWidth, obj.event.srcElement.clientHeight
-      //     )
-      //   }
-      // }
-
-
-
 
       // SET SCRIPTS AT DEPLOYMENT ONLY (OR YOU CAN RUN THIS ON JUST THE PREVIEW PAGE
       // NO NEED TO HAVE ANY CONNECTIONS WITH THE EDITOR)
@@ -1117,11 +984,6 @@ export const Editor = (props) => {
 
     })
 
-    editor.on("storage:store", function(e){
-
-
-    })
-
 
     editor.on("storage:load", function(e){
       axios.get(`${global.API_ENDPOINT}/builder/getWebsitePages/${websiteId}`)
@@ -1137,470 +999,470 @@ export const Editor = (props) => {
     setTimeout(() => {
       axios.get(`${global.API_ENDPOINT}/builder/isNewlyCreated/${websiteId}`)
       .then( res => {
-
-        console.log(res.data, 'put in the new stuf erhe')
-
         setIsNewlyCreated(res.data)
         if(res.data === true){
 
-          onInitialModalOpen()
+          if(buildType === "personal"){
+            onInitialModalOpen()
 
-          editor.addComponents(
-               `
-               <div data-gjs-type = "AddressProfile"></div>
-              <div data-gjs-type = "SocialMediaFooter"></div>
-              <div data-gjs-type = "AutomaticNFTShowcase"></div>
-              <div data-gjs-type = "StatsList"></div>
-              <div data-gjs-type = "TransactionList"></div>
-               `
-             )
+            editor.addComponents(
+                 `
+                 <div data-gjs-type = "AddressProfile"></div>
+                <div data-gjs-type = "SocialMediaFooter"></div>
+                <div data-gjs-type = "AutomaticNFTShowcase"></div>
+                <div data-gjs-type = "StatsList"></div>
+                <div data-gjs-type = "TransactionList"></div>
+                 `
+               )
 
-          setTimeout(() => {
-            editor.getComponents().forEach(component => {
-              const type = component.get("type")
-              // const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+            setTimeout(() => {
+              editor.getComponents().forEach(component => {
+                const type = component.get("type")
+                // const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
 
 
-              if(type === "AddressProfile"){
-                component.append(
+                if(type === "AddressProfile"){
+                  component.append(
 
-                  <div data-gjs-type ="box" class = "profile-inner-wrapper">
-                    <div class = "userCircleWrapper">
-                      <div class = "userCircle">
-                        <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
+                    <div data-gjs-type ="box" class = "profile-inner-wrapper">
+                      <div class = "userCircleWrapper">
+                        <div class = "userCircle">
+                          <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
+                        </div>
                       </div>
-                    </div>
-                    <div class = "centerInfo">
-                      <h1 data-gjs-type ="text">
-                        @username
-                      </h1>
-                    </div>
-
-
-                      <div data-gjs-type ="CopyToClipboard" value = {account} >
-                        {account.slice(0,15)+'...'}
+                      <div class = "centerInfo">
+                        <h1 data-gjs-type ="text">
+                          @username
+                        </h1>
                       </div>
 
-                  </div>
-                )
+
+                        <div data-gjs-type ="CopyToClipboard" value = {account} >
+                          {account.slice(0,15)+'...'}
+                        </div>
+
+                    </div>
+                  )
 
 
-              }
-              if(type === "AutomaticNFTShowcase"){
-                component.set("script", `
-                  async function script(props){
+                }
+                if(type === "AutomaticNFTShowcase"){
+                  component.set("script", `
+                    async function script(props){
 
-                    const fixURL = (url) => {
-                      if(url !== null && url !== undefined){
-                        if(url.startsWith("ipfs")){
-                          return "https://ipfs.moralis.io:2053/ipfs/"+url.split("ipfs://").slice(-1)[0]
+                      const fixURL = (url) => {
+                        if(url !== null && url !== undefined){
+                          if(url.startsWith("ipfs")){
+                            return "https://ipfs.moralis.io:2053/ipfs/"+url.split("ipfs://").slice(-1)[0]
+                          }
+                          else {
+                            return url+"?format=json"
+                          }
+
                         }
-                        else {
-                          return url+"?format=json"
-                        }
+                      }
+
+                      function imageExists(image_url){
+
+                          var http = new XMLHttpRequest();
+
+                          http.open('HEAD', image_url, false);
+                          http.send();
+
+                          return http.status != 404;
 
                       }
+
+
+                      // let spinnerWrapper = document.getElementsByClassName("nft-collection-container-background")[0].getElementsByClassName("");
+
+                      let placeHolderContainer = document.getElementsByClassName("delete-nft-collectionContainer")[0];
+
+                      let collectionContainer = document.querySelectorAll(".nft-collection-container");
+                      console.log(collectionContainer, 'whattt is this')
+
+                      const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+                      const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+                      Moralis.start({ serverUrl, appId });
+                      const options = {
+                        chain: "eth",
+                        address: "${account}",
+                      }
+
+                      const nftList = await Moralis.Web3API.account.getNFTs(options);
+
+
+                      placeHolderContainer.parentElement.removeChild(placeHolderContainer);
+
+
+                      nftList.result.forEach(async(nft) =>{
+                        const metadata = JSON.parse(nft.metadata)
+
+                        if(metadata !== null){
+
+                          const img = fixURL(metadata.image);
+                          const name = metadata.name;
+
+                          if(metadata.name === undefined){
+                            console.log(metadata)
+                          }
+
+                          collectionContainer.forEach((collection) => {
+                            console.log(collection)
+
+
+                            var nftContainers= document.createElement("div");
+                            nftContainers.className = 'nftContainers';
+
+                            // The card porition of the nft (picture)
+                            var nftCards = document.createElement("div")
+                            nftCards.className = "nftCards";
+                            var nftImages = document.createElement("img");
+                            nftImages.className = "nftImages";
+                            nftImages.src = img;
+                            nftCards.appendChild(nftImages);
+
+
+                            // The name porition of the nft
+                            var nftName = document.createElement("div");
+                            nftName.className = "nftName";
+                            var nftNameText = document.createElement("div");
+                            nftNameText.className = "nftNameText";
+                            nftNameText.appendChild(document.createTextNode(name));
+                            nftName.appendChild(nftNameText);
+
+
+                            nftContainers.appendChild(nftCards);
+                            nftContainers.appendChild(nftName);
+
+                            collection.appendChild(nftContainers);
+                          })
+
+
+                        } else if(nft.token_uri !== null){
+                          let url = fixURL(nft.token_uri)
+                          const params = { theUrl: url}
+
+                          const data = await Moralis.Cloud.run("fetchJSON", params)
+
+                          console.log(data, 'stuff here')
+                          if (data.status === 302){
+                            const newUrl = data.headers.location
+
+                            const newParams = {theUrl: newUrl}
+                            const newData = await Moralis.Cloud.run("fetchJSON", params)
+
+                            const img = fixURL(newData.image);
+                            const name = newData.name;
+
+                            if(newData.name === undefined){
+                              console.log(metadata)
+                            }
+
+                            collectionContainer.forEach((collection) => {
+                              console.log(collection)
+
+
+                              var nftContainers= document.createElement("div");
+                              nftContainers.className = 'nftContainers';
+
+                              // The card porition of the nft (picture)
+                              var nftCards = document.createElement("div")
+                              nftCards.className = "nftCards";
+                              var nftImages = document.createElement("img");
+                              nftImages.className = "nftImages";
+                              nftImages.src = img;
+                              nftCards.appendChild(nftImages);
+
+
+                              // The name porition of the nft
+                              var nftName = document.createElement("div");
+                              nftName.className = "nftName";
+                              var nftNameText = document.createElement("div");
+                              nftNameText.className = "nftNameText";
+                              nftNameText.appendChild(document.createTextNode(name));
+                              nftName.appendChild(nftNameText);
+
+
+                              nftContainers.appendChild(nftCards);
+                              nftContainers.appendChild(nftName);
+
+                              collection.appendChild(nftContainers);
+                            })
+
+
+                          } else {
+                            const img = fixURL(data.image);
+                            const name = data.name;
+
+                            if(data.name === undefined){
+                              console.log(metadata)
+                            }
+
+                            collectionContainer.forEach((collection) => {
+                              console.log(collection)
+
+
+                              var nftContainers= document.createElement("div");
+                              nftContainers.className = 'nftContainers';
+
+                              // The card porition of the nft (picture)
+                              var nftCards = document.createElement("div")
+                              nftCards.className = "nftCards";
+                              var nftImages = document.createElement("img");
+                              nftImages.className = "nftImages";
+                              nftImages.src = img;
+                              nftCards.appendChild(nftImages);
+
+
+                              // The name porition of the nft
+                              var nftName = document.createElement("div");
+                              nftName.className = "nftName";
+                              var nftNameText = document.createElement("div");
+                              nftNameText.className = "nftNameText";
+                              nftNameText.appendChild(document.createTextNode(name));
+                              nftName.appendChild(nftNameText);
+
+
+                              nftContainers.appendChild(nftCards);
+                              nftContainers.appendChild(nftName);
+
+                              collection.appendChild(nftContainers);
+                            })
+                          }
+                        }
+                      })
                     }
+                  `)
 
-                    function imageExists(image_url){
+                }
 
-                        var http = new XMLHttpRequest();
+                if(type === "TransactionList"){
+                  const transactionAddress = 'https://etherscan.io/tx/'
+                  const addressAddress = "https://etherscan.io/address/"
 
-                        http.open('HEAD', image_url, false);
-                        http.send();
+                  component.set("script", `
+                    async function script(props){
 
-                        return http.status != 404;
+                      let spinnerWrapper = document.getElementsByClassName("nft-transactions-background-container")[0].getElementsByClassName("spinner-border")[0]
+                      console.log(spinnerWrapper)
 
-                    }
+                      const transactionAddress = 'https://etherscan.io/tx/'
+                      const addressAddress = "https://etherscan.io/address/"
 
-
-                    // let spinnerWrapper = document.getElementsByClassName("nft-collection-container-background")[0].getElementsByClassName("");
-
-                    let placeHolderContainer = document.getElementsByClassName("delete-nft-collectionContainer")[0];
-
-                    let collectionContainer = document.querySelectorAll(".nft-collection-container");
-                    console.log(collectionContainer, 'whattt is this')
-
-                    const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
-                    const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
-                    Moralis.start({ serverUrl, appId });
-                    const options = {
-                      chain: "eth",
-                      address: "${account}",
-                    }
-
-                    const nftList = await Moralis.Web3API.account.getNFTs(options);
-
-
-                    placeHolderContainer.parentElement.removeChild(placeHolderContainer);
-
-
-                    nftList.result.forEach(async(nft) =>{
-                      const metadata = JSON.parse(nft.metadata)
-
-                      if(metadata !== null){
-
-                        const img = fixURL(metadata.image);
-                        const name = metadata.name;
-
-                        if(metadata.name === undefined){
-                          console.log(metadata)
+                      const renderTimestamp = timestamp =>{
+                        let prefix = '';
+                        const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000)
+                        if (timeDiff < 1 ) {
+                          prefix = 'Just now';
+                        } else if (timeDiff < 60 && timeDiff >= 1 ) {
+                          prefix = timeDiff+' minutes ago';
+                        }else if (timeDiff < 24*60 && timeDiff > 60) {
+                          prefix = Math.round(timeDiff/60)+' hours ago';
+                        } else if (timeDiff < 31*24*60 && timeDiff > 24*60) {
+                          prefix = Math.round(timeDiff/(60*24))+' days ago';
+                        } else {
+                            prefix = new Date(timestamp).toLocaleDateString("en-US");
                         }
 
-                        collectionContainer.forEach((collection) => {
-                          console.log(collection)
+                        return prefix;
+                      }
+
+                      const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+                      const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+                      Moralis.start({ serverUrl, appId });
 
 
-                          var nftContainers= document.createElement("div");
-                          nftContainers.className = 'nftContainers';
 
-                          // The card porition of the nft (picture)
-                          var nftCards = document.createElement("div")
-                          nftCards.className = "nftCards";
-                          var nftImages = document.createElement("img");
-                          nftImages.className = "nftImages";
-                          nftImages.src = img;
-                          nftCards.appendChild(nftImages);
-
-
-                          // The name porition of the nft
-                          var nftName = document.createElement("div");
-                          nftName.className = "nftName";
-                          var nftNameText = document.createElement("div");
-                          nftNameText.className = "nftNameText";
-                          nftNameText.appendChild(document.createTextNode(name));
-                          nftName.appendChild(nftNameText);
+                      const options = {
+                        chain: "eth",
+                        address: "${account}",
+                        order: "desc",
+                        from_block: "0",
+                      };
+                      const transactions = await Moralis.Web3API.account.getTransactions(options);
+                      const recentTransactions = transactions.result.slice(0,20)
 
 
-                          nftContainers.appendChild(nftCards);
-                          nftContainers.appendChild(nftName);
+                      spinnerWrapper.parentElement.removeChild(spinnerWrapper);
 
-                          collection.appendChild(nftContainers);
+
+
+                      let transactionContainer = document.querySelectorAll(".nft-transactions-container");
+                      console.log(transactionContainer)
+
+                      transactionContainer.forEach((container) => {
+                        console.log(container)
+
+                        recentTransactions.forEach((transaction, index) => {
+                          console.log(transaction)
+
+                          var element = document.createElement("div");
+                          element.className = "transactionItem";
+                          element.key = index;
+
+                          // FOR TX SYMBOL
+                          var txBox = document.createElement("div");
+                          txBox.className += "txBox";
+                          var tx = document.createElement("div");
+                          tx.appendChild(document.createTextNode("TX"));
+                          txBox.appendChild(tx);
+                          element.appendChild(txBox);
+
+                          // FOR HASH BLOCK
+                          var hashBlock = document.createElement("div");
+                          hashBlock.className += "hashBlock";
+                          var hash = document.createElement("div")
+                          var hashLink = document.createElement("a")
+                          hashLink.href = transactionAddress+transaction.hash;
+                          hashLink.target ="_blank";
+                          hashLink.appendChild(document.createTextNode(transaction.hash.slice(0,14)+"..."))
+                          hash.appendChild(hashLink)
+                          hashBlock.appendChild(hash)
+                          element.appendChild(hashBlock)
+
+
+                          // FOR TO FROM BLOCK
+                          var toFromBlock = document.createElement("div")
+                          toFromBlock.className = "toFromBlock";
+
+                          var toFromContainer = document.createElement("div")
+                          toFromContainer.className = "toFromContainer";
+
+                          var fromContainer = document.createElement("div");
+                          fromContainer.appendChild(document.createTextNode("From "));
+                          var fromHash = document.createElement("a");
+                          fromHash.href = addressAddress + transaction.from_address;
+                          fromHash.target ="_blank";
+                          fromHash.appendChild(document.createTextNode(transaction.from_address.slice(0,14)+'...'));
+                          fromContainer.appendChild(fromHash)
+
+                          var toContainer = document.createElement("div");
+                          toContainer.appendChild(document.createTextNode("To "));
+                          var toHash = document.createElement("a");
+                          toHash.href =addressAddress + transaction.to_address;
+                          toHash.target ="_blank";
+                          toHash.appendChild(document.createTextNode(transaction.to_address.slice(0,14)+"..."));
+                          toContainer.appendChild(toHash);
+
+                          toFromContainer.appendChild(fromContainer)
+                          toFromContainer.appendChild(toContainer)
+
+                          toFromBlock.appendChild(toFromContainer)
+                          element.appendChild(toFromBlock)
+
+
+
+                          // DATEBLOCK
+                          var dateBlock = document.createElement("div")
+                          dateBlock.className = "dateBlock";
+                          var dateCont = document.createElement("div")
+                          dateCont.appendChild(document.createTextNode(renderTimestamp(transaction.block_timestamp)));
+                          dateBlock.appendChild(dateCont);
+
+                          element.appendChild(dateBlock);
+
+                          container.appendChild(element)
+
+
                         })
 
 
-                      } else if(nft.token_uri !== null){
-                        let url = fixURL(nft.token_uri)
-                        const params = { theUrl: url}
+                      })
+                    }
+                  `)
+                }
 
-                        const data = await Moralis.Cloud.run("fetchJSON", params)
-
-                        console.log(data, 'stuff here')
-                        if (data.status === 302){
-                          const newUrl = data.headers.location
-
-                          const newParams = {theUrl: newUrl}
-                          const newData = await Moralis.Cloud.run("fetchJSON", params)
-
-                          const img = fixURL(newData.image);
-                          const name = newData.name;
-
-                          if(newData.name === undefined){
-                            console.log(metadata)
-                          }
-
-                          collectionContainer.forEach((collection) => {
-                            console.log(collection)
+                if(type === "StatsList"){
 
 
-                            var nftContainers= document.createElement("div");
-                            nftContainers.className = 'nftContainers';
+                  component.set("script", `
+                    async function script(props){
 
-                            // The card porition of the nft (picture)
-                            var nftCards = document.createElement("div")
-                            nftCards.className = "nftCards";
-                            var nftImages = document.createElement("img");
-                            nftImages.className = "nftImages";
-                            nftImages.src = img;
-                            nftCards.appendChild(nftImages);
+                      const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
+                      const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
+                      Moralis.start({ serverUrl, appId });
 
+                      const transactionsOptions = {
+                        chain: "eth",
+                        address: "${account}",
+                        order: "desc",
+                        from_block: "0",
+                      };
 
-                            // The name porition of the nft
-                            var nftName = document.createElement("div");
-                            nftName.className = "nftName";
-                            var nftNameText = document.createElement("div");
-                            nftNameText.className = "nftNameText";
-                            nftNameText.appendChild(document.createTextNode(name));
-                            nftName.appendChild(nftNameText);
-
-
-                            nftContainers.appendChild(nftCards);
-                            nftContainers.appendChild(nftName);
-
-                            collection.appendChild(nftContainers);
-                          })
+                      const transfersOptions = {
+                        chain: "eth",
+                        address: "${account}",
+                        from_block: "0",
+                      };
 
 
-                        } else {
-                          const img = fixURL(data.image);
-                          const name = data.name;
+                      const nftTransfersOptions = {
+                        chain: "eth",
+                        address: "${account}",
+                        limit: "5",
+                      };
 
-                          if(data.name === undefined){
-                            console.log(metadata)
-                          }
+                      let [transactions, transfers,transfersNFT] = await Promise.all([
+                        Moralis.Web3API.account.getTransactions(transactionsOptions),
+                        Moralis.Web3API.account.getTokenTransfers(transfersOptions),
+                        Moralis.Web3API.account.getNFTTransfers(nftTransfersOptions)
+                      ])
 
-                          collectionContainer.forEach((collection) => {
-                            console.log(collection)
-
-
-                            var nftContainers= document.createElement("div");
-                            nftContainers.className = 'nftContainers';
-
-                            // The card porition of the nft (picture)
-                            var nftCards = document.createElement("div")
-                            nftCards.className = "nftCards";
-                            var nftImages = document.createElement("img");
-                            nftImages.className = "nftImages";
-                            nftImages.src = img;
-                            nftCards.appendChild(nftImages);
-
-
-                            // The name porition of the nft
-                            var nftName = document.createElement("div");
-                            nftName.className = "nftName";
-                            var nftNameText = document.createElement("div");
-                            nftNameText.className = "nftNameText";
-                            nftNameText.appendChild(document.createTextNode(name));
-                            nftName.appendChild(nftNameText);
-
-
-                            nftContainers.appendChild(nftCards);
-                            nftContainers.appendChild(nftName);
-
-                            collection.appendChild(nftContainers);
-                          })
+                      const totalTransactions = transactions.total
+                      const totalTransfers = transfers.total
+                      const totalTransfersNFT = transfersNFT.total
 
 
 
+                      let containers = document.querySelectorAll(".numTransactions, .numTransfers, .numNFTTransfers");
+                      let interval = 2000;
 
+
+                      containers.forEach((container) => {
+
+                        console.log(container.className);
+
+                        let startValue = 0;
+                        let endValue = 0;
+                        if(container.className === "numTransactions"){
+                          endValue = parseInt(totalTransactions);
+                        }
+                        if(container.className === "numTransfers"){
+                          endValue = parseInt(totalTransfers);
+                        }
+                        if(container.className === "numNFTTransfers"){
+                          endValue = parseInt(totalTransfersNFT);
                         }
 
-
-                      }
-
-                    })
-
-
-
-
-                  }
-                `)
-
-              }
-
-              if(type === "TransactionList"){
-                const transactionAddress = 'https://etherscan.io/tx/'
-                const addressAddress = "https://etherscan.io/address/"
-
-                component.set("script", `
-                  async function script(props){
-
-                    let spinnerWrapper = document.getElementsByClassName("nft-transactions-background-container")[0].getElementsByClassName("spinner-border")[0]
-                    console.log(spinnerWrapper)
-
-                    const transactionAddress = 'https://etherscan.io/tx/'
-                    const addressAddress = "https://etherscan.io/address/"
-
-                    const renderTimestamp = timestamp =>{
-                      let prefix = '';
-                      const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000)
-                      if (timeDiff < 1 ) {
-                        prefix = 'Just now';
-                      } else if (timeDiff < 60 && timeDiff >= 1 ) {
-                        prefix = timeDiff+' minutes ago';
-                      }else if (timeDiff < 24*60 && timeDiff > 60) {
-                        prefix = Math.round(timeDiff/60)+' hours ago';
-                      } else if (timeDiff < 31*24*60 && timeDiff > 24*60) {
-                        prefix = Math.round(timeDiff/(60*24))+' days ago';
-                      } else {
-                          prefix = new Date(timestamp).toLocaleDateString("en-US");
-                      }
-
-                      return prefix;
-                    }
-
-                    const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
-                    const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
-                    Moralis.start({ serverUrl, appId });
-
-
-
-                    const options = {
-                      chain: "eth",
-                      address: "${account}",
-                      order: "desc",
-                      from_block: "0",
-                    };
-                    const transactions = await Moralis.Web3API.account.getTransactions(options);
-                    const recentTransactions = transactions.result.slice(0,20)
-
-
-                    spinnerWrapper.parentElement.removeChild(spinnerWrapper);
-
-
-
-                    let transactionContainer = document.querySelectorAll(".nft-transactions-container");
-                    console.log(transactionContainer)
-
-                    transactionContainer.forEach((container) => {
-                      console.log(container)
-
-                      recentTransactions.forEach((transaction, index) => {
-                        console.log(transaction)
-
-                        var element = document.createElement("div");
-                        element.className = "transactionItem";
-                        element.key = index;
-
-                        // FOR TX SYMBOL
-                        var txBox = document.createElement("div");
-                        txBox.className += "txBox";
-                        var tx = document.createElement("div");
-                        tx.appendChild(document.createTextNode("TX"));
-                        txBox.appendChild(tx);
-                        element.appendChild(txBox);
-
-                        // FOR HASH BLOCK
-                        var hashBlock = document.createElement("div");
-                        hashBlock.className += "hashBlock";
-                        var hash = document.createElement("div")
-                        var hashLink = document.createElement("a")
-                        hashLink.href = transactionAddress+transaction.hash;
-                        hashLink.target ="_blank";
-                        hashLink.appendChild(document.createTextNode(transaction.hash.slice(0,14)+"..."))
-                        hash.appendChild(hashLink)
-                        hashBlock.appendChild(hash)
-                        element.appendChild(hashBlock)
-
-
-                        // FOR TO FROM BLOCK
-                        var toFromBlock = document.createElement("div")
-                        toFromBlock.className = "toFromBlock";
-
-                        var toFromContainer = document.createElement("div")
-                        toFromContainer.className = "toFromContainer";
-
-                        var fromContainer = document.createElement("div");
-                        fromContainer.appendChild(document.createTextNode("From "));
-                        var fromHash = document.createElement("a");
-                        fromHash.href = addressAddress + transaction.from_address;
-                        fromHash.target ="_blank";
-                        fromHash.appendChild(document.createTextNode(transaction.from_address.slice(0,14)+'...'));
-                        fromContainer.appendChild(fromHash)
-
-                        var toContainer = document.createElement("div");
-                        toContainer.appendChild(document.createTextNode("To "));
-                        var toHash = document.createElement("a");
-                        toHash.href =addressAddress + transaction.to_address;
-                        toHash.target ="_blank";
-                        toHash.appendChild(document.createTextNode(transaction.to_address.slice(0,14)+"..."));
-                        toContainer.appendChild(toHash);
-
-                        toFromContainer.appendChild(fromContainer)
-                        toFromContainer.appendChild(toContainer)
-
-                        toFromBlock.appendChild(toFromContainer)
-                        element.appendChild(toFromBlock)
-
-
-
-                        // DATEBLOCK
-                        var dateBlock = document.createElement("div")
-                        dateBlock.className = "dateBlock";
-                        var dateCont = document.createElement("div")
-                        dateCont.appendChild(document.createTextNode(renderTimestamp(transaction.block_timestamp)));
-                        dateBlock.appendChild(dateCont);
-
-                        element.appendChild(dateBlock);
-
-                        container.appendChild(element)
-
+                        let duration = Math.floor(interval/endValue);
+                        let counter = setInterval(function(){
+                          startValue += 1;
+                          container.textContent = startValue;
+                          if(startValue == endValue || endValue == 0){
+                            clearInterval(counter);
+                          }
+                        }, duration);
 
                       })
+                    }
+                  `)
+                }
+              })
+            }, 1000)
 
+          }
 
-                    })
-                  }
-                `)
-              }
+          if(buildType === "nft"){
 
-              if(type === "StatsList"){
-
-
-                component.set("script", `
-                  async function script(props){
-
-                    const serverUrl = "https://9gobbcdpfilv.usemoralis.com:2053/server";
-                    const appId = "bcsHHHzi4vzIsFgYSpagHGAE0TVfHY4ivSVJoZfg";
-                    Moralis.start({ serverUrl, appId });
-
-                    const transactionsOptions = {
-                      chain: "eth",
-                      address: "${account}",
-                      order: "desc",
-                      from_block: "0",
-                    };
-
-                    const transfersOptions = {
-                      chain: "eth",
-                      address: "${account}",
-                      from_block: "0",
-                    };
-
-
-                    const nftTransfersOptions = {
-                      chain: "eth",
-                      address: "${account}",
-                      limit: "5",
-                    };
-
-                    let [transactions, transfers,transfersNFT] = await Promise.all([
-                      Moralis.Web3API.account.getTransactions(transactionsOptions),
-                      Moralis.Web3API.account.getTokenTransfers(transfersOptions),
-                      Moralis.Web3API.account.getNFTTransfers(nftTransfersOptions)
-                    ])
-
-                    const totalTransactions = transactions.total
-                    const totalTransfers = transfers.total
-                    const totalTransfersNFT = transfersNFT.total
+          }
 
 
 
-                    let containers = document.querySelectorAll(".numTransactions, .numTransfers, .numNFTTransfers");
-                    let interval = 2000;
 
 
-                    containers.forEach((container) => {
 
-                      console.log(container.className);
 
-                      let startValue = 0;
-                      let endValue = 0;
-                      if(container.className === "numTransactions"){
-                        endValue = parseInt(totalTransactions);
-                      }
-                      if(container.className === "numTransfers"){
-                        endValue = parseInt(totalTransfers);
-                      }
-                      if(container.className === "numNFTTransfers"){
-                        endValue = parseInt(totalTransfersNFT);
-                      }
-
-                      let duration = Math.floor(interval/endValue);
-                      let counter = setInterval(function(){
-                        startValue += 1;
-                        container.textContent = startValue;
-                        if(startValue == endValue || endValue == 0){
-                          clearInterval(counter);
-                        }
-                      }, duration);
-
-                    })
-                  }
-                `)
-              }
-            })
-          }, 1000)
         }
 
       })

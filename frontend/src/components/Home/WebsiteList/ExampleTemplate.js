@@ -6,6 +6,7 @@ import {
   Text,
   Stack,
   Image,
+  Badge
 } from '@chakra-ui/react';
 import React, {useState, useEffect} from 'react';
 import * as dateFns from 'date-fns';
@@ -65,7 +66,17 @@ export const ExampleTemplate = (props) => {
           </Text>
           <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
             {global.CAPITALIZE(item.name)}
+
           </Heading>
+          {
+            item.type === "personal" ?
+
+            <Badge colorScheme='green'>Personal</Badge>
+
+            :
+
+            <Badge colorScheme='blue'>NFT</Badge>
+          }
           <Stack direction={'row'} align={'center'}>
             <Text fontWeight={800} fontSize={'md'}>
               Last Modified

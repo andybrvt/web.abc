@@ -333,7 +333,7 @@ class GetUserWebsites(APIView):
 
         websites = models.Website.objects.filter(
             owner = curUser
-        )
+        ).order_by('-lastChanged')
         serializer_website = serializers.WebSiteSerializer(websites,many = True).data
 
 

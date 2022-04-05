@@ -232,7 +232,21 @@ export const  Home = (props) => {
           >
             <ModalOverlay />
             <ModalContent >
-              <ModalHeader>Create Project </ModalHeader>
+      
+              { triggerChoice=='nftChoice' ? 
+                <ModalHeader>
+                Start NFT Project
+              </ModalHeader>
+                :
+                <ModalHeader>
+                  Create Website
+                </ModalHeader>
+                 
+                 
+              }
+            
+                
+                 
               <ModalCloseButton onClick={()=>setTriggerChoice("")} />
                 {
                   (triggerChoice=="nftChoice")?
@@ -243,7 +257,11 @@ export const  Home = (props) => {
                       type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
                       delay={300}>
-                    <div key="1">enter in queue</div>
+                    <div key="1">
+                      <div>Enter Smart Contract</div>
+
+                      <div>Enter OpenSea URL</div>
+                    </div>
                     <div key="2">enter in queue</div>
                     <div key="3">
 

@@ -14,6 +14,7 @@ import {HeaderBlocks} from './BasicBlocks/HeaderBlocks';
 import {FooterBlocks} from './BasicBlocks/FooterBlocks';
 import {NFTShowcaseBlocks} from './Web3Blocks/NFTShowcaseBlocks';
 import {SocialMediaFooterBlocks} from './BasicBlocks/SocialMediaFooterBlocks';
+import {NFTCollectionBlocks} from './Web3Blocks/NFTCollectionBlocks';
 
 export const NFTBlocksContainer = (props) => {
 
@@ -80,11 +81,14 @@ export const NFTBlocksContainer = (props) => {
     const socialMediaFooter = editor.BlockManager.render(
       SocialMediaFooterBlocks, {external:true}
     )
+    const nftCollectionBlocks = editor.BlockManager.render(
+      NFTCollectionBlocks, {external:true}
+    )
 
 
 
     document.getElementById("blocks").appendChild(mTemplateBlocks);
-    // document.getElementById("blocks").appendChild(nftBlocks);
+    document.getElementById("blocks").appendChild(nftCollectionBlocks);
     document.getElementById("blocks").appendChild(templateBlocks);
     document.getElementById("blocks").appendChild(infoBlocks);
     document.getElementById("blocks").appendChild(headerBlocks);

@@ -78,6 +78,10 @@ import {
 import {
   CustomSocialMediaFooter
 } from './CustomTypes/CustomSocialMediaType';
+import {
+  CustomMintNFTButton
+} from './CustomTypes/CustomNFTCollectionTypes';
+
 import image1 from '../../../images/image3.png';
 import {
   Slider,
@@ -150,7 +154,8 @@ const PLUGINS = [
   CustomStatsList,
   CustomAddressProfile,
   CustomCopyToClipboard,
-  CustomSocialMediaFooter
+  CustomSocialMediaFooter,
+  CustomMintNFTButton
 ]
 
 

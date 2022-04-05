@@ -84,7 +84,7 @@ export const NFTBlocksContainer = (props) => {
 
 
     document.getElementById("blocks").appendChild(mTemplateBlocks);
-    document.getElementById("blocks").appendChild(nftBlocks);
+    // document.getElementById("blocks").appendChild(nftBlocks);
     document.getElementById("blocks").appendChild(templateBlocks);
     document.getElementById("blocks").appendChild(infoBlocks);
     document.getElementById("blocks").appendChild(headerBlocks);

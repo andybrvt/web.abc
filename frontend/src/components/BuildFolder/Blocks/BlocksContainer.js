@@ -117,50 +117,7 @@ export const BlocksContainer = (props) => {
 
   }
 
-    if(category === "shapes"){
-
-      removeAllChild()
-      const shapeBlock = editor.BlockManager.render(
-         Shapes, {external:true})
-
-      document.getElementById('blocks').appendChild(shapeBlock);
-
-
-    }
-
-    if(category === "pens"){
-      removeAllChild()
-      const newBlocks = editor.BlockManager.render([
-         {label: 'Label text 4', content: '<div>Content</div>'}
-       ], {external:true})
-      document.getElementById('blocks').appendChild(newBlocks);
-    }
-
-
-
-    if(category === "input"){
-      removeAllChild()
-      const newBlocks = editor.BlockManager.render([
-         {label: 'Label text 4', content: '<div>Content</div>'}
-       ], {external:true})
-
-       const inputBlocks = editor.BlockManager.render(
-          InputBlocks, {external:true})
-
-      document.getElementById('blocks').appendChild(inputBlocks);
-    }
-
-
-    if(category === "colors"){
-      removeAllChild()
-      const newBlocks = editor.BlockManager.render([
-         {label: 'Label text 5', content: '<div>Content</div>'}
-       ], {external:true})
-
-      document.getElementById('blocks').appendChild(newBlocks);
-
-    }
-
+    
   }, [props.category])
 
 

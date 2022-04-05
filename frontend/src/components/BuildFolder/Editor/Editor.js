@@ -7,6 +7,7 @@ import 'grapesjs/dist/css/grapes.min.css';
 import './Editor.css';
 import imageUser from '../../../images/imageUser.png';
 import {BlocksContainer} from '../Blocks/BlocksContainer';
+import {NFTBlocksContainer} from '../Blocks/NFTBlocksContainer';
 import {LayersContainer} from '../Layers/LayersContainer';
 import {StylesContainer} from '../Styles/StylesContainer';
 import {PagesContainer} from '../Pages/PagesContainer';
@@ -1664,7 +1665,17 @@ export const Editor = (props) => {
         <div ref = {wrapperRef}>
           <Drawer  visibility = {visibility}>
 
+            {
+              buildType === "personal" ?
+
               <BlocksContainer editor = {editorMain} category ={toolsCategory}/>
+
+              :
+
+              <NFTBlocksContainer editor = {editorMain} category = {toolsCategory} />
+
+            }
+
 
 
           </Drawer>

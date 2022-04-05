@@ -17,9 +17,10 @@ export const StylesContainer = (props) => {
   useEffect(() => {
     if(props.editor !== null){
       const tempEditor = props.editor
+      console.log(tempEditor, 'what is this stuff here')
       setEditor(props.editor)
       props.editor.on('style:custom', props =>{
-        setSectors(tempEditor.StyleManager.getSectors({visible:true}))
+        setSectors(tempEditor.StyleManager.getSectors())
       })
 
       // props.editor.on('load', ()=> {
@@ -72,6 +73,7 @@ export const StylesContainer = (props) => {
   }, [props.editor])
 
 
+  console.log(sectors, 'what are these sectors here')
 
   return(
 
@@ -94,10 +96,14 @@ export const StylesContainer = (props) => {
         </div>
       <div>
         {sectors.map((item,index) => {
+          console.log(item,'there are no items')
           return(
-            <SectorContainer
-              blockType={props.blockType}
-              sector = {item}/>
+
+
+              <SectorContainer
+                blockType={props.blockType}
+                sector = {item}/>
+            
           )
         })}
       </div>

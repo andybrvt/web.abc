@@ -369,9 +369,6 @@ export const Editor = (props) => {
         // ]
       },
 
-      styleManager: {
-
-      },
       deviceManager:{
         devices:[
           {

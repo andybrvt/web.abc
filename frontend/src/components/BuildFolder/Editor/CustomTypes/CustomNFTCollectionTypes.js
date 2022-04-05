@@ -20,12 +20,12 @@ export const CustomMintNFTButton = editor => {
         components: model => {
 
           return(
-            <div>Hi there</div>
+            <button type="button" class="btn btn-primary">Mint</button>
           )
         },
 
         init(){
-          
+
         }
 
 

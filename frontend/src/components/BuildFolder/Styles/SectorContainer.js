@@ -8,6 +8,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Spinner
 } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle,
@@ -19,23 +20,36 @@ import { faShapes, faCircle,
 export const SectorContainer = (props) => {
 
 
-  // const [properties, setProperties] = useState([])
+  const [properties, setProperties] = useState([])
 
+  useEffect(() => {
 
-  // useEffect(() => {
-  //
-  //   if(props.sector !== null){
-  //     const sector = props.sector;
-  //     setProperties(sector.getProperties())
-  //   }
-  //
-  // }, [props.sector])
-  console.log('here in the sector container')
-  console.log(props.sector, 'here here here')
-  const sector = props.sector;
-  const properties = sector.getProperties();
+    if(props.sector !== null){
+      const sector = props.sector;
+      setProperties(sector.getProperties())
+    }
+
+  }, [props.sector])
+
+  // const sector = props.sector;
+  // const properties = sector.getProperties();
   return(
-    <div style={{marginBottom:25}} key = {sector.getId()}>
+    <div style={{marginBottom:25}}>
+      {
+        props.sector ?
+
+        <div>
+          {props.sector.getName()}
+        </div>
+
+        :
+
+        <Spinner />
+
+
+      }
+
+      {/*
         {(sector.getName()=="General" || sector.getName()=="Dimension" || sector.getName()=="Decorations")?
           ''
         :
@@ -67,7 +81,6 @@ export const SectorContainer = (props) => {
         </div>
 
         }
-        {/* remove typography from sector when image block */}
 
 
         <div style={{marginTop:10, marginBottom:20}}/>
@@ -215,6 +228,11 @@ export const SectorContainer = (props) => {
 
 
       }
+
+
+
+        */}
+
     </div>
   )
 

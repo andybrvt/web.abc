@@ -44,7 +44,7 @@ export const NFTCollectionBlocks = [
       <div>hey</div>
     `,
     content: `
-      <div>hey</div>
+      <div data-gjs-type= "NFTRoadMap"></div>
     `
   }
 

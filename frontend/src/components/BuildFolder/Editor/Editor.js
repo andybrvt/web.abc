@@ -80,7 +80,8 @@ import {
 } from './CustomTypes/CustomSocialMediaType';
 import {
   CustomMintNFTButton,
-  CustomNFTMarketPlace
+  CustomNFTMarketPlace,
+  CustomNFTRoadMap
 } from './CustomTypes/CustomNFTCollectionTypes';
 
 import image1 from '../../../images/image3.png';
@@ -113,6 +114,7 @@ import axios from 'axios';
 import { useEthers } from "@usedapp/core";
 import { useParams } from 'react-router-dom';
 import {PickNFTModal} from '../NFT/PickNFTModal';
+import {NFTRoadMapModal} from '../NFT/NFTRoadMapModal';
 import {PickImageModal} from './PickImageModal';
 import {AddSocialMediaModal} from '../SocialMedia/AddSocialMediaModal';
 import {EditorHeader} from './EditorHeader'
@@ -157,7 +159,8 @@ const PLUGINS = [
   CustomCopyToClipboard,
   CustomSocialMediaFooter,
   CustomMintNFTButton,
-  CustomNFTMarketPlace
+  CustomNFTMarketPlace,
+  CustomNFTRoadMap
 ]
 
 
@@ -185,7 +188,8 @@ const translatedItems = [
   'AutomaticNFTShowcase',
   'AddressProfile',
   "SocialMediaFooter1",
-  "NFTMarketPlace"
+  "NFTMarketPlace",
+  "NFTRoadMap"
 ]
 
 
@@ -198,6 +202,7 @@ export const Editor = (props) => {
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
   const { isOpen: isSocialMediaOpen, onOpen: onSocialMediaOpen, onClose: onSocialMediaClose} = useDisclosure()
   const { isOpen: isInitialModalOpen, onOpen: onInitialModalOpen, onClose: onInitialModalClose} = useDisclosure()
+  const { isOpen: isNFTRoadMapOpen, onOpen: onNFTRoadMapOpen, onClose: onNFTRoadMapClose} = useDisclosure()
   const [scrollBehavior, setScrollBehavior] = React.useState('inside')
   const btnRef = React.useRef()
 
@@ -412,6 +417,13 @@ export const Editor = (props) => {
       view: {
         onActive(){
           onSocialMediaOpen()
+        }
+      }
+    })
+    editor.DomComponents.addType("NFTRoadMap", {
+      view: {
+        onActive(){
+          onNFTRoadMapOpen()
         }
       }
     })
@@ -1703,6 +1715,12 @@ export const Editor = (props) => {
           editor = {editorMain}/>
 
       </div>
+
+      <NFTRoadMapModal
+        editor = {editorMain}
+        onClose = {onNFTRoadMapClose}
+        isOpen = {isNFTRoadMapOpen}
+         />
 
       <PickNFTModal
         editor = {editorMain}

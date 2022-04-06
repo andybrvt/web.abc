@@ -1,3 +1,4 @@
+import image25 from '../../../../images/image25.png';
 
 
 export const NFTCollectionBlocks = [
@@ -24,13 +25,29 @@ export const NFTCollectionBlocks = [
     category: "NFT Collection",
     activate: true,
     media: `
-      <div>this is a market place</div>
+      <div>
+        <img class="img" src="${image25}" />
+      </div>
     `,
     content: `
       <div data-gjs-type= "NFTMarketPlace"></div>
     `
 
+  },
+
+  {
+    id: "NFTRoadMap",
+    label: "NFT Road Map",
+    category: "NFT Collection",
+    activate: true,
+    media: `
+      <div>hey</div>
+    `,
+    content: `
+      <div>hey</div>
+    `
   }
+
 
 
 ]

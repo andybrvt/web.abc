@@ -99,6 +99,7 @@ export const CustomNFTMarketPlace = editor => {
             text-align: center;
           }
           .buyButtonContainer{
+
             text-align:center;
           }
 
@@ -107,6 +108,30 @@ export const CustomNFTMarketPlace = editor => {
       },
       init(){
 
+      }
+    }
+
+
+  })
+}
+
+
+export const CustomNFTRoadMap = editor => {
+  editor.DomComponents.addType("NFTRoadMap", {
+
+    isComponent: el=> {
+      return el.id === "NFTRoadMap"
+    },
+    model: {
+      name: 'NFTRoadMap',
+      tagName: 'NFTRoadMap',
+      resiable: "true",
+      defaults:{
+        components: model => {
+          return(
+            <div>Hi</div>
+          )
+        }
       }
     }
 

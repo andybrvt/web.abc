@@ -50,12 +50,60 @@ export const CustomNFTMarketPlace = editor => {
       tagName: "NFTMarketPlace",
       resiable: "true",
       defaults: {
-        components: model => {
+        attributes: { class: "nft-marketplace-contianer"},
 
-          return(
-            <div>This will be my market place</div>
-          )
-        }
+        styles: `
+          .nft-marketplace-contianer{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            padding: 50px 15%;
+            font-family: Monospace;
+          }
+          .nftContainers{
+
+            flex:1;
+            flex-basis: 30%;
+            margin: 2px;
+            padding: 25px 0px;
+          }
+          .nftCards {
+            width: 150px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 5px;
+            background: white;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+          }
+          .nftCards img{
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+          }
+          .nftName{
+            position: relative;
+            height: 100px;
+
+          }
+          .nftNameText{
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 80%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 14px;
+            text-align: center;
+          }
+          .buyButtonContainer{
+            text-align:center;
+          }
+
+        `
+
       },
       init(){
 

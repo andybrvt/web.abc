@@ -27,7 +27,7 @@ export const NFTCollectionBlocks = [
       <div>this is a market place</div>
     `,
     content: `
-      <div>This is a market place</div>
+      <div data-gjs-type= "NFTMarketPlace"></div>
     `
 
   }

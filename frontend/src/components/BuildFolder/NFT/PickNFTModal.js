@@ -16,6 +16,7 @@ import $ from 'jquery';
 import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
 import { useEthers } from "@usedapp/core";
 import { Checkbox } from '@chakra-ui/react'
+import { useParams } from 'react-router-dom';
 
 
 export const PickNFTModal  = (props) => {
@@ -32,6 +33,9 @@ export const PickNFTModal  = (props) => {
   const [images, setImages] = useState([])
 
   const [curUrl, setCurUrl] = useState("");
+
+  const {websiteId, buildType} = useParams()
+
 
   const {fetch} = useMoralisCloudFunction(
     "fetchJSON",
@@ -225,6 +229,56 @@ export const PickNFTModal  = (props) => {
     props.onClose()
   }
 
+
+
+    const onApplySellImages = () => {
+
+
+
+      const target = editorMain.getSelected()
+
+      images.forEach(img => {
+        console.log(img)
+        target.append(
+          <div class = "nftContainers">
+
+            <div class = "nftCards">
+              <img class = "nftImages" src = {img.src}/>
+            </div>
+
+            <div class = "nftName">
+
+              <div class = "nftNameText">{img.name}</div>
+
+            </div>
+
+            <div class = "buyButtonContainer">
+              <div>0.5 eth</div>
+              <div>
+                <button type="button" class="btn btn-primary">Buy</button>
+              </div>
+
+            </div>
+
+
+          </div>
+
+        )
+
+
+      })
+
+
+      setNft([])
+      setNFTImgs([])
+      setImages([])
+      props.onClose()
+    }
+
+
+
+
+
   return(
     <Modal
       motionPreset = "none"
@@ -235,7 +289,17 @@ export const PickNFTModal  = (props) => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Choose which NFT you want to display on your website</ModalHeader>
+        {
+          buildType === "personal" ?
+
+          <ModalHeader>Choose which NFT you want to display on your website</ModalHeader>
+
+          :
+
+          <ModalHeader>Choose which NFT you want to sell on your website</ModalHeader>
+
+
+        }
         <ModalCloseButton />
         <ModalBody>
           <div className = "nftHolder">
@@ -282,7 +346,16 @@ export const PickNFTModal  = (props) => {
           <Button onClick={onCloseModal}>Close</Button>
           <Button
             colorScheme='blue'
-            onClick={onApplyImages}>Apply</Button>
+            onClick={
+              buildType === "personal" ?
+
+              onApplyImages
+
+              :
+
+              onApplySellImages
+
+            }>Apply</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

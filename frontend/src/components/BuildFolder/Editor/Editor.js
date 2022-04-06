@@ -184,7 +184,8 @@ const translatedItems = [
   "TransactionList",
   'AutomaticNFTShowcase',
   'AddressProfile',
-  "SocialMediaFooter1"
+  "SocialMediaFooter1",
+  "NFTMarketPlace"
 ]
 
 
@@ -287,7 +288,7 @@ export const Editor = (props) => {
       width: 'auto',
       plugins:PLUGINS,
       autosave: true,
-      
+
       selectorManager: {
          componentFirst: true,
        },
@@ -392,6 +393,14 @@ export const Editor = (props) => {
 
 
     editor.DomComponents.addType("NFTShowcase", {
+      view: {
+        onActive(){
+          onNFTOpen()
+        }
+      }
+    })
+
+    editor.DomComponents.addType("NFTMarketPlace", {
       view: {
         onActive(){
           onNFTOpen()

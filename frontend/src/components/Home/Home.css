@@ -105,3 +105,16 @@
   max-width:1400px; 
   padding:50px;
 }
+
+.addLinkHeader {
+  font-size: 20px;
+  font-family: 'PlusJakartaSans';
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.modalHeader{
+  font-size: 20px;
+  font-family: 'PlusJakartaSans-Bold';
+
+}

@@ -220,7 +220,7 @@ export const SectorContainer = (props) => {
 
                 </div>
 
-              }
+            }
             </div>
           }
 

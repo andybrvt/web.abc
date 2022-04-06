@@ -58,8 +58,8 @@ import { WebsiteList } from './WebsiteList/WebsiteList';
 import {nft1} from './nft.jpg';
 import { Spinner } from '@chakra-ui/react'
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
-
-
+import { ReactComponent as TestBuilder  } from './contract.svg';
+import { ReactComponent as CreateContract  } from './CreateContract.svg';
 
 export const  Home = (props) => {
   const initialRef = React.useRef()
@@ -79,6 +79,16 @@ export const  Home = (props) => {
   const [websites, setWebsites] = React.useState([])
   const [createVisible, setCreateVisible] = React.useState(false)
   const [triggerChoice, setTriggerChoice] = React.useState(false)
+
+  // opensea input
+  const [openSeaContract, setOpenSeaContract] = React.useState(false)
+  const [openSeaLink, setOpenSeaLink] = React.useState("")
+
+  //existing contract input
+  const [existingContract, setExistingContract] = React.useState(false)
+  const [existingContractLink, setExistingContractLink] = React.useState("")
+  // 
+
   const {activateBrowserWallet, account } = useEthers();
   const etherBalance = useEtherBalance(account);
   const createWebSite = (type) => {
@@ -100,6 +110,15 @@ export const  Home = (props) => {
 
   }
 
+  const chooseOpenSeaContract = () => {
+    setOpenSeaContract(true)
+    setExistingContract(false)
+  }
+
+  const chooseExistingContract = () => {
+    setOpenSeaContract(false)
+    setExistingContract(true)
+  }
 
   const navSmartContract = (eventId) => {
       props.history.push("/smartContract")
@@ -112,6 +131,15 @@ export const  Home = (props) => {
 
   const onInputChange = (e) => {
     setName(e.target.value)
+  }
+
+  const onInputOpenSea = (e) => {
+    setOpenSeaLink(e.target.value)
+  }
+
+
+  const onInputExistingContract = (e) => {
+    setExistingContractLink(e.target.value)
   }
 
   const closeCreateVisible = () => {
@@ -141,6 +169,12 @@ export const  Home = (props) => {
   }, [account])
 
 
+
+  const resetAllHooks = () => {
+    setTriggerChoice("")
+    setOpenSeaContract(false)
+    setExistingContract(false)
+  }
 
   const onBuildDirect = (websiteId, websiteType) => {
     console.log(websiteId, websiteType)
@@ -235,11 +269,16 @@ export const  Home = (props) => {
       
               { triggerChoice=='nftChoice' ? 
                 <ModalHeader>
-                Creating a NFT website-- what step are you on?
+                <div class="modalHeader">
+                  Creating a NFT website-- what step are you on?
+                </div>
+                
               </ModalHeader>
                 :
                 <ModalHeader>
+                  <div class="modalHeader">
                   Create Website
+                </div>
                 </ModalHeader>
                  
                  
@@ -252,127 +291,193 @@ export const  Home = (props) => {
                   (triggerChoice=="nftChoice")?
 
                   <div>
-
-
-                    <div style={{display:'flex', flexDirection:'row'}}>
-                      <div class="choiceNFT">
-                        <Box
-                          
-                          onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                          <Center>
-                          <Image src={'https://img.freepik.com/free-vector/business-people-standing-document_1262-19213.jpg?t=st=1649198192~exp=1649198792~hmac=8932d708981d401c253a04216faa0dbf1a60302935d04b7f4907f44993c26460&w=996'} />
-
-                          </Center>
-                          
-                          <Box p='6'>
-                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                                <Badge borderRadius='full' px='3' colorScheme='teal'>
-                                  Intermediate
-                                </Badge>
-                                <Box
-                                  color='gray.500'
-                                  fontWeight='semibold'
-                                  letterSpacing='wide'
-                                  fontSize='xs'
-                                  textTransform='uppercase'
-                                  ml='2'
-                                >
-                                  Import info on your collection
-                                </Box>
-                              </Box>
-                              <div
-                                style={{fontWeight:'bold', fontSize:20}}
-                              > 
-                               Own an existing smart contract
-                              </div>
-                              <div style={{marginTop:5}}>
-                              
-                              </div>
-                          </Box>
-                        </Box>
-                      </div>
-                      <div class="choiceNFT">
-                        <Box
-                          
-                          onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                          <Center>
-                          <Image
-                            style={{marginTop:25, width:'50%', height:'50%'}}
-                            src={'https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.png'} alt={'Rear view of modern home with pool'} />
-
-                          </Center>
-                          
-                          <Box p='6'>
-                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                                <Badge borderRadius='full' px='3' colorScheme='teal'>
-                                  Intermediate
-                                </Badge>
-                                <Box
-                                  color='gray.500'
-                                  fontWeight='semibold'
-                                  letterSpacing='wide'
-                                  fontSize='xs'
-                                  textTransform='uppercase'
-                                  ml='2'
-                                >
-                                  Import info on your collection
-                                </Box>
-                              </Box>
-                              <div
-                                style={{fontWeight:'bold', fontSize:20}}
-                              >
-                                Own a NFT collection on OpenSea
-                              </div>
-                              <div style={{marginTop:5}}>
-                              
-                              </div>
-                          </Box>
-                        </Box>
-                      </div>
-
-
-                    </div>
-
                     
-                        
-                        
 
 
-                    <QueueAnim
+                      
+
+                      <div >
+                      <QueueAnim
+                      style={{display:'flex', flexDirection:'row'}}
                       type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
                       delay={300}>
-                    <div key="1">
-                      <div>Enter Smart Contract</div>
-                      <Input style={{width:'50%'}} onChange = {onInputChange} ref={initialRef} placeholder='Enter address' />
-                      <div>Enter OpenSea URL</div>
+                        <div key="1">
+                          <div class="choiceNFT">
+                            <Box
+                              
+                              onClick={chooseExistingContract}  maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                              <Center>
+                             <TestBuilder style={{marginTop:25}} width={200} height={200}/>
+
+                              </Center>
+                              
+                              <Box p='6'>
+                                  <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                    <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                      Import
+                                    </Badge>
+                                    <Box
+                                      color='gray.500'
+                                      fontWeight='semibold'
+                                      letterSpacing='wide'
+                                      fontSize='xs'
+                                      textTransform='uppercase'
+                                      ml='2'
+                                    >
+                                      Import from contract
+                                    </Box>
+                                  </Box>
+                                  <div
+                                    style={{fontWeight:'bold', fontSize:20}}
+                                  > 
+                                  Own an existing smart contract
+                                  </div>
+                                  <div style={{marginTop:5}}>
+                                  
+                                  </div>
+                              </Box>
+                            </Box>
+                          </div>
+                        </div>
+
+                        <div key="2">
+                         <div class="choiceNFT">
+                            <Box   
+                              onClick={chooseOpenSeaContract} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                              <Center>
+                              <Image
+                                style={{marginTop:50, width:'45%', height:'45%'}}
+                                src={'https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.png'} alt={'Rear view of modern home with pool'} />
+
+                              </Center>
+                              
+                              <Box p='6'>
+                                  <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                    <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                      Import
+                                    </Badge>
+                                    <Box
+                                      color='gray.500'
+                                      fontWeight='semibold'
+                                      letterSpacing='wide'
+                                      fontSize='xs'
+                                      textTransform='uppercase'
+                                      ml='2'
+                                    >
+                                      Pull from OpenSea
+                                    </Box>
+                                  </Box>
+                                  <div
+                                    style={{fontWeight:'bold', fontSize:20}}
+                                  >
+                                    Own a NFT collection on OpenSea
+                                  </div>
+                                  <div style={{marginTop:5}}>
+                                  
+                                  </div>
+                              </Box>
+                            </Box>
+                          </div>
+                        </div>
+                          
+                        <div key="3" >
+                          <Box   
+                            style={{opacity:0.3}}
+                            onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                            <Center>
+                              <CreateContract style={{marginTop:25}} width={200} height={200}/>
+                            </Center>
+                            
+                            <Box p='6'>
+                                <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                  <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                    Creation
+                                  </Badge>
+                                  <Box
+                                    color='gray.500'
+                                    fontWeight='semibold'
+                                    letterSpacing='wide'
+                                    fontSize='xs'
+                                    textTransform='uppercase'
+                                    ml='2'
+                                  >
+                                    Create smart contract
+                                  </Box>
+                                </Box>
+                                <div
+                                  style={{fontWeight:'bold', fontSize:20}}
+                                >
+                                  Create your smart contract
+                                </div>
+                                <div style={{marginTop:5}}>
+                                
+                                </div>
+                            </Box>
+                          </Box>
+                        </div>
+                        </QueueAnim>
+                  </div>
+
                     
+
+                  <div>
+                    {
+                      (openSeaContract)?
+                      <div>
+                        <QueueAnim
+                        type={['right', 'left']}
+                        ease={['easeOutQuart', 'easeInOutQuart']}
+                        delay={300}>
+                            <div key="1" class="addLinkHeader">Enter OpenSea URL</div>
+                          <Input key="2" style={{width:'50%'}} onChange = {onInputOpenSea} ref={initialRef} placeholder='Enter address' />
+                        </QueueAnim>
+                      </div>
+                      :
+                      <div>
+                      </div>
+                    }
+                  </div>
+
+                  <div>
+                      {
+                        (existingContract)?
+                        <div>
+                          <QueueAnim
+                          type={['right', 'left']}
+                          ease={['easeOutQuart', 'easeInOutQuart']}
+                          delay={300}>
+                             <div key="1" class="addLinkHeader">Enter existing Contract</div>
+                            <Input key="2" style={{width:'50%'}} onChange = {onInputExistingContract} ref={initialRef} placeholder='Enter address' />
+                          </QueueAnim>
+                        </div>
+                        :
+                        <div>
+                        </div>
+                      }
                     </div>
-                    <div key="2">enter in queue</div>
-                    <div key="3">
-
-
+                    
+                    <div> 
 
                     {
                         (triggerChoice!=null) ?
                         <ModalFooter>
-                          <div key="4">
-                             <Button onClick={()=>setTriggerChoice("")} mr={3}>
+                          <div key="1">
+                             <Button onClick={resetAllHooks} mr={3}>
                               Back
                             </Button>
-                            <Button
-                              onClick = {() => createWebSite("nft")}
-                               colorScheme='blue'>Next</Button>
+                     
                           </div>
                         </ModalFooter>
                         :
-                        ''
+                        
+                        <div>
+                          </div>
                     }
 
 
                     </div>
 
-                    </QueueAnim>
 
 
 

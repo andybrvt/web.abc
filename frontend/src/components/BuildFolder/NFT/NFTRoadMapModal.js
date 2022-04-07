@@ -25,7 +25,9 @@ export const NFTRoadMapModal  = (props) => {
   const { web3 } = useMoralis()
   const Web3Api = useMoralisWeb3Api()
   const [editorMain, setEditorMain] = useState(null)
-  const [inputs, setInputs] = useState({1:"",})
+
+  const [numberId, setNumberId] = useState(0)
+  const [inputsInfo, setInputsInfo] = useState([{id: 0, text: ""},])
 
   const {websiteId, buildType} = useParams()
 
@@ -43,29 +45,27 @@ export const NFTRoadMapModal  = (props) => {
     props.onClose()
   }
 
+  const onAddInputPress = () => {
+    const value = numberId
+    setNumberId(numberId +1)
+
+    setInputsInfo([...inputsInfo, {id: value+1, text: ""}])
+
+
+  }
   const enterKeyPress = (event) => {
 
-    console.log(event.key)
     if(event.key === "Enter"){
 
-      const container = document.getElementById("roadMapInputContainer")
-      console.log(container)
-      const input =  document.createElement("input");
-      input.className = "form-control";
-      input.type = "text";
-      input.placeholder = "step";
+      const value = numberId
+      setNumberId(numberId +1)
 
-      const inputContainer = document.createElement("div");
-      inputContainer.className = "inputContainer";
-
-      inputContainer.append(input)
-      container.append(inputContainer)
-
-
+      setInputsInfo([...inputsInfo, {id: value+1, text: ""}])
 
 
     }
   }
+
 
 
 
@@ -83,13 +83,31 @@ export const NFTRoadMapModal  = (props) => {
         <ModalBody>
             <div>NFT Project RoadMap</div>
 
-            <div id ="roadMapInputContainer">
-              <input
-                onKeyDown={enterKeyPress}
-                type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+            {
+              inputsInfo.map((item, index) => {
 
-            </div>
+                return(
+                  <div key = {item.id} class ="inputContainer">
 
+                    <div>Step #{item.id}</div>
+                    <input
+                      autoFocus
+                      onKeyDown={enterKeyPress}
+                      type="text" class="form-control" placeholder={`Step #${item.id}`} aria-label="Username" aria-describedby="basic-addon1" />
+
+                  </div>
+
+                )
+              })
+
+            }
+
+
+        </ModalBody>
+        <ModalBody>
+          <Button
+            onClick = {onAddInputPress}
+            colorScheme='blue'>Add New Step</Button>
         </ModalBody>
 
         <ModalFooter>

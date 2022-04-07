@@ -115,6 +115,13 @@
 
 .modalHeader{
   font-size: 20px;
-  font-family: 'PlusJakartaSans-Bold';
+  font-family: 'PlusJakartaSans-SemiBold';
+
+}
+
+.positionFooter{
+  position: absolute;
+  bottom: 50px;
+  right:50px;
 
 }

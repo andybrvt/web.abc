@@ -509,11 +509,11 @@ export const  Home = (props) => {
                       :
                       <div>
                     <ModalBody pb={20}>
-                      <QueueAnim  style={{display:'flex', flexDirection:'row'}}
-                       type={['right', 'left']}
+                    <QueueAnim
+                      style={{display:'flex', flexDirection:'row'}}
+                      type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
-                      interval={300}
-                      delay={100}>
+                      delay={300}>
                         <div key="a">
                           <div class="choiceBox">
                             <Box

@@ -275,11 +275,23 @@ export const  Home = (props) => {
                 
               </ModalHeader>
                 :
+
+                <div>
+                { triggerChoice=='website' ?
+                  <ModalHeader>
+                    <div class="modalHeader">
+                      Let's grab some info
+                    </div>
+                  </ModalHeader>
+                :
+              
                 <ModalHeader>
                   <div class="modalHeader">
-                  Create Website
-                </div>
+                   Create Website
+                  </div>  
                 </ModalHeader>
+                }
+                </div>
                  
                  
               }
@@ -296,7 +308,7 @@ export const  Home = (props) => {
 
                       
 
-                      <div >
+                    <div>
                       <QueueAnim
                       style={{display:'flex', flexDirection:'row'}}
                       type={['right', 'left']}
@@ -430,7 +442,7 @@ export const  Home = (props) => {
                         ease={['easeOutQuart', 'easeInOutQuart']}
                         delay={300}>
                             <div key="1" class="addLinkHeader">Enter OpenSea URL</div>
-                          <Input key="2" style={{width:'50%'}} onChange = {onInputOpenSea} ref={initialRef} placeholder='Enter address' />
+                          <Input key="2" style={{width:'50%'}} onChange = {onInputOpenSea} ref={initialRef} placeholder='Enter opensea address' />
                         </QueueAnim>
                       </div>
                       :
@@ -447,7 +459,7 @@ export const  Home = (props) => {
                           type={['right', 'left']}
                           ease={['easeOutQuart', 'easeInOutQuart']}
                           delay={300}>
-                             <div key="1" class="addLinkHeader">Enter existing Contract</div>
+                             <div key="1" class="addLinkHeader">Enter existing contract</div>
                             <Input key="2" style={{width:'50%'}} onChange = {onInputExistingContract} ref={initialRef} placeholder='Enter address' />
                           </QueueAnim>
                         </div>
@@ -458,43 +470,54 @@ export const  Home = (props) => {
                     </div>
                     
                     <div> 
-
-                    {
-                        (triggerChoice!=null) ?
-                        <ModalFooter>
-                          <div key="1">
-                             <Button onClick={resetAllHooks} mr={3}>
-                              Back
-                            </Button>
-                     
-                          </div>
-                        </ModalFooter>
-                        :
-                        
+              
                         <div>
+                        { openSeaLink.length!=0?
+                          <div class="positionFooter">
+                              <div>
+                                <Button colorScheme='blue' mr={3}>
+                                  Next
+                                </Button>
+                                <Button onClick={resetAllHooks}>Back</Button>
+                              </div>
                           </div>
-                    }
-
-
+                        :
+                        <div class="positionFooter"> 
+                            <div>
+                              <Button onClick={resetAllHooks}>Back</Button>
+                            </div>
+                        </div>
+                        }
+                        </div>  
+                     
                     </div>
-
-
-
-
-
                   </div>
 
                   :
                   <div>
+                    {
+                      (triggerChoice=="website")?
+                      <div>
+                        <div class="positionFooter"> 
+                          <Button onClick={() => createWebSite("personal")} colorScheme='blue' mr={3}>
+                            Next
+                          </Button>
+                          <Button onClick={()=>setTriggerChoice("")}>Back</Button>
+                        </div>
+
+                      </div>
+                      :
+                      <div>
                     <ModalBody pb={20}>
-                      <QueueAnim  style={{display:'flex', flexDirection:'row'}}
-                       type={['right', 'left']}
+                    <QueueAnim
+                      style={{display:'flex', flexDirection:'row'}}
+                      type={['right', 'left']}
                       ease={['easeOutQuart', 'easeInOutQuart']}
-                      interval={300}
-                      delay={100}>
+                      delay={300}>
                         <div key="a">
                           <div class="choiceBox">
                             <Box
+                              onClick={()=>setTriggerChoice("website")}
                               style={{height:400}}
                               maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                               <Image src={'https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'} alt={'Rear view of modern home with pool'}/>
@@ -530,7 +553,7 @@ export const  Home = (props) => {
                         <div key="b">
                           <div class="choiceBox">
                             <Box
-                            onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                              onClick={()=>setTriggerChoice("nftChoice")} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                               <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                               <Box p='6'>
                                   <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
@@ -608,18 +631,23 @@ export const  Home = (props) => {
                     </ModalBody>
 
 
-                    <ModalFooter>
-                      <div>
+                      <div class="positionFooter">
                         <Button onClick={() => createWebSite("personal")} colorScheme='blue' mr={3}>
-                          Save
+                          Next
                         </Button>
                         <Button onClick={onClose}>Close</Button>
                       </div>
-                    </ModalFooter>
 
 
 
                   </div>
+
+
+                    }
+                  </div>
+
+                  
+                  
 
                 }
 

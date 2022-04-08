@@ -69,7 +69,8 @@ export const WebsiteCreation= (props) => {
     // Now you can create your website
     const formData = new FormData()
     formData.append("owner", props.account)
-    formData.append("name", username)
+    formData.append("name", props.name)
+    // name of website
     formData.append('type', type)
 
     axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)

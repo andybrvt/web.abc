@@ -423,7 +423,7 @@ export const Editor = (props) => {
     editor.DomComponents.addType("NFTRoadMap", {
       view: {
         onActive(){
-          onNFTRoadMapOpen()
+          // onNFTRoadMapOpen()
         }
       }
     })

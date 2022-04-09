@@ -43,6 +43,8 @@ export const NFTRoadMapModal  = (props) => {
 
   const onCloseModal = () =>{
 
+    setNumberId(0)
+    setInputsInfo([{id: 0, title: "", text: ""},])
     props.onClose()
   }
 

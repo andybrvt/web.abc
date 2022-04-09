@@ -127,7 +127,7 @@ export const CustomNFTRoadMap = editor => {
       tagName: 'NFTRoadMap',
       resizable: "true",
       attributes: { class: "nft-roadmap-contianer"},
-
+      component: `<div>Hi I am a box</div>`
     }
 
 

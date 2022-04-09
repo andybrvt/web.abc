@@ -96,7 +96,7 @@ export const WebsiteCreation= (props) => {
             type={['right', 'left']}
             ease={['easeOutQuart', 'easeInOutQuart']}
             delay={300}> */}
-            <div class="addLinkHeader">Enter profile picture</div>
+            <div class="addLinkHeader">Profile picture</div>
             <Dragger
               style={{marginBottom:50}}
               listType="picture-card"

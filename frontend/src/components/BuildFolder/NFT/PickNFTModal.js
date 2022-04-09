@@ -200,7 +200,6 @@ export const PickNFTModal  = (props) => {
     const target = editorMain.getSelected()
 
     images.forEach(img => {
-      console.log(img)
       target.append(
         <div class = "nftContainers">
 

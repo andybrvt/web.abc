@@ -21,7 +21,7 @@
 
 .choiceNFT:hover {
 
-  opacity:0.6;
+  opacity:0.8;
   /* border: 1px solid #d0d0d0; */
 }
 
@@ -124,4 +124,21 @@
   bottom: 50px;
   right:50px;
 
+}
+
+
+.nameProject {
+  font-size: 18px;
+  font-family: 'PlusJakartaSans';
+  margin-bottom: 20px;
+  /* margin-top: 50px; */
+}
+
+.modalOptionBorder{
+  padding:5px;
+  outline: 4px solid #63b3ed;
+}
+
+.modalOptionheight{
+  height: 400px;
 }

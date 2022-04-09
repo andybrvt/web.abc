@@ -57,6 +57,7 @@ import { SendMoney } from './SendMoney/SendMoney';
 import { WebsiteList } from './WebsiteList/WebsiteList';
 import {nft1} from './nft.jpg';
 import { Spinner } from '@chakra-ui/react'
+import { WebsiteCreation } from './WebsiteCreation';
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 import { ReactComponent as TestBuilder  } from './contract.svg';
 import { ReactComponent as CreateContract  } from './CreateContract.svg';
@@ -498,6 +499,10 @@ export const  Home = (props) => {
                     {
                       (triggerChoice=="website")?
                       <div>
+                        <WebsiteCreation
+                          nmae={name}
+                          account={account}
+                        />
                         <div class="positionFooter"> 
                           <Button onClick={() => createWebSite("personal")} colorScheme='blue' mr={3}>
                             Next

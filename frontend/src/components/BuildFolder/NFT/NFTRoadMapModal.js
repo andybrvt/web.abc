@@ -9,7 +9,8 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
-  Input
+  Input,
+  Textarea
 } from '@chakra-ui/react';
 import { useMoralis, useMoralisWeb3Api, useMoralisCloudFunction } from "react-moralis";
 import './PickNFTModal.css'
@@ -27,7 +28,7 @@ export const NFTRoadMapModal  = (props) => {
   const [editorMain, setEditorMain] = useState(null)
 
   const [numberId, setNumberId] = useState(0)
-  const [inputsInfo, setInputsInfo] = useState([{id: 0, text: ""},])
+  const [inputsInfo, setInputsInfo] = useState([{id: 0, title: "", text: ""},])
 
   const {websiteId, buildType} = useParams()
 
@@ -49,10 +50,37 @@ export const NFTRoadMapModal  = (props) => {
     const value = numberId
     setNumberId(numberId +1)
 
-    setInputsInfo([...inputsInfo, {id: value+1, text: ""}])
+    setInputsInfo([...inputsInfo, {id: value+1,  title: "",text: ""}])
 
 
   }
+
+  const onInputChange = (e, id, type) => {
+
+
+    if(type === "input"){
+      setInputsInfo(
+        inputsInfo.map(input => input.id === id ? {
+            ...input,
+            title: e.target.value
+          } : input
+        )
+      )
+    }
+
+    if(type === "text"){
+      setInputsInfo(
+        inputsInfo.map(input => input.id === id ? {
+            ...input,
+            text: e.target.value
+          } : input
+        )
+      )
+    }
+
+
+  }
+
   const enterKeyPress = (event) => {
 
     if(event.key === "Enter"){
@@ -60,10 +88,16 @@ export const NFTRoadMapModal  = (props) => {
       const value = numberId
       setNumberId(numberId +1)
 
-      setInputsInfo([...inputsInfo, {id: value+1, text: ""}])
+      setInputsInfo([...inputsInfo, {id: value+1,  title: "",text: ""}])
 
 
     }
+  }
+
+
+  const onSubmitRoadMap = () => {
+
+    console.log(inputsInfo)
   }
 
 
@@ -89,12 +123,18 @@ export const NFTRoadMapModal  = (props) => {
                 return(
                   <div key = {item.id} class ="inputContainer">
 
-                    <div>Step #{item.id}</div>
-                    <input
+                    <div>Step #{item.id+1}</div>
+                    <Input
+                      onChange = {(e) => onInputChange(e,item.id, 'input')}
                       autoFocus
                       onKeyDown={enterKeyPress}
                       type="text" class="form-control" placeholder={`Step #${item.id}`} aria-label="Username" aria-describedby="basic-addon1" />
 
+                    <div class = "textAreaContainer">
+                      <Textarea
+                        onChange = {(e) => onInputChange(e,item.id, 'text')}
+                        placeholder='What are you gonna do?' />
+                    </div>
                   </div>
 
                 )
@@ -111,7 +151,10 @@ export const NFTRoadMapModal  = (props) => {
         </ModalBody>
 
         <ModalFooter>
-
+          <Button onClick={onCloseModal}>Close</Button>
+          <Button
+            colorScheme='blue'
+            onClick={onSubmitRoadMap}>Apply</Button>
 
         </ModalFooter>
       </ModalContent>

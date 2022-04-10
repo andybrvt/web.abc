@@ -5,3 +5,19 @@
 .textAreaContainer{
   margin-top: 5px;
 }
+
+.stepsHeader{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.removeX{
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+.removeX:hover{
+  opacity: 0.8;
+}

@@ -190,7 +190,6 @@ export const InitialEditorModal = (props) => {
     })
   }
 
-  console.log(props.isOpen, 'this modal here')
   return(
     <Modal
       motionPreset = "none"

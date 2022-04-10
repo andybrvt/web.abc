@@ -20,6 +20,8 @@ import { useEthers } from "@usedapp/core";
 import { Checkbox } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom';
 import './NFTRoadMapModal.css';
+import { CloseIcon } from '@chakra-ui/icons'
+
 
 export const NFTRoadMapModal  = (props) => {
 
@@ -43,11 +45,14 @@ export const NFTRoadMapModal  = (props) => {
 
   const onCloseModal = () =>{
 
+    setNumberId(0)
+    setInputsInfo([{id: 0, title: "", text: ""},])
     props.onClose()
   }
 
   const onAddInputPress = () => {
     const value = numberId
+    console.log(value)
     setNumberId(numberId +1)
 
     setInputsInfo([...inputsInfo, {id: value+1,  title: "",text: ""}])
@@ -98,6 +103,31 @@ export const NFTRoadMapModal  = (props) => {
   const onSubmitRoadMap = () => {
 
     console.log(inputsInfo)
+    const selectedBlock = editorMain.getSelected()
+
+    inputsInfo.map((item) => {
+
+      selectedBlock.append(
+        <div>
+          <div>{item.title}</div>
+          <div>{item.text}</div>
+        </div>
+      )
+    })
+
+
+    onCloseModal()
+
+  }
+
+  const deleteInput = (itemId) => {
+    const newList = inputsInfo.filter((item) => item.id !== itemId)
+
+    if(numberId !== 0){
+      setNumberId(numberId -1)
+
+    }
+    setInputsInfo(newList)
   }
 
 
@@ -123,7 +153,13 @@ export const NFTRoadMapModal  = (props) => {
                 return(
                   <div key = {item.id} class ="inputContainer">
 
-                    <div>Step #{item.id+1}</div>
+                    <div className = "stepsHeader">
+                      <div>Step #{item.id+1}</div>
+                      <div onClick = {() => deleteInput(item.id)} className = "removeX">
+                        <CloseIcon color="red.500" />
+                      </div>
+                    </div>
+
                     <Input
                       onChange = {(e) => onInputChange(e,item.id, 'input')}
                       autoFocus

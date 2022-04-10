@@ -126,8 +126,68 @@ export const CustomNFTRoadMap = editor => {
       name: 'NFTRoadMap',
       tagName: 'NFTRoadMap',
       resizable: "true",
-      attributes: { class: "nft-roadmap-contianer"},
-  
+      defaults: {
+        attributes: { class: "nft-roadmap-contianer"},
+        styles: `
+          .nft-roadmap-contianer{
+            position: relative;
+            font-family: Monospace;
+            padding: 20px 0px;
+          }
+          .roadmap-title{
+            position: relative;
+            width: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          .roadmap-innerContainer{
+            position: relative;
+            width: 70%;
+            padding: 20px 0px;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          .roadmap-item{
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row;
+          }
+          .roadmap-iconContainer{
+            position: relative;
+            padding: 25px;
+            width: 10%;
+          }
+          .roadmap-icon{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 35px;
+          }
+
+          .completed{
+            color: limegreen;
+
+          }
+          .roadmap-textContainer{
+            width: 90%;
+            position: relative;
+
+          }
+          .roadmap-text{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+        `,
+        components: model => {
+          return(
+            <h1 class = "roadmap-title">Collection RoadMap</h1>
+          )
+        }
+      }
+
     }
 
 

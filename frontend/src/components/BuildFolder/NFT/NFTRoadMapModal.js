@@ -55,7 +55,7 @@ export const NFTRoadMapModal  = (props) => {
     console.log(value)
     setNumberId(numberId +1)
 
-    setInputsInfo([...inputsInfo, {id: value+1,  title: "",text: ""}])
+    setInputsInfo([...inputsInfo, {id: value+1, finished: false, title: "",text: ""}])
 
 
   }
@@ -105,15 +105,50 @@ export const NFTRoadMapModal  = (props) => {
     console.log(inputsInfo)
     const selectedBlock = editorMain.getSelected()
 
-    inputsInfo.map((item) => {
+    selectedBlock.append(
 
-      selectedBlock.append(
-        <div>
-          <div>{item.title}</div>
-          <div>{item.text}</div>
-        </div>
-      )
-    })
+      <div class = "roadmap-innerContainer">
+        {
+          inputsInfo.map((item) => {
+
+            return(
+              <div class = "roadmap-item">
+                <div class = "roadmap-iconContainer">
+                  {
+                    item.finished ?
+
+                    <div class = "roadmap-icon completed">
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+
+                    :
+
+                    <div class = "roadmap-icon">
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+
+                  }
+
+                </div>
+
+                <div class = "roadmap-textContainer">
+                  <div class = "roadmap-text">
+                    <h2 data-gjs-type ="text">{item.title}</h2>
+                    <div data-gjs-type ="text">{item.text}</div>
+                  </div>
+                </div>
+
+              </div>
+
+            )
+
+        })
+      }
+
+      </div>
+
+    )
+
 
 
     onCloseModal()

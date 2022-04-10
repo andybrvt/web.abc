@@ -103,6 +103,21 @@ export const NFTRoadMapModal  = (props) => {
   const onSubmitRoadMap = () => {
 
     console.log(inputsInfo)
+    const selectedBlock = editorMain.getSelected()
+
+    inputsInfo.map((item) => {
+
+      selectedBlock.append(
+        <div>
+          <div>{item.title}</div>
+          <div>{item.text}</div>
+        </div>
+      )
+    })
+
+
+    onCloseModal()
+
   }
 
   const deleteInput = (itemId) => {

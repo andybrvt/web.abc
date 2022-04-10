@@ -26,37 +26,31 @@ export const SectorContainer = (props) => {
 
     if(props.sector !== null){
       const sector = props.sector;
-      setProperties(sector.getProperties())
-    }
+      setProperties(props.sector.getProperties())
+      console.log("hi ")
 
+    }
+   
   }, [props.sector])
 
   // const sector = props.sector;
   // const properties = sector.getProperties();
+  console.log('sector', props.sector.getName())
+  console.log("what are properties", properties)
   return(
     <div style={{marginBottom:25}}>
       {
         props.sector ?
 
         <div>
-          {props.sector.getName()}
-        </div>
-
-        :
-
-        <Spinner />
-
-
-      }
-
-      {/*
-        {(sector.getName()=="General" || sector.getName()=="Dimension" || sector.getName()=="Decorations")?
+          {/* {props.sector.getName()} */}
+          {( props.sector.getName()=="General" ||  props.sector.getName()=="Dimension" ||  props.sector.getName()=="Decorations")?
           ''
         :
 
         <div>
           {
-            (sector.getName()=="Extra")?
+            ( props.sector.getName()=="Extra")?
               <div class="attributeHeader">
                 Opacity
               </div>
@@ -64,12 +58,13 @@ export const SectorContainer = (props) => {
 
             <div>
               {
-                (sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter" ||  props.blockType=="AddressProfile" ))?
+                ( props.sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter" ||  props.blockType=="AddressProfile" ))?
                 ''
                 :
 
 
-                <div class="attributeHeader">{sector.getName()}</div>
+                <div class="attributeHeader">{ props.sector.getName()}
+                </div>
 
               }
 
@@ -81,10 +76,8 @@ export const SectorContainer = (props) => {
         </div>
 
         }
-
-
         <div style={{marginTop:10, marginBottom:20}}/>
-        {sector.getName()=="General" ?
+        {props.sector.getName()=="General" ?
           <Accordion style={{marginTop:50}} allowToggle>
             <AccordionItem>
               <h2>
@@ -107,7 +100,7 @@ export const SectorContainer = (props) => {
 
                     return(
                       <PropertyContainer
-                        sectorName={sector.getName()}
+                        sectorName={props.sector.getName()}
                         blockType={props.blockType}
                         property = {property}/>
 
@@ -120,7 +113,7 @@ export const SectorContainer = (props) => {
         :
         <div>
           {
-            (sector.getName()=="Dimension" )?
+            (props.sector.getName()=="Dimension" )?
               <Accordion allowToggle>
                 <AccordionItem>
                   <h2>
@@ -143,7 +136,7 @@ export const SectorContainer = (props) => {
                         return(
                           <div style={{padding:10}}>
                             <PropertyContainer
-                              sectorName={sector.getName()}
+                              sectorName={props.sector.getName()}
                               blockType={props.blockType}
                               property = {property}/>
 
@@ -161,7 +154,7 @@ export const SectorContainer = (props) => {
 
             <div>
               {
-                (sector.getName()=="Decorations" )?
+                (props.sector.getName()=="Decorations" )?
                   <Accordion allowToggle>
                     <AccordionItem>
                       <h2>
@@ -183,7 +176,7 @@ export const SectorContainer = (props) => {
                             return(
                               <div style={{padding:15}}>
                                 <PropertyContainer
-                                  sectorName={sector.getName()}
+                                  sectorName={props.sector.getName()}
                                   blockType={props.blockType}
                                   property = {property}/>
                               </div>
@@ -196,7 +189,7 @@ export const SectorContainer = (props) => {
                 :
                 <div>
                   {
-                    (sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="AddressProfile" ))?
+                    (props.sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="AddressProfile" ))?
                       <div>
 
                       </div>
@@ -208,7 +201,7 @@ export const SectorContainer = (props) => {
                         properties.map((property, index) => {
                           return(
                             <PropertyContainer
-                              sectorName={sector.getName()}
+                              sectorName={props.sector.getName()}
                               blockType={props.blockType}
                               property = {property}/>
                           )
@@ -224,14 +217,23 @@ export const SectorContainer = (props) => {
             </div>
           }
 
-        </div>
+        </div>       
 
 
       }
 
+        </div>
+
+        :
+
+        <Spinner />
 
 
-        */}
+      }
+
+     
+        
+     
 
     </div>
   )

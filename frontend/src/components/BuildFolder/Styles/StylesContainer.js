@@ -73,7 +73,7 @@ export const StylesContainer = (props) => {
   }, [props.editor])
 
 
-  console.log(sectors, 'what are these sectors here')
+  // console.log(sectors, 'what are these sectors here')
 
   return(
 

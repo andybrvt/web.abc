@@ -17,8 +17,10 @@ import './StylesComponents/StylePosition.css'
 export const PropertyContainer = (props) => {
 
   console.log('here in the property container')
-  const property = props.property
-  console.log(property, 'here here here')
+  if(props.property){
+    const property = props.property
+  }
+  
 
   const TextFonts = [
     { id: 1, label: "Lato" },
@@ -137,24 +139,29 @@ export const PropertyContainer = (props) => {
            />
       )
     }
-    else if(type === "select"){
 
-      var curValue = property.hasValue() ? property.getValue() : getDefValue()
-      const options = property.getOptions()
+
+    else if(type === "select"){
+      if(props.property)
+      {
+      // var curValue = props.property.hasValue() ? props.property.getValue() : getDefValue()
+      const options = props.property.getOptions()
       function getOptionId(opt){
-        return property.getOptionId(opt)
+        return props.property.getOptionId(opt)
       }
       function getOptionLabel(opt){
-        return property.getOptionLabel(opt)
+        return props.property.getOptionLabel(opt)
       }
 
-      var label = property.getLabel()
+      var label = props.property.getLabel()
 
-      if(property.getLabel()=='Display'){
+      if(props.property .getLabel()=='Display'){
         return (
         ''
         )
       }
+
+    }
       return(
         <div>
           {
@@ -171,16 +178,21 @@ export const PropertyContainer = (props) => {
              />
 
           :
+
+          <div>
+            {/* 
           <StyleSelect
             label = {label}
             field = {property.getId()}
             handleChange = {handleChange}
             handleInput = {handleInput}
             curValue = {curValue}
-            options = {options}
-            getOptionId = {getOptionId}
-            getOptionLabel = {getOptionLabel}
-             />
+          
+             /> 
+             style select has error
+
+             */}
+            </div>
          }
 
 
@@ -199,105 +211,30 @@ export const PropertyContainer = (props) => {
         </div>
       )
     }
-    else if (type ==="color"){
-
-      var curColor = property.hasValue() ? property.getValue() : getDefValue()
-
-      var label = property.getLabel()
-
-
-      return(
-        <StyleColorPicker
-          label = {label}
-          handleChange = {handleChange}
-          handleInput = {handleInput}
-          color = {curValue}/>)
-    }
-
-    else if (type ==="radio"){
-      {/* taken out is float, position,*/}
-
-      const options = property.getOptions()
-      function getOptionId(opt){
-        return property.getOptionId(opt)
-      }
-      function getOptionLabel(opt){
-        return property.getOptionLabel(opt)
-      }
-
-      var curValue = property.hasValue() ? property.getValue() : getDefValue()
 
 
 
-      return(
-        ''
-      )
-    }
-
-    else if(type === "composite"){
-
-      const compProp = property.getProperties()
-
-      return(
-        <div>
-        {  compProp.map((prp,index) => {
-
-            return(
-              renderProperty(prp)
-            )
 
 
-
-          })}
-        </div>
-      )
-
-    } else if(type==="stack"){
-
-      const layers = property.getLayers()
-      function addLayer(opt, layer){
-        property.addLayer(opt, layer)
-      }
-
-      const properties = property.getProperties()
-
-
-
-      return(
-        ''
-      )
-    } else if(type === "slider"){
-
-      const value = property.getValue()
-      const min = property.getMin()
-      const max = property.getMax()
-      const step = property.getStep()
-
-      return(
-        <Center>
-          <div style={{width:'90%'}}>
-            <StyleSlider
-              handleChange = {handleChange}
-              handleInput = {handleInput}
-              value = {value}
-              min = {min}
-              max= {max}
-              step ={step}
-             />
-           </div>
-         </Center>
-      )
     }
 
 
 
-  }
+  
 
   return(
-    <div key = {property.getId()}>
+    <div>
+    {props.property?
+      <div key = {props.property.getId()}>
      {/*  <div>{property.getLabel()}</div> */}
-      {renderProperty(property)}
+      {renderProperty(props.property)}
     </div>
+    
+    :
+      ''
+    }
+    </div>
+    
 
   )
 }

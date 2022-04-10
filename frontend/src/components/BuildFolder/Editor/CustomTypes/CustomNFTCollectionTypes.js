@@ -139,7 +139,6 @@ export const CustomNFTRoadMap = editor => {
             width: 70%;
             left: 50%;
             transform: translateX(-50%);
-            text-align:center;
           }
           .roadmap-innerContainer{
             position: relative;

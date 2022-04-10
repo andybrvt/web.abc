@@ -10,14 +10,15 @@ import {
   useDisclosure,
   Button,
   Input,
-  Textarea
+  Textarea,
+  Checkbox
+
 } from '@chakra-ui/react';
 import { useMoralis, useMoralisWeb3Api, useMoralisCloudFunction } from "react-moralis";
 import './PickNFTModal.css'
 import $ from 'jquery';
 import ImagePickerCustom from '../../UsefulComponents/ImagePicker';
 import { useEthers } from "@usedapp/core";
-import { Checkbox } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom';
 import './NFTRoadMapModal.css';
 import { CloseIcon } from '@chakra-ui/icons'
@@ -30,7 +31,7 @@ export const NFTRoadMapModal  = (props) => {
   const [editorMain, setEditorMain] = useState(null)
 
   const [numberId, setNumberId] = useState(0)
-  const [inputsInfo, setInputsInfo] = useState([{id: 0, title: "", text: ""},])
+  const [inputsInfo, setInputsInfo] = useState([{id: 0, finished: false, title: "", text: ""},])
 
   const {websiteId, buildType} = useParams()
 
@@ -46,7 +47,7 @@ export const NFTRoadMapModal  = (props) => {
   const onCloseModal = () =>{
 
     setNumberId(0)
-    setInputsInfo([{id: 0, title: "", text: ""},])
+    // setInputsInfo([{id: 0, finished: false, title: "", text: ""},])
     props.onClose()
   }
 
@@ -78,6 +79,16 @@ export const NFTRoadMapModal  = (props) => {
         inputsInfo.map(input => input.id === id ? {
             ...input,
             text: e.target.value
+          } : input
+        )
+      )
+    }
+
+    if(type === "checked"){
+      setInputsInfo(
+        inputsInfo.map(input => input.id === id ? {
+            ...input,
+            finished: e.target.checked
           } : input
         )
       )
@@ -195,11 +206,23 @@ export const NFTRoadMapModal  = (props) => {
                       </div>
                     </div>
 
-                    <Input
-                      onChange = {(e) => onInputChange(e,item.id, 'input')}
-                      autoFocus
-                      onKeyDown={enterKeyPress}
-                      type="text" class="form-control" placeholder={`Step #${item.id}`} aria-label="Username" aria-describedby="basic-addon1" />
+                    <div class = "roadmap-inputcheckbox">
+
+                      <div class = "roadmap-check">
+
+                        <Checkbox onChange = {(e) => onInputChange(e, item.id, "checked")}></Checkbox>
+                      </div>
+
+                      <div class = 'roadmap-title'>
+                        <Input
+                          onChange = {(e) => onInputChange(e,item.id, 'input')}
+                          autoFocus
+                          onKeyDown={enterKeyPress}
+                          type="text" class="form-control" placeholder={`Step #${item.id}`} aria-label="Username" aria-describedby="basic-addon1" />
+
+                      </div>
+
+                    </div>
 
                     <div class = "textAreaContainer">
                       <Textarea

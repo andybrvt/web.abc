@@ -142,15 +142,21 @@ export const PropertyContainer = (props) => {
 
 
     else if(type === "select"){
-      if(props.property)
-      {
+    
       // var curValue = props.property.hasValue() ? props.property.getValue() : getDefValue()
       const options = props.property.getOptions()
+      console.log("WWWWWWWWWWWWWW")
+      console.log(options)
       function getOptionId(opt){
-        return props.property.getOptionId(opt)
+        return property.getOptionId(opt)
       }
       function getOptionLabel(opt){
-        return props.property.getOptionLabel(opt)
+        console.log("MADE TO LABEL")
+        console.log(props.property)
+        
+        // if(props.property){
+        // return props.property.getOptionLabel(opt)
+        // }
       }
 
       var label = props.property.getLabel()
@@ -161,7 +167,7 @@ export const PropertyContainer = (props) => {
         )
       }
 
-    }
+    
       return(
         <div>
           {
@@ -180,34 +186,26 @@ export const PropertyContainer = (props) => {
           :
 
           <div>
-            {/* 
+            wwwwwwwwwwwwwwwwwwwwwwww
           <StyleSelect
             label = {label}
             field = {property.getId()}
             handleChange = {handleChange}
             handleInput = {handleInput}
             curValue = {curValue}
-          
+            options = {options}
+            property={props.property}
+            getOptionId = {getOptionId}
+            getOptionLabel = {getOptionLabel}
              /> 
              style select has error
 
-             */}
+      
             </div>
          }
 
 
-        {/*
-        <StyleSelect
-          label = {label}
-          field = {property.getId()}
-          handleChange = {handleChange}
-          handleInput = {handleInput}
-          curValue = {curValue}
-          options = {options}
-          getOptionId = {getOptionId}
-          getOptionLabel = {getOptionLabel}
-           />
-           */}
+
         </div>
       )
     }

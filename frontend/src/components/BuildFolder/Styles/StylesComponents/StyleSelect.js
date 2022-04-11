@@ -4,7 +4,6 @@ import { Select } from '@chakra-ui/react'
 
 export const StyleSelect = (props) => {
 
-  const options = props.options
   const field = props.field
 
   const handleClick =(opt) => {
@@ -12,13 +11,52 @@ export const StyleSelect = (props) => {
     props.handleChange(opt)
   }
 
+  console.log("LLLLL")
+  console.log(props.options)
+  console.log(props.property)
+  console.log(props.property.getOptionLabel('align-self'))
   return(
     <div>
       <div class="miniStyleHeader">
         {props.label}
       </div>
 
-      <Select
+    <Select
+        onChange = {(e) => handleClick(e.target.value)}
+        placeholder={props.curValue}>
+
+
+        {
+          props.options.map((opt, index) => {
+            console.log('this is option')
+            console.log(opt)
+
+
+            return(
+              <option  >
+                 hi
+                 {/* {props.getOptionLabel(opt)} */}
+                 {/*
+                  this should work... but it doesn't
+                 
+                 {props.property.getOptionLabel(opt)}  */}
+                </option>
+            )
+          })
+
+        }
+
+
+
+      </Select> 
+
+
+    </div>
+
+  )
+}
+
+{/* <Select
         onChange = {(e) => handleClick(e.target.value)}
         placeholder={props.curValue}>
 
@@ -37,15 +75,7 @@ export const StyleSelect = (props) => {
 
 
 
-      </Select>
-
-
-    </div>
-
-  )
-}
-
-
+      </Select> */}
 {/*<option style={{ color: 'red' }} value={props.getOptionId("'Raleway', sans-serif")}>
   Raleway
 </option>

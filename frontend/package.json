@@ -22,7 +22,7 @@
     "deps": "^1.0.0",
     "font-awesome": "^4.7.0",
     "framer-motion": "^4.1.17",
-    "grapesjs": "^0.17.29",
+    "grapesjs": "^0.18.4",
     "html-react-parser": "^1.4.8",
     "immutable": "^4.0.0",
     "jquery": "^3.6.0",

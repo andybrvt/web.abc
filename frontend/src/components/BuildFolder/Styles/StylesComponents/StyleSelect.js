@@ -29,18 +29,12 @@ export const StyleSelect = (props) => {
         {
           props.options.map((opt, index) => {
             console.log('this is option')
-            console.log(opt)
+            console.log(opt.value, opt.name)
 
 
             return(
-              <option  >
-                 hi
-                 {props.getOptionLabel(opt)}
-                 {/*
-                  this should work... but it doesn't
-                 
-                 {props.property.getOptionLabel(opt)}  */}
-                </option>
+              <option value={props.getOptionId(opt)}>{props.getOptionLabel(opt)}</option>
+
             )
           })
 
@@ -48,7 +42,7 @@ export const StyleSelect = (props) => {
 
 
 
-      </Select> 
+      </Select>
 
 
     </div>

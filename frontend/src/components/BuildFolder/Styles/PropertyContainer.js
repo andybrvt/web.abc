@@ -14,13 +14,21 @@ import { CreatableSelect as ChakraFontFamilySelect } from './chakra-react-select
 import { Input, Center} from '@chakra-ui/react'
 import { groupedOptions, dogOptions, TextSize, colourOptions} from "../Styles/data";
 import './StylesComponents/StylePosition.css'
+
 export const PropertyContainer = (props) => {
 
-  console.log('here in the property container')
-  if(props.property){
-    const property = props.property
-  }
-  
+  const[property, setProperty] = useState(null);
+
+  useEffect(() => {
+
+    setProperty(props.property)
+
+  },[props.property])
+
+  // if(props.property){
+  //   const property = props.property
+  // }
+
 
   const TextFonts = [
     { id: 1, label: "Lato" },
@@ -42,6 +50,7 @@ export const PropertyContainer = (props) => {
 
     // function handle changes of the component
     const handleChange = (value) => {
+      console.log(value)
       property.upValue(value)
     }
 
@@ -142,22 +151,17 @@ export const PropertyContainer = (props) => {
 
 
     else if(type === "select"){
-    
+
       // var curValue = props.property.hasValue() ? props.property.getValue() : getDefValue()
       const options = props.property.getOptions()
-    
+
       function getOptionId(opt){
         return property.getOptionId(opt)
       }
       function getOptionLabel(opt){
-        console.log("MADE TO LABEL")
-        
-        console.log(props.property)
-        console.log(opt)
-        
-        // if(props.property){
-        // return props.property.getOptionLabel(opt)
-        // }
+        return property.getOptionLabel(opt)
+
+
       }
 
       var label = props.property.getLabel()
@@ -168,7 +172,7 @@ export const PropertyContainer = (props) => {
         )
       }
 
-    
+
       return(
         <div>
           {
@@ -198,10 +202,10 @@ export const PropertyContainer = (props) => {
             property={props.property}
             getOptionId = {getOptionId}
             getOptionLabel = {getOptionLabel}
-             /> 
+             />
              style select has error
 
-      
+
             </div>
          }
 
@@ -219,7 +223,7 @@ export const PropertyContainer = (props) => {
 
 
 
-  
+
 
   return(
     <div>
@@ -228,12 +232,12 @@ export const PropertyContainer = (props) => {
      {/*  <div>{property.getLabel()}</div> */}
       {renderProperty(props.property)}
     </div>
-    
+
     :
       ''
     }
     </div>
-    
+
 
   )
 }

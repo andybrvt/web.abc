@@ -14,7 +14,7 @@ export const StyleSelect = (props) => {
   console.log("LLLLL")
   console.log(props.options)
   console.log(props.property)
-  console.log(props.property.getOptionLabel('align-self'))
+  // console.log(props.property.getOptionLabel('align-self'))
   return(
     <div>
       <div class="miniStyleHeader">

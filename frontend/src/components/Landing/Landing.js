@@ -154,7 +154,7 @@ class Landing extends React.Component{
      <div>
 
        <Menu style = {{
-           padding: '25px'
+           padding: '10px'
          }} theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
          <div class = "logoContainer">
            <div class="logoFont">web.abc</div>
@@ -163,11 +163,43 @@ class Landing extends React.Component{
          <div class = "middleHeaderContainer">
          </div>
 
-        <div class = "connectWalletContainer">
-          <Button
-            onClick={this.triggerWallet}
-            colorScheme='blue'>Connect Wallet</Button>
-        </div>
+
+
+           <div class = "socialMediaTopContainer">
+
+
+             <div  class = "socialMediaIcon ">
+               <a href="https://twitter.com/webdotabc" target="_blank">
+                 <i class="fab fa-twitter"></i>
+               </a>
+
+             </div>
+             <div class = 'socialMediaIcon '>
+
+               <a href="https://discord.gg/jSdfutS9Uw" target="_blank">
+                 <i class="fab fa-discord"></i>
+               </a>
+             </div>
+
+
+           </div>
+
+
+
+           {/*
+             <div class = "connectWalletContainer">
+                 <Button
+                   onClick={this.triggerWallet}
+                   colorScheme='blue'>Connect Wallet</Button>
+             </div>
+
+
+             */}
+
+
+
+
+
        </Menu>
 
        <div class = "bigContainer">
@@ -179,7 +211,7 @@ class Landing extends React.Component{
                  The start of your blockchain journey
                </div>
                <div class="title2">
-                 Build Dapps with UI with just a drag-n-drop.
+                 Build Dapps with just a drag-n-drop.
                </div>
 
 
@@ -191,7 +223,7 @@ class Landing extends React.Component{
                      }}>
                      <div class = "inputField">
 
-                       <Input style={{width:450}} variant='outline'   onChange = {this.handleEmailChange}
+                       <Input style={{background: 'white', width:450}} variant='outline'   onChange = {this.handleEmailChange}
                          value = {this.state.email} placeholder='Enter email' />
                        <button type="submit" class="getStartedBtn">
                          <span class="containerText">
@@ -298,7 +330,7 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
                  <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                    <Box p='6'>
                      <Box display='flex' alignItems='baseline'>
@@ -315,27 +347,30 @@ class Landing extends React.Component{
                          <div class = "featureInfoTitle">
                            NFT Collections
                          </div>
-                         Build you own customizable NFT collection website without the
-                         hassle.
+                         <div style = {{
+                             marginBottom: '10px'
+                           }}>
+                           Build you own customizable NFT collection website without the
+                           hassle.
 
-                         {/*
-                           <List spacing={3}>
-                             <ListItem>
-                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                                 All your nfts
-                             </ListItem>
-                             <ListItem>
-                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                               All your recent transactions
-                             </ListItem>
-                             <ListItem>
-                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                               All your "stats" on the blockchain
-                             </ListItem>
+                         </div>
 
-                           </List>
+                         <List style={{ }} spacing={3}>
+                           <ListItem>
+                             <ListIcon as={CheckCircleIcon} color='green.500' />
+                               ERC721
+                           </ListItem>
+                           <ListItem>
+                             <ListIcon as={CheckCircleIcon} color='green.500' />
+                             Mint NFT
+                           </ListItem>
+                           <ListItem>
+                             <ListIcon as={CheckCircleIcon} color='green.500' />
+                             Sell NFT
+                           </ListItem>
+                           {/* You can also use custom icons from react-icons */}
 
-                           */}
+                         </List>
 
 
                        </div>
@@ -349,7 +384,7 @@ class Landing extends React.Component{
 
              <div class = "cardContainer">
                <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={500}>
+                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
                  <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
                    <Box p='6'>
                      <Box display='flex' alignItems='baseline'>
@@ -366,27 +401,29 @@ class Landing extends React.Component{
                          <div class = "featureInfoTitle">
                            DAOs
                          </div>
-                         Build you own customizable DAO website.
+                         <div style = {{
+                             marginBottom: '10px'
+                           }}>
+                           Build you own customizable DAO website.
 
-                         {/*
+                         </div>
 
-                           <List spacing={3}>
-                             <ListItem>
-                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                                 All your nfts
-                             </ListItem>
-                             <ListItem>
-                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                               All your recent transactions
-                             </ListItem>
-                             <ListItem>
-                               <ListIcon as={CheckCircleIcon} color='green.500' />
-                               All your "stats" on the blockchain
-                             </ListItem>
+                         <List style={{ }} spacing={3}>
+                           <ListItem>
+                             <ListIcon as={CheckCircleIcon} color='green.500' />
+                               Central Point of Information
+                           </ListItem>
+                           <ListItem>
+                             <ListIcon as={CheckCircleIcon} color='green.500' />
+                             Member Relationship Web
+                           </ListItem>
+                           <ListItem>
+                             <ListIcon as={CheckCircleIcon} color='green.500' />
+                             Court Votting
+                           </ListItem>
+                           {/* You can also use custom icons from react-icons */}
 
-                           </List>
-
-                           */}
+                         </List>
 
 
                        </div>
@@ -406,17 +443,6 @@ class Landing extends React.Component{
          <div class = "socialMediaContainer">
 
            <div class = "socialMediaMiddleC">
-             {/**
-              * <div class = "socialMediaIcon ">
-                 <i class="fab fa-facebook"></i>
-               </div>
-               <div class = "socialMediaIcon ">
-                 <i class="fab fa-instagram"></i>
-               </div>
-              * <div class = 'socialMediaIcon '>
-                 <i class="fab fa-linkedin"></i>
-               </div>
-              */}
 
                <div  class = "socialMediaIcon ">
                  <a href="https://twitter.com/webdotabc" target="_blank">

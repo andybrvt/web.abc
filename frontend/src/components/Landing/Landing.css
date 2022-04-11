@@ -2,12 +2,21 @@
   width: 8%;
 }
 .middleHeaderContainer{
-  width: 80%;
+  width: 85%;
 }
 .connectWalletContainer{
   width: 15%;
   text-align: center;
 }
+
+.socialMediaTopContainer{
+  width: 10%;
+  display: flex;
+}
+.topSocialMediaIcon{
+  font-size: 25px;
+}
+
 .logoFont{
   font-family: 'PlusJakartaSans-Bold';
   font-size: 18px;
@@ -114,7 +123,7 @@
 .socialMediaIcon{
   flex: 1;
   margin: 2px;
-  padding: 10px;
+
   font-size: 25px;
   text-align:center;
 }

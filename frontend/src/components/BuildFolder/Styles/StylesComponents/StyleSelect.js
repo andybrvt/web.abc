@@ -13,7 +13,7 @@ export const StyleSelect = (props) => {
 
   console.log("LLLLL")
   console.log(props.options)
-  console.log(props.property)
+  // console.log(props.property)
   // console.log(props.property.getOptionLabel('align-self'))
   return(
     <div>
@@ -35,7 +35,7 @@ export const StyleSelect = (props) => {
             return(
               <option  >
                  hi
-                 {/* {props.getOptionLabel(opt)} */}
+                 {props.getOptionLabel(opt)}
                  {/*
                   this should work... but it doesn't
                  

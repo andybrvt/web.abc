@@ -145,14 +145,15 @@ export const PropertyContainer = (props) => {
     
       // var curValue = props.property.hasValue() ? props.property.getValue() : getDefValue()
       const options = props.property.getOptions()
-      console.log("WWWWWWWWWWWWWW")
-      console.log(options)
+    
       function getOptionId(opt){
         return property.getOptionId(opt)
       }
       function getOptionLabel(opt){
         console.log("MADE TO LABEL")
+        
         console.log(props.property)
+        console.log(opt)
         
         // if(props.property){
         // return props.property.getOptionLabel(opt)

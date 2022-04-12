@@ -1,6 +1,7 @@
 /*
   This will be the real editor to edit stuff directly
 */
+
 import React, { useState, useEffect, useRef } from 'react';
 import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
@@ -123,6 +124,7 @@ import * as dateFns from 'date-fns';
 import { TestModal } from './TestModal';
 import {InitialEditorModal} from './InitialEditorModal';
 import { TrashModal } from './TrashModal'
+import { useScreenshot } from "use-screenshot-hook";
 const PLUGINS = [
   CoreButtonType,
   ButtonType1,
@@ -196,7 +198,8 @@ const translatedItems = [
 export const Editor = (props) => {
 
   const Web3Api = useMoralisWeb3Api()
-
+  const ref1 = useRef(null);
+    const { image, takeScreenshot } = useScreenshot({ref:ref1});
   // Open and close for modals
   const { isOpen: isNFTOpen, onOpen: onNFTOpen, onClose: onNFTClose } = useDisclosure()
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
@@ -205,7 +208,6 @@ export const Editor = (props) => {
   const { isOpen: isNFTRoadMapOpen, onOpen: onNFTRoadMapOpen, onClose: onNFTRoadMapClose} = useDisclosure()
   const [scrollBehavior, setScrollBehavior] = React.useState('inside')
   const btnRef = React.useRef()
-
 
 
   const {websiteId, buildType} = useParams()
@@ -1599,10 +1601,22 @@ export const Editor = (props) => {
     editorMain.store()
   }
 
+  const showScreenShot = () => {
+    takeScreenshot().then(data => {
+      console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEe")
+      console.log(data)
+      console.log(data.data)
+    if(image){
+      console.log(image)
+    }
+      // logic
+  });
+    
+  }
 
 
   return(
-    <div>
+    <div ref={ref1}>
 
       <EditorHeader
         storeEditor={storeEditor}
@@ -1611,10 +1625,14 @@ export const Editor = (props) => {
         history = {props.history}
         account = {account}
         />
-
+      <div>LOOOOOOOOOOOOOOOOOOOOL
+      <Button onClick={showScreenShot}>test</Button>
+      
+      </div>
 
 
       <div class="editorRow">
+        
         <div class = "firstColumn">
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
@@ -1705,8 +1723,10 @@ export const Editor = (props) => {
 
           </Drawer>
         </div>
+        
         <div class="column">
-          <div id = "gjs"></div>
+        {/* {image && <img style={{width:300, height:300}} src={image} />} */}
+          <div ref={ref1} id = "gjs"></div>
         </div>
 
 

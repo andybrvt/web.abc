@@ -46,6 +46,8 @@
     "react-select": "^5.2.2",
     "react-share": "^4.4.0",
     "styled-components": "^5.3.3",
+    "use-react-screenshot": "^3.0.0",
+    "use-screenshot-hook": "^1.0.2",
     "web-vitals": "^2.1.2",
     "web3": "^1.6.1"
   },

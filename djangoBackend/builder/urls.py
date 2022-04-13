@@ -17,5 +17,8 @@ urlpatterns = [
     path("getPageInfo/<int:webId>/<slug:pageId>", views.GetPageInfo.as_view(), name = "get_page_info"),
     path("getOfficialPageInfo/<int:webId>/<slug:pageId>", views.GetOfficialPageInfo.as_view(), name = "get_page_info"),
     path("isNewlyCreated/<int:webId>", views.GetNewlyCreated.as_view(), name = "get_newly_created"),
-    path("getUserWebsites/<slug:userKey>", views.GetUserWebsites.as_view(), name = "get_user_websites")
+    path("getUserWebsites/<slug:userKey>", views.GetUserWebsites.as_view(), name = "get_user_websites"),
+    path('getPersonalSiteUsername/<int:webId>', views.GetPersonalWebsiteUsername.as_view(), name = "invited_num"),
+    path('getPersonalSiteProfilePic/<int:webId>', views.GetPersonalWebsitePic.as_view(), name = "invited_num"),
+
 ]

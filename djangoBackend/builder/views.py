@@ -340,3 +340,33 @@ class GetUserWebsites(APIView):
 
 
         return Response(serializer_website)
+
+
+@authentication_classes([])
+@permission_classes([])
+# check if the website is newly created
+class GetPersonalWebsiteUsername(APIView):
+    def get(self, request, webId, *args, **kwargs):
+
+        try:
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            print(curWebsite.websiteUserName)
+        except:
+            print('cannot find website')
+        return Response(curWebsite.websiteUserName)
+
+
+
+
+@authentication_classes([])
+@permission_classes([])
+# check if the website is newly created
+class GetPersonalWebsitePic(APIView):
+    def get(self, request, webId, *args, **kwargs):
+
+        try:
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            print(curWebsite.newlyCreated)
+        except:
+            print('cannot find website')
+        return Response(curWebsite.profilePic)

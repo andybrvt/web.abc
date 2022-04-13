@@ -286,6 +286,20 @@ export const Editor = (props) => {
   }
 
   useEffect(() => {
+    console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    console.log(websiteId)
+    axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteUsername/${websiteId}`)
+      .then(res => {
+        console.log(res.data, 'what is this here')
+
+      })
+      axios.get(`${global.API_ENDPOINT}/builder/getPersonalWebsitePic/${websiteId}`)
+      .then(res => {
+        console.log(res.data, 'what is this here')
+
+      })
+
+
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: 1,

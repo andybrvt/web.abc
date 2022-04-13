@@ -216,8 +216,12 @@
                 <Button onClick={onOpen}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                   Create Site
                 </Button>
-                <Button onClick={() => takeScreenshot()}>test</Button>
-                {image && <img style={{width:300, height:300}} src={image} />}
+                {/**
+                  * <Button onClick={() => takeScreenshot()}>test</Button>
+                  * {image && <img style={{width:300, height:300}} src={image} />}
+                 */}
+                
+                ]
                 {/*
                 <Button style={{marginLeft:25}} onClick={navSmartContract  }  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                   Customize Smart Contract
@@ -521,13 +525,9 @@
                           <WebsiteCreation
                             name={name}
                             account={account}
+                            history={props.history}
                           />
-                          <div class="positionFooter"> 
-                            <Button onClick={() => createWebSite("personal")} colorScheme='blue' mr={3}>
-                              Next
-                            </Button>
-                            <Button onClick={()=>setTriggerChoice("")}>Back</Button>
-                          </div>
+                        
 
                         </div>
                         :

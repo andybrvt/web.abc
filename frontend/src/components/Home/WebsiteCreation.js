@@ -40,7 +40,7 @@ export const WebsiteCreation= (props) => {
   const [profileURL, setProfileURL] = useState(false)
   const [loading, setLoading] = useState(false)   // loading
   
-  const [fileList, setFileList] = useState(false)   // loading
+  const [profilePic, setProfilePic] = useState(false)   // loading
   const [username, setUsername] = useState(null)   // loading
   const onPreview = async file => {
     let src = file.url;
@@ -59,19 +59,24 @@ export const WebsiteCreation= (props) => {
 
 
   const onChange = ({ fileList: newFileList }) => {
-    console.log(fileList)
-    setFileList(newFileList);
+    console.log(newFileList[0])
+    console.log(URL.createObjectURL(newFileList[0].originFileObj))
+    // console.log(URL.createObjectURL(newFileList.target.files[0]),)
+    setProfilePic(URL.createObjectURL(newFileList[0].originFileObj));
 
   };
 
   const createWebSite = (type) => {
-
+    console.log(username)
+    console.log(profilePic)
     // Now you can create your website
     const formData = new FormData()
     formData.append("owner", props.account)
     formData.append("name", props.name)
     // name of website
     formData.append('type', type)
+    formData.append('websiteUserName', username)
+    formData.append('profilePic', profilePic)
 
     axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
     .then(res => {
@@ -83,6 +88,7 @@ export const WebsiteCreation= (props) => {
     })
 
   }
+
 
 
   return (
@@ -112,10 +118,6 @@ export const WebsiteCreation= (props) => {
               </p>
             </Dragger>
 
-            <Image
-            width={200}
-            src={fileList[0]?fileList[0].url:null}
-          />
 
 
 

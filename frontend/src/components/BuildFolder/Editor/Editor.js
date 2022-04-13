@@ -355,13 +355,7 @@ export const Editor = (props) => {
       },
       assetManager:{
         assets: [
-          'https://via.placeholder.com/350x250/78c5d6/fff/image1.jpg',
-          'https://via.placeholder.com/350x250/459ba8/fff/image2.jpg',
-          'https://via.placeholder.com/350x250/79c267/fff/image3.jpg',
-          'https://via.placeholder.com/350x250/c5d647/fff/image4.jpg',
-          'https://via.placeholder.com/350x250/f28c33/fff/image5.jpg',
-          'https://via.placeholder.com/350x250/e868a2/fff/image6.jpg',
-          'https://via.placeholder.com/350x250/cc4360/fff/image7.jpg',
+
         ],
         // custom:true,
       },
@@ -1605,10 +1599,9 @@ export const Editor = (props) => {
     takeScreenshot().then(data => {
       console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEe")
       console.log(data)
-      console.log(data.data)
     if(image){
       console.log(image)
-    }
+    }   
       // logic
   });
     
@@ -1616,22 +1609,24 @@ export const Editor = (props) => {
 
 
   return(
-    <div ref={ref1}>
-
-      <EditorHeader
+    <div>
+      
+      <EditorHeader 
         storeEditor={storeEditor}
         websiteId={websiteId}
         editor = {editorMain}
         history = {props.history}
         account = {account}
         />
+        {/* <div ref={ref1}>test</div> */}
       <div>LOOOOOOOOOOOOOOOOOOOOL
       <Button onClick={showScreenShot}>test</Button>
+      
       
       </div>
 
 
-      <div class="editorRow">
+      <div  class="editorRow">
         
         <div class = "firstColumn">
           <div className = "mainButtons">
@@ -1725,8 +1720,9 @@ export const Editor = (props) => {
         </div>
         
         <div class="column">
+          <div id = "gjs"></div>
         {/* {image && <img style={{width:300, height:300}} src={image} />} */}
-          <div ref={ref1} id = "gjs"></div>
+          
         </div>
 
 

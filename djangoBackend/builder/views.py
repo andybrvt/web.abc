@@ -178,7 +178,9 @@ class CreateWebsite(APIView):
         website = models.Website.objects.create(
             owner = address,
             name = request.data['name'],
-            type = request.data['type']
+            type = request.data['type'],
+            websiteUserName = request.data['websiteUserName'],
+            profilePic = request.data['profilePic'],
         )
         websiteId = website.id
         return Response(websiteId)

@@ -293,7 +293,7 @@ export const Editor = (props) => {
         console.log(res.data, 'what is this here')
 
       })
-      axios.get(`${global.API_ENDPOINT}/builder/getPersonalWebsitePic/${websiteId}`)
+      axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
       .then(res => {
         console.log(res.data, 'what is this here')
 

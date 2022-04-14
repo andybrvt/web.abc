@@ -211,7 +211,7 @@ export const Editor = (props) => {
 
 
   const {websiteId, buildType} = useParams()
-
+  
 
   const {activateBrowserWallet, account, chainId } = useEthers();
   const [preview, setPreview] =useState(false);
@@ -221,7 +221,7 @@ export const Editor = (props) => {
   const [trashCondition, setTrashCondition] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
   const [pageIds, setPageIds] = useState([]);
-
+  const [personalWebsiteUsername, setPersonalWebsiteUsername] = useState("");
 
   const [currentX, setCurrentX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
@@ -285,20 +285,26 @@ export const Editor = (props) => {
 
   }
 
-  useEffect(() => {
-    console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-    console.log(websiteId)
+
+  const getAllNotes= () => {
     axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteUsername/${websiteId}`)
       .then(res => {
         console.log(res.data, 'what is this here')
+        setPersonalWebsiteUsername(res.data);
 
       })
+      console.log("SDONENENEEE")
       axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
       .then(res => {
         console.log(res.data, 'what is this here')
-
       })
+  }
 
+
+
+
+  useEffect(() => {
+    getAllNotes();
 
     const editor = grapesjs.init({
       container: "#gjs",
@@ -506,9 +512,20 @@ export const Editor = (props) => {
                 </div>
               </div>
               <div class = "centerInfo">
-                <h1 data-gjs-type ="text">
-                  @username
-                </h1>
+              <h1 data-gjs-type ="text">
+                        {personalWebsiteUsername?
+                          <div>
+                            {personalWebsiteUsername}
+                          </div>
+                        :
+                        <div>
+                          @usernamebbb
+                        </div>
+                        
+                        
+                        }
+                          
+                        </h1>
               </div>
 
 
@@ -1066,10 +1083,21 @@ export const Editor = (props) => {
                           <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
                         </div>
                       </div>
-                      <div class = "centerInfo">
-                        <h1 data-gjs-type ="text">
-                          @username
+                      <div class = "centerInfo"><h1 data-gjs-type ="text">
+                        {personalWebsiteUsername?
+                          <div>
+                            {personalWebsiteUsername}
+                          </div>
+                        :
+                        <div>
+                          @usernameaaa
+                        </div>
+                        
+                        
+                        }
+                          
                         </h1>
+                        
                       </div>
 
 
@@ -1510,7 +1538,7 @@ export const Editor = (props) => {
     editor.on('load', () => editor.select(dc.getWrapper()));
 
     setEditor(editor)
-  },[account])
+  },[account, personalWebsiteUsername])
 
 
   const renderTimestamp = timestamp =>{

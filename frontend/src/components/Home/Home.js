@@ -95,24 +95,7 @@
 
     const {activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
-    const createWebSite = (type) => {
-
-      // Now you can create your website
-      const formData = new FormData()
-      formData.append("owner", account)
-      formData.append("name", name)
-      formData.append('type', type)
-
-      axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
-      .then(res => {
-
-        props.history.push(`/build/${res.data}/${type}`, {
-          websiteId: res.data
-        })
-
-      })
-
-    }
+  
 
     const chooseOpenSeaContract = () => {
       setOpenSeaContract(true)

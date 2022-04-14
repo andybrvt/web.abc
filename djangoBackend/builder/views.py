@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import authentication_classes, permission_classes
 import json
 from . import models
 from . import serializers
 from django.shortcuts import render, get_object_or_404
-
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 @authentication_classes([])
@@ -370,3 +371,24 @@ class GetPersonalWebsitePic(APIView):
         except:
             print('cannot find website')
         return Response(curWebsite.profilePic)
+
+
+
+# class CreateWebsiteTest(viewsets.ModelViewSet):
+#     def post(self, request, *args, **kwargs):
+#         queryset = models.Website.objects.all()
+#         serializer_class= serializers.WebSiteSerializer
+#         address, created = models.OwnerWalletKey.objects.get_or_create(
+#             publicKey = request.data['owner']
+#         )
+    
+#         print(request.data)
+#         website = models.Website.objects.create(
+#             owner = address,
+#             name = request.data['name'],
+#             type = request.data['type'],
+#             websiteUserName = request.data['websiteUserName'],
+#             profilePic = request.data['profilePic'],
+#         )
+#         websiteId = website.id
+#         return HttpResponse({'websiteId': websiteId}, status=200)

@@ -59,8 +59,8 @@ export const WebsiteCreation= (props) => {
 
 
   const onChange = ({ fileList: newFileList }) => {
-    console.log(newFileList[0])
     console.log(URL.createObjectURL(newFileList[0].originFileObj))
+    
     // console.log(URL.createObjectURL(newFileList.target.files[0]),)
     setProfilePic(URL.createObjectURL(newFileList[0].originFileObj));
 
@@ -78,7 +78,9 @@ export const WebsiteCreation= (props) => {
     formData.append('websiteUserName', username)
     formData.append('profilePic', profilePic)
 
-    axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
+    axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData,
+      {headers: {"content-type": "multipart/form-data"}}
+    )
     .then(res => {
 
       props.history.push(`/build/${res.data}/${type}`, {
@@ -87,6 +89,13 @@ export const WebsiteCreation= (props) => {
 
     })
 
+  }
+
+  const handleImageChange = (e) => {
+    console.log(URL.createObjectURL(e.fileList[0].originFileObj))
+    console.log(e.fileList[0].originFileObj)
+    console.log(e.fileList[0])
+    setProfilePic(e.fileList[0].originFileObj)
   }
 
 
@@ -106,7 +115,7 @@ export const WebsiteCreation= (props) => {
             <Dragger
               style={{marginBottom:50}}
               listType="picture-card"
-              onChange={onChange}
+              onChange={handleImageChange}
                 // onPreview={onPreview}
               {...props}>
               <p className="ant-upload-drag-icon">
@@ -119,7 +128,8 @@ export const WebsiteCreation= (props) => {
             </Dragger>
 
 
-
+            {/* <input onChange/={onChange} type="image" name="file" ></input> */}
+              
 
             <div class="addLinkHeader">Enter your username</div>
                 <Input 

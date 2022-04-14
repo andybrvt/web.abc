@@ -55,7 +55,6 @@ class Website(models.Model):
     profilePic = models.ImageField(('profilePic'),
                                         upload_to='profilePic/public/profile_pictures/%Y/%m',
                                         blank=True,
-                                        default = 'profilePic/public/profile_pictures/default.png'
                                         )
     # initialPage = models.ForeignKey(WebsitePage, related_name = "initial_page", on_delete= models.CASCADE, null = True)
     newlyCreated = models.BooleanField(default = True)

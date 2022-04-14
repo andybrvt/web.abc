@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
+
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -91,6 +94,9 @@ DATABASES = {
                 # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
         'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+                    'charset': 'utf8mb4',
+                    'use_unicode': True, },
         'NAME': 'test',
         'USER': 'root',
         'PASSWORD': 'password',
@@ -150,6 +156,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
+
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# This one is for development, and this is what ill show up for the image link
+MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

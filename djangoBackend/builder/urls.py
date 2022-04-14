@@ -1,8 +1,8 @@
 from django.urls import path, include
 from . import views
 from rest_framework.routers import DefaultRouter
-
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path("uploadCss", views.UploadFileCss.as_view(), name = "upload_css"),
     path('saveWebsite/<int:id>', views.SaveWebsite.as_view(), name = "save_website"),
@@ -17,5 +17,10 @@ urlpatterns = [
     path("getPageInfo/<int:webId>/<slug:pageId>", views.GetPageInfo.as_view(), name = "get_page_info"),
     path("getOfficialPageInfo/<int:webId>/<slug:pageId>", views.GetOfficialPageInfo.as_view(), name = "get_page_info"),
     path("isNewlyCreated/<int:webId>", views.GetNewlyCreated.as_view(), name = "get_newly_created"),
-    path("getUserWebsites/<slug:userKey>", views.GetUserWebsites.as_view(), name = "get_user_websites")
+    path("getUserWebsites/<slug:userKey>", views.GetUserWebsites.as_view(), name = "get_user_websites"),
+    path('getPersonalSiteUsername/<int:webId>', views.GetPersonalWebsiteUsername.as_view(), name = "invited_num"),
+    path('getPersonalSiteProfilePic/<int:webId>', views.GetPersonalWebsitePic.as_view(), name = "invited_num"),
+    # path('createWebsiteTest/<int:webId>', views.CreateWebsiteTest.as_view(),name = "image_test"),
+
 ]
+urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

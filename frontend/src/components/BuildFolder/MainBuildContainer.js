@@ -21,17 +21,15 @@
 */
 
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import { Editor } from './Editor/Editor';
-
+import axios from 'axios';
 
 export const MainBuildContainer = (props) => {
-
-
-
   return(
     <div>
-      <Editor {...props}/>
+      <Editor
+       {...props}/>
 
     </div>
   )

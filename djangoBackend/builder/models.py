@@ -51,6 +51,12 @@ class Website(models.Model):
     name = models.CharField(max_length= 255,default = "default website")
     lastChanged = models.DateTimeField(default = timezone.now, blank = False)
     websiteAssets = models.TextField(blank = True)
+    websiteUserName=models.CharField(max_length=255,blank=True)
+    profilePic = models.ImageField(('profilePic'),
+                                        upload_to='profilePic/public/profile_pictures/%Y/%m',
+                                        blank=True,
+                                        default = 'profilePic/public/profile_pictures/default.png'
+                                        )
     # initialPage = models.ForeignKey(WebsitePage, related_name = "initial_page", on_delete= models.CASCADE, null = True)
     newlyCreated = models.BooleanField(default = True)
     type = models.CharField(max_length = 255, default = "personal") #this will be use to knwo which website type you are making

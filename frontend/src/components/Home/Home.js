@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from 'react';
+  import React, { useState, useEffect, useRef } from 'react';
   // import { Form } from '@ant-design/compatible';
   import { Form, List, Avatar,Typography } from 'antd';
   import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
@@ -57,6 +57,7 @@
   import { WebsiteList } from './WebsiteList/WebsiteList';
   import {nft1} from './nft.jpg';
   import { Spinner } from '@chakra-ui/react'
+  import { useScreenshot } from "use-screenshot-hook";
   import { WebsiteCreation } from './WebsiteCreation';
   // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
   import { ReactComponent as TestBuilder  } from './contract.svg';
@@ -94,24 +95,7 @@
 
     const {activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
-    const createWebSite = (type) => {
-
-      // Now you can create your website
-      const formData = new FormData()
-      formData.append("owner", account)
-      formData.append("name", name)
-      formData.append('type', type)
-
-      axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData)
-      .then(res => {
-
-        props.history.push(`/build/${res.data}/${type}`, {
-          websiteId: res.data
-        })
-
-      })
-
-    }
+  
 
     const chooseOpenSeaContract = () => {
       setOpenSeaContract(true)
@@ -198,8 +182,8 @@
    
 
     }
-
-
+    const ref1 = useRef(null);
+    const { image, takeScreenshot } = useScreenshot({ref:ref1});
       return(
         <div>
           <Header history={props.history}/>
@@ -211,10 +195,16 @@
               <div class="collectionTitle">
                 My Collection
               </div>
-              <Stack style={{marginLeft:'25px'}} direction='row' spacing={4}>
+              <Stack ref={ref1} style={{marginLeft:'25px'}} direction='row' spacing={4}>
                 <Button onClick={onOpen}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                   Create Site
                 </Button>
+                {/**
+                  * <Button onClick={() => takeScreenshot()}>test</Button>
+                  * {image && <img style={{width:300, height:300}} src={image} />}
+                 */}
+                
+                ]
                 {/*
                 <Button style={{marginLeft:25}} onClick={navSmartContract  }  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                   Customize Smart Contract
@@ -236,9 +226,9 @@
               </div>
 
               :
-
+              <div>
               <WebsiteList data = {websites} onBuildDirect = {onBuildDirect} />
-
+              </div>
 
             }
 
@@ -518,13 +508,9 @@
                           <WebsiteCreation
                             name={name}
                             account={account}
+                            history={props.history}
                           />
-                          <div class="positionFooter"> 
-                            <Button onClick={() => createWebSite("personal")} colorScheme='blue' mr={3}>
-                              Next
-                            </Button>
-                            <Button onClick={()=>setTriggerChoice("")}>Back</Button>
-                          </div>
+                        
 
                         </div>
                         :

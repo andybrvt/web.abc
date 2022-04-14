@@ -1,6 +1,7 @@
 /*
   This will be the real editor to edit stuff directly
 */
+
 import React, { useState, useEffect, useRef } from 'react';
 import grapesjs from 'grapesjs';
 import 'grapesjs/dist/css/grapes.min.css';
@@ -123,6 +124,7 @@ import * as dateFns from 'date-fns';
 import { TestModal } from './TestModal';
 import {InitialEditorModal} from './InitialEditorModal';
 import { TrashModal } from './TrashModal'
+import { useScreenshot } from "use-screenshot-hook";
 const PLUGINS = [
   CoreButtonType,
   ButtonType1,
@@ -196,7 +198,8 @@ const translatedItems = [
 export const Editor = (props) => {
 
   const Web3Api = useMoralisWeb3Api()
-
+  const ref1 = useRef(null);
+    const { image, takeScreenshot } = useScreenshot({ref:ref1});
   // Open and close for modals
   const { isOpen: isNFTOpen, onOpen: onNFTOpen, onClose: onNFTClose } = useDisclosure()
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
@@ -207,9 +210,8 @@ export const Editor = (props) => {
   const btnRef = React.useRef()
 
 
-
   const {websiteId, buildType} = useParams()
-
+  
 
   const {activateBrowserWallet, account, chainId } = useEthers();
   const [preview, setPreview] =useState(false);
@@ -219,7 +221,7 @@ export const Editor = (props) => {
   const [trashCondition, setTrashCondition] = useState(false);
   const [toolsCategory, setToolsCategory] = useState("");
   const [pageIds, setPageIds] = useState([]);
-
+  const [personalWebsiteUsername, setPersonalWebsiteUsername] = useState("");
 
   const [currentX, setCurrentX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
@@ -283,7 +285,27 @@ export const Editor = (props) => {
 
   }
 
+
+  const getAllNotes= () => {
+    axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteUsername/${websiteId}`)
+      .then(res => {
+        console.log(res.data, 'what is this here')
+        setPersonalWebsiteUsername(res.data);
+
+      })
+      console.log("SDONENENEEE")
+      axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
+      .then(res => {
+        console.log(res.data, 'what is this here')
+      })
+  }
+
+
+
+
   useEffect(() => {
+    getAllNotes();
+
     const editor = grapesjs.init({
       container: "#gjs",
       fromElement: 1,
@@ -353,13 +375,7 @@ export const Editor = (props) => {
       },
       assetManager:{
         assets: [
-          'https://via.placeholder.com/350x250/78c5d6/fff/image1.jpg',
-          'https://via.placeholder.com/350x250/459ba8/fff/image2.jpg',
-          'https://via.placeholder.com/350x250/79c267/fff/image3.jpg',
-          'https://via.placeholder.com/350x250/c5d647/fff/image4.jpg',
-          'https://via.placeholder.com/350x250/f28c33/fff/image5.jpg',
-          'https://via.placeholder.com/350x250/e868a2/fff/image6.jpg',
-          'https://via.placeholder.com/350x250/cc4360/fff/image7.jpg',
+
         ],
         // custom:true,
       },
@@ -496,9 +512,20 @@ export const Editor = (props) => {
                 </div>
               </div>
               <div class = "centerInfo">
-                <h1 data-gjs-type ="text">
-                  @username
-                </h1>
+              <h1 data-gjs-type ="text">
+                        {personalWebsiteUsername?
+                          <div>
+                            {personalWebsiteUsername}
+                          </div>
+                        :
+                        <div>
+                          @usernamebbb
+                        </div>
+                        
+                        
+                        }
+                          
+                        </h1>
               </div>
 
 
@@ -1056,10 +1083,21 @@ export const Editor = (props) => {
                           <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
                         </div>
                       </div>
-                      <div class = "centerInfo">
-                        <h1 data-gjs-type ="text">
-                          @username
+                      <div class = "centerInfo"><h1 data-gjs-type ="text">
+                        {personalWebsiteUsername?
+                          <div>
+                            {personalWebsiteUsername}
+                          </div>
+                        :
+                        <div>
+                          @usernameaaa
+                        </div>
+                        
+                        
+                        }
+                          
                         </h1>
+                        
                       </div>
 
 
@@ -1500,7 +1538,7 @@ export const Editor = (props) => {
     editor.on('load', () => editor.select(dc.getWrapper()));
 
     setEditor(editor)
-  },[account])
+  },[account, personalWebsiteUsername])
 
 
   const renderTimestamp = timestamp =>{
@@ -1599,22 +1637,39 @@ export const Editor = (props) => {
     editorMain.store()
   }
 
+  const showScreenShot = () => {
+    takeScreenshot().then(data => {
+      console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEe")
+      console.log(data)
+    if(image){
+      console.log(image)
+    }   
+      // logic
+  });
+    
+  }
 
 
   return(
     <div>
-
-      <EditorHeader
+      
+      <EditorHeader 
         storeEditor={storeEditor}
         websiteId={websiteId}
         editor = {editorMain}
         history = {props.history}
         account = {account}
         />
+        {/* <div ref={ref1}>test</div> */}
+      <div>LOOOOOOOOOOOOOOOOOOOOL
+      <Button onClick={showScreenShot}>test</Button>
+      
+      
+      </div>
 
 
-
-      <div class="editorRow">
+      <div  class="editorRow">
+        
         <div class = "firstColumn">
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
@@ -1705,8 +1760,11 @@ export const Editor = (props) => {
 
           </Drawer>
         </div>
+        
         <div class="column">
           <div id = "gjs"></div>
+        {/* {image && <img style={{width:300, height:300}} src={image} />} */}
+          
         </div>
 
 

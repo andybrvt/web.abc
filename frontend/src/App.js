@@ -17,6 +17,7 @@ import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import {Canvas} from './components/TestingFolder/ReactDesignerTest';
 import {MoralisTest} from './components/TestingFolder/MoralisTest';
+import {CreateERC721Testing} from './components/TestingFolder/CreateERC721Testing';
 import {PreviewPage} from './components/BuildFolder/Editor/PreviewPage';
 import {OfficialPage} from './components/BuildFolder/Editor/OfficialWebsite/OfficialPage';
 import {SmartContractCustomize} from './components/SmartContractCustomize';
@@ -83,7 +84,7 @@ export const App = ()=> {
             <Route exact path="/home"  element={<Home history={history} />} />
             <Route exact path="/collectionList" element={<CollectionList history={history}/>} />
             <Route exact path="/collection/:contract" element={<UploadImageNFT history={history}/>} />
-            <Route exact path="/test" element={<MoralisTest history={history}/>} />
+            <Route exact path="/test" element={<CreateERC721Testing history={history}/>} />
             <Route exact path="/compilerTest" element={<CompilerTest history={history}/>} />
             <Route exact path="/grapesTest" element={<GrapesjsTest history={history}/>} />
             <Route exact path="/build/:websiteId/:buildType" element={<MainBuildContainer history={history}/>} />

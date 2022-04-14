@@ -4,5 +4,6 @@ metadata_template = {
     "name":"",
     "description":"",
     "external_url":"",
-    "image": ""
+    "image": "",
+    "attributes": [{"trait_type": "cutness", "value": 100}]
 }

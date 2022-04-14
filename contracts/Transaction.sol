@@ -10,7 +10,7 @@ contract Transaction {
 
     function transfer(address payable _to) external payable returns (bool) {
         /* _to.transfer( msg.value); */
-        _to.transfer(msg.value)
+        _to.transfer(msg.value);
         /* _to.transfer(0.1 ether); */
         return true;
     }

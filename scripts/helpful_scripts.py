@@ -1,6 +1,6 @@
 from brownie import network, accounts, config
 from web3 import Web3
-NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
+NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache", 'ganache-local']
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
     "mainnet-fork",
     "binance-fork",
@@ -49,3 +49,10 @@ def get_contract(contract_name):
             contract_type._name, contract_address, contract_type.abi
         )
     return contract
+
+
+
+# def fund_advanced_collectible(nft_contract):
+#     """
+#         This function will be used to fund
+#     """

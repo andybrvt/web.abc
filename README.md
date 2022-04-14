@@ -57,3 +57,15 @@ Task road map:
 
 TASK
 Get image to be uploaded as a jpeg
+
+
+
+
+
+PLAN FOR THE FUTURE FOR HOW TO GET SMART CONTRACT WORKING
+probally gonna be deploy a contract on to the chain for our webdotabc
+this smart contract will be able to create other smart contract that I tell it to do
+
+--> Need to figure out how to do this without the other user needing to get LINK tokens
+--> Gonna need to figure out how you are gonna get its abi, because getting the address is easy
+--> Solution: might just save it in a database or something

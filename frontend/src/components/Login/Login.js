@@ -4,8 +4,6 @@ import { Input, Form, Button } from 'antd';
 import { LockOutlined, UserOutlined, PhoneOutlined,  } from '@ant-design/icons';
 import { NavLink, Redirect, } from "react-router-dom";
 import './Login.css';
-import { useWeb3React } from "@web3-react/core"
-import { injected } from "../wallet/Connectors"
 // const { active, account, library, connector, activate, deactivate } = useWeb3React()
 
 

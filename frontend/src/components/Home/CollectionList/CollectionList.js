@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { Form } from '@ant-design/compatible';
 import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
 import { useNavigate, } from 'react-router-dom';
-import { useEthers, useEtherBalance, useContractCall, useContractFunction} from "@usedapp/core";
+import { useEthers,useCall, useEtherBalance, useContractCall, useContractFunction} from "@usedapp/core";
 import {Contract} from '@ethersproject/contracts'
 import CreateCollectionContract from '../../../chain-info/contracts/CreateCollectionContract';
 import networkMapping from '../../../chain-info/deployments/map.json';
@@ -28,13 +28,13 @@ export const CollectionList = (props) => {
     {transactionName: "Collection created!"} // transaction name
   )
 
-  const grabCollectionAddresses = useContractCall({
-    abi: createCollectionContractInterface,
-    address:createCollectionContractAddress,
+  const grabCollectionAddresses = useCall({
+    contract: createCollectionContract,
     method: "getAllCollectionAddresses",
     args:[account,]
   })
 
+  console.log(grabCollectionAddresses)
 
 
   useEffect(() => {

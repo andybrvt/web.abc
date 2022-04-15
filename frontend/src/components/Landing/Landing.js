@@ -185,7 +185,7 @@ class Landing extends React.Component{
            </div>
 
 
-           {/*
+    
 
              <div class = "connectWalletContainer">
                  <Button
@@ -193,7 +193,7 @@ class Landing extends React.Component{
                    colorScheme='blue'>Connect Wallet</Button>
              </div>
 
-             */}
+
 
 
 

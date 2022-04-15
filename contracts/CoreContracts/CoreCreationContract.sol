@@ -29,5 +29,13 @@ contract CoreCreationContract {
 
   }
 
+  function getERC721Contracts(address _senderAddress) view public returns(address[] memory){
+    return collectionDict[_senderAddress];
+  }
+
+  function testReturn() view public returns (string memory){
+    return "it works here";
+  }
+
 
 }

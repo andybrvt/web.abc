@@ -4,8 +4,6 @@
   import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant-design/icons';
   import { NavLink, Redirect, } from "react-router-dom";
   // import './Account.css';
-  import { useWeb3React } from "@web3-react/core"
-  import { injected } from "../wallet/Connectors"
   import { useNavigate, } from 'react-router-dom';
   import { useEthers, useEtherBalance, useContractCall, useContractFunction} from "@usedapp/core";
   import { formatEther } from "@ethersproject/units";
@@ -89,13 +87,13 @@
     //existing contract input
     const [existingContract, setExistingContract] = React.useState(false)
     const [existingContractLink, setExistingContractLink] = React.useState("")
-    // 
+    //
 
     const [selectModalOption, setSelectModalOption] = React.useState("")
 
     const {activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
-  
+
 
     const chooseOpenSeaContract = () => {
       setOpenSeaContract(true)
@@ -179,7 +177,7 @@
       if(selectModalOption === "nftOption"){
         setTriggerChoice("nftChoice")
       }
-   
+
 
     }
     const ref1 = useRef(null);
@@ -203,7 +201,7 @@
                   * <Button onClick={() => takeScreenshot()}>test</Button>
                   * {image && <img style={{width:300, height:300}} src={image} />}
                  */}
-                
+
                 ]
                 {/*
                 <Button style={{marginLeft:25}} onClick={navSmartContract  }  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
@@ -272,13 +270,13 @@
             >
               <ModalOverlay />
               <ModalContent >
-        
-                { triggerChoice=='nftChoice' ? 
+
+                { triggerChoice=='nftChoice' ?
                   <ModalHeader>
                   <div class="modalHeader">
                     Creating a NFT website-- what step are you on?
                   </div>
-                  
+
                 </ModalHeader>
                   :
 
@@ -290,29 +288,29 @@
                       </div>
                     </ModalHeader>
                   :
-                
+
                   <ModalHeader>
                     <div class="modalHeader">
                     Create Website
-                    </div>  
+                    </div>
                   </ModalHeader>
                   }
                   </div>
-                  
-                  
+
+
                 }
-              
-                  
-                  
+
+
+
                 <ModalCloseButton onClick={()=>setTriggerChoice("")} />
                   {
                     (triggerChoice=="nftChoice")?
 
                     <div>
-                      
 
 
-                        
+
+
 
                       <div>
                         <QueueAnim
@@ -323,13 +321,13 @@
                           <div key="1">
                             <div class="choiceNFT">
                               <Box
-                                
+
                                 onClick={chooseExistingContract}  maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                                 <Center>
                               <TestBuilder style={{marginTop:25}} width={200} height={200}/>
 
                                 </Center>
-                                
+
                                 <Box p='6'>
                                     <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
                                       <Badge borderRadius='full' px='3' colorScheme='teal'>
@@ -348,11 +346,11 @@
                                     </Box>
                                     <div
                                       style={{fontWeight:'bold', fontSize:20}}
-                                    > 
+                                    >
                                     Own an existing smart contract
                                     </div>
                                     <div style={{marginTop:5}}>
-                                    
+
                                     </div>
                                 </Box>
                               </Box>
@@ -361,7 +359,7 @@
 
                           <div key="2">
                           <div class="choiceNFT">
-                              <Box   
+                              <Box
                                 onClick={chooseOpenSeaContract} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                                 <Center>
                                 <Image
@@ -369,7 +367,7 @@
                                   src={'https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.png'} alt={'Rear view of modern home with pool'} />
 
                                 </Center>
-                                
+
                                 <Box p='6'>
                                     <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
                                       <Badge borderRadius='full' px='3' colorScheme='teal'>
@@ -392,22 +390,22 @@
                                       Own a NFT collection on OpenSea
                                     </div>
                                     <div style={{marginTop:5}}>
-                                    
+
                                     </div>
                                 </Box>
                               </Box>
                             </div>
                           </div>
-                            
+
                           <div key="3" >
-                            <Box   
+                            <Box
                               style={{opacity:0.3}}
-                              onClick={()=>setTriggerChoice("nftChoice")} 
+                              onClick={()=>setTriggerChoice("nftChoice")}
                               maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                               <Center>
                                 <CreateContract style={{marginTop:25}} width={200} height={200}/>
                               </Center>
-                              
+
                               <Box p='6'>
                                   <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
                                     <Badge borderRadius='full' px='3' colorScheme='teal'>
@@ -430,7 +428,7 @@
                                     Create your smart contract
                                   </div>
                                   <div style={{marginTop:5}}>
-                                  
+
                                   </div>
                               </Box>
                             </Box>
@@ -438,7 +436,7 @@
                           </QueueAnim>
                     </div>
 
-                      
+
 
                     <div>
                       {
@@ -475,9 +473,9 @@
                           </div>
                         }
                       </div>
-                      
-                      <div> 
-                
+
+                      <div>
+
                           <div>
                           { openSeaLink.length!=0?
                             <div class="positionFooter">
@@ -489,14 +487,14 @@
                                 </div>
                             </div>
                           :
-                          <div class="positionFooter"> 
+                          <div class="positionFooter">
                               <div>
                                 <Button onClick={resetAllHooks}>Back</Button>
                               </div>
                           </div>
                           }
-                          </div>  
-                      
+                          </div>
+
                       </div>
                     </div>
 
@@ -510,20 +508,20 @@
                             account={account}
                             history={props.history}
                           />
-                        
+
 
                         </div>
                         :
                         <div>
                       <ModalBody pb={17.5}>
-                        
+
                       <FormControl isRequired>
                           <div style={{display:'flex', flexDirection:'row'}}>
                             <p class="nameProject"> Select website type  </p>
                             <FormLabel></FormLabel>
                           </div>
-                          
-                         
+
+
                         </FormControl>
                       <QueueAnim
                         style={{display:'flex', flexDirection:'row'}}
@@ -531,7 +529,7 @@
                         ease={['easeOutQuart', 'easeInOutQuart']}
                         delay={300}>
                           <div key="a">
-                            
+
                             <div class="choiceBox">
                               <Box
                                 onClick={()=>setSelectModalOption("websiteOption")}
@@ -567,14 +565,14 @@
                                 </Box>
                               </Box>
                             </div>
-                            
+
                           </div>
                           <div key="b">
                             <div class="choiceBox">
                               <Box
                                 onClick={()=>setSelectModalOption("nftOption")}
                                 className={`modalOptionheight ${(selectModalOption=='nftOption') ? "modalOptionBorder" : ""}`}
-                                // onClick={()=>setTriggerChoice("nftChoice")} 
+                                // onClick={()=>setTriggerChoice("nftChoice")}
                                 maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
                                 <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                                 <Box p='6'>
@@ -665,7 +663,7 @@
                           :
                           ''
                           }
-                          
+
                           <Button onClick={onClose}>Close</Button>
                         </div>
 
@@ -677,8 +675,8 @@
                       }
                     </div>
 
-                    
-                    
+
+
 
                   }
 

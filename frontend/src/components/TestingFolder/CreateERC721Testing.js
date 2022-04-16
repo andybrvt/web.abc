@@ -10,6 +10,8 @@ import { Button, ButtonGroup, Divider, Flex, Text, Input, Select, List, ListItem
 // interface + address
 export const CreateERC721Testing = (props) => {
 
+  const [collections, setCollections] = useState([])
+
   const { account, chainId} = useEthers()
   const { abi } = CoreCreationContract // abi
   // address
@@ -36,30 +38,49 @@ export const CreateERC721Testing = (props) => {
   }
 
   //
-  const results = useCall({
+  const getERC721Contracts = useCall({
     contract: coreCreationContract,
-    method: "testReturn",
-    args: []
+    method: "getERC721Contracts",
+    args: [account, ]
   })
 
 
-  console.log(results)
 
 
-  // console.log(getAllCollectionAddresses)
-  // useEffect(() => {
-  //   if(getAllCollectionAddresses !== undefined){
-  //
-  //
-  //     console.log(getAllCollectionAddresses, 'stuff here')
-  //   }
-  //
-  // }, [getAllCollectionAddresses])
+  useEffect(() => {
+    if(getERC721Contracts !== undefined){
+      setCollections(getERC721Contracts.value)
+    }
+
+  }, [getERC721Contracts])
 
 
   return(
 
     <div>
+      <List>
+        {
+          collections ?
+
+          collections.map((address, index) => {
+            return (
+              <ListItem >
+                <Button
+                  colorScheme='blue'>{address}</Button>
+              </ListItem>
+
+            )
+          })
+
+          :
+
+          <ListItem>Nothing</ListItem>
+
+
+        }
+
+
+      </List>
 
       <Button onClick = {() => createBasicERC721Press()}>Create Contract</Button>
     </div>

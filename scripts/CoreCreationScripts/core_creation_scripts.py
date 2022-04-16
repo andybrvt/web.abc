@@ -4,10 +4,10 @@ from scripts.helpful_scripts import get_account
 
 def deploy_core_creation_contract():
     account = get_account(); #This will get our current account
-    network.gas_price(1000000000)
+    network.gas_price(10000000000)
     coreCreationContract = CoreCreationContract.deploy(
         {"from": account},
-        publish_source = True
+        publish_source = False
         )
 
 
@@ -24,7 +24,21 @@ def createERC721():
         config['networks'][network.show_active()]['keyhash'],
         {'from': account, "publish_source": True},
     )
-    address = coreCreationContract.collectionDict(account.address, -1)
+    address = coreCreationContract.collectionDict(account.address, 0)
+    print(address)
+    print("New erc721 created")
+
+
+def createERC721A():
+    account = get_account();
+    coreCreationContract = CoreCreationContract[-1]
+    print('Creating the new collection')
+    coreCreationContract.createBasicERC721A(
+        "test",
+        "TEST",
+        {'from': account, "publish_source": True},
+    )
+    address = coreCreationContract.collectionDict(account.address, 0)
     print(address)
     print("New erc721 created")
 

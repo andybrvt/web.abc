@@ -1,13 +1,14 @@
 dependencies:
   - OpenZeppelin/openzeppelin-contracts@4.4.2
   - smartcontractkit/chainlink-brownie-contracts@0.4.0
+  - chiru-labs/erc721a@3.2.0
 
 compiler:
   solc:
     remappings:
       - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.4.2'
       - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.4.0'
-
+      - '@chiru-labs=chiru-labs/erc721a@3.2.0'
 
 dotenv: .env
 

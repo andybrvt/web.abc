@@ -25,6 +25,8 @@ import {Docs} from './Docs.js';
 import {CollectionList} from './components/Home/CollectionList/CollectionList';
 import { MoralisProvider } from "react-moralis";
 import {PageNotFound} from './PageNotFound';
+import { SmartContractDash } from './components/SmartContractDash/SmartContractDash';
+
 import { useEthers } from "@usedapp/core";
 import grapesjs from 'grapesjs';
 
@@ -93,7 +95,7 @@ export const App = ()=> {
             <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
             <Route exact path="/smartContract" element={<SmartContractCustomize history={history}/>} />
             <Route exact path="/docs" element={<Docs history={history}/>} />
-
+            <Route exact path="/contract" element={<SmartContractDash history={history}/>} />
 
 
         </Routes>

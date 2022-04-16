@@ -4,8 +4,6 @@ import { LockOutlined, UserOutlined, PhoneOutlined, SearchOutlined  } from '@ant
 import { NavLink, Redirect, } from "react-router-dom";
 
 // import './Account.css';
-import { useWeb3React } from "@web3-react/core"
-import { injected } from "./wallet/Connectors"
 import { useNavigate, } from 'react-router-dom';
 import { useEthers, useEtherBalance, useContractCall, useContractFunction} from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";

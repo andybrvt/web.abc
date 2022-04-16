@@ -13,7 +13,6 @@ import {CompilerTest} from './components/Home/CompilerTest';
 import {WebsiteInput} from './components/Home/WebsiteInput';
 import { UploadImageNFT } from './components/Home/UploadImageNFT';
 import { createBrowserHistory } from "history";
-import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import {Canvas} from './components/TestingFolder/ReactDesignerTest';
 import {MoralisTest} from './components/TestingFolder/MoralisTest';

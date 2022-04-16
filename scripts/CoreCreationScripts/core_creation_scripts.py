@@ -29,8 +29,26 @@ def createERC721():
     print("New erc721 created")
 
 
+def createERC721A():
+    account = get_account();
+    coreCreationContract = CoreCreationContract[-1]
+    print('Creating the new collection')
+    coreCreationContract.createBasicERC721A(
+        "test",
+        "TEST",
+        {'from': account, "publish_source": True},
+    )
+    address = coreCreationContract.collectionDict(account.address, 0)
+    print(address)
+    print("New erc721 created")
 
+
+def getAddressTest():
+    account = get_account()
+    coreCreationContract = CoreCreationContract[-1]
+    address = coreCreationContract.testReturn()
+    print(address)
 
 
 def main():
-    createERC721()
+    deploy_core_creation_contract()

@@ -11,6 +11,9 @@ import { Button, ButtonGroup, Divider, Flex, Text, Input, Select, List, ListItem
 export const CreateERC721Testing = (props) => {
 
   const [collections, setCollections] = useState([])
+  const [collectionName, setCollectionName] = useState("")
+  const [collectionSymbol, setCollectionSymbol] = useState("")
+
 
   const { account, chainId} = useEthers()
   const { abi } = CoreCreationContract // abi
@@ -27,6 +30,15 @@ export const CreateERC721Testing = (props) => {
     {transactionName: "createBasicERC721"}
   )
 
+
+  const { send: createERC721A, state: createERC721AState } = useContractFunction(
+    coreCreationContract,
+    "createBasicERC721A",
+    {transactionName: "createBasicERC721A"}
+  )
+
+
+
   const createBasicERC721Press = (e) => {
     // createERC721("Test", "TEST", )
     const vrf = global.WEB3_CONSTANTS[String(chainId)]['vrf_coordinator']
@@ -34,6 +46,17 @@ export const CreateERC721Testing = (props) => {
     const keyhash = global.WEB3_CONSTANTS[String(chainId)]['keyhash']
 
     createERC721("Test", "TEST", vrf, link_token, keyhash)
+
+  }
+
+  const createBasicERC721APress = (e) => {
+
+    if(collectionName !== "" && collectionSymbol !== ""){
+        createERC721A(collectionName, collectionSymbol)
+    }
+    else {
+      alert("fill in the names")
+    }
 
   }
 
@@ -45,11 +68,24 @@ export const CreateERC721Testing = (props) => {
   })
 
 
+  const onInputChange = (e) => {
+
+    console.log(e.target.placeholder)
+    const inputType = e.target.placeholder
+    if(inputType === "Name"){
+      setCollectionName(e.target.value)
+    }
+
+    if(inputType === "Symbol"){
+      setCollectionSymbol(e.target.value)
+    }
+  }
+
 
 
   useEffect(() => {
     if(getERC721Contracts !== undefined){
-      setCollections(getERC721Contracts.value)
+      setCollections(getERC721Contracts.value[0])
     }
 
   }, [getERC721Contracts])
@@ -63,6 +99,7 @@ export const CreateERC721Testing = (props) => {
           collections ?
 
           collections.map((address, index) => {
+            console.log(address, 'here is a new address')
             return (
               <ListItem >
                 <Button
@@ -82,7 +119,11 @@ export const CreateERC721Testing = (props) => {
 
       </List>
 
-      <Button onClick = {() => createBasicERC721Press()}>Create Contract</Button>
+      <Input onChange = {onInputChange} placeholder = "Name"/>
+      <Input onChange = {onInputChange} placeholder = "Symbol"/>
+
+      <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721</Button>
+      <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721A</Button>
     </div>
   )
 }

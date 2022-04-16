@@ -222,7 +222,7 @@ export const Editor = (props) => {
   const [toolsCategory, setToolsCategory] = useState("");
   const [pageIds, setPageIds] = useState([]);
   const [personalWebsiteUsername, setPersonalWebsiteUsername] = useState("");
-
+  const [personalProfilePic, setPersonalProfilePic]=useState("");
   const [currentX, setCurrentX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
   const [currentWidth, setCurrentWidth] = useState(0);
@@ -286,6 +286,9 @@ export const Editor = (props) => {
   }
 
 
+  
+
+
   const getAllNotes= () => {
     axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteUsername/${websiteId}`)
       .then(res => {
@@ -297,6 +300,7 @@ export const Editor = (props) => {
       axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
       .then(res => {
         console.log(res.data, 'what is this here')
+        setPersonalProfilePic(res.data)
       })
   }
 
@@ -508,7 +512,13 @@ export const Editor = (props) => {
             <div data-gjs-type ="box" class = "profile-inner-wrapper">
               <div class = "userCircleWrapper">
                 <div class = "userCircle">
-                  <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
+                  {
+                    (personalProfilePic)?
+                    <img data-gjs-type ="image" class = "circleProfilePic" src = {personalProfilePic}/>
+                    :
+                    ''
+                  }
+                 
                 </div>
               </div>
               <div class = "centerInfo">
@@ -1080,7 +1090,12 @@ export const Editor = (props) => {
                     <div data-gjs-type ="box" class = "profile-inner-wrapper">
                       <div class = "userCircleWrapper">
                         <div class = "userCircle">
-                          <img data-gjs-type ="image" class = "circleProfilePic" src = {imageUser}/>
+                          {
+                            (personalProfilePic)?
+                            <img data-gjs-type ="image" class = "circleProfilePic" src = {personalProfilePic}/>
+                            :
+                            ''
+                          }
                         </div>
                       </div>
                       <div class = "centerInfo"><h1 data-gjs-type ="text">
@@ -1538,7 +1553,7 @@ export const Editor = (props) => {
     editor.on('load', () => editor.select(dc.getWrapper()));
 
     setEditor(editor)
-  },[account, personalWebsiteUsername])
+  },[account, personalWebsiteUsername, personalProfilePic])
 
 
   const renderTimestamp = timestamp =>{

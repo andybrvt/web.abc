@@ -180,6 +180,12 @@
 
 
     }
+
+    const navManageContract = () => {
+      props.history.push("/contract")
+  }
+
+
     const ref1 = useRef(null);
     const { image, takeScreenshot } = useScreenshot({ref:ref1});
       return(
@@ -196,6 +202,10 @@
               <Stack ref={ref1} style={{marginLeft:'25px'}} direction='row' spacing={4}>
                 <Button onClick={onOpen}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                   Create Site
+                </Button>
+
+                <Button onClick={navManageContract}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
+                  Manage Contracts
                 </Button>
                 {/**
                   * <Button onClick={() => takeScreenshot()}>test</Button>

@@ -370,6 +370,7 @@ class GetPersonalWebsitePic(APIView):
             print(curWebsite.newlyCreated)
         except:
             print('cannot find website')
+            
         return Response(curWebsite.profilePic)
 
 

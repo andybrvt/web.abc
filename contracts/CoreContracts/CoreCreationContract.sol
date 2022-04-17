@@ -34,9 +34,20 @@ contract CoreCreationContract {
 
   function createBasicERC721A(
     string memory name_,
-    string memory symbol_
+    string memory symbol_,
+    uint256 maxMint_,
+    uint256 maxSupply_,
+    uint256 mintRate_,
+    string memory baseURI_
   ) public {
-    BasicERC721a new_nft_collection = new BasicERC721a(name_, symbol_);
+    BasicERC721a new_nft_collection = new BasicERC721a(
+      name_,
+      symbol_,
+      maxMint_,
+      maxSupply_,
+      mintRate_,
+      baseURI_
+      );
     collectionDict[msg.sender].push(address(new_nft_collection));
 
   }

@@ -1,6 +1,9 @@
 # this script will be use to test and deploy the contracts
 from brownie import CoreCreationContract, CreateCollectionContract, BasicERC721, config, network
 from scripts.helpful_scripts import get_account
+from web3 import Web3
+
+
 
 def deploy_core_creation_contract():
     account = get_account(); #This will get our current account
@@ -36,11 +39,15 @@ def createERC721A():
     coreCreationContract.createBasicERC721A(
         "test",
         "TEST",
+        2,
+        10,
+        Web3.toWei(0.002, 'ether'),
+        "this is some uri",
         {'from': account, "publish_source": True},
     )
     address = coreCreationContract.collectionDict(account.address, 0)
     print(address)
-    print("New erc721 created")
+    print("New erc721A created")
 
 
 def getAddressTest():
@@ -48,6 +55,9 @@ def getAddressTest():
     coreCreationContract = CoreCreationContract[-1]
     address = coreCreationContract.testReturn()
     print(address)
+
+def getCurrentERC721A():
+    account = get_account()
 
 
 def main():

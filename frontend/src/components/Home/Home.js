@@ -182,7 +182,7 @@
     }
 
     const navManageContract = () => {
-      props.history.push("/contract")
+      props.history.push("/contractDashboard")
   }
 
 

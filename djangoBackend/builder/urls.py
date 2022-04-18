@@ -20,6 +20,7 @@ urlpatterns = [
     path("getUserWebsites/<slug:userKey>", views.GetUserWebsites.as_view(), name = "get_user_websites"),
     path('getPersonalSiteUsername/<int:webId>', views.GetPersonalWebsiteUsername.as_view(), name = "invited_num"),
     path('getPersonalSiteProfilePic/<int:webId>', views.GetPersonalWebsitePic.as_view(), name = "invited_num"),
+    path('checkDeployed/<int:webId>', views.CheckIfDeployedOrNot.as_view(), name = "check_deployed"),
     # path('createWebsiteTest/<int:webId>', views.CreateWebsiteTest.as_view(),name = "image_test"),
 
 ]

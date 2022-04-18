@@ -375,6 +375,21 @@ class GetPersonalWebsitePic(APIView):
 
 
 
+@authentication_classes([])
+@permission_classes([])
+class CheckIfDeployedOrNot(APIView):
+    def post(self, request, webId, *args, **kwargs):
+        try:
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            curWebsite.deployedCondition=True
+            curWebsite.save()
+        except:
+            print('object not found')
+        return Response('delete the page here')
+
+
+
+
 # class CreateWebsiteTest(viewsets.ModelViewSet):
 #     def post(self, request, *args, **kwargs):
 #         queryset = models.Website.objects.all()

@@ -163,11 +163,19 @@
       setName('')
     }
 
-    const onBuildDirect = (websiteId, websiteType) => {
+    const onBuildDirect = (websiteId, websiteType, websiteDeployedCondition) => {
       console.log(websiteId, websiteType)
-      props.history.push(`/build/${websiteId}/${websiteType}`,{
-        websiteId: websiteId
-      })
+      if(websiteDeployedCondition==false){
+        props.history.push(`/build/${websiteId}/${websiteType}`,{
+          websiteId: websiteId
+        })
+      }
+      else {
+        props.history.push(`websiteDashboard`,{
+          websiteId: websiteId
+        })
+      }
+      
     }
 
     const nextStep = () => {

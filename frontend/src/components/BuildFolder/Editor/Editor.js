@@ -297,11 +297,11 @@ export const Editor = (props) => {
 
       })
       console.log("SDONENENEEE")
-      axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
-      .then(res => {
-        console.log(res.data, 'what is this here')
-        setPersonalProfilePic(res.data)
-      })
+      // axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
+      // .then(res => {
+      //   console.log(res.data, 'what is this here')
+      //   setPersonalProfilePic(res.data)
+      // })
   }
 
 

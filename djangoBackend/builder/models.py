@@ -52,6 +52,7 @@ class Website(models.Model):
     lastChanged = models.DateTimeField(default = timezone.now, blank = False)
     websiteAssets = models.TextField(blank = True)
     websiteUserName=models.CharField(max_length=255,blank=True)
+    deployedCondition=models.BooleanField(default=False)
     profilePic = models.ImageField(('profilePic'),
                                         upload_to='profilePic/public/profile_pictures/%Y/%m',
                                         blank=True,

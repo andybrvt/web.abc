@@ -15,9 +15,13 @@ export const ExampleTemplate = (props) => {
 
   const IMAGE = props.unsplashImage;
   const item = props.item
+  console.log("LLLLLLLLLLLLLLLL")
+  console.log("LLLLLLLLLLLLLLLL")
+  console.log("LLLLLLLLLLLLLLLL")
+  console.log(item)
   return (
     <Center
-      onClick = {() => props.onBuildDirect(item.id, item.type)}
+      onClick = {() => props.onBuildDirect(item.id, item.type, item.deployedCondition)}
       py={12} className = "boxContainer">
       <Box
         role={'group'}

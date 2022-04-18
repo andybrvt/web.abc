@@ -124,6 +124,8 @@ export const EditorHeader = (props) => {
         onOpen(true)
       })
 
+      axios.post(`${global.API_ENDPOINT}/builder/checkDeployed/${websiteId}`)
+
     }
 
     const closeCallDouble = () =>{

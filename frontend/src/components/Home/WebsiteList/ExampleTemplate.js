@@ -19,6 +19,7 @@ export const ExampleTemplate = (props) => {
   console.log("LLLLLLLLLLLLLLLL")
   console.log("LLLLLLLLLLLLLLLL")
   console.log(item)
+  
   return (
     <Center
       onClick = {() => props.onBuildDirect(item.id, item.type, item.deployedCondition)}

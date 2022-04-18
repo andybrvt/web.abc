@@ -388,7 +388,18 @@ class CheckIfDeployedOrNot(APIView):
         return Response('delete the page here')
 
 
+@authentication_classes([])
+@permission_classes([])
+# check if the website is newly created
+class GetWebsiteInfo(APIView):
+    def get(self, request, webId, *args, **kwargs):
 
+        try:
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            print(curWebsite)
+        except:
+            print('cannot find website')
+        return Response(curWebsite)
 
 # class CreateWebsiteTest(viewsets.ModelViewSet):
 #     def post(self, request, *args, **kwargs):

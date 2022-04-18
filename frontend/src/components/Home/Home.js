@@ -140,7 +140,7 @@
       // .then(res => {
       //   setWebsites(res.data)
       // })
-
+      console.log("USE EFFET SPAMAMM")
       if(account){
         axios.get(`${global.API_ENDPOINT}/builder/getUserWebsites/`+account)
         .then(res => {
@@ -151,7 +151,7 @@
       }
 
 
-    }, [account])
+    },[])
 
 
 
@@ -171,7 +171,7 @@
         })
       }
       else {
-        props.history.push(`websiteDashboard`,{
+        props.history.push(`websiteDashboard/${websiteId}`,{
           websiteId: websiteId
         })
       }
@@ -195,7 +195,10 @@
 
 
     const ref1 = useRef(null);
+
     const { image, takeScreenshot } = useScreenshot({ref:ref1});
+
+    console.log(isLoading)
       return(
         <div>
           <Header history={props.history}/>
@@ -203,7 +206,7 @@
 
 
           <div class="collectionList">
-            <div class = "collectionTopContainer">
+            <div class = "homeCollectionRow">
               <div class="collectionTitle">
                 My Collection
               </div>

@@ -30,6 +30,16 @@ import {
   Center,
   useColorModeValue,
   Spinner,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+  ButtonGroup
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
@@ -46,7 +56,8 @@ import axios from 'axios';
 
 
 export const EditorHeader = (props) => {
-
+  console.log("WWWWWWWWWWWWWWWWWWWW")
+  console.log(props)
 
   const [editorMain, setEditorMain] = useState(null)
   const [showLoader, setShowLoader] = useState(true)
@@ -54,6 +65,7 @@ export const EditorHeader = (props) => {
 
   const initialRef = React.useRef()
   const finalRef = React.useRef()
+  const shareRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
 
@@ -79,9 +91,8 @@ export const EditorHeader = (props) => {
     }
 
     const onDeployCall = () => {
-
       editorMain.store();
-      const websiteId = props.history.location.state.websiteId
+      const websiteId = props.websiteId
       const formData = new FormData()
       formData.append('publicKey', 1) // fill this in wiht our account
       const allPages = editorMain.Pages.getAll();
@@ -153,6 +164,9 @@ export const EditorHeader = (props) => {
           </div>
 
           <div className = "rightHeader">
+             <div class = "rightHeaderItem">
+                <Button>Share</Button>
+              </div>
               <div class = "rightHeaderItem">
                 <Tooltip label="Preview" aria-label='A tooltip'>
 
@@ -165,7 +179,11 @@ export const EditorHeader = (props) => {
                 </Tooltip >
               </div>
               <div class = "rightHeaderItem">
-                <Button onClick = {onDeployCall}>Deploy</Button>
+                <Button onClick = {onDeployCall}>
+                <Tooltip label="Deploy" aria-label='A tooltip'>
+                Deploy
+                </Tooltip>
+                </Button>
               </div>
               <div class = "rightHeaderItem">
                 <ProfileDropDown {...props} />
@@ -260,6 +278,42 @@ export const EditorHeader = (props) => {
               <Button onClick={closeCallDouble}>Close</Button>
             </ModalFooter>
           </Modal>
+
+          <Popover
+      initialFocusRef={shareRef}
+      placement='bottom'
+      closeOnBlur={false}
+    >
+      <PopoverTrigger>
+        <Button>Trigger</Button>
+      </PopoverTrigger>
+      <PopoverContent color='white' bg='blue.800' borderColor='blue.800'>
+        <PopoverHeader pt={4} fontWeight='bold' border='0'>
+          Manage Your Channels
+        </PopoverHeader>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore.
+        </PopoverBody>
+        <PopoverFooter
+          border='0'
+          d='flex'
+          alignItems='center'
+          justifyContent='space-between'
+          pb={4}
+        >
+          <Box fontSize='sm'>Step 2 of 4</Box>
+          <ButtonGroup size='sm'>
+            <Button colorScheme='green'>Setup Email</Button>
+            <Button colorScheme='blue' ref={shareRef}>
+              Next
+            </Button>
+          </ButtonGroup>
+        </PopoverFooter>
+      </PopoverContent>
+    </Popover>
 
 
         </div>

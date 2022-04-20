@@ -15,11 +15,7 @@ export const ExampleTemplate = (props) => {
 
   const IMAGE = props.unsplashImage;
   const item = props.item
-  console.log("LLLLLLLLLLLLLLLL")
-  console.log("LLLLLLLLLLLLLLLL")
-  console.log("LLLLLLLLLLLLLLLL")
-  console.log(item)
-  
+
   return (
     <Center
       onClick = {() => props.onBuildDirect(item.id, item.type, item.deployedCondition)}
@@ -87,6 +83,7 @@ export const ExampleTemplate = (props) => {
               Last Modified
             </Text>
             <Text color={'gray.600'}>
+              {item.lastChanged}
               {dateFns.format(new Date(item.lastChanged), 'MMMM dd, yyyy')}
             </Text>
           </Stack>

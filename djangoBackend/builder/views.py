@@ -395,11 +395,18 @@ class GetWebsiteInfo(APIView):
     def get(self, request, webId, *args, **kwargs):
 
         try:
+            print("start")
+            print(webId)
             curWebsite = get_object_or_404(models.Website, id = webId)
             print(curWebsite)
+            curWebsiteSerializer = serializers.WebSiteSerializer(curWebsite, many = True).data
+            print("Ehllooo")
+            print(curWebsiteSerializer)
+            return Response(curWebsiteSerializer)  
+             
         except:
             print('cannot find website')
-        return Response(curWebsite)
+        return Response('end')
 
 # class CreateWebsiteTest(viewsets.ModelViewSet):
 #     def post(self, request, *args, **kwargs):

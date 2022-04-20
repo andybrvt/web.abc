@@ -105,10 +105,6 @@
       setExistingContract(true)
     }
 
-    const navSmartContract = (eventId) => {
-        props.history.push("/smartContract")
-    }
-
     const navDocs = (eventId) => {
         props.history.push("/docs")
     }
@@ -215,9 +211,6 @@
                   Create Site
                 </Button>
 
-                <Button onClick={navManageContract}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
-                  Manage Contracts
-                </Button>
                 {/**
                   * <Button onClick={() => takeScreenshot()}>test</Button>
                   * {image && <img style={{width:300, height:300}} src={image} />}

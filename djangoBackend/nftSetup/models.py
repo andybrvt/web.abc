@@ -9,8 +9,8 @@ from builder.models import OwnerWalletKey
 
 """
 class Project(models.Model):
-    name = model.CharField(max_length = 255)
-    owner = model.ForeignKey(OwnerWalletKey, related_name = "owner_key", on_delete= models.CASCADE,)
+    name = models.CharField(max_length = 255)
+    owner = models.ForeignKey(OwnerWalletKey, related_name = "owner_project_key", on_delete= models.CASCADE,)
 
 
 """

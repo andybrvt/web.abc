@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "web3Back",
     "builder",
+    "nftSetup",
     "corsheaders"
 ]
 

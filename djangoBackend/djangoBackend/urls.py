@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 import web3Back
 import builder
+import nftSetup
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -24,7 +25,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("web3Back/", include("web3Back.urls")),
-    path("builder/", include("builder.urls"))
+    path("builder/", include("builder.urls")),
+    path("nftSetup/", include("nftSetup.urls")),
+
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

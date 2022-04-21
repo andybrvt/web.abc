@@ -35,10 +35,17 @@
     left:50%;
     transform: translateX(-50%);
     width:80%;
+    
 }
+.homeCollectionRow {
+    display:flex;
+    flex-direction:row;
+    /* background-color: red; */
+}
+
 .collectionTopContainer{
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .collectionTitle{

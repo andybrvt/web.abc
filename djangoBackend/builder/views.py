@@ -375,6 +375,39 @@ class GetPersonalWebsitePic(APIView):
 
 
 
+@authentication_classes([])
+@permission_classes([])
+class CheckIfDeployedOrNot(APIView):
+    def post(self, request, webId, *args, **kwargs):
+        try:
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            curWebsite.deployedCondition=True
+            curWebsite.save()
+        except:
+            print('object not found')
+        return Response('delete the page here')
+
+
+@authentication_classes([])
+@permission_classes([])
+# check if the website is newly created
+class GetWebsiteInfo(APIView):
+    def get(self, request, webId, *args, **kwargs):
+
+        try:
+            print("start")
+            print(webId)
+            curWebsite = get_object_or_404(models.Website, id = webId)
+            print(curWebsite)
+            curWebsiteSerializer = serializers.WebSiteSerializer(curWebsite, many = True).data
+            print("Ehllooo")
+            print(curWebsiteSerializer)
+            return Response(curWebsiteSerializer)  
+             
+        except:
+            print('cannot find website')
+        return Response('end')
+
 # class CreateWebsiteTest(viewsets.ModelViewSet):
 #     def post(self, request, *args, **kwargs):
 #         queryset = models.Website.objects.all()

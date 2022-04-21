@@ -5,10 +5,12 @@ import * as dateFns from 'date-fns';
 import { Header } from '../Header';
 
 export const SmartContractDash = (props) => {
+    const navContract = () => {
+        props.history.push("/contract")
+    }
     const navHome = () => {
         props.history.push("/home")
     }
-  var data = props.data
   return(
     <div>
 
@@ -20,34 +22,37 @@ export const SmartContractDash = (props) => {
             </div>
             <div style={{marginTop:50, display:'flex', flexDirection:'row'}}>
                 <Stack  
+                    onClick={navContract}
                     boxShadow={'lg'}
                     p={5}
                     rounded={'xl'} style={{width:300, height:300}} bg={useColorModeValue('white', 'gray.900')}>
-                    <div>
-                        Basic Information
-                    </div>
-                    <div>Contract address: 0x2DaA35962A6D43EB54C48367b33d0B3...</div>
+                    <div>NFT Smart contract </div>
+                    <div>Woodies NFT</div>
+                    <div>0x2DaA35962A6D43EB54C48367b33d0B3...</div>
+                    <div>Rinkeby Network</div>
                 </Stack>
 
 
                 <Stack  
+                    onClick={navContract}
                     boxShadow={'lg'}
                     p={5}
                     rounded={'xl'} style={{width:300, height:300}} bg={useColorModeValue('white', 'gray.900')}>
-                    <div>
-                        Balance
-                    </div>
-                    <div style={{marginLeft:100, top:100}}>0.06 Eth</div>
+                   <div>NFT Smart contract </div>
+                    <div>Woodies NFT</div>
+                    <div>0x2DaA35962A6D43EB54C48367b33d0B3...</div>
+                    <div>Rinkeby Network</div>
                 </Stack>
 
                 <Stack  
+                    onClick={navContract}
                     boxShadow={'lg'}
                     p={5}
                     rounded={'xl'} style={{width:300, height:300}} bg={useColorModeValue('white', 'gray.900')}>
-                    <div>
-                        Sales
-                    </div>
-                    <div>3/10,000</div>
+                    <div>NFT Smart contract </div>
+                    <div>Woodies NFT</div>
+                    <div>0x2DaA35962A6D43EB54C48367b33d0B3...</div>
+                    <div>Rinkeby Network</div>
                 </Stack>
             </div>
         </div>

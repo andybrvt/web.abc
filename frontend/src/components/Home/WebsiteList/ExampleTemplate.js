@@ -15,9 +15,10 @@ export const ExampleTemplate = (props) => {
 
   const IMAGE = props.unsplashImage;
   const item = props.item
+
   return (
     <Center
-      onClick = {() => props.onBuildDirect(item.id, item.type)}
+      onClick = {() => props.onBuildDirect(item.id, item.type, item.deployedCondition)}
       py={12} className = "boxContainer">
       <Box
         role={'group'}
@@ -82,6 +83,7 @@ export const ExampleTemplate = (props) => {
               Last Modified
             </Text>
             <Text color={'gray.600'}>
+              {item.lastChanged}
               {dateFns.format(new Date(item.lastChanged), 'MMMM dd, yyyy')}
             </Text>
           </Stack>

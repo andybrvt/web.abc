@@ -105,10 +105,6 @@
       setExistingContract(true)
     }
 
-    const navSmartContract = (eventId) => {
-        props.history.push("/smartContract")
-    }
-
     const navDocs = (eventId) => {
         props.history.push("/docs")
     }
@@ -140,7 +136,7 @@
       // .then(res => {
       //   setWebsites(res.data)
       // })
-
+      console.log("USE EFFET SPAMAMM")
       if(account){
         axios.get(`${global.API_ENDPOINT}/builder/getUserWebsites/`+account)
         .then(res => {
@@ -151,7 +147,7 @@
       }
 
 
-    }, [account])
+    },[])
 
 
 
@@ -163,11 +159,19 @@
       setName('')
     }
 
-    const onBuildDirect = (websiteId, websiteType) => {
+    const onBuildDirect = (websiteId, websiteType, websiteDeployedCondition) => {
       console.log(websiteId, websiteType)
-      props.history.push(`/build/${websiteId}/${websiteType}`,{
-        websiteId: websiteId
-      })
+      if(websiteDeployedCondition==false){
+        props.history.push(`/build/${websiteId}/${websiteType}`,{
+          websiteId: websiteId
+        })
+      }
+      else {
+        props.history.push(`websiteDashboard/${websiteId}`,{
+          websiteId: websiteId
+        })
+      }
+      
     }
 
     const nextStep = () => {
@@ -182,12 +186,15 @@
     }
 
     const navManageContract = () => {
-      props.history.push("/contract")
+      props.history.push("/contractDashboard")
   }
 
 
     const ref1 = useRef(null);
+
     const { image, takeScreenshot } = useScreenshot({ref:ref1});
+
+    console.log(isLoading)
       return(
         <div>
           <Header history={props.history}/>
@@ -195,7 +202,7 @@
 
 
           <div class="collectionList">
-            <div class = "collectionTopContainer">
+            <div class = "homeCollectionRow">
               <div class="collectionTitle">
                 My Collection
               </div>
@@ -204,9 +211,6 @@
                   Create Site
                 </Button>
 
-                <Button onClick={navManageContract}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
-                  Manage Contracts
-                </Button>
                 {/**
                   * <Button onClick={() => takeScreenshot()}>test</Button>
                   * {image && <img style={{width:300, height:300}} src={image} />}

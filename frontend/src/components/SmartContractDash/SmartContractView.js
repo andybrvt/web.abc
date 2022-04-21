@@ -5,20 +5,28 @@ import { useColorModeValue, Stack, Button,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Center,
     BreadcrumbSeparator,} from '@chakra-ui/react';
     import { ChevronRightIcon} from '@chakra-ui/icons'
 import * as dateFns from 'date-fns';
 import { Header } from '../Header';
 import './SmartContractView.css';
+import { useClipboard } from '@chakra-ui/react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faClipboard,  } from '@fortawesome/free-solid-svg-icons'
+import { IconButton } from '@chakra-ui/react'
+
 
 export const SmartContractView = (props) => {
+    const { hasCopied, onCopy }  = useClipboard('0x495f947276749ce646')
+   
     const navHome = () => {
-        props.history.push("/home")
+        props.history.push("/contractDashboard")
     }
   var data = props.data
   return(
     <div>
-
+        
         <div class="collectionList">
             <div class = "collectionTopContainer">
               <div class="collectionTitle">
@@ -28,53 +36,103 @@ export const SmartContractView = (props) => {
                 </BreadcrumbItem>
 
                 <BreadcrumbItem>
-                    <BreadcrumbLink href=''> 0x2DaA35962A6D43EB54C48367b33d0B3...</BreadcrumbLink>
+                    <BreadcrumbLink href=''> 0x495f947276749ce646...</BreadcrumbLink>
                 </BreadcrumbItem>
                 </Breadcrumb>
-                <Divider></Divider>
+                {/* <Divider></Divider> */}
               </div>
             </div>
             <div style={{marginTop:50, display:'flex', flexDirection:'row'}}>
-                <Stack  
-                    boxShadow={'lg'}
-                    p={5}
-                    rounded={'xl'} style={{width:300, height:300}} bg={useColorModeValue('white', 'gray.900')}>
-                    <div>
-                        Basic Information
-                    </div>
-                    <div>Contract address: 0x2DaA35962A6D43EB54C48367b33d0B3...</div>
-                </Stack>
+                <div style={{flex:1, marginLeft:25, marginRight:25}}>
+                    <Stack  
+                        boxShadow={'lg'}
+                        p={5}
+                        rounded={'xl'} bg={useColorModeValue('white', 'gray.900')}>
+                        <div class="contractCategoryTitle">
+                            Basic Information
+                        </div>
+                        <Divider style={{colorScheme:'red'}}></Divider>
+                        <div style={{padding:25}}>
+                            <div class="smartAddress">Woodies NFT</div>
+                            <div style={{display:'flex', flexDirection:'row'}}>
+                           
+                                <IconButton onClick={onCopy} isRound aria-label='Search database' icon={ <FontAwesomeIcon style={{marginRight:5}} icon={faClipboard} />} />
+   
+                                <div class="smartAddress">0x495f947276749ce646...</div>
+                                
+                            </div>
+                            <div class="smartAddress">Rinkeby Network</div>
 
-
-                <Stack  
-                    boxShadow={'lg'}
-                    p={5}
-                    rounded={'xl'} style={{width:300, height:300}} bg={useColorModeValue('white', 'gray.900')}>
-                    <div>
-                        Balance
-                    </div>
-                    <div style={{marginLeft:100, top:100}}>
-                        <div class="ethContractBalance">
-                        0.06 Eth
                         </div>
                         
-                    </div>
-                </Stack>
+                    
+                    </Stack>
+                </div>
+                
+                <div style={{flex:1, marginLeft:25, marginRight:25}}>
+                    <Stack  
+                        boxShadow={'lg'}
+                        p={5}
+                        rounded={'xl'} bg={useColorModeValue('white', 'gray.900')}>
+                        <div class="contractCategoryTitle">
+                            Balance
+                        </div>
+                        <Divider></Divider>
+                        <Center style={{padding:50}}>
+                            <div class="ethContractBalance">
+                            0.06 E
+                            </div>
+                            
+                        </Center>
+                        <Button>Withdraw</Button>
+                    </Stack>
+                </div>
+
+                <div style={{flex:1, marginLeft:25, marginRight:25}}>
+                    <Stack  
+                        boxShadow={'lg'}
+                        p={5}
+                        rounded={'xl'}  bg={useColorModeValue('white', 'gray.900')}>
+                        <div class="contractCategoryTitle">
+                            Sales
+                        </div>
+                        <Divider></Divider>
+                        <Center style={{padding:75}}>
+                            <div class="ethContractBalance">
+                            <div>3/10,000</div>
+                            </div>
+                        </Center>
+                    </Stack>
+                </div>
+
+                
+            </div>
+            <div style={{marginTop:100}}>
 
                 <Stack  
                     boxShadow={'lg'}
                     p={5}
-                    rounded={'xl'} style={{width:300, height:300}} bg={useColorModeValue('white', 'gray.900')}>
-                    <div>
-                        Sales
+                    rounded={'xl'}  bg={useColorModeValue('white', 'gray.900')}>
+                    <div class="contractCategoryTitle">
+                        Transaction History
                     </div>
-                    <div>3/10,000</div>
+                
+                    <Center style={{padding:75}}>
+                        <div class="ethContractBalance">
+                        <div>3/10,000</div>
+                        </div>
+                    </Center>
                 </Stack>
+
             </div>
+        
         </div>
+
         <Header/>
-        <Button onClick={navHome}>
-             Back to Home
+        <Divider/>
+        <IconButton isRound aria-label='Search database' icon={ <FontAwesomeIcon style={{marginRight:5}} icon={faArrowLeft} />} />
+            <Button onClick={navHome}>
+                Back
         </Button>
         
     </div>

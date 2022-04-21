@@ -93,6 +93,7 @@ export const PickNFTModal  = (props) => {
     };
 
     const nftList = await Web3Api.account.getNFTs(options);
+    console.log(nftList)
     setNft(nftList.result)
 
 

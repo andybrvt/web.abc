@@ -6,6 +6,16 @@ import networkMapping from '../../chain-info/deployments/map.json';
 import {constants, utils } from 'ethers';
 import { Button, ButtonGroup, Divider, Flex, Text, Input, Select, List, ListItem } from '@chakra-ui/react';
 
+
+require('dotenv').config()
+
+var fs = require('fs');
+
+const PINATA_BASE_URL = "https://api.pinata.cloud"
+const endpoint = "/pinning/pinFileToIPFS"
+const endpointJson = "/pinning/pinJSONToIPFS"
+
+
 // Remember 2 things, abi and address, the abi makes the interface so technically
 // interface + address
 export const CreateERC721Testing = (props) => {
@@ -13,6 +23,8 @@ export const CreateERC721Testing = (props) => {
   const [collections, setCollections] = useState([])
   const [collectionName, setCollectionName] = useState("")
   const [collectionSymbol, setCollectionSymbol] = useState("")
+
+  const [uploadedImages, setUploadedImages] = useState([])
 
 
   const { account, chainId} = useEthers()
@@ -65,7 +77,16 @@ export const CreateERC721Testing = (props) => {
     contract: coreCreationContract,
     method: "getERC721Contracts",
     args: [account, ]
+
   })
+
+
+  useEffect(() => {
+    if(getERC721Contracts !== undefined){
+      setCollections(getERC721Contracts.value[0])
+    }
+
+  }, [getERC721Contracts])
 
 
   const onInputChange = (e) => {
@@ -81,14 +102,23 @@ export const CreateERC721Testing = (props) => {
     }
   }
 
+  const fileSelectedHandler = (e) => {
+    console.log(e.target.files)
+
+    setUploadedImages(e.target.files)
+
+  }
+
+  const uploadImagesToIPFS = () => {
+
+    console.log(uploadedImages)
+
+  }
 
 
-  useEffect(() => {
-    if(getERC721Contracts !== undefined){
-      setCollections(getERC721Contracts.value[0])
-    }
 
-  }, [getERC721Contracts])
+
+
 
 
   return(
@@ -119,11 +149,24 @@ export const CreateERC721Testing = (props) => {
 
       </List>
 
-      <Input onChange = {onInputChange} placeholder = "Name"/>
-      <Input onChange = {onInputChange} placeholder = "Symbol"/>
+      <div>
+        <Input onChange = {onInputChange} placeholder = "Name"/>
+        <Input onChange = {onInputChange} placeholder = "Symbol"/>
 
-      <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721</Button>
-      <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721A</Button>
+        <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721</Button>
+        <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721A</Button>
+
+      </div>
+
+      <br />
+
+      <div>
+        <div>Upload Images for your collection</div>
+        <input type="file" multiple onChange={fileSelectedHandler} />
+        <Button onClick = {uploadImagesToIPFS}>Upload Images to IPFS</Button>
+      </div>
+
+
     </div>
   )
 }

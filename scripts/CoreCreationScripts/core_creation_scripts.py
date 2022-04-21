@@ -2,7 +2,7 @@
 from brownie import CoreCreationContract, CreateCollectionContract, BasicERC721, config, network
 from scripts.helpful_scripts import get_account
 from web3 import Web3
-
+from scripts.upload_to_frontend import upload_to_frontend
 
 
 def deploy_core_creation_contract():
@@ -25,7 +25,7 @@ def createERC721():
         config['networks'][network.show_active()]['vrf_coordinator'],
         config['networks'][network.show_active()]['link_token'],
         config['networks'][network.show_active()]['keyhash'],
-        {'from': account, "publish_source": True},
+        {'from': account},
     )
     address = coreCreationContract.collectionDict(account.address, 0)
     print(address)
@@ -43,7 +43,8 @@ def createERC721A():
         10,
         Web3.toWei(0.002, 'ether'),
         "this is some uri",
-        {'from': account, "publish_source": True},
+        {'from': account},
+
     )
     address = coreCreationContract.collectionDict(account.address, 0)
     print(address)
@@ -58,7 +59,14 @@ def getAddressTest():
 
 def getCurrentERC721A():
     account = get_account()
+    coreCreationContract = CoreCreationContract[-1]
+    address = coreCreationContract.getERC721Contracts(account.address)
+    print(address)
+    print('got new address')
+
 
 
 def main():
     deploy_core_creation_contract()
+    createERC721A()
+    upload_to_frontend()

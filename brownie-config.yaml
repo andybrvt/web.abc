@@ -28,3 +28,12 @@ networks:
     oracle: '0x7AFe1118Ea78C1eae84ca8feE5C65Bc76CcF879e'
     jobId: '6d1bfe27e7034b1d87b5270556b17277'
     eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+
+live:
+  - name: Ethereum
+    networks:
+      - name: Rinkeby (Infura)
+        chainid: 4
+        id: rinkeby
+        host: https://mainnet.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+        explorer: https://api-rinkeby.etherscan.io/api

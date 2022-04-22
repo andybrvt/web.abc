@@ -7,9 +7,11 @@ import { CloseButton } from '@chakra-ui/react'
 import { Header } from '../Header';
 import axios from 'axios';
 import './WebsiteDashboard.css';
+import { useClipboard } from '@chakra-ui/react'
 
 export const WebsiteDashboard = (props) => {
     const [website, setWebsites] = useState([]);
+
     const navHome = () => {
         props.history.push("/home")
     }
@@ -91,19 +93,20 @@ export const WebsiteDashboard = (props) => {
                             p={5}
                             rounded={'xl'} style={{width:300, height:300, marginRight:25}} bg={useColorModeValue('white', 'gray.900')}>
                             <Center>
-                                <div style={{padding:10}}>
+                                <div style={{padding:0}}>
                                 
                                     <Tag size='lg' colorScheme='red' borderRadius='full'>
                                         <TagLabel>NFT</TagLabel>
                                     </Tag>
                                     <div class="smartContractTitle">Woodies NFT</div>
-                                    <div class="smartAddress">0x2DaA35962...</div>
+                                    
+                                    <div class="smartAddress">test...</div>
                                     <div class="whichNetwork">Rinkeby Network</div>
                                 </div>
                             </Center>
+                           
                         </Stack>
                         
-
                         <Stack  
                             onClick={navContract}
                             boxShadow={'lg'}
@@ -114,7 +117,8 @@ export const WebsiteDashboard = (props) => {
                                 <TagLabel>NFT</TagLabel>
                             </Tag>
                                 <div class="smartContractTitle">Woodies NFT</div>
-                                <div class="smartAddress">0x2DaA35962...</div>
+                                {/* <Button onClick={copyClick2('test2')} ml={2}> copy </Button> */}
+                                <div class="smartAddress">test...</div>
                                 <div class="whichNetwork">Rinkeby Network</div>
                             </div>
                             
@@ -129,7 +133,8 @@ export const WebsiteDashboard = (props) => {
                                 <TagLabel>NFT</TagLabel>
                             </Tag>
                                 <div class="smartContractTitle">Woodies NFT</div>
-                                <div class="smartAddress">0x2DaA35962...</div>
+                                {/* <Button onClick={copyClick3('test3')} ml={2}> copy </Button> */}
+                                <div class="smartAddress">test...</div>
                                 <div class="whichNetwork">Rinkeby Network</div>
                             </div>
                             

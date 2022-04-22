@@ -20,7 +20,7 @@ import { IconButton } from '@chakra-ui/react'
 export const SmartContractView = (props) => {
     const { hasCopied, onCopy }  = useClipboard('0x495f947276749ce646')
    
-    const navHome = () => {
+    const navContractDash = () => {
         props.history.push("/contractDashboard")
     }
   var data = props.data
@@ -29,16 +29,20 @@ export const SmartContractView = (props) => {
         
         <div class="collectionList">
             <div class = "collectionTopContainer">
-              <div class="collectionTitle">
-                <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
-                <BreadcrumbItem>
-                    <BreadcrumbLink href='/contractDashboard'>Contracts</BreadcrumbLink>
-                </BreadcrumbItem>
+              <div class="contractBreadCrumb">
+                  <div style={{display:'flex', flexDirection:'row'}}>
+                    <IconButton onClick={navContractDash} style={{marginRight:20}} isRound aria-label='Search database' icon={ <FontAwesomeIcon style={{marginRight:5}} icon={faArrowLeft} />} />
+                    <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink href='/contractDashboard'>Contracts</BreadcrumbLink>
+                    </BreadcrumbItem>
 
-                <BreadcrumbItem>
-                    <BreadcrumbLink href=''> 0x495f947276749ce646...</BreadcrumbLink>
-                </BreadcrumbItem>
-                </Breadcrumb>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink> 0x495f947276749ce646...</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    </Breadcrumb>
+                  </div>
+                
                 {/* <Divider></Divider> */}
               </div>
             </div>
@@ -51,7 +55,10 @@ export const SmartContractView = (props) => {
                         <div class="contractCategoryTitle">
                             Basic Information
                         </div>
-                        <Divider style={{colorScheme:'red'}}></Divider>
+                        <div style={{padding:5}}>
+                            <Divider style={{color:'#CBD5E0',}}></Divider>
+                        </div>
+                        
                         <div style={{padding:25}}>
                             <div class="smartAddress">Woodies NFT</div>
                             <div style={{display:'flex', flexDirection:'row'}}>
@@ -77,7 +84,9 @@ export const SmartContractView = (props) => {
                         <div class="contractCategoryTitle">
                             Balance
                         </div>
-                        <Divider></Divider>
+                        <div style={{padding:5}}>
+                            <Divider style={{color:'#CBD5E0',}}></Divider>
+                        </div>
                         <Center style={{padding:50}}>
                             <div class="ethContractBalance">
                             0.06 E
@@ -96,7 +105,9 @@ export const SmartContractView = (props) => {
                         <div class="contractCategoryTitle">
                             Sales
                         </div>
-                        <Divider></Divider>
+                        <div style={{padding:5}}>
+                            <Divider style={{color:'#CBD5E0',}}></Divider>
+                        </div>
                         <Center style={{padding:75}}>
                             <div class="ethContractBalance">
                             <div>3/10,000</div>
@@ -129,11 +140,9 @@ export const SmartContractView = (props) => {
         </div>
 
         <Header/>
-        <Divider/>
-        <IconButton isRound aria-label='Search database' icon={ <FontAwesomeIcon style={{marginRight:5}} icon={faArrowLeft} />} />
-            <Button onClick={navHome}>
-                Back
-        </Button>
+        <Divider style={{color:'#CBD5E0',}}/>
+        
+
         
     </div>
 

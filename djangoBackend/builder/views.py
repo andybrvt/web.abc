@@ -24,7 +24,8 @@ class UploadFileCss(APIView):
         #     print(js, file=f)
 
 
-
+        print('this here')
+        print('this here')
         return Response("stuff here")
 
 
@@ -370,7 +371,7 @@ class GetPersonalWebsitePic(APIView):
             print(curWebsite.newlyCreated)
         except:
             print('cannot find website')
-            
+
         return Response(curWebsite.profilePic)
 
 
@@ -402,8 +403,8 @@ class GetWebsiteInfo(APIView):
             curWebsiteSerializer = serializers.WebSiteSerializer(curWebsite, many = True).data
             print("Ehllooo")
             print(curWebsiteSerializer)
-            return Response(curWebsiteSerializer)  
-             
+            return Response(curWebsiteSerializer)
+
         except:
             print('cannot find website')
         return Response('end')
@@ -415,7 +416,7 @@ class GetWebsiteInfo(APIView):
 #         address, created = models.OwnerWalletKey.objects.get_or_create(
 #             publicKey = request.data['owner']
 #         )
-    
+
 #         print(request.data)
 #         website = models.Website.objects.create(
 #             owner = address,

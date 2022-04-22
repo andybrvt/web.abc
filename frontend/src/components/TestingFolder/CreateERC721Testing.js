@@ -27,6 +27,8 @@ export const CreateERC721Testing = (props) => {
   const [uploadedImages, setUploadedImages] = useState([])
 
   const [layers, setLayers] = useState([{name: "Base", required: false, images: [], rarity: [] }])
+  const [NFTCount, setNFTCount] = useState(0)
+  const [NFTCollectionName, setNFTCollectionName] = useState("")
 
   const { account, chainId} = useEthers()
   const { abi } = CoreCreationContract // abi
@@ -151,6 +153,9 @@ export const CreateERC721Testing = (props) => {
 
 
     formData.append("config", configStr)
+    formData.append("count", NFTCount)
+    formData.append("collectionName", NFTCollectionName)
+    formData.append('owner', account)
 
     axios.post(`${global.API_ENDPOINT}/nftSetup/testOtherFunction`,
       formData,
@@ -158,7 +163,7 @@ export const CreateERC721Testing = (props) => {
 
     )
 
-
+//
   }
 
   const addNewLayer = () => {
@@ -185,7 +190,7 @@ export const CreateERC721Testing = (props) => {
 
     const array = Array.from(e.target.files)
     const arrLen =e.target.files.length
-    const rarityArr = Array(arrLen).fill(100/arrLen)
+    const rarityArr = Array(arrLen).fill(1)
 
     console.log(rarityArr, 'what is this here')
 
@@ -203,6 +208,15 @@ export const CreateERC721Testing = (props) => {
   const rarityChange = (e, index, imageIndex) => {
 
 
+  }
+
+  const onChangeCount = (e) => {
+
+    setNFTCount(e.target.value)
+  }
+
+  const onCollectionName = (e) => {
+    setNFTCollectionName(e.target.value)
   }
 
 
@@ -304,7 +318,10 @@ export const CreateERC721Testing = (props) => {
             })
           }
 
-
+          <br />
+          <Input onChange = {onChangeCount}  value = {NFTCount} placeholder = "Count"/>
+          <br />
+          <Input onChange = {onCollectionName} value = {NFTCollectionName} placeholder = "Collection Name"/>
           <br />
           <Button onClick = {generateNFTTest}>Test functions</Button>
       </div>

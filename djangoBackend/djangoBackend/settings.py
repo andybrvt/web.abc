@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-p(s&x2e7t$ut_l^708r3cn5!(j8^7gg%xy3s(n2tnd)7i=sg!k
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = [
     "api.webdotabc.xyz",

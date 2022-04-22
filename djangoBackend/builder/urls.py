@@ -25,4 +25,3 @@ urlpatterns = [
     # path('createWebsiteTest/<int:webId>', views.CreateWebsiteTest.as_view(),name = "image_test"),
 
 ]
-urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

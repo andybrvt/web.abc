@@ -249,6 +249,9 @@ export const CreateERC721Testing = (props) => {
       <div>
         <div>This will be for generating the nft</div>
 
+        <div>
+          <Button onClick = {addNewLayer}>Add new layer</Button>
+        </div>
         {/*
           // Be able to add in new layers (be able to add pictures for each of these new layers). Make sure there is a state that categories each picture by their respective trait
           // A place to input the name of the layer
@@ -260,10 +263,10 @@ export const CreateERC721Testing = (props) => {
 
 
               return(
-                <div>
-                  <div>
-                    <Button onClick = {addNewLayer}>Add new layer</Button>
-                  </div>
+                <div style = {{
+                      margin: '50px'
+                  }}>
+
                   <div>
                     <Input value = {layers[index].name} onChange = {(e)=>onNameChange(e, index)} placeholder = "Name"/>
                   </div>
@@ -272,7 +275,10 @@ export const CreateERC721Testing = (props) => {
                   </div>
                   <div>
                     <input type="file" multiple onChange={(e) => layerImageChange(e, index)} />
-                    <div>
+                    <div style = {{
+                        display: 'flex',
+
+                        }}>
                       {
                         layers[index].images.map((image, imgIndex) => {
 

@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from rest_framework.decorators import authentication_classes, permission_classes
+import json
 
 
 from PIL import Image
@@ -32,27 +33,35 @@ def testFunction():
     print('what is going on here')
 
 
+"""
+    config --> will be config file
+    data --> hold all the temp images
+
+"""
 # Parse the configuration file and make sure it's valid
-def parse_config():
+def parse_config(config, request):
 
-    # Input traits must be placed in the assets folder. Change this value if you want to name it something else.
-    assets_path = 'assets'  # PUT IMAGES HERE
+    for layer in config:
 
 
-    # Loop through all layers defined in CONFIG
-    for layer in CONFIG: # PUT CONFIG FILE THAT YOU WILL RENDER HERE (PROBALLY GONNA BE RENDERED BY CODE OR INPUT)
+        layer_path = layer['name']+'-image'
 
+
+        traits = dict(request.data)[layer_path] #get images
+
+        print(len(traits) == len(layer['rarity_weights']), 'what is this here')
         # Go into assets/ to look for layer folders
-        layer_path = os.path.join(assets_path, layer['directory']) # FOR THE SPECIFC LAYERS
+        # layer_path = os.path.join(assets_path, layer['directory']) # FOR THE SPECIFC LAYERS
 
         # Get trait array in sorted order
-        traits = sorted([trait for trait in os.listdir(layer_path) if trait[0] != '.'])
+        # (list of the the pictures in the directory)
+        # traits = sorted([trait for trait in os.listdir(layer_path) if trait[0] != '.'])
 
-        # If layer is not required, add a None to the start of the traits array
-        if not layer['required']:
-            traits = [None] + traits
+        # # If layer is not required, add a None to the start of the traits array
+        # if not layer['required']:
+        #     traits = [None] + traits
 
-        # Generate final rarity weights
+        # # Generate final rarity weights
         if layer['rarity_weights'] is None:
             rarities = [1 for x in traits]
         elif layer['rarity_weights'] == 'random':
@@ -63,7 +72,7 @@ def parse_config():
         else:
             raise ValueError("Rarity weights is invalid")
 
-        rarities = get_weighted_rarities(rarities)
+        # rarities = get_weighted_rarities(rarities)
 
         # Re-assign final values to main CONFIG
         layer['rarity_weights'] = rarities
@@ -72,11 +81,27 @@ def parse_config():
 
 
 
+# Weight rarities and return a numpy array that sums up to 1
+def get_weighted_rarities(arr):
+    return np.array(arr)/ sum(arr)
+
 @authentication_classes([])
 @permission_classes([])
 class TestRunning(APIView):
     def post(self, request, *args, **kwargs):
         testFunction()
+
+        config = json.loads(request.data['config'])
+
+
+        parse_config(config, request)
+
+
+        print(config)
+
+        # So we have the config and the images, now you just gotta run the scripts
+        # correctly
+
 
         # You can pass in the form data here of the different images
         # instead of folders it can be grouped into a field

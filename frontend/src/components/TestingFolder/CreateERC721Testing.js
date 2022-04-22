@@ -118,7 +118,45 @@ export const CreateERC721Testing = (props) => {
 
   const generateNFTTest = () => {
 
-    axios.post(`${global.API_ENDPOINT}/nftSetup/testOtherFunction`)
+
+    const formData =  new FormData()
+
+    const configList = []
+
+    layers.map((item, index) => {
+
+      const configObj = {
+        id: index+1,
+        name: item.name,
+        directory: item.name,
+        required: item.required,
+        rarity: item.rarity
+      }
+      configList.push(configObj)
+
+
+      item.images.map((image, i) => {
+        formData.append(`${item.name}-image`, image)
+
+
+      })
+
+
+
+    })
+
+    console.log(configList)
+
+    const configStr = JSON.stringify(configList)
+
+
+    formData.append("config", configStr)
+
+    axios.post(`${global.API_ENDPOINT}/nftSetup/testOtherFunction`,
+      formData,
+      {headers: {"content-type": "multipart/form-data"}}
+
+    )
 
 
   }
@@ -158,6 +196,12 @@ export const CreateERC721Testing = (props) => {
         rarity: rarityArr
       }: layer)
     )
+
+  }
+
+  // this is a whole differen thing
+  const rarityChange = (e, index, imageIndex) => {
+
 
   }
 

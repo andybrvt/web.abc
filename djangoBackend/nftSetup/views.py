@@ -46,6 +46,7 @@ def parse_config():
         layer_path = os.path.join(assets_path, layer['directory']) # FOR THE SPECIFC LAYERS
 
         # Get trait array in sorted order
+        # (list of the the pictures in the directory)
         traits = sorted([trait for trait in os.listdir(layer_path) if trait[0] != '.'])
 
         # If layer is not required, add a None to the start of the traits array
@@ -72,11 +73,17 @@ def parse_config():
 
 
 
+# Weight rarities and return a numpy array that sums up to 1
+def get_weighted_rarities(arr):
+    return np.array(arr)/ sum(arr)
+
 @authentication_classes([])
 @permission_classes([])
 class TestRunning(APIView):
     def post(self, request, *args, **kwargs):
         testFunction()
+
+        print(request.data)
 
         # You can pass in the form data here of the different images
         # instead of folders it can be grouped into a field

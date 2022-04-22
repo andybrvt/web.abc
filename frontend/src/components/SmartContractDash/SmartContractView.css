@@ -12,10 +12,16 @@
 }
 
 .contractCategoryTitle{
-    font-size: 21px;
+    font-size: 20px;
+    padding:10px;
     font-family: 'PlusJakartaSans';
 }
 
+
+.contractBreadCrumb{
+    font-family: 'PlusJakartaSans';
+    font-size: 24px;
+  }
 
 .contractStackDimension {
     flex:1;

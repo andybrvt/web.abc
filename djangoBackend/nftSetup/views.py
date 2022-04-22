@@ -39,40 +39,45 @@ def testFunction():
 
 """
 # Parse the configuration file and make sure it's valid
-def parse_config(config, data):
+def parse_config(config, request):
 
     for layer in config:
 
-        print(layer)
 
-        # # Go into assets/ to look for layer folders
+        layer_path = layer['name']+'-image'
+
+
+        traits = dict(request.data)[layer_path] #get images
+
+        print(len(traits) == len(layer['rarity_weights']), 'what is this here')
+        # Go into assets/ to look for layer folders
         # layer_path = os.path.join(assets_path, layer['directory']) # FOR THE SPECIFC LAYERS
-        #
-        # # Get trait array in sorted order
-        # # (list of the the pictures in the directory)
+
+        # Get trait array in sorted order
+        # (list of the the pictures in the directory)
         # traits = sorted([trait for trait in os.listdir(layer_path) if trait[0] != '.'])
-        #
+
         # # If layer is not required, add a None to the start of the traits array
         # if not layer['required']:
         #     traits = [None] + traits
-        #
+
         # # Generate final rarity weights
-        # if layer['rarity_weights'] is None:
-        #     rarities = [1 for x in traits]
-        # elif layer['rarity_weights'] == 'random':
-        #     rarities = [random.random() for x in traits]
-        # elif type(layer['rarity_weights'] == 'list'):
-        #     assert len(traits) == len(layer['rarity_weights']), "Make sure you have the current number of rarity weights"
-        #     rarities = layer['rarity_weights']
-        # else:
-        #     raise ValueError("Rarity weights is invalid")
-        #
+        if layer['rarity_weights'] is None:
+            rarities = [1 for x in traits]
+        elif layer['rarity_weights'] == 'random':
+            rarities = [random.random() for x in traits]
+        elif type(layer['rarity_weights'] == 'list'):
+            assert len(traits) == len(layer['rarity_weights']), "Make sure you have the current number of rarity weights"
+            rarities = layer['rarity_weights']
+        else:
+            raise ValueError("Rarity weights is invalid")
+
         # rarities = get_weighted_rarities(rarities)
-        #
-        # # Re-assign final values to main CONFIG
-        # layer['rarity_weights'] = rarities
-        # layer['cum_rarity_weights'] = np.cumsum(rarities)
-        # layer['traits'] = traits
+
+        # Re-assign final values to main CONFIG
+        layer['rarity_weights'] = rarities
+        layer['cum_rarity_weights'] = np.cumsum(rarities)
+        layer['traits'] = traits
 
 
 
@@ -89,9 +94,10 @@ class TestRunning(APIView):
         config = json.loads(request.data['config'])
 
 
-        parse_config(config, request.data)
+        parse_config(config, request)
 
 
+        print(config)
 
         # So we have the config and the images, now you just gotta run the scripts
         # correctly

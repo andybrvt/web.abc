@@ -130,7 +130,7 @@ export const CreateERC721Testing = (props) => {
         name: item.name,
         directory: item.name,
         required: item.required,
-        rarity: item.rarity
+        rarity_weights: item.rarity
       }
       configList.push(configObj)
 

@@ -1,0 +1,15 @@
+.startCollectionContainer{
+    position:absolute;
+    top:12.5%;
+    left:50%;
+    transform: translateX(-50%);
+    width:80%;
+    height: 60%;
+    /* background-color: red; */
+    
+}
+.collectionButton {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+}

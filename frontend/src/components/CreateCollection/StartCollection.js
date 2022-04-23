@@ -22,15 +22,31 @@ import { faArrowLeft, faClipboard, faXMark  } from '@fortawesome/free-solid-svg-
 import { IconButton } from '@chakra-ui/react'
 import { CloseButton } from '@chakra-ui/react'
 import { Steps } from 'antd';
+import './StartCollection.css';
 
 const { Step } = Steps;
 export const StartCollection = (props) => {
     const { hasCopied, onCopy }  = useClipboard('0x495f947276749ce646')
     const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [collectionSize, setCollectionSize] = useState(0);
     const [current, setCurrent] = useState(0);
+   
+
+    const onInputSetName = (e) => {
+        setName(e.target.value)
+    }
+
+    const onInputSetDescription = (e) => {
+      setName(e.target.value)
+    }
 
     const onInputChange = (e) => {
-        setName(e.target.value)
+      setName(e.target.value)
+    }
+
+    const onInputSetCollectionSize = (e) => {
+      setCollectionSize(e.target.value)
     }
 
 
@@ -41,11 +57,20 @@ export const StartCollection = (props) => {
     const onChange = current => {
         setCurrent(current)
       };
+
+    const incrementStep = () => {
+      setCurrent(current + 1)
+    }
+
+    const decrementStep = () => {
+      setCurrent(current - 1)
+    }
+
   var data = props.data
   return(
     <div>
         
-        <div class="collectionList">
+        <div class="startCollectionContainer">
         
             <div class = "collectionTopContainer">
               <div class="contractBreadCrumb">
@@ -64,26 +89,54 @@ export const StartCollection = (props) => {
                         <Step title="Confirmation" />
                     </Steps>
                   </div>
-                <div> Let's grab some info</div>
 
+
+                {current==0?
                 <div>
-                  
-                        <FormControl>
-                            <FormLabel isRequired htmlFor='email'>Title of Collection</FormLabel>
-                            <Input
-                                style={{width:'50%'}} onChange = {onInputChange} placeholder='Enter name' />
-                            <FormLabel isRequired htmlFor='first-name'>Description </FormLabel>
-                            <Textarea style={{width:'50%'}} placeholder='Here is a sample placeholder' />
+                  <div> Let's grab some info</div>
+                  <div>
+                    <FormControl>
+                        <FormLabel isRequired htmlFor='email'>Title of Collection</FormLabel>
+                        <Input
+                            style={{width:'50%'}} onChange = {onInputSetName} placeholder='Enter name' />
+                        <FormLabel isRequired htmlFor='first-name'>Description </FormLabel>
+                        <Textarea style={{width:'50%'}} placeholder='Here is a sample placeholder' />
 
-                            <FormLabel isRequired  htmlFor='email'>Collection Size</FormLabel>
-                            <Input style={{width:'50%'}} id='email' type='email' />
-                        </FormControl>
-
-             
+                        <FormLabel isRequired  htmlFor='email'>Collection Size</FormLabel>
+                        <Input 
+                        onChange = {onInputSetCollectionSize}
+                        style={{width:'50%'}} id='email' type='email' />
+                    </FormControl>
+                  </div>                  
                 </div>
-                {/* <Divider></Divider> */}
+              :
+                  <div> test</div>
+              }
+
+
+              {current==1?
+              <div class="collectionButton">
+                    {/* <Button> Back</Button> */}
+
+                <div style={{flexDirection:'row', display:'flex'}}>
+                  <div class="collectionPreviousButton" >
+                    <Button onClick={decrementStep}> Previous</Button>
+                  </div>
+                  <Button onClick={incrementStep}> Next</Button>
+
+                </div>
                 
                 
+              </div>
+
+              :
+              <div class="collectionButton">
+              {/* <Button> Back</Button> */}
+                <Button onClick={incrementStep}> Next</Button>
+                
+              </div>
+              }
+          
               </div>
             </div>
          

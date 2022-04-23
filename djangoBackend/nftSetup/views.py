@@ -5,7 +5,11 @@ from . import models
 from builder.models import OwnerWalletKey
 from rest_framework.decorators import authentication_classes, permission_classes
 import json
+from django.core.files.images import ImageFile
 
+from django.core.files.base import ContentFile
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from io import BytesIO
 
 from PIL import Image
 import pandas as pd
@@ -88,32 +92,39 @@ def get_weighted_rarities(arr):
 
 # Generate a single image given an array of filepaths representing layers
 # takes in the file path of the images, and file path of the out put
-def generate_single_image(imageTraits, output_filename=None):
+def generate_single_image(project, imageTraits, imageName, output_filename=None):
 
     # Treat the first layer as the background
     # bg = Image.open(os.path.join('assets', filepaths[0]))
 
     bg = Image.open(imageTraits[0])
 
-    print(bg)
-    # # Loop through layers 1 to n and stack them on top of another
+    # Loop through layers 1 to n and stack them on top of another
     for images in imageTraits[1:]:
-        print(images, 'images here')
         img = Image.open(images)
         bg.paste(img,(0,0), img)
 
+    buffer = BytesIO()
+    bg.save(fp = buffer, format="PNG")
+    newImage = ContentFile(buffer.getvalue())
+
+    print(newImage)
+
+    real_image = InMemoryUploadedFile(
+        newImage,
+        None,
+        imageName,
+        'image/png',
+        newImage.tell,
+        None
+    )
+    print(real_image)
 
     # Now that I have the image, now I have to save the image into our database
-
-
-    # # Save the final image into desired location
-    # if output_filename is not None:
-    #     bg.save(output_filename)
-    # else:
-    #     # If output filename is not specified, use timestamp to name the image and save it in output/single_images
-    #     if not os.path.exists(os.path.join('output', 'single_images')):
-    #         os.makedirs(os.path.join('output', 'single_images'))
-    #     bg.save(os.path.join('output', 'single_images', str(int(time.time())) + '.png'))
+    newImage = models.GeneratedOut.objects.create(
+        nftImage = real_image,
+        project = project
+    )
 
 
 
@@ -163,7 +174,7 @@ def generate_trait_set_from_config(config):
 
 
 
-def generate_images(config, edition, count, drop_dup=True):
+def generate_images(project, config, edition, count, drop_dup=True):
 
     # Initialize an empty rarity table
     rarity_table = {}
@@ -191,7 +202,7 @@ def generate_images(config, edition, count, drop_dup=True):
 
 
         # # Generate the actual image
-        generate_single_image(trait_sets)
+        generate_single_image(project, trait_sets, image_name)
         #
         # # Populate the rarity table with metadata of newly created image
         # for idx, trait in enumerate(trait_sets):
@@ -262,14 +273,14 @@ class TestRunning(APIView):
             publicKey = request.data['owner']
         )
 
-        models.Project.objects.create(
+        project = models.Project.objects.create(
             name= edition_name,
             owner = owner
         )
 
         print("Starting task...")
 
-        rt = generate_images(config, edition_name, num_avatars)
+        rt = generate_images(project,config, edition_name, num_avatars,)
 
 
         # So we have the config and the images, now you just gotta run the scripts

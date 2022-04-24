@@ -203,14 +203,17 @@ def generate_images(project, config, edition, count, drop_dup=True):
 
         # # Generate the actual image
         generate_single_image(project, trait_sets, image_name)
-        #
-        # # Populate the rarity table with metadata of newly created image
-        # for idx, trait in enumerate(trait_sets):
-        #     if trait is not None:
-        #         rarity_table[CONFIG[idx]['name']].append(trait[: -1 * len('.png')])
-        #     else:
-        #         rarity_table[CONFIG[idx]['name']].append('none')
 
+        # Populate the rarity table with metadata of newly created image
+        for idx, trait in enumerate(trait_sets):
+            print(type(trait.name))
+            # print(trait[: -1 * len('.png')])
+            if trait is not None:
+                rarity_table[config[idx]['name']].append(trait.name[: -1 * len('.png')])
+            else:
+                rarity_table[config[idx]['name']].append('none')
+
+    print(rarity_table)
     # # Create the final rarity table by removing duplicate creat
     # rarity_table = pd.DataFrame(rarity_table).drop_duplicates()
     # print("Generated %i images, %i are distinct" % (count, rarity_table.shape[0]))

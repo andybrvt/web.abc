@@ -250,8 +250,9 @@ def generate_images(project, config, edition, count, drop_dup=True):
         for idx, img in enumerate(generated_images):
             print(idx, img)
             os.rename(settings.MEDIA_ROOT+'/'+img.nftImage.name, settings.MEDIA_ROOT+'/'+new_image_path+'/'+str(idx)+ '.png')
+            img.nftImage.name = new_image_path+'/'+str(idx)+ '.png'
 
-
+            img.save()
     # # Modify rarity table to reflect removals
     # rarity_table = rarity_table.reset_index()
     # rarity_table = rarity_table.drop('index', axis=1)

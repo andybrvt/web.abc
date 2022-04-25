@@ -12,6 +12,7 @@ from django.dispatch.dispatcher import receiver
 class Project(models.Model):
     name = models.CharField(max_length = 255)
     owner = models.ForeignKey(OwnerWalletKey, related_name = "owner_project_key", on_delete= models.CASCADE,)
+    metaData = models.TextField(blank = True)
 
 
 """
@@ -28,7 +29,6 @@ class GeneratedOut(models.Model):
                                     upload_to = "nftOutput/public/nft_art/%Y/%m",
                                     blank = True,
                                     )
-    metaData = models.TextField(blank = True)
     project = models.ForeignKey(Project, related_name = "nft_project", on_delete =models.CASCADE)
 
 

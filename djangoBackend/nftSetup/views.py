@@ -248,15 +248,16 @@ def generate_images(project, config, edition, count, drop_dup=True):
 
         # # Rename images such that it is sequentialluy numbered
         for idx, img in enumerate(generated_images):
-            print(idx, img)
             os.rename(settings.MEDIA_ROOT+'/'+img.nftImage.name, settings.MEDIA_ROOT+'/'+new_image_path+'/'+str(idx)+ '.png')
             img.nftImage.name = new_image_path+'/'+str(idx)+ '.png'
 
             img.save()
     # # Modify rarity table to reflect removals
-    # rarity_table = rarity_table.reset_index()
-    # rarity_table = rarity_table.drop('index', axis=1)
-    # return rarity_table
+    rarity_table = rarity_table.reset_index()
+    rarity_table = rarity_table.drop('index', axis=1)
+    print(type(rarity_table), 'what is this')
+
+    return rarity_table
 
 
 
@@ -305,8 +306,14 @@ class TestRunning(APIView):
         rt = generate_images(project,config, edition_name, num_avatars,)
 
 
-        # So we have the config and the images, now you just gotta run the scripts
-        # correctly
+        print('Saving metadata...')
+
+        # Now that you have the rt you convert it to a json, and when you need it
+        # convert it to a csv
+
+        rt_json = rt.to_json()
+        project.metaData = json.dumps(rt_json)
+        project.save()
 
 
         # You can pass in the form data here of the different images

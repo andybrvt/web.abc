@@ -24,9 +24,12 @@ class Project(models.Model):
     project --> this will be the project the images and metadata will be linked to
 """
 
+def user_directory_path(instance, filename):
+    return "nftOutput/public/nft_art/%s/%s"%(str(instance.project.pk),filename)
+
 class GeneratedOut(models.Model):
     nftImage = models.ImageField(("nftOutput"),
-                                    upload_to = "nftOutput/public/nft_art/%Y/%m",
+                                    upload_to =user_directory_path,
                                     blank = True,
                                     )
     project = models.ForeignKey(Project, related_name = "nft_project", on_delete =models.CASCADE)

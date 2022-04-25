@@ -109,8 +109,6 @@ def generate_single_image(project, imageTraits, imageName, output_filename=None)
     bg.save(fp = buffer, format="PNG")
     newImage = ContentFile(buffer.getvalue())
 
-    print(newImage)
-
     real_image = InMemoryUploadedFile(
         newImage,
         None,
@@ -119,13 +117,13 @@ def generate_single_image(project, imageTraits, imageName, output_filename=None)
         newImage.tell,
         None
     )
-    print(real_image)
 
     # Now that I have the image, now I have to save the image into our database
     newImage = models.GeneratedOut.objects.create(
-        nftImage = real_image,
         project = project
     )
+    newImage.nftImage = real_image
+    newImage.save()
 
 
 
@@ -244,11 +242,11 @@ def generate_images(project, config, edition, count, drop_dup=True):
         #op_path = os.path.join('output', 'edition ' + str(edition))
         for i in img_tb_removed:
 
-            filtered_image = models.GeneratedOut.objects.filter(nftImage = new_image_path+"/"+str(i)+'.png').delete()
+            filtered_image = models.GeneratedOut.objects.filter(nftImage = new_image_path+'/'+str(i)+'.png').delete()
 
         # # Rename images such that it is sequentialluy numbered
         for idx, img in enumerate(generated_images):
-            os.rename(settings.MEDIA_ROOT+'/'+img.nftImage.name, settings.MEDIA_ROOT+'/'+new_image_path+'/'+str(idx)+ '.png')
+            os.rename(settings.MEDIA_ROOT+"/"+img.nftImage.name, settings.MEDIA_ROOT+'/'+new_image_path+'/'+str(idx)+ '.png')
             img.nftImage.name = new_image_path+'/'+str(idx)+ '.png'
 
             img.save()
@@ -321,6 +319,7 @@ class TestRunning(APIView):
 
         # Steps of the NFT generation
         # -check assset
+
 
 
         return Response("what is this")

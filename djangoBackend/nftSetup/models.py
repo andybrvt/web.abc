@@ -1,6 +1,7 @@
 from django.db import models
 from builder.models import OwnerWalletKey
-
+from django.db.models.signals import pre_delete
+from django.dispatch.dispatcher import receiver
 
 # Create your models here.
 """
@@ -29,3 +30,8 @@ class GeneratedOut(models.Model):
                                     )
     metaData = models.TextField(blank = True)
     project = models.ForeignKey(Project, related_name = "nft_project", on_delete =models.CASCADE)
+
+
+@receiver(pre_delete, sender=GeneratedOut)
+def generatedOut_delete(sender, instance, **kwargs):
+    instance.nftImage.delete(False)

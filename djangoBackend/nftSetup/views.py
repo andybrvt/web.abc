@@ -6,6 +6,7 @@ from builder.models import OwnerWalletKey
 from rest_framework.decorators import authentication_classes, permission_classes
 import json
 from django.core.files.images import ImageFile
+from django.conf import settings
 
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -215,25 +216,42 @@ def generate_images(project, config, edition, count, drop_dup=True):
 
     print(rarity_table)
     # # Create the final rarity table by removing duplicate creat
-    # rarity_table = pd.DataFrame(rarity_table).drop_duplicates()
-    # print("Generated %i images, %i are distinct" % (count, rarity_table.shape[0]))
+    rarity_table = pd.DataFrame(rarity_table).drop_duplicates()
+    print("Generated %i images, %i are distinct" % (count, rarity_table.shape[0]))
     #
-    # if drop_dup:
-    #     # Get list of duplicate images
-    #     img_tb_removed = sorted(list(set(range(count)) - set(rarity_table.index)))
-    #
-    #     # Remove duplicate images
-    #     print("Removing %i images..." % (len(img_tb_removed)))
-    #
-    #     #op_path = os.path.join('output', 'edition ' + str(edition))
-    #     for i in img_tb_removed:
-    #         os.remove(os.path.join(op_path, str(i).zfill(zfill_count) + '.png'))
-    #
-    #     # Rename images such that it is sequentialluy numbered
-    #     for idx, img in enumerate(sorted(os.listdir(op_path))):
-    #         os.rename(os.path.join(op_path, img), os.path.join(op_path, str(idx).zfill(zfill_count) + '.png'))
-    #
-    #
+    if drop_dup:
+        # Get list of duplicate images
+        img_tb_removed = sorted(list(set(range(count)) - set(rarity_table.index)))
+
+        # Remove duplicate images
+        print("Removing %i images..." % (len(img_tb_removed)))
+
+
+        # Here you have to get all the images
+        # First get the project, filter out the images and then start deleting
+
+        generated_images = models.GeneratedOut.objects.filter(project = project)
+
+        # for items in generated_images:
+        #
+        #     print(items.nftImage.name)
+        #     filtered_image= models.GeneratedOut.objects.filter(nftImage = items.nftImage.name)
+        #     print(filtered_image)
+        file_name = generated_images[0].nftImage.name
+        path_list = file_name.split("/")[:-1]
+        new_image_path = "/".join(path_list)
+
+        #op_path = os.path.join('output', 'edition ' + str(edition))
+        for i in img_tb_removed:
+
+            filtered_image = models.GeneratedOut.objects.filter(nftImage = new_image_path+"/"+str(i)+'.png').delete()
+
+        # # Rename images such that it is sequentialluy numbered
+        for idx, img in enumerate(generated_images):
+            print(idx, img)
+            os.rename(settings.MEDIA_ROOT+'/'+img.nftImage.name, settings.MEDIA_ROOT+'/'+new_image_path+'/'+str(idx)+ '.png')
+
+
     # # Modify rarity table to reflect removals
     # rarity_table = rarity_table.reset_index()
     # rarity_table = rarity_table.drop('index', axis=1)

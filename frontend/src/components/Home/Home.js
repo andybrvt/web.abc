@@ -630,7 +630,7 @@
                                 </Badge>
                                 <Box
                                   color='gray.500'
-                                  fontWeight='semibold'
+                                  fontWeight='semibold' 
                                   letterSpacing='wide'
                                   fontSize='xs'
                                   textTransform='uppercase'

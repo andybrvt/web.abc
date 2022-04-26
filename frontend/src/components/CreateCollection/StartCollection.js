@@ -15,7 +15,7 @@ import { useColorModeValue, Stack, Button,
     import { ChevronRightIcon} from '@chakra-ui/icons'
 import * as dateFns from 'date-fns';
 import { Header } from '../Header';
-
+import { CreateLayers } from './CreateLayers';
 import { useClipboard } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faClipboard, faXMark  } from '@fortawesome/free-solid-svg-icons'
@@ -110,7 +110,7 @@ export const StartCollection = (props) => {
                   </div>                  
                 </div>
               :
-                  <div> test</div>
+                  <div> <CreateLayers></CreateLayers></div>
               }
 
 

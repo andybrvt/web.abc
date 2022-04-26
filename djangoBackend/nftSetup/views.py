@@ -7,10 +7,12 @@ from rest_framework.decorators import authentication_classes, permission_classes
 import json
 from django.core.files.images import ImageFile
 from django.conf import settings
+from . import serializers
 
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
+import base64
 
 from PIL import Image
 import pandas as pd
@@ -263,7 +265,7 @@ def generate_images(project, config, edition, count, drop_dup=True):
 
 @authentication_classes([])
 @permission_classes([])
-class TestRunning(APIView):
+class GenerateNFTs(APIView):
     def post(self, request, *args, **kwargs):
 
         print(request.data)
@@ -314,12 +316,19 @@ class TestRunning(APIView):
         project.save()
 
 
+        serializedProject = serializers.ProjectSerializers(project, many = False).data
+
+        nft_project_images = models.GeneratedOut.objects.filter(project = project)
+        serializedNFTs = serializers.GeneratedOutSerializers(nft_project_images, many = True).data
         # You can pass in the form data here of the different images
         # instead of folders it can be grouped into a field
 
         # Steps of the NFT generation
         # -check assset
+        content = {
+            'project': serializedProject,
+            'nfts_imgs': serializedNFTs
+        }
 
 
-
-        return Response("what is this")
+        return Response(content)

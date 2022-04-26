@@ -7,6 +7,10 @@ global.API_ENDPOINT = "http://127.0.0.1:8000"
 global.FRONTEND_ENDPOINT='https://localhost:3000'
 // global.FRONTEND_ENDPOINT = "https://webdotabc.xyz"
 
+
+global.IMAGE_ENDPOINT = "http://127.0.0.1:8000"
+
+
 global.CAPITALIZE = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }

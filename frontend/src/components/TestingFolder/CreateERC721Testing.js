@@ -23,12 +23,16 @@ export const CreateERC721Testing = (props) => {
   const [collections, setCollections] = useState([])
   const [collectionName, setCollectionName] = useState("")
   const [collectionSymbol, setCollectionSymbol] = useState("")
-
   const [uploadedImages, setUploadedImages] = useState([])
 
   const [layers, setLayers] = useState([{name: "Base", required: false, images: [], rarity: [] }])
   const [NFTCount, setNFTCount] = useState(0)
   const [NFTCollectionName, setNFTCollectionName] = useState("")
+
+
+  const [renderedProject, setRenderedProject] = useState({})
+  const [renderedImages, setRenderedImages] = useState([])
+
 
   const { account, chainId} = useEthers()
   const { abi } = CoreCreationContract // abi
@@ -114,7 +118,46 @@ export const CreateERC721Testing = (props) => {
 
   const uploadImagesToIPFS = () => {
 
-    console.log(uploadedImages)
+    console.log(renderedImages)
+    let ipfsArray = []
+    let promises = []
+
+    renderedImages.map((item, index) => {
+
+      new Promise((resolve, reject) => {
+        const fileReader = new FileReader()
+        const image = `${global.IMAGE_ENDPOINT}`+item.nftImage
+        fetch(image)
+        .then(res => {
+
+
+            const blob = res.blob()
+            console.log(typeof blob)
+            fileReader.readAsDataURL(blob)
+            //
+            // fileReader.onload(() => {
+            //   console.log(fileReader.result)
+            //   ipfsArray.push({
+            //     path: `images/${index}.png`,
+            //     content: fileReader.result
+            //   })
+            //   resolve(fileReader.result);
+            // })
+            //
+            // fileReader.onerror((error) => {
+            //   reject(error)
+            // })
+
+
+        })
+
+
+      })
+
+    })
+
+    console.log(ipfsArray)
+
 
   }
 
@@ -157,13 +200,24 @@ export const CreateERC721Testing = (props) => {
     formData.append("collectionName", NFTCollectionName)
     formData.append('owner', account)
 
-    axios.post(`${global.API_ENDPOINT}/nftSetup/testOtherFunction`,
+    axios.post(`${global.API_ENDPOINT}/nftSetup/GenerateNFTs`,
       formData,
       {headers: {"content-type": "multipart/form-data"}}
 
     )
+    .then(res => {
 
-//
+      console.log(res.data)
+
+      const project = res.data.project
+      const nft_imgs = res.data.nfts_imgs
+
+      setRenderedProject(project)
+      setRenderedImages(nft_imgs)
+    })
+
+
+
   }
 
   const addNewLayer = () => {
@@ -324,6 +378,30 @@ export const CreateERC721Testing = (props) => {
           <Input onChange = {onCollectionName} value = {NFTCollectionName} placeholder = "Collection Name"/>
           <br />
           <Button onClick = {generateNFTTest}>Test functions</Button>
+
+          <div style = {{flexWrap: 'wrap'}}>
+            {
+              renderedImages.map((item, index) => {
+
+                return(
+                  <div>
+                    <Image
+                      boxSize='100px'
+                      src = {`${global.IMAGE_ENDPOINT}`+item.nftImage} />
+                  </div>
+                )
+
+
+
+              })
+
+            }
+          </div>
+
+
+          <div>
+            <Button onClick = {uploadImagesToIPFS}>Upload Images to IPFS</Button>
+          </div>
       </div>
 
       <br />

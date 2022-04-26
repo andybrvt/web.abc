@@ -5,5 +5,5 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('testOtherFunction', views.TestRunning.as_view(), name = "testing_team_2"),
+    path('GenerateNFTs', views.GenerateNFTs.as_view(), name = "testing_team_2"),
 ]

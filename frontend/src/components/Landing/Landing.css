@@ -46,21 +46,6 @@
 
 
 
-.featureContainer{
-  position: relative;
-  height: 70vh;
-  /* background-color:  red; */
-}
-
-.featureCardHolder{
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  height: 100%;
-  width: 80%;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 .cardContainer{
   position: relative;
@@ -68,16 +53,6 @@
   flex: 1;
 }
 
-.featureCard{
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  position: absolute;
-  text-align: center;
-
-  border-radius: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-
-}
 
 .featureInfoText{
   text-align: left;
@@ -295,6 +270,34 @@
       justify-content: "center";
       display: flex;
     }
+
+
+        .featureContainer{
+          position: relative;
+          /* background-color:  red; */
+        }
+
+        .featureCardHolder{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          width: 80%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+
+        .featureCard{
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+          position: relative;
+          text-align: center;
+          width: 380px;
+          border-radius: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          margin-top: 20px;
+        }
 }
 
 @media screen and (max-width: 1000px) and (min-width: 701px){
@@ -350,6 +353,34 @@
       align-items: "center";
       justify-content: "center";
       display: flex;
+    }
+
+
+    .featureContainer{
+      position: relative;
+      /* background-color:  red; */
+    }
+
+    .featureCardHolder{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+
+    .featureCard{
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      position: relative;
+      text-align: center;
+      width: 380px;
+      border-radius: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 20px;
     }
 }
 
@@ -410,5 +441,34 @@
       align-items: "center";
       justify-content: "center";
       display: flex;
+    }
+
+
+    .featureContainer{
+      position: relative;
+      height: 70vh;
+      /* background-color:  red; */
+    }
+
+    .featureCardHolder{
+      display: flex;
+      flex-direction: row;
+      position: absolute;
+      height: 100%;
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+
+    .featureCard{
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      position: absolute;
+      text-align: center;
+
+      border-radius: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+
     }
 }

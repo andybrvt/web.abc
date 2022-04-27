@@ -186,14 +186,13 @@ class Landing extends React.Component{
 
 
 
-           {/*
-             <div class = "connectWalletContainer">
-                 <Button
-                   onClick={this.triggerWallet}
-                   colorScheme='blue'>Connect Wallet</Button>
-             </div>
+           <div class = "connectWalletContainer">
+               <Button
+                 onClick={this.triggerWallet}
+                 colorScheme='blue'>Connect Wallet</Button>
+           </div>
 
-             */}
+
 
 
 

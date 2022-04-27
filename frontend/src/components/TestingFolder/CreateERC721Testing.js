@@ -6,6 +6,7 @@ import networkMapping from '../../chain-info/deployments/map.json';
 import {constants, utils } from 'ethers';
 import { Checkbox, Image, Button, ButtonGroup, Divider, Flex, Text, Input, Select, List, ListItem } from '@chakra-ui/react';
 import axios from 'axios';
+import { useMoralisWeb3Api } from "react-moralis";
 
 require('dotenv').config()
 
@@ -19,6 +20,8 @@ const endpointJson = "/pinning/pinJSONToIPFS"
 // Remember 2 things, abi and address, the abi makes the interface so technically
 // interface + address
 export const CreateERC721Testing = (props) => {
+
+  const Web3Api = useMoralisWeb3Api();
 
   const [collections, setCollections] = useState([])
   const [collectionName, setCollectionName] = useState("")
@@ -116,48 +119,28 @@ export const CreateERC721Testing = (props) => {
 
   }
 
-  const uploadImagesToIPFS = () => {
+  const uploadImagesToIPFS = async() => {
 
-    console.log(renderedImages)
     let ipfsArray = []
     let promises = []
 
     renderedImages.map((item, index) => {
 
-      new Promise((resolve, reject) => {
-        const fileReader = new FileReader()
-        const image = `${global.IMAGE_ENDPOINT}`+item.nftImage
-        fetch(image)
-        .then(res => {
-
-
-            const blob = res.blob()
-            console.log(typeof blob)
-            fileReader.readAsDataURL(blob)
-            //
-            // fileReader.onload(() => {
-            //   console.log(fileReader.result)
-            //   ipfsArray.push({
-            //     path: `images/${index}.png`,
-            //     content: fileReader.result
-            //   })
-            //   resolve(fileReader.result);
-            // })
-            //
-            // fileReader.onerror((error) => {
-            //   reject(error)
-            // })
-
-
-        })
-
-
+      const name = item.nftImage.split('/')
+      const fileName = "image/"+name.slice(-2, name.length).join("/")
+      ipfsArray.push({
+        path:fileName,
+        content: item.base64Img
       })
 
     })
 
-    console.log(ipfsArray)
-
+    const options = {
+      abi: ipfsArray
+    }
+    console.log(options)
+    const path = await Web3Api.storage.uploadFolder(options)
+    console.log(path)
 
   }
 
@@ -190,7 +173,6 @@ export const CreateERC721Testing = (props) => {
 
     })
 
-    console.log(configList)
 
     const configStr = JSON.stringify(configList)
 

@@ -33,8 +33,10 @@ export const CreateERC721Testing = (props) => {
   const [NFTCollectionName, setNFTCollectionName] = useState("")
 
 
+
   const [renderedProject, setRenderedProject] = useState({})
   const [renderedImages, setRenderedImages] = useState([])
+
 
 
   const { account, chainId} = useEthers()
@@ -144,9 +146,31 @@ export const CreateERC721Testing = (props) => {
 
   }
 
+  const uploadMetadataToIPFS = async() => {
+
+
+    const options = {
+      abi: [
+        {
+          path: 'metadata/1',
+          content: {
+            "name": 'jack'
+          }
+        },
+      ]
+
+    }
+
+    const path = await Web3Api.storage.uploadFolder(options)
+    console.log(path)
+
+
+  }
+
+
+
+
   const generateNFTTest = () => {
-
-
     const formData =  new FormData()
 
     const configList = []
@@ -202,8 +226,9 @@ export const CreateERC721Testing = (props) => {
 
   }
 
-  const addNewLayer = () => {
 
+
+  const addNewLayer = () => {
     setLayers([...layers, {name: "Base", required: false, images: [], rarity: []}])
   }
 
@@ -383,6 +408,10 @@ export const CreateERC721Testing = (props) => {
 
           <div>
             <Button onClick = {uploadImagesToIPFS}>Upload Images to IPFS</Button>
+          </div>
+
+          <div>
+            <Button onClick = {uploadMetadataToIPFS}>Upload MetaData to IPFS</Button>
           </div>
       </div>
 

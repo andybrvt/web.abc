@@ -156,7 +156,7 @@ class Landing extends React.Component{
        <Menu style = {{
            padding: '10px'
          }} theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
-         <div class = "logoContainer">
+         <div class = "logo_container_landing">
            <div class="logoFont">web.abc</div>
          </div>
 
@@ -185,27 +185,22 @@ class Landing extends React.Component{
            </div>
 
 
-    
 
+           {/*
              <div class = "connectWalletContainer">
                  <Button
                    onClick={this.triggerWallet}
                    colorScheme='blue'>Connect Wallet</Button>
              </div>
 
-
-
-
-
-
-
+             */}
 
 
 
        </Menu>
 
        <div class = "bigContainer">
-         <div class = "splitScreenContainer">
+         <div class = "splitScreenContainer landing_background">
            <div class="splitLeft">
              <div class="splitLeft1">
                <div className="title">

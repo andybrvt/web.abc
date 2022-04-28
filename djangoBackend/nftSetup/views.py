@@ -420,4 +420,4 @@ class SaveBaseURI(APIView):
         project = models.Project.objects.get(id = request.data['projectId'])
         project.baseURI = request.data['baseURI']
         project.save()
-        return Response("what is this here")
+        return Response(request.data['baseURI'])

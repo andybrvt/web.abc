@@ -63,6 +63,11 @@ export const CreateERC721Testing = (props) => {
 
 
 
+  const onChangeCount = (e) => {
+
+    setNFTCount(e.target.value)
+  }
+
   const createBasicERC721Press = (e) => {
     // createERC721("Test", "TEST", )
     const vrf = global.WEB3_CONSTANTS[String(chainId)]['vrf_coordinator']
@@ -163,7 +168,7 @@ export const CreateERC721Testing = (props) => {
     formData.append("base_uri", test_base_uri)
 
 
-
+    // generate the metadata for the images
     axios.post(`${global.API_ENDPOINT}/nftSetup/GenerateMetadata`, formData)
     .then(async res => {
       console.log(res.data)
@@ -183,16 +188,16 @@ export const CreateERC721Testing = (props) => {
 
         })
 
-        console.log(ipfsArray)
         const options = {
           abi: ipfsArray
         }
 
+        // Upload t IPFS
         const path = await Web3Api.storage.uploadFolder(options)
         const baseMetaURI = path[0]
         const base_meta_uri_arry = baseMetaURI.path.split("/")
         base_meta_uri_arry.pop()
-        const real_meta_base_uri = base_meta_uri_arry.join("/") // put back later
+        const real_meta_base_uri = base_meta_uri_arry.join("/")
 
 
         const projectId = renderedProject.id
@@ -201,6 +206,12 @@ export const CreateERC721Testing = (props) => {
         formData.append("projectId", test_projectId)
         formData.append("baseURI", real_meta_base_uri)
         axios.post(`${global.API_ENDPOINT}/nftSetup/SaveBaseURI`, formData)
+        .then(res => {
+
+          // Here will be where you will create the smart contract because you have the
+          // baseURI
+
+        })
 
 
     })
@@ -315,10 +326,6 @@ export const CreateERC721Testing = (props) => {
 
   }
 
-  const onChangeCount = (e) => {
-
-    setNFTCount(e.target.value)
-  }
 
   const onCollectionName = (e) => {
     setNFTCollectionName(e.target.value)

@@ -103,7 +103,6 @@ export const CreateERC721Testing = (props) => {
 
   const onInputChange = (e) => {
 
-    console.log(e.target.placeholder)
     const inputType = e.target.placeholder
     if(inputType === "Name"){
       setCollectionName(e.target.value)
@@ -115,7 +114,6 @@ export const CreateERC721Testing = (props) => {
   }
 
   const fileSelectedHandler = (e) => {
-    console.log(e.target.files)
 
     setUploadedImages(e.target.files)
 
@@ -143,26 +141,71 @@ export const CreateERC721Testing = (props) => {
     console.log(options)
     const path = await Web3Api.storage.uploadFolder(options)
     console.log(path)
+    // uploadMetadataToIPFS(path[0])
 
   }
 
+  // const uploadMetadataToIPFS = async(baseURI) => {
   const uploadMetadataToIPFS = async() => {
 
+    const projectId = renderedProject.id
+    const projectName = renderedProject.name
+    const formData = new FormData()
+    // const base_uri_arry = baseURI.path.split("/")
+    // base_uri_arry.pop()
+    // const real_base_uri = base_uri_arry.join("/") // put back later
 
-    const options = {
-      abi: [
-        {
-          path: 'metadata/1',
-          content: {
-            "name": 'jack'
-          }
-        },
-      ]
+    const test_projectId = 160
+    const test_projectName = "name"
+    const test_base_uri = "https://gateway.moralisipfs.com/ipfs/QmeqRTuc5pamTrb4W5wA7dNSk9PzcUzQ1w8BNBDtwb2AN9/image/160"
+    formData.append("projectId", test_projectId)
+    formData.append("base_name", test_projectName)
+    formData.append("base_uri", test_base_uri)
 
-    }
 
-    const path = await Web3Api.storage.uploadFolder(options)
-    console.log(path)
+
+    axios.post(`${global.API_ENDPOINT}/nftSetup/GenerateMetadata`, formData)
+    .then(async res => {
+      console.log(res.data)
+
+
+        let ipfsArray = []
+        res.data.map((item, index ) => {
+
+
+          ipfsArray.push(
+            {
+              path: `metadata/${index}`,
+              content: JSON.parse(item.metaData)
+            }
+          )
+
+
+        })
+
+        console.log(ipfsArray)
+        const options = {
+          abi: ipfsArray
+        }
+
+        const path = await Web3Api.storage.uploadFolder(options)
+        const baseMetaURI = path[0]
+        const base_meta_uri_arry = baseMetaURI.path.split("/")
+        base_meta_uri_arry.pop()
+        const real_meta_base_uri = base_meta_uri_arry.join("/") // put back later
+
+
+        const projectId = renderedProject.id
+        const formData = new FormData()
+
+        formData.append("projectId", test_projectId)
+        formData.append("baseURI", real_meta_base_uri)
+        axios.post(`${global.API_ENDPOINT}/nftSetup/SaveBaseURI`, formData)
+
+
+    })
+
+
 
 
   }
@@ -220,6 +263,7 @@ export const CreateERC721Testing = (props) => {
 
       setRenderedProject(project)
       setRenderedImages(nft_imgs)
+
     })
 
 

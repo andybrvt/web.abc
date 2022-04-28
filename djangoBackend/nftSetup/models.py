@@ -13,6 +13,7 @@ class Project(models.Model):
     name = models.CharField(max_length = 255)
     owner = models.ForeignKey(OwnerWalletKey, related_name = "owner_project_key", on_delete= models.CASCADE,)
     metaData = models.TextField(blank = True)
+    baseURI = models.CharField(max_length = 255, blank = True)
 
 
 """
@@ -33,6 +34,7 @@ class GeneratedOut(models.Model):
                                     blank = True,
                                     )
     project = models.ForeignKey(Project, related_name = "nft_project", on_delete =models.CASCADE)
+    metaData = models.TextField(blank = True)
 
 
 @receiver(pre_delete, sender=GeneratedOut)

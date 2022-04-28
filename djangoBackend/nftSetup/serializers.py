@@ -22,3 +22,9 @@ class GeneratedOutSerializers(serializers.ModelSerializer):
         with open(settings.MEDIA_ROOT+"/"+data['nftImage'].lstrip('/media'), "rb") as image_file:
             data['base64Img'] = base64.b64encode(image_file.read())
         return data
+
+class GeneratedOutMetadataSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.GeneratedOut
+        fields = ('id', 'metaData')

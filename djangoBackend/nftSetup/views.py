@@ -12,6 +12,8 @@ from . import serializers
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
+from io import StringIO
+
 import base64
 
 from PIL import Image
@@ -21,6 +23,7 @@ import time
 import os
 import random
 from progressbar import progressbar
+from copy import deepcopy
 
 import warnings
 # Create your views here.
@@ -36,6 +39,14 @@ import warnings
 
 # then place to store the output
 
+
+
+BASE_JSON = {
+    "name": "BASE_NAME",
+    "description": "",
+    "image": "BASE_IMAGE_URL",
+    "attributes": [],
+}
 
 def testFunction():
     print('what is going on here 123')
@@ -332,3 +343,81 @@ class GenerateNFTs(APIView):
 
 
         return Response(content)
+
+def clean_attributes(attr_name):
+    clean_name = attr_name.replace('_', ' ')
+    clean_name = list(clean_name)
+
+    for idx, ltr in enumerate(clean_name):
+        if (idx == 0) or (idx > 0 and clean_name[idx - 1] == ' '):
+            clean_name[idx] = clean_name[idx].upper()
+
+    clean_name = ''.join(clean_name)
+    return clean_name
+
+
+def get_attribute_metadata(metadata_string):
+    metadata_json = json.loads(metadata_string)
+    pd_json = pd.read_json(metadata_json)
+    metadata_csv = pd_json.to_csv()
+    df = StringIO(metadata_csv)
+    df = pd.read_csv(df, sep= ",")
+
+    df = df.drop("Unnamed: 0", axis = 1)
+    df.columns = [clean_attributes(col) for col in df.columns]
+
+
+    zfill_count = len(str(df.shape[0]-1))
+
+    return df, zfill_count
+
+@authentication_classes([])
+@permission_classes([])
+class GenerateMetadata(APIView):
+    def post(self, request, *args, **kwargs):
+
+        print(request.data)
+        project = models.Project.objects.get(id = request.data['projectId'])
+        # You are gonna need the csv and the json path
+        # the json path is just the path you are gonna save to
+
+        df, zfill_count = get_attribute_metadata(project.metaData)
+        BASE_JSON['name'] = request.data['base_name']
+        BASE_JSON['image'] = request.data['base_uri']
+
+        imageList = models.GeneratedOut.objects.filter(project = project).order_by("id")
+
+
+
+        for idx, row in progressbar(df.iterrows()):
+            item_json = deepcopy(BASE_JSON)
+            item_json['name'] = item_json['name'] + str(idx)
+
+            # Append image PNG file name to base image path
+            item_json['image'] = item_json['image'] + '/' + str(idx).zfill(zfill_count) + '.png'
+            attr_dict = dict(row)
+
+
+            for attr in attr_dict:
+
+                if attr_dict[attr] != 'none':
+                    item_json['attributes'].append({ 'trait_type': attr, 'value': attr_dict[attr] })
+
+            print(item_json)
+            cur_nft = imageList[idx]
+            cur_nft.metaData= json.dumps(item_json)
+            cur_nft.save()
+
+        nft_project_images = models.GeneratedOut.objects.filter(project = project)
+        serializedNFTs = serializers.GeneratedOutMetadataSerializers(nft_project_images, many = True).data
+
+
+        return Response(serializedNFTs)
+
+class SaveBaseURI(APIView):
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        project = models.Project.objects.get(id = request.data['projectId'])
+        project.baseURI = request.data['baseURI']
+        project.save()
+        return Response("what is this here")

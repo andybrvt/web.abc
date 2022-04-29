@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Input, Form, List, Avatar,Typography } from 'antd';
 import { useColorModeValue, Stack, Button,
     Divider,
-    Textarea, 
+    Textarea,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
@@ -10,7 +10,7 @@ import { useColorModeValue, Stack, Button,
     FormControl,
     FormLabel,
     FormErrorMessage,
-    FormHelperText, 
+    FormHelperText,
     BreadcrumbSeparator,} from '@chakra-ui/react';
     import { ChevronRightIcon} from '@chakra-ui/icons'
 import * as dateFns from 'date-fns';
@@ -30,8 +30,8 @@ export const StartCollection = (props) => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [collectionSize, setCollectionSize] = useState(0);
-    const [current, setCurrent] = useState(0);
-   
+    const [current, setCurrent] = useState(1);
+
 
     const onInputSetName = (e) => {
         setName(e.target.value)
@@ -69,9 +69,9 @@ export const StartCollection = (props) => {
   var data = props.data
   return(
     <div>
-        
+
         <div class="startCollectionContainer">
-        
+
             <div class = "collectionTopContainer">
               <div class="contractBreadCrumb">
 
@@ -79,7 +79,7 @@ export const StartCollection = (props) => {
                   <div style={{marginTop:10, display:'flex', flexDirection:'row'}}>
                     Step 1/5
 
-                    
+
                   </div>
                   <div style={{marginTop:25, marginBottom:25}}>
                     <Steps onChange={onChange} size="small" current={current}>
@@ -103,11 +103,11 @@ export const StartCollection = (props) => {
                         <Textarea style={{width:'50%'}} placeholder='Here is a sample placeholder' />
 
                         <FormLabel isRequired  htmlFor='email'>Collection Size</FormLabel>
-                        <Input 
+                        <Input
                         onChange = {onInputSetCollectionSize}
                         style={{width:'50%'}} id='email' type='email' />
                     </FormControl>
-                  </div>                  
+                  </div>
                 </div>
               :
                   <div> <CreateLayers></CreateLayers></div>
@@ -116,7 +116,6 @@ export const StartCollection = (props) => {
 
               {current==1?
               <div class="collectionButton">
-                    {/* <Button> Back</Button> */}
 
                 <div style={{flexDirection:'row', display:'flex'}}>
                   <div class="collectionPreviousButton" >
@@ -125,28 +124,27 @@ export const StartCollection = (props) => {
                   <Button onClick={incrementStep}> Next</Button>
 
                 </div>
-                
-                
+
+
               </div>
 
               :
               <div class="collectionButton">
-              {/* <Button> Back</Button> */}
                 <Button onClick={incrementStep}> Next</Button>
-                
+
               </div>
               }
-          
+
               </div>
             </div>
-         
+
         </div>
 
         <Header/>
         <Divider style={{color:'#CBD5E0',}}/>
-        
 
-        
+
+
     </div>
 
   )

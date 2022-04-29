@@ -63,10 +63,10 @@ export const CreateERC721Testing = (props) => {
 
 
 
-  const onChangeCount = (e) => {
+    const onChangeCount = (e) => {
 
-    setNFTCount(e.target.value)
-  }
+      setNFTCount(e.target.value)
+    }
 
   const createBasicERC721Press = (e) => {
     // createERC721("Test", "TEST", )

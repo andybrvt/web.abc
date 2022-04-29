@@ -5,12 +5,18 @@ import { useColorModeValue, Stack,
     Checkbox,
     Image,
     Textarea,
-    Button
+    Button,
+    Box,
+    Slider,
+     SliderTrack,
+     SliderFilledTrack,
+     SliderThumb,
+     SliderMark,
 } from '@chakra-ui/react';
 import { useEthers,} from "@usedapp/core";
 import axios from 'axios';
 import { useMoralisWeb3Api } from "react-moralis";
-
+import './CreateLayers.css';
 
 
 export const CreateLayers = (props) => {
@@ -259,31 +265,44 @@ export const CreateLayers = (props) => {
 
 
               return(
-                <div style = {{
-                      margin: '50px'
-                  }}>
+                <Box display= "flex" background = 'gainsboro' marginTop = "10px" padding = '10px'  borderWidth='1px' borderRadius='lg' overflow='hidden'>
 
-                  <div>
-                    <Input value = {layers[index].name} onChange = {(e)=>onNameChange(e, index)} placeholder = "Name"/>
+                  <div class = "boxLeft">
+                    <div>
+                      <div>Layer name</div>
+                      <Input value = {layers[index].name} onChange = {(e)=>onNameChange(e, index)} placeholder = "Name"/>
+                    </div>
+                    <div>
+                      <div>Is the trait required?</div>
+                      <Checkbox>Required</Checkbox>
+                    </div>
                   </div>
-                  <div>
-                    <Checkbox>Required</Checkbox>
-                  </div>
-                  <div>
+
+                  <div class = 'boxRight'>
                     <input type="file" multiple onChange={(e) => layerImageChange(e, index)} />
-                    <div style = {{
-                        display: 'flex',
-
-                        }}>
+                    <div class = "layer-rarity-holder">
                       {
                         layers[index].images.map((image, imgIndex) => {
 
                           return (
-                            <div>
+                            <div class = "layer-rarity-container">
                               <Image
-                                boxSize='100px'
+                                boxSize='80px'
                                 src = { URL.createObjectURL(image)} />
-                              <Input value = {layers[index].rarity[imgIndex]} onChange = {(e)=>onNameChange(e, index)} placeholder = "Name"/>
+
+                              <Slider marginLeft = "4px" aria-label='slider-ex-1' defaultValue={30}>
+                                  <SliderTrack>
+                                    <SliderFilledTrack />
+                                  </SliderTrack>
+                                  <SliderThumb />
+                                </Slider>
+
+
+
+                              {/*
+                                <Input value = {layers[index].rarity[imgIndex]} onChange = {(e)=>onNameChange(e, index)} placeholder = "Name"/>
+
+                                */}
 
                           </div>
                           )
@@ -294,18 +313,21 @@ export const CreateLayers = (props) => {
                     </div>
                   </div>
 
-                </div>
+                </Box>
               )
 
             })
           }
 
-          <br />
-          <Input onChange = {onChangeCount}  value = {NFTCount} placeholder = "Count"/>
-          <br />
-          <Input onChange = {onCollectionName} value = {NFTCollectionName} placeholder = "Collection Name"/>
-          <br />
-          <Button onClick = {generateNFTTest}>Test functions</Button>
+          {/*
+            <br />
+            <Input onChange = {onChangeCount}  value = {NFTCount} placeholder = "Count"/>
+            <br />
+            <Input onChange = {onCollectionName} value = {NFTCollectionName} placeholder = "Collection Name"/>
+            <br />
+            <Button onClick = {generateNFTTest}>Test functions</Button>
+
+            */}
 
           <div style = {{flexWrap: 'wrap'}}>
             {

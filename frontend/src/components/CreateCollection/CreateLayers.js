@@ -54,7 +54,7 @@ export const CreateLayers = (props) => {
         </Editable>
         <Button onClick={addList}>Add Layer</Button>
         {layerList.map((item)=>
-               <div> {item}</div>
+               <div style={{background:'red', padding:25, borderRadius:10, marginBottom:20}}> {item}</div>
         )}
         
     </div>

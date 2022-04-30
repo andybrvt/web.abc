@@ -12,6 +12,8 @@ import { useColorModeValue, Stack,
      SliderFilledTrack,
      SliderThumb,
      SliderMark,
+    Tooltip,
+
 } from '@chakra-ui/react';
 import { useEthers,} from "@usedapp/core";
 import axios from 'axios';
@@ -37,6 +39,10 @@ export const CreateLayers = (props) => {
   const [renderedProject, setRenderedProject] = useState({})
   const [renderedImages, setRenderedImages] = useState([])
 
+  const [sliderValue, setSliderValue] = React.useState(5)
+  const [showTooltip, setShowTooltip] = React.useState(false)
+
+
   const addList = () => {
       setLayerList(oldArray => [...oldArray, layerName]);
   }
@@ -59,12 +65,24 @@ export const CreateLayers = (props) => {
     )
   }
 
+  const onRarityChange = (e, index, rarityIndex) => {
+    console.log(e, index, rarityIndex)
+    setLayers(
+      layers.map((layer, i)=> index === i ? {
+        ...layer,
+        rarity: layer.rarity.map((rare, idx)=> idx === rarityIndex ? e : rare)
+      }: layer)
+    )
+  }
+
+
+
 
   const layerImageChange = (e, index) => {
 
     const array = Array.from(e.target.files)
     const arrLen =e.target.files.length
-    const rarityArr = Array(arrLen).fill(1)
+    const rarityArr = Array(arrLen).fill(10)
 
 
     setLayers(
@@ -290,11 +308,41 @@ export const CreateLayers = (props) => {
                                 boxSize='80px'
                                 src = { URL.createObjectURL(image)} />
 
-                              <Slider marginLeft = "4px" aria-label='slider-ex-1' defaultValue={30}>
+                              <Slider
+                                defaultValue={layers[index].rarity[imgIndex]}
+                                min={0}
+                                max={100}
+                                onChange={(v) => onRarityChange(v, index, imgIndex)}
+                                onMouseEnter={() => setShowTooltip(true)}
+                                onMouseLeave={() => setShowTooltip(false)}
+                                marginLeft = "4px" aria-label='slider-ex-1' >
+
+                                <SliderMark value={25} mt='1' ml='-2.5' fontSize='sm'>
+                                  25%
+                                </SliderMark>
+                                <SliderMark value={50} mt='1' ml='-2.5' fontSize='sm'>
+                                  50%
+                                </SliderMark>
+                                <SliderMark value={75} mt='1' ml='-2.5' fontSize='sm'>
+                                  75%
+                                </SliderMark>
+
                                   <SliderTrack>
                                     <SliderFilledTrack />
                                   </SliderTrack>
-                                  <SliderThumb />
+
+                                  <Tooltip
+                                    hasArrow
+                                    bg='teal.500'
+                                    color='white'
+                                    placement='top'
+                                    isOpen={showTooltip}
+                                    label={`${layers[index].rarity[imgIndex]}%`}
+                                  >
+                                    <SliderThumb />
+                                  </Tooltip>
+
+
                                 </Slider>
 
 

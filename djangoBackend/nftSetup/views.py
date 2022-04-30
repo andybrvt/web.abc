@@ -243,11 +243,6 @@ def generate_images(project, config, edition, count, drop_dup=True):
 
         generated_images = models.GeneratedOut.objects.filter(project = project)
 
-        # for items in generated_images:
-        #
-        #     print(items.nftImage.name)
-        #     filtered_image= models.GeneratedOut.objects.filter(nftImage = items.nftImage.name)
-        #     print(filtered_image)
         file_name = generated_images[0].nftImage.name
         path_list = file_name.split("/")[:-1]
         new_image_path = "/".join(path_list)
@@ -421,3 +416,12 @@ class SaveBaseURI(APIView):
         project.baseURI = request.data['baseURI']
         project.save()
         return Response(request.data['baseURI'])
+
+class GetGeneratedImages(APIView):
+    def get(self, request, projectId, *args, **kwargs):
+
+        project = models.Project.objects.get(id = projectId)
+        nft_project_images = models.GeneratedOut.objects.filter(project = project)
+        serializedNFTs = serializers.GeneratedOutSerializers(nft_project_images, many = True).data
+
+        return Response(serializedNFTs)

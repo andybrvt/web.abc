@@ -31,7 +31,6 @@ export const CreateLayers = (props) => {
   const [ layerList, setLayerList ] = useState([])
   const [ layerName, setLayerName ] = useState("")
 
-  const [layers, setLayers] = useState([{name: "Base", required: false, images: [], rarity: [] }])
   const [NFTCount, setNFTCount] = useState(0)
   const [NFTCollectionName, setNFTCollectionName] = useState("")
 
@@ -52,48 +51,9 @@ export const CreateLayers = (props) => {
 
 
 
-  const addNewLayer = () => {
-    setLayers([...layers, {name: "Base", required: false, images: [], rarity: []}])
-  }
-
-  const onNameChange = (e, index) => {
-    setLayers(
-      layers.map((layer,i) => index === i ? {
-        ...layer,
-        name: e.target.value
-      }: layer)
-    )
-  }
-
-  const onRarityChange = (e, index, rarityIndex) => {
-    console.log(e, index, rarityIndex)
-    setLayers(
-      layers.map((layer, i)=> index === i ? {
-        ...layer,
-        rarity: layer.rarity.map((rare, idx)=> idx === rarityIndex ? e : rare)
-      }: layer)
-    )
-  }
 
 
 
-
-  const layerImageChange = (e, index) => {
-
-    const array = Array.from(e.target.files)
-    const arrLen =e.target.files.length
-    const rarityArr = Array(arrLen).fill(10)
-
-
-    setLayers(
-      layers.map((layer,i) => index === i ? {
-        ...layer,
-        images: [...layer.images, ...array],
-        rarity: rarityArr
-      }: layer)
-    )
-
-  }
 
 
   const onChangeCount = (e) => {
@@ -263,14 +223,15 @@ export const CreateLayers = (props) => {
 
 
 
-  var data = props.data
+
+  var layers = props.layers
   return(
     <div>
       <div>
         <div>This will be for generating the nft</div>
 
         <div>
-          <Button onClick = {addNewLayer}>Add new layer</Button>
+          <Button onClick = {props.addNewLayer}>Add new layer</Button>
         </div>
         {/*
           // Be able to add in new layers (be able to add pictures for each of these new layers). Make sure there is a state that categories each picture by their respective trait
@@ -288,7 +249,7 @@ export const CreateLayers = (props) => {
                   <div class = "boxLeft">
                     <div>
                       <div>Layer name</div>
-                      <Input value = {layers[index].name} onChange = {(e)=>onNameChange(e, index)} placeholder = "Name"/>
+                      <Input value = {layers[index].name} onChange = {(e)=>props.onNameChange(e, index)} placeholder = "Name"/>
                     </div>
                     <div>
                       <div>Is the trait required?</div>
@@ -297,7 +258,7 @@ export const CreateLayers = (props) => {
                   </div>
 
                   <div class = 'boxRight'>
-                    <input type="file" multiple onChange={(e) => layerImageChange(e, index)} />
+                    <input type="file" multiple onChange={(e) => props.layerImageChange(e, index)} />
                     <div class = "layer-rarity-holder">
                       {
                         layers[index].images.map((image, imgIndex) => {
@@ -312,7 +273,7 @@ export const CreateLayers = (props) => {
                                 defaultValue={layers[index].rarity[imgIndex]}
                                 min={0}
                                 max={100}
-                                onChange={(v) => onRarityChange(v, index, imgIndex)}
+                                onChange={(v) => props.onRarityChange(v, index, imgIndex)}
                                 onMouseEnter={() => setShowTooltip(true)}
                                 onMouseLeave={() => setShowTooltip(false)}
                                 marginLeft = "4px" aria-label='slider-ex-1' >
@@ -367,15 +328,6 @@ export const CreateLayers = (props) => {
             })
           }
 
-          {/*
-            <br />
-            <Input onChange = {onChangeCount}  value = {NFTCount} placeholder = "Count"/>
-            <br />
-            <Input onChange = {onCollectionName} value = {NFTCollectionName} placeholder = "Collection Name"/>
-            <br />
-            <Button onClick = {generateNFTTest}>Test functions</Button>
-
-            */}
 
           <div style = {{flexWrap: 'wrap'}}>
             {
@@ -397,13 +349,6 @@ export const CreateLayers = (props) => {
           </div>
 
 
-          <div>
-            <Button onClick = {uploadImagesToIPFS}>Upload Images to IPFS</Button>
-          </div>
-
-          <div>
-            <Button onClick = {uploadMetadataToIPFS}>Upload MetaData to IPFS</Button>
-          </div>
       </div>
     </div>
 

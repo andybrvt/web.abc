@@ -1,0 +1,10 @@
+
+
+.imagesWrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.generatedImages{
+  margin: 5px;
+}

@@ -171,16 +171,25 @@
           websiteId: websiteId
         })
       }
-      
+
     }
 
     const nextStep = () => {
+      console.log('step here')
       if(selectModalOption === "websiteOption"){
+
         setTriggerChoice("website")
+
       }
       if(selectModalOption === "nftOption"){
-        setTriggerChoice("nftChoice")
+
+        props.history.push('/startCollection',{
+          name: name
+        })
+
+        // setTriggerChoice("nftChoice")
       }
+
 
 
     }
@@ -630,7 +639,7 @@
                                 </Badge>
                                 <Box
                                   color='gray.500'
-                                  fontWeight='semibold' 
+                                  fontWeight='semibold'
                                   letterSpacing='wide'
                                   fontSize='xs'
                                   textTransform='uppercase'

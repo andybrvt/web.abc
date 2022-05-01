@@ -39,10 +39,11 @@ import {
   PopoverArrow,
   PopoverCloseButton,
   PopoverAnchor,
-  ButtonGroup
+  ButtonGroup,
+  useClipboard,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShapes, faCircle, faFont, faKeyboard, faPlay  } from '@fortawesome/free-solid-svg-icons'
+import { faShapes, faCircle, faFont, faKeyboard, faPlay, faGlobe  } from '@fortawesome/free-solid-svg-icons'
 import { ItalicOutlined, BoldOutlined, UnderlineOutlined, AlignCenterOutlined, AlignRightOutlined, AlignLeftOutlined } from '@ant-design/icons';
 // import {PagesContainer} from './BuildFolder/Pages/PagesContainer'
 import ProfileDropDown from './ProfileDropDown';
@@ -65,14 +66,23 @@ export const EditorHeader = (props) => {
 
   const initialRef = React.useRef()
   const finalRef = React.useRef()
-  const shareRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
-
+  const { hasCopied, onCopy } = useClipboard('/webabc/'+props.websiteId+'/'+currentPage)
 
   useEffect(() => {
     if(props.editor !== null){
       setEditorMain(props.editor)
+
+      const allPages = props.editor.Pages.getAll();
+      const htmlAll = allPages.map((p, index) => {
+        var pageName = p.getName()
+        var pageId = p.getId()
+        setCurrentPage(pageId)
+      })  
+      
     }
+
+    
   }, [props.editor])
 
 
@@ -89,6 +99,8 @@ export const EditorHeader = (props) => {
       props.storeEditor()
 
     }
+
+
 
     const onDeployCall = () => {
       editorMain.store();
@@ -165,7 +177,61 @@ export const EditorHeader = (props) => {
 
           <div className = "rightHeader">
              <div class = "rightHeaderItem">
-                <Button>Share</Button>
+                <Popover
+                placement='bottom'
+                closeOnBlur={false}
+                >
+                  <PopoverTrigger>
+                  <Button style={{right:10}}>Share</Button>
+                  </PopoverTrigger>
+                  <PopoverContent style={{width:400,}}>
+                    <PopoverHeader pt={4} fontWeight='bold' border='0'>
+                      <div style={{flexDirection:'row', display:'flex'}}>
+                        <FontAwesomeIcon style={{color:'#1890ff', marginRight:10, fontSize:22.5}} icon={faGlobe} />
+                        <div class="copyLinkMessage">
+                        Share to web
+                        </div>
+                      </div>
+                      
+                    </PopoverHeader>
+                    <div class="copyLinkBody">
+                     Anyone with the link can view
+                    </div>
+                    
+                    <PopoverArrow />
+                    <PopoverCloseButton />
+                    
+                  
+                    <PopoverBody>
+                    <div style={{flexDirection:'row', display:'flex', }}>
+                      <Input value={'/webabc/'+`${props.websiteId}`+'/'+currentPage}/>
+                      {/* /webabc/{props.websiteId}/{currentPage} */}
+                      <Button onClick={onCopy} ml={2}>
+                        Copy
+                      </Button>
+                    </div>
+                    
+                    </PopoverBody>
+                    <PopoverFooter
+                      border='0'
+                      d='flex'
+                      alignItems='center'
+                      justifyContent='space-between'
+                      pb={4}
+                    >
+                      {/* <Box fontSize='sm'>Step 2 of 4</Box> */}
+                      <Box fontSize='sm'></Box> 
+                      <ButtonGroup size='sm'>
+                        {/* <Button colorScheme='green'>Setup Email</Button>
+                        <Button colorScheme='blue'>
+                          Next
+                        </Button> */}
+                        {/* <Button colorScheme='green'>Setup Email</Button> */}
+            
+                      </ButtonGroup>
+                    </PopoverFooter>
+                  </PopoverContent>
+                </Popover>
               </div>
               <div class = "rightHeaderItem">
                 <Tooltip label="Preview" aria-label='A tooltip'>
@@ -258,7 +324,7 @@ export const EditorHeader = (props) => {
                       <TwitterShareButton
                         style={{marginTop:20}}
                         title={"I just deployed my personal website on @web.abc. Check it out!"}
-                        url={"https://peing.net/ja/"}
+                        url={"/webabc/${props.websiteId}/${currentPage"}
                         // hashtags={["hashtag1", "hashtag2"]}
                       >
                         <TwitterIcon size={32} round />
@@ -279,42 +345,7 @@ export const EditorHeader = (props) => {
             </ModalFooter>
           </Modal>
 
-          <Popover
-      initialFocusRef={shareRef}
-      placement='bottom'
-      closeOnBlur={false}
-    >
-      <PopoverTrigger>
-        <Button>Trigger</Button>
-      </PopoverTrigger>
-      <PopoverContent color='white' bg='blue.800' borderColor='blue.800'>
-        <PopoverHeader pt={4} fontWeight='bold' border='0'>
-          Manage Your Channels
-        </PopoverHeader>
-        <PopoverArrow />
-        <PopoverCloseButton />
-        <PopoverBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore.
-        </PopoverBody>
-        <PopoverFooter
-          border='0'
-          d='flex'
-          alignItems='center'
-          justifyContent='space-between'
-          pb={4}
-        >
-          <Box fontSize='sm'>Step 2 of 4</Box>
-          <ButtonGroup size='sm'>
-            <Button colorScheme='green'>Setup Email</Button>
-            <Button colorScheme='blue' ref={shareRef}>
-              Next
-            </Button>
-          </ButtonGroup>
-        </PopoverFooter>
-      </PopoverContent>
-    </Popover>
-
+    
 
         </div>
 

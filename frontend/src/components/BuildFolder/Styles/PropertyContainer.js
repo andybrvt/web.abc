@@ -191,8 +191,8 @@ export const PropertyContainer = (props) => {
           :
 
           <div>
-            wwwwwwwwwwwwwwwwwwwwwwww
-          <StyleSelect
+            
+          <StyleSelect  
             label = {label}
             field = {property.getId()}
             handleChange = {handleChange}

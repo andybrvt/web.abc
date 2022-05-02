@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Input, Form, List, Avatar,Typography } from 'antd';
-import { useColorModeValue, Stack, Button,
+import {
+  useColorModeValue, Stack, Button,
     Divider,
     Textarea,
     Breadcrumb,
@@ -17,47 +18,144 @@ import { useColorModeValue, Stack, Button,
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,
     Spinner,
     useDisclosure,
-
     BreadcrumbSeparator,} from '@chakra-ui/react';
-import { ChevronRightIcon} from '@chakra-ui/icons'
 import * as dateFns from 'date-fns';
 import { Header } from '../Header';
 import { CreateLayers } from './CreateLayers';
 import { ShowNFTGenerated } from './ShowNFTGenerated';
+import { CreateContractCollection } from './CreateContractCollection';
 import { useClipboard } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faClipboard, faXMark  } from '@fortawesome/free-solid-svg-icons'
 import { IconButton } from '@chakra-ui/react'
 import { CloseButton } from '@chakra-ui/react'
 import { Steps } from 'antd';
-import { useEthers,} from "@usedapp/core";
+import { useEthers, useEtherBalance, useCall, useCalls, useContractCall, useContractFunction} from "@usedapp/core";
+import { Contract } from '@ethersproject/contracts'
+import Web3 from 'web3'
+
 import axios from 'axios';
 import { useMoralisWeb3Api } from "react-moralis";
-
 import './StartCollection.css';
+import CoreCreationContract from '../../chain-info/contracts/CoreCreationContract';
+import networkMapping from '../../chain-info/deployments/map.json';
+import {constants, utils } from 'ethers';
+
+
+require('dotenv').config()
+var fs = require('fs');
+
+
+const PINATA_BASE_URL = "https://api.pinata.cloud"
+const endpoint = "/pinning/pinFileToIPFS"
+const endpointJson = "/pinning/pinJSONToIPFS"
+
 
 const { Step } = Steps;
 export const StartCollection = (props) => {
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const Web3Api = useMoralisWeb3Api();
 
 
     const { account, chainId} = useEthers()
 
-
+    // Page 1
     const { hasCopied, onCopy }  = useClipboard('0x495f947276749ce646')
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [collectionSize, setCollectionSize] = useState(0);
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(3);
 
+
+    // Page 2
     const [layers, setLayers] = useState([{name: "Base", required: false, images: [], rarity: [] }])
 
+    // Page 3
     const [renderedProject, setRenderedProject] = useState({})
     const [renderedImages, setRenderedImages] = useState([])
+
+    // Page 4
+    const [contractName, setContractName] = useState("")
+    const [contractSymbol, setContractSymbol] = useState("")
+    const [maxMint, setMaxMint] = useState(0)
+    const [maxSupply, setMaxSupply] = useState(0)
+    const [mintRate, setMintRate]= useState(0)
+    const [baseURI, setBasURI] = useState("")
+
+
+    // in order for a contract to work you are gonna need abi and address
+    const { abi } = CoreCreationContract
+
+    // here is the address
+    const coreCreationContractAddress = chainId ? networkMapping[String(chainId)]['CoreCreationContract'][0] : constants.AddressZero
+    // convert the abi to interface
+    const coreCreationContractInterface = new utils.Interface(abi)
+    // Now you have both the abi and interface you can make the interface object
+    const coreCreationContract = new Contract(coreCreationContractAddress, coreCreationContractInterface)
+
+
+    // Now you can use the core creation function
+    const { send: createERC721, state: createERC721State } = useContractFunction(
+      coreCreationContract,
+      "createBasicERC721",
+      {transactionName: "createBasicERC721"}
+    )
+
+    const { send: createERC721A, state: createERC721AState } = useContractFunction(
+      coreCreationContract,
+      "createBasicERC721A",
+      {transactionName: "createBasicERC721A"}
+    )
+
+    const createBasicERC721Press = (e) => {
+      // createERC721("Test", "TEST", )
+      const vrf = global.WEB3_CONSTANTS[String(chainId)]['vrf_coordinator']
+      const link_token = global.WEB3_CONSTANTS[String(chainId)]['link_token']
+      const keyhash = global.WEB3_CONSTANTS[String(chainId)]['keyhash']
+
+      createERC721("Test", "TEST", vrf, link_token, keyhash)
+      console.log(createERC721State, 'stuff')
+
+    }
+
+
+    const getERC721Contracts = useCall({
+      contract: coreCreationContract,
+      method: "getERC721Contracts",
+      args: [account, ]
+
+    })
+
+
+    // name
+    // symbol_
+    // maxMint,
+    // maxSupply_,
+    // mintRate,
+    // baseURI
+    const createBasicERC721APress = (e) => {
+
+      if(contractName !== "" && contractSymbol !== ""){
+        const baseURI = "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata"
+          createERC721A(
+            "test",
+            "TEST",
+            "10",
+            "1000",
+            // Web3.utils.toWei(0.002, 'ether').toString(),
+            "200000",
+            "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata",
+          )
+      }
+      else {
+        alert("fill in the names")
+      }
+
+    }
+
 
 
 
@@ -106,7 +204,6 @@ export const StartCollection = (props) => {
 
     const generateNFT = () => {
 
-      console.log(layers)
       onOpen()
       const formData = new FormData()
       const configList = []
@@ -141,9 +238,6 @@ export const StartCollection = (props) => {
         formData,
         {
           headers: {"content-type": "multipart/form-data"},
-
-
-
         },
 
       ).then(res => {
@@ -163,6 +257,105 @@ export const StartCollection = (props) => {
 
 
     }
+
+
+    const uploadImagesToIPFS = async() => {
+
+      let ipfsArray = []
+      let promises = []
+
+      renderedImages.map((item, index) => {
+
+        const name = item.nftImage.split('/')
+        const fileName = "image/"+name.slice(-2, name.length).join("/")
+        ipfsArray.push({
+          path:fileName,
+          content: item.base64Img
+        })
+
+      })
+
+      const options = {
+        abi: ipfsArray
+      }
+      const path = await Web3Api.storage.uploadFolder(options)
+      uploadMetadataToIPFS(path[0])
+
+    }
+
+
+    const uploadMetadataToIPFS = async(baseURI) => {
+    // const uploadMetadataToIPFS = async() => {
+
+      const projectId = renderedProject.id
+      const projectName = renderedProject.name
+      const formData = new FormData()
+      const base_uri_arry = baseURI.path.split("/")
+      base_uri_arry.pop()
+      const real_base_uri = base_uri_arry.join("/") // put back later
+
+      // const test_projectId = 160
+      // const test_projectName = "name"
+      // const test_base_uri = "https://gateway.moralisipfs.com/ipfs/QmeqRTuc5pamTrb4W5wA7dNSk9PzcUzQ1w8BNBDtwb2AN9/image/160"
+      formData.append("projectId", projectId)
+      formData.append("base_name", projectName)
+      formData.append("base_uri", real_base_uri)
+
+
+      // generate the metadata for the images
+      axios.post(`${global.API_ENDPOINT}/nftSetup/GenerateMetadata`, formData)
+      .then(async res => {
+
+
+          let ipfsArray = []
+          res.data.map((item, index ) => {
+
+
+            ipfsArray.push(
+              {
+                path: `metadata/${index}`,
+                content: JSON.parse(item.metaData)
+              }
+            )
+
+
+          })
+
+          const options = {
+            abi: ipfsArray
+          }
+
+          // Upload t IPFS
+          const path = await Web3Api.storage.uploadFolder(options)
+          const baseMetaURI = path[0]
+          const base_meta_uri_arry = baseMetaURI.path.split("/")
+          base_meta_uri_arry.pop()
+          const real_meta_base_uri = base_meta_uri_arry.join("/")
+
+
+          const projectId = renderedProject.id
+          const formData = new FormData()
+
+          formData.append("projectId", projectId)
+          formData.append("baseURI", real_meta_base_uri)
+          axios.post(`${global.API_ENDPOINT}/nftSetup/SaveBaseURI`, formData)
+          .then(res => {
+
+
+            setBasURI(res.data)
+
+          })
+
+      })
+
+    }
+
+
+
+
+    console.log(createERC721AState, 'here is the state fo the function')
+    // Transaction signature --> mining --> success
+
 
     const onInputSetName = (e) => {
         setName(e.target.value)
@@ -193,9 +386,54 @@ export const StartCollection = (props) => {
       setCurrent(current - 1)
     }
 
+    const onInputChange = (e) => {
+
+      const inputType = e.target.placeholder
+
+      if(inputType === "Name"){
+        setContractName(e.target.value)
+      }
+
+      if(inputType === "Symbol"){
+        setContractSymbol(e.target.value)
+      }
+      if(inputType === "Max mint limit"){
+        setMaxMint(e.target.value)
+      }
+      if(inputType === "Total Supply"){
+        setMaxSupply(e.target.value)
+      }
+      if(inputType === "Cost in ether"){
+        setMintRate(e.target.value)
+      }
+
+
+
+
+
+    }
+
+
   var data = props.data
   return(
     <div>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalBody>
+            <div style = {{
+                textAlign: 'center'
+              }}>
+              <Spinner size='xl' />
+              <div>Generating your NFTs</div>
+
+            </div>
+
+          </ModalBody>
+
+        </ModalContent>
+      </Modal>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -286,7 +524,16 @@ export const StartCollection = (props) => {
 
                 :
 
-                <div>Hi 3</div>
+                <CreateContractCollection
+                  contractName = {contractName}
+                  contractSymbol = {contractSymbol}
+                  maxMint = {maxMint}
+                  maxSupply = {maxSupply}
+                  maxRate = {mintRate}
+                  baseURI = {baseURI}
+                  onInputChange = {onInputChange}
+                  baseURI = {baseURI}
+                  />
 
               }
 
@@ -306,9 +553,29 @@ export const StartCollection = (props) => {
               </div>
 
               :
-              <div class="collectionButton">
-                <Button onClick={incrementStep}> Next</Button>
 
+              current == 2 ?
+
+              <div>
+                <Button onClick = {uploadImagesToIPFS}>
+                  Generate Meta
+                </Button>
+
+              </div>
+
+              :
+
+              current == 3 ?
+
+
+              <div class="collectionButton">
+                <Button onClick={createBasicERC721APress}> Create Contract</Button>
+              </div>
+
+              :
+
+              <div>
+                Next
               </div>
               }
 

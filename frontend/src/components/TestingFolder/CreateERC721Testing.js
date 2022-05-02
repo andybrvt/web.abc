@@ -346,6 +346,7 @@ export const CreateERC721Testing = (props) => {
               <ListItem >
                 <Button
                   colorScheme='blue'>{address}</Button>
+                <div>{address}</div>
               </ListItem>
 
             )
@@ -361,14 +362,7 @@ export const CreateERC721Testing = (props) => {
 
       </List>
 
-      <div>
-        <Input onChange = {onInputChange} placeholder = "Name"/>
-        <Input onChange = {onInputChange} placeholder = "Symbol"/>
 
-        <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721</Button>
-        <Button onClick = {() => createBasicERC721Press()}>Create Contract ERC721A</Button>
-
-      </div>
 
       <br />
 

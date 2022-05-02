@@ -13,7 +13,6 @@ contract CoreCreationContract {
   mapping(address => address[]) public collectionDict;
 
 
-
   function createBasicERC721(string memory name_,
     string memory symbol_,
     address _VRFCoordinator,
@@ -49,6 +48,7 @@ contract CoreCreationContract {
       baseURI_
       );
     collectionDict[msg.sender].push(address(new_nft_collection));
+
 
   }
 

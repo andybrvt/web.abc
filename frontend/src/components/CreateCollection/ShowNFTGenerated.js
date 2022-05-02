@@ -12,15 +12,14 @@ export const ShowNFTGenerated = (props) => {
     .then(res => {
       setTestNFTs(res.data)
     })
-  })
-
+  }, [])
 
 
   return(
     <div>
       <div class = "imagesWrapper">
         {
-            props.renderedImages.map((item, index) => {
+          props.renderedImages.map((item, index) => {
 
             return(
               <div class = "generatedImages">

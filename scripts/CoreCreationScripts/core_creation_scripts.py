@@ -39,10 +39,10 @@ def createERC721A():
     coreCreationContract.createBasicERC721A(
         "test",
         "TEST",
-        2,
         10,
+        1000,
         Web3.toWei(0.002, 'ether'),
-        "this is some uri",
+        "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata",
         {'from': account},
 
     )

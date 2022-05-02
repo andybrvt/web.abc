@@ -51,25 +51,9 @@ contract BasicERC721a is ERC721A, Ownable {
   }
 
   // to set the base URI when ever you mint, mint combines base uri with tokenId
-  /* function _baseURI() internal view override returns (string memory){
+  function _baseURI() internal view override returns (string memory){
     return BASE_URI;
-  } */
-
-  function setTokenURI(uint256 tokenId, string memory _tokenURI) public {
-
-    // this is like a if statement
-
-    // _isApprovedOrOwner check if a sender is allow to manager that tokenid
-    // is msgsender the owner of the tokenid
-    require(
-      _isApprovedOrOwner(_msgSender(), tokenId),
-      "ERC721: transfer caller is not owner nor approved"
-    );
-    _setTokenURI(tokenId, _tokenURI);
-
-
   }
-
 
   function setMintRate(uint256 _mintRate) public onlyOwner {
        MINT_RATE = _mintRate;

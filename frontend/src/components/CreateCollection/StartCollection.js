@@ -57,6 +57,7 @@ const { Step } = Steps;
 export const StartCollection = (props) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen:isContractOpen, onOpen:onContractOpen, onClose:onContractClose} = useDisclosure()
     const Web3Api = useMoralisWeb3Api();
 
 
@@ -354,7 +355,18 @@ export const StartCollection = (props) => {
 
 
 
-    console.log(createERC721AState, 'here is the state fo the function')
+    useEffect(() =>{
+      console.log(createERC721AState)
+      if(createERC721AState.status === "Success"){
+        console.log('here here')
+        onContractClose()
+      }
+      if(createERC721AState.status === "Mining"){
+        console.log('yup ypu')
+        onContractOpen()
+      }
+
+    },[createERC721AState])
     // Transaction signature --> mining --> success
 
 
@@ -428,6 +440,23 @@ export const StartCollection = (props) => {
               }}>
               <Spinner size='xl' />
               <div>Generating your NFTs</div>
+
+            </div>
+
+          </ModalBody>
+
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isContractOpen} onClose={onContractClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalBody>
+            <div style = {{
+                textAlign: 'center'
+              }}>
+              <Spinner size='xl' />
+              <div>Creating smart contract</div>
 
             </div>
 

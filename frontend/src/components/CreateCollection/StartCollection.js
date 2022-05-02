@@ -140,13 +140,14 @@ export const StartCollection = (props) => {
 
       if(contractName !== "" && contractSymbol !== ""){
         const baseURI = "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata"
+        const price = utils.parseEther(mintRate.toString())
           createERC721A(
             "test",
             "TEST",
-            "10",
-            "1000",
+            maxMint.toString(),
+            maxSupply.toString(),
             // Web3.utils.toWei(0.002, 'ether').toString(),
-            "200000",
+            price.toString(),
             "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata",
           )
       }

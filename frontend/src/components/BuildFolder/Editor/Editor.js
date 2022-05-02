@@ -292,11 +292,11 @@ export const Editor = (props) => {
   const getAllNotes= () => {
     axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteUsername/${websiteId}`)
       .then(res => {
-        console.log(res.data, 'what is this here')
+       
         setPersonalWebsiteUsername(res.data);
 
       })
-      console.log("SDONENENEEE")
+    
       // axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
       // .then(res => {
       //   console.log(res.data, 'what is this here')
@@ -1676,11 +1676,6 @@ export const Editor = (props) => {
         account = {account}
         />
         {/* <div ref={ref1}>test</div> */}
-      <div>LOOOOOOOOOOOOOOOOOOOOL
-      <Button onClick={showScreenShot}>test</Button>
-      
-      
-      </div>
 
 
       <div  class="editorRow">

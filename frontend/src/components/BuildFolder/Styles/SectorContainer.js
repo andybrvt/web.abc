@@ -44,7 +44,7 @@ export const SectorContainer = (props) => {
 
         <div>
           {/* {props.sector.getName()} */}
-          {( props.sector.getName()=="General" ||  props.sector.getName()=="Dimension" ||  props.sector.getName()=="Decorations")?
+          {( props.sector.getName()=="General" ||  props.sector.getName()=="Dimension" ||  props.sector.getName()=="Decorations" ||  props.sector.getName()=="Flex" )?
           ''
         :
 
@@ -187,15 +187,19 @@ export const SectorContainer = (props) => {
                     </AccordionItem>
                   </Accordion>
                 :
+                // dont show any dropdowns if the sector is image, automaticnftshowcase, wrapper, etc.
                 <div>
                   {
-                    (props.sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="AddressProfile" ))?
+                    ((props.sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="AddressProfile" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="wrapper" ))
+                    ||props.sector.getName()=="Flex"                
+                    )
+                    ?
                       <div>
 
                       </div>
                     :
 
-
+                    
                     <div>
                       {
                         properties.map((property, index) => {

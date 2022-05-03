@@ -71,7 +71,7 @@ def mintingFunction():
     # Now that you have the address you can use the contract to pass int he address
     erc721AContract = Contract.from_abi(BasicERC721a._name, currentERC721AAddress, BasicERC721a.abi)
 
-    amountPayed = Web3.toWei(0.002, 'ether')
+    amountPayed = Web3.toWei(0.022, 'ether')
     erc721AContract.mint(1, {'from':account, "value": amountPayed})
     print(currentERC721AAddress)
     print(erc721AContract)
@@ -91,9 +91,17 @@ def withDrawFunction():
     # Now that you have the address you can use the contract to pass int he address
     erc721AContract = Contract.from_abi(BasicERC721a._name, currentERC721AAddress, BasicERC721a.abi)
     # newRate = Web3.toWei(0.022, 'ether')
-    print(erc721AContract.owner())
-    # erc721AContract.setMintRate(newRate,{'from':account})
+    erc721AContract.withdraw({'from':account})
     print(currentERC721AAddress)
+
+
+def setMintRate():
+    account = get_account()
+    currentERC721AAddress = getCurrentERC721A()
+    erc721AContract = Contract.from_abi(BasicERC721a._name, currentERC721AAddress, BasicERC721a.abi)
+
+    newRate = Web3.toWei(0.022, 'ether')
+    erc721AContract.setMintRate(newRate, {'from':account})
 
 
 def main():

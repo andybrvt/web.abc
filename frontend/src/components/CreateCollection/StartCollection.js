@@ -20,6 +20,9 @@ import {
     ModalBody,
     Spinner,
     useDisclosure,
+    Tooltip,
+    Box,
+    HStack,
     BreadcrumbSeparator,} from '@chakra-ui/react';
 import * as dateFns from 'date-fns';
 import { Header } from '../Header';
@@ -62,7 +65,7 @@ export const StartCollection = (props) => {
     const { isOpen:isContractOpen, onOpen:onContractOpen, onClose:onContractClose} = useDisclosure()
     const { isOpen:isFinishedContractOpen, onOpen:onFinishedContractOpen, onClose:onFinishedContractClose} = useDisclosure()
 
-
+    const [recentContract, setRecentContract] = useState([])
     const { account, chainId} = useEthers()
     const { web3 } = useMoralis()
     const Web3Api = useMoralisWeb3Api()
@@ -143,12 +146,30 @@ export const StartCollection = (props) => {
     }
 
 
+
     const getERC721Contracts = useCall({
       contract: coreCreationContract,
       method: "getERC721Contracts",
       args: [account, ]
 
     })
+
+    useEffect(() => {
+
+      if(getERC721Contracts !== undefined){
+
+        if(getERC721Contracts.value[0].length === 1){
+          setRecentContract(getERC721Contracts.value[0][0])
+
+        } else {
+          setRecentContract(getERC721Contracts.value[0][-1])
+
+        }
+      }
+    }, [getERC721Contracts])
+
+
+
 
 
     // name
@@ -496,10 +517,20 @@ export const StartCollection = (props) => {
               <div>
                 <CopyToClipboard
                   onCopy = {() => console.log('copied true')}
-                  text= {'copy this'}>
-                  <Button leftIcon={<CopyIcon />} colorScheme='teal' variant='solid'>
-                    0x0000000000
-                  </Button>
+                  text= {recentContract}>
+                    <div>
+                      <Box as='button' borderRadius='md' bg='teal' color='white' px={4} h={8}>
+                        <HStack spacing = "10px">
+                          <CopyIcon />
+                          <div>
+                            {recentContract}
+                          </div>
+
+                        </HStack>
+
+                      </Box>
+                    </div>
+
 
                 </CopyToClipboard>
               </div>
@@ -653,7 +684,6 @@ export const StartCollection = (props) => {
 
               <div class="collectionButton">
                 <Button onClick={createBasicERC721APress}> Create Contract</Button>
-                <Button onClick = {fetchNFTsCloud}>check nfts</Button>
             </div>
 
               :

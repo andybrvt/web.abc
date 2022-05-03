@@ -84,6 +84,18 @@ def checkInformation():
     print(erc721AContract.tokenURI(1))
     print(erc721AContract)
 
+def withDrawFunction():
+    account = get_account()
+    # get the erc721A contract here
+    currentERC721AAddress = getCurrentERC721A()
+    # Now that you have the address you can use the contract to pass int he address
+    erc721AContract = Contract.from_abi(BasicERC721a._name, currentERC721AAddress, BasicERC721a.abi)
+    # newRate = Web3.toWei(0.022, 'ether')
+    print(erc721AContract.owner())
+    # erc721AContract.setMintRate(newRate,{'from':account})
+    print(currentERC721AAddress)
+
+
 def main():
     deploy_core_creation_contract()
     createERC721A()

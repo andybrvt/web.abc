@@ -47,6 +47,7 @@ contract CoreCreationContract {
       mintRate_,
       baseURI_
       );
+    new_nft_collection.transferOwnership(msg.sender);
     collectionDict[msg.sender].push(address(new_nft_collection));
 
 

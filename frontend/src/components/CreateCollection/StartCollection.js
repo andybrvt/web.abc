@@ -468,7 +468,7 @@ export const StartCollection = (props) => {
   return(
     <div>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
@@ -485,7 +485,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal isOpen={isContractOpen} onClose={onContractClose}>
+      <Modal isOpen={isContractOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
@@ -502,7 +502,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal size={"lg"} isOpen={isFinishedContractOpen} onClose={onFinishedContractClose}>
+      <Modal size={"lg"} isOpen={isFinishedContractOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Contract Created!</ModalHeader>
@@ -545,22 +545,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalBody>
-            <div style = {{
-                textAlign: 'center'
-              }}>
-              <Spinner size='xl' />
-              <div>Generating your NFTs</div>
 
-            </div>
-
-          </ModalBody>
-
-        </ModalContent>
-      </Modal>
 
         <div class="startCollectionContainer">
 

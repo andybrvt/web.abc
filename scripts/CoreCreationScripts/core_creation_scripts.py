@@ -1,5 +1,5 @@
 # this script will be use to test and deploy the contracts
-from brownie import CoreCreationContract, CreateCollectionContract, BasicERC721, config, network
+from brownie import Contract, CoreCreationContract, CreateCollectionContract, BasicERC721, BasicERC721a, config, network
 from scripts.helpful_scripts import get_account
 from web3 import Web3
 from scripts.upload_to_frontend import upload_to_frontend
@@ -42,12 +42,12 @@ def createERC721A():
         10,
         1000,
         Web3.toWei(0.002, 'ether'),
-        "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata",
+        "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata/",
         {'from': account},
 
     )
-    address = coreCreationContract.collectionDict(account.address, 0)
-    print(address)
+
+    print(getCurrentERC721A())
     print("New erc721A created")
 
 
@@ -61,10 +61,28 @@ def getCurrentERC721A():
     account = get_account()
     coreCreationContract = CoreCreationContract[-1]
     address = coreCreationContract.getERC721Contracts(account.address)
-    print(address)
     print('got new address')
+    return address[-1]
 
+def mintingFunction():
+    account = get_account()
+    # get the erc721A contract here
+    currentERC721AAddress = getCurrentERC721A()
+    # Now that you have the address you can use the contract to pass int he address
+    erc721AContract = Contract.from_abi(BasicERC721a._name, currentERC721AAddress, BasicERC721a.abi)
 
+    amountPayed = Web3.toWei(0.002, 'ether')
+    erc721AContract.mint(1, {'from':account, "value": amountPayed})
+    print(currentERC721AAddress)
+    print(erc721AContract)
+
+def checkInformation():
+    account = get_account()
+    currentERC721AAddress = getCurrentERC721A()
+    erc721AContract = Contract.from_abi(BasicERC721a._name, currentERC721AAddress, BasicERC721a.abi)
+
+    print(erc721AContract.tokenURI(1))
+    print(erc721AContract)
 
 def main():
     deploy_core_creation_contract()

@@ -39,7 +39,7 @@ export const CollectionList = (props) => {
 
   useEffect(() => {
     if(grabCollectionAddresses !== undefined){
-        setCollections(grabCollectionAddresses[0])
+        setCollections(grabCollectionAddresses.value[0])
     }
 
   }, [grabCollectionAddresses])

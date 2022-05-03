@@ -35,9 +35,9 @@ import { Steps } from 'antd';
 import { useEthers, useEtherBalance, useCall, useCalls, useContractCall, useContractFunction} from "@usedapp/core";
 import { Contract } from '@ethersproject/contracts'
 import Web3 from 'web3'
+import { useMoralis, useMoralisWeb3Api, useMoralisCloudFunction } from "react-moralis";
 
 import axios from 'axios';
-import { useMoralisWeb3Api } from "react-moralis";
 import './StartCollection.css';
 import CoreCreationContract from '../../chain-info/contracts/CoreCreationContract';
 import networkMapping from '../../chain-info/deployments/map.json';
@@ -58,11 +58,11 @@ export const StartCollection = (props) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen:isContractOpen, onOpen:onContractOpen, onClose:onContractClose} = useDisclosure()
-    const Web3Api = useMoralisWeb3Api();
 
 
     const { account, chainId} = useEthers()
-
+    const { web3 } = useMoralis()
+    const Web3Api = useMoralisWeb3Api()
     // Page 1
     const { hasCopied, onCopy }  = useClipboard('0x495f947276749ce646')
     const [name, setName] = useState("");
@@ -96,6 +96,21 @@ export const StartCollection = (props) => {
     const coreCreationContractInterface = new utils.Interface(abi)
     // Now you have both the abi and interface you can make the interface object
     const coreCreationContract = new Contract(coreCreationContractAddress, coreCreationContractInterface)
+
+
+    const fetchNFTsCloud = async() => {
+      const options = {
+        chain: "rinkeby",
+        // address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
+        address: account,
+        // address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
+
+      };
+
+      const nftList = await Web3Api.account.getNFTs(options);
+      console.log(nftList)
+
+    }
 
 
     // Now you can use the core creation function
@@ -600,7 +615,8 @@ export const StartCollection = (props) => {
 
               <div class="collectionButton">
                 <Button onClick={createBasicERC721APress}> Create Contract</Button>
-              </div>
+                <Button onClick = {fetchNFTsCloud}>check nfts</Button>
+            </div>
 
               :
 

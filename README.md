@@ -69,3 +69,12 @@ this smart contract will be able to create other smart contract that I tell it t
 --> Need to figure out how to do this without the other user needing to get LINK tokens
 --> Gonna need to figure out how you are gonna get its abi, because getting the address is easy
 --> Solution: might just save it in a database or something
+
+
+
+
+NOTES:
+In brownie, if you want to get a specific contract object you can use the interface --> Interface(address) or use
+Contract.from_abi('name', address, abi)
+
+Each Contract has an "dot" name (has an under score infront) and abi 

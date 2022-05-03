@@ -157,14 +157,10 @@ export const StartCollection = (props) => {
     useEffect(() => {
 
       if(getERC721Contracts !== undefined){
+        const contractListLength = getERC721Contracts.value[0].length
+        setRecentContract(getERC721Contracts.value[0][contractListLength-1])
 
-        if(getERC721Contracts.value[0].length === 1){
-          setRecentContract(getERC721Contracts.value[0][0])
 
-        } else {
-          setRecentContract(getERC721Contracts.value[0][-1])
-
-        }
       }
     }, [getERC721Contracts])
 
@@ -178,18 +174,19 @@ export const StartCollection = (props) => {
     // maxSupply_,
     // mintRate,
     // baseURI
+
+    // change baseuri latter
     const createBasicERC721APress = (e) => {
 
-      if(contractName !== "" && contractSymbol !== ""){
+      if(name !== "" && contractSymbol !== ""){
         const baseURI = "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata"
         const price = utils.parseEther(mintRate.toString())
           createERC721A(
-            "test",
-            "TEST",
+            name,
+            contractSymbol,
             maxMint.toString(),
             maxSupply.toString(),
-            // Web3.utils.toWei(0.002, 'ether').toString(),
-            price.toString(),
+            Web3.utils.toWei(mintRate, 'ether').toString(),
             "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata",
           )
       }
@@ -397,10 +394,9 @@ export const StartCollection = (props) => {
 
 
     useEffect(() =>{
-      console.log(createERC721AState)
       if(createERC721AState.status === "Success"){
-        console.log('here here')
         onContractClose()
+        onFinishedContractOpen()
       }
       if(createERC721AState.status === "Mining"){
         console.log('yup ypu')
@@ -445,7 +441,7 @@ export const StartCollection = (props) => {
       const inputType = e.target.placeholder
 
       if(inputType === "Name"){
-        setContractName(e.target.value)
+        setName(e.target.value)
       }
 
       if(inputType === "Symbol"){
@@ -506,7 +502,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal size={"lg"} isOpen={true} onClose={onFinishedContractClose}>
+      <Modal size={"lg"} isOpen={isFinishedContractOpen} onClose={onFinishedContractClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Contract Created!</ModalHeader>
@@ -639,7 +635,7 @@ export const StartCollection = (props) => {
                 :
 
                 <CreateContractCollection
-                  contractName = {contractName}
+                  contractName = {name}
                   contractSymbol = {contractSymbol}
                   maxMint = {maxMint}
                   maxSupply = {maxSupply}

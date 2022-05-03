@@ -71,7 +71,10 @@ export const PickNFTModal  = (props) => {
           setCurUrl(newUrl)
         } else {
 
-          setNFTImgs(oldArray => [...oldArray, {img: fixURL(data.data.image), name: data.data.name}])
+          if(!data.data === "undefined"){
+            setNFTImgs(oldArray => [...oldArray, {img: fixURL(data.data.image), name: data.data.name}])
+
+          }
 
         }
 
@@ -85,9 +88,10 @@ export const PickNFTModal  = (props) => {
 
   const fetchNFTsCloud = async() => {
     const options = {
-      chain: "eth",
+      chain: "rinkeby",
       // address: "0x5b92a53e91495052b7849ea585bec7e99c75293b",
-      address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
+      // address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
+      address: account,
       // address: "0x53a19F44548182602b3B665AB9B9717735Ed53be",
 
     };

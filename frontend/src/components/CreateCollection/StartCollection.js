@@ -36,12 +36,14 @@ import { useEthers, useEtherBalance, useCall, useCalls, useContractCall, useCont
 import { Contract } from '@ethersproject/contracts'
 import Web3 from 'web3'
 import { useMoralis, useMoralisWeb3Api, useMoralisCloudFunction } from "react-moralis";
+import { CopyIcon } from '@chakra-ui/icons'
 
 import axios from 'axios';
 import './StartCollection.css';
 import CoreCreationContract from '../../chain-info/contracts/CoreCreationContract';
 import networkMapping from '../../chain-info/deployments/map.json';
 import {constants, utils } from 'ethers';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 require('dotenv').config()
@@ -58,6 +60,7 @@ export const StartCollection = (props) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen:isContractOpen, onOpen:onContractOpen, onClose:onContractClose} = useDisclosure()
+    const { isOpen:isFinishedContractOpen, onOpen:onFinishedContractOpen, onClose:onFinishedContractClose} = useDisclosure()
 
 
     const { account, chainId} = useEthers()
@@ -125,6 +128,8 @@ export const StartCollection = (props) => {
       "createBasicERC721A",
       {transactionName: "createBasicERC721A"}
     )
+
+
 
     const createBasicERC721Press = (e) => {
       // createERC721("Test", "TEST", )
@@ -476,6 +481,39 @@ export const StartCollection = (props) => {
             </div>
 
           </ModalBody>
+
+        </ModalContent>
+      </Modal>
+
+      <Modal size={"lg"} isOpen={true} onClose={onFinishedContractClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Contract Created!</ModalHeader>
+
+          <ModalBody>
+            <Stack spacing = {4}>
+              <div>Here is your contract address</div>
+              <div>
+                <CopyToClipboard
+                  onCopy = {() => console.log('copied true')}
+                  text= {'copy this'}>
+                  <Button leftIcon={<CopyIcon />} colorScheme='teal' variant='solid'>
+                    0x0000000000
+                  </Button>
+
+                </CopyToClipboard>
+              </div>
+
+            </Stack>
+
+
+          </ModalBody>
+
+          <ModalFooter>
+
+              <Button>Let's go build your website</Button>
+
+         </ModalFooter>
 
         </ModalContent>
       </Modal>

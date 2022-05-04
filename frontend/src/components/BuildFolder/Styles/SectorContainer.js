@@ -190,8 +190,10 @@ export const SectorContainer = (props) => {
                 // dont show any dropdowns if the sector is image, automaticnftshowcase, wrapper, etc.
                 <div>
                   {
-                    ((props.sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="AddressProfile" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="wrapper" ))
-                    ||props.sector.getName()=="Flex"                
+                    ((props.sector.getName()=="Typography"&& (props.blockType=='image'|| props.blockType=="AutomaticNFTShowcase" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="AddressProfile" ||  props.blockType=="SocialMediaFooter"||  props.blockType=="wrapper"
+                    || props.blockType=="link" ))
+                    ||props.sector.getName()=="Flex"   
+                                 
                     )
                     ?
                       <div>

@@ -62,6 +62,7 @@ def getCurrentERC721A():
     coreCreationContract = CoreCreationContract[-1]
     address = coreCreationContract.getERC721Contracts(account.address)
     print('got new address')
+    print(address[-1], coreCreationContract)
     return address[-1]
 
 def mintingFunction():

@@ -20,6 +20,9 @@ import {
     ModalBody,
     Spinner,
     useDisclosure,
+    Tooltip,
+    Box,
+    HStack,
     BreadcrumbSeparator,} from '@chakra-ui/react';
 import * as dateFns from 'date-fns';
 import { Header } from '../Header';
@@ -41,6 +44,8 @@ import { CopyIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import './StartCollection.css';
 import CoreCreationContract from '../../chain-info/contracts/CoreCreationContract';
+import BasicERC721a from '../../chain-info/contracts/BasicERC721a';
+
 import networkMapping from '../../chain-info/deployments/map.json';
 import {constants, utils } from 'ethers';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -62,7 +67,7 @@ export const StartCollection = (props) => {
     const { isOpen:isContractOpen, onOpen:onContractOpen, onClose:onContractClose} = useDisclosure()
     const { isOpen:isFinishedContractOpen, onOpen:onFinishedContractOpen, onClose:onFinishedContractClose} = useDisclosure()
 
-
+    const [recentContract, setRecentContract] = useState("")
     const { account, chainId} = useEthers()
     const { web3 } = useMoralis()
     const Web3Api = useMoralisWeb3Api()
@@ -101,6 +106,18 @@ export const StartCollection = (props) => {
     const coreCreationContract = new Contract(coreCreationContractAddress, coreCreationContractInterface)
 
 
+
+    // This is just to test the mint function
+    const basicERC721a_abi  = BasicERC721a['abi']
+    const basicERC721aAddress = "0x92a36f263021aBcAd9b1789aAd4Bca51Fee7D5Bc"
+    const basicERC721aInterface = new utils.Interface(basicERC721a_abi)
+    const basicERC721aContract = new Contract(basicERC721aAddress, basicERC721aInterface)
+
+
+
+
+
+
     const fetchNFTsCloud = async() => {
       const options = {
         chain: "rinkeby",
@@ -130,6 +147,12 @@ export const StartCollection = (props) => {
     )
 
 
+    const {send: mint, stat: mintState} = useContractFunction(
+      basicERC721aContract,
+      "mint",
+      {transactionName: 'mint'}
+    )
+
 
     const createBasicERC721Press = (e) => {
       // createERC721("Test", "TEST", )
@@ -143,12 +166,26 @@ export const StartCollection = (props) => {
     }
 
 
+
     const getERC721Contracts = useCall({
       contract: coreCreationContract,
       method: "getERC721Contracts",
       args: [account, ]
 
     })
+
+    useEffect(() => {
+
+      if(getERC721Contracts !== undefined){
+        const contractListLength = getERC721Contracts.value[0].length
+        setRecentContract(getERC721Contracts.value[0][contractListLength-1])
+
+
+      }
+    }, [getERC721Contracts])
+
+
+
 
 
     // name
@@ -157,18 +194,19 @@ export const StartCollection = (props) => {
     // maxSupply_,
     // mintRate,
     // baseURI
+
+    // change baseuri latter
     const createBasicERC721APress = (e) => {
 
-      if(contractName !== "" && contractSymbol !== ""){
+      if(name !== "" && contractSymbol !== ""){
         const baseURI = "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata"
         const price = utils.parseEther(mintRate.toString())
           createERC721A(
-            "test",
-            "TEST",
+            name,
+            contractSymbol,
             maxMint.toString(),
             maxSupply.toString(),
-            // Web3.utils.toWei(0.002, 'ether').toString(),
-            price.toString(),
+            Web3.utils.toWei(mintRate, 'ether').toString(),
             "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata",
           )
       }
@@ -376,10 +414,9 @@ export const StartCollection = (props) => {
 
 
     useEffect(() =>{
-      console.log(createERC721AState)
       if(createERC721AState.status === "Success"){
-        console.log('here here')
         onContractClose()
+        onFinishedContractOpen()
       }
       if(createERC721AState.status === "Mining"){
         console.log('yup ypu')
@@ -424,7 +461,7 @@ export const StartCollection = (props) => {
       const inputType = e.target.placeholder
 
       if(inputType === "Name"){
-        setContractName(e.target.value)
+        setName(e.target.value)
       }
 
       if(inputType === "Symbol"){
@@ -446,12 +483,16 @@ export const StartCollection = (props) => {
 
     }
 
+  const testMint = () => {
+
+    mint(1, {value: utils.parseEther("0.02")})
+  }
 
   var data = props.data
   return(
     <div>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
@@ -468,7 +509,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal isOpen={isContractOpen} onClose={onContractClose}>
+      <Modal isOpen={isContractOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
@@ -485,7 +526,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal size={"lg"} isOpen={true} onClose={onFinishedContractClose}>
+      <Modal size={"lg"} isOpen={isFinishedContractOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Contract Created!</ModalHeader>
@@ -496,10 +537,20 @@ export const StartCollection = (props) => {
               <div>
                 <CopyToClipboard
                   onCopy = {() => console.log('copied true')}
-                  text= {'copy this'}>
-                  <Button leftIcon={<CopyIcon />} colorScheme='teal' variant='solid'>
-                    0x0000000000
-                  </Button>
+                  text= {recentContract}>
+                    <div>
+                      <Box as='button' borderRadius='md' bg='teal' color='white' px={4} h={8}>
+                        <HStack spacing = "10px">
+                          <CopyIcon />
+                          <div>
+                            {recentContract}
+                          </div>
+
+                        </HStack>
+
+                      </Box>
+                    </div>
+
 
                 </CopyToClipboard>
               </div>
@@ -511,29 +562,14 @@ export const StartCollection = (props) => {
 
           <ModalFooter>
 
-              <Button>Let's go build your website</Button>
+              <Button >Let's go build your website</Button>
 
          </ModalFooter>
 
         </ModalContent>
       </Modal>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalBody>
-            <div style = {{
-                textAlign: 'center'
-              }}>
-              <Spinner size='xl' />
-              <div>Generating your NFTs</div>
 
-            </div>
-
-          </ModalBody>
-
-        </ModalContent>
-      </Modal>
 
         <div class="startCollectionContainer">
 
@@ -608,7 +644,7 @@ export const StartCollection = (props) => {
                 :
 
                 <CreateContractCollection
-                  contractName = {contractName}
+                  contractName = {name}
                   contractSymbol = {contractSymbol}
                   maxMint = {maxMint}
                   maxSupply = {maxSupply}
@@ -653,8 +689,9 @@ export const StartCollection = (props) => {
 
               <div class="collectionButton">
                 <Button onClick={createBasicERC721APress}> Create Contract</Button>
-                <Button onClick = {fetchNFTsCloud}>check nfts</Button>
-            </div>
+
+                <Button onClick = {testMint}>Mint NFT</Button>
+              </div>
 
               :
 

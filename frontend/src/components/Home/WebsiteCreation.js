@@ -39,7 +39,7 @@ const { Dragger } = Upload;
 export const WebsiteCreation= (props) => {
   const [profileURL, setProfileURL] = useState(false)
   const [loading, setLoading] = useState(false)   // loading
-  
+
   const [profilePic, setProfilePic] = useState(false)   // loading
   const [username, setUsername] = useState(null)   // loading
   const onPreview = async file => {
@@ -60,15 +60,14 @@ export const WebsiteCreation= (props) => {
 
   const onChange = ({ fileList: newFileList }) => {
     console.log(URL.createObjectURL(newFileList[0].originFileObj))
-    
+
     // console.log(URL.createObjectURL(newFileList.target.files[0]),)
     setProfilePic(URL.createObjectURL(newFileList[0].originFileObj));
 
   };
 
   const createWebSite = (type) => {
-    console.log(username)
-    console.log(profilePic)
+
     // Now you can create your website
     const formData = new FormData()
     formData.append("owner", props.account)
@@ -92,9 +91,7 @@ export const WebsiteCreation= (props) => {
   }
 
   const handleImageChange = (e) => {
-    console.log(URL.createObjectURL(e.fileList[0].originFileObj))
-    console.log(e.fileList[0].originFileObj)
-    console.log(e.fileList[0])
+    
     setProfilePic(e.fileList[0].originFileObj)
   }
 
@@ -129,20 +126,20 @@ export const WebsiteCreation= (props) => {
 
 
             {/* <input onChange/={onChange} type="image" name="file" ></input> */}
-              
+
 
             <div class="addLinkHeader">Enter your username</div>
-                <Input 
-                onChange = {(e)=>{setUsername(e.target.value)}} 
+                <Input
+                onChange = {(e)=>{setUsername(e.target.value)}}
                 placeholder='Enter username' />
-       
+
           {/* </QueueAnim> */}
           </div>
-          <div class="positionFooter"> 
+          <div class="positionFooter">
             <Button onClick={() => createWebSite("personal")} colorScheme='blue' mr={3}>
               Next
             </Button>
-            <Button 
+            <Button
             // onClick={()=>setTriggerChoice("")}
             >Back</Button>
           </div>

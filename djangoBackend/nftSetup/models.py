@@ -1,5 +1,5 @@
 from django.db import models
-from builder.models import OwnerWalletKey
+from builder.models import OwnerWalletKey, WebsitePage
 from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
 
@@ -8,13 +8,19 @@ from django.dispatch.dispatcher import receiver
 
     This will be the nft project
 
+    the contract will be the address
+    the websites will be all the websites that uses this project
+    the testWebsite will be the temporary solution
+
 """
 class Project(models.Model):
     name = models.CharField(max_length = 255)
     owner = models.ForeignKey(OwnerWalletKey, related_name = "owner_project_key", on_delete= models.CASCADE,)
     metaData = models.TextField(blank = True)
     baseURI = models.CharField(max_length = 255, blank = True)
-
+    contract = models.TextField(blank = True)
+    website = models.ManyToManyField(WebsitePage, related_name= "provided_websites", blank = True)
+    testWebsite = models.ForeignKey(WebsitePage, related_name = "temp_solution", null = True, on_delete= models.CASCADE)
 
 """
     This will be a json and a image out put for the nft

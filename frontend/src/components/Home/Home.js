@@ -183,9 +183,20 @@
       }
       if(selectModalOption === "nftOption"){
 
-        props.history.push('/startCollection',{
-          name: name
-        })
+
+        const formData = new FormData()
+        // formData.append("owner", account)
+
+        console.log(account)
+        console.log(name)
+
+        // axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData,
+        //   {headers: {"content-type": "multipart/form-data"}}
+        // )
+
+        // props.history.push('/startCollection',{
+        //   name: name
+        // })
 
         // setTriggerChoice("nftChoice")
       }

@@ -7,7 +7,8 @@ import {
   rowStyleMedia,
   colStyleMedia
 } from './GeneralBlockCss';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShapes, faCircle, faFont, faKeyboard, faPlay, faGlobe  } from '@fortawesome/free-solid-svg-icons'
 
 // FOR MENU
 const menu = `
@@ -136,6 +137,14 @@ export const NFTCollectionTemplates = [
         right: 5%;
         top: 20%;
         width: 50%;}
+
+      .teamSection {
+     
+        position: absolute;
+        right: 5%;
+        top: 20%;
+        width: 50%;
+      }
     </style>
 
       <div data-gjs-dmode="absolute" class="rowStyleM">
@@ -187,7 +196,17 @@ export const NFTCollectionTemplates = [
           Buy Now
         </div>
         <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
-      </div>
+        <div class="teamSection">
+          This is the team
+          This is the team
+          This is the team
+          This is the team
+
+          This is the team
+          This is the team
+
+        </div>
+        </div>
     `,
     content: `
       <style>
@@ -204,7 +223,7 @@ export const NFTCollectionTemplates = [
           // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
         }
         .mHeaderText{
-          position: absolute;s
+          position: absolute;
           font-size: 70px;
           width: 30%;
           left: 12%;
@@ -214,8 +233,10 @@ export const NFTCollectionTemplates = [
           position: absolute;
           width: 25%;
           left: 12%;
-          top: 48%;
-          font-family: Monospace;}
+          top: 45%;
+          font-family: Lato;
+          font-size:20px;
+        }
         .mButton1{
             background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
             left: 12%;
@@ -266,11 +287,11 @@ export const NFTCollectionTemplates = [
             <a class="headerItem">
               Funding
             </a>
-            <a class="headerItem">
-              <i class="fa-brands fa-twitter"></i>
-            </a>
-            <div class="discordIcon">
-              <i class="fa-brands fa-discord"></i>
+            <FontAwesomeIcon icon={faGlobe} />
+
+            <div class="headerItem">
+            <FontAwesomeIcon  icon={faGlobe} />
+
             </div>
             <a class="headerItem">
               Funding
@@ -291,6 +312,7 @@ export const NFTCollectionTemplates = [
           Buy Now
         </div>
         <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
+        
       </div>
     `
   },

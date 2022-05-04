@@ -164,7 +164,6 @@ export const EditorHeader = (props) => {
 
             <a class = "logoHref" href= "/home">web.abc</a>
 
-
           </div>
 
           <div className = "pageDropContainer">

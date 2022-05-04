@@ -97,39 +97,35 @@ export const ModernTemplateBlocks = [
         // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
       }
       .mHeaderText{
-        color: black;
         position: absolute;
         font-size: 70px;
         width: 30%;
         left: 12%;
         top: 20%;
-        font-size: 15px;
-        font-family: Monospace;
-        text-align:left;}
+        font-family: Lato;}
       .mBodyText{
-        text-align: left;
-        color:black;
         position: absolute;
-        width: 30%;
+        width: 25%;
         left: 12%;
-        top: 40%;
-        font-size: 5px;
-        font-family: Monospace;}
+        top: 45%;
+        font-family: Lato;
+        font-size:20px;
+      }
       .mButton1{
           background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
           left: 12%;
-          top: 75%;}
+          top: 70%;}
       .mButton2{
           background: black;
-          left: 27%;
-          top: 75%;}
+          left: 25%;
+          top: 70%;}
       .mImage{
         border-radius: 25px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
         position: absolute;
         right: 5%;
-        top: 20%;
+        top: 15%;
+        width: 50%;}
         width: 50%;}
     </style>
 
@@ -204,13 +200,15 @@ export const ModernTemplateBlocks = [
           width: 30%;
           left: 12%;
           top: 20%;
-          font-family: Monospace;}
+          font-family: Lato;}
         .mBodyText{
           position: absolute;
           width: 25%;
           left: 12%;
-          top: 48%;
-          font-family: Monospace;}
+          top: 45%;
+          font-family: Lato;
+          font-size:20px;
+        }
         .mButton1{
             background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
             left: 12%;

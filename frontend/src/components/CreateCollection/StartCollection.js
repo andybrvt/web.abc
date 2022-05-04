@@ -40,6 +40,7 @@ import { Contract } from '@ethersproject/contracts'
 import Web3 from 'web3'
 import { useMoralis, useMoralisWeb3Api, useMoralisCloudFunction } from "react-moralis";
 import { CopyIcon } from '@chakra-ui/icons'
+import { useParams } from 'react-router-dom';
 
 import axios from 'axios';
 import './StartCollection.css';
@@ -60,10 +61,32 @@ const endpoint = "/pinning/pinFileToIPFS"
 const endpointJson = "/pinning/pinJSONToIPFS"
 
 
+{/*
+  Before all this
+  --> Create the website object
+
+
+  Steps of how this whole process goes
+  1--> put name, description, collection number
+  2--> generate the NFT art
+  3--> Create project
+  4--> Now generate the metadata
+  5--> Add metadata to each of the images project
+  6--> Upload images to ipfs --> upload images to metadata --> then to ipfs
+  7--> Get baseURI
+  8--> create contract with adding the baseURI in
+
+
+  */}
+
 const { Step } = Steps;
 export const StartCollection = (props) => {
 
+
+    const {websiteId} = useParams()
+
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen:isMetadataOpen, onOpen:onMetadataOpen, onClose:onMetadataClose } = useDisclosure()
     const { isOpen:isContractOpen, onOpen:onContractOpen, onClose:onContractClose} = useDisclosure()
     const { isOpen:isFinishedContractOpen, onOpen:onFinishedContractOpen, onClose:onFinishedContractClose} = useDisclosure()
 
@@ -76,7 +99,7 @@ export const StartCollection = (props) => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [collectionSize, setCollectionSize] = useState(0);
-    const [current, setCurrent] = useState(3);
+    const [current, setCurrent] = useState(0);
 
 
     // Page 2
@@ -92,7 +115,7 @@ export const StartCollection = (props) => {
     const [maxMint, setMaxMint] = useState(0)
     const [maxSupply, setMaxSupply] = useState(0)
     const [mintRate, setMintRate]= useState(0)
-    const [baseURI, setBasURI] = useState("")
+    const [baseURI, setBaseURI] = useState("")
 
 
     // in order for a contract to work you are gonna need abi and address
@@ -109,7 +132,7 @@ export const StartCollection = (props) => {
 
     // This is just to test the mint function
     const basicERC721a_abi  = BasicERC721a['abi']
-    const basicERC721aAddress = "0x92a36f263021aBcAd9b1789aAd4Bca51Fee7D5Bc"
+    const basicERC721aAddress = "0xD6A145812CAc76A174370a75535bcd83674E80db"
     const basicERC721aInterface = new utils.Interface(basicERC721a_abi)
     const basicERC721aContract = new Contract(basicERC721aAddress, basicERC721aInterface)
 
@@ -199,7 +222,7 @@ export const StartCollection = (props) => {
     const createBasicERC721APress = (e) => {
 
       if(name !== "" && contractSymbol !== ""){
-        const baseURI = "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata"
+        console.log(baseURI)
         const price = utils.parseEther(mintRate.toString())
           createERC721A(
             name,
@@ -207,7 +230,7 @@ export const StartCollection = (props) => {
             maxMint.toString(),
             maxSupply.toString(),
             Web3.utils.toWei(mintRate, 'ether').toString(),
-            "https://ipfs.moralis.io:2053/ipfs/QmZeXZyB8BfNSPJLwhkFJnQMJz2Z9hXDwSn5dV3hjUSbnK/metadata",
+            baseURI,
           )
       }
       else {
@@ -234,7 +257,6 @@ export const StartCollection = (props) => {
     }
 
     const onRarityChange = (e, index, rarityIndex) => {
-      console.log(e, index, rarityIndex)
       setLayers(
         layers.map((layer, i)=> index === i ? {
           ...layer,
@@ -321,6 +343,7 @@ export const StartCollection = (props) => {
 
     const uploadImagesToIPFS = async() => {
 
+      onMetadataOpen()
       let ipfsArray = []
       let promises = []
 
@@ -347,6 +370,7 @@ export const StartCollection = (props) => {
     const uploadMetadataToIPFS = async(baseURI) => {
     // const uploadMetadataToIPFS = async() => {
 
+
       const projectId = renderedProject.id
       const projectName = renderedProject.name
       const formData = new FormData()
@@ -370,13 +394,16 @@ export const StartCollection = (props) => {
           let ipfsArray = []
           res.data.map((item, index ) => {
 
+            console.log(item.metaData, 'metadata here')
+            if(item.metaData !== ""){
+              ipfsArray.push(
+                {
+                  path: `metadata/${index}`,
+                  content: JSON.parse(item.metaData)
+                }
+              )
 
-            ipfsArray.push(
-              {
-                path: `metadata/${index}`,
-                content: JSON.parse(item.metaData)
-              }
-            )
+            }
 
 
           })
@@ -402,7 +429,9 @@ export const StartCollection = (props) => {
           .then(res => {
 
 
-            setBasURI(res.data)
+            setBaseURI(res.data)
+            onMetadataClose()
+            incrementStep()
 
           })
 
@@ -483,9 +512,35 @@ export const StartCollection = (props) => {
 
     }
 
-  const testMint = () => {
 
-    mint(1, {value: utils.parseEther("0.02")})
+    {/*
+      const testMint = () => {
+        mint(1, {value: utils.parseEther("0.02")})
+
+      }
+      */}
+
+
+
+  // Function will redirect to the website will adding in the
+  // contract address to project, get project id and then add website
+  // to project
+  const proceedToWebsite = () => {
+    const projectId = renderedProject.id
+
+    const formData = new FormData()
+
+    formData.append("projectId", 201)
+    formData.append("contract", recentContract)
+    formData.append("websiteId", websiteId)
+    axios.post(`${global.API_ENDPOINT}/nftSetup/ConnectContractWebsiteProject`, formData)
+    .then(res => {
+      console.log(res.data)
+      props.history.push(`/build/${res.data.websiteId}/${res.data.websiteType}`,{
+        websiteId: res.data.websiteId
+      })
+    })
+
   }
 
   var data = props.data
@@ -493,6 +548,23 @@ export const StartCollection = (props) => {
     <div>
 
       <Modal isOpen={isOpen}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalBody>
+            <div style = {{
+                textAlign: 'center'
+              }}>
+              <Spinner size='xl' />
+              <div>Generating your NFTs</div>
+
+            </div>
+
+          </ModalBody>
+
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isMetadataOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
@@ -526,7 +598,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal size={"lg"} isOpen={isFinishedContractOpen}>
+      <Modal size={"lg"} isOpen={true}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Contract Created!</ModalHeader>
@@ -562,7 +634,11 @@ export const StartCollection = (props) => {
 
           <ModalFooter>
 
-              <Button >Let's go build your website</Button>
+              <Button onClick= {proceedToWebsite} >Let's go build your website</Button>
+              {/*
+                <Button onClick= {testMint} >Test Mint</Button>
+
+                */}
 
          </ModalFooter>
 
@@ -651,7 +727,6 @@ export const StartCollection = (props) => {
                   maxRate = {mintRate}
                   baseURI = {baseURI}
                   onInputChange = {onInputChange}
-                  baseURI = {baseURI}
                   />
 
               }
@@ -690,14 +765,13 @@ export const StartCollection = (props) => {
               <div class="collectionButton">
                 <Button onClick={createBasicERC721APress}> Create Contract</Button>
 
-                <Button onClick = {testMint}>Mint NFT</Button>
               </div>
 
               :
 
-              <div>
+              <Button onClick = {incrementStep}>
                 Next
-              </div>
+              </Button>
               }
 
               </div>

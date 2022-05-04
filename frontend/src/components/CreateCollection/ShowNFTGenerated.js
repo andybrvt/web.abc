@@ -5,16 +5,6 @@ import axios from 'axios';
 
 export const ShowNFTGenerated = (props) => {
 
-  const [testNFTs, setTestNFTs] = useState([])
-
-  useEffect(() => {
-    axios.get(`${global.API_ENDPOINT}/nftSetup/GetGeneratedImages/174`)
-    .then(res => {
-      setTestNFTs(res.data)
-    })
-  }, [])
-
-
   return(
     <div>
       <div class = "imagesWrapper">

@@ -98,8 +98,8 @@ export const App = ()=> {
             <Route exact path="/docs" element={<Docs history={history}/>} />
             <Route exact path="/contract" element={<SmartContractView history={history}/>} />
             <Route exact path="/contractDashboard" element={<SmartContractDash history={history}/>} />
-            <Route exact path="/websiteDashboard/:websiteId/" element={<WebsiteDashboard history={history}/>} />
-            <Route exact path="/startCollection" element={<StartCollection history={history}/>} />
+            <Route exact path="/websiteDashboard/:websiteId" element={<WebsiteDashboard history={history}/>} />
+            <Route exact path="/startCollection/:websiteId" element={<StartCollection history={history}/>} />
 
         </Routes>
 

@@ -8,6 +8,6 @@ urlpatterns = [
     path('GenerateNFTs', views.GenerateNFTs.as_view(), name = "testing_team_2"),
     path('GenerateMetadata', views.GenerateMetadata.as_view(), name = "generating_metadata"),
     path("SaveBaseURI", views.SaveBaseURI.as_view(), name = "save_base_uri"),
-    path("GetGeneratedImages/<int:projectId>", views.GetGeneratedImages.as_view(), name = "get_generated_nfts")
-
+    path("GetGeneratedImages/<int:projectId>", views.GetGeneratedImages.as_view(), name = "get_generated_nfts"),
+    path("ConnectContractWebsiteProject", views.ConnectContractWebsiteProject.as_view(), name = "connect_contract_website")
 ]

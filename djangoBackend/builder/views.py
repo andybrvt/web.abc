@@ -177,13 +177,23 @@ class CreateWebsite(APIView):
         address, created = models.OwnerWalletKey.objects.get_or_create(
             publicKey = request.data['owner']
         )
-        website = models.Website.objects.create(
-            owner = address,
-            name = request.data['name'],
-            type = request.data['type'],
-            websiteUserName = request.data['websiteUserName'],
-            profilePic = request.data['profilePic'],
-        )
+
+        requestKeys = request.data.keys()
+        print(request.data.keys())
+        if "websiteUserName" in requestKeys and "profilePic" in requestKeys:
+            website = models.Website.objects.create(
+                owner = address,
+                name = request.data['name'],
+                type = request.data['type'],
+                websiteUserName = request.data['websiteUserName'],
+                profilePic = request.data['profilePic'],
+            )
+        else:
+            website = models.Website.objects.create(
+                owner = address,
+                name = request.data['name'],
+                type = request.data['type'],
+            )
         websiteId = website.id
         return Response(websiteId)
 

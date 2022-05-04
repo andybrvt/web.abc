@@ -44,6 +44,8 @@ import { CopyIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import './StartCollection.css';
 import CoreCreationContract from '../../chain-info/contracts/CoreCreationContract';
+import BasicERC721a from '../../chain-info/contracts/BasicERC721a';
+
 import networkMapping from '../../chain-info/deployments/map.json';
 import {constants, utils } from 'ethers';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -65,7 +67,7 @@ export const StartCollection = (props) => {
     const { isOpen:isContractOpen, onOpen:onContractOpen, onClose:onContractClose} = useDisclosure()
     const { isOpen:isFinishedContractOpen, onOpen:onFinishedContractOpen, onClose:onFinishedContractClose} = useDisclosure()
 
-    const [recentContract, setRecentContract] = useState([])
+    const [recentContract, setRecentContract] = useState("")
     const { account, chainId} = useEthers()
     const { web3 } = useMoralis()
     const Web3Api = useMoralisWeb3Api()
@@ -104,6 +106,18 @@ export const StartCollection = (props) => {
     const coreCreationContract = new Contract(coreCreationContractAddress, coreCreationContractInterface)
 
 
+
+    // This is just to test the mint function
+    const basicERC721a_abi  = BasicERC721a['abi']
+    const basicERC721aAddress = "0x92a36f263021aBcAd9b1789aAd4Bca51Fee7D5Bc"
+    const basicERC721aInterface = new utils.Interface(basicERC721a_abi)
+    const basicERC721aContract = new Contract(basicERC721aAddress, basicERC721aInterface)
+
+
+
+
+
+
     const fetchNFTsCloud = async() => {
       const options = {
         chain: "rinkeby",
@@ -132,6 +146,12 @@ export const StartCollection = (props) => {
       {transactionName: "createBasicERC721A"}
     )
 
+
+    const {send: mint, stat: mintState} = useContractFunction(
+      basicERC721aContract,
+      "mint",
+      {transactionName: 'mint'}
+    )
 
 
     const createBasicERC721Press = (e) => {
@@ -463,6 +483,10 @@ export const StartCollection = (props) => {
 
     }
 
+  const testMint = () => {
+
+    mint(1, {value: utils.parseEther("0.02")})
+  }
 
   var data = props.data
   return(
@@ -538,7 +562,7 @@ export const StartCollection = (props) => {
 
           <ModalFooter>
 
-              <Button>Let's go build your website</Button>
+              <Button >Let's go build your website</Button>
 
          </ModalFooter>
 
@@ -665,7 +689,9 @@ export const StartCollection = (props) => {
 
               <div class="collectionButton">
                 <Button onClick={createBasicERC721APress}> Create Contract</Button>
-            </div>
+
+                <Button onClick = {testMint}>Mint NFT</Button>
+              </div>
 
               :
 

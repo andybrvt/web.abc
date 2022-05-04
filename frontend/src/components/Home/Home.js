@@ -136,7 +136,6 @@
       // .then(res => {
       //   setWebsites(res.data)
       // })
-      console.log("USE EFFET SPAMAMM")
       if(account){
         axios.get(`${global.API_ENDPOINT}/builder/getUserWebsites/`+account)
         .then(res => {
@@ -185,20 +184,24 @@
 
 
         const formData = new FormData()
-        // formData.append("owner", account)
+        formData.append("owner", account)
+        formData.append('name', name)
+        formData.append("type", 'nft')
 
-        console.log(account)
-        console.log(name)
 
-        // axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData,
-        //   {headers: {"content-type": "multipart/form-data"}}
-        // )
+        // Make the webs'ite here first and then link it up later when you
+        // are done with the contract
 
-        // props.history.push('/startCollection',{
-        //   name: name
-        // })
 
-        // setTriggerChoice("nftChoice")
+        axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData,
+          {headers: {"content-type": "multipart/form-data"}}
+        ).then(res => {
+          props.history.push('/startCollection/'+res.data)
+
+
+        })
+
+
       }
 
 
@@ -214,7 +217,6 @@
 
     const { image, takeScreenshot } = useScreenshot({ref:ref1});
 
-    console.log(isLoading)
       return(
         <div>
           <Header history={props.history}/>

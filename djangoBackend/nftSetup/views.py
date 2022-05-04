@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import models
 from builder.models import OwnerWalletKey
+from builder.models import Website
 from rest_framework.decorators import authentication_classes, permission_classes
 import json
 from django.core.files.images import ImageFile
@@ -248,8 +249,9 @@ def generate_images(project, config, edition, count, drop_dup=True):
         new_image_path = "/".join(path_list)
 
         #op_path = os.path.join('output', 'edition ' + str(edition))
+        print(img_tb_removed, 'remove these images here')
         for i in img_tb_removed:
-
+            print(models.GeneratedOut.objects.filter(nftImage = new_image_path+'/'+str(i)+'.png'), 'remove this image')
             filtered_image = models.GeneratedOut.objects.filter(nftImage = new_image_path+'/'+str(i)+'.png').delete()
 
         # # Rename images such that it is sequentialluy numbered
@@ -385,6 +387,7 @@ class GenerateMetadata(APIView):
 
 
         for idx, row in progressbar(df.iterrows()):
+
             item_json = deepcopy(BASE_JSON)
             item_json['name'] = item_json['name'] + str(idx)
 
@@ -398,13 +401,13 @@ class GenerateMetadata(APIView):
                 if attr_dict[attr] != 'none':
                     item_json['attributes'].append({ 'trait_type': attr, 'value': attr_dict[attr] })
 
-            print(item_json)
             cur_nft = imageList[idx]
             cur_nft.metaData= json.dumps(item_json)
             cur_nft.save()
 
         nft_project_images = models.GeneratedOut.objects.filter(project = project)
         serializedNFTs = serializers.GeneratedOutMetadataSerializers(nft_project_images, many = True).data
+
 
 
         return Response(serializedNFTs)
@@ -425,3 +428,22 @@ class GetGeneratedImages(APIView):
         serializedNFTs = serializers.GeneratedOutSerializers(nft_project_images, many = True).data
 
         return Response(serializedNFTs)
+
+
+
+@authentication_classes([])
+@permission_classes([])
+class ConnectContractWebsiteProject(APIView):
+    def post(self, request, *args, **kwargs):
+        project = models.Project.objects.get(id = int(request.data['projectId']))
+        project.contract = request.data['contract']
+        website = Website.objects.get(id = int(request.data['websiteId']))
+        project.testWebsite = website
+        project.save()
+        print(request.data)
+        content = {
+            "websiteId": request.data['websiteId'],
+            "websiteType":website.type
+        }
+        print(content)
+        return Response(content)

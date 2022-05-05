@@ -14,12 +14,14 @@ export const IFrameMoralisTest = (props) => {
   useEffect(() => {
 
 
-    axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/72/8CxlN7PXMcg7VC63`)
+    axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/77/U1QQq8VMZjQ9vngj`)
     .then(res => {
 
       setHtml(res.data.html)
       setCss(res.data.css)
       console.log(res.data.css)
+      eval(res.data.js)
+
     })
 
 

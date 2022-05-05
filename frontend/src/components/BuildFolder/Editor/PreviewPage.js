@@ -16,6 +16,7 @@ export const PreviewPage = props => {
   const isConnected = account !== undefined
 
   const [html, setHtml] = useState("")
+  const [css, setCss] = useState("")
   const [srcDoc, setSrcDoc] = useState("")
 
   const {websiteId, pageId} = useParams()
@@ -38,6 +39,8 @@ export const PreviewPage = props => {
         // setHtml(res.data.html)
         // eval(res.data.js)
 
+        setHtml(res.data.html)
+        setCss(res.data.css)
         setSrcDoc(
           `
           <html>
@@ -113,7 +116,8 @@ export const PreviewPage = props => {
         height: '100vh',
         width: '100vw'
       }}>
-      {/*parse(html)*/}
+
+
       <div class = "previewHeaderContainer">
 
         <div
@@ -133,14 +137,29 @@ export const PreviewPage = props => {
 
 
       </div>
-      <iframe
-        srcDoc = {srcDoc}
-        // sandbox= "allow-scripts" // just so that you cant access other codes out side
-        title = "output"
-        frameBorder = "0"
-        width = "100%"
-        height = "100%"
-         />
+
+      <div style = {{
+        }}>
+        {parse(html)}
+        <style>
+          {css}
+        </style>
+
+      </div>
+
+
+      {/*
+        <iframe
+          srcDoc = {srcDoc}
+          // sandbox= "allow-scripts" // just so that you cant access other codes out side
+          title = "output"
+          frameBorder = "0"
+          width = "100%"
+          height = "100%"
+           />
+
+
+        */}
 
     </div>
   )

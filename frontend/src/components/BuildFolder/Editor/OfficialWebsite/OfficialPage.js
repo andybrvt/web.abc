@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import parse from "html-react-parser";
 
 
 export const OfficialPage = props => {
@@ -9,6 +10,8 @@ export const OfficialPage = props => {
   const [srcDoc, setSrcDoc] = useState("")
   const {websiteId, pageId} = useParams()
 
+  const [html, setHtml] = useState("")
+  const [css, setCss] = useState("")
 
 
   useEffect(() => {
@@ -16,6 +19,8 @@ export const OfficialPage = props => {
     axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/${websiteId}/${pageId}`)
     .then(res => {
       console.log(res.data, 'what is this here')
+      setHtml(res.data.html)
+      setCss(res.data.css)
 
       setSrcDoc(
         `
@@ -62,20 +67,24 @@ export const OfficialPage = props => {
   }, [])
 
   return(
-    <div style = {{
-        height: '100vh',
-        width: '100vw'
-      }}>
+    <div>
+      {parse(html)}
 
+      <style>
+        {css}
+      </style>
+      {/*
 
-      <iframe
-        srcDoc = {srcDoc}
-        // sandbox= "allow-scripts" // just so that you cant access other codes out side
-        title = "output"
-        frameBorder = "0"
-        width = "100%"
-        height = "100%"
-         />
+        <iframe
+          srcDoc = {srcDoc}
+          // sandbox= "allow-scripts" // just so that you cant access other codes out side
+          title = "output"
+          frameBorder = "0"
+          width = "100%"
+          height = "100%"
+           />
+
+        */}
 
     </div>
   )

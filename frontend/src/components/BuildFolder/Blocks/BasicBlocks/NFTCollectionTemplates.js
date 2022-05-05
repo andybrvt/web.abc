@@ -138,13 +138,7 @@ export const NFTCollectionTemplates = [
         top: 20%;
         width: 50%;}
 
-      .teamSection {
-     
-        position: absolute;
-        right: 5%;
-        top: 20%;
-        width: 50%;
-      }
+      
     </style>
 
       <div data-gjs-dmode="absolute" class="rowStyleM">
@@ -196,16 +190,7 @@ export const NFTCollectionTemplates = [
           Buy Now
         </div>
         <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
-        <div class="teamSection">
-          This is the team
-          This is the team
-          This is the team
-          This is the team
-
-          This is the team
-          This is the team
-
-        </div>
+        
         </div>
     `,
     content: `
@@ -252,6 +237,52 @@ export const NFTCollectionTemplates = [
           right: 5%;
           top: 15%;
           width: 50%;}
+        .teamSection {    
+          position: absolute;
+          left: 12%;
+          top: 80%;
+          width: 50%;
+          height:90%;
+        }
+        .teamContainer {
+          display:flex;
+          flex-direction:row;
+        }
+        .teamFirstPerson {
+       
+         display:flex;
+         flex-direction:column;
+        }
+        .teamSecondPerson{
+  
+          display:flex;
+         flex-direction:column;
+        }
+
+        .testFirstPersonImage{
+          border-radius: 12px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+          width:300px;
+          height:200px;
+          right: 5%;
+        }
+
+        .card {
+          /* Add shadows to create the "card" effect */
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          border-radius: 12px;
+        }
+        
+        /* On mouse-over, add a deeper shadow */
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        
+        /* Add some padding inside the card container */
+        .container {
+          padding: 2px 16px;
+        }
       </style>
 
       <div data-gjs-dmode="absolute" class="row tempHeight">
@@ -312,7 +343,37 @@ export const NFTCollectionTemplates = [
           Buy Now
         </div>
         <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
-        
+        <h1 class ="mHeaderText">
+          Brand New Protocol
+        </h1>
+        <div class="teamSection">
+          This is the team
+          This is the team
+          This is the team
+          This is the team
+
+          This is the team
+          This is the team
+          <div class="teamContainer">
+          <div class="card">
+          <img class ="testFirstPersonImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
+          <div class="container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div> 
+
+        <div class="card">
+        <img class ="testFirstPersonImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
+        <div class="container">
+          <h4><b>John Doe</b></h4>
+          <p>Architect & Engineer</p>
+        </div>
+      </div> 
+           
+
+          </div>
+        </div>
       </div>
     `
   },

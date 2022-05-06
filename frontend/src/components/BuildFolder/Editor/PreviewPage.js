@@ -80,6 +80,44 @@ export const PreviewPage = props => {
 
   useEffect(() => {
 
+    if(account !== undefined){
+      const connectToWalletBtns = document.getElementsByClassName("connect-to-wallet")
+      if(connectToWalletBtns !== null){
+        for(let i =0; i<connectToWalletBtns.length; i++){
+            connectToWalletBtns[i].innerHTML = account
+            connectToWalletBtns[i].addEventListener("click", function(){
+              deactivate()
+              console.log('why')
+            })
+          }
+        }
+
+    } else {
+      const connectToWalletBtns = document.getElementsByClassName("connect-to-wallet")
+
+      if(connectToWalletBtns !== null){
+
+        if(connectToWalletBtns.length > 0){
+            for(let i =0; i<connectToWalletBtns.length; i++){
+
+              connectToWalletBtns[i].innerHTML = "Connect to Wallet"
+
+                connectToWalletBtns[i].addEventListener("click", function(){
+                activateBrowserWallet()
+
+              })
+            }
+          }
+
+      }
+
+    }
+
+  },[account])
+
+
+  useEffect(() => {
+
 
     const connectToWalletBtns = document.getElementsByClassName("connect-to-wallet")
 
@@ -88,7 +126,7 @@ export const PreviewPage = props => {
       if(connectToWalletBtns.length > 0){
           for(let i =0; i<connectToWalletBtns.length; i++){
             console.log(connectToWalletBtns[i], 'anything here')
-            connectToWalletBtns[i].addEventListener("click", function(){
+              connectToWalletBtns[i].addEventListener("click", function(){
               activateBrowserWallet()
 
             })
@@ -100,28 +138,10 @@ export const PreviewPage = props => {
 
   }, [html])
 
-  // useEffect(() => {
-  //
-  //   console.log(props.history.location.state.websiteId)
-  //   console.log(props.history.location.state.pageId)
-  //
-  //
-  //   const test = document.getElementsByClassName("myclass")
-  //   if(test !== null){
-  //     for(let i =0; i<test.length; i++){
-  //
-  //       test[i].addEventListener("click", function(){
-  //         activateBrowserWallet()
-  //       })
-  //     }
-  //   }
-  //
-  //
-  //   const js = props.history.location.state.js
-  //  eval(js)
-  //
-  //
-  // },[props.history.location.state.html])
+
+
+
+
 
   return(
     <div style = {{
@@ -152,6 +172,7 @@ export const PreviewPage = props => {
 
       <div style = {{
         }}>
+
         {parse(html)}
         <style>
           {css}

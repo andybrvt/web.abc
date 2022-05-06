@@ -82,7 +82,8 @@ import {
 import {
   CustomMintNFTButton,
   CustomNFTMarketPlace,
-  CustomNFTRoadMap
+  CustomNFTRoadMap,
+  CustomConnectToWalletButton
 } from './CustomTypes/CustomNFTCollectionTypes';
 
 import image1 from '../../../images/image3.png';
@@ -161,6 +162,7 @@ const PLUGINS = [
   CustomCopyToClipboard,
   CustomSocialMediaFooter,
   CustomMintNFTButton,
+  CustomConnectToWalletButton,
   CustomNFTMarketPlace,
   CustomNFTRoadMap
 ]
@@ -211,7 +213,7 @@ export const Editor = (props) => {
 
 
   const {websiteId, buildType} = useParams()
-  
+
 
   const {activateBrowserWallet, account, chainId } = useEthers();
   const [preview, setPreview] =useState(false);
@@ -286,17 +288,17 @@ export const Editor = (props) => {
   }
 
 
-  
+
 
 
   const getAllNotes= () => {
     axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteUsername/${websiteId}`)
       .then(res => {
-       
+
         setPersonalWebsiteUsername(res.data);
 
       })
-    
+
       // axios.get(`${global.API_ENDPOINT}/builder/getPersonalSiteProfilePic/${websiteId}`)
       // .then(res => {
       //   console.log(res.data, 'what is this here')
@@ -518,7 +520,7 @@ export const Editor = (props) => {
                     :
                     ''
                   }
-                 
+
                 </div>
               </div>
               <div class = "centerInfo">
@@ -531,10 +533,10 @@ export const Editor = (props) => {
                         <div>
                           @usernamebbb
                         </div>
-                        
-                        
+
+
                         }
-                          
+
                         </h1>
               </div>
 
@@ -1107,12 +1109,12 @@ export const Editor = (props) => {
                         <div>
                           @usernameaaa
                         </div>
-                        
-                        
+
+
                         }
-                          
+
                         </h1>
-                        
+
                       </div>
 
 
@@ -1658,17 +1660,17 @@ export const Editor = (props) => {
       console.log(data)
     if(image){
       console.log(image)
-    }   
+    }
       // logic
   });
-    
+
   }
 
 
   return(
     <div>
-      
-      <EditorHeader 
+
+      <EditorHeader
         storeEditor={storeEditor}
         websiteId={websiteId}
         editor = {editorMain}
@@ -1679,7 +1681,7 @@ export const Editor = (props) => {
 
 
       <div  class="editorRow">
-        
+
         <div class = "firstColumn">
           <div className = "mainButtons">
             <div className = "mainButtonHolder">
@@ -1770,11 +1772,11 @@ export const Editor = (props) => {
 
           </Drawer>
         </div>
-        
+
         <div class="column">
           <div id = "gjs"></div>
         {/* {image && <img style={{width:300, height:300}} src={image} />} */}
-          
+
         </div>
 
 

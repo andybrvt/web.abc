@@ -23,24 +23,15 @@ export const PreviewPage = props => {
 
   useEffect(() => {
 
-      const test = document.getElementsByClassName("myclass")
-      if(test !== null){
-        for(let i =0; i<test.length; i++){
-
-          test[i].addEventListener("click", function(){
-            activateBrowserWallet()
-          })
-        }
-      }
-
       axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/${websiteId}/${pageId}`)
       .then(res => {
         console.log(res.data, 'what is this here')
         // setHtml(res.data.html)
-        // eval(res.data.js)
 
         setHtml(res.data.html)
         setCss(res.data.css)
+        eval(res.data.js)
+
         setSrcDoc(
           `
           <html>
@@ -87,6 +78,27 @@ export const PreviewPage = props => {
   }, [])
 
 
+  useEffect(() => {
+
+
+    const connectToWalletBtns = document.getElementsByClassName("connect-to-wallet")
+
+    if(connectToWalletBtns !== null){
+
+      if(connectToWalletBtns.length > 0){
+          for(let i =0; i<connectToWalletBtns.length; i++){
+            console.log(connectToWalletBtns[i], 'anything here')
+            connectToWalletBtns[i].addEventListener("click", function(){
+              activateBrowserWallet()
+
+            })
+          }
+        }
+
+    }
+
+
+  }, [html])
 
   // useEffect(() => {
   //

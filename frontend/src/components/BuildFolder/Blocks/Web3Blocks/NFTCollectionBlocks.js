@@ -2,7 +2,21 @@ import image25 from '../../../../images/image25.png';
 
 
 export const NFTCollectionBlocks = [
+  {
+    id: 'ConnectToWalletButton',
+    label: 'Connect To Wallet Button',
+    category: 'NFT Collection',
+    activate: true,
+    media: `
+      <div>
+        <button type="button" class="btn btn-primary">Connect To Wallet</button>
+      </div>
+    `,
+    content: `
+      <div data-gjs-type= "ConnectToWalletButton"></div>
+    `
 
+  },
   {
     id: 'MintNFTButton',
     label: "Mint NFT Button",

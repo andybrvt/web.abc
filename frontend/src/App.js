@@ -110,6 +110,7 @@ export const App = ()=> {
           <Route exact path="/"  element={<Landing history={history}/>} />
           <Route exact path="/webabc/:websiteId/:pageId" element={<OfficialPage history={history}/>} />
           <Route exact path="/test" element={<IFrameMoralisTest history={history}/>} />
+          <Route exact path="/previewPage/:websiteId/:pageId" element={<PreviewPage history={history}/>} />
 
         {/*
 

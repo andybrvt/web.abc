@@ -20,7 +20,7 @@ export const CustomMintNFTButton = editor => {
         components: model => {
 
           return(
-            <button type="button" class="btn btn-primary">Mint</button>
+            <button type="button" class="mint-btn btn btn-primary">Mint</button>
           )
         },
 
@@ -109,6 +109,40 @@ export const CustomNFTMarketPlace = editor => {
       init(){
 
       }
+    }
+
+
+  })
+}
+
+
+export const CustomConnectToWalletButton = editor => {
+
+
+  editor.DomComponents.addType("ConnectToWalletButton", {
+
+    isComponent: el => {
+      return el.id === "ConnectToWalletButton"
+    },
+
+    model: {
+      name: 'ConnectToWalletButton',
+      tagName: 'ConnectToWalletButton',
+      resiable: 'true',
+      defaults: {
+        components: model => {
+          return(
+            <button type="button" class="connect-to-wallet btn btn-primary">Connect To Wallet</button>
+
+          )
+        },
+        init(){
+
+        }
+
+      }
+
+
     }
 
 

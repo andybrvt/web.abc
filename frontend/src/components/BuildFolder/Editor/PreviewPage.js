@@ -14,11 +14,9 @@ export const PreviewPage = props => {
   const {account, activateBrowserWallet, deactivate} = useEthers()
 
   const isConnected = account !== undefined
-
   const [html, setHtml] = useState("")
   const [css, setCss] = useState("")
   const [srcDoc, setSrcDoc] = useState("")
-
   const {websiteId, pageId} = useParams()
 
   useEffect(() => {
@@ -26,15 +24,13 @@ export const PreviewPage = props => {
       axios.get(`${global.API_ENDPOINT}/builder/getPageInfo/${websiteId}/${pageId}`)
       .then(res => {
         console.log(res.data, 'what is this here')
-        // setHtml(res.data.html)
-
         setHtml(res.data.html)
         setCss(res.data.css)
         eval(res.data.js)
-
-    
-
       })
+
+      // Now you have to set up the mint
+
 
 
   }, [])
@@ -42,7 +38,7 @@ export const PreviewPage = props => {
 
   useEffect(() => {
 
-    if(account !== undefined){
+    if(isConnected){
       const connectToWalletBtns = document.getElementsByClassName("connect-to-wallet")
       if(connectToWalletBtns !== null){
         for(let i =0; i<connectToWalletBtns.length; i++){
@@ -96,6 +92,11 @@ export const PreviewPage = props => {
         }
 
     }
+
+    axios.get(`${global.API_ENDPOINT}/nftSetup/GetContractForWebsite/${websiteId}`)
+    .then(res => {
+        console.log(res.data[0])
+    })
 
 
   }, [html])

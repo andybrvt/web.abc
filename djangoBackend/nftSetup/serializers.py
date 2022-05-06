@@ -11,6 +11,14 @@ class ProjectSerializers(serializers.ModelSerializer):
         fields = ("__all__")
 
 
+class MiniProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= models.Project
+        fields= (
+            "baseURI",
+            "contract",
+            'testWebsite'
+        )
 
 
 class GeneratedOutSerializers(serializers.ModelSerializer):

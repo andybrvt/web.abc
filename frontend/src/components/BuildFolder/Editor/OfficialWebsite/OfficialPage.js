@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import parse from "html-react-parser";
+import { useEthers, useEtherBalance } from "@usedapp/core";
 
 
 export const OfficialPage = props => {
+  const {account, activateBrowserWallet, deactivate} = useEthers()
 
 
   const [srcDoc, setSrcDoc] = useState("")

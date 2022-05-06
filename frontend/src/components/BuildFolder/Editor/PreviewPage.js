@@ -95,7 +95,11 @@ export const PreviewPage = props => {
 
     axios.get(`${global.API_ENDPOINT}/nftSetup/GetContractForWebsite/${websiteId}`)
     .then(res => {
+      if(res.data[0] !== undefined){
         console.log(res.data[0])
+
+      }
+
     })
 
 

@@ -447,3 +447,21 @@ class ConnectContractWebsiteProject(APIView):
         }
         print(content)
         return Response(content)
+
+
+@authentication_classes([])
+@permission_classes([])
+class GetContractForWebsite(APIView):
+    def get(self, request, websiteId, *args, **kwargs):
+
+        print('stuff heer 12')
+        print(websiteId)
+        # Now get the webstie
+        website = Website.objects.get(id = int(websiteId))
+
+        project = models.Project.objects.filter(testWebsite = website)
+        print(project)
+
+        serializedProject = serializers.MiniProjectSerializer(project, many = True).data
+        print(serializedProject)
+        return Response(serializedProject)

@@ -6,10 +6,14 @@ import {
   normalButton,
   rowStyleMedia,
   colStyleMedia
-} from './GeneralBlockCss';
+} from '../GeneralBlockCss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard, faPlay, faGlobe  } from '@fortawesome/free-solid-svg-icons'
-
+import { ReactComponent as Astro  } from './astro.svg';
+import { ReactComponent as Coding  } from './coding.svg';
+import astro from './astro.png';
+import coding from './coding.png';
+import apartment from './apartment.png';
 // FOR MENU
 const menu = `
   .menuM{
@@ -237,12 +241,22 @@ export const NFTCollectionTemplates = [
           right: 5%;
           top: 15%;
           width: 50%;}
+
+        .teamTitle{
+          font-size:35px;
+          font-family: Lato;
+          margin-bottom:45px;
+          margin-top:45px;
+
+        }
+        
+
         .teamSection {    
           position: absolute;
           left: 12%;
-          top: 80%;
-          width: 50%;
-          height:90%;
+          top: 200%;
+          width: 90%;
+          height:100%;
         }
         .teamContainer {
           display:flex;
@@ -258,13 +272,47 @@ export const NFTCollectionTemplates = [
           display:flex;
          flex-direction:column;
         }
+        .tripleComparisonHeader{
+          font-size:45px;
+          margin-top:10px;
+          margin-bottom:20px;
+          font-family: Lato;
+          font-weight:800;
+
+        }
+
+        .tripleComparisonSubHeader{
+          font-size:30px;
+          margin-top:10px;
+          margin-bottom:10px;
+          font-family: Lato;
+        }
+
+        .tripleComparisonContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-bottom:20px;
+
+        }
+
+        .tripleComparisonSection {    
+          position: absolute;
+          left: 12%;
+          top: 100%;
+          width: 85%;
+          height:50%;
+        }
+        
+
 
         .testFirstPersonImage{
           border-radius: 12px;
           box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-          width:300px;
-          height:200px;
-          right: 5%;
+          width:350px;
+          height:350px;
+          
         }
 
         .card {
@@ -272,6 +320,49 @@ export const NFTCollectionTemplates = [
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
           transition: 0.3s;
           border-radius: 12px;
+          margin-right: 20px;
+        }
+
+        .infoSection{
+          flex:1;
+          
+          
+        }
+
+        .itemcenter {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .infoSectionTitle{
+          font-size:37px;
+          margin-top:10px;
+          margin-bottom:10px;
+          font-weight:800;
+          font-family: Lato;
+        }
+
+        .infoSectionDesc{
+          width:80%;
+          font-size:22px;
+          margin-top:10px;
+          margin-bottom:10px;
+  
+          font-family: Lato;
+        }
+
+
+        .teamPersonName{
+          font-size:27.5px;
+          font-weight:bold;
+          font-family: Lato;
+        }
+        
+        .teamPersonRole{
+          font-size:20px;
+          font-family: Lato;
         }
         
         /* On mouse-over, add a deeper shadow */
@@ -281,8 +372,9 @@ export const NFTCollectionTemplates = [
         
         /* Add some padding inside the card container */
         .container {
-          padding: 2px 16px;
+          padding: 25px;
         }
+
       </style>
 
       <div data-gjs-dmode="absolute" class="row tempHeight">
@@ -331,10 +423,11 @@ export const NFTCollectionTemplates = [
         </div>
 
         <h1 class ="mHeaderText">
-          Brand New Protocol
+          Woodies Logo
         </h1>
         <div class = "mBodyText">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        10,000 forest creatures looking for a way home.
+        
         </div>
         <div data-gjs-type="button" class='mButton mButton1'>
           Go to Page
@@ -343,35 +436,95 @@ export const NFTCollectionTemplates = [
           Buy Now
         </div>
         <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
-        <h1 class ="mHeaderText">
-          Brand New Protocol
-        </h1>
-        <div class="teamSection">
-          This is the team
-          This is the team
-          This is the team
-          This is the team
-
-          This is the team
-          This is the team
-          <div class="teamContainer">
-          <div class="card">
-          <img class ="testFirstPersonImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
-          <div class="container">
-            <h4><b>John Doe</b></h4>
-            <p>Architect & Engineer</p>
+     
+        
+        
+        <div class = "tripleComparisonSection">
+          <div class="tripleComparisonContainer">
+            <div class="tripleComparisonHeader">
+              Grow together
+            </div>
+            <div class="tripleComparisonSubHeader">
+              Build and invest as a community
+            </div>
           </div>
-        </div> 
+          <div class="teamContainer">
+            <div class="infoSection">
+              <div class="itemCenter">
+                <img src="${astro}" width="300" height="200" />
+                <div class="infoSectionTitle"> Build </div>
+                <div class="infoSectionDesc">
+                  ful learning rarely comes from passively consuming content. 
+                  It comes from building, teaching, a
+                </div>
+              </div>
+            </div>
 
-        <div class="card">
-        <img class ="testFirstPersonImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
-        <div class="container">
-          <h4><b>John Doe</b></h4>
-          <p>Architect & Engineer</p>
+            <div class="infoSection">
+              <div class="itemCenter">
+                <img src="${coding}" width="300" height="200" />
+                <div class="infoSectionTitle"> Build </div>
+                <div class="infoSectionDesc">
+                  ful learning rarely comes from passively consuming content. 
+                  It comes from building, teaching, a
+                </div>
+              </div>
+            </div>
+
+            <div class="infoSection">
+              <div class="itemCenter">
+                <img src="${apartment}" width="300" height="200" />
+                <div class="infoSectionTitle"> Own </div>
+                <div class="infoSectionDesc">
+                  ful learning rarely comes from passively consuming content. 
+                  It comes from building, teaching, a
+                </div>
+              </div>
+            </div>
+
+
+
+
+            </div>
+          </div>
         </div>
-      </div> 
-           
 
+
+
+
+        <div class="teamSection">
+     
+              <div class="teamTitle">
+              Team
+              </div>
+  
+          <div class="teamContainer">
+            
+            <div class="card">
+              <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/17/17/20/bored-6945309_960_720.png"/>
+              <div class="container">
+                <h4 class="teamPersonName"><b>John Doe</b></h4>
+                <p class="teamPersonRole">Founding Artist</p>
+              </div>
+            </div> 
+
+            <div class="card">
+              <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/02/18/16/09/ape-7020995_960_720.png"/>
+              <div class="container">
+                <h4 class="teamPersonName"><b>Jillian Lee</b></h4>
+                <p class="teamPersonRole">Head of Marketing</p>
+              </div>
+            </div> 
+           
+            <div class="card">
+              <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
+              <div class="container">
+                <h4 class="teamPersonName"><b>John Doe</b></h4>
+                <p class="teamPersonRole">Head of Community Affairs </p>
+              </div>
+            </div> 
+
+            
           </div>
         </div>
       </div>
@@ -609,12 +762,7 @@ export const NFTCollectionTemplates = [
           <div class = "posBodyText3">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
           </div>
-          <div data-gjs-type="button" class='mButton posButton5'>
-            Go to Page
-          </div>
-          <div data-gjs-type="button1" class='mButton posButton6'>
-            Buy Now
-          </div>
+
 
           <img class ="mImage3" src = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
 

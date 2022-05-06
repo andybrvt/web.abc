@@ -9,11 +9,11 @@ import {TemplateBlocks} from './BasicBlocks/TemplateBlocks';
 import {ModernTemplateBlocks} from './BasicBlocks/ModernTemplateBlocks';
 import {LinkBlocks} from './BasicBlocks/LinkBlocks';
 import {ImageBlocks} from './BasicBlocks/ImageBlocks';
-import {InformationalBlocks} from './BasicBlocks/InformationalBlocks';
+import {InformationalBlocks} from './BasicBlocks/InformationalBlocks';  
 import {HeaderBlocks} from './BasicBlocks/HeaderBlocks';
 import {FooterBlocks} from './BasicBlocks/FooterBlocks';
 import {NFTShowcaseBlocks} from './Web3Blocks/NFTShowcaseBlocks';
-import {NFTCollectionTemplates} from './BasicBlocks/NFTCollectionTemplates';
+import {NFTCollectionTemplates} from './BasicBlocks/NFTCollectionTemplates/NFTCollectionTemplates';
 import {SocialMediaFooterBlocks} from './BasicBlocks/SocialMediaFooterBlocks';
 
 export const BlocksContainer = (props) => {

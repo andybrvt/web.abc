@@ -83,7 +83,7 @@ export const ExampleTemplate = (props) => {
               Last Modified
             </Text>
             <Text color={'gray.600'}>
-              {item.lastChanged}
+              {/* {item.lastChanged} */}
               {dateFns.format(new Date(item.lastChanged), 'MMMM dd, yyyy')}
             </Text>
           </Stack>

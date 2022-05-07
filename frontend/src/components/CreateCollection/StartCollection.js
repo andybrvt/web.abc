@@ -417,7 +417,7 @@ export const StartCollection = (props) => {
           const baseMetaURI = path[0]
           const base_meta_uri_arry = baseMetaURI.path.split("/")
           base_meta_uri_arry.pop()
-          const real_meta_base_uri = base_meta_uri_arry.join("/")
+          const real_meta_base_uri = base_meta_uri_arry.join("/")+'/'
 
 
           const projectId = renderedProject.id

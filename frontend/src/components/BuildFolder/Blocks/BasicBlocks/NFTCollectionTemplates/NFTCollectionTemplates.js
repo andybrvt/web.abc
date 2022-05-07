@@ -88,7 +88,7 @@ const tempHeight = `
 export const NFTCollectionTemplates = [
   {
     id: 'mTemplate1',
-    category: 'Modern Feature',
+    category: 'NFT Templates',
     media: `
     <style>
       ${headerStyle}
@@ -109,7 +109,7 @@ export const NFTCollectionTemplates = [
       .mHeaderText{
         color: black;
         position: absolute;
-        font-size: 70px;
+        font-size: 100px;
         width: 30%;
         left: 12%;
         top: 20%;
@@ -133,14 +133,15 @@ export const NFTCollectionTemplates = [
           background: black;
           left: 27%;
           top: 75%;}
-      .mImage{
-        border-radius: 25px;
+      .monkeyImage{
+        border-radius: 20px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
         position: absolute;
         right: 5%;
-        top: 20%;
-        width: 50%;}
+        top: 2.5%;
+        width:100px;
+        height:100px;
+      }
 
       
     </style>
@@ -193,7 +194,7 @@ export const NFTCollectionTemplates = [
         <div data-gjs-type="button1" class='mButton mButton2'>
           Buy Now
         </div>
-        <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
+        <img class ="monkeyImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
         
         </div>
     `,
@@ -375,6 +376,16 @@ export const NFTCollectionTemplates = [
           padding: 25px;
         }
 
+        .monkeyImage{
+          border-radius: 20px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+          position: absolute;
+          right: 50%;
+          top: 10%;
+          width:200px;
+          height:200px;
+        }
+
       </style>
 
       <div data-gjs-dmode="absolute" class="row tempHeight">
@@ -435,8 +446,7 @@ export const NFTCollectionTemplates = [
         <div data-gjs-type="button1" class='mButton mButton2'>
           Buy Now
         </div>
-        <img class ="mImage" src = "https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"/>
-     
+        <img class ="monkeyImage" src = "https://publicdomainvectors.org/photos/Monkey.png"/>
         
         
         <div class = "tripleComparisonSection">
@@ -533,7 +543,7 @@ export const NFTCollectionTemplates = [
 
   {
     id: 'mTemplate2',
-    category: 'Modern Feature',
+    category: 'NFT Templates',
     media: `
       <style>
         ${headerStyle}
@@ -657,7 +667,7 @@ export const NFTCollectionTemplates = [
 
   {
     id: 'mTemplate3',
-    category: 'Modern Feature',
+    category: 'NFT Templates',
     media: `
 
         <style>
@@ -762,7 +772,12 @@ export const NFTCollectionTemplates = [
           <div class = "posBodyText3">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
           </div>
-
+          <div data-gjs-type="button" class='mButton posButton5'>
+            Go to Page
+          </div>
+          <div data-gjs-type="button1" class='mButton posButton6'>
+            Buy Now
+          </div>
 
           <img class ="mImage3" src = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
 

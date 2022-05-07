@@ -110,7 +110,6 @@ export const BlocksContainer = (props) => {
     document.getElementById("blocks").appendChild(linkBlocks);
     document.getElementById("blocks").appendChild(imageBlocks);
     document.getElementById("blocks").appendChild(socialMediaFooter);
-
     document.getElementById("blocks").appendChild(nftCollectionTemplates);
 
     const categories = editor.BlockManager.getCategories();

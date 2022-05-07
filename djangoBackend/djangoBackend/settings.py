@@ -90,34 +90,34 @@ WSGI_APPLICATION = 'djangoBackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#                 # 'ENGINE': 'django.db.backends.sqlite3',
-#                 # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#                     'charset': 'utf8mb4',
-#                     'use_unicode': True, },
-#         'NAME': 'test',
-#         'USER': 'root',
-#         'PASSWORD': 'password',
-#         'HOST': '127.0.0.1', # Or an IP Address that your DB is hosted on
-#         'PORT': '',
-#     },
-# }
-
-# this is used for webabcDB
 DATABASES = {
     'default': {
+                # 'ENGINE': 'django.db.backends.sqlite3',
+                # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ebdb',
-        'USER': 'webdotabcDB',
-        'PASSWORD': 'Pingandy123',
-        'HOST': 'aa1e3dwo8ocy1o7.cyxbd89sft5i.us-west-1.rds.amazonaws.com',
-        'PORT': '3306',
-    }
+        'OPTIONS': {
+                    'charset': 'utf8mb4',
+                    'use_unicode': True, },
+        'NAME': 'test',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1', # Or an IP Address that your DB is hosted on
+        'PORT': '',
+    },
 }
+
+# this is used for webabcDB
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ebdb',
+#         'USER': 'webdotabcDB',
+#         'PASSWORD': 'Pingandy123',
+#         'HOST': 'aa1e3dwo8ocy1o7.cyxbd89sft5i.us-west-1.rds.amazonaws.com',
+#         'PORT': '3306',
+#     }
+# }
 #
 
 # Password validation

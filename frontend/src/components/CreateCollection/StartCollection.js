@@ -530,7 +530,7 @@ export const StartCollection = (props) => {
 
     const formData = new FormData()
 
-    formData.append("projectId", 201)
+    formData.append("projectId", projectId)
     formData.append("contract", recentContract)
     formData.append("websiteId", websiteId)
     axios.post(`${global.API_ENDPOINT}/nftSetup/ConnectContractWebsiteProject`, formData)
@@ -598,7 +598,7 @@ export const StartCollection = (props) => {
         </ModalContent>
       </Modal>
 
-      <Modal size={"lg"} isOpen={true}>
+      <Modal size={"lg"} isOpen={isFinishedContractOpen}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Contract Created!</ModalHeader>

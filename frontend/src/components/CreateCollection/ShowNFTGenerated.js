@@ -11,6 +11,8 @@ export const ShowNFTGenerated = (props) => {
         {
           props.renderedImages.map((item, index) => {
 
+
+            console.log(item.nftImage)
             return(
               <div class = "generatedImages">
                 <Image

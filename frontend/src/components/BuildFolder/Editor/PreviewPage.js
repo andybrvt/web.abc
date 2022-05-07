@@ -144,18 +144,11 @@ export const PreviewPage = props => {
       if(mintBtns !== null){
         if(mintBtns.length > 0){
             for(let i =0; i<mintBtns.length; i++){
-              console.log(basicERC721aContract)
 
               mintBtns[i].onclick = testMint
             }
           }
       }
-
-
-
-
-
-
 
     }
 
@@ -195,7 +188,6 @@ export const PreviewPage = props => {
           </div>
         </div>
 
-        <button onClick = {testMint}>mint</button>
 
 
       </div>

@@ -9,11 +9,22 @@ import {
 } from '../GeneralBlockCss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShapes, faCircle, faFont, faKeyboard, faPlay, faGlobe  } from '@fortawesome/free-solid-svg-icons'
-import { ReactComponent as Astro  } from './astro.svg';
-import { ReactComponent as Coding  } from './coding.svg';
-import astro from './astro.png';
-import coding from './coding.png';
-import apartment from './apartment.png';
+
+
+import astro from './astro.svg';
+import coding from './coding.svg';
+import apartment from './apartment.svg';
+
+
+import twitter from './twitter.png';
+import opensea from './opensea.png';
+import discord from './discord.png';
+import space1 from './space1.svg';
+import space2 from './space2.svg';
+import space3 from './space3.svg';
+// import twitter from './twitter.png';
+// import opensea from './opensea.png';
+// import discord from './discord.png';
 // FOR MENU
 const menu = `
   .menuM{
@@ -255,7 +266,7 @@ export const NFTCollectionTemplates = [
         .teamSection {    
           position: absolute;
           left: 12%;
-          top: 200%;
+          top: 300%;
           width: 90%;
           height:100%;
         }
@@ -301,12 +312,60 @@ export const NFTCollectionTemplates = [
         .tripleComparisonSection {    
           position: absolute;
           left: 12%;
-          top: 100%;
+          top: 200%;
           width: 85%;
           height:50%;
         }
         
+        .nftCollectionTitleSection {    
+          position: absolute;
+          left: 12%;
+          top: 65%;
+          width: 85%;
+          height:25%;
+        }
 
+        .nftCollectionTitlePosition {    
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin-bottom:20px;
+        }
+
+
+        .NFTSpecPosition {    
+          position: absolute;
+          right: 5%;
+          top: 125%;
+          width: 50%;
+          height:50%;
+        }
+
+        .NFTSpecContainer {    
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-bottom:20px;
+        }
+
+        .NFTSpecTitle{
+          font-size:45px;
+          margin-top:10px;
+          margin-bottom:10px;
+          font-weight:800;
+          font-family: Lato;
+        }
+
+        .MFTSpecContent{
+          width:80%;
+          font-size:22px;
+          margin-top:10px;
+          margin-bottom:10px;
+  
+          font-family: Lato;
+        }
 
         .testFirstPersonImage{
           border-radius: 12px;
@@ -370,7 +429,7 @@ export const NFTCollectionTemplates = [
         .card:hover {
           box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         }
-        
+        d
         /* Add some padding inside the card container */
         .container {
           padding: 25px;
@@ -385,6 +444,29 @@ export const NFTCollectionTemplates = [
           width:200px;
           height:200px;
         }
+        
+        .space1Image{
+          position: absolute;
+          right: 50%;
+          top: 110%;
+          width:600px;
+          height:600px;
+        }
+        .space2Image{
+          position: absolute;
+          right: 50%;
+          top: 20%;
+          width:350px;
+          height:350px;
+        }
+        .space3Image{
+          position: absolute;
+          right: 20%;
+          top: 20%;
+          width:350px;
+          height:350px;
+        }
+
 
       </style>
 
@@ -395,89 +477,87 @@ export const NFTCollectionTemplates = [
 
         <div class="header">
           <a class="logo ">
-            <svg width="75" height="75" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_1_196)">
-            <rect width="1024" height="1024" fill="#531DAB"/>
-            <path d="M543.395 693L544.595 711C544.595 717.4 534.995 720.6 515.795 720.6C482.195 720.6 465.395 714.2 465.395 701.4C465.395 688.6 474.195 661 491.795 618.6C509.795 576.2 518.795 549.8 518.795 539.4C518.795 518.2 505.795 507.6 479.795 507.6L470.195 508.2C465.395 508.2 462.995 506.4 462.995 502.8C462.995 495.2 465.795 487.6 471.395 480C477.395 472 484.795 468 493.595 468C529.995 468 562.595 457.2 591.395 435.6C620.195 414 634.595 391.2 634.595 367.2C634.595 350 629.195 338 618.395 331.2C607.995 324.4 593.595 321 575.195 321C556.795 321 542.795 326.6 533.195 337.8C509.595 367.4 471.595 429.4 419.195 523.8C367.195 617.8 337.995 675.6 331.595 697.2C327.995 707.2 318.595 714.6 303.395 719.4C288.595 724.2 273.995 726.6 259.595 726.6C245.595 726.6 238.595 723.8 238.595 718.2V717C238.595 712.6 252.395 687 279.995 640.2C307.595 593.4 337.995 541.4 371.195 484.2C404.795 426.6 426.395 386.8 435.995 364.8C445.995 342.8 450.995 324.2 450.995 309V303C450.995 292.2 481.395 286.8 542.195 286.8C607.395 286.8 650.395 293.4 671.195 306.6C679.995 312.2 687.395 320.4 693.395 331.2C699.795 342 702.995 355.8 702.995 372.6C702.995 389.4 696.195 406.4 682.595 423.6C668.995 440.8 654.395 453.6 638.795 462C623.595 470 608.395 475.8 593.195 479.4C577.995 483 566.595 486 558.995 488.4C551.395 490.8 547.595 494.6 547.595 499.8C547.595 503 550.395 507 555.995 511.8C561.995 516.2 567.995 521.6 573.995 528C579.995 534.4 582.995 541.2 582.995 548.4C582.995 555.6 576.395 576.4 563.195 610.8C549.995 644.8 543.395 672.2 543.395 693Z" fill="white"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_1_196">
-            <rect width="1024" height="1024" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg>
+            
 
           </a>
           <div class="menuM">
+       
             <a class="headerItem">
-              Home
+            <img src="${discord}" width="52.5" height="52.5" />
             </a>
             <a class="headerItem">
-              Vision
+              <img src="${twitter}" width="50" height="40" />
             </a>
-            <a class="headerItem">
-              Our Team
-            </a>
-            <a class="headerItem">
-              Funding
-            </a>
-            <FontAwesomeIcon icon={faGlobe} />
+            
 
             <div class="headerItem">
-            <FontAwesomeIcon  icon={faGlobe} />
+              <img src="${opensea}" width="45" height="45" />
 
             </div>
-            <a class="headerItem">
-              Funding
-            </a>
+      
+          </div>
+        </div>
+        <div class = "nftCollectionTitleSection">
+          <div class="tripleComparisonContainer">
+           
+              <h1 class ="tripleComparisonHeader">
+                Monkey Squad
+              </h1>
+ 
+            <p class = "tripleComparisonSubHeader">
+              10,000 space travelers looking for a way home by building and creating together.
+            </p>
+           
+            </div>
+        </div>
+        
+  
+        <img class ="space1Image" src="${space1}"/>
+        <img class ="space2Image" src="${space2}"/>
+        <img class ="space3Image" src="${space3}"/>
+
+        <div class = "NFTSpecPosition">
+          <div class = "NFTSpecContainer">
+            <p class ="NFTSpecTitle"> The Specs </p>
+            <p class = "MFTSpecContent"> Bach Bored Ape is unique and programmatically generated from over 170 possible traits, including expression, headwear, clothing, and more. All apes are dope, but some are rarer than others.
+            The apes are stored as ERC-721 tokens on the Ethereum blockchain and hosted on IPFS. (See Record and Proof.) Purchasing an ape costs 0.08 ETH.
+             </p>
           </div>
         </div>
 
-        <h1 class ="mHeaderText">
-          Woodies Logo
-        </h1>
-        <div class = "mBodyText">
-        10,000 forest creatures looking for a way home.
-        
-        </div>
-        <div data-gjs-type="button" class='mButton mButton1'>
-          Go to Page
-        </div>
-        <div data-gjs-type="button1" class='mButton mButton2'>
-          Buy Now
-        </div>
-        <img class ="monkeyImage" src = "https://publicdomainvectors.org/photos/Monkey.png"/>
-        
+
+
+
         
         <div class = "tripleComparisonSection">
           <div class="tripleComparisonContainer">
-            <div class="tripleComparisonHeader">
+            <p class="tripleComparisonHeader">
               Grow together
-            </div>
-            <div class="tripleComparisonSubHeader">
+            </p>
+            <p class="tripleComparisonSubHeader">
               Build and invest as a community
-            </div>
+            </p>
           </div>
           <div class="teamContainer">
             <div class="infoSection">
               <div class="itemCenter">
                 <img src="${astro}" width="300" height="200" />
                 <div class="infoSectionTitle"> Build </div>
-                <div class="infoSectionDesc">
+                <p class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
                   It comes from building, teaching, a
-                </div>
+                </p>
               </div>
             </div>
 
             <div class="infoSection">
               <div class="itemCenter">
                 <img src="${coding}" width="300" height="200" />
-                <div class="infoSectionTitle"> Build </div>
-                <div class="infoSectionDesc">
+                <div class="infoSectionTitle"> Create </div>
+                <p class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
                   It comes from building, teaching, a
-                </div>
+                </p>
               </div>
             </div>
 
@@ -485,10 +565,10 @@ export const NFTCollectionTemplates = [
               <div class="itemCenter">
                 <img src="${apartment}" width="300" height="200" />
                 <div class="infoSectionTitle"> Own </div>
-                <div class="infoSectionDesc">
+                <p class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
                   It comes from building, teaching, a
-                </div>
+                </p>
               </div>
             </div>
 
@@ -526,6 +606,13 @@ export const NFTCollectionTemplates = [
               </div>
             </div> 
            
+            <div class="card">
+              <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
+              <div class="container">
+                <h4 class="teamPersonName"><b>John Doe</b></h4>
+                <p class="teamPersonRole">Head of Community Affairs </p>
+              </div>
+            </div> 
             <div class="card">
               <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
               <div class="container">

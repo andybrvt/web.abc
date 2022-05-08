@@ -224,6 +224,7 @@ export const TemplateBlocks = [
       `,
 
   },
+
   {
     id: 'template3',
     category: 'Feature',

@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import parse from "html-react-parser";
-import './PreviewPage.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft  } from '@fortawesome/free-solid-svg-icons'
-import BasicERC721a from '../../../chain-info/contracts/BasicERC721a';
+import BasicERC721a from '../../../../chain-info/contracts/BasicERC721a';
 import {constants, utils } from 'ethers';
 import { Contract } from '@ethersproject/contracts'
 import { useEthers, useEtherBalance, useCall, useCalls, useContractCall, useContractFunction} from "@usedapp/core";

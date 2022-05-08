@@ -13,6 +13,7 @@ import { useColorModeValue, Stack,
      SliderThumb,
      SliderMark,
     Tooltip,
+    FormLabel
 
 } from '@chakra-ui/react';
 import { useEthers,} from "@usedapp/core";
@@ -228,12 +229,16 @@ export const CreateLayers = (props) => {
   return(
     <div>
       <div>
-        <div>This will be for generating the nft</div>
+        <div>
+          <div class = "startCollectionTitles">Generating NFTs</div>
+          <div style = {{
+              marginBottom: '20px'
+            }}>***Make sure to put the most behind layer first! (ie background)</div>
 
-        <div>Make sure to put the most behind layer first! (ie background)</div>
+        </div>
 
         <div>
-          <Button onClick = {props.addNewLayer}>Add new layer</Button>
+          <Button colorScheme = "teal" onClick = {props.addNewLayer}>Add new layer</Button>
         </div>
         {/*
           // Be able to add in new layers (be able to add pictures for each of these new layers). Make sure there is a state that categories each picture by their respective trait
@@ -250,7 +255,7 @@ export const CreateLayers = (props) => {
 
                   <div class = "boxLeft">
                     <div>
-                      <div>Layer name</div>
+                      <FormLabel isRequired htmlFor='email'>Layer Name</FormLabel>
                       <Input value = {layers[index].name} onChange = {(e)=>props.onNameChange(e, index)} placeholder = "Name"/>
                     </div>
                     <div>

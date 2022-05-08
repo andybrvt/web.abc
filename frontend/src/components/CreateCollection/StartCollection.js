@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { Input, Form, List, Avatar,Typography } from 'antd';
 import {
   useColorModeValue, Stack, Button,
@@ -83,7 +83,14 @@ const { Step } = Steps;
 export const StartCollection = (props) => {
 
 
-    const {websiteId} = useParams()
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+       messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+
+
+    const {websiteId} = useParams();
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen:isMetadataOpen, onOpen:onMetadataOpen, onClose:onMetadataClose } = useDisclosure()
@@ -479,6 +486,8 @@ export const StartCollection = (props) => {
 
     const incrementStep = () => {
       setCurrent(current + 1)
+      scrollToBottom()
+
     }
 
     const decrementStep = () => {
@@ -659,10 +668,10 @@ export const StartCollection = (props) => {
 
                         title="General Info"
                         description = {
-                          <div>
+                          <div class = "stepContainer">
 
 
-                            <div> Let's grab some info</div>
+                            <div class = "startCollectionTitles"> Let's grab some info</div>
                             <div>
                               <FormControl>
                                   <FormLabel isRequired htmlFor='email'>Title of Collection</FormLabel>
@@ -682,9 +691,13 @@ export const StartCollection = (props) => {
                                   style={{width:'50%'}} id='email' type='email' />
                               </FormControl>
                             </div>
-                            <Button onClick = {incrementStep}>
-                              Next
-                            </Button>
+
+                            <div class = "startCollectionButton">
+                              <Button onClick = {incrementStep}>
+                                Next
+                              </Button>
+
+                            </div>
 
 
                           </div>
@@ -695,7 +708,7 @@ export const StartCollection = (props) => {
                       <Step
                          title="Layers"
                          description = {
-                           <div>
+                           <div class = "stepContainer">
 
                             {
                               current >= 1 ?
@@ -710,12 +723,10 @@ export const StartCollection = (props) => {
                                   layerImageChange = {layerImageChange}
                                 ></CreateLayers>
                                   <div class="collectionButton">
-                                    <div style={{flexDirection:'row', display:'flex'}}>
                                       <div class="collectionPreviousButton" >
                                         <Button onClick={decrementStep}> Previous</Button>
                                       </div>
                                       <Button onClick={generateNFT}> Generate NFTs</Button>
-                                    </div>
                                   </div>
                               </div>
 
@@ -733,20 +744,23 @@ export const StartCollection = (props) => {
                          />
                        <Step
                          description = {
-                          <div>
+                          <div class = "stepContainer">
                             {
                               current >= 2 ?
 
                               <div>
+                                <div class = "startCollectionTitles">Generated NFTs</div>
                                 <ShowNFTGenerated
                                   renderedImages = {renderedImages}
                                   />
-                              <div>
-                                <Button onClick={decrementStep}> Previous</Button>
+                                <div class = "collectionButton">
+                                  <div class="collectionPreviousButton">
+                                    <Button onClick={decrementStep}> Previous</Button>
+                                  </div>
 
-                                <Button onClick = {uploadImagesToIPFS}>
-                                  Generate Meta
-                                </Button>
+                                  <Button onClick = {uploadImagesToIPFS}>
+                                    Generate Meta
+                                  </Button>
 
                               </div>
 
@@ -762,13 +776,14 @@ export const StartCollection = (props) => {
                          }
                          title="Metadata" />
                       <Step
-
                         title="Contract Creation"
                         description = {
-                          <div>
+
+                          <div class = "stepContainer">
                             {
                               current >= 3 ?
                               <div>
+                                <div class = "startCollectionTitles">Create ERC721a</div>
 
                                 <CreateContractCollection
                                   contractName = {name}
@@ -792,19 +807,17 @@ export const StartCollection = (props) => {
 
 
                             }
-
-
                           </div>
 
                         }
 
                          />
                   </Steps>
-                </div>
+                  <div ref={messagesEndRef} />
 
+                </div>
               </div>
             </div>
-
         </div>
 
         <Header/>

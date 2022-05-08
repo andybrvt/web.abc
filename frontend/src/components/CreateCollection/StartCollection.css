@@ -10,9 +10,24 @@
 }
 .collectionButton {
     position: relative;
-  
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+
 }
 
+.startCollectionTitles{
+  font-size: 25px;
+  margin-bottom: 20px;
+}
 .collectionPreviousButton {
     margin-right: 10px;
+}
+
+.stepContainer{
+  margin: 10px;
+}
+
+.startCollectionButton{
+  margin-top: 20px;
 }

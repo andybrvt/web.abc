@@ -653,126 +653,154 @@ export const StartCollection = (props) => {
               <div class="contractBreadCrumb">
 
               <CloseButton onClick={navHome} size='lg' colorScheme='red'/>
-                  <div style={{marginTop:10, display:'flex', flexDirection:'row'}}>
-                    Step 1/5
+                <div style={{marginTop:25, marginBottom:25}}>
+                  <Steps onChange = {onChange} direction="vertical" current={current}>
+                      <Step
+
+                        title="General Info"
+                        description = {
+                          <div>
 
 
-                  </div>
-                  <div style={{marginTop:25, marginBottom:25}}>
-                    <Steps onChange={onChange} size="small" current={current}>
-                        <Step title="Metadata" />
-                        <Step title="Layers" />
-                        <Step title="Traits" />
-                        <Step title="Confirmation" />
-                    </Steps>
-                  </div>
+                            <div> Let's grab some info</div>
+                            <div>
+                              <FormControl>
+                                  <FormLabel isRequired htmlFor='email'>Title of Collection</FormLabel>
+                                  <Input
+                                    value = {name}
+                                      style={{width:'50%'}} onChange = {onInputSetName} placeholder='Enter name' />
+                                  <FormLabel isRequired htmlFor='first-name'>Description </FormLabel>
+                                  <Textarea
+                                    value = {description}
+                                    onChange = {onInputSetDescription}
+                                    style={{width:'50%'}} placeholder='Here is a sample placeholder' />
+
+                                  <FormLabel isRequired  htmlFor='email'>Collection Size</FormLabel>
+                                  <Input
+                                    value = {collectionSize}
+                                  onChange = {onInputSetCollectionSize}
+                                  style={{width:'50%'}} id='email' type='email' />
+                              </FormControl>
+                            </div>
+                            <Button onClick = {incrementStep}>
+                              Next
+                            </Button>
 
 
-            {current==0 ?
-                <div>
-                  <div> Let's grab some info</div>
-                  <div>
-                    <FormControl>
-                        <FormLabel isRequired htmlFor='email'>Title of Collection</FormLabel>
-                        <Input
-                          value = {name}
-                            style={{width:'50%'}} onChange = {onInputSetName} placeholder='Enter name' />
-                        <FormLabel isRequired htmlFor='first-name'>Description </FormLabel>
-                        <Textarea
-                          value = {description}
-                          onChange = {onInputSetDescription}
-                          style={{width:'50%'}} placeholder='Here is a sample placeholder' />
+                          </div>
 
-                        <FormLabel isRequired  htmlFor='email'>Collection Size</FormLabel>
-                        <Input
-                          value = {collectionSize}
-                        onChange = {onInputSetCollectionSize}
-                        style={{width:'50%'}} id='email' type='email' />
-                    </FormControl>
-                  </div>
+                        }
+
+                        />
+                      <Step
+                         title="Layers"
+                         description = {
+                           <div>
+
+                            {
+                              current >= 1 ?
+                              <div>
+                                <CreateLayers
+                                  // generateNFT = {generateNFT}
+                                  layers = {layers}
+                                  setLayers= {setLayers}
+                                  addNewLayer = {addNewLayer}
+                                  onNameChange = {onNameChange}
+                                  onRarityChange = {onRarityChange}
+                                  layerImageChange = {layerImageChange}
+                                ></CreateLayers>
+                                  <div class="collectionButton">
+                                    <div style={{flexDirection:'row', display:'flex'}}>
+                                      <div class="collectionPreviousButton" >
+                                        <Button onClick={decrementStep}> Previous</Button>
+                                      </div>
+                                      <Button onClick={generateNFT}> Generate NFTs</Button>
+                                    </div>
+                                  </div>
+                              </div>
+
+                            :
+
+                            ""
+
+
+                            }
+
+                           </div>
+
+                         }
+
+                         />
+                       <Step
+                         description = {
+                          <div>
+                            {
+                              current >= 2 ?
+
+                              <div>
+                                <ShowNFTGenerated
+                                  renderedImages = {renderedImages}
+                                  />
+                              <div>
+                                <Button onClick={decrementStep}> Previous</Button>
+
+                                <Button onClick = {uploadImagesToIPFS}>
+                                  Generate Meta
+                                </Button>
+
+                              </div>
+
+                              </div>
+
+                              :
+
+                              ""
+                            }
+
+                          </div>
+
+                         }
+                         title="Metadata" />
+                      <Step
+
+                        title="Contract Creation"
+                        description = {
+                          <div>
+                            {
+                              current >= 3 ?
+                              <div>
+
+                                <CreateContractCollection
+                                  contractName = {name}
+                                  contractSymbol = {contractSymbol}
+                                  maxMint = {maxMint}
+                                  maxSupply = {maxSupply}
+                                  maxRate = {mintRate}
+                                  baseURI = {baseURI}
+                                  onInputChange = {onInputChange}
+                                  />
+                                <div class="collectionButton">
+                                  <Button onClick={createBasicERC721APress}> Create Contract</Button>
+
+                                </div>
+
+                              </div>
+
+                              :
+
+                              ""
+
+
+                            }
+
+
+                          </div>
+
+                        }
+
+                         />
+                  </Steps>
                 </div>
-
-
-
-              :
-
-              current === 1 ?
-                  <div>
-                    <CreateLayers
-                      // generateNFT = {generateNFT}
-                      layers = {layers}
-                      setLayers= {setLayers}
-                      addNewLayer = {addNewLayer}
-                      onNameChange = {onNameChange}
-                      onRarityChange = {onRarityChange}
-                      layerImageChange = {layerImageChange}
-                    ></CreateLayers>
-                  </div>
-
-                :
-
-                current === 2 ?
-
-                <ShowNFTGenerated
-                  renderedImages = {renderedImages}
-                  />
-
-                :
-
-                <CreateContractCollection
-                  contractName = {name}
-                  contractSymbol = {contractSymbol}
-                  maxMint = {maxMint}
-                  maxSupply = {maxSupply}
-                  maxRate = {mintRate}
-                  baseURI = {baseURI}
-                  onInputChange = {onInputChange}
-                  />
-
-              }
-
-
-              {current==1?
-              <div class="collectionButton">
-
-                <div style={{flexDirection:'row', display:'flex'}}>
-                  <div class="collectionPreviousButton" >
-                    <Button onClick={decrementStep}> Previous</Button>
-                  </div>
-                  <Button onClick={generateNFT}> Generate NFTs</Button>
-
-                </div>
-
-
-              </div>
-
-              :
-
-              current == 2 ?
-
-              <div>
-                <Button onClick = {uploadImagesToIPFS}>
-                  Generate Meta
-                </Button>
-
-              </div>
-
-              :
-
-              current == 3 ?
-
-
-              <div class="collectionButton">
-                <Button onClick={createBasicERC721APress}> Create Contract</Button>
-
-              </div>
-
-              :
-
-              <Button onClick = {incrementStep}>
-                Next
-              </Button>
-              }
 
               </div>
             </div>

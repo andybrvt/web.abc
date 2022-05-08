@@ -230,6 +230,8 @@ export const CreateLayers = (props) => {
       <div>
         <div>This will be for generating the nft</div>
 
+        <div>Make sure to put the most behind layer first! (ie background)</div>
+
         <div>
           <Button onClick = {props.addNewLayer}>Add new layer</Button>
         </div>

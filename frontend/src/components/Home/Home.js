@@ -564,6 +564,7 @@
                         type={['right', 'left']}
                         ease={['easeOutQuart', 'easeInOutQuart']}
                         delay={300}>
+                        {/*
                           <div key="a">
 
                             <div class="choiceBox">
@@ -603,6 +604,12 @@
                             </div>
 
                           </div>
+
+
+                          */}
+
+
+
                           <div key="b">
                             <div class="choiceBox">
                               <Box
@@ -613,19 +620,23 @@
                                 <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
                                 <Box p='6'>
                                     <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                                      <Badge borderRadius='full' px='3' colorScheme='teal'>
-                                        Coming soon
-                                      </Badge>
-                                      <Box
-                                        color='gray.500'
-                                        fontWeight='semibold'
-                                        letterSpacing='wide'
-                                        fontSize='xs'
-                                        textTransform='uppercase'
-                                        ml='2'
-                                      >
-                                        5 contracts &bull; 3 contracts
-                                      </Box>
+                                      {/*
+                                        <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                          Coming soon
+                                        </Badge>
+                                        <Box
+                                          color='gray.500'
+                                          fontWeight='semibold'
+                                          letterSpacing='wide'
+                                          fontSize='xs'
+                                          textTransform='uppercase'
+                                          ml='2'
+                                        >
+                                          5 contracts &bull; 3 contracts
+                                        </Box>
+
+                                        */}
+
                                     </Box>
                                     <div
                                       style={{fontWeight:'bold', fontSize:20}}
@@ -641,39 +652,43 @@
                             </div>
                         </div>
 
-
-                        <div key="c">
-                        <Box style={{marginRight:25, opacity: 0.5}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                          <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
-                          <Box p='6'>
-                              <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
-                                <Badge borderRadius='full' px='3' colorScheme='teal'>
-                                  Coming soon
-                                </Badge>
-                                <Box
-                                  color='gray.500'
-                                  fontWeight='semibold'
-                                  letterSpacing='wide'
-                                  fontSize='xs'
-                                  textTransform='uppercase'
-                                  ml='2'
-                                >
-                                  5 contracts &bull; 3 contracts
+                        {/*
+                          <div key="c">
+                          <Box style={{marginRight:25, opacity: 0.5}} maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                            <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
+                            <Box p='6'>
+                                <Box style={{marginBottom:10}} display='flex' alignItems='baseline'>
+                                  <Badge borderRadius='full' px='3' colorScheme='teal'>
+                                    Coming soon
+                                  </Badge>
+                                  <Box
+                                    color='gray.500'
+                                    fontWeight='semibold'
+                                    letterSpacing='wide'
+                                    fontSize='xs'
+                                    textTransform='uppercase'
+                                    ml='2'
+                                  >
+                                    5 contracts &bull; 3 contracts
+                                  </Box>
                                 </Box>
+                                <div
+                                  style={{fontWeight:'bold', fontSize:20}}
+                                >
+                                  DAOs
+                                </div>
+                                <div style={{marginTop:5}}>
+                                  Tokenomics, governance, treasury
+
+                                </div>
                               </Box>
-                              <div
-                                style={{fontWeight:'bold', fontSize:20}}
-                              >
-                                DAOs
-                              </div>
-                              <div style={{marginTop:5}}>
-                                Tokenomics, governance, treasury
+                          </Box>
 
-                              </div>
-                            </Box>
-                        </Box>
+                          </div>
 
-                        </div>
+
+
+                          */}
                         </QueueAnim>
 
 

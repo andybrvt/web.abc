@@ -336,7 +336,7 @@ export const NFTCollectionTemplates = [
 
         .NFTSpecPosition {    
           position: absolute;
-          right: 5%;
+          right: 2.5%;
           top: 125%;
           width: 50%;
           height:50%;
@@ -519,8 +519,9 @@ export const NFTCollectionTemplates = [
         <div class = "NFTSpecPosition">
           <div class = "NFTSpecContainer">
             <p class ="NFTSpecTitle"> The Specs </p>
-            <p class = "MFTSpecContent"> Bach Bored Ape is unique and programmatically generated from over 170 possible traits, including expression, headwear, clothing, and more. All apes are dope, but some are rarer than others.
-            The apes are stored as ERC-721 tokens on the Ethereum blockchain and hosted on IPFS. (See Record and Proof.) Purchasing an ape costs 0.08 ETH.
+            <p class = "MFTSpecContent"> Each monkey is unique and programmatically generated from over 200 possible traits, including expression, headwear, clothing, and more. 
+            Some of the monkeys are more rare than others.
+            The monkeys are stored as ERC-721 tokens on the Ethereum blockchain and hosted on IPFS. Mint price to be determined.
              </p>
           </div>
         </div>
@@ -603,8 +604,8 @@ export const NFTCollectionTemplates = [
               <div class="container">
                 <h4 class="teamPersonName"><b>Jillian Lee</b></h4>
                 <p class="teamPersonRole">Head of Marketing</p>
-              </div>
-            </div> 
+            </div>
+            
            
             <div class="card">
               <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
@@ -620,6 +621,8 @@ export const NFTCollectionTemplates = [
                 <p class="teamPersonRole">Head of Community Affairs </p>
               </div>
             </div> 
+
+            </div>
 
             
           </div>

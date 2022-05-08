@@ -1,0 +1,326 @@
+// Function will be used as add nfts in
+import React, { useState, useEffect } from 'react';
+import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+
+// this.innerHTML ="some content"
+
+const script = function(props) {
+
+};
+
+
+export const renderNFTTemplate1 = editor => {
+  editor.DomComponents.addType("renderNFTTemplate1", {
+
+    isComponent: el => {
+        return el.id === "renderNFTTemplate1"
+      },
+
+    model: {
+      name: 'renderNFTTemplate1',
+      tagName: "renderNFTTemplate1",
+      resizable: 'true',
+      defaults:{
+        attributes: { class: 'nft-collection-container' },
+        someprop: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+
+        styles: `
+        .gradientBackground1{
+            // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
+          }
+          .mHeaderText{
+            position: absolute;
+            font-size: 70px;
+            width: 30%;
+            left: 12%;
+            top: 20%;
+            font-family: Lato;}
+          .mBodyText{
+            position: absolute;
+            width: 25%;
+            left: 12%;
+            top: 45%;
+            font-family: Lato;
+            font-size:20px;
+          }
+          .mButton1{
+              background-image: linear-gradient(90deg, #483D8B 1%,#8B008B 99%);
+              left: 12%;
+              top: 70%;}
+          .mButton2{
+              background: black;
+              left: 25%;
+              top: 70%;}
+          .mImage{
+            border-radius: 25px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            position: absolute;
+            right: 5%;
+            top: 15%;
+            width: 50%;}
+  
+          .teamTitle{
+            font-size:35px;
+            font-family: Lato;
+            margin-bottom:45px;
+            margin-top:45px;
+  
+          }
+          
+  
+          .teamSection {    
+            position: absolute;
+            left: 12%;
+            top: 300%;
+            width: 90%;
+            height:100%;
+          }
+          .teamContainer {
+            display:flex;
+            flex-direction:row;
+          }
+          .teamFirstPerson {
+         
+           display:flex;
+           flex-direction:column;
+          }
+          .teamSecondPerson{
+    
+            display:flex;
+           flex-direction:column;
+          }
+          .tripleComparisonHeader{
+            font-size:45px;
+            margin-top:10px;
+            margin-bottom:20px;
+            font-family: Lato;
+            font-weight:800;
+  
+          }
+  
+          .tripleComparisonSubHeader{
+            font-size:30px;
+            margin-top:10px;
+            margin-bottom:10px;
+            font-family: Lato;
+          }
+  
+          .tripleComparisonContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom:20px;
+  
+          }
+  
+          .tripleComparisonSection {    
+            position: absolute;
+            left: 12%;
+            top: 200%;
+            width: 85%;
+            height:50%;
+          }
+          
+          .nftCollectionTitleSection {    
+            position: absolute;
+            left: 12%;
+            top: 65%;
+            width: 85%;
+            height:25%;
+          }
+  
+          .nftCollectionTitlePosition {    
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-bottom:20px;
+          }
+  
+  
+          .NFTSpecPosition {    
+            position: absolute;
+            right: 2.5%;
+            top: 125%;
+            width: 50%;
+            height:50%;
+          }
+  
+          .NFTSpecContainer {    
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom:20px;
+          }
+  
+          .NFTSpecTitle{
+            font-size:45px;
+            margin-top:10px;
+            margin-bottom:10px;
+            font-weight:800;
+            font-family: Lato;
+          }
+  
+          .MFTSpecContent{
+            width:80%;
+            font-size:22px;
+            margin-top:10px;
+            margin-bottom:10px;
+    
+            font-family: Lato;
+          }
+  
+          .testFirstPersonImage{
+            border-radius: 12px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            width:350px;
+            height:350px;
+            
+          }
+  
+          .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 12px;
+            margin-right: 20px;
+          }
+  
+          .infoSection{
+            flex:1;
+            
+            
+          }
+  
+          .itemcenter {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+  
+          .infoSectionTitle{
+            font-size:37px;
+            margin-top:10px;
+            margin-bottom:10px;
+            font-weight:800;
+            font-family: Lato;
+          }
+  
+          .infoSectionDesc{
+            width:80%;
+            font-size:22px;
+            margin-top:10px;
+            margin-bottom:10px;
+    
+            font-family: Lato;
+          }
+  
+  
+          .teamPersonName{
+            font-size:27.5px;
+            font-weight:bold;
+            font-family: Lato;
+          }
+          
+          .teamPersonRole{
+            font-size:20px;
+            font-family: Lato;
+          }
+          
+          /* On mouse-over, add a deeper shadow */
+          .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          }
+          d
+          /* Add some padding inside the card container */
+          .container {
+            padding: 25px;
+          }
+  
+          .monkeyImage{
+            border-radius: 20px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            position: absolute;
+            right: 50%;
+            top: 10%;
+            width:200px;
+            height:200px;
+          }
+          
+          .space1Image{
+            position: absolute;
+            right: 50%;
+            top: 110%;
+            width:600px;
+            height:600px;
+          }
+          .space2Image{
+            position: absolute;
+            right: 50%;
+            top: 20%;
+            width:350px;
+            height:350px;
+          }
+          .space3Image{
+            position: absolute;
+            right: 20%;
+            top: 20%;
+            width:350px;
+            height:350px;
+          }
+
+          .menuM{
+            display: flex;
+            flex-direction: row;
+            margin-left: auto;
+            margin-right: 5%;
+          }
+
+          .headerItem{
+            text-align:center;
+            justify-content: center;
+            padding: 25px;
+            font-size: 20px;
+          }
+
+          .header{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display:flex;
+          }
+
+        `,
+
+        components: model => {
+          return  (
+            <div>hello</div>
+            )
+        },
+
+          
+
+
+
+
+
+        'script-props': ["someprop",],
+
+      },
+
+      
+    },
+
+
+    view: {
+      events: {
+        dblclick: 'onActive'
+      },
+    }
+
+  })
+}
+

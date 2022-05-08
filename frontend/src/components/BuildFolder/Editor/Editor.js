@@ -74,6 +74,9 @@ import {
   CustomAddressProfile
 } from './CustomTypes/CustomBlockChainType';
 import {
+  renderNFTTemplate1
+} from './CustomTypes/NFTCollection1';
+import {
   CustomCopyToClipboard
 } from './CustomTypes/CustomCopyToClipboardTypes';
 import {
@@ -126,6 +129,18 @@ import { TestModal } from './TestModal';
 import {InitialEditorModal} from './InitialEditorModal';
 import { TrashModal } from './TrashModal'
 import { useScreenshot } from "use-screenshot-hook";
+
+import astro from '../Blocks/BasicBlocks/NFTCollectionTemplates/astro.svg';
+import coding from '../Blocks/BasicBlocks/NFTCollectionTemplates/coding.svg';
+import apartment from '../Blocks/BasicBlocks/NFTCollectionTemplates/apartment.svg';
+
+
+import twitter from '../Blocks/BasicBlocks/NFTCollectionTemplates/twitter.png';
+import opensea  from '../Blocks/BasicBlocks/NFTCollectionTemplates/opensea.png';
+import discord from '../Blocks/BasicBlocks/NFTCollectionTemplates/discord.png';
+import space1 from '../Blocks/BasicBlocks/NFTCollectionTemplates/space1.svg';
+import space2 from '../Blocks/BasicBlocks/NFTCollectionTemplates/space2.svg';
+import space3 from '../Blocks/BasicBlocks/NFTCollectionTemplates/space3.svg';
 const PLUGINS = [
   CoreButtonType,
   ButtonType1,
@@ -164,7 +179,8 @@ const PLUGINS = [
   CustomMintNFTButton,
   CustomConnectToWalletButton,
   CustomNFTMarketPlace,
-  CustomNFTRoadMap
+  CustomNFTRoadMap,
+  renderNFTTemplate1,
 ]
 
 
@@ -193,7 +209,8 @@ const translatedItems = [
   'AddressProfile',
   "SocialMediaFooter1",
   "NFTMarketPlace",
-  "NFTRoadMap"
+  "NFTRoadMap",
+  'renderNFTTemplate1'
 ]
 
 
@@ -1127,6 +1144,10 @@ export const Editor = (props) => {
 
 
                 }
+
+
+
+
                 if(type === "AutomaticNFTShowcase"){
                   component.set("script", `
                     async function script(props){
@@ -1529,12 +1550,192 @@ export const Editor = (props) => {
                     }
                   `)
                 }
+
+                
               })
             }, 1000)
 
           }
 
           if(buildType === "nft"){
+            editor.addComponents(
+              `
+              <div data-gjs-type = "renderNFTTemplate1"> </div>
+             <div data-gjs-type = ""></div>
+             <div data-gjs-type = ""></div>
+             <div data-gjs-type = ""></div>
+             <div data-gjs-type = ""></div>
+              `
+            )
+
+            setTimeout(() => {
+              editor.getComponents().forEach(component => {
+                const type = component.get("type")
+                const account = "0xbaad3c4bc7c33800a26aafcf491ddec0a2830fab";
+
+
+                if(type === "renderNFTTemplate1"){
+                  component.append(
+
+                    <div data-gjs-dmode="absolute" class="row tempHeight">
+        <div class="col">
+          <div class ='gradientBackground'/>
+        </div>
+
+        <div class="header">
+          <a class="logo ">
+            
+
+          </a>
+          <div class="menuM">
+            
+            <a class="headerItem">
+               <img src={discord} width={52.5} height={52.5} />
+            </a>
+            <a class="headerItem">
+              <img src={twitter} width={50} height={40} />
+            </a>
+            
+
+            <div class="headerItem">
+               <img src={opensea} width={45} height={45} />
+
+            </div>
+      
+          </div>
+        </div>
+        <div class = "nftCollectionTitleSection">
+          <div class="tripleComparisonContainer">
+           
+              <h1 class ="tripleComparisonHeader">
+                Monkey Squad
+              </h1>
+ 
+            <p class = "tripleComparisonSubHeader">
+              10,000 space travelers looking for a way home by building and creating together.
+            </p>
+           
+            </div>
+        </div>
+        
+        <img src={space1} class="space1Image" />
+        <img src={space2} class="space2Image"/>
+        <img src={space3} class="space3Image" />
+       
+
+        <div class = "NFTSpecPosition">
+          <div class = "NFTSpecContainer">
+            <p class ="NFTSpecTitle"> The Specs </p>
+            <p class = "MFTSpecContent"> Each monkey is unique and programmatically generated from over 200 possible traits, including expression, headwear, clothing, and more. 
+            Some of the monkeys are more rare than others.
+            The monkeys are stored as ERC-721 tokens on the Ethereum blockchain and hosted on IPFS. Mint price to be determined.
+             </p>
+          </div>
+        </div>
+
+
+
+
+        
+        <div class = "tripleComparisonSection">
+          <div class="tripleComparisonContainer">
+            <p class="tripleComparisonHeader">
+              Grow together
+            </p>
+            <p class="tripleComparisonSubHeader">
+              Build and invest as a community
+            </p>
+          </div>
+          <div class="teamContainer">
+            <div class="infoSection">
+              <div class="itemCenter">
+              <img src={astro} width={300} height={200} />
+                <div class="infoSectionTitle"> Build </div>
+                <p class="infoSectionDesc">
+                  ful learning rarely comes from passively consuming content. 
+                  It comes from building, teaching, a
+                </p>
+              </div>
+            </div>
+
+            <div class="infoSection">
+              <div class="itemCenter">
+                <img src={coding} width={300} height={200} />
+                <div class="infoSectionTitle"> Create </div>
+                <p class="infoSectionDesc">
+                  ful learning rarely comes from passively consuming content. 
+                  It comes from building, teaching, a
+                </p>
+              </div>
+            </div>
+
+            <div class="infoSection">
+              <div class="itemCenter">
+              <img src={apartment} width={300} height={200} />
+                <div class="infoSectionTitle"> Own </div>
+                <p class="infoSectionDesc">
+                  ful learning rarely comes from passively consuming content. 
+                  It comes from building, teaching, a
+                </p>
+              </div>
+            </div>
+
+
+
+
+            </div>
+          </div>
+       
+
+
+
+
+        <div class="teamSection">
+     
+              <div class="teamTitle">
+              Team
+              </div>
+  
+          <div class="teamContainer">
+            
+            <div class="card">
+            <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/17/17/20/bored-6945309_960_720.png"/>
+              <div class="container">
+                <h4 class="teamPersonName"><b>John Doe</b></h4>
+                <p class="teamPersonRole">Founding Artist</p>
+              </div>
+            </div> 
+
+            <div class="card">
+                <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/02/18/16/09/ape-7020995_960_720.png"/>
+                <h4 class="teamPersonName"><b>Jillian Lee</b></h4>
+                <p class="teamPersonRole">Head of Marketing</p>
+            </div>
+            
+           
+            <div class="card">
+              <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
+              <div class="container">
+                <h4 class="teamPersonName"><b>John Doe</b></h4>
+                <p class="teamPersonRole">Head of Community Affairs </p>
+              </div>
+            </div> 
+
+   
+
+            </div> 
+ 
+          
+            
+          </div>
+        </div>
+   
+                  )
+
+
+                }
+          })
+            }, 1000)
 
 
             editor.addComponents(
@@ -2007,6 +2208,7 @@ export const Editor = (props) => {
 
           }
 
+          
 
 
 

@@ -188,6 +188,11 @@ export const OfficialPage = props => {
 
   }, [mint])
 
+  const testMint = () => {
+    mint(1, {value: utils.parseEther("0.02")})
+
+  }
+
 
   return(
     <div style = {{

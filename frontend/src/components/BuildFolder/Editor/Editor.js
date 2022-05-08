@@ -1561,10 +1561,7 @@ export const Editor = (props) => {
             editor.addComponents(
               `
               <div data-gjs-type = "renderNFTTemplate1"> </div>
-             <div data-gjs-type = ""></div>
-             <div data-gjs-type = ""></div>
-             <div data-gjs-type = ""></div>
-             <div data-gjs-type = ""></div>
+          
               `
             )
 
@@ -1578,9 +1575,9 @@ export const Editor = (props) => {
                   component.append(
 
                     <div data-gjs-dmode="absolute" class="row tempHeight">
-        <div class="col">
-          <div class ='gradientBackground'/>
-        </div>
+                    <div class="col">
+                      <div class ='gradientBackground'/>
+                    </div>
 
         <div class="header">
           <a class="logo ">
@@ -1810,8 +1807,6 @@ export const Editor = (props) => {
 
   const storeEditor = () => {
     editorMain.store()
-
-    const websiteId = props.history.location.state.websiteId
     const formData =  new FormData()
     formData.append("publicKey", 1)
     const allPages = editorMain.Pages.getAll();

@@ -25,6 +25,17 @@ export const renderNFTTemplate1 = editor => {
         someprop: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
 
         styles: `
+
+        .address-profile-container-type{
+          height: 40vh;
+          position: relative;
+          font-family: Lato;
+        }
+        .profile-inner-wrapper{
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+        }
         .gradientBackground1{
             // background-image: linear-gradient(90deg, #4B0082 1%, #ba55d3 99%)
           }

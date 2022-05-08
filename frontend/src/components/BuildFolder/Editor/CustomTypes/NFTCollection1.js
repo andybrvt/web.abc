@@ -272,6 +272,27 @@ export const renderNFTTemplate1 = editor => {
             height:350px;
           }
 
+          .menuM{
+            display: flex;
+            flex-direction: row;
+            margin-left: auto;
+            margin-right: 5%;
+          }
+
+          .headerItem{
+            text-align:center;
+            justify-content: center;
+            padding: 25px;
+            font-size: 20px;
+          }
+
+          .header{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display:flex;
+          }
+
         `,
 
         components: model => {

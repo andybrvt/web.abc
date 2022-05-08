@@ -1699,7 +1699,7 @@ export const Editor = (props) => {
           <div class="teamContainer">
             
             <div class="card">
-             
+            <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/17/17/20/bored-6945309_960_720.png"/>
               <div class="container">
                 <h4 class="teamPersonName"><b>John Doe</b></h4>
                 <p class="teamPersonRole">Founding Artist</p>
@@ -1707,27 +1707,25 @@ export const Editor = (props) => {
             </div> 
 
             <div class="card">
-           
+                <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/02/18/16/09/ape-7020995_960_720.png"/>
                 <h4 class="teamPersonName"><b>Jillian Lee</b></h4>
                 <p class="teamPersonRole">Head of Marketing</p>
-              </div>
-            </div> 
-           
-            <div class="card">
+            </div>
             
-              <div class="container">
-                <h4 class="teamPersonName"><b>John Doe</b></h4>
-                <p class="teamPersonRole">Head of Community Affairs </p>
-              </div>
-            </div> 
-            <div class="card">
            
+            <div class="card">
+              <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
               <div class="container">
                 <h4 class="teamPersonName"><b>John Doe</b></h4>
                 <p class="teamPersonRole">Head of Community Affairs </p>
               </div>
             </div> 
 
+   
+
+            </div> 
+ 
+          
             
           </div>
         </div>

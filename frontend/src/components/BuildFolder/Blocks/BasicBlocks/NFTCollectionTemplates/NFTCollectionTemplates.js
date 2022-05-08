@@ -604,8 +604,8 @@ export const NFTCollectionTemplates = [
               <div class="container">
                 <h4 class="teamPersonName"><b>Jillian Lee</b></h4>
                 <p class="teamPersonRole">Head of Marketing</p>
-              </div>
-            </div> 
+            </div>
+            
            
             <div class="card">
               <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
@@ -621,6 +621,8 @@ export const NFTCollectionTemplates = [
                 <p class="teamPersonRole">Head of Community Affairs </p>
               </div>
             </div> 
+
+            </div>
 
             
           </div>

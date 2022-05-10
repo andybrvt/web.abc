@@ -89,6 +89,7 @@ export const renderNFTTemplate1 = editor => {
         .teamContainer {
           display:flex;
           flex-direction:row;
+          width:80%;
         }
         .teamFirstPerson {
        
@@ -106,6 +107,15 @@ export const renderNFTTemplate1 = editor => {
           font-family: Lato;
           font-weight:800;
 
+        }
+
+        .logoGap{
+          width:85vw;
+        }
+
+        .apartmentImageBox{
+          width:300px;
+          height:275px;
         }
 
         .tripleComparisonHeader{
@@ -134,6 +144,13 @@ export const renderNFTTemplate1 = editor => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          margin-bottom:100px;
+        }
+
+        .centerTripleContent{
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .tripleComparisonSection {    
@@ -142,6 +159,7 @@ export const renderNFTTemplate1 = editor => {
           width: 85%;
           height:50%;
         }
+        
         
         .nftCollectionTitleSection {    
           position: relative;
@@ -217,7 +235,7 @@ export const renderNFTTemplate1 = editor => {
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
           transition: 0.3s;
           border-radius: 12px;
-          margin-right: 20px;
+          margin-right: 30px;
         }
 
         .infoSection{
@@ -252,7 +270,7 @@ export const renderNFTTemplate1 = editor => {
 
 
         .teamPersonName{
-          font-size:27.5px;
+          font-size:25px;
           font-weight:bold;
           font-family: Lato;
         }
@@ -268,7 +286,7 @@ export const renderNFTTemplate1 = editor => {
         }
         d
         /* Add some padding inside the card container */
-        .container {
+        .containerCardPadding {
           padding: 25px;
         }
 

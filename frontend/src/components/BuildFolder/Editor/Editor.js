@@ -133,6 +133,7 @@ import { useScreenshot } from "use-screenshot-hook";
 import astro from '../Blocks/BasicBlocks/NFTCollectionTemplates/astro.svg';
 import coding from '../Blocks/BasicBlocks/NFTCollectionTemplates/coding.svg';
 import apartment from '../Blocks/BasicBlocks/NFTCollectionTemplates/apartment.svg';
+import creating from '../Blocks/BasicBlocks/NFTCollectionTemplates/creating.svg';
 
 
 import twitter from '../Blocks/BasicBlocks/NFTCollectionTemplates/twitter.png';
@@ -1580,9 +1581,11 @@ export const Editor = (props) => {
                     </div>
 
         <div class="header">
-          <a class="logo ">
-          </a>
+       
           <div class="menuM">
+            <div class="logoGap">
+              
+            </div>
             <a class="headerItem">
                <img src={discord} width={40} height={40} />
             </a>
@@ -1628,7 +1631,7 @@ export const Editor = (props) => {
           </div>
         </div>
 
-        <div class="spaceGap"></div>
+       <div class="spaceGap"></div> 
 
        
         <div class = "tripleComparisonSection">
@@ -1639,7 +1642,8 @@ export const Editor = (props) => {
             <p class="tripleComparisonSubHeader">
               Build and invest as a community
             </p>
-          </div>
+          </div>  
+          <div class="centerTripleContent"> 
           <div class="teamContainer">
             <div class="infoSection">
               <div class="itemCenter">
@@ -1651,10 +1655,12 @@ export const Editor = (props) => {
                 </p>
               </div>
             </div>
-
+        
             <div class="infoSection">
               <div class="itemCenter">
-                <img src={coding} width={300} height={200} />
+        
+                    <img src={creating} width={300} height={225} />
+            
                 <div class="infoSectionTitle"> Create </div>
                 <p class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
@@ -1665,7 +1671,11 @@ export const Editor = (props) => {
 
             <div class="infoSection">
               <div class="itemCenter">
-              <img src={apartment} width={300} height={200} />
+                
+                <img src={apartment} width={300} height={200} />
+
+                
+              
                 <div class="infoSectionTitle"> Own </div>
                 <p class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
@@ -1673,7 +1683,7 @@ export const Editor = (props) => {
                 </p>
               </div>
             </div>
-
+            
 
 
 
@@ -1681,8 +1691,11 @@ export const Editor = (props) => {
           </div>
        
 
+          </div>
+          
 
 
+        <div class="spaceGap"></div> 
 
         <div class="teamSection">
      
@@ -1709,7 +1722,7 @@ export const Editor = (props) => {
            
             <div class="card">
               <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
-              <div class="container">
+              <div class="containerCardPadding">
                 <h4 class="teamPersonName"><b>John Doe</b></h4>
                 <p class="teamPersonRole">Head of Community Affairs </p>
               </div>
@@ -1722,6 +1735,8 @@ export const Editor = (props) => {
           
             
           </div>
+          <div class="spaceGap"></div> 
+          <div class="spaceGap"></div> 
         </div>
    
                   )

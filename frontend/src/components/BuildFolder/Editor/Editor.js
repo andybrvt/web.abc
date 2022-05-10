@@ -1581,45 +1581,39 @@ export const Editor = (props) => {
 
         <div class="header">
           <a class="logo ">
-            
-
           </a>
           <div class="menuM">
-            
             <a class="headerItem">
-               <img src={discord} width={52.5} height={52.5} />
+               <img src={discord} width={50} height={50} />
             </a>
             <a class="headerItem">
-              <img src={twitter} width={50} height={40} />
+              <img src={twitter} width={47.5} height={47.5} />
             </a>
-            
-
             <div class="headerItem">
-               <img src={opensea} width={45} height={45} />
-
+               <img src={opensea} width={42.5} height={42.5} />
             </div>
-      
           </div>
         </div>
+
+        <div class="template1ImageContainer">
+          <div class="template1ImageInner">
+            <img src={space2} class="space2Image" />
+            <img src={space3} class="space3Image"/>
+          </div>
+        </div>
+
         <div class = "headerClone">
           <div class="tripleComparisonContainer">
-           
               <h1 class ="tripleComparisonHeader">
                 Monkey Squad
               </h1>
- 
             <p class = "tripleComparisonSubHeader">
               10,000 space travelers looking for a way home by building and creating together.
             </p>
-           
-            </div>
-        </div>
+          </div>
+        </div>   
         
         <img src={space1} class="space1Image" />
-        <img src={space2} class="space2Image"/>
-        <img src={space3} class="space3Image" />
-       
-
         <div class = "NFTSpecPosition">
           <div class = "NFTSpecContainer">
             <p class ="NFTSpecTitle"> The Specs </p>
@@ -1630,10 +1624,7 @@ export const Editor = (props) => {
           </div>
         </div>
 
-
-
-
-        
+       
         <div class = "tripleComparisonSection">
           <div class="tripleComparisonContainer">
             <p class="tripleComparisonHeader">

@@ -116,10 +116,8 @@ export const renderNFTTemplate1 = editor => {
 
         .headerClone{
           position: relative;
-          height:75vh;
-          left:20%;
-          width: 92%;
-          display:flex;
+          height:25vh;
+          width: 100%;
         }
 
 
@@ -274,20 +272,26 @@ export const renderNFTTemplate1 = editor => {
           height:600px;
         }
         .space2Image{
-          position: absolute;
-          right: 50%;
-          top: 20%;
           width:350px;
           height:350px;
         }
         .space3Image{
-          position: relative;
-          right: 20%;
-          top: 20%;
           width:350px;
           height:350px;
         }
 
+    
+        .template1ImageContainer{
+          position: relative; 
+        }
+
+        .template1ImageInner{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          
+        }
 
 
 
@@ -308,7 +312,7 @@ export const renderNFTTemplate1 = editor => {
           .header{
             position: relative;
             top: 0;
-            height:15%;
+            height:10%;
             width: 100%;
             display:flex;
           }

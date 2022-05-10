@@ -21,7 +21,8 @@ const menu = `
     display: flex;
     flex-direction: row;
     margin-left: auto;
-    margin-right: 5%;
+    margin-right: 0%;
+    background:red;
   }`
 const logo = `
   .logo{
@@ -367,9 +368,7 @@ export const NFTCollectionBlocks = [
       </style>
 
       <div data-gjs-dmode="absolute" class="row tempHeight">
-        <div class="col">
-          <div class ='gradientBackground'/>
-        </div>
+      
 
         <div class="header">
     

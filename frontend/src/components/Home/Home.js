@@ -196,8 +196,8 @@
         axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData,
           {headers: {"content-type": "multipart/form-data"}}
         ).then(res => {
-          props.history.push('/startCollection/'+res.data)
-
+          // props.history.push('/startCollection/'+res.data)
+          props.history.push('/build/'+res.data+'/nft')
 
         })
 

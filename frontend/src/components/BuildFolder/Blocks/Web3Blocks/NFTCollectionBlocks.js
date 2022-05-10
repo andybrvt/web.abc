@@ -22,7 +22,6 @@ const menu = `
     flex-direction: row;
     margin-left: auto;
     margin-right: 0%;
-    background:red;
   }`
 const logo = `
   .logo{
@@ -215,7 +214,7 @@ export const NFTCollectionBlocks = [
         }
         
         .nftCollectionTitleSection {    
-          position: relative;
+          position: absolute;
           left: 12%;
           top: 65%;
           width: 85%;
@@ -234,7 +233,7 @@ export const NFTCollectionBlocks = [
         .NFTSpecPosition {    
           position: relative;
           right: 2.5%;
-          top: 100%;
+          top: 125%;
           width: 50%;
           height:50%;
         }
@@ -343,16 +342,16 @@ export const NFTCollectionBlocks = [
         }
         
         .space1Image{
-          position: relative;
+          position: absolute;
           right: 50%;
-          top:50;
+          top: 110%;
           width:600px;
           height:600px;
         }
         .space2Image{
-          position: relative;
-          right: 25%;
-          top:50;
+          position: absolute;
+          right: 50%;
+          top: 20%;
           width:350px;
           height:350px;
         }

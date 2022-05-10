@@ -234,7 +234,7 @@ export const NFTCollectionBlocks = [
         .NFTSpecPosition {    
           position: relative;
           right: 2.5%;
-          top: 125%;
+          top: 100%;
           width: 50%;
           height:50%;
         }
@@ -345,14 +345,14 @@ export const NFTCollectionBlocks = [
         .space1Image{
           position: relative;
           right: 50%;
-          top: 110%;
+          top:50;
           width:600px;
           height:600px;
         }
         .space2Image{
           position: relative;
-          right: 50%;
-          top: 20%;
+          right: 25%;
+          top:50;
           width:350px;
           height:350px;
         }
@@ -368,7 +368,9 @@ export const NFTCollectionBlocks = [
       </style>
 
       <div data-gjs-dmode="absolute" class="row tempHeight">
-      
+
+          <div />
+     
 
         <div class="header">
     

@@ -73,6 +73,7 @@ export const renderNFTTemplate1 = editor => {
         .teamTitle{
           font-size:35px;
           font-family: Lato;
+          font-weight:800;
           margin-bottom:45px;
           margin-top:45px;
 
@@ -99,16 +100,23 @@ export const renderNFTTemplate1 = editor => {
           display:flex;
          flex-direction:column;
         }
-        .tripleComparisonHeader{
-          font-size:45px;
 
+        .mainTitle{
+          font-size:50px;
+          font-family: Lato;
+          font-weight:800;
+
+        }
+
+        .tripleComparisonHeader{
+          font-size:35px;
           font-family: Lato;
           font-weight:800;
 
         }
 
         .tripleComparisonSubHeader{
-          font-size:30px;
+          font-size:28px;
           margin-top:10px;
           margin-bottom:10px;
           font-family: Lato;
@@ -116,7 +124,7 @@ export const renderNFTTemplate1 = editor => {
 
         .headerClone{
           position: relative;
-          height:25vh;
+          height:15vh;
           width: 100%;
         }
 
@@ -126,8 +134,6 @@ export const renderNFTTemplate1 = editor => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-
-
         }
 
         .tripleComparisonSection {    
@@ -156,9 +162,20 @@ export const renderNFTTemplate1 = editor => {
 
         .NFTSpecPosition {    
           position: relative;
-          right: 2.5%;
-          width: 50%;
-          height:50%;
+          width: 100%;
+        }
+
+        .NFTSpecRow {    
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          
+        }
+
+        .spaceGap{
+          position:relative;
+          height:100px;
         }
 
         .NFTSpecContainer {    
@@ -167,10 +184,11 @@ export const renderNFTTemplate1 = editor => {
           justify-content: center;
           align-items: center;
           margin-bottom:20px;
+          width:50%;
         }
 
         .NFTSpecTitle{
-          font-size:45px;
+          font-size:35px;
           margin-top:10px;
           margin-bottom:10px;
           font-weight:800;
@@ -179,7 +197,7 @@ export const renderNFTTemplate1 = editor => {
 
         .MFTSpecContent{
           width:80%;
-          font-size:22px;
+          font-size:20px;
           margin-top:10px;
           margin-bottom:10px;
   
@@ -216,7 +234,7 @@ export const renderNFTTemplate1 = editor => {
         }
 
         .infoSectionTitle{
-          font-size:37px;
+          font-size:28px;
           margin-top:10px;
           margin-bottom:10px;
           font-weight:800;
@@ -225,7 +243,7 @@ export const renderNFTTemplate1 = editor => {
 
         .infoSectionDesc{
           width:80%;
-          font-size:22px;
+          font-size:20px;
           margin-top:10px;
           margin-bottom:10px;
   
@@ -265,15 +283,14 @@ export const renderNFTTemplate1 = editor => {
         }
         
         .space1Image{
-          position: absolute;
-          right: 50%;
-          top: 110%;
-          width:600px;
-          height:600px;
+
+          width:500px;
+          height:500px;
         }
         .space2Image{
           width:350px;
           height:350px;
+          margin-right:25px;
         }
         .space3Image{
           width:350px;
@@ -314,7 +331,6 @@ export const renderNFTTemplate1 = editor => {
             top: 0;
             height:10%;
             width: 100%;
-            display:flex;
           }
 
         `,

@@ -1584,13 +1584,13 @@ export const Editor = (props) => {
           </a>
           <div class="menuM">
             <a class="headerItem">
-               <img src={discord} width={50} height={50} />
+               <img src={discord} width={40} height={40} />
             </a>
             <a class="headerItem">
-              <img src={twitter} width={47.5} height={47.5} />
+              <img src={twitter} width={40} height={40} />
             </a>
             <div class="headerItem">
-               <img src={opensea} width={42.5} height={42.5} />
+               <img src={opensea} width={35} height={35} />
             </div>
           </div>
         </div>
@@ -1604,7 +1604,7 @@ export const Editor = (props) => {
 
         <div class = "headerClone">
           <div class="tripleComparisonContainer">
-              <h1 class ="tripleComparisonHeader">
+              <h1 class ="mainTitle">
                 Monkey Squad
               </h1>
             <p class = "tripleComparisonSubHeader">
@@ -1612,17 +1612,23 @@ export const Editor = (props) => {
             </p>
           </div>
         </div>   
+        <div class="spaceGap"></div>
         
-        <img src={space1} class="space1Image" />
         <div class = "NFTSpecPosition">
-          <div class = "NFTSpecContainer">
-            <p class ="NFTSpecTitle"> The Specs </p>
-            <p class = "MFTSpecContent"> Each monkey is unique and programmatically generated from over 200 possible traits, including expression, headwear, clothing, and more. 
-            Some of the monkeys are more rare than others.
-            The monkeys are stored as ERC-721 tokens on the Ethereum blockchain and hosted on IPFS. Mint price to be determined.
-             </p>
+          <div class = "NFTSpecRow">
+            <img src={space1} class="space1Image" />
+
+            <div class = "NFTSpecContainer">
+              <p class ="NFTSpecTitle"> The Specs </p>
+              <p class = "MFTSpecContent"> Each monkey is unique and programmatically generated from over 200 possible traits, including expression, headwear, clothing, and more. 
+              Some of the monkeys are more rare than others.
+              The monkeys are stored as ERC-721 tokens on the Ethereum blockchain and hosted on IPFS. Mint price to be determined.
+              </p>
+            </div>
           </div>
         </div>
+
+        <div class="spaceGap"></div>
 
        
         <div class = "tripleComparisonSection">

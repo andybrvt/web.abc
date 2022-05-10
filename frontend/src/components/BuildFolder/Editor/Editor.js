@@ -1601,7 +1601,7 @@ export const Editor = (props) => {
       
           </div>
         </div>
-        <div class = "nftCollectionTitleSection">
+        <div class = "headerClone">
           <div class="tripleComparisonContainer">
            
               <h1 class ="tripleComparisonHeader">

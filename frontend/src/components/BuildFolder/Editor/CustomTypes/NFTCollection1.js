@@ -101,8 +101,7 @@ export const renderNFTTemplate1 = editor => {
         }
         .tripleComparisonHeader{
           font-size:45px;
-          margin-top:10px;
-          margin-bottom:20px;
+
           font-family: Lato;
           font-weight:800;
 
@@ -115,12 +114,21 @@ export const renderNFTTemplate1 = editor => {
           font-family: Lato;
         }
 
+        .headerClone{
+          position: relative;
+          height:75vh;
+          left:20%;
+          width: 92%;
+          display:flex;
+        }
+
+
         .tripleComparisonContainer {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          margin-bottom:20px;
+
 
         }
 
@@ -135,7 +143,8 @@ export const renderNFTTemplate1 = editor => {
           position: relative;
           left: 12%;
           width: 85%;
-          height:75%;
+          height:100%;
+          background:red;
         }
 
         .nftCollectionTitlePosition {    

@@ -223,8 +223,8 @@ export const renderNFTTemplate1 = editor => {
         .testFirstPersonImage{
           border-radius: 12px;
           box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-          width:350px;
-          height:350px;
+          width:275px;
+          height:250px;
           
         }
 
@@ -233,7 +233,13 @@ export const renderNFTTemplate1 = editor => {
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
           transition: 0.3s;
           border-radius: 12px;
-          margin-right: 30px;
+          margin-right: 50px;
+          height:400px;
+        }
+
+        /* Add some padding inside the card container */
+        .containerCardPadding {
+          padding: 25px;
         }
 
         .infoSection{
@@ -283,10 +289,7 @@ export const renderNFTTemplate1 = editor => {
           box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         }
         d
-        /* Add some padding inside the card container */
-        .containerCardPadding {
-          padding: 25px;
-        }
+        
 
         .monkeyImage{
           border-radius: 20px;

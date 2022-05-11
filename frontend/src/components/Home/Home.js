@@ -196,8 +196,8 @@
         axios.post(`${global.API_ENDPOINT}/builder/createWebsite`, formData,
           {headers: {"content-type": "multipart/form-data"}}
         ).then(res => {
-          // props.history.push('/startCollection/'+res.data)
-          props.history.push('/build/'+res.data+'/nft')
+          props.history.push('/startCollection/'+res.data)
+          // props.history.push('/build/'+res.data+'/nft')
 
         })
 
@@ -229,9 +229,9 @@
               onTitle">
                 My Collection
               </div>
-              <div class="testFont">
+              {/* <div class="testFont">
                 testtt
-              </div>
+              </div> */}
               <Stack ref={ref1} style={{marginLeft:'25px'}} direction='row' spacing={4}>
                 <Button onClick={onOpen}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>
                   Create Site

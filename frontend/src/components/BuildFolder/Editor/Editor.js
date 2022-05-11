@@ -1600,7 +1600,7 @@ export const Editor = (props) => {
           </div>
         </div>
 
-        <div class="template1ImageContainer">
+        <div data-gjs-type="box" class="template1ImageContainer">
           <div class="template1ImageInner">
             <img data-gjs-type="image" src={space2} class="space2Image" />
             <img data-gjs-type="image" src={space3} class="space3Image"/>
@@ -1608,7 +1608,7 @@ export const Editor = (props) => {
         </div>
 
         <div data-gjs-type="box" class = "headerClone">
-          <div class="tripleComparisonContainer">
+          <div data-gjs-type="box" class="tripleComparisonContainer">
               <h1 data-gjs-type="text" class ="mainTitle">
                 Monkey Squad
               </h1>
@@ -1620,10 +1620,10 @@ export const Editor = (props) => {
         <div class="spaceGap"></div>
         
         <div data-gjs-type="box" class = "NFTSpecPosition">
-          <div class = "NFTSpecRow">
+          <div data-gjs-type="box" class = "NFTSpecRow">
             <img data-gjs-type="image"  src={space1} class="space1Image" />
 
-            <div class = "NFTSpecContainer">
+            <div data-gjs-type="box" class = "NFTSpecContainer">
               <p data-gjs-type="text" class ="NFTSpecTitle"> The Specs </p>
               <p data-gjs-type="text" class = "MFTSpecContent"> Each monkey is unique and programmatically generated from over 200 possible traits, including expression, headwear, clothing, and more. 
               Some of the monkeys are more rare than others.
@@ -1635,9 +1635,8 @@ export const Editor = (props) => {
 
        <div class="spaceGap"></div> 
 
-       
         <div data-gjs-type="box" class = "tripleComparisonSection">
-          <div class="tripleComparisonContainer">
+          <div data-gjs-type="box" class="tripleComparisonContainer">
             <p data-gjs-type="text"  class="tripleComparisonHeader">
               Grow together
             </p>
@@ -1645,10 +1644,10 @@ export const Editor = (props) => {
               Build and invest as a community
             </p>
           </div>  
-          <div class="centerTripleContent"> 
-          <div class="teamContainer">
-            <div class="infoSection">
-              <div class="itemCenter">
+          <div data-gjs-type="box" class="centerTripleContent"> 
+          <div data-gjs-type="box" class="teamContainer">
+            <div data-gjs-type="box" class="infoSection">
+              <div data-gjs-type="box" class="itemCenter">
               <img data-gjs-type="image" src={astro} width={300} height={200} />
                 <div class="infoSectionTitle"> Build </div>
                 <p data-gjs-type="text" class="infoSectionDesc">
@@ -1658,11 +1657,9 @@ export const Editor = (props) => {
               </div>
             </div>
         
-            <div class="infoSection">
+            <div data-gjs-type="box" class="infoSection">
               <div class="itemCenter">
-        
                     <img data-gjs-type="image" src={creating} width={300} height={225} />
-            
                 <div class="infoSectionTitle"> Create </div>
                 <p data-gjs-type="text" class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
@@ -1671,7 +1668,7 @@ export const Editor = (props) => {
               </div>
             </div>
 
-            <div class="infoSection">
+            <div data-gjs-type="box" class="infoSection">
               <div class="itemCenter">
                 
                 <img data-gjs-type="image" src={apartment} width={300} height={200} />
@@ -1708,17 +1705,19 @@ export const Editor = (props) => {
           <div data-gjs-type="box" class="teamContainer">
             
             <div class="card">
-            <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/17/17/20/bored-6945309_960_720.png"/>
-              <div class="container">
-                <h4 data-gjs-type="text" class="teamPersonName"><b>John Doe</b></h4>
+              <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/17/17/20/bored-6945309_960_720.png"/>
+              <div class="containerCardPadding">
+                <h4 data-gjs-type="text"  class="teamPersonName"><b>John Doe </b></h4>
                 <p data-gjs-type="text" class="teamPersonRole">Founding Artist</p>
               </div>
             </div> 
 
             <div class="card">
-                <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/02/18/16/09/ape-7020995_960_720.png"/>
-                <h4 data-gjs-type="text" class="teamPersonName"><b>Jillian Lee</b></h4>
-                <p data-gjs-type="text" class="teamPersonRole">Head of Marketing</p>
+              <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/02/18/16/09/ape-7020995_960_720.png"/>
+              <div class="containerCardPadding">
+                <h4 data-gjs-type="text"  class="teamPersonName"><b>Jilian Lee</b></h4>
+                <p data-gjs-type="text" class="teamPersonRole">Head of Marketing </p>
+              </div>
             </div>
             
            
@@ -1726,7 +1725,7 @@ export const Editor = (props) => {
               <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
               <div class="containerCardPadding">
                 <h4 data-gjs-type="text"  class="teamPersonName"><b>John Doe</b></h4>
-                <p data-gjs-type="text" class="teamPersonRole">Head of Community Affairs </p>
+                <p data-gjs-type="text" class="teamPersonRole">Head of Community </p>
               </div>
             </div> 
 

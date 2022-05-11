@@ -72,7 +72,7 @@ export const renderNFTTemplate1 = editor => {
 
         .teamTitle{
           font-size:35px;
-          font-family: Lato;
+          font-family: PoorStory;
           font-weight:800;
           margin-bottom:45px;
           margin-top:45px;
@@ -104,9 +104,8 @@ export const renderNFTTemplate1 = editor => {
 
         .mainTitle{
           font-size:50px;
-          font-family: Lato;
-          font-weight:800;
-
+          font-family:'Poor Story';  
+          // font-family: 'PoorStory';
         }
 
         .logoGap{
@@ -120,7 +119,7 @@ export const renderNFTTemplate1 = editor => {
 
         .tripleComparisonHeader{
           font-size:35px;
-          font-family: Lato;
+          font-family:Poor Story; 
           font-weight:800;
 
         }
@@ -129,7 +128,7 @@ export const renderNFTTemplate1 = editor => {
           font-size:28px;
           margin-top:10px;
           margin-bottom:10px;
-          font-family: Lato;
+          font-family:Poor Story; 
         }
 
         .headerClone{
@@ -210,7 +209,7 @@ export const renderNFTTemplate1 = editor => {
           margin-top:10px;
           margin-bottom:10px;
           font-weight:800;
-          font-family: Lato;
+          font-family:Poor Story; 
         }
 
         .MFTSpecContent{
@@ -218,8 +217,7 @@ export const renderNFTTemplate1 = editor => {
           font-size:20px;
           margin-top:10px;
           margin-bottom:10px;
-  
-          font-family: Lato;
+          font-family:Poor Story; 
         }
 
         .testFirstPersonImage{
@@ -256,7 +254,7 @@ export const renderNFTTemplate1 = editor => {
           margin-top:10px;
           margin-bottom:10px;
           font-weight:800;
-          font-family: Lato;
+          font-family:Poor Story; 
         }
 
         .infoSectionDesc{
@@ -265,19 +263,19 @@ export const renderNFTTemplate1 = editor => {
           margin-top:10px;
           margin-bottom:10px;
   
-          font-family: Lato;
+          font-family:Poor Story; 
         }
 
 
         .teamPersonName{
           font-size:25px;
           font-weight:bold;
-          font-family: Lato;
+          font-family:Poor Story; 
         }
         
         .teamPersonRole{
           font-size:20px;
-          font-family: Lato;
+          font-family:Poor Story; 
         }
         
         /* On mouse-over, add a deeper shadow */

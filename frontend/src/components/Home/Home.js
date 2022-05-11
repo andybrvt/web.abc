@@ -225,8 +225,12 @@
 
           <div class="collectionList">
             <div class = "homeCollectionRow">
-              <div class="collectionTitle">
+              <div class="collecti
+              onTitle">
                 My Collection
+              </div>
+              <div class="testFont">
+                testtt
               </div>
               <Stack ref={ref1} style={{marginLeft:'25px'}} direction='row' spacing={4}>
                 <Button onClick={onOpen}  leftIcon={<FontAwesomeIcon style={{marginRight:5}} icon={faPlus} />} colorScheme='teal' variant='solid'>

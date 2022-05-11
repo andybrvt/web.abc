@@ -73,7 +73,7 @@ export const NewStylesContainer = (props) => {
     { id: 3, label: "Poppins" },
     { id: 4, label: "Meriwether" },
     { id: 5, label: "Open Sans" },
-    { id: 76, label: "Roboto" },
+    { id: 6, label: "Roboto" },
   ];
   const [value, setValue] = React.useState(20)
 

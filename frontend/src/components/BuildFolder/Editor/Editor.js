@@ -361,6 +361,8 @@ export const Editor = (props) => {
           'https://fonts.googleapis.com/css2?family=Merriweather&display=swap',
           // Montserrat
           "https://fonts.googleapis.com/css2?family=Montserrat&display=swap",
+          //poor story
+          "https://fonts.googleapis.com/css2?family=Poor+Story&display=swap",
         ],
         scripts:  [
           "https://kit.fontawesome.com/2638379ee9.js",
@@ -1580,50 +1582,50 @@ export const Editor = (props) => {
                       <div class ='gradientBackground'/>
                     </div>
 
-        <div class="header">
+        <div data-gjs-type="box" class="header">
        
           <div class="menuM">
             <div class="logoGap">
               
             </div>
             <a class="headerItem">
-               <img src={discord} width={40} height={40} />
+               <img data-gjs-type="image" src={discord} width={40} height={40} />
             </a>
             <a class="headerItem">
-              <img src={twitter} width={40} height={40} />
+              <img data-gjs-type="image" src={twitter} width={40} height={40} />
             </a>
             <div class="headerItem">
-               <img src={opensea} width={35} height={35} />
+               <img data-gjs-type="image" src={opensea} width={35} height={35} />
             </div>
           </div>
         </div>
 
         <div class="template1ImageContainer">
           <div class="template1ImageInner">
-            <img src={space2} class="space2Image" />
-            <img src={space3} class="space3Image"/>
+            <img data-gjs-type="image" src={space2} class="space2Image" />
+            <img data-gjs-type="image" src={space3} class="space3Image"/>
           </div>
         </div>
 
-        <div class = "headerClone">
+        <div data-gjs-type="box" class = "headerClone">
           <div class="tripleComparisonContainer">
-              <h1 class ="mainTitle">
+              <h1 data-gjs-type="text" class ="mainTitle">
                 Monkey Squad
               </h1>
-            <p class = "tripleComparisonSubHeader">
+            <div data-gjs-type="text" class = "tripleComparisonSubHeader">
               10,000 space travelers looking for a way home by building and creating together.
-            </p>
+            </div>
           </div>
         </div>   
         <div class="spaceGap"></div>
         
-        <div class = "NFTSpecPosition">
+        <div data-gjs-type="box" class = "NFTSpecPosition">
           <div class = "NFTSpecRow">
-            <img src={space1} class="space1Image" />
+            <img data-gjs-type="image"  src={space1} class="space1Image" />
 
             <div class = "NFTSpecContainer">
-              <p class ="NFTSpecTitle"> The Specs </p>
-              <p class = "MFTSpecContent"> Each monkey is unique and programmatically generated from over 200 possible traits, including expression, headwear, clothing, and more. 
+              <p data-gjs-type="text" class ="NFTSpecTitle"> The Specs </p>
+              <p data-gjs-type="text" class = "MFTSpecContent"> Each monkey is unique and programmatically generated from over 200 possible traits, including expression, headwear, clothing, and more. 
               Some of the monkeys are more rare than others.
               The monkeys are stored as ERC-721 tokens on the Ethereum blockchain and hosted on IPFS. Mint price to be determined.
               </p>
@@ -1634,12 +1636,12 @@ export const Editor = (props) => {
        <div class="spaceGap"></div> 
 
        
-        <div class = "tripleComparisonSection">
+        <div data-gjs-type="box" class = "tripleComparisonSection">
           <div class="tripleComparisonContainer">
-            <p class="tripleComparisonHeader">
+            <p data-gjs-type="text"  class="tripleComparisonHeader">
               Grow together
             </p>
-            <p class="tripleComparisonSubHeader">
+            <p data-gjs-type="text" class="tripleComparisonSubHeader">
               Build and invest as a community
             </p>
           </div>  
@@ -1647,9 +1649,9 @@ export const Editor = (props) => {
           <div class="teamContainer">
             <div class="infoSection">
               <div class="itemCenter">
-              <img src={astro} width={300} height={200} />
+              <img data-gjs-type="image" src={astro} width={300} height={200} />
                 <div class="infoSectionTitle"> Build </div>
-                <p class="infoSectionDesc">
+                <p data-gjs-type="text" class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
                   It comes from building, teaching, a
                 </p>
@@ -1659,10 +1661,10 @@ export const Editor = (props) => {
             <div class="infoSection">
               <div class="itemCenter">
         
-                    <img src={creating} width={300} height={225} />
+                    <img data-gjs-type="image" src={creating} width={300} height={225} />
             
                 <div class="infoSectionTitle"> Create </div>
-                <p class="infoSectionDesc">
+                <p data-gjs-type="text" class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
                   It comes from building, teaching, a
                 </p>
@@ -1672,12 +1674,12 @@ export const Editor = (props) => {
             <div class="infoSection">
               <div class="itemCenter">
                 
-                <img src={apartment} width={300} height={200} />
+                <img data-gjs-type="image" src={apartment} width={300} height={200} />
 
                 
               
                 <div class="infoSectionTitle"> Own </div>
-                <p class="infoSectionDesc">
+                <p data-gjs-type="text" class="infoSectionDesc">
                   ful learning rarely comes from passively consuming content. 
                   It comes from building, teaching, a
                 </p>
@@ -1697,34 +1699,34 @@ export const Editor = (props) => {
 
         <div class="spaceGap"></div> 
 
-        <div class="teamSection">
+        <div data-gjs-type="box" class="teamSection">
      
               <div class="teamTitle">
               Team
               </div>
   
-          <div class="teamContainer">
+          <div data-gjs-type="box" class="teamContainer">
             
             <div class="card">
-            <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/17/17/20/bored-6945309_960_720.png"/>
+            <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/17/17/20/bored-6945309_960_720.png"/>
               <div class="container">
-                <h4 class="teamPersonName"><b>John Doe</b></h4>
-                <p class="teamPersonRole">Founding Artist</p>
+                <h4 data-gjs-type="text" class="teamPersonName"><b>John Doe</b></h4>
+                <p data-gjs-type="text" class="teamPersonRole">Founding Artist</p>
               </div>
             </div> 
 
             <div class="card">
-                <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/02/18/16/09/ape-7020995_960_720.png"/>
-                <h4 class="teamPersonName"><b>Jillian Lee</b></h4>
-                <p class="teamPersonRole">Head of Marketing</p>
+                <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/02/18/16/09/ape-7020995_960_720.png"/>
+                <h4 data-gjs-type="text" class="teamPersonName"><b>Jillian Lee</b></h4>
+                <p data-gjs-type="text" class="teamPersonRole">Head of Marketing</p>
             </div>
             
            
             <div class="card">
-              <img class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
+              <img data-gjs-type="image" class ="testFirstPersonImage" src = "https://cdn.pixabay.com/photo/2022/01/06/10/10/nft-6919119_960_720.jpg"/>
               <div class="containerCardPadding">
-                <h4 class="teamPersonName"><b>John Doe</b></h4>
-                <p class="teamPersonRole">Head of Community Affairs </p>
+                <h4 data-gjs-type="text"  class="teamPersonName"><b>John Doe</b></h4>
+                <p data-gjs-type="text" class="teamPersonRole">Head of Community Affairs </p>
               </div>
             </div> 
 

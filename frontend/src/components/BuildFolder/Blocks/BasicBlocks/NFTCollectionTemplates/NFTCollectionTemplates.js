@@ -140,7 +140,8 @@ export const NFTCollectionTemplates = [
           width: 30%;
           left: 12%;
           top: 20%;
-          font-family: Lato;}
+          font-family: Lato;
+        }
         .mBodyText{
           position: absolute;
           width: 25%;

@@ -267,6 +267,13 @@ const chakraComponents = {
           >
             {children[6]}
         </div>
+        <div class="PoorStory"
+
+          onClick= {() => handleChange("'Poor Story', sans-serif;")}
+          >
+            {children[7]}
+        </div>
+        
       </Box>
     );
   },

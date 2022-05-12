@@ -249,6 +249,9 @@ const chakraComponents = {
         <div class="Roboto">
           {children[6]}
         </div>
+        <div class="PoorStory">
+          {children[8]}
+        </div>
       </Box>
     );
   },

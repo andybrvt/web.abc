@@ -38,6 +38,7 @@ export const PropertyContainer = (props) => {
     { id: 5, label: "Open Sans" },
     { id: 6, label: "Roboto" },
     { id: 7, label: "Montserrat" },
+    { id: 8, label: "Poor Story" },
   ];
 
 

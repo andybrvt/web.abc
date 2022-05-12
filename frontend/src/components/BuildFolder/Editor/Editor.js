@@ -362,7 +362,7 @@ export const Editor = (props) => {
           // Montserrat
           "https://fonts.googleapis.com/css2?family=Montserrat&display=swap",
           //poor story
-          "https://fonts.googleapis.com/css2?family=Poor+Story&display=swap",
+          "https://fonts.googleapis.com/css2?family=Poor Story&display=swap",
         ],
         scripts:  [
           "https://kit.fontawesome.com/2638379ee9.js",

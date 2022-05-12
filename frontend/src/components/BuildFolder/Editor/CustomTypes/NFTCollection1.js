@@ -104,8 +104,7 @@ export const renderNFTTemplate1 = editor => {
 
         .mainTitle{
           font-size:50px;
-          font-family:'Poor Story';  
-          // font-family: 'PoorStory';
+          font-family:PoorStory;
         }
 
         .logoGap{
@@ -119,7 +118,7 @@ export const renderNFTTemplate1 = editor => {
 
         .tripleComparisonHeader{
           font-size:35px;
-          font-family:Poor Story; 
+          font-family:PoorStory; 
           font-weight:800;
 
         }
@@ -128,7 +127,7 @@ export const renderNFTTemplate1 = editor => {
           font-size:28px;
           margin-top:10px;
           margin-bottom:10px;
-          font-family:Poor Story; 
+          font-family:PoorStory; 
         }
 
         .headerClone{
@@ -209,7 +208,7 @@ export const renderNFTTemplate1 = editor => {
           margin-top:10px;
           margin-bottom:10px;
           font-weight:800;
-          font-family:Poor Story; 
+          font-family:PoorStory;
         }
 
         .MFTSpecContent{
@@ -217,7 +216,7 @@ export const renderNFTTemplate1 = editor => {
           font-size:20px;
           margin-top:10px;
           margin-bottom:10px;
-          font-family:Poor Story; 
+          font-family:PoorStory;
         }
 
         .testFirstPersonImage{
@@ -260,7 +259,7 @@ export const renderNFTTemplate1 = editor => {
           margin-top:10px;
           margin-bottom:10px;
           font-weight:800;
-          font-family:Poor Story; 
+          font-family:PoorStory;
         }
 
         .infoSectionDesc{
@@ -269,19 +268,19 @@ export const renderNFTTemplate1 = editor => {
           margin-top:10px;
           margin-bottom:10px;
   
-          font-family:Poor Story; 
+          font-family:PoorStory;
         }
 
 
         .teamPersonName{
           font-size:25px;
           font-weight:bold;
-          font-family:Poor Story; 
+          font-family:PoorStory;
         }
         
         .teamPersonRole{
           font-size:20px;
-          font-family:Poor Story; 
+          font-family:PoorStory;
         }
         
         /* On mouse-over, add a deeper shadow */

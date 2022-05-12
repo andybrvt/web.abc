@@ -55,10 +55,10 @@
 }
 
 @font-face {
-    font-family: 'PoorStory';
     src: url('./PoorStory-Regular.ttf');
-    font-weight: 400;
+    font-family: 'PoorStory';
     font-style: normal;
+    font-weight: 400;
   }
 
 

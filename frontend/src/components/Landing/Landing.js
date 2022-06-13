@@ -1,17 +1,21 @@
-import React from 'react';
-import './Landing.css'
-import { Layout, Menu, Divider, Breadcrumb, Avatar} from 'antd';
-import { Input } from '@chakra-ui/react'
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-import first from './first.png'
-import second from './second.png'
-import third from './third.png'
-import fourth from './fourth.png'
-import web from './web.png'
-import { useNavigate, } from 'react-router-dom';
+import React from "react";
+import "./Landing.css";
+import { Layout, Menu, Divider, Breadcrumb, Avatar } from "antd";
+import { Input } from "@chakra-ui/react";
+import {
+  UserOutlined,
+  LaptopOutlined,
+  NotificationOutlined,
+} from "@ant-design/icons";
+import first from "./first.png";
+import second from "./second.png";
+import third from "./third.png";
+import fourth from "./fourth.png";
+import web from "./web.png";
+import { useNavigate } from "react-router-dom";
 import { useEthers, useEtherBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
-import builderSVG from './builder.svg'
+import builderSVG from "./builder.svg";
 import axios from "axios";
 import {
   List,
@@ -19,448 +23,445 @@ import {
   ListIcon,
   OrderedList,
   UnorderedList,
-  Button, ButtonGroup, Box, Image, Badge } from '@chakra-ui/react'
-import Lottie from 'react-lottie';
-import animationData from './drag-and-drop.json';
-import image24 from '../../images/image24.png';
-import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons'
+  Button,
+  ButtonGroup,
+  Box,
+  Image,
+  Badge,
+} from "@chakra-ui/react";
+import Lottie from "react-lottie";
+import animationData from "./drag-and-drop.json";
+import image24 from "../../images/image24.png";
+import { NewLanding } from "../NewLanding";
+import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
-
-
 
 // https://stackoverflow.com/questions/53371356/how-can-i-use-react-hooks-in-react-classic-class-component
 function withMyHook(Home) {
   return function WrappedComponent(props) {
-    const {activateBrowserWallet, account } = useEthers();
+    const { activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
-    return <Home {...props} etherBalance={etherBalance} activateBrowserWallet={activateBrowserWallet} account={account} />;
-  }
+    return (
+      <NewLanding
+        {...props}
+        etherBalance={etherBalance}
+        activateBrowserWallet={activateBrowserWallet}
+        account={account}
+      />
+    );
+  };
 }
 
 const property = {
-    imageUrl: 'https://bit.ly/2Z4KKcF',
-    imageAlt: 'Rear view of modern home with pool',
-    beds: 3,
-    baths: 2,
-    title: 'Modern home in city center in the heart of historic Los Angeles',
-    formattedPrice: '$1,900.00',
-    reviewCount: 34,
-    rating: 4,
-  }
+  imageUrl: "https://bit.ly/2Z4KKcF",
+  imageAlt: "Rear view of modern home with pool",
+  beds: 3,
+  baths: 2,
+  title: "Modern home in city center in the heart of historic Los Angeles",
+  formattedPrice: "$1,900.00",
+  reviewCount: 34,
+  rating: 4,
+};
 
-
-
-
-class Landing extends React.Component{
-
+class Landing extends React.Component {
   state = {
     trigger: false,
-    email: '',
+    email: "",
     errors: {},
     showPosition: false,
   };
   subComponent() {
-    return (<div>Hello World</div>);
+    return <div>Hello World</div>;
   }
   navLogin = () => {
-    console.log("hi")
+    console.log("hi");
     // let navigate = useNavigate();
-    this.props.history.push("/login")
+    this.props.history.push("/login");
+  };
 
-    }
-
-  triggerWallet=() =>{
-    console.log("trigger true")
+  triggerWallet = () => {
+    console.log("trigger true");
     this.setState({
-      trigger:true,
-    })
+      trigger: true,
+    });
     this.props.activateBrowserWallet();
     // this.props.history.push("/login")
-  }
+  };
 
-  handleEmailValidation(){
-    let {email} = this.state;
+  handleEmailValidation() {
+    let { email } = this.state;
     let errors = {};
     let emailIsTrue = true;
 
-    if(email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)){
+    if (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       emailIsTrue = false;
-      errors['email'] = "Enter a valid email"
+      errors["email"] = "Enter a valid email";
     }
 
     this.setState({
-      errors: errors
-    })
+      errors: errors,
+    });
 
     return emailIsTrue;
-
   }
 
-
-  handleEmailValidation(){
-    let {email} = this.state;
+  handleEmailValidation() {
+    let { email } = this.state;
     let errors = {};
     let emailIsTrue = true;
-    if(email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)){
+    if (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       emailIsTrue = false;
-      errors['email'] = "Enter a valid email"
+      errors["email"] = "Enter a valid email";
     }
     this.setState({
-      errors: errors
-    })
+      errors: errors,
+    });
     return emailIsTrue;
   }
 
-  handleEmailChange = e => {
-    console.log(e.target.value)
+  handleEmailChange = (e) => {
+    console.log(e.target.value);
     this.setState({
-      email: e.target.value
-    })
-  }
+      email: e.target.value,
+    });
+  };
 
-
-  handleEmailSubmit = e => {
-    e.preventDefault()
-    console.log('hits here')
+  handleEmailSubmit = (e) => {
+    e.preventDefault();
+    console.log("hits here");
     const { email } = this.state;
 
-    if(this.handleEmailValidation()){
-      axios.post(`${global.API_ENDPOINT}/web3Back/onWaitListAdd`,{
-        email: email
-      })
-      .then(res=> {
-        console.log(res.data)
-        this.setState({
-          email: '',
-          showPosition: true,
-          position: res.data[1]
+    if (this.handleEmailValidation()) {
+      axios
+        .post(`${global.API_ENDPOINT}/web3Back/onWaitListAdd`, {
+          email: email,
         })
-      })
+        .then((res) => {
+          console.log(res.data);
+          this.setState({
+            email: "",
+            showPosition: true,
+            position: res.data[1],
+          });
+        });
     } else {
-      alert("email is not valid")
+      alert("email is not valid");
     }
     // Now just do an axios call here
-  }
+  };
 
-
-  render(){
+  render() {
     const account = this.props.account;
     const etherBalance = this.props.etherBalance;
-    if(account){
-      this.props.history.push("/home")
+    if (account) {
+      this.props.history.push("/home");
     }
-    return(
-     <div>
+    return (
+      <div>
+        <Menu
+          style={{
+            padding: "10px",
+          }}
+          theme="light"
+          mode="horizontal"
+          defaultSelectedKeys={["3"]}
+        >
+          <div class="logo_container_landing">
+            <div class="logoFont">web.abc</div>
+          </div>
 
-       <Menu style = {{
-           padding: '10px'
-         }} theme="light" mode="horizontal" defaultSelectedKeys={['3']}>
-         <div class = "logo_container_landing">
-           <div class="logoFont">web.abc</div>
-         </div>
+          <div class="middleHeaderContainer"></div>
 
-         <div class = "middleHeaderContainer">
-         </div>
+          <div class="socialMediaTopContainer">
+            <div class="socialMediaIcon ">
+              <a href="https://twitter.com/webdotabc" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+            <div class="socialMediaIcon ">
+              <a href="https://discord.gg/jSdfutS9Uw" target="_blank">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
 
+          <div class="connectWalletContainer">
+            <Button onClick={this.triggerWallet} colorScheme="blue">
+              Connect Wallet
+            </Button>
+          </div>
+        </Menu>
 
+        <div class="bigContainer">
+          <div class="splitScreenContainer landing_background">
+            <div class="splitLeft">
+              <div class="splitLeft1">
+                <div className="title">
+                  The start of your blockchain journey
+                </div>
+                <div class="title2">Build Dapps with just a drag-n-drop.</div>
 
-           <div class = "socialMediaTopContainer">
-
-
-             <div  class = "socialMediaIcon ">
-               <a href="https://twitter.com/webdotabc" target="_blank">
-                 <i class="fab fa-twitter"></i>
-               </a>
-
-             </div>
-             <div class = 'socialMediaIcon '>
-
-               <a href="https://discord.gg/jSdfutS9Uw" target="_blank">
-                 <i class="fab fa-discord"></i>
-               </a>
-             </div>
-
-
-           </div>
-
-
-
-           <div class = "connectWalletContainer">
-               <Button
-                 onClick={this.triggerWallet}
-                 colorScheme='blue'>Connect Wallet</Button>
-           </div>
-
-
-
-
-
-       </Menu>
-
-       <div class = "bigContainer">
-         <div class = "splitScreenContainer landing_background">
-           <div class="splitLeft">
-             <div class="splitLeft1">
-               <div className="title">
-
-                 The start of your blockchain journey
-               </div>
-               <div class="title2">
-                 Build Dapps with just a drag-n-drop.
-               </div>
-
-
-
-               <form onSubmit = {this.handleEmailSubmit}>
-                   <label style = {{
-                       marginTop: '15px',
-                       width: '100%',
-                     }}>
-                     <div class = "inputField">
-
-                       <Input style={{background: 'white', width:450}} variant='outline'   onChange = {this.handleEmailChange}
-                         value = {this.state.email} placeholder='Enter email' />
-                       <button type="submit" class="getStartedBtn">
-                         <span class="containerText">
-                           Join the waitlist
-                           </span>
-                       </button>
-
-                     </div>
-
-                   </label>
-               </form>
-             </div>
-           </div>
-
-
-
-           <div class="splitRight">
-              <div class = "lottieContainer">
-               <Lottie
-                  options={{
-                      loop: true,
-                      autoplay: true,
-                      animationData: animationData,
-                      rendererSettings: {
-                        preserveAspectRatio: "xMidYMid slice"
-                      }
+                <form onSubmit={this.handleEmailSubmit}>
+                  <label
+                    style={{
+                      marginTop: "15px",
+                      width: "100%",
                     }}
+                  >
+                    <div class="inputField">
+                      <Input
+                        style={{ background: "white", width: 450 }}
+                        variant="outline"
+                        onChange={this.handleEmailChange}
+                        value={this.state.email}
+                        placeholder="Enter email"
+                      />
+                      <button type="submit" class="getStartedBtn">
+                        <span class="containerText">Join the waitlist</span>
+                      </button>
+                    </div>
+                  </label>
+                </form>
+              </div>
+            </div>
 
-               />
-             </div>
+            <div class="splitRight">
+              <div class="lottieContainer">
+                <Lottie
+                  options={{
+                    loop: true,
+                    autoplay: true,
+                    animationData: animationData,
+                    rendererSettings: {
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
+                  }}
+                />
+              </div>
+            </div>
+          </div>
 
-           </div>
-         </div>
+          <div class="descriptionContainer">
+            <div class="descriptionText">
+              Building on the blockchain made for everyone
+            </div>
+          </div>
 
-
-         <div class = "descriptionContainer">
-           <div class = 'descriptionText'>
-           Building on the blockchain made for everyone
-           </div>
-
-         </div>
-
-
-         <div class = "featureContainer">
-
-           <div class = "featureCardHolder">
-
-             <div class = "cardContainer">
-                <div class ="featureCard">
-                  <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
+          <div class="featureContainer">
+            <div class="featureCardHolder">
+              <div class="cardContainer">
+                <div class="featureCard">
+                  <Box
+                    maxW="sm"
+                    borderWidth="1px"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    w={400}
+                    h={550}
+                  >
                     <Image src={image24} alt={property.imageAlt} />
 
-                    <Box p='6'>
-                      <Box display='flex' alignItems='baseline'>
-                        <Badge borderRadius='full' px='2' colorScheme='teal'>
+                    <Box p="6">
+                      <Box display="flex" alignItems="baseline">
+                        <Badge borderRadius="full" px="2" colorScheme="teal">
                           New
                         </Badge>
-
                       </Box>
 
-                      <Box
-                        mt='1'
-                      >
-                        <div class = "featureInfoText">
-                          <div class = "featureInfoTitle">
-                            Personal Website
-                          </div>
-                          <div style = {{
-                              marginBottom: '10px'
-                            }}>
-                            Build you own customizable website to congergate
-                            all your blockchain antics. Showcase:
-
+                      <Box mt="1">
+                        <div class="featureInfoText">
+                          <div class="featureInfoTitle">Personal Website</div>
+                          <div
+                            style={{
+                              marginBottom: "10px",
+                            }}
+                          >
+                            Build you own customizable website to congergate all
+                            your blockchain antics. Showcase:
                           </div>
 
-                          <List style={{ }} spacing={3}>
+                          <List style={{}} spacing={3}>
                             <ListItem>
-                              <ListIcon as={CheckCircleIcon} color='green.500' />
-                                Nfts
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
+                              Nfts
                             </ListItem>
                             <ListItem>
-                              <ListIcon as={CheckCircleIcon} color='green.500' />
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
                               Recent transactions
                             </ListItem>
                             <ListItem>
-                              <ListIcon as={CheckCircleIcon} color='green.500' />
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
                               "Stats" on the blockchain
                             </ListItem>
                             {/* You can also use custom icons from react-icons */}
-
                           </List>
-
-
                         </div>
-
                       </Box>
-
-
                     </Box>
                   </Box>
-
                 </div>
-             </div>
+              </div>
 
-             <div class = "cardContainer">
-               <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
-                 <Image src={'https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg'} alt={'Rear view of modern home with pool'} />
-                   <Box p='6'>
-                     <Box display='flex' alignItems='baseline'>
-                       <Badge borderRadius='full' px='2' colorScheme='red'>
-                         Coming soon
-                       </Badge>
+              <div class="cardContainer">
+                <div class="featureCard">
+                  <Box
+                    maxW="sm"
+                    borderWidth="1px"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    w={400}
+                    h={550}
+                  >
+                    <Image
+                      src={
+                        "https://cdn.vox-cdn.com/thumbor/qi6L2dYC2T_879sjDmdfrfvhAiQ=/0x0:3000x3000/1200x800/filters:focal(1260x1260:1740x1740)/cdn.vox-cdn.com/uploads/chorus_image/image/68948366/2021_NYR_20447_0001_001_beeple_everydays_the_first_5000_days034733_.0.jpg"
+                      }
+                      alt={"Rear view of modern home with pool"}
+                    />
+                    <Box p="6">
+                      <Box display="flex" alignItems="baseline">
+                        <Badge borderRadius="full" px="2" colorScheme="red">
+                          Coming soon
+                        </Badge>
+                      </Box>
 
-                     </Box>
+                      <Box mt="1">
+                        <div class="featureInfoText">
+                          <div class="featureInfoTitle">NFT Collections</div>
+                          <div
+                            style={{
+                              marginBottom: "10px",
+                            }}
+                          >
+                            Build you own customizable NFT collection website
+                            without the hassle.
+                          </div>
 
-                     <Box
-                       mt='1'
-                     >
-                       <div class = "featureInfoText">
-                         <div class = "featureInfoTitle">
-                           NFT Collections
-                         </div>
-                         <div style = {{
-                             marginBottom: '10px'
-                           }}>
-                           Build you own customizable NFT collection website without the
-                           hassle.
+                          <List style={{}} spacing={3}>
+                            <ListItem>
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
+                              ERC721
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
+                              Mint NFT
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
+                              Sell NFT
+                            </ListItem>
+                            {/* You can also use custom icons from react-icons */}
+                          </List>
+                        </div>
+                      </Box>
+                    </Box>
+                  </Box>
+                </div>
+              </div>
 
-                         </div>
+              <div class="cardContainer">
+                <div class="featureCard">
+                  <Box
+                    maxW="sm"
+                    borderWidth="1px"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    w={400}
+                    h={550}
+                  >
+                    <Image
+                      src={
+                        "https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                      }
+                      alt={"Rear view of modern home with pool"}
+                    />
+                    <Box p="6">
+                      <Box display="flex" alignItems="baseline">
+                        <Badge borderRadius="full" px="2" colorScheme="red">
+                          Coming soon
+                        </Badge>
+                      </Box>
 
-                         <List style={{ }} spacing={3}>
-                           <ListItem>
-                             <ListIcon as={CheckCircleIcon} color='green.500' />
-                               ERC721
-                           </ListItem>
-                           <ListItem>
-                             <ListIcon as={CheckCircleIcon} color='green.500' />
-                             Mint NFT
-                           </ListItem>
-                           <ListItem>
-                             <ListIcon as={CheckCircleIcon} color='green.500' />
-                             Sell NFT
-                           </ListItem>
-                           {/* You can also use custom icons from react-icons */}
+                      <Box mt="1">
+                        <div class="featureInfoText">
+                          <div class="featureInfoTitle">DAOs</div>
+                          <div
+                            style={{
+                              marginBottom: "10px",
+                            }}
+                          >
+                            Build you own customizable DAO website.
+                          </div>
 
-                         </List>
-
-
-                       </div>
-
-                     </Box>
-
-                   </Box>
-                 </Box>
-               </div>
-             </div>
-
-             <div class = "cardContainer">
-               <div class ="featureCard">
-                 <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' w= {400} h={550}>
-                 <Image src={'https://images.unsplash.com/photo-1622037022824-0c71d511ef3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'} alt={'Rear view of modern home with pool'} />
-                   <Box p='6'>
-                     <Box display='flex' alignItems='baseline'>
-                       <Badge borderRadius='full' px='2' colorScheme='red'>
-                         Coming soon
-                       </Badge>
-
-                     </Box>
-
-                     <Box
-                       mt='1'
-                     >
-                       <div class = "featureInfoText">
-                         <div class = "featureInfoTitle">
-                           DAOs
-                         </div>
-                         <div style = {{
-                             marginBottom: '10px'
-                           }}>
-                           Build you own customizable DAO website.
-
-                         </div>
-
-                         <List style={{ }} spacing={3}>
-                           <ListItem>
-                             <ListIcon as={CheckCircleIcon} color='green.500' />
-                               Central Point of Information
-                           </ListItem>
-                           <ListItem>
-                             <ListIcon as={CheckCircleIcon} color='green.500' />
-                             Member Relationship Web
-                           </ListItem>
-                           <ListItem>
-                             <ListIcon as={CheckCircleIcon} color='green.500' />
-                             Court Votting
-                           </ListItem>
-                           {/* You can also use custom icons from react-icons */}
-
-                         </List>
-
-
-                       </div>
-
-                     </Box>
-
-
-                   </Box>
-                 </Box>
-               </div>
-             </div>
-
-           </div>
-
-         </div>
-
-         <div class = "socialMediaContainer">
-
-           <div class = "socialMediaMiddleC">
-
-               <div  class = "socialMediaIcon ">
-                 <a href="https://twitter.com/webdotabc" target="_blank">
-                   <i class="fab fa-twitter"></i>
-                 </a>
-
-               </div>
-               <div class = 'socialMediaIcon '>
-
-                 <a href="https://discord.gg/jSdfutS9Uw" target="_blank">
-                   <i class="fab fa-discord"></i>
-                 </a>
-               </div>
-
+                          <List style={{}} spacing={3}>
+                            <ListItem>
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
+                              Central Point of Information
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
+                              Member Relationship Web
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon
+                                as={CheckCircleIcon}
+                                color="green.500"
+                              />
+                              Court Votting
+                            </ListItem>
+                            {/* You can also use custom icons from react-icons */}
+                          </List>
+                        </div>
+                      </Box>
+                    </Box>
+                  </Box>
+                </div>
+              </div>
             </div>
-         </div>
+          </div>
 
+          <div class="socialMediaContainer">
+            <div class="socialMediaMiddleC">
+              <div class="socialMediaIcon ">
+                <a href="https://twitter.com/webdotabc" target="_blank">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </div>
+              <div class="socialMediaIcon ">
+                <a href="https://discord.gg/jSdfutS9Uw" target="_blank">
+                  <i class="fab fa-discord"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-
-       </div>
-
-         {/*
+        {/*
 
 
 
@@ -480,10 +481,8 @@ class Landing extends React.Component{
 
 
          */}
-
-     </div>
-
-    )
+      </div>
+    );
   }
 }
 

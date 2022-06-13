@@ -327,11 +327,7 @@
     transform: translateX(-50%) translateY(-50%);
     width: 85%;
   }
-  .splitRight{
-    display: none;
 
-      /* background: green; */
-  }
   .title {
       font-family: 'PlusJakartaSans-Bold';
       font-size: 65px;
